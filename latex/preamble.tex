@@ -1,0 +1,112 @@
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,bm,mathtools}
+\usepackage{booktabs,tabularx}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usetikzlibrary{arrows.meta,calc,fit,positioning}
+
+\definecolor{accentRed}{HTML}{D71440}
+\definecolor{noteBlue}{HTML}{1F4E79}
+\definecolor{verifyOrange}{HTML}{A64B00}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=noteBlue,
+  citecolor=noteBlue,
+  urlcolor=noteBlue,
+  pdftitle={\coursecode：\coursetitle},
+  pdfsubject={\academicyear\ 教材学习笔记}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\setlist{itemsep=0.25em,topsep=0.35em}
+\graphicspath{{figures/}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\coursecode}
+\rhead{\coursetitle}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+
+\newtheorem{definition}{定义}[section]
+\newtheorem{theorem}[definition]{定理}
+\newtheorem{proposition}[definition]{命题}
+\newtheorem{example}[definition]{例}
+\newtheorem{remark}[definition]{说明}
+
+\newcommand{\recordid}[1]{%
+  \textcolor{noteBlue}{\textbf{编号：}\texttt{#1}}%
+}
+
+\newcommand{\studymeta}[5]{%
+  \begin{center}
+    \begin{tabularx}{\textwidth}{@{}lX@{}}
+      \toprule
+      学习单元 & \texttt{#1} \\
+      学习日期 & #2 \\
+      主要资料 & #3 \\
+      覆盖范围 & #4 \\
+      人工确认 & #5 \\
+      \bottomrule
+    \end{tabularx}
+  \end{center}
+}
+
+\newcommand{\exercisemeta}[5]{%
+  \begin{center}
+    \begin{tabularx}{\textwidth}{@{}lX@{}}
+      \toprule
+      题组编号 & \texttt{#1} \\
+      对应日期 & #2 \\
+      主要来源 & #3 \\
+      核对状态 & #4 \\
+      人工确认 & #5 \\
+      \bottomrule
+    \end{tabularx}
+  \end{center}
+}
+
+\newcommand{\notetopic}[2]{%
+  \subsection{#2}\label{topic:#1}%
+  \recordid{#1}\par
+}
+
+\newcommand{\exercisequestion}[2]{%
+  \subsection{#2}\label{exercise:#1}%
+  \recordid{#1}\par
+}
+
+\newcommand{\relatedtopic}[2]{%
+  \hyperref[topic:#1]{#2}~(\texttt{#1})%
+}
+
+\newcommand{\relatedexercise}[2]{%
+  \hyperref[exercise:#1]{#2}~(\texttt{#1})%
+}
+
+\newcommand{\verify}[1]{%
+  \textcolor{verifyOrange}{\textbf{[待核对：}#1\textbf{]}}%
+}
+
+\newcommand{\keyidea}[1]{%
+  \par\textcolor{noteBlue}{\textbf{核心。}}#1\par
+}
+
+\newcommand{\dialoguesupplement}[1]{%
+  \par\textcolor{noteBlue}{\textbf{对话补充。}}#1\par
+}
+
+\newenvironment{checkedsolution}
+  {\par\textbf{核对后的解答。}\par}
+  {\hfill$\square$\par}
+
+\title{\textcolor{accentRed}{\coursecode}\\[0.4em]\coursetitle}
+\author{课程学习笔记}
+\date{\academicyear}

@@ -1,0 +1,189 @@
+% 对应单元：QM-C01-S01
+% 来源：Shankar 第 1 章第 1.1 节，练习 1.1.1--1.1.5
+% 人工核验：用户作答后完成订正
+
+\section{第 1.1 节教材习题与订正}
+\label{exercise-set:QM-C01-S01}
+
+\exercisemeta
+  {QM-C01-S01-EX}
+  {2026-08-17}
+  {Shankar，第 1 章 \S 1.1，练习 1.1.1--1.1.5}
+  {全部完成并逐题核对}
+  {已确认（文字与手写解答）}
+
+\exercisequestion{QM-C01-S01-E01}{教材练习 1.1.1：由公理推出四个基本性质}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S01-T01}{向量空间、标量域与公理}。
+
+\textbf{题意概述。}证明零向量唯一、$0\ket{V}=\ket{0}$、$(-1)\ket{V}=-\ket{V}$，以及加法逆元唯一。教材位置：印刷页 p.~2，PDF p.~16。
+
+\begin{checkedsolution}
+若 $\ket{0}$ 与 $\ket{0'}$ 都是零向量，则
+\[
+  \ket{0'}=\ket{0'}+\ket{0}
+  =\ket{0}+\ket{0'}=\ket{0},
+\]
+故零向量唯一。
+
+由
+\[
+  0\ket{V}=(0+0)\ket{V}=0\ket{V}+0\ket{V}
+\]
+在等式两边加上 $0\ket{V}$ 的加法逆元，得到 $0\ket{V}=\ket{0}$。
+
+又有
+\[
+  \ket{V}+(-1)\ket{V}
+  =1\ket{V}+(-1)\ket{V}
+  =(1-1)\ket{V}
+  =0\ket{V}=\ket{0}.
+\]
+因此 $(-1)\ket{V}$ 是 $\ket{V}$ 的加法逆元，即 $(-1)\ket{V}=-\ket{V}$。
+
+最后，若 $\ket{W}$ 也满足 $\ket{V}+\ket{W}=\ket{0}$，则
+\[
+  \ket{W}=\ket{W}+\ket{0}
+  =\ket{W}+(\ket{V}-\ket{V})
+  =(\ket{W}+\ket{V})-\ket{V}
+  =\ket{0}-\ket{V}=-\ket{V}.
+\]
+故加法逆元唯一。
+\end{checkedsolution}
+
+\textbf{检查点：}零向量 $\ket{0}$ 与标量零 $0$ 是不同类型的对象；证明中使用 $0\ket{V}=\ket{0}$ 时不可混写。
+
+\exercisequestion{QM-C01-S01-E02}{教材练习 1.1.2：实三元组与非封闭子集}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S01-T02}{典型例子、封闭性与齐次约束}。
+
+\textbf{题意概述。}实三元组按分量相加和数乘。写出零向量与 $(a,b,c)$ 的加法逆元，并说明形如 $(a,b,1)$ 的三元组不构成向量空间。教材位置：印刷页 p.~3，PDF p.~17。
+
+\begin{checkedsolution}
+零向量为
+\[
+  (0,0,0),
+\]
+而 $(a,b,c)$ 的加法逆元为
+\[
+  (-a,-b,-c).
+\]
+集合 $S=\{(a,b,1):a,b\in\real\}$ 不包含零向量。若 $\bm{u},\bm{v}\in S$，则 $\bm{u}+\bm{v}$ 的第三分量为 $2$，一般不在 $S$；若 $\lambda\in\real$，则 $\lambda\bm{u}$ 的第三分量为 $\lambda$，一般也不在 $S$。此外，$-\bm{u}$ 的第三分量为 $-1$。因此该集合不构成向量空间。
+\end{checkedsolution}
+
+\textbf{检查点：}任意一个必要条件失败就足以否定向量空间；列出零向量和封闭性失败能更完整地定位问题。
+
+\exercisequestion{QM-C01-S01-E03}{教材练习 1.1.3：带边界条件的函数集合}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S01-T02}{典型例子、封闭性与齐次约束}。
+
+\textbf{题意概述。}判断满足端点为零、周期边界条件以及 $f(0)=4$ 的函数集合是否构成向量空间。教材位置：印刷页 p.~4，PDF p.~18。
+
+\begin{checkedsolution}
+若 $f(0)=f(L)=0$ 且 $g(0)=g(L)=0$，则 $f+g$ 与 $af$ 仍在两个端点取零；零函数和 $-f$ 也满足条件。因此该集合构成向量空间。
+
+若 $f(0)=f(L)$ 且 $g(0)=g(L)$，则
+\[
+  (f+g)(0)=(f+g)(L),\qquad
+  (af)(0)=(af)(L),
+\]
+零函数和加法逆函数也满足条件，因此周期函数集合构成向量空间。
+
+对于 $f(0)=4$，零函数不在集合中；两个集合元素相加后在 $0$ 处取值为 $8$；一般数乘后在 $0$ 处取值为 $4a$；取负后为 $-4$。因此该集合不构成向量空间。
+\end{checkedsolution}
+
+\textbf{检查点：}严格说法是“零函数不属于该集合”，而不是“零函数不存在”。
+
+\exercisequestion{QM-C01-S01-E04}{教材练习 1.1.4：三个矩阵的线性相关性}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S01-T03}{线性组合、线性相关与线性无关}。
+
+\textbf{题意概述。}判断以下三个实矩阵是否线性无关：
+\[
+  \ket{1}=\begin{pmatrix}0&1\\0&0\end{pmatrix},\qquad
+  \ket{2}=\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad
+  \ket{3}=\begin{pmatrix}-2&-1\\0&-2\end{pmatrix}.
+\]
+教材位置：印刷页 p.~5，PDF p.~19。
+
+\begin{checkedsolution}
+直接计算可见
+\[
+  \ket{1}-2\ket{2}=\ket{3},
+\]
+所以
+\[
+  \ket{1}-2\ket{2}-\ket{3}=\ket{0}.
+\]
+系数 $(1,-2,-1)$ 不全为零，因此三个矩阵线性相关。
+\end{checkedsolution}
+
+\textbf{检查点：}证明线性相关不必求出所有线性关系；找到一条非平凡关系已经足够。
+
+\exercisequestion{QM-C01-S01-E05}{教材练习 1.1.5：两组三维行向量}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S01-T03}{线性组合、线性相关与线性无关}。
+
+\textbf{题意概述。}证明 $(1,1,0),(1,0,1),(3,2,1)$ 线性相关，并证明 $(1,1,0),(1,0,1),(0,1,1)$ 线性无关。教材位置：印刷页 p.~5，PDF p.~19。
+
+\begin{checkedsolution}
+对第一组，不难验证
+\[
+  2(1,1,0)+(1,0,1)=(3,2,1),
+\]
+故存在非平凡线性关系，第一组线性相关。
+
+对第二组，令
+\[
+  a(1,1,0)+b(1,0,1)+c(0,1,1)=(0,0,0),
+\]
+比较分量得到
+\[
+  a+b=0,\qquad a+c=0,\qquad b+c=0.
+\]
+由这些等式可得 $a=b=c$，再代入 $a+b=0$ 得 $2a=0$。由于标量域为 $\real$，所以 $a=b=c=0$，第二组线性无关。
+\end{checkedsolution}
+
+\textbf{检查点：}相关性只需一个非平凡解；无关性要求证明齐次方程只有平凡解。
+
+\exercisequestion{QM-C01-S01-E06}{自拟检查题：分量运算与换基}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S01-T05}{坐标唯一性与换基}。
+
+\textbf{来源说明。}本题由学习对话生成，不是教材习题。它用于检查坐标运算、换基和“向量不随坐标改变”的区别。
+
+在基 $\{\ket{1},\ket{2}\}$ 下，设
+\[
+  \ket{V}=3\ket{1}-2\ket{2},\qquad
+  \ket{W}=-\ket{1}+4\ket{2}.
+\]
+求 $2\ket{V}+\ket{W}$ 的坐标。再令
+\[
+  \ket{1'}=\ket{1}+\ket{2},\qquad
+  \ket{2'}=\ket{1}-\ket{2},
+\]
+求 $\ket{V}$ 在新基下的坐标。
+
+\begin{checkedsolution}
+第一问有
+\[
+  2\ket{V}+\ket{W}=5\ket{1},
+\]
+所以在原基下的坐标为 $(5,0)$。
+
+设 $\ket{V}=a\ket{1'}+b\ket{2'}$。展开后
+\[
+  \ket{V}=(a+b)\ket{1}+(a-b)\ket{2},
+\]
+故
+\[
+  a+b=3,\qquad a-b=-2.
+\]
+解得
+\[
+  a=\frac12,\qquad b=\frac52.
+\]
+新坐标为 $(1/2,5/2)$；改变的只是坐标，抽象向量 $\ket{V}$ 本身没有改变。
+\end{checkedsolution}
+
+\textbf{检查点：}换基后将新坐标代回新基，必须能够重建原来的向量。

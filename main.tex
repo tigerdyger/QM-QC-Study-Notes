@@ -1,0 +1,27 @@
+% !TEX program = xelatex
+% !TEX root = main.tex
+\documentclass[11pt,a4paper,fontset=fandol]{ctexart}
+
+\newcommand{\coursecode}{量子力学}
+\newcommand{\coursetitle}{Shankar 教材学习笔记}
+\newcommand{\academicyear}{2026}
+
+\input{latex/preamble}
+\input{latex/macros}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+\input{study-map}
+
+\clearpage
+\part{教材精讲}
+\input{chapters/01-notes}
+
+\clearpage
+\part{教材习题与订正}
+\input{exercises/01-exercises}
+
+\end{document}
