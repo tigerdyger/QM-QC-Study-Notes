@@ -1,6 +1,6 @@
 % 教材：Shankar, Principles of Quantum Mechanics
-% 精确范围：第 1 章第 1.1 节，印刷页 pp. 1--7，PDF pp. 15--21
-% 人工核验：已完成讲解、问答和教材练习 1.1.1--1.1.5
+% 已覆盖：第 1 章第 1.1--1.2 节，印刷页 pp. 1--11，PDF pp. 15--25
+% 人工核验：已完成分块讲解、问答、检查题和同书练习核对
 
 \section{第 1.1 节：线性向量空间基础}
 \label{section:QM-C01-S01}
@@ -176,3 +176,135 @@
 \subsection{一分钟回顾}
 
 向量空间由标量域、向量加法、标量数乘和相应公理确定。线性无关意味着不存在非平凡的零向量线性关系；维数是线性无关向量数目的上限；基同时具备线性无关和张成性质。给定基后，每个向量具有唯一坐标，向量加法和标量数乘可逐分量进行。矩阵和函数都可以是向量，列数组只是选定基之后的坐标表达。
+
+\section{第 1.2 节：内积空间}
+\label{section:QM-C01-S02}
+
+\studymeta
+  {QM-C01-S02}
+  {2026-08-18}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 1 章 \S 1.2；印刷页 pp.~7--11；PDF pp.~21--25}
+  {已确认（讲解、问答、检查题与同书练习核验）}
+
+\subsection{本节主线}
+
+线性向量空间只规定向量加法和标量数乘，本身没有长度、正交或投影。内积通过三类公理为向量空间增加几何结构。复向量空间中的关键是共轭对称：它使自内积保持为非负实数，并导致内积对第一个变量共轭线性、对第二个变量线性。
+
+\notetopic{QM-C01-S02-T01}{内积的定义与公理}
+
+\keyidea{向量空间给出线性结构；内积在此基础上定义范数、正交和投影。内积的结果是标量，不是向量。}
+
+对复向量空间中的任意向量 $\ket{V},\ket{W},\ket{Z}$ 和标量 $a,b\in\complex$，本书采用物理学约定：
+\begin{align}
+  \braket{V}{W} &= \braket{W}{V}^{*},
+  \label{eq:QM-C01-S02-conjugate-symmetry}\\
+  \braket{V}{V} &\geq 0,
+  \qquad \braket{V}{V}=0\iff\ket{V}=\ket{0},
+  \label{eq:QM-C01-S02-positive-definite}\\
+  \bra{V}\bigl(a\ket{W}+b\ket{Z}\bigr)
+    &=a\braket{V}{W}+b\braket{V}{Z}.
+  \label{eq:QM-C01-S02-linear-ket}
+\end{align}
+
+第一条是 conjugate symmetry（共轭对称性），第二条是 positive definiteness（正定性），第三条是对 ket 位置的线性。
+
+\begin{remark}
+教材把第二条称为 positive semidefiniteness。按常用的现代术语，由于等号仅在零向量处成立，这里的条件实际上是正定，而不只是半正定。
+\end{remark}
+
+例如，$\complex^2$ 上的
+\[
+  \braket{V}{W}=v_1^*w_1+2v_2^*w_2
+\]
+是一个内积。若把第二项改为 $-2v_2^*w_2$，则对 $\ket{V}=(0,1)^{\mathsf T}$ 有 $\braket{V}{V}=-2$，违反正定性。
+
+\notetopic{QM-C01-S02-T02}{第一个变量的共轭线性}
+
+由共轭对称性和对 ket 的线性，
+\begin{align*}
+  \braket{aW+bZ}{V}
+  &=\braket{V}{aW+bZ}^{*}\\
+  &=\left(a\braket{V}{W}+b\braket{V}{Z}\right)^*\\
+  &=a^*\braket{W}{V}+b^*\braket{Z}{V}.
+\end{align*}
+因此
+\begin{equation}
+  \braket{aV}{bW}=a^*b\braket{V}{W}.
+  \label{eq:QM-C01-S02-scalar-extraction}
+\end{equation}
+系数从第一个位置提出时必须取共轭，否则复数数乘可使自内积变为负数，与正定性冲突。
+
+\notetopic{QM-C01-S02-T03}{范数、正交与正交归一基}
+
+向量的范数定义为
+\begin{equation}
+  \norm{V}=\sqrt{\braket{V}{V}}.
+  \label{eq:QM-C01-S02-norm}
+\end{equation}
+对非零向量，归一化给出
+\[
+  \ket{\widehat V}=\frac{\ket{V}}{\norm{V}},
+  \qquad \braket{\widehat V}{\widehat V}=1.
+\]
+若 $\braket{V}{W}=0$，则称两向量 orthogonal（正交）。一组基若满足
+\begin{equation}
+  \braket{i}{j}=\delta_{ij},
+  \label{eq:QM-C01-S02-orthonormal-basis}
+\end{equation}
+就是 orthonormal basis（正交归一基），其中 $\delta_{ij}$ 是 Kronecker delta。
+
+一组非零、两两正交的向量必然线性无关。以两个向量为例，若
+\[
+  a\ket{V}+b\ket{W}=\ket{0},
+  \qquad \braket{V}{W}=0,
+\]
+在等式左边作用 $\bra{V}$ 得 $a\braket{V}{V}=0$，故 $a=0$；再由 $b\ket{W}=\ket{0}$ 和 $\ket{W}\neq\ket{0}$ 得 $b=0$。
+
+\notetopic{QM-C01-S02-T04}{任意基与正交归一基中的分量公式}
+
+若
+\[
+  \ket{V}=\sum_i v_i\ket{i},
+  \qquad
+  \ket{W}=\sum_j w_j\ket{j},
+\]
+则任意基中都有
+\begin{equation}
+  \braket{V}{W}
+  =\sum_i\sum_j v_i^*w_j\braket{i}{j}.
+  \label{eq:QM-C01-S02-general-basis-inner-product}
+\end{equation}
+定义 Gram matrix（格拉姆矩阵）$G_{ij}=\braket{i}{j}$，上式可写为
+\[
+  \braket{V}{W}=\bm v^\dagger G\bm w.
+\]
+在正交归一基中 $G=I$，于是
+\begin{equation}
+  \braket{V}{W}=\sum_i v_i^*w_i
+  =\bm v^\dagger\bm w,
+  \qquad
+  \norm{V}^2=\sum_i\abs{v_i}^2.
+  \label{eq:QM-C01-S02-orthonormal-components}
+\end{equation}
+因此不能在任意基中不加检查地对坐标列直接使用 $\bm v^\dagger\bm w$；当基不正交归一时，必须保留 $G$。
+
+\notetopic{QM-C01-S02-T05}{Gram--Schmidt 正交化}
+
+\begin{theorem}[Gram--Schmidt]
+给定一组线性无关基，可以通过它们的线性组合构造一组正交归一基。
+\end{theorem}
+
+教材在本节陈述定理，并在后文给出构造过程。对两个线性无关向量 $\ket{A},\ket{B}$，构造为
+\[
+  \ket{e_1}=\frac{\ket{A}}{\norm{A}},
+  \qquad
+  \ket{B_\perp}=\ket{B}-\ket{e_1}\braket{e_1}{B},
+  \qquad
+  \ket{e_2}=\frac{\ket{B_\perp}}{\norm{B_\perp}}.
+\]
+若某一步的剩余向量为零，就说明当前向量已在前面向量的张成空间中，原向量组线性相关。具体计算见\relatedexercise{QM-C01-S02-E01}{教材练习 1.3.1}。
+
+\subsection{一分钟回顾}
+
+内积为向量空间定义范数、正交和投影。本书约定内积对 ket 线性、对第一个变量共轭线性。任意基中的分量公式是 $\bm v^\dagger G\bm w$；只有在正交归一基中才简化为 $\bm v^\dagger\bm w$。Gram--Schmidt 过程通过逐步减去已有方向的投影，把线性无关基变为正交归一基。

@@ -5,7 +5,7 @@
 ## 仓库对象
 
 - 本仓库是公开的 QM 与 QC 中文学习笔记，不是教材翻译、官方课程讲义或答案册。
-- 当前已有内容仅覆盖 Shankar *Principles of Quantum Mechanics* 第 1 章第 1.1 节。
+- 量子力学内容以 Shankar *Principles of Quantum Mechanics* 为主要资料；实际已完成范围以 `learning-log.md` 和 `study-map.tex` 中经过确认的记录为准。
 - 量子计算是后续计划；在存在经过核对的资料和笔记之前，不得把它描述成已实现内容。
 - 主要读者是具备微积分、基础线性代数和初等经典力学知识的本科生或自学者。
 
