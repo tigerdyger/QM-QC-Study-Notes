@@ -1,5 +1,5 @@
-% 对应单元：QM-C01-S01--S02
-% 来源：Shankar 第 1 章第 1.1--1.2 节及紧邻同书练习
+% 对应单元：QM-C01-S01--S03
+% 来源：Shankar 第 1 章第 1.1--1.3 节及同书练习
 % 人工核验：用户作答后完成订正与收口检查
 
 \section{第 1.1 节教材习题与订正}
@@ -265,3 +265,151 @@
 \end{checkedsolution}
 
 \textbf{检查点：}Gram--Schmidt 的核心是先减去已有正交方向的投影，再对剩余向量归一化。计算中遇到复杂分数时，先提取整体公因子，归一化会将它消去。
+
+\section{第 1.3 节教材习题与订正}
+\label{exercise-set:QM-C01-S03}
+
+\exercisemeta
+  {QM-C01-S03-EX}
+  {2026-08-19}
+  {Shankar，第 1 章 \S 1.3，练习 1.3.1--1.3.4}
+  {全部完成并逐题核对}
+  {已确认（手写解答、文字作答与收口问答）}
+
+\exercisequestion{QM-C01-S03-E01}{教材练习 1.3.1：二维 Gram--Schmidt 正交化索引}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S03-T04}{Gram--Schmidt 构造与完整归纳证明}。
+
+\textbf{记录说明。}本题已在学习第 1.2 节时作为紧邻练习完成，核对后的两种构造见\relatedexercise{QM-C01-S02-E01}{教材练习 1.3.1：二维 Gram--Schmidt 正交化}。此处建立索引，不重复抄写同一解答。教材位置：印刷页 p.~15，PDF p.~29。
+
+\exercisequestion{QM-C01-S03-E02}{教材练习 1.3.2：三维 Gram--Schmidt 正交化}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S03-T04}{Gram--Schmidt 构造与完整归纳证明}。
+
+\textbf{题意概述。}从
+\[
+  \ket{v_1}=\begin{pmatrix}3\\0\\0\end{pmatrix},
+  \qquad
+  \ket{v_2}=\begin{pmatrix}0\\1\\2\end{pmatrix},
+  \qquad
+  \ket{v_3}=\begin{pmatrix}0\\2\\5\end{pmatrix}
+\]
+出发，构造教材给出的三维正交归一基。教材位置：印刷页 p.~16，PDF p.~30。
+
+\begin{checkedsolution}
+第一个单位向量为
+\[
+  \ket{e_1}=\frac{\ket{v_1}}{\norm{v_1}}
+  =\begin{pmatrix}1\\0\\0\end{pmatrix}.
+\]
+由于 $\braket{e_1}{v_2}=0$，第二个剩余向量和单位向量分别为
+\[
+  \ket{u_2}=\ket{v_2}
+  =\begin{pmatrix}0\\1\\2\end{pmatrix},
+  \qquad
+  \ket{e_2}=\frac{1}{\sqrt5}
+  \begin{pmatrix}0\\1\\2\end{pmatrix}.
+\]
+对第三个向量，有
+\[
+  \braket{e_1}{v_3}=0,
+  \qquad
+  \braket{e_2}{v_3}=\frac{12}{\sqrt5}.
+\]
+因此
+\begin{align*}
+  \ket{u_3}
+  &=\ket{v_3}-\ket{e_2}\braket{e_2}{v_3}\\
+  &=\begin{pmatrix}0\\2\\5\end{pmatrix}
+    -\begin{pmatrix}0\\12/5\\24/5\end{pmatrix}
+   =\begin{pmatrix}0\\-2/5\\1/5\end{pmatrix}.
+\end{align*}
+归一化后
+\[
+  \ket{e_3}=\frac{1}{\sqrt5}
+  \begin{pmatrix}0\\-2\\1\end{pmatrix}.
+\]
+最后，三个向量的范数均为 $1$，并且
+\[
+  \braket{e_1}{e_2}=\braket{e_1}{e_3}=0,
+  \qquad
+  \braket{e_2}{e_3}=\frac{-2+2}{5}=0.
+\]
+所以它们构成正交归一基。
+\end{checkedsolution}
+
+\textbf{检查点：}若原向量组线性无关，Gram--Schmidt 的剩余向量不可能为零；完整理由需要同时使用归纳假设中的正交归一性和张成空间不变性。
+
+\exercisequestion{QM-C01-S03-E03}{教材练习 1.3.3：Schwarz 不等式的等号条件}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S03-T06}{Schwarz 不等式及等号条件}。
+
+\textbf{题意概述。}判断 Schwarz 不等式何时取等号，并与实箭头的几何直觉比较。教材位置：印刷页 p.~17，PDF p.~31。
+
+\begin{checkedsolution}
+先设 $\ket{V}$ 与 $\ket{W}$ 都非零，并定义
+\[
+  \ket{Z}=\ket{V}
+  -\frac{\braket{W}{V}}{\braket{W}{W}}\ket{W}.
+\]
+Schwarz 不等式的证明给出
+\[
+  \norm{V}^2-\frac{\abs{\braket{W}{V}}^2}{\norm{W}^2}
+  =\braket{Z}{Z}\geq0.
+\]
+所以 Schwarz 等号成立当且仅当 $\braket{Z}{Z}=0$。由正定性，这等价于 $\ket{Z}=\ket{0}$，进而等价于
+\[
+  \ket{V}=\frac{\braket{W}{V}}{\braket{W}{W}}\ket{W}.
+\]
+也就是说，两个非零向量线性相关。反过来，若 $\ket{V}=a\ket{W}$，直接代入便得到
+\[
+  \abs{\braket{W}{V}}
+  =\abs{a}\norm{W}^2
+  =\norm{W}\norm{V}.
+\]
+若任一向量为零，等号也成立，且包含零向量的二元向量组线性相关。因此统一结论是：Schwarz 不等式取等号当且仅当两向量线性相关。
+\end{checkedsolution}
+
+\textbf{检查点：}Schwarz 等号只要求复线性相关，比例系数可以带任意相位；它不要求两个向量具有相同相位。
+
+\exercisequestion{QM-C01-S03-E04}{教材练习 1.3.4：三角不等式及等号条件}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S03-T07}{三角不等式与零向量边界}。
+
+\textbf{题意概述。}从 $\norm{V+W}^2$ 出发证明三角不等式，并确定取等号的条件。教材位置：印刷页 p.~17，PDF p.~31。
+
+\begin{checkedsolution}
+由内积的线性与共轭对称性，
+\begin{align*}
+  \norm{V+W}^2
+  &=\braket{V+W}{V+W}\\
+  &=\norm{V}^2+\norm{W}^2
+    +\braket{V}{W}+\braket{W}{V}\\
+  &=\norm{V}^2+\norm{W}^2
+    +2\operatorname{Re}\braket{V}{W}\\
+  &\leq\norm{V}^2+\norm{W}^2
+    +2\abs{\braket{V}{W}}\\
+  &\leq\norm{V}^2+\norm{W}^2
+    +2\norm{V}\norm{W}\\
+  &=\left(\norm{V}+\norm{W}\right)^2.
+\end{align*}
+两边非负，故
+\[
+  \norm{V+W}\leq\norm{V}+\norm{W}.
+\]
+
+若两向量均非零，等号要求上面两处不等式同时取等号。Schwarz 等号说明二者线性相关；$\operatorname{Re}z=\abs{z}$ 则要求 $z$ 为非负实数。令 $\ket{V}=a\ket{W}$，则
+\[
+  \braket{V}{W}=a^*\braket{W}{W},
+\]
+所以必须有 $a\in\real_{>0}$。因此非零情形下，等号成立当且仅当两向量同向。
+
+固定写成 $\ket{V}=a\ket{W}$、$a\geq0$ 只能自动覆盖 $\ket{V}=\ket{0}$，不能覆盖 $\ket{W}=\ket{0}$ 而 $\ket{V}\neq\ket{0}$。包含全部零向量边界的对称表述是：存在 $\ket{U}$ 以及 $\alpha,\beta\in\real_{\geq0}$，使
+\[
+  \ket{V}=\alpha\ket{U},
+  \qquad
+  \ket{W}=\beta\ket{U}.
+\]
+\end{checkedsolution}
+
+\textbf{检查点：}Schwarz 等号允许任意复比例系数；三角不等式还要求内积相位为零，因此非零向量之间的比例系数必须是正实数。

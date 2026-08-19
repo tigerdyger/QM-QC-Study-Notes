@@ -1,5 +1,5 @@
 % 教材：Shankar, Principles of Quantum Mechanics
-% 已覆盖：第 1 章第 1.1--1.2 节，印刷页 pp. 1--11，PDF pp. 15--25
+% 已覆盖：第 1 章第 1.1--1.3 节，印刷页 pp. 1--17，PDF pp. 15--31
 % 人工核验：已完成分块讲解、问答、检查题和同书练习核对
 
 \section{第 1.1 节：线性向量空间基础}
@@ -308,3 +308,226 @@
 \subsection{一分钟回顾}
 
 内积为向量空间定义范数、正交和投影。本书约定内积对 ket 线性、对第一个变量共轭线性。任意基中的分量公式是 $\bm v^\dagger G\bm w$；只有在正交归一基中才简化为 $\bm v^\dagger\bm w$。Gram--Schmidt 过程通过逐步减去已有方向的投影，把线性无关基变为正交归一基。
+
+\section{第 1.3 节：对偶空间与 Dirac 记号}
+\label{section:QM-C01-S03}
+
+\studymeta
+  {QM-C01-S03}
+  {2026-08-19}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 1 章 \S 1.3；印刷页 pp.~11--17；PDF pp.~25--31}
+  {已确认（讲解、问答、教材练习与收口检查）}
+
+\subsection{本节主线}
+
+本节把上一节的复内积改写为 Dirac 记号：ket 是原向量空间中的向量，bra 是对偶空间中的线性泛函；二者通过伴随对应。正交归一基使坐标等于内积投影，并给出完备性关系。随后，Gram--Schmidt 过程把一般线性无关基变为正交归一基，Schwarz 不等式和三角不等式则把熟悉的欧氏几何推广到任意内积空间。
+
+\notetopic{QM-C01-S03-T01}{对偶空间、bra 与 ket}
+
+\keyidea{ket 与 bra 是相关但不同类型的抽象对象；列向量和行向量只是选定基后的坐标表示。}
+
+选定一组正交归一基后，若
+\[
+  \ket{V}\longleftrightarrow
+  \begin{pmatrix}v_1\\v_2\\\vdots\\v_n\end{pmatrix},
+\]
+则对应的 bra 表示为
+\[
+  \bra{V}\longleftrightarrow
+  \begin{pmatrix}v_1^*&v_2^*&\cdots&v_n^*\end{pmatrix}.
+\]
+因此
+\begin{equation}
+  \braket{V}{W}=\sum_{i=1}^{n}v_i^*w_i.
+  \label{eq:QM-C01-S03-inner-product-components}
+\end{equation}
+
+抽象地说，$\ket{V}$ 属于原空间 $V$，而 $\bra{V}$ 属于对偶空间 $V^*$。固定 $\bra{V}$ 后，它把任意 ket 映射为一个标量：
+\[
+  \bra{V}:\ket{W}\longmapsto\braket{V}{W}.
+\]
+在本节的有限维内积空间中，每个 ket 都可通过内积对应到一个 bra；这个对应对复标量是共轭线性的，而不是复线性的。
+
+复共轭对正定性不可缺少。例如非零向量 $(1,\ii)^{\mathsf T}$ 若只做转置，会产生 $1+\ii^2=0$；做共轭转置则得到
+\[
+  (1,-\ii)\begin{pmatrix}1\\\ii\end{pmatrix}=2>0.
+\]
+
+\notetopic{QM-C01-S03-T02}{正交归一基展开与完备性关系}
+
+设 $\{\ket{i}\}_{i=1}^{n}$ 是正交归一基，并令
+\[
+  \ket{V}=\sum_i v_i\ket{i}.
+\]
+在等式左边作用 $\bra{j}$，得到
+\begin{align}
+  \braket{j}{V}
+  &=\sum_i v_i\braket{j}{i}
+    =\sum_i v_i\delta_{ji}
+    =v_j.
+  \label{eq:QM-C01-S03-orthonormal-coordinate}
+\end{align}
+所以
+\begin{equation}
+  \ket{V}=\sum_i\ket{i}\braket{i}{V}.
+  \label{eq:QM-C01-S03-orthonormal-expansion}
+\end{equation}
+由于该式对任意 $\ket{V}$ 成立，正交归一基满足完备性关系
+\begin{equation}
+  \boxed{\sum_i\ket{i}\bra{i}=I}.
+  \label{eq:QM-C01-S03-completeness}
+\end{equation}
+$\braket{i}{V}$ 是标量坐标，而 $\ket{i}\bra{i}$ 是把向量投影到 $\ket{i}$ 方向上的线性映射；后者将在算符一节正式讨论。
+
+\dialoguesupplement{一般非正交基 $\{\ket{e_i}\}$ 中，令 $b_j=\braket{e_j}{V}$、$G_{ji}=\braket{e_j}{e_i}$，则坐标列 $\bm c$ 满足 $\bm b=G\bm c$，即 $\bm c=G^{-1}\bm b$。因此不能直接把 $\braket{e_j}{V}$ 当作第 $j$ 个坐标。若引入满足 $\braket{e^i}{e_j}=\delta^i_j$ 的对偶基，则一般基的完备性关系是 $\sum_i\ket{e_i}\bra{e^i}=I$；正交归一基只是 $\bra{e^i}=\bra{e_i}$ 的特殊情形。}
+
+\notetopic{QM-C01-S03-T03}{伴随操作与共轭线性}
+
+伴随操作用 $\dagger$ 表示：
+\[
+  \ket{V}^{\dagger}=\bra{V},
+  \qquad
+  \bra{V}^{\dagger}=\ket{V}.
+\]
+对线性组合取伴随时，系数必须取复共轭：
+\begin{equation}
+  \left(a\ket{V}+b\ket{W}\right)^{\dagger}
+  =a^*\bra{V}+b^*\bra{W}.
+  \label{eq:QM-C01-S03-adjoint-linear-combination}
+\end{equation}
+这说明 ket 到对应 bra 的映射是共轭线性的。另一方面，固定一个 bra 后，它作为泛函对输入 ket 仍是线性的：
+\[
+  \bra{V}\left(a\ket{W}+b\ket{Z}\right)
+  =a\braket{V}{W}+b\braket{V}{Z}.
+\]
+
+乘积取伴随时必须反转全部因子的顺序：
+\begin{equation}
+  (ABC)^{\dagger}=C^{\dagger}B^{\dagger}A^{\dagger}.
+  \label{eq:QM-C01-S03-adjoint-product}
+\end{equation}
+例如
+\[
+  \left(\ket{A}\bra{B}\right)^{\dagger}=\ket{B}\bra{A},
+  \qquad
+  \braket{W}{V}=\braket{V}{W}^{*}.
+\]
+
+\notetopic{QM-C01-S03-T04}{Gram--Schmidt 构造与完整归纳证明}
+
+给定线性无关向量 $\ket{v_1},\ldots,\ket{v_n}$，递归定义
+\begin{align}
+  \ket{u_1}&=\ket{v_1},
+  &\ket{e_1}&=\frac{\ket{u_1}}{\norm{u_1}},
+  \label{eq:QM-C01-S03-gs-first}\\
+  \ket{u_k}
+  &=\ket{v_k}-\sum_{j=1}^{k-1}\ket{e_j}\braket{e_j}{v_k},
+  &\ket{e_k}&=\frac{\ket{u_k}}{\norm{u_k}}.
+  \label{eq:QM-C01-S03-gs-general}
+\end{align}
+
+\begin{theorem}
+对每个 $k=1,\ldots,n$，向量 $\ket{e_1},\ldots,\ket{e_k}$ 正交归一，并且
+\[
+  \operatorname{span}\{e_1,\ldots,e_k\}
+  =\operatorname{span}\{v_1,\ldots,v_k\}.
+\]
+\end{theorem}
+
+\textbf{证明。}对 $k$ 作数学归纳。基例 $k=1$：线性无关性保证 $\ket{v_1}\neq\ket{0}$，所以 $\ket{e_1}$ 有定义、范数为 $1$，且与 $\ket{v_1}$ 张成同一个一维空间。
+
+假设结论对 $k-1$ 成立。对任意 $m<k$，利用归纳假设中的正交归一性，
+\begin{align*}
+  \braket{e_m}{u_k}
+  &=\braket{e_m}{v_k}
+    -\sum_{j=1}^{k-1}\braket{e_m}{e_j}\braket{e_j}{v_k}\\
+  &=\braket{e_m}{v_k}
+    -\sum_{j=1}^{k-1}\delta_{mj}\braket{e_j}{v_k}=0.
+\end{align*}
+故 $\ket{u_k}$ 与前 $k-1$ 个向量正交。
+
+还需证明 $\ket{u_k}\neq\ket{0}$。若它为零，则由\cref{eq:QM-C01-S03-gs-general}可知 $\ket{v_k}$ 属于 $\operatorname{span}\{e_1,\ldots,e_{k-1}\}$；根据归纳假设，这就是 $\operatorname{span}\{v_1,\ldots,v_{k-1}\}$，与原向量组线性无关矛盾。因此 $\ket{e_k}$ 可以归一化，并与前面的向量正交。
+
+最后，$\ket{u_k}$ 是前 $k$ 个原向量的线性组合，而
+\[
+  \ket{v_k}=\ket{u_k}
+  +\sum_{j=1}^{k-1}\ket{e_j}\braket{e_j}{v_k},
+\]
+所以新旧两组前 $k$ 个向量互相张成。归纳步骤完成，结论对所有 $k$ 成立。\hfill$\square$
+
+\dialoguesupplement{在复向量空间中，Gram--Schmidt 公式不变，但内积必须包含复共轭。将某个基向量改为 $\ket{e_j'}=\ee^{\ii\theta_j}\ket{e_j}$ 不会改变投影，因为 $\ket{e_j'}\bra{e_j'}=\ket{e_j}\bra{e_j}$。这与实空间中把单位基向量改为其相反数不改变投影相同。严格地说，一个复维度只有在把复空间视为底层实空间时才对应一个二维实平面：$\dim_{\real}\complex^n=2n$；$\ket{e}$ 与 $\ii\ket{e}$ 在复空间中线性相关，在底层实空间中线性无关。相位自由度不会增加复维数。}
+
+具体计算见：
+\begin{itemize}
+  \item 二维情形：\relatedexercise{QM-C01-S02-E01}{教材练习 1.3.1}；
+  \item 三维情形：\relatedexercise{QM-C01-S03-E02}{教材练习 1.3.2}。
+\end{itemize}
+
+\notetopic{QM-C01-S03-T05}{维数与最大正交向量数}
+
+\begin{theorem}
+有限维内积空间的维数，等于其中两两正交的非零向量的最大数量。
+\end{theorem}
+
+\textbf{证明。}两两正交的非零向量必然线性无关，因此其数量不超过空间维数。反过来，任取一组包含 $\dim V$ 个向量的基，Gram--Schmidt 过程会产生相同数量的正交归一向量，所以最大数量不少于 $\dim V$。两个方向合并即得结论。\hfill$\square$
+
+\notetopic{QM-C01-S03-T06}{Schwarz 不等式及等号条件}
+
+\begin{theorem}[Schwarz 不等式]
+对任意 $\ket{V},\ket{W}$，
+\begin{equation}
+  \abs{\braket{W}{V}}\leq\norm{W}\norm{V}.
+  \label{eq:QM-C01-S03-schwarz}
+\end{equation}
+\end{theorem}
+
+\textbf{证明。}若 $\ket{W}=\ket{0}$，结论显然成立。否则定义
+\[
+  \ket{Z}=\ket{V}
+  -\frac{\braket{W}{V}}{\braket{W}{W}}\ket{W}.
+\]
+这是 $\ket{V}$ 减去它在 $\ket{W}$ 方向上的投影，并满足 $\braket{W}{Z}=0$。由正定性，
+\begin{align*}
+  0\leq\braket{Z}{Z}
+  &=\braket{V}{V}
+    -\frac{\abs{\braket{W}{V}}^2}{\braket{W}{W}}.
+\end{align*}
+移项并开平方即得\cref{eq:QM-C01-S03-schwarz}。等号成立当且仅当 $\ket{Z}=\ket{0}$，也就是 $\ket{V}$ 与 $\ket{W}$ 线性相关；零向量情形也包含在“线性相关”中。完整等号论证见\relatedexercise{QM-C01-S03-E03}{教材练习 1.3.3}。\hfill$\square$
+
+\notetopic{QM-C01-S03-T07}{三角不等式与零向量边界}
+
+\begin{theorem}[三角不等式]
+对任意 $\ket{V},\ket{W}$，
+\begin{equation}
+  \norm{V+W}\leq\norm{V}+\norm{W}.
+  \label{eq:QM-C01-S03-triangle}
+\end{equation}
+\end{theorem}
+
+\textbf{证明。}利用共轭对称性、$\operatorname{Re}z\leq\abs{z}$ 和 Schwarz 不等式，
+\begin{align*}
+  \norm{V+W}^2
+  &=\norm{V}^2+\norm{W}^2
+    +2\operatorname{Re}\braket{V}{W}\\
+  &\leq\norm{V}^2+\norm{W}^2+2\abs{\braket{V}{W}}\\
+  &\leq\norm{V}^2+\norm{W}^2+2\norm{V}\norm{W}\\
+  &=\left(\norm{V}+\norm{W}\right)^2.
+\end{align*}
+两边均非负，开平方即得\cref{eq:QM-C01-S03-triangle}。\hfill$\square$
+
+若两向量都非零，取等号要求 Schwarz 不等式取等号，并且 $\braket{V}{W}$ 为非负实数。这等价于
+\[
+  \ket{V}=a\ket{W},\qquad a\in\real_{>0}.
+\]
+为了对零向量保持对称，可统一表述为：存在某个 $\ket{U}$ 及 $\alpha,\beta\in\real_{\geq0}$，使
+\[
+  \ket{V}=\alpha\ket{U},
+  \qquad
+  \ket{W}=\beta\ket{U}.
+\]
+这准确表达了“同向且允许任一向量为零”。详见\relatedexercise{QM-C01-S03-E04}{教材练习 1.3.4}。
+
+\subsection{一分钟回顾}
+
+bra 是作用在 ket 上并产生标量的对偶向量；它与对应 ket 通过共轭线性的伴随操作联系。正交归一基中，坐标由 $v_i=\braket{i}{V}$ 给出，并满足 $\sum_i\ket{i}\bra{i}=I$。Gram--Schmidt 通过逐次减去已有方向的投影构造正交归一基；线性无关性保证剩余向量不为零。Schwarz 不等式限制内积大小，三角不等式限制向量和的范数，二者的等号条件分别对应线性相关与同向非负比例。
