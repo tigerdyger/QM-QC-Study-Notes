@@ -1,5 +1,5 @@
 % 教材：Shankar, Principles of Quantum Mechanics
-% 已覆盖：第 1 章第 1.1--1.3 节，印刷页 pp. 1--17，PDF pp. 15--31
+% 已覆盖：第 1 章第 1.1--1.4 节，印刷页 pp. 1--18，PDF pp. 15--32
 % 人工核验：已完成分块讲解、问答、检查题和同书练习核对
 
 \section{第 1.1 节：线性向量空间基础}
@@ -531,3 +531,132 @@ $\braket{i}{V}$ 是标量坐标，而 $\ket{i}\bra{i}$ 是把向量投影到 $\k
 \subsection{一分钟回顾}
 
 bra 是作用在 ket 上并产生标量的对偶向量；它与对应 ket 通过共轭线性的伴随操作联系。正交归一基中，坐标由 $v_i=\braket{i}{V}$ 给出，并满足 $\sum_i\ket{i}\bra{i}=I$。Gram--Schmidt 通过逐次减去已有方向的投影构造正交归一基；线性无关性保证剩余向量不为零。Schwarz 不等式限制内积大小，三角不等式限制向量和的范数，二者的等号条件分别对应线性相关与同向非负比例。
+
+\section{第 1.4 节：子空间}
+\label{section:QM-C01-S04}
+
+\studymeta
+  {QM-C01-S04}
+  {2026-08-20}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 1 章 \S 1.4；印刷页 pp.~17--18；PDF pp.~31--32}
+  {已确认（讲解、问答、教材习题与收口检查）}
+
+\subsection{本节主线}
+
+子空间是在原向量空间中对线性运算封闭的子集。子空间之间可以取和；当两个子空间只交于零向量时，其和为直和，分解也随之唯一。内积进一步定义正交补与正交直和，把子空间的维数关系与几何上的正交联系起来。
+
+\notetopic{QM-C01-S04-T01}{子空间与线性组合封闭判据}
+
+设 $W\subseteq V$，且 $W$ 沿用 $V$ 中的向量加法和标量数乘。若 $W$ 在这些运算下也是向量空间，则称 $W$ 为 $V$ 的子空间。实际判定时可使用以下等价条件：
+
+\begin{theorem}[子空间判据]
+非空子集 $W\subseteq V$ 是子空间，当且仅当对任意 $\ket{u},\ket{w}\in W$ 和任意允许的标量 $a,b$，都有
+\begin{equation}
+  a\ket{u}+b\ket{w}\in W.
+  \label{eq:QM-C01-S04-subspace-test}
+\end{equation}
+\end{theorem}
+
+必要性来自子空间的加法和数乘封闭性。反过来，在 $W$ 非空时，\cref{eq:QM-C01-S04-subspace-test} 可以依次给出零向量、加法逆元、加法封闭和数乘封闭；其余公理直接从 $V$ 继承。
+
+在 $\real^3$ 中，$x$ 轴、$y$ 轴和 $xy$ 平面都是子空间；正 $x$ 半轴不是，因为它对负标量数乘不封闭。一般地，齐次线性条件 $L(\ket{w})=0$ 通常定义子空间，而非齐次条件 $L(\ket{w})=c\neq0$ 通常连零向量都不包含。
+
+\dialoguesupplement{子空间必须先固定标量域。在 $\complex^3$ 中，条件 $z_2=z_1^*$ 对实标量数乘封闭，却不对复标量数乘封闭：$(1,1,0)$ 满足条件，而 $\ii(1,1,0)=(\ii,\ii,0)$ 不满足。因此该集合只是底层实向量空间的子空间。出现复共轭时，用标量 $\ii$ 检查封闭性是快速的自检方法。}
+
+\notetopic{QM-C01-S04-T02}{子空间的和、直和与唯一分解}
+
+对子空间 $U,W\subseteq V$，定义
+\begin{equation}
+  U+W=\{\ket{u}+\ket{w}:\ket{u}\in U,\ \ket{w}\in W\}.
+  \label{eq:QM-C01-S04-sum}
+\end{equation}
+$U+W$ 是包含 $U$ 和 $W$ 的最小子空间：它对线性组合封闭，且任何同时包含 $U,W$ 的子空间都必须包含所有 $\ket{u}+\ket{w}$。
+
+集合并 $U\cup W$ 通常不是子空间，因为它不一定包含跨越两个子空间的和。事实上，
+\begin{equation}
+  U\cup W\text{ 是子空间}
+  \quad\Longleftrightarrow\quad
+  U\subseteq W\text{ 或 }W\subseteq U.
+  \label{eq:QM-C01-S04-union-condition}
+\end{equation}
+
+若 $U\cap W=\{\ket{0}\}$，则按现代常用记号把这个和写为
+\[
+  U\oplus W.
+\]
+交集条件等价于每个 $\ket{x}\in U+W$ 的分解 $\ket{x}=\ket{u}+\ket{w}$ 唯一。若有两种分解，则
+\[
+  \ket{u_1}-\ket{u_2}=\ket{w_2}-\ket{w_1}\in U\cap W;
+\]
+交集为零强制两边都为零。反过来，交集中任一非零向量都会产生不唯一的分解。
+
+\dialoguesupplement{Shankar 在本节定义子空间的和时已使用 $\oplus$，并未先要求交集为零。本笔记采用当代线性代数中更常见的区分：一般的和写作 $U+W$，只有分解唯一时才写作 $U\oplus W$。}
+
+\notetopic{QM-C01-S04-T03}{和空间的维数公式}
+
+有限维子空间满足
+\begin{equation}
+  \boxed{\dim(U+W)=\dim U+\dim W-\dim(U\cap W)}.
+  \label{eq:QM-C01-S04-dimension-formula}
+\end{equation}
+令 $\{\ket{c_1},\ldots,\ket{c_p}\}$ 是 $U\cap W$ 的一组基，分别把它扩充为 $U$ 与 $W$ 的基：
+\begin{align*}
+  \mathcal B_U&=\{\ket{c_1},\ldots,\ket{c_p},
+  \ket{u_{p+1}},\ldots,\ket{u_m}\},\\
+  \mathcal B_W&=\{\ket{c_1},\ldots,\ket{c_p},
+  \ket{w_{p+1}},\ldots,\ket{w_n}\}.
+\end{align*}
+只保留一份交集基向量后，合并所得的 $m+n-p$ 个向量构成 $U+W$ 的基，从而得到\cref{eq:QM-C01-S04-dimension-formula}。特别地，直和满足
+\begin{equation}
+  \dim(U\oplus W)=\dim U+\dim W.
+  \label{eq:QM-C01-S04-direct-sum-dimension}
+\end{equation}
+\notetopic{QM-C01-S04-T04}{正交补及其维数}
+
+在 $n$ 维内积空间 $V$ 中，对固定非零向量 $\ket{v}$，定义
+\begin{equation}
+  v^\perp=\{\ket{w}\in V:\braket{v}{w}=0\}.
+  \label{eq:QM-C01-S04-vector-orthogonal-complement}
+\end{equation}
+若 $\ket{w_1},\ket{w_2}\in v^\perp$，则对任意标量 $a,b$，
+\[
+  \braket{v}{a w_1+b w_2}
+  =a\braket{v}{w_1}+b\braket{v}{w_2}=0.
+\]
+这里使用了内积对 ket 变量的线性，因此在复向量空间中系数也不取共轭。由子空间判据，$v^\perp$ 是 $V$ 的子空间。
+
+令 $\ket{e_1}=\ket{v}/\norm{v}$，再将它扩充为 $V$ 的正交归一基 $\{\ket{e_1},\ldots,\ket{e_n}\}$。对
+\[
+  \ket{w}=\sum_{j=1}^{n}c_j\ket{e_j},
+\]
+正交条件给出
+\[
+  0=\braket{v}{w}=\norm{v}\,c_1.
+\]
+因为 $\norm{v}>0$，所以 $c_1=0$，即
+\begin{equation}
+  v^\perp=\operatorname{span}\{\ket{e_2},\ldots,\ket{e_n}\},
+  \qquad \dim v^\perp=n-1.
+  \label{eq:QM-C01-S04-orthogonal-complement-dimension}
+\end{equation}
+非零假设不可省略：若 $\ket{v}=\ket{0}$，则 $v^\perp=V$，维数仍为 $n$。
+
+完整证明见\relatedexercise{QM-C01-S04-E01}{教材练习 1.4.1}。
+
+\notetopic{QM-C01-S04-T05}{正交子空间与正交直和}
+
+若对每个 $\ket{u}\in U$ 和 $\ket{w}\in W$ 都有 $\braket{u}{w}=0$，则记作 $U\perp W$。此时必有 $U\cap W=\{\ket{0}\}$：若 $\ket{x}\in U\cap W$，则正交性给出 $\braket{x}{x}=0$，再由正定性得 $\ket{x}=\ket{0}$。因此 $U+W$ 为正交直和。
+
+若 $\mathcal B_U$ 与 $\mathcal B_W$ 分别是两个子空间的正交归一基，则 $U\perp W$ 保证两组基向量之间也两两正交。任意 $\ket{x}=\ket{u}+\ket{w}\in U+W$ 都可由两组基展开，所以 $\mathcal B_U\cup\mathcal B_W$ 是 $U\oplus W$ 的正交归一基，并再次得到
+\[
+  \dim(U\oplus W)=\dim U+\dim W.
+\]
+
+\dialoguesupplement{必须区分“直和”与“正交直和”。$U\perp W$ 一定推出 $U\cap W=\{0\}$，但逆命题不成立。例如 $\real^2$ 中的 $x$ 轴与直线 $y=x$ 交集只有零向量，但 $(1,0)\cdot(1,1)=1\neq0$。另外，证明合并基张成 $U+W$ 时，应直接展开任意 $\ket{u}+\ket{w}$；若先使用 $\dim(U+W)=\dim U+\dim W$，就会预先使用待证结论。}
+
+正交子空间的合并基证明见\relatedexercise{QM-C01-S04-E02}{教材练习 1.4.2}。
+
+\subsection{一分钟回顾}
+
+子空间必须在固定标量域下对任意线性组合封闭。$U+W$ 是包含两个子空间的最小子空间；当且仅当 $U\cap W=\{0\}$ 时，和中的分解唯一，记为直和。和空间的维数需要减去交集被重复计数的维数。固定非零向量的正交补是 $n-1$ 维子空间；正交子空间一定构成直和，但一般直和不必正交。

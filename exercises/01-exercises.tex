@@ -1,5 +1,5 @@
-% 对应单元：QM-C01-S01--S03
-% 来源：Shankar 第 1 章第 1.1--1.3 节及同书练习
+% 对应单元：QM-C01-S01--S04
+% 来源：Shankar 第 1 章第 1.1--1.4 节及同书练习
 % 人工核验：用户作答后完成订正与收口检查
 
 \section{第 1.1 节教材习题与订正}
@@ -413,3 +413,144 @@ Schwarz 不等式的证明给出
 \end{checkedsolution}
 
 \textbf{检查点：}Schwarz 等号允许任意复比例系数；三角不等式还要求内积相位为零，因此非零向量之间的比例系数必须是正实数。
+
+\section{第 1.4 节教材习题与订正}
+\label{exercise-set:QM-C01-S04}
+
+\exercisemeta
+  {QM-C01-S04-EX}
+  {2026-08-20}
+  {Shankar，第 1 章 \S 1.4，练习 1.4.1--1.4.2}
+  {全部完成并逐题核对}
+  {已确认（手写推导、文字作答与收口问答）}
+
+\exercisequestion{QM-C01-S04-E01}{教材练习 1.4.1：与固定向量正交的子空间}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S04-T04}{正交补及其维数}。
+
+\textbf{题意概述。}在 $n$ 维内积空间中，固定非零向量 $\ket{v}$，证明所有与它正交的向量构成一个 $n-1$ 维子空间。教材位置：印刷页 p.~18，PDF p.~32。
+
+\begin{checkedsolution}
+记
+\[
+  v^\perp=\{\ket{w}:\braket{v}{w}=0\}.
+\]
+若 $\ket{w_1},\ket{w_2}\in v^\perp$，则对任意标量 $a,b$，
+\[
+  \braket{v}{a w_1+b w_2}
+  =a\braket{v}{w_1}+b\braket{v}{w_2}=0.
+\]
+零向量也在其中，因此 $v^\perp$ 是子空间。
+
+取 $\ket{e_1}=\ket{v}/\norm{v}$，并扩充为正交归一基 $\{\ket{e_1},\ldots,\ket{e_n}\}$。对任意
+\[
+  \ket{w}=\sum_{j=1}^{n}c_j\ket{e_j},
+\]
+有
+\[
+  \braket{v}{w}
+  =\norm{v}\sum_{j=1}^{n}c_j\braket{e_1}{e_j}
+  =\norm{v}\,c_1.
+\]
+由 $\norm{v}>0$ 可知，$\ket{w}\perp\ket{v}$ 当且仅当 $c_1=0$。所以
+\[
+  v^\perp=\operatorname{span}\{\ket{e_2},\ldots,\ket{e_n}\}.
+\]
+这 $n-1$ 个向量是正交归一基的子集，因而线性无关；它们构成 $v^\perp$ 的基，故 $\dim v^\perp=n-1$。
+\end{checkedsolution}
+
+\textbf{检查点：}仅写出 $\{\ket{e_2},\ldots,\ket{e_n}\}$ 还不够；需要同时说明它们张成 $v^\perp$ 且线性无关。
+
+\exercisequestion{QM-C01-S04-E02}{教材练习 1.4.2：正交子空间的维数}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S04-T05}{正交子空间与正交直和}。
+
+\textbf{题意概述。}设有限维子空间 $U,W$ 互相正交，且 $\dim U=n_1$，$\dim W=n_2$，证明它们的和的维数为 $n_1+n_2$。教材位置：印刷页 p.~18，PDF p.~32。
+
+\begin{checkedsolution}
+先证明交集为零。若 $\ket{x}\in U\cap W$，则 $U\perp W$ 给出 $\braket{x}{x}=0$；由内积正定性，$\ket{x}=\ket{0}$。因此 $U+W=U\oplus W$。
+
+分别取正交归一基
+\[
+  \mathcal B_U=\{\ket{u_1},\ldots,\ket{u_{n_1}}\},
+  \qquad
+  \mathcal B_W=\{\ket{w_1},\ldots,\ket{w_{n_2}}\}.
+\]
+两组基内部各自正交归一，而 $U\perp W$ 又保证所有跨组内积 $\braket{u_i}{w_j}$ 都为零，所以 $\mathcal B_U\cup\mathcal B_W$ 是正交归一向量组。
+
+任取 $\ket{x}\in U+W$，可写成 $\ket{x}=\ket{u}+\ket{w}$。将 $\ket{u}$ 和 $\ket{w}$ 分别在上述两组基中展开，即得
+\[
+  \ket{x}=\sum_{i=1}^{n_1}a_i\ket{u_i}
+  +\sum_{j=1}^{n_2}b_j\ket{w_j}.
+\]
+因此合并后的向量组张成 $U+W$，是 $U\oplus W$ 的一组基，共有 $n_1+n_2$ 个向量。所以
+\[
+  \dim(U\oplus W)=n_1+n_2.
+\]
+\end{checkedsolution}
+
+\textbf{检查点：}“两组基都取自 $U+W$”只能证明它们张成的空间包含于 $U+W$；必须再展开任意 $\ket{u}+\ket{w}$ 才能证明反向包含。不应预先使用待证的维数结论。
+
+\exercisequestion{QM-C01-S04-E03}{自拟检查题：和、交与分解唯一性}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S04-T02}{子空间的和、直和与唯一分解}。
+
+\textbf{来源说明。}本题由学习对话生成，不是教材习题。设
+\[
+  U=\{(x,y,0):x,y\in\real\},
+  \qquad
+  W=\{(0,y,z):y,z\in\real\}.
+\]
+求 $U+W$ 和 $U\cap W$，并判断这个和是否为直和。
+
+\begin{checkedsolution}
+任意 $(a,b,c)\in\real^3$ 都有
+\[
+  (a,b,c)=(a,b,0)+(0,0,c),
+\]
+所以 $U+W=\real^3$。同时
+\[
+  U\cap W=\{(0,y,0):y\in\real\}
+  =\operatorname{span}\{(0,1,0)\},
+\]
+其维数为 $1$。交集非零，因此不是直和。分解也确实不唯一：对任意 $t\in\real$，
+\[
+  (a,b,c)=(a,b-t,0)+(0,t,c).
+\]
+维数公式给出 $2+2-1=3$，与 $U+W=\real^3$ 一致。
+\end{checkedsolution}
+
+\exercisequestion{QM-C01-S04-E04}{自拟收口题：维数、正交补与集合并}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S04-T03}{和空间的维数公式}、\relatedtopic{QM-C01-S04-T04}{正交补及其维数}。
+
+\textbf{来源说明。}本题由学习对话生成，不是教材习题。
+
+\begin{checkedsolution}
+若 $\dim U=4$，$\dim W=3$，$\dim(U\cap W)=2$，则
+\[
+  \dim(U+W)=4+3-2=5.
+\]
+由于交集维数非零，这个和不是直和。
+
+在 $\complex^3$ 中，对 $\ket{v}=(1,\ii,0)^{\mathsf T}$，条件 $\braket{v}{w}=0$ 为
+\[
+  w_1-\ii w_2=0.
+\]
+因此可取
+\[
+  v^\perp=\operatorname{span}\left\{
+  \begin{pmatrix}\ii\\1\\0\end{pmatrix},
+  \begin{pmatrix}0\\0\\1\end{pmatrix}
+  \right\},
+  \qquad \dim v^\perp=2.
+\]
+
+最后，$U+W$ 包含所有跨越两个子空间的线性组合，而 $U\cup W$ 只保留原来两个集合中的元素。仅当
+\[
+  U\subseteq W\quad\text{或}\quad W\subseteq U
+\]
+时，$U\cup W$ 才是子空间。
+\end{checkedsolution}
+
+\textbf{检查点：}对子空间应使用包含记号 $U\subseteq W$，而不是表示元素归属的 $U\in W$。
