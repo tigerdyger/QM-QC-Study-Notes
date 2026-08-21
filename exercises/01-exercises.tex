@@ -1,5 +1,5 @@
-% 对应单元：QM-C01-S01--S04
-% 来源：Shankar 第 1 章第 1.1--1.4 节及同书练习
+% 对应单元：QM-C01-S01--S05
+% 来源：Shankar 第 1 章第 1.1--1.5 节及同书练习
 % 人工核验：用户作答后完成订正与收口检查
 
 \section{第 1.1 节教材习题与订正}
@@ -554,3 +554,64 @@ Schwarz 不等式的证明给出
 \end{checkedsolution}
 
 \textbf{检查点：}对子空间应使用包含记号 $U\subseteq W$，而不是表示元素归属的 $U\in W$。
+
+\section{第 1.5 节自编检验题与订正}
+\label{exercise-set:QM-C01-S05}
+
+\exercisemeta
+  {QM-C01-S05-EX}
+  {2026-08-21}
+  {Shankar，第 1 章 \S 1.5；本节无编号习题}
+  {一道自编综合检验题}
+  {已确认（对话作答与逐项核对）}
+
+\exercisequestion{QM-C01-S05-E01}{自编综合检查题：线性、乘积、对易子与逆}
+
+\textbf{对应知识点：}线性算符、算符乘积、对易子与逆算符。
+
+\textbf{来源说明。}本题由学习对话生成，不是教材习题。在二维向量空间的基 $\{\ket{1},\ket{2}\}$ 上定义
+\[
+  A\ket{1}=\ket{1}+\ket{2},\qquad
+  A\ket{2}=\ket{1}-\ket{2},
+\]
+\[
+  B\ket{1}=\ket{1},\qquad
+  B\ket{2}=-\ket{2}.
+\]
+求 $A$ 对一般向量的作用，比较 $AB$ 与 $BA$，再求 $A^{-1}$ 和 $(AB)^{-1}$。
+
+\begin{checkedsolution}
+由线性性，
+\[
+  A\bigl(a\ket{1}+b\ket{2}\bigr)
+  =(a+b)\ket{1}+(a-b)\ket{2}.
+\]
+分别对基向量计算得
+\begin{align*}
+  AB\ket{1}&=\ket{1}+\ket{2},
+  &BA\ket{1}&=\ket{1}-\ket{2},\\
+  AB\ket{2}&=-\ket{1}+\ket{2},
+  &BA\ket{2}&=\ket{1}+\ket{2}.
+\end{align*}
+因而
+\[
+  [A,B]\ket{1}=2\ket{2}\neq\ket{0},
+\]
+所以 $[A,B]$ 不是零算符，$A$ 与 $B$ 不对易。要否定“对所有向量等于零”，找到一个反例向量已经足够。
+
+再次作用 $A$ 可得
+\[
+  A^2\ket{1}=2\ket{1},\qquad
+  A^2\ket{2}=2\ket{2}.
+\]
+基向量张成整个空间，故 $A^2=2I$，从而
+\[
+  A^{-1}=\frac12 A.
+\]
+同理 $B^2=I$，故 $B^{-1}=B$。利用乘积求逆的反序法则，
+\[
+  (AB)^{-1}=B^{-1}A^{-1}=\frac12 BA.
+\]
+\end{checkedsolution}
+
+\textbf{检查点：}证明两个算符不相等，一个反例向量足够；证明它们相等，则必须验证所有向量，或在线性情形下验证一组基。

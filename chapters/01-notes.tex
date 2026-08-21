@@ -1,5 +1,5 @@
 % 教材：Shankar, Principles of Quantum Mechanics
-% 已覆盖：第 1 章第 1.1--1.4 节，印刷页 pp. 1--18，PDF pp. 15--32
+% 已覆盖：第 1 章第 1.1--1.5 节，印刷页 pp. 1--20，PDF pp. 15--34
 % 人工核验：已完成分块讲解、问答、检查题和同书练习核对
 
 \section{第 1.1 节：线性向量空间基础}
@@ -660,3 +660,103 @@ $U+W$ 是包含 $U$ 和 $W$ 的最小子空间：它对线性组合封闭，且�
 \subsection{一分钟回顾}
 
 子空间必须在固定标量域下对任意线性组合封闭。$U+W$ 是包含两个子空间的最小子空间；当且仅当 $U\cap W=\{0\}$ 时，和中的分解唯一，记为直和。和空间的维数需要减去交集被重复计数的维数。固定非零向量的正交补是 $n-1$ 维子空间；正交子空间一定构成直和，但一般直和不必正交。
+
+\section{第 1.5 节：线性算符}
+\label{section:QM-C01-S05}
+
+\studymeta
+  {QM-C01-S05}
+  {2026-08-21}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 1 章 \S 1.5；印刷页 pp.~18--20；PDF pp.~32--34}
+  {已确认（讲解、问答、教材例子与收口检查）}
+
+\subsection{本节主线}
+
+线性算符把向量映射为向量，并保留线性组合。算符可以按顺序相乘；对易子描述两个算符的次序是否可以交换；逆算符则撤销原算符的作用。
+
+\notetopic{QM-C01-S05-T01}{线性算符及其基本性质}
+
+在本节中，算符 $\Omega$ 是从向量空间 $V$ 到自身的映射。若对任意向量 $\ket{V},\ket{W}$ 和允许的标量 $a,b$ 都有
+\begin{equation}
+  \Omega\bigl(a\ket{V}+b\ket{W}\bigr)
+  =a\Omega\ket{V}+b\Omega\ket{W},
+  \label{eq:QM-C01-S05-linearity}
+\end{equation}
+则称 $\Omega$ 为线性算符。取 $a=b=0$ 可得任意线性算符必须满足
+\[
+  \Omega\ket{0}=\ket{0}.
+\]
+因此非零平移 $T\ket{V}=\ket{V}+\ket{A}$ 不是线性算符。
+
+若 $\{\ket{i}\}$ 是 $V$ 的一组基，则
+\[
+  \ket{V}=\sum_i v_i\ket{i}
+  \quad\Longrightarrow\quad
+  \Omega\ket{V}=\sum_i v_i\Omega\ket{i}.
+\]
+所以给定算符对每个基向量的作用，就唯一确定了它对全空间的作用。单位算符 $I$ 满足 $I\ket{V}=\ket{V}$。
+
+\dialoguesupplement{不要把算符的线性与取伴随混淆：$\Omega(a\ket{V})=a\Omega\ket{V}$ 中系数不取共轭，而 $(a\ket{V})^\dagger=a^*\bra{V}$ 中出现共轭，是因为伴随操作共轭线性。}
+
+\notetopic{QM-C01-S05-T02}{算符乘积与作用顺序}
+
+定义算符乘积为
+\begin{equation}
+  (\Lambda\Omega)\ket{V}
+  =\Lambda\bigl(\Omega\ket{V}\bigr).
+  \label{eq:QM-C01-S05-product}
+\end{equation}
+因此最靠右的算符先作用。算符乘法一般不可交换，$\Lambda\Omega$ 与 $\Omega\Lambda$ 可能不同，但满足结合律。
+
+要证明两个算符相等，需证明它们对所有向量的作用相同。有限维情形下，验证一组基已经足够；只验证一个非零向量则不足以得出算符相等。
+
+教材中绕 $x$ 轴旋转 $\pi/2$ 的算符 $R$ 满足
+\[
+  R\ket{1}=\ket{1},\qquad
+  R\ket{2}=\ket{3},\qquad
+  R\ket{3}=-\ket{2}.
+\]
+由线性性，它将坐标 $(a,b,c)$ 变为 $(a,-c,b)$。
+
+\notetopic{QM-C01-S05-T03}{对易子}
+
+两个算符的对易子定义为
+\begin{equation}
+  [\Omega,\Lambda]=\Omega\Lambda-\Lambda\Omega.
+  \label{eq:QM-C01-S05-commutator}
+\end{equation}
+若 $[\Omega,\Lambda]=0$，这里的 $0$ 是零算符，表示两种作用顺序对任意向量都给出同一结果。对易子满足
+\begin{align*}
+  [\Omega,\Lambda\Theta]
+  &=\Lambda[\Omega,\Theta]+[\Omega,\Lambda]\Theta,\\
+  [\Lambda\Omega,\Theta]
+  &=\Lambda[\Omega,\Theta]+[\Lambda,\Theta]\Omega.
+\end{align*}
+证明时只需展开定义并配对中间项，但不能随意改变算符的顺序。
+
+\notetopic{QM-C01-S05-T04}{逆算符、核与乘积求逆}
+
+若存在 $\Omega^{-1}$ 使
+\begin{equation}
+  \Omega\Omega^{-1}=\Omega^{-1}\Omega=I,
+  \label{eq:QM-C01-S05-inverse}
+\end{equation}
+则 $\Omega^{-1}$ 是 $\Omega$ 的逆算符。若存在非零向量 $\ket{V}$ 使 $\Omega\ket{V}=\ket{0}$，则 $\Omega$ 不可逆。换言之，可逆性必须要求
+\[
+  \ker\Omega=\{\ket{0}\}.
+\]
+对有限维空间上的自映射，这个条件也充分；在一般无限维空间中则还需检查是否满射。
+
+若 $\Lambda$ 和 $\Omega$ 均可逆，则
+\begin{equation}
+  (\Lambda\Omega)^{-1}=\Omega^{-1}\Lambda^{-1}.
+  \label{eq:QM-C01-S05-product-inverse}
+\end{equation}
+逆序来自“撤销操作”的次序必须与原操作相反。特别地，若 $\Omega^2=I$，则 $\Omega$ 自身已经同时是左逆和右逆，故 $\Omega^{-1}=\Omega$。这一证明不能先假设 $\Omega^{-1}$ 存在再在等式两侧相乘。
+
+本节的代表性综合检查见\relatedexercise{QM-C01-S05-E01}{自编综合检查题}。
+
+\subsection{一分钟回顾}
+
+线性算符保留线性组合，其对一组基的作用唯一确定整个算符。算符乘积按从右到左的顺序作用，对易子检验作用次序是否可交换。可逆算符不能消去任何非零向量，而乘积求逆时必须反转算符顺序。
