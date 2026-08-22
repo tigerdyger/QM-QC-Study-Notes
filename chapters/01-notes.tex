@@ -1,5 +1,5 @@
 % 教材：Shankar, Principles of Quantum Mechanics
-% 已覆盖：第 1 章第 1.1--1.5 节，印刷页 pp. 1--20，PDF pp. 15--34
+% 已覆盖：第 1 章第 1.1--1.6 节，印刷页 pp. 1--29，PDF pp. 15--43
 % 人工核验：已完成分块讲解、问答、检查题和同书练习核对
 
 \section{第 1.1 节：线性向量空间基础}
@@ -760,3 +760,183 @@ $U+W$ 是包含 $U$ 和 $W$ 的最小子空间：它对线性组合封闭，且�
 \subsection{一分钟回顾}
 
 线性算符保留线性组合，其对一组基的作用唯一确定整个算符。算符乘积按从右到左的顺序作用，对易子检验作用次序是否可交换。可逆算符不能消去任何非零向量，而乘积求逆时必须反转算符顺序。
+
+\section{第 1.6 节：线性算符的矩阵元}
+\label{section:QM-C01-S06}
+
+\studymeta
+  {QM-C01-S06}
+  {2026-08-22}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 1 章 \S 1.6；印刷页 pp.~20--29；PDF pp.~34--43}
+  {已确认（讲解、问答、教材例题与习题、收口检查）}
+
+\subsection{本节主线}
+
+固定正交归一基后，抽象算符由矩阵元 $\bra{i}\Omega\ket{j}$ 表示，算符乘积与伴随分别对应矩阵乘法与共轭转置。单位算符和投影算符连接了完备性关系与几何分解；Hermitian、anti-Hermitian 和 unitary 则是后续量子力学中最重要的三类算符。
+
+\notetopic{QM-C01-S06-T01}{矩阵元与按列读取算符}
+
+在正交归一基 $\{\ket{1},\ldots,\ket{n}\}$ 中定义
+\begin{equation}
+  \Omega_{ij}=\bra{i}\Omega\ket{j}.
+  \label{eq:QM-C01-S06-matrix-element}
+\end{equation}
+在 $\Omega\ket{j}$ 前插入完备性关系，得
+\begin{equation}
+  \Omega\ket{j}
+  =\sum_i\ket{i}\bra{i}\Omega\ket{j}
+  =\sum_i\Omega_{ij}\ket{i}.
+  \label{eq:QM-C01-S06-column-rule}
+\end{equation}
+因此矩阵的第 $j$ 列是 $\Omega\ket{j}$ 的坐标：$j$ 标记输入基向量，$i$ 标记输出的第 $i$ 个分量。对
+\[
+  \ket{V}=\sum_jv_j\ket{j},
+\]
+输出坐标满足
+\begin{equation}
+  v_i'=\sum_j\Omega_{ij}v_j,
+  \label{eq:QM-C01-S06-matrix-action}
+\end{equation}
+这正是矩阵乘以列向量。同时，算符本身可重建为
+\begin{equation}
+  \Omega=\sum_{i,j}\Omega_{ij}\ket{i}\bra{j}.
+  \label{eq:QM-C01-S06-operator-expansion}
+\end{equation}
+
+教材例 1.6.1 对旋转算符使用按列规则：$R\ket{1}=\ket{1}$、$R\ket{2}=\ket{3}$、$R\ket{3}=-\ket{2}$ 给出
+\[
+  [R]=
+  \begin{pmatrix}
+    1&0&0\\
+    0&0&-1\\
+    0&1&0
+  \end{pmatrix}.
+\]
+从矩阵反推基向量作用见\relatedexercise{QM-C01-S06-E01}{教材练习 1.6.1}。
+
+\dialoguesupplement{公式 $\Omega_{ij}=\bra{i}\Omega\ket{j}$ 直接给出坐标矩阵的前提是基正交归一。对一般基 $\{\ket{e_i}\}$，若 $\Omega\ket{e_j}=\sum_i C_{ij}\ket{e_i}$、$G_{ki}=\braket{e_k}{e_i}$ 且 $B_{kj}=\bra{e_k}\Omega\ket{e_j}$，则 $B_{kj}=\sum_iG_{ki}C_{ij}$，即 $B=GC$。所以真正的坐标矩阵是 $C=G^{-1}B$；内积数表 $B$ 一般不是坐标。}
+
+\notetopic{QM-C01-S06-T02}{单位算符、外积与投影算符}
+
+单位算符的矩阵元为 $I_{ij}=\braket{i}{j}=\delta_{ij}$。对比内积 $\braket{V}{W}$ 产生标量，外积 $\ket{V}\bra{W}$ 产生算符。对归一向量 $\ket{u}$，定义
+\begin{equation}
+  P_u=\ket{u}\bra{u},
+  \qquad
+  P_u\ket{V}=\ket{u}\braket{u}{V}.
+  \label{eq:QM-C01-S06-projection}
+\end{equation}
+它保留 $\ket{V}$ 在 $\ket{u}$ 方向上的分量。若 $\ket{w}$ 未归一化，则必须改为
+\[
+  P_w=\frac{\ket{w}\bra{w}}{\braket{w}{w}}.
+\]
+否则投影不满足幂等性。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.95,>=Stealth]
+    \draw[->] (-0.3,0) -- (4.8,0) node[right] {$\ket{u}$ 方向};
+    \draw[->,thick] (0,0) -- (3.5,2.0) node[above right] {$\ket{V}$};
+    \draw[dashed] (3.5,2.0) -- (3.5,0);
+    \draw[->,very thick,blue!65!black] (0,0) -- (3.5,0)
+      node[midway,below] {$P_u\ket{V}$};
+  \end{tikzpicture}
+  \caption{投影算符保留指定方向的分量。}
+  \label{fig:QM-C01-S06-projection}
+\end{figure}
+
+对正交归一基的投影 $P_i=\ket{i}\bra{i}$，
+\begin{equation}
+  P_iP_j=\delta_{ij}P_i,
+  \qquad
+  \sum_iP_i=I.
+  \label{eq:QM-C01-S06-projection-algebra}
+\end{equation}
+第一式包含 $P_i^2=P_i$ 及不同正交方向的投影乘积为零；第二式是完备性关系。对一组基的子集求和，则得到投影到对应子空间的算符。
+
+\notetopic{QM-C01-S06-T03}{算符乘积的矩阵与伴随}
+
+在算符乘积中插入单位算符，得
+\begin{equation}
+  (\Omega\Lambda)_{ij}
+  =\sum_k\bra{i}\Omega\ket{k}\bra{k}\Lambda\ket{j}
+  =\sum_k\Omega_{ik}\Lambda_{kj}.
+  \label{eq:QM-C01-S06-product-matrix}
+\end{equation}
+求和指标 $k$ 枚举从输入 $\ket{j}$ 到输出 $\ket{i}$ 之间的中间方向。
+
+伴随算符由
+\begin{equation}
+  \Omega\ket{V}=\ket{V'}
+  \quad\Longrightarrow\quad
+  \bra{V'}=\bra{V}\Omega^\dagger
+  \label{eq:QM-C01-S06-adjoint-definition}
+\end{equation}
+定义。在正交归一基中，
+\begin{equation}
+  (\Omega^\dagger)_{ij}=\Omega_{ji}^*,
+  \qquad
+  [\Omega^\dagger]=[\Omega]^{*\mathsf T}.
+  \label{eq:QM-C01-S06-adjoint-matrix}
+\end{equation}
+所以复向量空间中必须取共轭转置，不能只写 $\mathsf T$。常用规则为
+\begin{align*}
+  (a\Omega)^\dagger&=a^*\Omega^\dagger,\\
+  (\Omega\Lambda)^\dagger&=\Lambda^\dagger\Omega^\dagger,\\
+  (\ket{V}\bra{W})^\dagger&=\ket{W}\bra{V}.
+\end{align*}
+乘积取伴随时要反转所有因子的顺序，并将标量取共轭。
+
+\notetopic{QM-C01-S06-T04}{Hermitian 与 anti-Hermitian 算符}
+
+Hermitian 算符和 anti-Hermitian 算符分别满足
+\begin{equation}
+  H^\dagger=H,
+  \qquad
+  K^\dagger=-K.
+  \label{eq:QM-C01-S06-hermitian-definitions}
+\end{equation}
+Hermitian 矩阵满足 $H_{ij}=H_{ji}^*$，对角元为实数；anti-Hermitian 矩阵满足 $K_{ij}=-K_{ji}^*$，对角元为纯虚数或零。任意算符都有分解
+\begin{equation}
+  \Omega
+  =\frac{\Omega+\Omega^\dagger}{2}
+  +\frac{\Omega-\Omega^\dagger}{2},
+  \label{eq:QM-C01-S06-hermitian-decomposition}
+\end{equation}
+其中两项分别为 Hermitian 和 anti-Hermitian。若 $H_1,H_2$ 均为 Hermitian，则 $(H_1H_2)^\dagger=H_2H_1$；是否能进一步分类取决于两者的乘法次序，见\relatedexercise{QM-C01-S06-E02}{教材练习 1.6.2}。
+
+\notetopic{QM-C01-S06-T05}{Unitary 算符}
+
+Unitary 算符定义为
+\begin{equation}
+  U^\dagger U=UU^\dagger=I,
+  \qquad
+  U^{-1}=U^\dagger.
+  \label{eq:QM-C01-S06-unitary-definition}
+\end{equation}
+若 $\ket{V'}=U\ket{V}$、$\ket{W'}=U\ket{W}$，则
+\begin{equation}
+  \braket{V'}{W'}
+  =\bra{V}U^\dagger U\ket{W}
+  =\braket{V}{W}.
+  \label{eq:QM-C01-S06-unitary-inner-product}
+\end{equation}
+因此 unitary 算符保持内积、范数和正交性，是复向量空间中旋转的推广。在实向量空间中，它退化为 $U^{\mathsf T}U=I$ 的正交矩阵。
+
+由 $U^\dagger U=I$，矩阵列向量满足
+\begin{equation}
+  \sum_kU_{ki}^*U_{kj}=\delta_{ij};
+  \label{eq:QM-C01-S06-unitary-columns}
+\end{equation}
+由 $UU^\dagger=I$，行向量也正交归一。有限维情形下，任一侧等式已可推出另一侧；无限维情形下不能无条件沿用这一结论。取行列式还得
+\[
+  1=\det(U^\dagger U)=\abs{\det U}^2,
+  \qquad
+  \det U=e^{\ii\theta}.
+\]
+
+Hermitian 要求 $H^\dagger=H$，unitary 要求 $U^\dagger=U^{-1}$，二者不可混淆。若一个算符同时属于两类，则 $U^2=I$。本节的综合检查见\relatedexercise{QM-C01-S06-E05}{投影差算符}。
+
+\subsection{一分钟回顾}
+
+正交归一基中，$\Omega_{ij}=\bra{i}\Omega\ket{j}$ 的第 $j$ 列给出 $\Omega\ket{j}$ 的坐标。外积产生算符，归一向量的外积给出幂等投影，所有基投影求和等于单位算符。算符乘积对应矩阵乘法，伴随对应共轭转置并反转乘积顺序。Hermitian 与 anti-Hermitian 类似复数的实部与纯虚部；unitary 算符保持内积，其行列向量均正交归一。

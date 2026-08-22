@@ -16,3 +16,4 @@
 | 2026-08-19 | Shankar 第 1 章 \S 1.3，印刷页 11--17，PDF 25--31 | `chapters/01-notes.tex`、`exercises/01-exercises.tex` | 对偶空间、Dirac 记号、伴随、完备性、Gram--Schmidt、Schwarz 与三角不等式 | 下一学习节点为第 1.4 节 Subspaces |
 | 2026-08-20 | Shankar 第 1 章 \S 1.4，印刷页 17--18，PDF 31--32 | `chapters/01-notes.tex`、`exercises/01-exercises.tex` | 子空间判据、和与直和、维数公式、正交补、正交直和 | 下一学习节点为第 1.5 节 Linear Operators |
 | 2026-08-21 | Shankar 第 1 章 \S 1.5，印刷页 18--20，PDF 32--34 | `chapters/01-notes.tex`、`exercises/01-exercises.tex` | 线性算符、基上作用、算符乘积、对易子、逆算符与核 | 下一学习节点为第 1.6 节 Matrix Elements of Linear Operators |
+| 2026-08-22 | Shankar 第 1 章 \S 1.6，印刷页 20--29，PDF 34--43 | `chapters/01-notes.tex`、`exercises/01-exercises.tex` | 矩阵元、投影算符、伴随、Hermitian、anti-Hermitian、unitary | 下一学习节点为第 1.7 节 Active and Passive Transformations |

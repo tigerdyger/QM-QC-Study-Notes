@@ -1,5 +1,5 @@
-% 对应单元：QM-C01-S01--S05
-% 来源：Shankar 第 1 章第 1.1--1.5 节及同书练习
+% 对应单元：QM-C01-S01--S06
+% 来源：Shankar 第 1 章第 1.1--1.6 节及同书练习
 % 人工核验：用户作答后完成订正与收口检查
 
 \section{第 1.1 节教材习题与订正}
@@ -615,3 +615,178 @@ Schwarz 不等式的证明给出
 \end{checkedsolution}
 
 \textbf{检查点：}证明两个算符不相等，一个反例向量足够；证明它们相等，则必须验证所有向量，或在线性情形下验证一组基。
+
+\section{第 1.6 节教材习题与订正}
+\label{exercise-set:QM-C01-S06}
+
+\exercisemeta
+  {QM-C01-S06-EX}
+  {2026-08-22}
+  {Shankar，第 1 章 \S 1.6，例 1.6.1 及练习 1.6.1--1.6.6}
+  {全部完成，并完成一道自编综合检查题}
+  {已确认（对话推导、矩阵计算与收口问答）}
+
+\exercisequestion{QM-C01-S06-E01}{教材练习 1.6.1：从矩阵读取算符作用}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S06-T01}{矩阵元与按列读取算符}。
+
+\textbf{题意概述。}给定正交归一基中的算符矩阵
+\[
+  [\Omega]=
+  \begin{pmatrix}
+    0&0&1\\
+    1&0&0\\
+    0&1&0
+  \end{pmatrix},
+\]
+说明它的作用。教材位置：印刷页 p.~22，PDF p.~36。
+
+\begin{checkedsolution}
+矩阵的第 $j$ 列是 $\Omega\ket{j}$ 的坐标，因此
+\[
+  \Omega\ket{1}=\ket{2},
+  \qquad
+  \Omega\ket{2}=\ket{3},
+  \qquad
+  \Omega\ket{3}=\ket{1}.
+\]
+对一般向量，
+\[
+  \Omega(v_1\ket{1}+v_2\ket{2}+v_3\ket{3})
+  =v_1\ket{2}+v_2\ket{3}+v_3\ket{1}.
+\]
+所以坐标变换为
+\[
+  (v_1,v_2,v_3)^{\mathsf T}
+  \longmapsto
+  (v_3,v_1,v_2)^{\mathsf T}.
+\]
+\end{checkedsolution}
+
+\textbf{检查点：}第二个下标或列号表示输入基向量；不要把第 $j$ 行误认为 $\Omega\ket{j}$。
+
+\exercisequestion{QM-C01-S06-E02}{教材练习 1.6.2：Hermitian 算符的组合}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S06-T04}{Hermitian 与 anti-Hermitian 算符}。
+
+\textbf{题意概述。}设 $\Omega,\Lambda$ 均为 Hermitian，分类 $\Omega\Lambda$、$\Omega\Lambda+\Lambda\Omega$、$[\Omega,\Lambda]$ 及 $\ii[\Omega,\Lambda]$。教材位置：印刷页 p.~27，PDF p.~41。
+
+\begin{checkedsolution}
+由
+\[
+  (\Omega\Lambda)^\dagger=\Lambda\Omega
+\]
+可知，若未给定对易关系，$\Omega\Lambda$ 一般无法分类。其余三项满足
+\begin{align*}
+  (\Omega\Lambda+\Lambda\Omega)^\dagger
+  &=\Omega\Lambda+\Lambda\Omega,\\
+  [\Omega,\Lambda]^\dagger
+  &=-[\Omega,\Lambda],\\
+  \bigl(\ii[\Omega,\Lambda]\bigr)^\dagger
+  &=-\ii\bigl(-[\Omega,\Lambda]\bigr)
+   =\ii[\Omega,\Lambda].
+\end{align*}
+因此它们依次为 Hermitian、anti-Hermitian 和 Hermitian。
+\end{checkedsolution}
+
+\textbf{检查点：}乘积取伴随时反序；系数 $\ii$ 取伴随时变为 $-\ii$。
+
+\exercisequestion{QM-C01-S06-E03}{教材练习 1.6.3--1.6.4：Unitary 乘积与行列式}
+
+\textbf{题意概述。}证明 unitary 算符的乘积仍为 unitary，并证明有限维 unitary 矩阵的行列式模为 $1$。教材位置：印刷页 pp.~28--29，PDF pp.~42--43。
+
+\begin{checkedsolution}
+若 $U,V$ 均为 unitary，则
+\begin{align*}
+  (UV)^\dagger(UV)
+  &=V^\dagger U^\dagger UV=I,\\
+  (UV)(UV)^\dagger
+  &=UVV^\dagger U^\dagger=I.
+\end{align*}
+复向量空间中必须使用 $\dagger$，而不是只取转置 $\mathsf T$。
+
+再对 $U^\dagger U=I$ 取行列式：
+\[
+  1=\det(U^\dagger U)
+  =(\det U)^*\det U
+  =\abs{\det U}^2.
+\]
+所以 $\abs{\det U}=1$，必可写成 $\det U=e^{\ii\theta}$。
+\end{checkedsolution}
+
+\exercisequestion{QM-C01-S06-E04}{教材练习 1.6.5--1.6.6：Unitary 矩阵的验证}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S06-T05}{Unitary 算符}。
+
+\textbf{题意概述。}检查教材中的三维旋转矩阵及两个二维复矩阵的 unitary 性，并求后两者的行列式与 Hermitian 性。教材位置：印刷页 p.~29，PDF p.~43。
+
+\begin{checkedsolution}
+旋转矩阵
+\[
+  R=
+  \begin{pmatrix}
+    1&0&0\\0&0&-1\\0&1&0
+  \end{pmatrix}
+\]
+的三列均为单位向量且两两正交，故 $R$ 为实 unitary 矩阵，也就是正交矩阵。
+
+对
+\[
+  U_1=\frac{1}{\sqrt2}
+  \begin{pmatrix}1&\ii\\\ii&1\end{pmatrix},
+  \qquad
+  U_2=\frac12
+  \begin{pmatrix}1+\ii&1-\ii\\1-\ii&1+\ii\end{pmatrix},
+\]
+两个矩阵的列向量也都正交归一，故二者均为 unitary。行列式为
+\[
+  \det U_1=1=e^{\ii0},
+  \qquad
+  \det U_2=\ii=e^{\ii\pi/2}.
+\]
+二者都不满足 $U_k^\dagger=U_k$，因此均不是 Hermitian。
+\end{checkedsolution}
+
+\textbf{检查点：}验证方阵 unitary 性时，检查全部列向量正交归一通常比完整展开 $U^\dagger U$ 更简洁。
+
+\exercisequestion{QM-C01-S06-E05}{自编综合检查题：投影差算符}
+
+\textbf{来源说明。}本题由学习对话生成，不是教材习题。定义
+\[
+  \ket{u}=\frac{\ket{1}+\ket{2}}{\sqrt2},
+  \qquad
+  \ket{v}=\frac{\ket{1}-\ket{2}}{\sqrt2},
+  \qquad
+  A=\ket{u}\bra{u}-\ket{v}\bra{v}.
+\]
+求 $A$ 的矩阵，并判断其 Hermitian 与 unitary 性。
+
+\begin{checkedsolution}
+两个投影矩阵为
+\[
+  P_u=\frac12
+  \begin{pmatrix}1&1\\1&1\end{pmatrix},
+  \qquad
+  P_v=\frac12
+  \begin{pmatrix}1&-1\\-1&1\end{pmatrix},
+\]
+所以
+\[
+  A=P_u-P_v=
+  \begin{pmatrix}0&1\\1&0\end{pmatrix},
+  \qquad
+  A^\dagger=A.
+\]
+由于 $\ket{u},\ket{v}$ 正交归一，$P_uP_v=P_vP_u=0$ 且 $P_u+P_v=I$，因而
+\[
+  A^2=(P_u-P_v)^2=P_u+P_v=I.
+\]
+所以 $A$ 同时为 Hermitian 和 unitary，并满足
+\[
+  A\ket{1}=\ket{2},
+  \qquad
+  A\ket{2}=\ket{1}.
+\]
+\end{checkedsolution}
+
+\textbf{检查点：}对投影多项式进行运算时，优先使用 $P_i^2=P_i$ 和正交投影乘积为零，不必先展开矩阵元。
