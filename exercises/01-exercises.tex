@@ -790,3 +790,72 @@ Schwarz 不等式的证明给出
 \end{checkedsolution}
 
 \textbf{检查点：}对投影多项式进行运算时，优先使用 $P_i^2=P_i$ 和正交投影乘积为零，不必先展开矩阵元。
+
+\section{第 1.7 节教材习题与订正}
+\label{exercise-set:QM-C01-S07}
+
+\exercisemeta
+  {QM-C01-S07-EX}
+  {2026-08-23}
+  {Shankar，第 1 章 \S 1.7，练习 1.7.1--1.7.2}
+  {全部完成，并完成主动与被动变换的收口检查}
+  {已确认（对话推导、指标订正与概念辨析）}
+
+\exercisequestion{QM-C01-S07-E01}{教材练习 1.7.1：迹的循环性与换基不变性}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S07-T03}{迹与行列式是换基不变量}。
+
+\textbf{题意概述。}证明两矩阵乘积的迹可循环交换，推广到三个矩阵，并证明迹在 unitary 换基下不变。教材位置：印刷页 p.~30，PDF p.~44。
+
+\begin{checkedsolution}
+由矩阵乘法定义，
+\begin{align*}
+  \operatorname{Tr}(\Omega\Lambda)
+  &=\sum_i(\Omega\Lambda)_{ii}
+    =\sum_{i,j}\Omega_{ij}\Lambda_{ji}\\
+  &=\sum_{i,j}\Omega_{ji}\Lambda_{ij}
+    =\sum_{i,j}\Lambda_{ij}\Omega_{ji}\\
+  &=\operatorname{Tr}(\Lambda\Omega).
+\end{align*}
+第二行先重新命名哑指标 $i,j$，再交换两个标量矩阵元的次序；这里没有假设 $\Omega\Lambda=\Lambda\Omega$。
+
+将两个相邻矩阵视为一个整体，可得
+\begin{align*}
+  \operatorname{Tr}(\Omega\Lambda\Theta)
+  &=\operatorname{Tr}(\Lambda\Theta\Omega),\\
+  \operatorname{Tr}(\Omega\Lambda\Theta)
+  &=\operatorname{Tr}(\Theta\Omega\Lambda).
+\end{align*}
+这是循环置换，一般不能将 $\Lambda$ 与 $\Theta$ 任意互换。
+
+最后，利用循环性质与 $UU^\dagger=I$，
+\[
+  \operatorname{Tr}(U^\dagger\Omega U)
+  =\operatorname{Tr}(UU^\dagger\Omega)
+  =\operatorname{Tr}\Omega.
+\]
+所以迹不随 unitary 基变换改变。
+\end{checkedsolution}
+
+\textbf{检查点：}矩阵元是可交换的标量，矩阵本身一般不可交换；迹允许循环置换，不允许任意排列。
+
+\exercisequestion{QM-C01-S07-E02}{教材练习 1.7.2：行列式的换基不变性}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S07-T03}{迹与行列式是换基不变量}。
+
+\textbf{题意概述。}证明矩阵的行列式在 unitary 换基下不变。教材位置：印刷页 p.~30，PDF p.~44。
+
+\begin{checkedsolution}
+由行列式的乘法性质以及行列式作为标量可交换，
+\begin{align*}
+  \det(U^\dagger\Omega U)
+  &=\det(U^\dagger)\det(\Omega)\det(U)\\
+  &=\det(U^\dagger)\det(U)\det(\Omega)\\
+  &=\det(U^\dagger U)\det(\Omega)\\
+  &=\det(I)\det(\Omega)
+   =\det(\Omega).
+\end{align*}
+因此行列式不随 unitary 基变换改变。
+\end{checkedsolution}
+
+\textbf{检查点：}这里交换的是三个标量行列式的次序，不是交换矩阵乘积中 $U^\dagger$、$\Omega$ 与 $U$ 的次序。

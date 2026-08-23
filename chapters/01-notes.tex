@@ -940,3 +940,110 @@ Hermitian 要求 $H^\dagger=H$，unitary 要求 $U^\dagger=U^{-1}$，二者不�
 \subsection{一分钟回顾}
 
 正交归一基中，$\Omega_{ij}=\bra{i}\Omega\ket{j}$ 的第 $j$ 列给出 $\Omega\ket{j}$ 的坐标。外积产生算符，归一向量的外积给出幂等投影，所有基投影求和等于单位算符。算符乘积对应矩阵乘法，伴随对应共轭转置并反转乘积顺序。Hermitian 与 anti-Hermitian 类似复数的实部与纯虚部；unitary 算符保持内积，其行列向量均正交归一。
+
+\section{第 1.7 节：主动变换与被动变换}
+\label{section:QM-C01-S07}
+
+\studymeta
+  {QM-C01-S07}
+  {2026-08-23}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 1 章 \S 1.7；印刷页 pp.~29--30；PDF pp.~43--44}
+  {已确认（讲解、教材习题与收口检查）}
+
+\subsection{本节主线}
+
+Unitary 变换既可以主动地作用于向量，也可以被动地理解为改变描述所用的正交归一基。前者改变抽象向量而保持基与算符不动；后者保持抽象向量和抽象算符不动，但改变向量坐标与算符矩阵。两种观点通过共轭变换 $U^\dagger\Omega U$ 联系起来，并给出迹与行列式等换基不变量。
+
+\notetopic{QM-C01-S07-T01}{主动变换及其等价算符写法}
+
+对空间中所有向量作 unitary 变换
+\begin{equation}
+  \ket{V}\longmapsto U\ket{V},
+  \qquad U^\dagger U=UU^\dagger=I.
+  \label{eq:QM-C01-S07-active}
+\end{equation}
+由于
+\[
+  \braket{UV'}{UV}=\bra{V'}U^\dagger U\ket{V}=\braket{V'}{V},
+\]
+这一变换保持内积、长度与夹角。若抽象算符 $\Omega$ 固定，则变换后的矩阵元为
+\begin{equation}
+  \bra{UV'}\Omega\ket{UV}
+  =\bra{V'}U^\dagger\Omega U\ket{V}.
+  \label{eq:QM-C01-S07-active-matrix-element}
+\end{equation}
+左边是主动改变两个向量后的结果；右边说明，同一个数值也可由保持向量不动、将算符改写为 $U^\dagger\Omega U$ 得到。右式是等价描述，并不表示主动观点中还要同时改变 $\Omega$。
+
+\notetopic{QM-C01-S07-T02}{被动换基中的坐标与矩阵}
+
+令旧正交归一基 $\{\ket{i}\}$ 变为
+\begin{equation}
+  \ket{i'}=U\ket{i}.
+  \label{eq:QM-C01-S07-basis-change}
+\end{equation}
+Unitary 性保证新基仍正交归一。对保持不变的抽象向量 $\ket{V}$，其新坐标为
+\begin{equation}
+  v_i'=\braket{i'}{V}=\bra{i}U^\dagger\ket{V},
+  \qquad
+  [v]'=U^\dagger[v].
+  \label{eq:QM-C01-S07-coordinate-change}
+\end{equation}
+也就是说，基按 $U$ 变化时，同一向量的坐标按逆变换 $U^{-1}=U^\dagger$ 变化。保持不变的抽象算符 $\Omega$ 在新基中的矩阵元为
+\begin{equation}
+  \Omega_{ij}'
+  =\bra{i'}\Omega\ket{j'}
+  =\bra{i}U^\dagger\Omega U\ket{j},
+  \qquad
+  [\Omega]'=U^\dagger[\Omega]U.
+  \label{eq:QM-C01-S07-operator-basis-change}
+\end{equation}
+因此 $[\Omega]'$ 不是一组新基，也不是新的抽象算符，而是同一算符在新基中的矩阵；它与旧矩阵 unitary 相似。
+
+\dialoguesupplement{取 $U=\begin{psmallmatrix}0&1\\1&0\end{psmallmatrix}$、$\Omega=\operatorname{diag}(2,5)$、$\ket{V}=(1,0)^{\mathsf T}$。主动观点给出 $U\ket{V}=(0,1)^{\mathsf T}$ 及 $\bra{UV}\Omega\ket{UV}=5$；等价地，$U^\dagger\Omega U=\operatorname{diag}(5,2)$，故 $\bra{V}U^\dagger\Omega U\ket{V}=5$。相等的是矩阵元，而不是变换前后的向量或矩阵本身。}
+
+\notetopic{QM-C01-S07-T03}{迹与行列式是换基不变量}
+
+矩阵的迹定义为
+\[
+  \operatorname{Tr}\Omega=\sum_i\Omega_{ii}.
+\]
+对任意同维方阵 $\Omega,\Lambda$，
+\begin{equation}
+  \operatorname{Tr}(\Omega\Lambda)
+  =\sum_{i,j}\Omega_{ij}\Lambda_{ji}
+  =\operatorname{Tr}(\Lambda\Omega).
+  \label{eq:QM-C01-S07-trace-two-factor}
+\end{equation}
+中间一步依赖哑指标重新命名以及矩阵元作为标量可交换，并不意味着矩阵乘法可交换。由此得到循环性质
+\begin{equation}
+  \operatorname{Tr}(\Omega\Lambda\Theta)
+  =\operatorname{Tr}(\Lambda\Theta\Omega)
+  =\operatorname{Tr}(\Theta\Omega\Lambda),
+  \label{eq:QM-C01-S07-trace-cyclic}
+\end{equation}
+但一般不能任意置换因子。
+
+对 unitary 换基，循环性质给出
+\begin{equation}
+  \operatorname{Tr}(U^\dagger\Omega U)
+  =\operatorname{Tr}(UU^\dagger\Omega)
+  =\operatorname{Tr}\Omega.
+  \label{eq:QM-C01-S07-trace-invariance}
+\end{equation}
+行列式的乘法性质同样给出
+\begin{equation}
+  \det(U^\dagger\Omega U)
+  =\det(U^\dagger U)\det\Omega
+  =\det\Omega.
+  \label{eq:QM-C01-S07-determinant-invariance}
+\end{equation}
+因此迹和行列式只依赖抽象算符，不依赖所选正交归一基。不过，两矩阵具有相同的迹和行列式一般不足以推出它们相等，甚至不足以单独证明它们相似；在此处，相似关系来自已知公式 $[\Omega]'=U^\dagger[\Omega]U$。
+
+教材中的迹不变性推导见\relatedexercise{QM-C01-S07-E01}{练习 1.7.1}。
+
+行列式不变性推导见\relatedexercise{QM-C01-S07-E02}{练习 1.7.2}。
+
+\subsection{一分钟回顾}
+
+主动变换 $\ket{V}\mapsto U\ket{V}$ 改变抽象向量；被动换基 $\ket{i'}=U\ket{i}$ 保持抽象向量和算符不变，但使坐标与算符矩阵分别变为 $[v]'=U^\dagger[v]$ 和 $[\Omega]'=U^\dagger[\Omega]U$。两种观点给出相同矩阵元。迹与行列式在这一 unitary 相似变换下保持不变，但这些不变量本身不等于完整的矩阵信息。
