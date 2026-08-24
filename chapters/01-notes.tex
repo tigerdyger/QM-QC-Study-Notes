@@ -1047,3 +1047,306 @@ Unitary 性保证新基仍正交归一。对保持不变的抽象向量 $\ket{V}
 \subsection{一分钟回顾}
 
 主动变换 $\ket{V}\mapsto U\ket{V}$ 改变抽象向量；被动换基 $\ket{i'}=U\ket{i}$ 保持抽象向量和算符不变，但使坐标与算符矩阵分别变为 $[v]'=U^\dagger[v]$ 和 $[\Omega]'=U^\dagger[\Omega]U$。两种观点给出相同矩阵元。迹与行列式在这一 unitary 相似变换下保持不变，但这些不变量本身不等于完整的矩阵信息。
+
+\section{第 1.8 节：特征值问题}
+\label{section:QM-C01-S08}
+
+\studymeta
+  {QM-C01-S08}
+  {2026-08-24 至 2026-08-25}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 1 章 \S 1.8；印刷页 pp.~30--54；PDF pp.~44--68}
+  {已确认（主线推导与代表题完成；耦合振子的迁移应用待后续练习巩固）}
+
+\subsection{本节主线}
+
+特征值问题寻找算符作用下方向不变的向量。有限维计算从特征方程出发；Hermitian 与 unitary 算符的结构定理保证了正交归一特征基。简并把一个“特征方向”推广为特征子空间，而对易 Hermitian 算符可在简并子空间内继续选出共同特征基。教材最后用耦合振子说明：对角化不是形式操作，而是把耦合微分方程拆成彼此独立的简正模。
+
+\notetopic{QM-C01-S08-T01}{特征向量、特征子空间与特征方程}
+
+对线性算符 $\Omega$，若存在非零向量 $\ket{V}$ 和标量 $\omega$ 使
+\begin{equation}
+  \Omega\ket{V}=\omega\ket{V},
+  \qquad \ket{V}\neq\ket{0},
+  \label{eq:QM-C01-S08-eigen-equation}
+\end{equation}
+则 $\omega$ 是特征值，$\ket{V}$ 是对应的特征向量。乘以任意非零标量不会改变特征值，所以特征向量确定的是一个方向，而不是唯一的列向量。对应特征子空间为
+\begin{equation}
+  E_\omega=\ker(\Omega-\omega I).
+  \label{eq:QM-C01-S08-eigenspace}
+\end{equation}
+核必然包含 $\ket{0}$，故 $E_\omega$ 是子空间；但零向量不称为特征向量，否则它会形式上满足任意 $\omega$ 的方程。
+
+对归一向量 $\ket{u}$ 的投影 $P_u=\ket{u}\bra{u}$，沿 $\ket{u}$ 的非零向量具有特征值 $1$，位于 $\ket{u}^\perp$ 的非零向量具有特征值 $0$，同时含有两个方向分量的向量通常不是特征向量。这一例子说明特征值问题是在寻找算符不混合的方向或子空间。
+
+有限维情况下，非零解要求 $\Omega-\omega I$ 不可逆，即
+\begin{equation}
+  \det(\Omega-\omega I)=0.
+  \label{eq:QM-C01-S08-characteristic-equation}
+\end{equation}
+先解特征多项式得到 $\omega$，再对每个根求 $\ker(\Omega-\omega I)$。特征值与特征子空间由抽象算符决定，不依赖计算时选择的基；特征多项式只是它在某组基中的计算工具。若把实向量空间复化，原本没有实特征向量的旋转也可能出现复特征向量，见\relatedexercise{QM-C01-S08-E01}{教材例 1.8.4}。
+
+一般矩阵即使有重根，也未必有足够多的线性无关特征向量；Hermitian 与 unitary 算符则可由后述定理保证对角化。
+
+\notetopic{QM-C01-S08-T02}{Hermitian 算符的谱定理}
+
+设 $H=H^\dagger$ 且 $H\ket{v}=\lambda\ket{v}$。左乘 $\bra{v}$ 并对等式取伴随，分别得到
+\[
+  \bra{v}H\ket{v}=\lambda\braket{v}{v},
+  \qquad
+  \bra{v}H\ket{v}=\lambda^*\braket{v}{v}.
+\]
+因此
+\begin{equation}
+  (\lambda-\lambda^*)\braket{v}{v}=0.
+  \label{eq:QM-C01-S08-hermitian-real}
+\end{equation}
+特征向量非零，正定性给出 $\braket{v}{v}>0$，故 $\lambda=\lambda^*$：Hermitian 算符的特征值均为实数。
+
+若
+\[
+  H\ket{v_i}=\lambda_i\ket{v_i},
+  \qquad
+  H\ket{v_j}=\lambda_j\ket{v_j},
+\]
+则 Hermitian 性和特征值为实数给出
+\[
+  \bra{v_j}H\ket{v_i}
+  =\lambda_i\braket{v_j}{v_i}
+  =\lambda_j\braket{v_j}{v_i}.
+\]
+所以
+\begin{equation}
+  (\lambda_i-\lambda_j)\braket{v_j}{v_i}=0.
+  \label{eq:QM-C01-S08-hermitian-orthogonality}
+\end{equation}
+不同特征值对应的特征向量必正交；同一特征值下则只能得到 $0=0$，正交性需在该特征子空间内部另行选择。
+
+Hermitian 算符存在完整正交归一特征基，可用维数归纳严格证明：
+\begin{enumerate}
+  \item 当 $n=1$ 时结论显然成立。
+  \item 假设所有 $(n-1)$ 维 Hermitian 算符均有正交归一特征基。对 $n$ 维的 $H$，先取一个归一特征向量 $\ket{v_1}$，并令
+  \[
+    W=\{\ket{w}:\braket{v_1}{w}=0\}.
+  \]
+  此时 $\dim W=n-1$。
+  \item 对任意 $\ket{w}\in W$，由 $\bra{v_1}H=\lambda_1\bra{v_1}$ 得
+  \[
+    \braket{v_1}{Hw}
+    =\bra{v_1}H\ket{w}
+    =\lambda_1\braket{v_1}{w}=0.
+  \]
+  因而 $H\ket{w}\in W$，即 $W$ 在 $H$ 下不变。限制算符 $H|_W:W\to W$ 仍为 Hermitian。
+  \item 对 $H|_W$ 使用归纳假设，得到 $W$ 的正交归一特征基 $\ket{v_2},\ldots,\ket{v_n}$；与 $\ket{v_1}$ 合并即得全空间的正交归一特征基。
+\end{enumerate}
+不变性是归纳证明的关键：它保证 $H|_W$ 真正是作用在同一个 $(n-1)$ 维空间内的 Hermitian 算符。
+
+令 $U$ 的第 $i$ 列为 $\ket{v_i}$，并令 $D=\diag(\lambda_1,\ldots,\lambda_n)$。正交归一性与特征方程分别给出
+\begin{equation}
+  U^\dagger U=I,
+  \qquad
+  HU=UD,
+  \qquad
+  U^\dagger HU=D.
+  \label{eq:QM-C01-S08-hermitian-diagonalization}
+\end{equation}
+所以每个有限维 Hermitian 矩阵都可由 unitary 换基对角化。物理教材中的“本征值、本征向量”与线性代数中的“特征值、特征向量”含义相同；本文统一使用“特征”。
+
+\notetopic{QM-C01-S08-T03}{简并与谱投影}
+
+若 $\dim E_\omega=m>1$，则特征值 $\omega$ 为 $m$ 重简并。特征多项式中根的重数称为代数重数，特征子空间的维数称为几何重数；一般矩阵二者可能不同，而 Hermitian 算符可对角化，二者相等。
+
+同一简并特征子空间中的任意线性组合仍具有相同特征值：
+\[
+  H\sum_{a=1}^{m}c_a\ket{\omega,a}
+  =\omega\sum_{a=1}^{m}c_a\ket{\omega,a}.
+\]
+因此可在 $E_\omega$ 内使用 Gram--Schmidt 选出正交归一基，但选择并不唯一。教材例 1.8.5 的具体二维特征平面见\relatedexercise{QM-C01-S08-E02}{教材例 1.8.5}。
+
+若 $\{\ket{\lambda_r,a}\}_{a=1}^{m_r}$ 是特征子空间 $E_{\lambda_r}$ 的正交归一基，则
+\begin{equation}
+  P_r=\sum_{a=1}^{m_r}\ket{\lambda_r,a}\bra{\lambda_r,a},
+  \qquad
+  H=\sum_r\lambda_rP_r,
+  \qquad
+  \sum_rP_r=I.
+  \label{eq:QM-C01-S08-spectral-resolution}
+\end{equation}
+子空间内的基可以改变，但投影算符 $P_r$ 不变；真正与简并特征值对应的是整个特征子空间。
+
+\notetopic{QM-C01-S08-T04}{Unitary 算符的特征值}
+
+设 $U$ 为 unitary 且 $U\ket{u_i}=z_i\ket{u_i}$。由
+\[
+  \bra{u_j}U^\dagger U\ket{u_i}
+  =z_j^*z_i\braket{u_j}{u_i}
+  =\braket{u_j}{u_i}
+\]
+得到
+\begin{equation}
+  (1-z_j^*z_i)\braket{u_j}{u_i}=0.
+  \label{eq:QM-C01-S08-unitary-spectrum}
+\end{equation}
+取 $i=j$，正定性给出 $\abs{z_i}=1$，故 $z_i=\ee^{\ii\theta_i}$；若 $z_i\neq z_j$，则 $z_j^*z_i\neq1$，所以 $\braket{u_j}{u_i}=0$。简并时仍可在特征子空间内正交归一化。Hermitian 特征值位于实轴，unitary 特征值位于复平面的单位圆。二维旋转的验证见\relatedexercise{QM-C01-S08-E03}{教材练习 1.8.5}。
+
+\notetopic{QM-C01-S08-T05}{对易 Hermitian 算符的同时对角化}
+
+若 Hermitian 算符 $\Omega$ 与 $\Lambda$ 满足 $[\Omega,\Lambda]=0$，则存在一组正交归一共同特征基，使二者同时对角化。先设
+\[
+  \Omega\ket{\omega_i}=\omega_i\ket{\omega_i}.
+\]
+对易关系给出
+\begin{equation}
+  \Omega\Lambda\ket{\omega_i}
+  =\Lambda\Omega\ket{\omega_i}
+  =\omega_i\Lambda\ket{\omega_i},
+  \label{eq:QM-C01-S08-commuting-invariance}
+\end{equation}
+所以 $\Lambda$ 将 $E_{\omega_i}$ 映回自身。若 $\omega_i$ 非简并，则 $E_{\omega_i}$ 为一维，必有
+\[
+  \Lambda\ket{\omega_i}=\lambda_i\ket{\omega_i},
+\]
+故 $\ket{\omega_i}$ 已是共同特征向量。
+
+若 $E_{\omega_i}$ 简并，$\Lambda$ 可在其中混合不同方向，但不会连接不同的 $\Omega$ 特征子空间。因此在 $\Omega$ 的特征基中，$\Lambda$ 先呈分块对角形式。每个限制 $\Lambda|_{E_{\omega_i}}$ 仍为 Hermitian，可在该子空间内部对角化；这种内部换基不改变 $\Omega|_{E_{\omega_i}}=\omega_iI$。逐块完成后即得共同特征基。
+
+若 $\Lambda$ 仍不能消除某个子空间内的简并，可继续加入与已有算符都对易的第三个算符，并将共同特征向量标记为
+\[
+  \ket{\omega,\lambda,\gamma,\ldots}.
+\]
+这是完备对易算符组的线性代数来源。反过来，若两个算符拥有完整共同特征基，则它们在该基中均为对角矩阵，因而必对易；这一反方向不要求算符为 Hermitian。
+
+教材练习 1.8.10 的逐块计算见\relatedexercise{QM-C01-S08-E04}{教材练习 1.8.10}。
+
+\notetopic{QM-C01-S08-T06}{耦合振子、简正模与传播算符}
+
+教材例 1.8.6 考虑两个质量均为 $m$ 的物块，由三个劲度系数均为 $k$ 的弹簧连接：
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[x=1cm,y=1cm,>=Stealth]
+    \draw[very thick] (0,-0.7)--(0,0.7);
+    \foreach \y in {-0.55,-0.3,-0.05,0.2,0.45}
+      \draw (-0.25,\y-0.12)--(0,\y+0.12);
+    \draw[decorate,decoration={coil,segment length=4pt,amplitude=3pt}] (0,0)--(1.7,0);
+    \node[draw,fill=blue!8,minimum width=1.1cm,minimum height=0.8cm] (m1) at (2.25,0) {$m$};
+    \draw[decorate,decoration={coil,segment length=4pt,amplitude=3pt}] (2.8,0)--(4.3,0);
+    \node[draw,fill=blue!8,minimum width=1.1cm,minimum height=0.8cm] (m2) at (4.85,0) {$m$};
+    \draw[decorate,decoration={coil,segment length=4pt,amplitude=3pt}] (5.4,0)--(7.1,0);
+    \draw[very thick] (7.1,-0.7)--(7.1,0.7);
+    \foreach \y in {-0.55,-0.3,-0.05,0.2,0.45}
+      \draw (7.1,\y+0.12)--(7.35,\y-0.12);
+    \draw[->,noteBlue,thick] (2.25,-0.7)--(3.05,-0.7) node[right] {$x_1$};
+    \draw[->,noteBlue,thick] (4.85,-0.7)--(5.65,-0.7) node[right] {$x_2$};
+    \node at (0.85,0.45) {$k$};
+    \node at (3.55,0.45) {$k$};
+    \node at (6.25,0.45) {$k$};
+  \end{tikzpicture}
+  \caption{等质量耦合弹簧系统及统一取向的位移坐标。}
+  \label{fig:QM-C01-S08-coupled-oscillator}
+\end{figure}
+
+以向右为两个位移的正方向。第一个物块所受总力为 $-kx_1+k(x_2-x_1)$，第二个物块同理，故
+\begin{equation}
+  \begin{pmatrix}\ddot x_1\\\ddot x_2\end{pmatrix}
+  =\frac{k}{m}
+  \begin{pmatrix}-2&1\\1&-2\end{pmatrix}
+  \begin{pmatrix}x_1\\x_2\end{pmatrix},
+  \qquad
+  \ket{\ddot x(t)}=\Omega\ket{x(t)}.
+  \label{eq:QM-C01-S08-coupled-equation}
+\end{equation}
+非对角元表示两个坐标彼此耦合。$\Omega$ 的正交归一特征向量及频率为
+\[
+  \ket{I}=\frac1{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},
+  \quad \Omega\ket{I}=-\omega_I^2\ket{I},
+  \quad \omega_I=\sqrt{\frac{k}{m}},
+\]
+\[
+  \ket{II}=\frac1{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix},
+  \quad \Omega\ket{II}=-\omega_{II}^2\ket{II},
+  \quad \omega_{II}=\sqrt{\frac{3k}{m}}.
+\]
+这里 $\Omega$ 的特征值是 $-\omega_a^2$，不是频率 $\omega_a$ 本身。对应的简正坐标与逆变换为
+\begin{equation}
+  x_I=\frac{x_1+x_2}{\sqrt2},
+  \quad
+  x_{II}=\frac{x_1-x_2}{\sqrt2},
+  \qquad
+  x_1=\frac{x_I+x_{II}}{\sqrt2},
+  \quad
+  x_2=\frac{x_I-x_{II}}{\sqrt2}.
+  \label{eq:QM-C01-S08-normal-coordinates}
+\end{equation}
+
+这里也可以不先做矩阵对角化，而直接从牛顿方程看出两个模。令
+\[
+  s=x_1+x_2,
+  \qquad
+  d=x_1-x_2.
+\]
+将两个物块的方程分别相加、相减，立即得到
+\begin{equation}
+  \ddot s+\frac{k}{m}s=0,
+  \qquad
+  \ddot d+\frac{3k}{m}d=0.
+  \label{eq:QM-C01-S08-sum-difference}
+\end{equation}
+若初始时 $d(0)=\dot d(0)=0$，则微分方程解的唯一性保证 $d(t)=0$，所以两个物块始终同向等位移，中间弹簧始终不伸缩。若 $s(0)=\dot s(0)=0$，则始终有 $s(t)=0$，即 $x_1=-x_2$；此时中间弹簧的形变量为单个物块位移的两倍。归一化后的 $s,d$ 正是式~\eqref{eq:QM-C01-S08-normal-coordinates} 中的 $x_I,x_{II}$，因此“取和与差”和“换到特征向量基”是同一件事的两种写法。
+
+\dialoguesupplement{把新的线性小振动问题转成特征值问题时，可以沿用下面的固定步骤。}
+\begin{enumerate}[leftmargin=*,itemsep=0.2em]
+  \item 规定各位移坐标的正方向，并逐个写出恢复力；
+  \item 将方程整理为 $\ket{\ddot x}=\Omega\ket{x}$，用矩阵的非对角元记录坐标之间的耦合；
+  \item 求 $\Omega$ 的特征向量，将它们解释为能够独立保持的集体运动方式；
+  \item 把初始位移和初始速度投影到各特征方向上，分别求每个一维振子的演化；
+  \item 将各模叠加并变回原坐标，再检查运动是否符合力学直觉和初始条件。
+\end{enumerate}
+这个流程没有取消原来的微分方程，而是用特征向量选择一组能够让耦合方程彼此独立的坐标。
+
+在此基中，运动方程解耦为
+\begin{equation}
+  \ddot x_a+\omega_a^2x_a=0,
+  \qquad
+  x_a(t)=x_a(0)\cos(\omega_at)
+  +\frac{\dot x_a(0)}{\omega_a}\sin(\omega_at),
+  \quad a=I,II.
+  \label{eq:QM-C01-S08-normal-mode-solution}
+\end{equation}
+$\ket{I}$ 表示两物块同向等位移，中间弹簧不伸缩；$\ket{II}$ 表示两物块反向等位移，中间弹簧形变为单个物块位移的两倍，因此总恢复力更大、频率更高。简正模在演化中不转向其他特征方向，只改变其标量系数。
+
+教材先限制 $\ket{\dot x(0)}=\ket{0}$。此时位移传播算符为
+\begin{equation}
+  U_{\mathrm c}(t)
+  =\ket{I}\bra{I}\cos(\omega_It)
+  +\ket{II}\bra{II}\cos(\omega_{II}t),
+  \qquad
+  \ket{x(t)}=U_{\mathrm c}(t)\ket{x(0)}.
+  \label{eq:QM-C01-S08-classical-propagator}
+\end{equation}
+在 $\ket{1},\ket{2}$ 基中，令 $c_I=\cos(\omega_It)$、$c_{II}=\cos(\omega_{II}t)$，则
+\begin{equation}
+  [U_{\mathrm c}(t)]
+  =\frac12
+  \begin{pmatrix}
+    c_I+c_{II}&c_I-c_{II}\\
+    c_I-c_{II}&c_I+c_{II}
+  \end{pmatrix}.
+  \label{eq:QM-C01-S08-classical-propagator-matrix}
+\end{equation}
+这个仅传播位移且假定零初速度的 $U_{\mathrm c}(t)$ 一般不是 unitary；二阶方程的一般初值问题必须同时给出位移和速度。教材习题 1.8.11 的具体初态见\relatedexercise{QM-C01-S08-E05}{耦合振子初值问题}。
+
+教材在此预告量子力学的对应结构：若 $H\ket{E_n}=E_n\ket{E_n}$，则
+\begin{equation}
+  \ket{\psi(t)}
+  =\sum_n\ee^{-\ii E_nt/\hbar}\ket{E_n}\braket{E_n}{\psi(0)},
+  \qquad
+  U_{\mathrm q}(t)
+  =\sum_n\ee^{-\ii E_nt/\hbar}\ket{E_n}\bra{E_n}.
+  \label{eq:QM-C01-S08-quantum-propagator-preview}
+\end{equation}
+经典例中的每个系数按 $\cos(\omega_at)$ 演化；量子特征态则获得模长为 $1$ 的相位 $\ee^{-\ii E_nt/\hbar}$，所以量子传播算符是 unitary。其严格构造将在后续算符函数与量子动力学中展开。
+
+\subsection{一分钟回顾}
+
+特征子空间是 $\ker(\Omega-\omega I)$，特征向量必须非零。Hermitian 算符有实特征值和完整正交归一特征基；unitary 算符的特征值位于单位圆。简并意味着同一特征值对应多维子空间，对易 Hermitian 算符可在这些子空间内继续选取共同特征基。耦合振子把对角化的意义具体化：换到特征基即得到独立简正模，而传播算符按各特征方向分别推进初态分量。

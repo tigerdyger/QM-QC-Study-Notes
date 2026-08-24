@@ -859,3 +859,293 @@ Schwarz 不等式的证明给出
 \end{checkedsolution}
 
 \textbf{检查点：}这里交换的是三个标量行列式的次序，不是交换矩阵乘积中 $U^\dagger$、$\Omega$ 与 $U$ 的次序。
+
+\section{第 1.8 节教材例题、习题与订正}
+\label{exercise-set:QM-C01-S08}
+
+\exercisemeta
+  {QM-C01-S08-EX}
+  {2026-08-24 至 2026-08-25}
+  {Shankar，第 1 章 \S 1.8，例 1.8.4--1.8.6 及练习 1.8.5、1.8.10、1.8.11}
+  {完成五道代表性例题或习题，并完成分块概念检查}
+  {已确认（推导与关键计算核对；耦合振子的迁移应用待后续巩固）}
+
+\exercisequestion{QM-C01-S08-E01}{教材例 1.8.4：三维旋转的复特征向量}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S08-T01}{特征向量、特征子空间与特征方程}。
+
+\textbf{题意。}在 $\ket{1},\ket{2},\ket{3}$ 基中，绕第一坐标轴旋转 $\pi/2$ 的算符为
+\[
+  R=
+  \begin{pmatrix}
+    1&0&0\\
+    0&0&-1\\
+    0&1&0
+  \end{pmatrix}.
+\]
+求全部特征值、特征子空间与一组归一特征向量，并判断哪些特征向量可位于 $\real^3$。教材位置：印刷页 pp.~33--35，PDF pp.~47--49。
+
+\begin{checkedsolution}
+特征方程为
+\[
+  \det(R-\omega I)=(1-\omega)(\omega^2+1)=0,
+\]
+故 $\omega=1,\ii,-\ii$。对应特征子空间为
+\[
+  E_1=\operatorname{span}\left\{
+    \begin{pmatrix}1\\0\\0\end{pmatrix}
+  \right\},
+\]
+\[
+  E_{\ii}=\operatorname{span}\left\{
+    \begin{pmatrix}0\\\ii\\1\end{pmatrix}
+  \right\},
+  \qquad
+  E_{-\ii}=\operatorname{span}\left\{
+    \begin{pmatrix}0\\1\\\ii\end{pmatrix}
+  \right\}.
+\]
+可选归一特征向量
+\[
+  \ket{1}=\begin{pmatrix}1\\0\\0\end{pmatrix},
+  \quad
+  \ket{\ii}=\frac1{\sqrt2}\begin{pmatrix}0\\\ii\\1\end{pmatrix},
+  \quad
+  \ket{-\ii}=\frac1{\sqrt2}\begin{pmatrix}0\\1\\\ii\end{pmatrix}.
+\]
+只有 $E_1$ 含有非零实特征向量；另外两个特征方向只在复化后的空间 $\complex^3$ 中出现。
+\end{checkedsolution}
+
+\textbf{检查点：}实矩阵可以具有非实特征值；是否允许相应特征向量取决于当前向量空间的标量域。
+
+\exercisequestion{QM-C01-S08-E02}{教材例 1.8.5：二重简并特征子空间}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S08-T03}{简并与谱投影}。
+
+\textbf{题意。}对 Hermitian 矩阵
+\[
+  \Omega=
+  \begin{pmatrix}
+    1&0&1\\
+    0&2&0\\
+    1&0&1
+  \end{pmatrix},
+\]
+求特征值及一组正交归一特征基，并说明简并带来的基选择自由。教材位置：印刷页 pp.~38--39，PDF pp.~52--53。
+
+\begin{checkedsolution}
+特征方程可写为
+\[
+  \omega(\omega-2)^2=0.
+\]
+对 $\omega=0$，
+\[
+  E_0=\operatorname{span}\left\{
+    \frac1{\sqrt2}\begin{pmatrix}1\\0\\-1\end{pmatrix}
+  \right\}.
+\]
+对 $\omega=2$，方程只要求 $x_1=x_3$，故
+\[
+  E_2=\left\{
+    \begin{pmatrix}a\\b\\a\end{pmatrix}:a,b\in\complex
+  \right\},
+  \qquad \dim E_2=2.
+\]
+教材选择
+\[
+  \ket{2,1}=\frac1{\sqrt3}\begin{pmatrix}1\\1\\1\end{pmatrix},
+  \qquad
+  \ket{2,2}=\frac1{\sqrt6}\begin{pmatrix}1\\-2\\1\end{pmatrix}.
+\]
+两者均属于 $E_2$，范数为 $1$，且
+\[
+  \braket{2,1}{2,2}=\frac{1-2+1}{\sqrt{18}}=0.
+\]
+在 $E_2$ 内对这对向量作任意二维 unitary 换基，仍得到合法的正交归一特征基；不变的是整个子空间而不是某一对具体基向量。
+\end{checkedsolution}
+
+\textbf{检查点：}相同特征值对应的任意两个特征向量不必自动正交，但可在同一特征子空间内进行 Gram--Schmidt。
+
+\exercisequestion{QM-C01-S08-E03}{教材练习 1.8.5：二维旋转的 unitary 谱}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S08-T04}{Unitary 算符的特征值}。
+
+\textbf{题意。}考虑
+\[
+  R_\theta=
+  \begin{pmatrix}
+    \cos\theta&\sin\theta\\
+    -\sin\theta&\cos\theta
+  \end{pmatrix}.
+\]
+证明它为 unitary，求其特征值和归一特征向量并验证正交性。教材位置：印刷页 p.~42，PDF p.~56。
+
+\begin{checkedsolution}
+矩阵为实矩阵，直接计算得
+\[
+  R_\theta^\dagger R_\theta
+  =R_\theta^{\mathsf T}R_\theta
+  =\begin{pmatrix}
+    \cos^2\theta+\sin^2\theta&0\\
+    0&\cos^2\theta+\sin^2\theta
+  \end{pmatrix}=I.
+\]
+取
+\[
+  \ket{u_+}=\frac1{\sqrt2}\begin{pmatrix}1\\\ii\end{pmatrix},
+  \qquad
+  \ket{u_-}=\frac1{\sqrt2}\begin{pmatrix}1\\-\ii\end{pmatrix},
+\]
+则
+\[
+  R_\theta\ket{u_+}=\ee^{\ii\theta}\ket{u_+},
+  \qquad
+  R_\theta\ket{u_-}=\ee^{-\ii\theta}\ket{u_-},
+  \qquad
+  \braket{u_+}{u_-}=0.
+\]
+归一化因子 $1/\sqrt2$ 属于特征向量，不属于特征值。两特征值相同当且仅当
+\[
+  \ee^{\ii\theta}=\ee^{-\ii\theta}
+  \iff \theta=k\pi,
+  \qquad k\in\mathbb Z.
+\]
+此时 $R_\theta=\pm I$，特征值简并。
+\end{checkedsolution}
+
+\textbf{检查点：}unitary 特征值的模为 $1$；提取特征值时，要把结果写成“标量乘以完整的原特征向量”。
+
+\exercisequestion{QM-C01-S08-E04}{教材练习 1.8.10：同时对角化两个 Hermitian 矩阵}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S08-T05}{对易 Hermitian 算符的同时对角化}。
+
+\textbf{题意。}考虑
+\[
+  \Omega=
+  \begin{pmatrix}
+    1&0&1\\0&0&0\\1&0&1
+  \end{pmatrix},
+  \qquad
+  \Lambda=
+  \begin{pmatrix}
+    2&1&1\\1&0&-1\\1&-1&2
+  \end{pmatrix}.
+\]
+验证二者对易，求共同正交归一特征基，并验证同一个 unitary 换基可将二者同时对角化。教材位置：印刷页 p.~46，PDF p.~60。
+
+\begin{checkedsolution}
+直接相乘得
+\[
+  \Omega\Lambda=\Lambda\Omega
+  =\begin{pmatrix}3&0&3\\0&0&0\\3&0&3\end{pmatrix},
+\]
+故 $[\Omega,\Lambda]=0$。$\Omega$ 的特征子空间为
+\[
+  E_2=\left\{
+    \begin{pmatrix}x\\0\\x\end{pmatrix}:x\in\complex
+  \right\},
+  \qquad
+  E_0=\left\{
+    \begin{pmatrix}x\\y\\-x\end{pmatrix}:x,y\in\complex
+  \right\}.
+\]
+在二重简并的 $E_0$ 中选择
+\[
+  \ket{a}=\frac1{\sqrt2}\begin{pmatrix}1\\0\\-1\end{pmatrix},
+  \qquad
+  \ket{b}=\begin{pmatrix}0\\1\\0\end{pmatrix}.
+\]
+计算得
+\[
+  \Lambda\ket{a}=\ket{a}+\sqrt2\ket{b},
+  \qquad
+  \Lambda\ket{b}=\sqrt2\ket{a},
+\]
+所以限制矩阵为
+\[
+  [\Lambda|_{E_0}]_{\{a,b\}}
+  =\begin{pmatrix}1&\sqrt2\\\sqrt2&0\end{pmatrix}.
+\]
+其特征值 $2,-1$ 对应的归一坐标分别为
+\[
+  \frac1{\sqrt3}\begin{pmatrix}\sqrt2\\1\end{pmatrix},
+  \qquad
+  \frac1{\sqrt3}\begin{pmatrix}1\\-\sqrt2\end{pmatrix}.
+\]
+换回三维标准基，连同 $E_2$ 中的向量，得到共同正交归一特征向量
+\[
+  \ket{c_1}=\frac1{\sqrt3}\begin{pmatrix}1\\1\\-1\end{pmatrix},
+  \quad
+  \ket{c_2}=\frac1{\sqrt6}\begin{pmatrix}1\\-2\\-1\end{pmatrix},
+  \quad
+  \ket{c_3}=\frac1{\sqrt2}\begin{pmatrix}1\\0\\1\end{pmatrix}.
+\]
+对应的 $(\Omega,\Lambda)$ 特征值对依次为
+\[
+  (0,2),\qquad(0,-1),\qquad(2,3).
+\]
+令 $U=(\ket{c_1}\ \ket{c_2}\ \ket{c_3})$，则
+\[
+  U^\dagger\Omega U=\diag(0,0,2),
+  \qquad
+  U^\dagger\Lambda U=\diag(2,-1,3).
+\]
+\end{checkedsolution}
+
+\textbf{检查点：}先用一个算符确定特征子空间，再把另一个算符限制到简并子空间内对角化；二维限制矩阵的特征向量坐标还要换回原空间。
+
+\exercisequestion{QM-C01-S08-E05}{教材例 1.8.6 与练习 1.8.11：耦合振子初值问题}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S08-T06}{耦合振子、简正模与传播算符}。
+
+\textbf{题意。}两个质量均为 $m$ 的物块由三个劲度系数均为 $k$ 的弹簧连接。设初始时只有第一个物块发生单位位移，且两个物块初速度均为零：
+\[
+  \ket{x(0)}=\ket{1}=\begin{pmatrix}1\\0\end{pmatrix},
+  \qquad
+  \ket{\dot x(0)}=\ket{0}.
+\]
+利用教材例 1.8.6 的简正模求 $x_1(t),x_2(t)$。例题位于印刷页 pp.~46--53、PDF pp.~60--67；练习 1.8.11 位于印刷页 p.~53、PDF p.~67。
+
+\begin{checkedsolution}
+运动矩阵及其两个简正模为
+\[
+  \Omega=\frac{k}{m}\begin{pmatrix}-2&1\\1&-2\end{pmatrix},
+  \qquad
+  \ket{I}=\frac1{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},
+  \quad
+  \ket{II}=\frac1{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix},
+\]
+\[
+  \omega_I=\sqrt{\frac{k}{m}},
+  \qquad
+  \omega_{II}=\sqrt{\frac{3k}{m}}.
+\]
+初态分量为
+\[
+  \braket{I}{x(0)}=\frac1{\sqrt2},
+  \qquad
+  \braket{II}{x(0)}=\frac1{\sqrt2}.
+\]
+零初速度条件下，两个模式只带余弦时间因子：
+\[
+  \ket{x(t)}
+  =\frac1{\sqrt2}\ket{I}\cos(\omega_It)
+  +\frac1{\sqrt2}\ket{II}\cos(\omega_{II}t).
+\]
+投影回原坐标得
+\[
+  x_1(t)=\frac12\left[
+    \cos\left(\sqrt{\frac{k}{m}}t\right)
+    +\cos\left(\sqrt{\frac{3k}{m}}t\right)
+  \right],
+\]
+\[
+  x_2(t)=\frac12\left[
+    \cos\left(\sqrt{\frac{k}{m}}t\right)
+    -\cos\left(\sqrt{\frac{3k}{m}}t\right)
+  \right].
+\]
+这不是一个单独简正模，而是同向模与反向模的叠加。二者频率不同，因此两个质量块的位移会以不同时间规律组合。
+\end{checkedsolution}
+
+\textbf{检查点：}从力学方程到解的流程是“构造对称运动矩阵 $\Omega$、求正交归一特征模、投影初态、让各模独立演化、投影回物理坐标”。对一般初速度，还必须加入 $\dot x_a(0)\sin(\omega_at)/\omega_a$ 项。
