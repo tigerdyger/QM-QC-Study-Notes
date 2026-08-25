@@ -1149,3 +1149,110 @@ Schwarz 不等式的证明给出
 \end{checkedsolution}
 
 \textbf{检查点：}从力学方程到解的流程是“构造对称运动矩阵 $\Omega$、求正交归一特征模、投影初态、让各模独立演化、投影回物理坐标”。对一般初速度，还必须加入 $\dot x_a(0)\sin(\omega_at)/\omega_a$ 项。
+
+\section{第 1.9 节教材习题与订正}
+\label{exercise-set:QM-C01-S09}
+
+\exercisemeta
+  {QM-C01-S09-EX}
+  {2026-08-26}
+  {Shankar，第 1 章 \S 1.9，练习 1.9.1--1.9.3}
+  {完成三道教材习题并逐题核对}
+  {题意、推导与关键计算已核对}
+
+\exercisequestion{QM-C01-S09-E01}{教材练习 1.9.1：算符几何级数}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S09-T01}{幂级数定义与谱函数}。
+
+\textbf{题意。}已知普通几何级数
+\[
+  \sum_{n=0}^{\infty}x^n=(1-x)^{-1},
+  \qquad \abs{x}<1.
+\]
+设 $\Omega$ 为有限维 Hermitian 算符，确定何时可将 $\sum_{n=0}^{\infty}\Omega^n$ 认作 $(I-\Omega)^{-1}$。教材位置：印刷页 p.~55，PDF p.~69。
+
+\begin{checkedsolution}
+取 $\Omega$ 的完整正交归一特征基 $\{\ket{\omega_i}\}$。若
+\[
+  \Omega\ket{\omega_i}=\omega_i\ket{\omega_i},
+\]
+则
+\[
+  \left(\sum_{n=0}^{\infty}\Omega^n\right)\ket{\omega_i}
+  =\left(\sum_{n=0}^{\infty}\omega_i^n\right)\ket{\omega_i}.
+\]
+级数对每个基向量收敛的条件是
+\[
+  \abs{\omega_i}<1
+  \qquad\text{对所有 }i.
+\]
+在此条件下，
+\[
+  \left(\sum_{n=0}^{\infty}\Omega^n\right)\ket{\omega_i}
+  =\frac1{1-\omega_i}\ket{\omega_i}
+  =(I-\Omega)^{-1}\ket{\omega_i}.
+\]
+两算符在完整基上作用相同，故
+\[
+  \sum_{n=0}^{\infty}\Omega^n=(I-\Omega)^{-1}.
+\]
+\end{checkedsolution}
+
+\textbf{检查点：}$I-\Omega$ 可逆只要求 $\omega_i\neq1$；几何级数收敛则要求更强的 $\abs{\omega_i}<1$。
+
+\exercisequestion{QM-C01-S09-E02}{教材练习 1.9.2：Hermitian 算符的指数是 unitary}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S09-T03}{算符对标量参数的导数}。
+
+\textbf{题意。}若 $H=H^\dagger$，证明 $U=\ee^{\ii H}$ 为 unitary。教材位置：印刷页 p.~55，PDF p.~69。
+
+\begin{checkedsolution}
+由指数幂级数逐项取伴随，
+\[
+  U^\dagger
+  =\left(\sum_{n=0}^{\infty}\frac{(\ii H)^n}{n!}\right)^\dagger
+  =\sum_{n=0}^{\infty}\frac{(-\ii H^\dagger)^n}{n!}
+  =\ee^{-\ii H}.
+\]
+于是
+\[
+  U^\dagger U=\ee^{-\ii H}\ee^{\ii H}=I,
+  \qquad
+  UU^\dagger=I.
+\]
+因此 $U$ 为 unitary。
+\end{checkedsolution}
+
+\textbf{检查点：}展开时应保留 $(\ii H)^n$；例如二次项为 $(\ii H)^2/2!=-H^2/2!$。Hermitian 性用于把 $H^\dagger$ 替换为 $H$。
+
+\exercisequestion{QM-C01-S09-E03}{教材练习 1.9.3：指数算符的行列式}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S09-T01}{幂级数定义与谱函数}。
+
+\textbf{题意。}对上一题的 $U=\ee^{\ii H}$，证明
+\[
+  \det U=\ee^{\ii\operatorname{Tr}H}.
+\]
+教材位置：印刷页 p.~55，PDF p.~69。
+
+\begin{checkedsolution}
+令 $H$ 的特征值为 $h_1,\ldots,h_n$，并取由正交归一特征向量组成的 unitary 矩阵 $W$。则
+\[
+  H=WDW^\dagger,
+  \qquad
+  D=\diag(h_1,\ldots,h_n),
+\]
+\[
+  U=W\diag(\ee^{\ii h_1},\ldots,\ee^{\ii h_n})W^\dagger.
+\]
+利用行列式的乘法性质及 $WW^\dagger=I$，
+\begin{align*}
+  \det U
+  &=\det(W)\det(W^\dagger)
+    \prod_{j=1}^n\ee^{\ii h_j}\\
+  &=\ee^{\ii\sum_{j=1}^nh_j}
+   =\ee^{\ii\operatorname{Tr}H}.
+\end{align*}
+\end{checkedsolution}
+
+\textbf{检查点：}$\det W\det W^\dagger=\det(WW^\dagger)=1$；迹等于全部特征值之和，且不随基变换改变。

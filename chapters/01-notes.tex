@@ -1350,3 +1350,161 @@ $\ket{I}$ 表示两物块同向等位移，中间弹簧不伸缩；$\ket{II}$ �
 \subsection{一分钟回顾}
 
 特征子空间是 $\ker(\Omega-\omega I)$，特征向量必须非零。Hermitian 算符有实特征值和完整正交归一特征基；unitary 算符的特征值位于单位圆。简并意味着同一特征值对应多维子空间，对易 Hermitian 算符可在这些子空间内继续选取共同特征基。耦合振子把对角化的意义具体化：换到特征基即得到独立简正模，而传播算符按各特征方向分别推进初态分量。
+
+\section{第 1.9 节：算符函数及相关概念}
+\label{section:QM-C01-S09}
+
+\studymeta
+  {QM-C01-S09}
+  {2026-08-26}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 1 章 \S 1.9；印刷页 pp.~54--57；PDF pp.~68--71}
+  {内容、公式与教材习题已核对}
+
+\subsection{本节主线}
+
+幂级数把普通函数推广到算符；特征基把算符函数化为对各特征值分别取函数。算符对标量参数的导数可在固定基中逐矩阵元计算，但多个不同算符出现时必须保持乘法次序。本节的核心限制不是 Hermitian 性本身，而是级数收敛、可对角化条件以及不同算符之间是否对易。
+
+\notetopic{QM-C01-S09-T01}{幂级数定义与谱函数}
+
+若普通函数可展开为
+\[
+  f(x)=\sum_{n=0}^{\infty}a_nx^n,
+\]
+则在级数收敛时定义
+\begin{equation}
+  f(\Omega)=\sum_{n=0}^{\infty}a_n\Omega^n,
+  \qquad \Omega^0=I.
+  \label{eq:QM-C01-S09-operator-function}
+\end{equation}
+该定义不要求 $\Omega$ 为 Hermitian。若 $\Omega\ket{\omega}=\omega\ket{\omega}$，则
+\begin{equation}
+  f(\Omega)\ket{\omega}=f(\omega)\ket{\omega}.
+  \label{eq:QM-C01-S09-function-on-eigenvector}
+\end{equation}
+因此算符函数保留已有特征方向，并将对应特征值从 $\omega$ 映为 $f(\omega)$。
+
+对有限维 Hermitian 算符，谱分解
+\[
+  \Omega=\sum_r\omega_rP_r
+\]
+直接给出
+\begin{equation}
+  f(\Omega)=\sum_rf(\omega_r)P_r.
+  \label{eq:QM-C01-S09-spectral-function}
+\end{equation}
+等价地，若 $\Omega=UDU^\dagger$，则
+\[
+  f(\Omega)=Uf(D)U^\dagger,
+  \qquad
+  f(D)=\diag\bigl(f(\omega_1),\ldots,f(\omega_n)\bigr).
+\]
+Hermitian 性在这里保证实特征值和完整正交归一特征基。若一般算符仅满足可对角化条件 $\Omega=SDS^{-1}$，仍有
+\begin{equation}
+  f(\Omega)=Sf(D)S^{-1},
+  \label{eq:QM-C01-S09-diagonalizable-function}
+\end{equation}
+但 $S$ 不一定 unitary，特征值也不一定为实数。
+
+不可对角化时，式~\eqref{eq:QM-C01-S09-operator-function} 仍可定义算符函数，但特征值不足以确定结果。例如在二维空间任取正交归一基 $\{\ket{b_1},\ket{b_2}\}$，令
+\[
+  N=\ket{b_1}\bra{b_2}.
+\]
+则 $N^2=0$ 且唯一特征值为 $0$，但
+\[
+  \ee^N=I+N\neq I.
+\]
+这表明不可对角化算符还保留特征值之外的 Jordan 结构。
+
+收敛条件可在 Hermitian 特征基中逐个检查。指数级数对所有有限特征值收敛；几何级数的算符版本见\relatedexercise{QM-C01-S09-E01}{教材练习 1.9.1}。
+
+\notetopic{QM-C01-S09-T02}{矩阵元是算符空间中的坐标}
+
+设 $V$ 为 $n$ 维内积空间，$\mathcal B=\{\ket{b_1},\ldots,\ket{b_n}\}$ 是任意正交归一基。所有线性算符组成 $n^2$ 维向量空间 $\operatorname{End}(V)$，而
+\[
+  E_{\alpha\beta}^{(\mathcal B)}
+  =\ket{b_\alpha}\bra{b_\beta},
+  \qquad 1\leq\alpha,\beta\leq n,
+\]
+构成该算符空间的一组基。在恒等算符两侧插入完备性关系可得
+\begin{equation}
+  \Theta
+  =\sum_{\alpha,\beta}
+  \ket{b_\alpha}
+  \Theta_{\alpha\beta}^{(\mathcal B)}
+  \bra{b_\beta},
+  \qquad
+  \Theta_{\alpha\beta}^{(\mathcal B)}
+  =\bra{b_\alpha}\Theta\ket{b_\beta}.
+  \label{eq:QM-C01-S09-operator-space-coordinates}
+\end{equation}
+这不是求解未知算符的循环方程，而是“抽取坐标后再重建原对象”的基展开恒等式，与
+\[
+  \ket{v}=\sum_\alpha\ket{b_\alpha}\braket{b_\alpha}{v}
+\]
+完全平行。换用另一组正交归一基，基算符和坐标数字都会改变，但重建出的抽象算符不变。特别地，两个算符在同一完整基中的全部矩阵元相同，当且仅当它们是同一个算符。
+
+\notetopic{QM-C01-S09-T03}{算符对标量参数的导数}
+
+对依赖普通标量参数 $\lambda$ 的算符族 $\Theta(\lambda)$，定义
+\begin{equation}
+  \frac{d\Theta}{d\lambda}
+  =\lim_{\Delta\lambda\to0}
+  \frac{\Theta(\lambda+\Delta\lambda)-\Theta(\lambda)}{\Delta\lambda}.
+  \label{eq:QM-C01-S09-operator-derivative}
+\end{equation}
+在固定基中可逐矩阵元求导：
+\[
+  \bra{b_\alpha}\frac{d\Theta}{d\lambda}\ket{b_\beta}
+  =\frac{d}{d\lambda}
+  \bra{b_\alpha}\Theta(\lambda)\ket{b_\beta}.
+\]
+若 $\Omega$ 不依赖 $\lambda$，对幂级数逐项求导得到
+\begin{equation}
+  \frac{d}{d\lambda}\ee^{\lambda\Omega}
+  =\Omega\ee^{\lambda\Omega}
+  =\ee^{\lambda\Omega}\Omega.
+  \label{eq:QM-C01-S09-exponential-derivative}
+\end{equation}
+两个次序相同，是因为 $\ee^{\lambda\Omega}$ 只含同一个 $\Omega$ 的各次幂；此结论不要求 $\Omega$ 为 Hermitian。若指数中的算符本身依赖 $\lambda$，且 $[\Omega(\lambda),\Omega'(\lambda)]\neq0$，则不能直接套用普通标量链式法则。
+
+左右乘微分方程的解必须保留初值的次序：
+\begin{equation}
+  X'=\Omega X
+  \Rightarrow X(\lambda)=\ee^{\lambda\Omega}X(0),
+  \qquad
+  X'=X\Omega
+  \Rightarrow X(\lambda)=X(0)\ee^{\lambda\Omega}.
+  \label{eq:QM-C01-S09-left-right-ode}
+\end{equation}
+时间无关 Hamiltonian 的传播算符 $U(t)=\ee^{-\ii Ht/\hbar}$ 因而满足 $\ii\hbar\,dU/dt=HU$。
+
+\notetopic{QM-C01-S09-T04}{不可交换性与运算次序}
+
+同一个算符生成的指数满足
+\begin{equation}
+  \ee^{a\Omega}\ee^{b\Omega}=\ee^{(a+b)\Omega}.
+  \label{eq:QM-C01-S09-same-generator}
+\end{equation}
+但对不同算符，一般没有 $\ee^{aA}\ee^{bB}=\ee^{aA+bB}$。展开到 $ab$ 阶可见
+\begin{equation}
+  \ee^{aA}\ee^{bB}-\ee^{aA+bB}
+  =\frac{ab}{2}[A,B]+\text{更高阶项}.
+  \label{eq:QM-C01-S09-exponential-obstruction}
+\end{equation}
+因此 $[A,B]=0$ 保证普通指数合并律成立；若要求等式对任意足够小的 $a,b$ 成立，该条件也是必要的。
+
+乘积求导保持原有因子次序：
+\begin{align}
+  \frac{d}{d\lambda}
+  \left(\ee^{\lambda A}\ee^{\lambda B}\right)
+  &=A\ee^{\lambda A}\ee^{\lambda B}
+    +\ee^{\lambda A}B\ee^{\lambda B} \notag\\
+  &=\ee^{\lambda A}(A+B)\ee^{\lambda B}.
+  \label{eq:QM-C01-S09-product-derivative}
+\end{align}
+$A$ 可穿过 $\ee^{\lambda A}$，$B$ 可穿过 $\ee^{\lambda B}$；除非 $[A,B]=0$，二者不能穿过由另一个算符生成的指数。Hermitian 指数的两个直接结论见\relatedexercise{QM-C01-S09-E02}{教材练习 1.9.2}与\relatedexercise{QM-C01-S09-E03}{教材练习 1.9.3}。
+
+\subsection{一分钟回顾}
+
+算符函数由收敛幂级数定义；在特征向量上，$f(\Omega)$ 把特征值 $\omega$ 映为 $f(\omega)$。Hermitian 性保证可用正交归一特征基实施这一计算，但不是定义算符函数或求导公式的必要条件。矩阵元是抽象算符在 $\ket{b_\alpha}\bra{b_\beta}$ 基下的坐标。对单个固定算符生成的指数可沿用普通指数求导与合并规则；多个不同算符出现时，必须通过对易子判断能否换序。

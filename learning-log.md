@@ -19,3 +19,4 @@
 | 2026-08-22 | Shankar 第 1 章 \S 1.6，印刷页 20--29，PDF 34--43 | `chapters/01-notes.tex`、`exercises/01-exercises.tex` | 矩阵元、投影算符、伴随、Hermitian、anti-Hermitian、unitary | 下一学习节点为第 1.7 节 Active and Passive Transformations |
 | 2026-08-23 | Shankar 第 1 章 \S 1.7，印刷页 29--30，PDF 43--44 | `chapters/01-notes.tex`、`exercises/01-exercises.tex` | 主动变换、被动换基、坐标逆变换、unitary 相似变换、迹与行列式不变量 | 下一学习节点为第 1.8 节 The Eigenvalue Problem |
 | 2026-08-24 至 2026-08-25 | Shankar 第 1 章 \S 1.8，印刷页 30--54，PDF 44--68 | `chapters/01-notes.tex`、`exercises/01-exercises.tex` | 特征子空间、Hermitian 谱定理、简并、unitary 谱、同时对角化、简正模与传播算符 | 下一整理单元为第 1.9 节 Functions of Operators and Related Concepts |
+| 2026-08-26 | Shankar 第 1 章 \S 1.9，印刷页 54--57，PDF 68--71 | `chapters/01-notes.tex`、`exercises/01-exercises.tex` | 算符函数、谱函数、算符空间坐标、算符参数导数、非对易指数与乘积求导 | 下一整理单元为第 1.10 节 Generalization to Infinite Dimensions |
