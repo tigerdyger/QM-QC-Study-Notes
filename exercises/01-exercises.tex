@@ -1256,3 +1256,225 @@ Schwarz 不等式的证明给出
 \end{checkedsolution}
 
 \textbf{检查点：}$\det W\det W^\dagger=\det(WW^\dagger)=1$；迹等于全部特征值之和，且不随基变换改变。
+
+\section{第 1.10 节教材习题与订正}
+\label{exercise-set:QM-C01-S10}
+
+\exercisemeta
+  {QM-C01-S10-EX}
+  {2026-08-26 至 2026-08-27}
+  {Shankar，第 1 章 \S 1.10，练习 1.10.1--1.10.4}
+  {完成四道教材习题并逐题核对}
+  {题意、分布推导、模投影与关键计算已核对}
+
+\exercisequestion{QM-C01-S10-E01}{教材练习 1.10.1：Dirac delta 的缩放}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S10-T02}{Dirac delta、导数与 Fourier 表示}。
+
+\textbf{题意。}对任意非零实数 $a$，证明
+\[
+  \delta(ax)=\frac1{\abs a}\delta(x).
+\]
+教材位置：印刷页 p.~63，PDF p.~77。
+
+\begin{checkedsolution}
+delta 恒等式必须通过它对任意测试函数 $\varphi$ 的作用来证明，不能逐点比较未定义的 $\delta(0)$。令 $u=ax$。若 $a<0$，换元同时反转积分上下限；两种符号统一给出 Jacobian 的绝对值：
+\begin{align*}
+  \int_{-\infty}^{\infty}\delta(ax)\varphi(x)\,dx
+  &=\frac1{\abs a}
+    \int_{-\infty}^{\infty}
+    \delta(u)\varphi\left(\frac{u}{a}\right)du\\
+  &=\frac1{\abs a}\varphi(0).
+\end{align*}
+另一方面，
+\[
+  \int_{-\infty}^{\infty}
+  \frac{\delta(x)}{\abs a}\varphi(x)\,dx
+  =\frac1{\abs a}\varphi(0).
+\]
+两边对任意 $\varphi$ 的作用完全相同，故作为分布有
+\[
+  \boxed{\delta(ax)=\frac{\delta(x)}{\abs a}}.
+\]
+绝对值来自换元的测度和积分方向；不能把它替换为 $1/a$。
+\end{checkedsolution}
+
+\textbf{检查点：}delta 不是可在零点进行普通代数运算的函数；证明其恒等式时，应先乘测试函数并积分。
+
+\exercisequestion{QM-C01-S10-E02}{教材练习 1.10.2：复合函数的 delta 公式}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S10-T02}{Dirac delta、导数与 Fourier 表示}。
+
+\textbf{题意。}设 $x_i$ 是实函数 $f(x)$ 的全部单根，即
+\[
+  f(x_i)=0,
+  \qquad f'(x_i)\neq0.
+\]
+证明
+\[
+  \delta(f(x))
+  =\sum_i\frac{\delta(x-x_i)}{\abs{f'(x_i)}}.
+\]
+教材位置：印刷页 p.~63，PDF p.~77。
+
+\begin{checkedsolution}
+在每个单根 $x_i$ 附近取互不相交的小邻域 $U_i$。由于 $f'(x_i)\neq0$，$f$ 在足够小的 $U_i$ 内单调且局部可逆。delta 的支撑只位于 $f(x)=0$ 的点，所以对任意测试函数 $\varphi$，根以外的区域没有贡献：
+\[
+  \int\varphi(x)\delta(f(x))\,dx
+  =\sum_i\int_{U_i}\varphi(x)\delta(f(x))\,dx.
+\]
+在第 $i$ 个邻域令 $u=f(x)$，并把局部反函数写成 $x=x_i(u)$。换元得
+\begin{align*}
+  \int_{U_i}\varphi(x)\delta(f(x))\,dx
+  &=\int
+    \varphi(x_i(u))\delta(u)
+    \frac{du}{\abs{f'(x_i(u))}}\\
+  &=\frac{\varphi(x_i)}{\abs{f'(x_i)}}.
+\end{align*}
+因此
+\begin{equation*}
+  \int\varphi(x)\delta(f(x))\,dx
+  =\sum_i\frac{\varphi(x_i)}{\abs{f'(x_i)}}.
+\end{equation*}
+而候选分布的作用为
+\begin{align*}
+  \int\varphi(x)
+  \sum_i\frac{\delta(x-x_i)}{\abs{f'(x_i)}}\,dx
+  &=\sum_i\frac{\varphi(x_i)}{\abs{f'(x_i)}}.
+\end{align*}
+两者对任意 $\varphi$ 相同，故结论成立。
+\end{checkedsolution}
+
+\textbf{检查点：}公式要求所有相关零点都是单根。若 $f'(x_i)=0$，局部线性换元失效，不能直接使用分母为 $\abs{f'(x_i)}$ 的公式。
+
+\exercisequestion{QM-C01-S10-E03}{教材练习 1.10.3：Heaviside 函数的分布导数}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S10-T02}{Dirac delta、导数与 Fourier 表示}。
+
+\textbf{题意。}令 $\theta(x-x')$ 在 $x<x'$ 时为 $0$，在 $x>x'$ 时为 $1$。证明
+\[
+  \frac{d}{dx}\theta(x-x')=\delta(x-x')
+\]
+应按分布导数理解。教材位置：印刷页 p.~63，PDF p.~77。
+
+\begin{checkedsolution}
+对任意光滑紧支撑测试函数 $\varphi$，分布导数定义为
+\begin{align*}
+  \int\theta'(x-x')\varphi(x)\,dx
+  &:=-\int\theta(x-x')\varphi'(x)\,dx\\
+  &=-\int_{x'}^{\infty}\varphi'(x)\,dx\\
+  &=\varphi(x').
+\end{align*}
+最后一步使用 $\varphi$ 在无穷远处为零。另一方面，delta 的抽样性质给出
+\[
+  \int\delta(x-x')\varphi(x)\,dx=\varphi(x').
+\]
+两者对任意测试函数作用相同，因此
+\[
+  \boxed{\theta'(x-x')=\delta(x-x')}.
+\]
+$\theta(0)$ 取 $0$、$1/2$ 或 $1$ 都不影响分布导数，因为单点取值不改变积分。
+\end{checkedsolution}
+
+\textbf{检查点：}普通意义下，阶跃函数在跳点不可导；等式成立于分布意义，表达的是跨过 $x'$ 时累计变化量恰为 $1$。
+
+\exercisequestion{QM-C01-S10-E04}{教材练习 1.10.4：三角形初态的固定弦}
+
+\textbf{对应知识点：}\relatedtopic{QM-C01-S10-T07}{固定弦的特征函数与离散简正模}与
+\relatedtopic{QM-C01-S10-T08}{模展开、一般初值与传播核}。
+
+\textbf{题意。}长度为 $L$ 的固定弦初速度为零，初始位移为关于中点对称的三角形
+\[
+  \psi(x,0)=
+  \begin{cases}
+    \dfrac{2hx}{L},&0\leq x\leq L/2,\\[4pt]
+    \dfrac{2h}{L}(L-x),&L/2\leq x\leq L.
+  \end{cases}
+\]
+求其简正模展开和随时间的演化。教材位置：印刷页 p.~73，PDF p.~87。
+
+\begin{checkedsolution}
+固定端的归一化模为
+\[
+  \phi_m(x)=\sqrt{\frac2L}\sin\left(\frac{m\pi x}{L}\right),
+  \qquad m=1,2,\ldots.
+\]
+先利用中点反射判断选择规则。初态满足
+\[
+  \psi(L-x,0)=\psi(x,0),
+\]
+而
+\begin{align*}
+  \sin\left(\frac{m\pi(L-x)}L\right)
+  &=\sin\left(m\pi-\frac{m\pi x}{L}\right)\\
+  &=(-1)^{m+1}\sin\left(\frac{m\pi x}{L}\right).
+\end{align*}
+因此奇数模关于中点对称，偶数模关于中点反对称；对称初态与反对称模的内积为零，所以所有偶数模系数消失。
+
+归一化模坐标由正交投影给出。注意两个分段积分之间是加号：
+\begin{align*}
+  q_m(0)
+  &=\int_0^L\phi_m(x)\psi(x,0)\,dx\\
+  &=\sqrt{\frac2L}\left[
+    \int_0^{L/2}
+      \sin\left(\frac{m\pi x}{L}\right)\frac{2hx}{L}\,dx
+    +\int_{L/2}^{L}
+      \sin\left(\frac{m\pi x}{L}\right)
+      \frac{2h(L-x)}{L}\,dx
+    \right].
+\end{align*}
+在第二个积分中令 $u=L-x$，得到
+\begin{equation*}
+  q_m(0)
+  =\sqrt{\frac2L}\frac{2h}{L}
+    \left[1+(-1)^{m+1}\right]
+    \int_0^{L/2}x
+      \sin\left(\frac{m\pi x}{L}\right)dx.
+\end{equation*}
+令 $a=m\pi/L$，分部积分为
+\begin{align*}
+  \int_0^{L/2}x\sin(ax)\,dx
+  &=\left[-\frac{x\cos(ax)}a
+    +\frac{\sin(ax)}{a^2}\right]_0^{L/2}\\
+  &=-\frac{L^2}{2m\pi}\cos\left(\frac{m\pi}{2}\right)
+    +\frac{L^2}{m^2\pi^2}
+      \sin\left(\frac{m\pi}{2}\right).
+\end{align*}
+若 $m$ 为偶数，前面的对称因子为零；若 $m$ 为奇数，则 $\cos(m\pi/2)=0$。两种情形可统一写成
+\begin{equation}
+  \boxed{
+  q_m(0)=\frac{4h\sqrt{2L}}{\pi^2m^2}
+  \sin\left(\frac{m\pi}{2}\right).}
+  \label{eq:QM-C01-S10-E04-normalized-coefficient}
+\end{equation}
+
+教材使用未归一化的正弦展开
+\[
+  \psi(x,t)=\sum_{m=1}^{\infty}
+  A_m(t)\sin\left(\frac{m\pi x}{L}\right).
+\]
+由于 $A_m=q_m\sqrt{2/L}$，初始系数为
+\begin{equation}
+  \boxed{
+  A_m(0)=\frac{8h}{\pi^2m^2}
+  \sin\left(\frac{m\pi}{2}\right).}
+  \label{eq:QM-C01-S10-E04-unnormalized-coefficient}
+\end{equation}
+初速度为零，所以各模只带余弦时间因子。恢复一般波速 $c$ 后，$\omega_m=cm\pi/L$，从而
+\begin{equation}
+  \boxed{
+  \psi(x,t)=\sum_{m=1}^{\infty}
+  \frac{8h}{\pi^2m^2}
+  \sin\left(\frac{m\pi}{2}\right)
+  \cos\left(\frac{cm\pi t}{L}\right)
+  \sin\left(\frac{m\pi x}{L}\right).}
+  \label{eq:QM-C01-S10-E04-string-evolution}
+\end{equation}
+教材取 $c=1$。在 $x=L/2,t=0$ 处，$\sin^2(m\pi/2)$ 使全部奇数项为正，并利用
+\[
+  \sum_{m\ \mathrm{odd}}\frac1{m^2}=\frac{\pi^2}{8}
+\]
+恢复峰值 $\psi(L/2,0)=h$，可作为系数的独立检查。
+\end{checkedsolution}
+
+\textbf{检查点：}先用中点对称性判断偶数模必为零，再做积分可同时检查符号。$q_m$ 是归一化模的坐标，教材系数 $A_m$ 属于未归一化正弦函数；二者相差 $\sqrt{2/L}$。

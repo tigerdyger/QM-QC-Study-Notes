@@ -1508,3 +1508,488 @@ $A$ 可穿过 $\ee^{\lambda A}$，$B$ 可穿过 $\ee^{\lambda B}$；除非 $[A,B
 \subsection{一分钟回顾}
 
 算符函数由收敛幂级数定义；在特征向量上，$f(\Omega)$ 把特征值 $\omega$ 映为 $f(\omega)$。Hermitian 性保证可用正交归一特征基实施这一计算，但不是定义算符函数或求导公式的必要条件。矩阵元是抽象算符在 $\ket{b_\alpha}\bra{b_\beta}$ 基下的坐标。对单个固定算符生成的指数可沿用普通指数求导与合并规则；多个不同算符出现时，必须通过对易子判断能否换序。
+
+\section{第 1.10 节：向无限维推广}
+\label{section:QM-C01-S10}
+
+\studymeta
+  {QM-C01-S10}
+  {2026-08-26 至 2026-08-27}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 1 章 \S 1.10；印刷页 pp.~57--73；PDF pp.~71--87}
+  {内容、公式、教材例题与练习 1.10.1--1.10.4 已核对}
+
+\subsection{本节主线}
+
+有限维向量的离散坐标、矩阵乘法和正交归一基，在连续极限中分别变成函数、积分核和 delta 归一化的广义基。Fourier 变换由此被解释为同一抽象向量在 $X$ 基与 $K$ 基之间的换基。微分算符还表明，无限维中的算符不能只由形式或矩阵元决定，定义域和边界条件也是算符的一部分。最后，固定弦的波动方程把有限维耦合振子的简正模方法推广成无穷维的特征函数展开。
+
+\notetopic{QM-C01-S10-T01}{从离散采样到函数空间}
+
+在区间 $[a,b]$ 上取网格点 $x_i$，相邻点间距为 $\Delta$。设 $\{\ket{i}\}$ 是普通离散正交归一基，并定义连续基的离散近似
+\begin{equation}
+  \ket{x_i}=\frac{\ket{i}}{\sqrt{\Delta}}.
+  \label{eq:QM-C01-S10-lattice-basis-scaling}
+\end{equation}
+若 $f(x_i)$ 是函数在网格点上的值，则与其对应的向量可写为
+\begin{equation}
+  \ket{f_\Delta}
+  =\sum_i\sqrt{\Delta}\,f(x_i)\ket{i}
+  =\sum_i\Delta\,f(x_i)\ket{x_i}.
+  \label{eq:QM-C01-S10-discrete-function-ket}
+\end{equation}
+这个缩放保证内积有有限的连续极限：
+\begin{align}
+  \braket{f_\Delta}{g_\Delta}
+  &=\sum_i\Delta\,f^*(x_i)g(x_i) \\
+  &\xrightarrow[\Delta\to0]{}
+  \int_a^b f^*(x)g(x)\,dx.
+  \label{eq:QM-C01-S10-continuum-inner-product}
+\end{align}
+因此本节讨论的函数空间以内积
+\begin{equation}
+  \braket{f}{g}=\int_a^b f^*(x)g(x)\,dx,
+  \qquad
+  \norm{f}^2=\int_a^b\abs{f(x)}^2\,dx
+  \label{eq:QM-C01-S10-function-inner-product}
+\end{equation}
+为基本结构。量子力学中通常要求 $f$ square-integrable（平方可积），即 $\norm{f}<\infty$；端点条件还可进一步选出某个子空间。
+
+由式~\eqref{eq:QM-C01-S10-lattice-basis-scaling} 可见，离散近似中的 $\ket{x_i}$ 彼此正交但不再归一：
+\begin{equation}
+  \braket{x_i}{x_j}=\frac{\delta_{ij}}{\Delta},
+  \qquad
+  \sum_i\Delta\ket{x_i}\bra{x_i}=I.
+  \label{eq:QM-C01-S10-lattice-completeness}
+\end{equation}
+令 $\Delta\to0$，得到连续基的基本关系
+\begin{equation}
+  \boxed{
+  \braket{x}{x'}=\delta(x-x'),
+  \qquad
+  \int_a^b\ket{x}\bra{x}\,dx=I.}
+  \label{eq:QM-C01-S10-continuous-basis}
+\end{equation}
+函数正是抽象向量在 $X$ 基中的坐标：
+\begin{equation}
+  f(x)=\braket{x}{f},
+  \qquad
+  \ket{f}=\int_a^b\ket{x}\braket{x}{f}\,dx
+  =\int_a^b f(x)\ket{x}\,dx.
+  \label{eq:QM-C01-S10-function-as-components}
+\end{equation}
+这与有限维公式 $v_i=\braket{i}{v}$、$\ket{v}=\sum_i v_i\ket{i}$ 完全平行。$\ket{f}$ 是抽象向量，$f(x)$ 是它在所选连续基中的坐标函数，二者不能混为同一类型的对象。
+
+由于 $\braket{x}{x}=\delta(0)$ 不是有限数，$\ket{x}$ 不属于普通的 $L^2$ Hilbert space，而是 generalized eigenvector（广义特征向量）。这不表示函数空间没有普通正交归一基；例如固定端区间上的正弦函数族就是可数的普通基。连续标记的 $\ket{x}$ 是物理中使用的广义基。
+
+\notetopic{QM-C01-S10-T02}{Dirac delta、导数与 Fourier 表示}
+
+Dirac delta 由它对测试函数的作用定义：
+\begin{equation}
+  \boxed{
+  \int_{-\infty}^{\infty}
+  \delta(x-x')f(x')\,dx'=f(x).}
+  \label{eq:QM-C01-S10-delta-sampling}
+\end{equation}
+把它描述成“除零点外为零、零点无穷大、总面积为一”只能作为直觉；严格对象是 distribution（分布），不是普通逐点函数。若 $x$ 具有长度量纲，则 $\delta(x-x')$ 的量纲为长度的倒数，这与式~\eqref{eq:QM-C01-S10-continuous-basis} 中的积分测度相抵消。
+
+教材用单位面积的 Gaussian
+\begin{equation}
+  g_\Delta(x-x')
+  =\frac{1}{\sqrt{\pi}\Delta}
+  \exp\left[-\frac{(x-x')^2}{\Delta^2}\right]
+  \label{eq:QM-C01-S10-gaussian-delta}
+\end{equation}
+说明 delta 的分布极限。它的宽度随 $\Delta$ 趋于零，峰值按 $1/\Delta$ 增大，但
+\[
+  \int g_\Delta(x-x')\,dx'=1.
+\]
+真正有意义的极限是
+\begin{equation}
+  \lim_{\Delta\to0}
+  \int g_\Delta(x-x')f(x')\,dx'=f(x),
+  \label{eq:QM-C01-S10-gaussian-distribution-limit}
+\end{equation}
+而不是试图给 $\Delta=0$ 时的函数逐点赋值。
+
+对 delta 求导时必须注明变量。由 $\delta$ 只依赖 $x-x'$，有
+\begin{equation}
+  \frac{\partial}{\partial x}\delta(x-x')
+  =-\frac{\partial}{\partial x'}\delta(x-x').
+  \label{eq:QM-C01-S10-delta-derivative-sign}
+\end{equation}
+第一种导数可移到积分外：
+\begin{equation}
+  \int \frac{\partial}{\partial x}\delta(x-x')f(x')\,dx'
+  =\frac{d}{dx}\int\delta(x-x')f(x')\,dx'
+  =f'(x).
+  \label{eq:QM-C01-S10-delta-derivative-first}
+\end{equation}
+第二种导数针对积分变量。假定边界项消失，分部积分给出
+\begin{align}
+  \int \frac{\partial}{\partial x'}\delta(x-x')f(x')\,dx'
+  &=\left[\delta(x-x')f(x')\right]_{\mathrm{bdry}}
+    -\int\delta(x-x')f'(x')\,dx' \\
+  &=-f'(x).
+  \label{eq:QM-C01-S10-delta-derivative-second}
+\end{align}
+delta 的缩放、复合函数公式与 Heaviside 阶跃函数的导数分别见
+\relatedexercise{QM-C01-S10-E01}{练习 1.10.1}、
+\relatedexercise{QM-C01-S10-E02}{练习 1.10.2}和
+\relatedexercise{QM-C01-S10-E03}{练习 1.10.3}。
+
+采用对称归一化的 Fourier 变换约定，Fourier 逆变换的核给出
+\begin{equation}
+  \boxed{
+  \delta(x-x')
+  =\frac1{2\pi}
+  \int_{-\infty}^{\infty}\ee^{\ii k(x-x')}\,dk.}
+  \label{eq:QM-C01-S10-delta-fourier}
+\end{equation}
+该积分同样按分布意义理解：把两边乘以合适的测试函数再积分，二者的作用相同。
+
+\notetopic{QM-C01-S10-T03}{无限维矩阵与微分算符的积分核}
+
+连续基中，算符 $\Omega$ 的“矩阵元”是双连续指标的 integral kernel（积分核）
+\begin{equation}
+  \Omega_{xx'}=\bra{x}\Omega\ket{x'}.
+  \label{eq:QM-C01-S10-operator-kernel}
+\end{equation}
+在 $\Omega\ket{f}$ 中插入连续完备性关系可得
+\begin{align}
+  \bra{x}\Omega\ket{f}
+  &=\int\bra{x}\Omega\ket{x'}\braket{x'}{f}\,dx' \\
+  &=\int\Omega_{xx'}f(x')\,dx'.
+  \label{eq:QM-C01-S10-kernel-action}
+\end{align}
+所以连续指标上的积分正是离散矩阵乘法中指标求和的推广。
+
+以 $D=d/dx$ 为例。它必须满足
+\[
+  \bra{x}D\ket{f}=f'(x).
+\]
+由式~\eqref{eq:QM-C01-S10-delta-derivative-first} 可读出
+\begin{equation}
+  \boxed{
+  D_{xx'}=\bra{x}D\ket{x'}
+  =\frac{\partial}{\partial x}\delta(x-x')
+  =-\frac{\partial}{\partial x'}\delta(x-x').}
+  \label{eq:QM-C01-S10-derivative-kernel}
+\end{equation}
+直接验证第二种写法时，分部积分给出
+\begin{align}
+  \int D_{xx'}f(x')\,dx'
+  &=-\int\frac{\partial}{\partial x'}
+       \delta(x-x')f(x')\,dx' \\
+  &=\int\delta(x-x')f'(x')\,dx'=f'(x),
+  \label{eq:QM-C01-S10-derivative-kernel-check}
+\end{align}
+其中同样假定边界项消失。熟悉的微分因此仍可视为无限维矩阵作用，只是 delta 核把积分简化成了局部运算。
+
+\notetopic{QM-C01-S10-T04}{定义域、边界条件与 self-adjoint 性}
+
+令
+\[
+  K=-\ii\frac{d}{dx}.
+\]
+对区间 $[a,b]$ 上足够光滑的函数，分部积分得到
+\begin{align}
+  \braket{g}{Kf}
+  &=-\ii\int_a^b g^*(x)f'(x)\,dx \\
+  &=-\ii\left[g^*(x)f(x)\right]_a^b
+    +\ii\int_a^b g'^*(x)f(x)\,dx \\
+  &=-\ii\left[g^*f\right]_a^b+\braket{Kg}{f}.
+  \label{eq:QM-C01-S10-boundary-form}
+\end{align}
+因此形式上的 kernel 对称还不够；必须保证边界型
+\begin{equation}
+  \left[g^*(x)f(x)\right]_a^b=0
+  \label{eq:QM-C01-S10-boundary-condition}
+\end{equation}
+对定义域中的所有 $f,g$ 成立。例如周期条件 $f(b)=f(a)$，或更一般的共同准周期条件
+\[
+  f(b)=\ee^{\ii\alpha}f(a)
+\]
+可使端点贡献相消。
+
+在无限维中，微分表达式和定义域共同组成算符：
+\[
+  \text{operator}
+  =\text{action rule}+\text{domain}.
+\]
+若只证明式~\eqref{eq:QM-C01-S10-boundary-form} 的边界项在 $\mathcal D(K)$ 内消失，只能得到 symmetric（对称）性，即 $K\subseteq K^\dagger$。要称为 self-adjoint（自伴），还须证明
+\begin{equation}
+  \boxed{\mathcal D(K)=\mathcal D(K^\dagger).}
+  \label{eq:QM-C01-S10-self-adjoint-domain}
+\end{equation}
+例如 $-\ii d/dx$ 配合周期或共同准周期条件可以构成 self-adjoint 算符；配合两端同时为零的条件虽使边界型消失，却通常只得到 symmetric 算符。相反，Dirichlet Laplacian
+\[
+  -\frac{d^2}{dx^2},
+  \qquad f(a)=f(b)=0,
+\]
+可在适当定义域上成为 self-adjoint。教材在本节沿用物理教材常见的“形式 Hermitian”表述，应用时仍须检查边界条件和定义域。
+
+\notetopic{QM-C01-S10-T05}{K 的谱与 Fourier 变换作为换基}
+
+在整条实线上形式地求解
+\begin{equation}
+  K\ket{k}=k\ket{k},
+  \qquad K=-\ii\frac{d}{dx}.
+  \label{eq:QM-C01-S10-k-eigenproblem}
+\end{equation}
+令 $\psi_k(x)=\braket{x}{k}$，投影到 $X$ 基得到
+\begin{equation}
+  -\ii\frac{d\psi_k}{dx}=k\psi_k,
+  \qquad
+  \psi_k(x)=A\ee^{\ii kx}.
+  \label{eq:QM-C01-S10-plane-wave-equation}
+\end{equation}
+实线上的平面波不能普通归一化，因为 $\int_{-\infty}^{\infty}\abs{A}^2dx$ 发散。取 delta 归一化
+\begin{equation}
+  \braket{x}{k}=\frac1{\sqrt{2\pi}}\ee^{\ii kx}
+  \label{eq:QM-C01-S10-x-k-overlap}
+\end{equation}
+后，利用式~\eqref{eq:QM-C01-S10-delta-fourier} 得
+\begin{align}
+  \braket{k}{k'}
+  &=\int\braket{k}{x}\braket{x}{k'}\,dx \\
+  &=\frac1{2\pi}\int\ee^{\ii(k'-k)x}\,dx
+  =\delta(k-k').
+  \label{eq:QM-C01-S10-k-delta-normalization}
+\end{align}
+因此 $\ket{k}$ 与 $\ket{x}$ 一样是连续谱的广义特征向量。
+
+若改在 $[0,L]$ 上施加周期边界条件，则 $\ee^{\ii kL}=1$，故
+\begin{equation}
+  k_n=\frac{2\pi n}{L},
+  \qquad
+  \braket{x}{k_n}=\frac1{\sqrt L}\ee^{\ii k_nx},
+  \qquad n\in\mathbb Z.
+  \label{eq:QM-C01-S10-periodic-k-spectrum}
+\end{equation}
+此时区间虽有限，函数空间仍为无限维；允许的谱变为可数离散集，而每个特征函数都是普通 $L^2([0,L])$ 向量。其正交归一性来自
+\begin{equation}
+  \braket{k_n}{k_m}
+  =\frac1L\int_0^L\ee^{\ii(k_m-k_n)x}\,dx
+  =\begin{cases}1,&m=n,\\0,&m\neq n,
+  \end{cases}
+  =\delta_{nm}.
+  \label{eq:QM-C01-S10-periodic-orthonormality}
+\end{equation}
+当 $m\neq n$ 时，积分分子为 $\ee^{\ii2\pi(m-n)}-1=0$。
+
+对任意抽象向量 $\ket{f}$，定义两套坐标
+\[
+  f(x)=\braket{x}{f},
+  \qquad
+  \widetilde f(k)=\braket{k}{f}.
+\]
+在 $X$ 基中插入完备性关系，得到
+\begin{align}
+  \widetilde f(k)
+  &=\int\braket{k}{x}\braket{x}{f}\,dx \\
+  &=\frac1{\sqrt{2\pi}}
+    \int_{-\infty}^{\infty}\ee^{-\ii kx}f(x)\,dx.
+  \label{eq:QM-C01-S10-fourier-transform}
+\end{align}
+反过来，在 $K$ 基中插入完备性关系：
+\begin{align}
+  f(x)
+  &=\int\braket{x}{k}\braket{k}{f}\,dk \\
+  &=\frac1{\sqrt{2\pi}}
+    \int_{-\infty}^{\infty}\ee^{\ii kx}\widetilde f(k)\,dk.
+  \label{eq:QM-C01-S10-inverse-fourier-transform}
+\end{align}
+Fourier 变换因此不是改变 $\ket{f}$，而是把同一个抽象向量从 $X$ 特征基的坐标 $f(x)$ 改写为 $K$ 特征基的坐标 $\widetilde f(k)$。
+
+\notetopic{QM-C01-S10-T06}{共轭算符及其表象}
+
+定义位置算符
+\begin{equation}
+  X\ket{x}=x\ket{x}.
+  \label{eq:QM-C01-S10-position-eigenproblem}
+\end{equation}
+在 $X$ 基中，$X$ 是乘法算符而 $K$ 是微分算符：
+\begin{equation}
+  (Xf)(x)=xf(x),
+  \qquad
+  (Kf)(x)=-\ii\frac{df}{dx}.
+  \label{eq:QM-C01-S10-x-representation}
+\end{equation}
+在 $K$ 基中，$K$ 变成乘法算符。对适当衰减的 $f$ 分部积分：
+\begin{align}
+  \widetilde{Kf}(k)
+  &=\frac1{\sqrt{2\pi}}
+    \int\ee^{-\ii kx}\left(-\ii f'(x)\right)dx \\
+  &=-\ii\left[
+    \frac{\ee^{-\ii kx}f(x)}{\sqrt{2\pi}}
+    \right]_{-\infty}^{\infty}
+    +k\widetilde f(k) \\
+  &=k\widetilde f(k).
+  \label{eq:QM-C01-S10-k-in-k-representation}
+\end{align}
+而 $X$ 变成对 $k$ 的微分算符。由
+\[
+  x\ee^{-\ii kx}=\ii\frac{\partial}{\partial k}\ee^{-\ii kx}
+\]
+可得
+\begin{align}
+  \widetilde{Xf}(k)
+  &=\frac1{\sqrt{2\pi}}
+    \int\ee^{-\ii kx}x f(x)\,dx \\
+  &=\ii\frac{d}{dk}
+    \left[
+      \frac1{\sqrt{2\pi}}
+      \int\ee^{-\ii kx}f(x)\,dx
+    \right]
+  =\ii\frac{d\widetilde f}{dk}.
+  \label{eq:QM-C01-S10-x-in-k-representation}
+\end{align}
+两种表象可汇总为
+\begin{equation}
+  \begin{array}{c|cc}
+    &X\text{ 基}&K\text{ 基}\\ \hline
+    X&x&\ii\,d/dk\\
+    K&-\ii\,d/dx&k
+  \end{array}
+  \label{eq:QM-C01-S10-conjugate-representations}
+\end{equation}
+
+让对易子作用在共同定义域中的任意 $f$ 上：
+\begin{align}
+  [X,K]f
+  &=x(-\ii f')
+    -\left[-\ii\frac{d}{dx}(xf)\right] \\
+  &=-\ii xf'+\ii(f+xf')=\ii f.
+  \label{eq:QM-C01-S10-x-k-commutator-check}
+\end{align}
+故
+\begin{equation}
+  \boxed{[X,K]=\ii I.}
+  \label{eq:QM-C01-S10-x-k-commutator}
+\end{equation}
+同一关系在 $K$ 基中由 $X=\ii d/dk$、$K=k$ 得到完全相同的结果。以后令动量算符 $P=\hbar K$，便有 $[X,P]=\ii\hbar I$。
+
+\notetopic{QM-C01-S10-T07}{固定弦的特征函数与离散简正模}
+
+教材例 1.10.1 考虑波速取为 $1$、两端固定且初速度为零的弦：
+\begin{equation}
+  \frac{\partial^2\psi}{\partial t^2}
+  =\frac{\partial^2\psi}{\partial x^2},
+  \qquad
+  \psi(0,t)=\psi(L,t)=0.
+  \label{eq:QM-C01-S10-wave-equation}
+\end{equation}
+令 $\psi(x,t)=\braket{x}{\psi(t)}$，并记 Dirichlet Laplacian 为
+\[
+  A=-\frac{d^2}{dx^2}.
+\]
+教材形式地写 $A=K^2$，于是抽象方程为
+\begin{equation}
+  \ket{\ddot\psi(t)}=-A\ket{\psi(t)}.
+  \label{eq:QM-C01-S10-abstract-wave-equation}
+\end{equation}
+由于一阶算符 $-\ii d/dx$ 配合两端取零并非 self-adjoint，更严格的对象是带 Dirichlet 定义域的 $A$ 本身。
+
+求 $A$ 的特征值问题
+\begin{equation}
+  A\ket{m}=k_m^2\ket{m}.
+  \label{eq:QM-C01-S10-string-abstract-eigenproblem}
+\end{equation}
+在两边左乘 $\bra{x}$ 并定义 $\phi_m(x)=\braket{x}{m}$，得到
+\begin{equation}
+  -\frac{d^2\phi_m}{dx^2}=k_m^2\phi_m.
+  \label{eq:QM-C01-S10-string-x-eigenproblem}
+\end{equation}
+这里右侧的 $k_m^2$ 是与基无关的标量特征值，并不是 $K$ 基中的乘法算符。若改到连续 $K$ 表象，同一抽象方程会写成 $k^2\widetilde\phi_m(k)=k_m^2\widetilde\phi_m(k)$。
+
+微分方程通解为
+\[
+  \phi_m(x)=C_m\cos(k_mx)+D_m\sin(k_mx).
+\]
+由 $\phi_m(0)=0$ 得 $C_m=0$；为避免零解，$\phi_m(L)=0$ 要求
+\begin{equation}
+  \sin(k_mL)=0,
+  \qquad
+  k_m=\frac{m\pi}{L},
+  \qquad m=1,2,\ldots.
+  \label{eq:QM-C01-S10-string-wavenumbers}
+\end{equation}
+$m=0$ 只给出零函数，负 $m$ 也不产生新的线性无关方向。归一化积分
+\[
+  \int_0^L\sin^2\left(\frac{m\pi x}{L}\right)dx=\frac L2
+\]
+给出正交归一模
+\begin{equation}
+  \boxed{
+  \phi_m(x)=\braket{x}{m}
+  =\sqrt{\frac2L}\sin\left(\frac{m\pi x}{L}\right).}
+  \label{eq:QM-C01-S10-string-normal-modes}
+\end{equation}
+这些正弦模是 $A=K^2$ 的特征函数，却不是 $K$ 的特征函数，因为 $K\sin(kx)=-\ii k\cos(kx)$ 不与原函数成比例。形式恒等式
+\[
+  \sin(kx)=\frac{\ee^{\ii kx}-\ee^{-\ii kx}}{2\ii}
+\]
+说明它混合了 $+k$ 与 $-k$ 两个方向；平方后两者具有相同的 $k^2$。在固定端区间上，平面波本身不满足 Dirichlet 条件，因此这只是解释简并结构的代数直觉。
+
+\notetopic{QM-C01-S10-T08}{模展开、一般初值与传播核}
+
+将弦的状态在正交归一模上展开：
+\begin{equation}
+  \ket{\psi(t)}=\sum_{m=1}^{\infty}q_m(t)\ket{m},
+  \qquad
+  q_m(t)=\braket{m}{\psi(t)}.
+  \label{eq:QM-C01-S10-string-mode-expansion}
+\end{equation}
+把它代入式~\eqref{eq:QM-C01-S10-abstract-wave-equation}，再左乘 $\bra{n}$：
+\begin{align}
+  \sum_m\ddot q_m(t)\braket{n}{m}
+  &=-\sum_m q_m(t)k_m^2\braket{n}{m},\\
+  \ddot q_n(t)+k_n^2q_n(t)&=0.
+  \label{eq:QM-C01-S10-decoupled-string-modes}
+\end{align}
+所以一个偏微分方程被对角化成无穷多个彼此独立的一维谐振子。若恢复波速 $c$，则 $\omega_m=ck_m=cm\pi/L$。一般初值解为
+\begin{equation}
+  q_m(t)=q_m(0)\cos(\omega_mt)
+  +\frac{\dot q_m(0)}{\omega_m}\sin(\omega_mt),
+  \label{eq:QM-C01-S10-general-mode-evolution}
+\end{equation}
+其中两个初始坐标分别由位移和速度投影得到：
+\begin{equation}
+  q_m(0)=\int_0^L\phi_m^*(x)\psi(x,0)\,dx,
+  \qquad
+  \dot q_m(0)=\int_0^L\phi_m^*(x)\dot\psi(x,0)\,dx.
+  \label{eq:QM-C01-S10-initial-mode-projections}
+\end{equation}
+判断第 $m$ 个模完全未被激发，必须同时有 $q_m(0)=\dot q_m(0)=0$；只有前者为零仅表示初始位移分量为零。
+
+教材取 $c=1$ 且 $\dot\psi(x,0)=0$，此时
+\begin{equation}
+  \ket{\psi(t)}
+  =\sum_{m=1}^{\infty}
+    \ket{m}\braket{m}{\psi(0)}\cos(\omega_mt),
+  \qquad
+  U_{\mathrm c}(t)=\sum_{m=1}^{\infty}
+    \ket{m}\bra{m}\cos(\omega_mt).
+  \label{eq:QM-C01-S10-string-propagator}
+\end{equation}
+在 $X$ 基中，它的积分核为
+\begin{align}
+  U_{\mathrm c}(x,x';t)
+  &=\bra{x}U_{\mathrm c}(t)\ket{x'} \\
+  &=\sum_{m=1}^{\infty}\frac2L
+    \sin\left(\frac{m\pi x}{L}\right)
+    \sin\left(\frac{m\pi x'}{L}\right)
+    \cos(\omega_mt),
+  \label{eq:QM-C01-S10-string-propagator-kernel}
+\end{align}
+从而
+\begin{equation}
+  \psi(x,t)=\int_0^L
+  U_{\mathrm c}(x,x';t)\psi(x',0)\,dx'.
+  \label{eq:QM-C01-S10-string-kernel-evolution}
+\end{equation}
+这个 $U_{\mathrm c}(t)$ 只传播位移并已假定零初速度，一般不是 unitary。二阶时间方程的完整初态是位移和速度组成的有序对；教材练习 1.10.4 的三角形初态见\relatedexercise{QM-C01-S10-E04}{固定弦的模展开}。
+
+\subsection{一分钟回顾}
+
+连续基把离散求和推广为积分，并以 $\braket{x}{x'}=\delta(x-x')$ 和 $\int\ket{x}\bra{x}dx=I$ 表示广义正交归一性。delta 的导数符号取决于对哪个变量求导。连续算符由积分核作用，但对无界微分算符还必须指定定义域和边界条件。Fourier 变换是 $X$ 基与 $K$ 基之间的坐标变换，在两种表象中 $X$ 与 $K$ 分别交换乘法和微分的角色，并满足 $[X,K]=\ii I$。固定弦把无限维波动方程对角化为无穷多个独立简正模，其振幅由初始位移和速度在正交模上的投影决定。
