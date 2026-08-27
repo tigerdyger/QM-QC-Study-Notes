@@ -1,0 +1,344 @@
+\section{第 2.1 节：最小作用量原理与拉格朗日力学}
+\label{section:QM-C02-S01}
+
+\studymeta
+  {QM-C02-S01}
+  {2026-08-27}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 2 章 \S 2.1；印刷页 pp.~75--83；PDF pp.~88--96}
+  {内容、教材例题与练习 2.1.1--2.1.3 已核对}
+
+\subsection{本节主线}
+
+Newton 力学从某一时刻的位置与速度出发，用局部微分方程逐步确定轨迹；Lagrange 力学则给连接固定时空端点的每条候选路径分配作用量，并以作用量的一阶变分为零选出经典路径。变分计算产生 Euler--Lagrange 方程，而其形式不依赖所选的广义坐标。正则动量、循环坐标和守恒量也由这一结构自然出现。
+
+\notetopic{QM-C02-S01-T01}{局部运动方程与全局路径原理}
+
+一维粒子在与速度无关的势能 $V(x)$ 中满足 Newton 方程
+\begin{equation}
+  m\ddot x(t)=-\frac{dV}{dx}.
+  \label{eq:QM-C02-S01-newton}
+\end{equation}
+给定初值 $x(t_i)$ 与 $\dot x(t_i)$ 后，式~\eqref{eq:QM-C02-S01-newton} 逐时刻确定后续运动，因此这是 local initial-value formulation（局部初值表述）。对 $n$ 个 Cartesian coordinates，系统的位形由
+\[
+  (x_1,\ldots,x_n)
+\]
+描述，它是 $n$ 维 configuration space（位形空间）中的一个点；系统的演化则是位形空间中的一条路径。
+
+Lagrange 表述改为固定两个时空端点
+\begin{equation}
+  x(t_i)=x_i,
+  \qquad
+  x(t_f)=x_f,
+  \label{eq:QM-C02-S01-fixed-endpoints}
+\end{equation}
+并比较所有连接它们的足够光滑路径。对速度无关的保守势，定义 Lagrangian（拉格朗日量）
+\begin{equation}
+  \mathcal L(x,\dot x,t)=T-V
+  =\frac12m\dot x^2-V(x,t),
+  \label{eq:QM-C02-S01-lagrangian}
+\end{equation}
+以及 action（作用量）
+\begin{equation}
+  \boxed{
+  S[x]
+  =\int_{t_i}^{t_f}\mathcal L(x(t),\dot x(t),t)\,dt.}
+  \label{eq:QM-C02-S01-action}
+\end{equation}
+$\mathcal L$ 的输入是某一时刻的若干数，因而是普通函数；$S$ 的输入是整条路径函数 $x(t)$，因而是 functional（泛函）。作用量的量纲为能量乘时间，与角动量相同。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[x=1.15cm,y=0.9cm,>=Latex]
+    \draw[->] (0,0)--(6.3,0) node[right] {$t$};
+    \draw[->] (0,0)--(0,4.2) node[above] {$x$};
+    \coordinate (A) at (0.7,0.8);
+    \coordinate (B) at (5.6,3.4);
+    \fill (A) circle (2pt) node[below right] {$(t_i,x_i)$};
+    \fill (B) circle (2pt) node[above left] {$(t_f,x_f)$};
+    \draw[noteBlue,very thick]
+      plot[smooth] coordinates {(0.7,0.8) (1.8,1.3) (3.0,2.5) (4.2,2.6) (5.6,3.4)};
+    \draw[verifyOrange,very thick,dashed]
+      plot[smooth] coordinates {(0.7,0.8) (1.8,2.0) (3.0,1.7) (4.2,3.3) (5.6,3.4)};
+    \node[noteBlue] at (3.9,2.25) {$x_{\mathrm{cl}}(t)$};
+    \node[verifyOrange] at (2.4,3.15) {$x_{\mathrm{cl}}(t)+\varepsilon\eta(t)$};
+  \end{tikzpicture}
+  \caption{固定同一对端点的经典路径与一条允许的邻近路径。}
+  \label{fig:QM-C02-S01-path-variation}
+\end{figure}
+
+经典路径 $x_{\mathrm{cl}}(t)$ 满足 stationary-action condition（平稳作用量条件）
+\begin{equation}
+  \boxed{\delta S[x_{\mathrm{cl}}]=0.}
+  \label{eq:QM-C02-S01-stationary-action}
+\end{equation}
+它表示任意允许的无穷小路径变形都不产生作用量的一阶变化，而不保证作用量一定是全局最小值。传统名称 principle of least action（最小作用量原理）因此不如 principle of stationary action（平稳作用量原理）准确。
+
+自由粒子给出一个确实取到最小值的检验。令 $V=0$，连接固定端点的匀速路径为
+\[
+  x_{\mathrm{cl}}(t)
+  =x_i+\frac{x_f-x_i}{t_f-t_i}(t-t_i).
+\]
+对任意满足 $\eta(t_i)=\eta(t_f)=0$ 的邻近路径 $x=x_{\mathrm{cl}}+\eta$，有
+\begin{align}
+  S[x]-S[x_{\mathrm{cl}}]
+  &=m\int_{t_i}^{t_f}\dot x_{\mathrm{cl}}\dot\eta\,dt
+    +\frac m2\int_{t_i}^{t_f}\dot\eta^2\,dt \notag\\
+  &=m\dot x_{\mathrm{cl}}[\eta(t_f)-\eta(t_i)]
+    +\frac m2\int_{t_i}^{t_f}\dot\eta^2\,dt \notag\\
+  &=\frac m2\int_{t_i}^{t_f}\dot\eta^2\,dt\geq0.
+  \label{eq:QM-C02-S01-free-particle-minimum}
+\end{align}
+这个例子中的匀速直线是最小作用量路径；一般问题只能由一阶变分推出平稳性。
+
+\notetopic{QM-C02-S01-T02}{Euler--Lagrange 方程的完整变分推导}
+
+在固定端点的经典路径附近构造一族路径
+\begin{equation}
+  x_\varepsilon(t)=x_{\mathrm{cl}}(t)+\varepsilon\eta(t),
+  \qquad
+  \eta(t_i)=\eta(t_f)=0.
+  \label{eq:QM-C02-S01-varied-path}
+\end{equation}
+于是
+\[
+  \dot x_\varepsilon(t)
+  =\dot x_{\mathrm{cl}}(t)+\varepsilon\dot\eta(t).
+\]
+把泛函限制在这族路径上，$S[x_\varepsilon]$ 成为普通参数 $\varepsilon$ 的函数。平稳条件为
+\begin{equation}
+  \left.\frac{d}{d\varepsilon}S[x_\varepsilon]
+  \right|_{\varepsilon=0}=0.
+  \label{eq:QM-C02-S01-epsilon-stationary}
+\end{equation}
+对式~\eqref{eq:QM-C02-S01-action} 使用链式法则，得到一阶变分
+\begin{align}
+  \delta S
+  &=\left.\frac{d}{d\varepsilon}
+    \int_{t_i}^{t_f}
+    \mathcal L(x_\varepsilon,\dot x_\varepsilon,t)\,dt
+    \right|_{\varepsilon=0} \notag\\
+  &=\int_{t_i}^{t_f}
+    \left(
+      \frac{\partial\mathcal L}{\partial x}\eta
+      +\frac{\partial\mathcal L}{\partial\dot x}\dot\eta
+    \right)dt.
+  \label{eq:QM-C02-S01-first-variation}
+\end{align}
+第二项含 $\dot\eta$，对其分部积分：
+\begin{align}
+  \int_{t_i}^{t_f}
+  \frac{\partial\mathcal L}{\partial\dot x}\dot\eta\,dt
+  &=\left[
+    \frac{\partial\mathcal L}{\partial\dot x}\eta
+    \right]_{t_i}^{t_f}
+  -\int_{t_i}^{t_f}
+    \frac{d}{dt}
+    \left(\frac{\partial\mathcal L}{\partial\dot x}\right)
+    \eta\,dt.
+  \label{eq:QM-C02-S01-variation-integration-by-parts}
+\end{align}
+固定端点使边界项严格为零，故
+\begin{equation}
+  \delta S
+  =\int_{t_i}^{t_f}
+  \left[
+    \frac{\partial\mathcal L}{\partial x}
+    -\frac{d}{dt}
+    \left(\frac{\partial\mathcal L}{\partial\dot x}\right)
+  \right]\eta(t)\,dt.
+  \label{eq:QM-C02-S01-variation-after-parts}
+\end{equation}
+若上式对所有内部任意、端点为零的 $\eta(t)$ 都等于零，则变分法基本引理要求方括号内逐点为零。否则若该函数在某个小邻域内同号，可选择只支撑在该邻域且同号的 $\eta$，使积分不为零。由此得到 Euler--Lagrange equation：
+\begin{equation}
+  \boxed{
+  \frac{d}{dt}
+  \left(\frac{\partial\mathcal L}{\partial\dot x}\right)
+  -\frac{\partial\mathcal L}{\partial x}=0.}
+  \label{eq:QM-C02-S01-euler-lagrange}
+\end{equation}
+逻辑上必须要求 $\delta S=0$ 对所有允许变分成立；单独某个 $\eta$ 使积分为零，可能只是正负贡献抵消，不能推出被积函数为零。
+
+对 $n$ 个独立坐标，逐个变分可得
+\begin{equation}
+  \boxed{
+  \frac{d}{dt}
+  \left(\frac{\partial\mathcal L}{\partial\dot q_i}\right)
+  -\frac{\partial\mathcal L}{\partial q_i}=0,
+  \qquad i=1,\ldots,n.}
+  \label{eq:QM-C02-S01-multicoordinate-euler-lagrange}
+\end{equation}
+推导只使用独立坐标、链式法则、分部积分和固定端点条件，并未要求 $q_i$ 是 Cartesian coordinates。
+
+把式~\eqref{eq:QM-C02-S01-lagrangian} 代入式~\eqref{eq:QM-C02-S01-euler-lagrange}，有
+\[
+  \frac{\partial\mathcal L}{\partial\dot x}=m\dot x,
+  \qquad
+  \frac{\partial\mathcal L}{\partial x}=-\frac{dV}{dx},
+\]
+所以
+\[
+  m\ddot x=-\frac{dV}{dx},
+\]
+恢复 Newton 第二定律。简谐振子的直接应用见\relatedexercise{QM-C02-S01-E01}{教材练习 2.1.1}。
+
+\notetopic{QM-C02-S01-T03}{广义坐标、正则动量与循环坐标}
+
+能够无冗余地描述系统位形的独立参数 $q_i$ 称为 generalized coordinates（广义坐标）。它们可以是长度、角度或其他受约束系统的自然参数。由于式~\eqref{eq:QM-C02-S01-multicoordinate-euler-lagrange} 在任意这类坐标中形式不变，实际计算时可以选择最能反映几何约束和对称性的坐标。
+
+定义与 $q_i$ 共轭的 canonical momentum（正则动量）
+\begin{equation}
+  \boxed{p_i=\frac{\partial\mathcal L}{\partial\dot q_i}}
+  \label{eq:QM-C02-S01-canonical-momentum}
+\end{equation}
+以及 generalized force（广义力）
+\begin{equation}
+  Q_i=\frac{\partial\mathcal L}{\partial q_i}.
+  \label{eq:QM-C02-S01-generalized-force}
+\end{equation}
+Euler--Lagrange 方程因此可写成
+\begin{equation}
+  \dot p_i=Q_i.
+  \label{eq:QM-C02-S01-generalized-newton}
+\end{equation}
+$p_i$ 不一定是 $m\dot q_i$，$Q_i$ 也不一定具有普通力的量纲。例如若 $q_i$ 是角度，则对应的 $p_i$ 可为角动量，$Q_i$ 可为力矩。必须由式~\eqref{eq:QM-C02-S01-canonical-momentum} 计算，而不能从名称猜测。
+
+若完整 Lagrangian 不显含某个坐标 $q_j$，即
+\begin{equation}
+  \frac{\partial\mathcal L}{\partial q_j}=0,
+  \label{eq:QM-C02-S01-cyclic-condition}
+\end{equation}
+则 $q_j$ 称为 cyclic coordinate（循环坐标），并有
+\begin{equation}
+  \boxed{p_j=\text{constant}.}
+  \label{eq:QM-C02-S01-cyclic-conservation}
+\end{equation}
+判断时必须检查完整的 $\mathcal L$，不能只检查势能。坐标可以不出现在 $\mathcal L$ 中，而其速度 $\dot q_j$ 仍然出现；这正是相应正则动量非零且守恒的典型情形。
+
+\notetopic{QM-C02-S01-T04}{教材例题 2.1.1：平面极坐标}
+
+令
+\[
+  x=\rho\cos\phi,
+  \qquad
+  y=\rho\sin\phi.
+\]
+微分后平方相加：
+\begin{align}
+  dx&=\cos\phi\,d\rho-\rho\sin\phi\,d\phi,\notag\\
+  dy&=\sin\phi\,d\rho+\rho\cos\phi\,d\phi,\notag\\
+  ds^2=dx^2+dy^2&=d\rho^2+\rho^2d\phi^2.
+  \label{eq:QM-C02-S01-polar-line-element}
+\end{align}
+因此速度平方和 Lagrangian 为
+\begin{equation}
+  v^2=\dot\rho^2+\rho^2\dot\phi^2,
+  \qquad
+  \mathcal L
+  =\frac12m(\dot\rho^2+\rho^2\dot\phi^2)-V(\rho,\phi).
+  \label{eq:QM-C02-S01-polar-lagrangian}
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.95,>=Latex]
+    \draw[->] (-0.2,0)--(5.4,0) node[right] {$x$};
+    \draw[->] (0,-0.2)--(0,4.2) node[above] {$y$};
+    \coordinate (P) at (4,2.7);
+    \draw[noteBlue,very thick,->] (0,0)--(P) node[midway,below right] {$\rho$};
+    \draw[->] (1.15,0) arc[start angle=0,end angle=34,radius=1.15];
+    \node at (1.35,0.45) {$\phi$};
+    \fill (P) circle (2pt);
+    \draw[->,verifyOrange,thick] (P)--($(P)+(1.2,0.81)$) node[right] {$\hat{\bm e}_\rho$};
+    \draw[->,noteBlue,thick] (P)--($(P)+(-0.81,1.2)$) node[above] {$\hat{\bm e}_\phi$};
+    \draw[dashed] (P)--(4,0);
+  \end{tikzpicture}
+  \caption{极坐标的径向与角向基矢；基矢随 $\phi$ 改变。}
+  \label{fig:QM-C02-S01-polar-basis}
+\end{figure}
+
+径向坐标给出
+\begin{align}
+  \frac{\partial\mathcal L}{\partial\dot\rho}&=m\dot\rho,
+  &
+  \frac{\partial\mathcal L}{\partial\rho}
+  &=m\rho\dot\phi^2-\frac{\partial V}{\partial\rho},
+\end{align}
+故
+\begin{equation}
+  \boxed{
+  m(\ddot\rho-\rho\dot\phi^2)
+  =-\frac{\partial V}{\partial\rho}.}
+  \label{eq:QM-C02-S01-polar-radial}
+\end{equation}
+角坐标给出
+\begin{equation}
+  \boxed{
+  \frac{d}{dt}(m\rho^2\dot\phi)
+  =-\frac{\partial V}{\partial\phi},}
+  \label{eq:QM-C02-S01-polar-angular-conservative}
+\end{equation}
+或展开为
+\begin{equation}
+  \boxed{
+  m(\rho\ddot\phi+2\dot\rho\dot\phi)
+  =-\frac1\rho\frac{\partial V}{\partial\phi}.}
+  \label{eq:QM-C02-S01-polar-angular}
+\end{equation}
+$-\rho\dot\phi^2$ 和 $2\dot\rho\dot\phi$ 来自曲线坐标基的变化；Lagrange 方法把这些几何信息编码在动能中，无须单独对旋转基矢求导。
+
+若 $V=V(\rho)$，则 $\phi$ 是循环坐标，
+\begin{equation}
+  p_\phi=m\rho^2\dot\phi=L_z=\text{constant}.
+  \label{eq:QM-C02-S01-polar-angular-momentum}
+\end{equation}
+相应的面积速度为
+\begin{equation}
+  \frac{dA}{dt}=\frac12\rho^2\dot\phi=\frac{L_z}{2m},
+  \label{eq:QM-C02-S01-areal-velocity}
+\end{equation}
+所以中心力运动满足等时扫过等面积。教材例题还表明，适当选取坐标后，守恒量常可由“某坐标不显含于 $\mathcal L$”直接读出。
+
+\notetopic{QM-C02-S01-T05}{三维中心势中的球坐标与角动量}
+
+球坐标的线元为
+\begin{equation}
+  ds^2=dr^2+r^2d\theta^2+r^2\sin^2\theta\,d\phi^2.
+  \label{eq:QM-C02-S01-spherical-line-element}
+\end{equation}
+对中心势 $V(r)$，
+\begin{equation}
+  \mathcal L
+  =\frac12m\left(
+    \dot r^2+r^2\dot\theta^2
+    +r^2\sin^2\theta\,\dot\phi^2
+  \right)-V(r).
+  \label{eq:QM-C02-S01-spherical-lagrangian}
+\end{equation}
+虽然 $V$ 与 $\theta$ 无关，但动能显含 $\sin^2\theta$，所以 $\theta$ 不是循环坐标。$\phi$ 不显含于完整的 $\mathcal L$，因此
+\begin{equation}
+  p_\phi=mr^2\sin^2\theta\,\dot\phi=L_z
+  \label{eq:QM-C02-S01-spherical-p-phi}
+\end{equation}
+守恒。球坐标选定的 $z$ 轴使绕该轴的旋转表现为 $\phi\mapsto\phi+\alpha$，所以 $L_z$ 的守恒最直接；中心势的完整旋转对称性实际上还保证整个角动量向量守恒：
+\begin{equation}
+  \frac{d\bm L}{dt}=\bm r\times\bm F=0,
+  \qquad
+  L^2=p_\theta^2+\frac{p_\phi^2}{\sin^2\theta}.
+  \label{eq:QM-C02-S01-full-angular-momentum}
+\end{equation}
+球坐标下的三条运动方程及循环坐标判断见\relatedexercise{QM-C02-S01-E03}{教材练习 2.1.3}。
+
+\subsection{适用条件与常见误区}
+
+\begin{itemize}[leftmargin=*]
+  \item $\delta S=0$ 只说明一阶变分为零，不自动说明作用量取得全局最小值。
+  \item 固定端点条件用于消去分部积分产生的边界项；若端点允许变化，还会出现额外的自然边界条件。
+  \item $\mathcal L=T-V$ 适用于本节的速度无关保守势。后续电磁相互作用表明，一般 Lagrangian 不必具有这一形式。
+  \item 正则动量由 $p_i=\partial\mathcal L/\partial\dot q_i$ 定义，不一定等于机械动量 $m\dot q_i$。
+  \item 判断循环坐标必须检查完整的 $\mathcal L$，不能只检查 $V$。
+\end{itemize}
+
+\subsection{一分钟回顾}
+
+作用量是以整条路径为输入的泛函，经典路径使其一阶变分为零。固定端点和分部积分把平稳条件转化为 Euler--Lagrange 方程，其形式对任意合适的广义坐标保持不变。正则动量是 Lagrangian 对广义速度的偏导；若某坐标不显含于完整 Lagrangian，对应正则动量守恒。极坐标例题展示了曲线坐标的几何项如何由动能自动产生，也把旋转对称性与角动量守恒联系起来。

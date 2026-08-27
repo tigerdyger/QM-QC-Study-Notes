@@ -1,0 +1,179 @@
+\section{第 2.1 节教材习题与订正}
+\label{exercise-set:QM-C02-S01}
+
+\exercisemeta
+  {QM-C02-S01-EX}
+  {2026-08-27}
+  {Shankar，第 2 章 \S 2.1，练习 2.1.1--2.1.3}
+  {完成三道教材习题并逐题核对}
+  {题意、Euler--Lagrange 推导与关键计算已核对}
+
+\exercisequestion{QM-C02-S01-E01}{教材练习 2.1.1：一维简谐振子}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S01-T02}{Euler--Lagrange 方程的完整变分推导}。
+
+\textbf{题意。}质量为 $m$ 的物块位于无摩擦水平面上，并与劲度系数为 $k$ 的弹簧相连。写出 Lagrangian 并求运动方程。教材位置：印刷页 p.~83，PDF p.~96。
+
+\begin{checkedsolution}
+取物块偏离平衡位置的位移为 $x$。动能、势能和 Lagrangian 分别为
+\[
+  T=\frac12m\dot x^2,
+  \qquad
+  V=\frac12kx^2,
+  \qquad
+  \mathcal L=\frac12m\dot x^2-\frac12kx^2.
+\]
+所需偏导为
+\[
+  \frac{\partial\mathcal L}{\partial\dot x}=m\dot x,
+  \qquad
+  \frac{\partial\mathcal L}{\partial x}=-kx.
+\]
+代入 Euler--Lagrange 方程得到
+\begin{equation}
+  \boxed{m\ddot x+kx=0,}
+  \qquad
+  \omega=\sqrt{\frac{k}{m}}.
+  \label{eq:QM-C02-S01-E01-oscillator}
+\end{equation}
+这与 Newton 方程 $m\ddot x=-kx$ 完全相同。
+\end{checkedsolution}
+
+\textbf{检查点：}势能进入 $\mathcal L=T-V$ 时带负号，因此 $\partial\mathcal L/\partial x=-kx$；最终方程的恢复力方向必须与位移相反。
+
+\exercisequestion{QM-C02-S01-E02}{教材练习 2.1.2：耦合质量块的 Lagrangian}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S01-T03}{广义坐标、正则动量与循环坐标}，以及第 1.8 节的耦合振子简正模。
+
+\textbf{题意。}两个相同质量 $m$ 的物块沿直线运动，三个相同弹簧 $k$ 依次连接墙、物块 1、物块 2 与另一侧墙。令 $x_1,x_2$ 为两个物块相对平衡位置的同向位移。写出 Lagrangian，用 Euler--Lagrange 方程推导耦合运动方程，并与第 1.8 节的 Newton 方程比较。教材位置：印刷页 p.~83，PDF p.~96。
+
+\begin{checkedsolution}
+两个物块的总动能为
+\begin{equation*}
+  T=\frac12m(\dot x_1^2+\dot x_2^2).
+\end{equation*}
+三个弹簧的有向形变量可取为 $x_1$、$x_2-x_1$ 与 $-x_2$；势能只依赖平方，因此
+\begin{align*}
+  V
+  &=\frac12kx_1^2
+    +\frac12k(x_2-x_1)^2
+    +\frac12kx_2^2\\
+  &=k(x_1^2+x_2^2-x_1x_2).
+\end{align*}
+所以
+\begin{equation}
+  \mathcal L
+  =\frac12m(\dot x_1^2+\dot x_2^2)
+  -\frac12k\left[x_1^2+(x_2-x_1)^2+x_2^2\right].
+  \label{eq:QM-C02-S01-E02-lagrangian}
+\end{equation}
+对 $x_1$，
+\[
+  \frac{\partial\mathcal L}{\partial\dot x_1}=m\dot x_1,
+  \qquad
+  \frac{\partial\mathcal L}{\partial x_1}=-(2kx_1-kx_2),
+\]
+故
+\[
+  m\ddot x_1+2kx_1-kx_2=0.
+\]
+同理，对 $x_2$ 有
+\[
+  \frac{\partial\mathcal L}{\partial\dot x_2}=m\dot x_2,
+  \qquad
+  \frac{\partial\mathcal L}{\partial x_2}=-(2kx_2-kx_1),
+\]
+从而
+\[
+  m\ddot x_2+2kx_2-kx_1=0.
+\]
+矩阵形式为
+\begin{equation}
+  \boxed{
+  m\begin{pmatrix}\ddot x_1\\\ddot x_2\end{pmatrix}
+  +k\begin{pmatrix}2&-1\\-1&2\end{pmatrix}
+  \begin{pmatrix}x_1\\x_2\end{pmatrix}=0.}
+  \label{eq:QM-C02-S01-E02-coupled-equations}
+\end{equation}
+这正是第 1.8 节由逐个分析弹簧力得到的方程。作为独立检查，刚度矩阵在 $(1,1)^T$ 和 $(1,-1)^T$ 上的特征值分别为 $k$ 和 $3k$，故
+\[
+  \omega_I=\sqrt{\frac{k}{m}},
+  \qquad
+  \omega_{II}=\sqrt{\frac{3k}{m}},
+\]
+与原简正模结果一致。
+\end{checkedsolution}
+
+\textbf{检查点：}中间弹簧的形变量必须是相对位移 $x_2-x_1$。若把它误写成 $x_1+x_2$，同向等位移模式会错误地拉伸中间弹簧。
+
+\exercisequestion{QM-C02-S01-E03}{教材练习 2.1.3：三维中心势的球坐标方程}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S01-T05}{三维中心势中的球坐标与角动量}。
+
+\textbf{题意。}质量为 $m$ 的粒子在三维中心势 $V(r)$ 中运动。使用球坐标写出 Lagrangian，求 $r,\theta,\phi$ 的 Euler--Lagrange 方程，并判断循环坐标与守恒量。教材位置：印刷页 p.~83，PDF p.~96。
+
+\begin{checkedsolution}
+球坐标中的速度平方为
+\[
+  v^2=\dot r^2+r^2\dot\theta^2
+  +r^2\sin^2\theta\,\dot\phi^2.
+\]
+因此
+\begin{equation}
+  \mathcal L
+  =\frac12m\left(
+    \dot r^2+r^2\dot\theta^2
+    +r^2\sin^2\theta\,\dot\phi^2
+  \right)-V(r).
+  \label{eq:QM-C02-S01-E03-lagrangian}
+\end{equation}
+
+对 $r$，
+\[
+  \frac{\partial\mathcal L}{\partial\dot r}=m\dot r,
+  \qquad
+  \frac{\partial\mathcal L}{\partial r}
+  =mr\dot\theta^2+mr\sin^2\theta\,\dot\phi^2-V'(r),
+\]
+所以
+\begin{equation}
+  \boxed{
+  m\ddot r-mr\dot\theta^2
+  -mr\sin^2\theta\,\dot\phi^2+V'(r)=0.}
+  \label{eq:QM-C02-S01-E03-radial}
+\end{equation}
+
+对 $\theta$，
+\[
+  \frac{\partial\mathcal L}{\partial\dot\theta}=mr^2\dot\theta,
+  \qquad
+  \frac{\partial\mathcal L}{\partial\theta}
+  =mr^2\sin\theta\cos\theta\,\dot\phi^2,
+\]
+所以
+\begin{equation}
+  \boxed{
+  r^2\ddot\theta+2r\dot r\dot\theta
+  -r^2\sin\theta\cos\theta\,\dot\phi^2=0.}
+  \label{eq:QM-C02-S01-E03-theta}
+\end{equation}
+
+$\phi$ 不显含于完整的 $\mathcal L$，因此
+\begin{equation}
+  \boxed{
+  \frac{d}{dt}\left(
+    mr^2\sin^2\theta\,\dot\phi
+  \right)=0,}
+  \label{eq:QM-C02-S01-E03-phi}
+\end{equation}
+即
+\begin{equation}
+  \boxed{
+  p_\phi=mr^2\sin^2\theta\,\dot\phi=L_z
+  =\text{constant}.}
+  \label{eq:QM-C02-S01-E03-lz}
+\end{equation}
+$r$ 显含于动能和势能，$\theta$ 通过 $\sin^2\theta$ 显含于动能，所以二者都不是循环坐标。中心势虽只直接让 $\phi$ 成为这一坐标系中的循环坐标，但完整旋转对称性仍保证整个角动量向量守恒；当前球坐标只是让 $L_z$ 的守恒最明显。
+\end{checkedsolution}
+
+\textbf{检查点：}循环坐标的判据是 $\partial\mathcal L/\partial q_i=0$，不是 $\partial V/\partial q_i=0$。$V(r)$ 与 $\theta$ 无关仍不足以让 $\theta$ 成为循环坐标，因为球坐标动能含 $\sin^2\theta$。
