@@ -177,3 +177,103 @@ $r$ 显含于动能和势能，$\theta$ 通过 $\sin^2\theta$ 显含于动能，
 \end{checkedsolution}
 
 \textbf{检查点：}循环坐标的判据是 $\partial\mathcal L/\partial q_i=0$，不是 $\partial V/\partial q_i=0$。$V(r)$ 与 $\theta$ 无关仍不足以让 $\theta$ 成为循环坐标，因为球坐标动能含 $\sin^2\theta$。
+
+\section{第 2.2 节自编检验题与订正}
+\label{exercise-set:QM-C02-S02}
+
+\exercisemeta
+  {QM-C02-S02-EX}
+  {2026-08-28}
+  {Shankar，第 2 章 \S 2.2；教材本节无正式例题或习题}
+  {完成两道 self-contained check examples（自编检验题）}
+  {题目来源类型、单位制、推导与物理解释已核对}
+
+\exercisequestion{QM-C02-S02-E01}{自编检验题 1：均匀磁场中的正则动量}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S02-T03}{从 Lagrangian 完整恢复 Lorentz force}与\relatedtopic{QM-C02-S02-T04}{正则动量、机械动量与广义势}。
+
+\textbf{题意。}在 Gaussian units 中，带电量 $q$、质量 $m$ 的粒子在 $xy$ 平面运动。取 $\phi=0$ 与 Landau gauge
+\[
+  \bm A=Bx\,\hat{\bm y},
+\]
+它对应均匀磁场 $\bm B=B\hat{\bm z}$。写出 Lagrangian，求正则动量与运动方程，并判断哪个动量分量守恒。
+
+\begin{checkedsolution}
+因为 $\bm v\cdot\bm A=Bx\dot y$，所以
+\begin{equation}
+  \mathcal L
+  =\frac12m(\dot x^2+\dot y^2)+\frac{qB}{c}x\dot y.
+  \label{eq:QM-C02-S02-E01-lagrangian}
+\end{equation}
+正则动量为
+\begin{equation}
+  p_x=m\dot x,
+  \qquad
+  p_y=m\dot y+\frac{qB}{c}x.
+  \label{eq:QM-C02-S02-E01-canonical-momenta}
+\end{equation}
+对 $x$ 使用 Euler--Lagrange 方程：
+\[
+  \frac{d}{dt}(m\dot x)-\frac{qB}{c}\dot y=0,
+\]
+故
+\[
+  m\ddot x=\frac{qB}{c}\dot y.
+\]
+$y$ 不显含于 $\mathcal L$，因此是循环坐标：
+\[
+  \frac{d}{dt}\left(m\dot y+\frac{qB}{c}x\right)=0,
+\]
+即
+\[
+  m\ddot y=-\frac{qB}{c}\dot x.
+\]
+合并为
+\begin{equation}
+  m\ddot{\bm r}
+  =\frac qc\dot{\bm r}\times B\hat{\bm z},
+  \label{eq:QM-C02-S02-E01-lorentz}
+\end{equation}
+与 Lorentz force 一致。守恒的是 canonical momentum $p_y$，而 mechanical momentum 的 $y$ 分量 $m\dot y$ 一般不守恒；两者相差 $qBx/c$。
+\end{checkedsolution}
+
+\textbf{检查点：}循环坐标直接保证其共轭正则动量守恒，而不是自动保证相应的 Cartesian mechanical momentum 分量守恒。
+
+\exercisequestion{QM-C02-S02-E02}{自编检验题 2：固定长度绳子的约束力}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S02-T05}{相互作用、坐标几何、约束与非保守力}。
+
+\textbf{题意。}质量为 $m$ 的小球在平面内运动，并由固定在原点、长度为 $R$ 的理想不可伸长轻绳约束。系统没有普通势能。分别用消去约束坐标与 Lagrange multiplier 两种方法写出方程，并说明为什么 $V=0$ 不等于张力不存在。
+
+\begin{checkedsolution}
+若直接使用约束 $\rho=R$，唯一独立坐标为 $\phi$，约化 Lagrangian 是
+\begin{equation}
+  \mathcal L_{\mathrm{red}}=\frac12mR^2\dot\phi^2.
+  \label{eq:QM-C02-S02-E02-reduced-lagrangian}
+\end{equation}
+因此
+\[
+  \frac{d}{dt}(mR^2\dot\phi)=0,
+\]
+角动量守恒。张力沿径向，而允许虚位移沿切向，所以理想张力不对允许虚位移做功；消去 $\rho$ 后，它不出现在 $\phi$ 的方程中。
+
+若还要计算张力，则保留 $\rho$ 并引入乘子 $\lambda$：
+\begin{equation}
+  \mathcal L'
+  =\frac12m(\dot\rho^2+\rho^2\dot\phi^2)
+  -\lambda(\rho-R).
+  \label{eq:QM-C02-S02-E02-multiplier-lagrangian}
+\end{equation}
+径向方程为
+\[
+  m\ddot\rho-m\rho\dot\phi^2+\lambda=0.
+\]
+代入 $\rho=R$ 与 $\ddot\rho=0$，得到
+\begin{equation}
+  \boxed{\lambda=mR\dot\phi^2.}
+  \label{eq:QM-C02-S02-E02-tension}
+\end{equation}
+$\lambda$ 是绳子张力的大小。$V=0$ 只表示没有写入普通势能的相互作用，不能删除独立给定的约束及其反作用力。
+\end{checkedsolution}
+
+\textbf{检查点：}若约束坐标已被消去，约束力通常不会出现在剩余 Euler--Lagrange 方程中；要恢复约束力，需要保留约束并使用乘子，或另作受力分析。

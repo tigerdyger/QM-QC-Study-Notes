@@ -191,17 +191,25 @@ $\mathcal L$ 的输入是某一时刻的若干数，因而是普通函数；$S$ 
   \boxed{p_i=\frac{\partial\mathcal L}{\partial\dot q_i}}
   \label{eq:QM-C02-S01-canonical-momentum}
 \end{equation}
-以及 generalized force（广义力）
+后，Euler--Lagrange 方程可简写为
 \begin{equation}
-  Q_i=\frac{\partial\mathcal L}{\partial q_i}.
-  \label{eq:QM-C02-S01-generalized-force}
-\end{equation}
-Euler--Lagrange 方程因此可写成
-\begin{equation}
-  \dot p_i=Q_i.
+  \dot p_i=\frac{\partial\mathcal L}{\partial q_i}.
   \label{eq:QM-C02-S01-generalized-newton}
 \end{equation}
-$p_i$ 不一定是 $m\dot q_i$，$Q_i$ 也不一定具有普通力的量纲。例如若 $q_i$ 是角度，则对应的 $p_i$ 可为角动量，$Q_i$ 可为力矩。必须由式~\eqref{eq:QM-C02-S01-canonical-momentum} 计算，而不能从名称猜测。
+右侧一般不能直接解释为物理力。标准的 generalized applied force（广义作用力）$Q_i^{\mathrm{appl}}$ 满足
+\begin{equation}
+  \boxed{
+  \frac{d}{dt}\left(\frac{\partial T}{\partial\dot q_i}\right)
+  -\frac{\partial T}{\partial q_i}
+  =Q_i^{\mathrm{appl}}.}
+  \label{eq:QM-C02-S01-generalized-force}
+\end{equation}
+若作用力来自速度无关的普通势能，则 $Q_i^{\mathrm{appl}}=-\partial V/\partial q_i$，式~\eqref{eq:QM-C02-S01-generalized-force} 与 $\mathcal L=T-V$ 的 Euler--Lagrange 方程等价。在这一保守势情形下有
+\[
+  \frac{\partial\mathcal L}{\partial q_i}
+  =\frac{\partial T}{\partial q_i}+Q_i^{\mathrm{appl}},
+\]
+所以 $\partial\mathcal L/\partial q_i$ 还可能包含曲线坐标在动能中产生的几何项。只有在 Cartesian coordinates 且 $T$ 不显含位置时，它才直接退化为相应的物理力分量。$p_i$ 也不一定是 $m\dot q_i$；例如若 $q_i$ 是角度，对应的 $p_i$ 可为角动量。正则动量必须由式~\eqref{eq:QM-C02-S01-canonical-momentum} 计算，不能从名称猜测。
 
 若完整 Lagrangian 不显含某个坐标 $q_j$，即
 \begin{equation}
@@ -286,6 +294,7 @@ $p_i$ 不一定是 $m\dot q_i$，$Q_i$ 也不一定具有普通力的量纲。�
   \label{eq:QM-C02-S01-polar-angular}
 \end{equation}
 $-\rho\dot\phi^2$ 和 $2\dot\rho\dot\phi$ 来自曲线坐标基的变化；Lagrange 方法把这些几何信息编码在动能中，无须单独对旋转基矢求导。
+特别地，$\partial\mathcal L/\partial\rho=m\rho\dot\phi^2-\partial V/\partial\rho$ 中，$m\rho\dot\phi^2$ 是动能的坐标导数，不是额外的径向作用力。真正的径向物理力为 $-\partial V/\partial\rho$，而完整径向加速度是 $\ddot\rho-\rho\dot\phi^2$。
 
 若 $V=V(\rho)$，则 $\phi$ 是循环坐标，
 \begin{equation}
@@ -342,3 +351,223 @@ $-\rho\dot\phi^2$ 和 $2\dot\rho\dot\phi$ 来自曲线坐标基的变化；Lagra
 \subsection{一分钟回顾}
 
 作用量是以整条路径为输入的泛函，经典路径使其一阶变分为零。固定端点和分部积分把平稳条件转化为 Euler--Lagrange 方程，其形式对任意合适的广义坐标保持不变。正则动量是 Lagrangian 对广义速度的偏导；若某坐标不显含于完整 Lagrangian，对应正则动量守恒。极坐标例题展示了曲线坐标的几何项如何由动能自动产生，也把旋转对称性与角动量守恒联系起来。
+
+\section{第 2.2 节：电磁场中的 Lagrangian}
+\label{section:QM-C02-S02}
+
+\studymeta
+  {QM-C02-S02}
+  {2026-08-28}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 2 章 \S 2.2；印刷页 pp.~83--84；PDF pp.~96--97}
+  {正文已核对；本节无教材例题或习题，配套题明确标为自编检验题}
+
+\subsection{本节主线}
+
+普通位置势 $V(\bm r,t)$ 只能产生梯度力，无法表示显式依赖速度的磁力。本节把 scalar potential（标势）$\phi$ 与 vector potential（矢势）$\bm A$ 写入 Lagrangian，并由 Euler--Lagrange 方程恢复完整 Lorentz force（洛伦兹力）。这一过程还迫使我们区分 canonical momentum（正则动量）与 mechanical momentum（机械动量），也说明“外力”“约束力”与“是否写在 Euler--Lagrange 方程右侧”不是同一分类标准。
+
+\notetopic{QM-C02-S02-T01}{普通位置势的不足与电磁 Lagrangian}
+
+教材使用 Gaussian units（高斯单位制），其中 Lorentz force 为
+\begin{equation}
+  \boxed{
+  \bm F=q\left(\bm E+\frac{\bm v}{c}\times\bm B\right).}
+  \label{eq:QM-C02-S02-lorentz-force}
+\end{equation}
+若 $\mathcal L=\frac12m\bm v^2-V(\bm r,t)$，则 Euler--Lagrange 方程只能给出 $m\dot{\bm v}=-\nabla V$，无法产生速度依赖项 $q\bm v\times\bm B/c$。正确的电磁 Lagrangian 是
+\begin{equation}
+  \boxed{
+  \mathcal L_{\mathrm{em}}
+  =\frac12m\bm v^2-q\phi(\bm r,t)
+  +\frac qc\bm v\cdot\bm A(\bm r,t).}
+  \label{eq:QM-C02-S02-em-lagrangian}
+\end{equation}
+$\bm v\cdot\bm A$ 是旋转下的标量；它对速度求偏导留下 $\bm A$，对位置求偏导产生 $\bm A$ 的空间导数，二者在 Euler--Lagrange 方程中组合成 $\nabla\times\bm A$。在 SI units 中，式~\eqref{eq:QM-C02-S02-lorentz-force} 和式~\eqref{eq:QM-C02-S02-em-lagrangian} 中相应的 $1/c$ 均不出现。
+
+\notetopic{QM-C02-S02-T02}{标势、矢势与规范自由度}
+
+势的表示不是从 Lagrangian 中倒推定义出来的，而是源于 homogeneous Maxwell equations（齐次 Maxwell 方程）
+\begin{equation}
+  \nabla\cdot\bm B=0,
+  \qquad
+  \nabla\times\bm E=-\frac1c\frac{\partial\bm B}{\partial t}.
+  \label{eq:QM-C02-S02-homogeneous-maxwell}
+\end{equation}
+在拓扑足够简单的区域内，散度为零的光滑向量场可局部写成另一个向量场的旋度，因此
+\begin{equation}
+  \boxed{\bm B=\nabla\times\bm A.}
+  \label{eq:QM-C02-S02-vector-potential}
+\end{equation}
+根据 Stokes theorem，$\oint_{\partial S}\bm A\cdot d\bm l=\int_S\bm B\cdot d\bm S$，所以 $\bm A$ 沿闭合曲线的环流编码了曲线内部的磁通量。
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.9,>=Latex]
+    \fill[noteBlue!8] (0,0) ellipse (3.0 and 1.35);
+    \draw[noteBlue,very thick] (0,0) ellipse (3.0 and 1.35);
+    \draw[->,noteBlue,very thick]
+      (2.82,-0.45) arc[start angle=-20,end angle=32,x radius=3.0,y radius=1.35];
+    \node[noteBlue] at (3.55,0.55) {$C=\partial S$};
+    \node at (-2.35,-0.8) {$S$};
+    \foreach \x/\y in {-1.8/0.35,-0.9/-0.45,0/0.45,0.9/-0.35,1.8/0.3}
+      {\node[verifyOrange] at (\x,\y) {$\odot$};}
+    \node[verifyOrange] at (0,-1.85) {$\bm B$ 穿过曲面};
+  \end{tikzpicture}
+  \caption{Stokes theorem 把边界上的矢势环流与穿过曲面的磁通量联系起来；箭头只表示闭合曲线的正向。}
+  \label{fig:QM-C02-S02-stokes}
+\end{figure}
+把式~\eqref{eq:QM-C02-S02-vector-potential} 代入 Faraday's law，有
+\[
+  \nabla\times\left(
+    \bm E+\frac1c\frac{\partial\bm A}{\partial t}
+  \right)=0.
+\]
+无旋场可局部写成标量势的负梯度，故
+\begin{equation}
+  \boxed{
+  \bm E=-\nabla\phi-\frac1c\frac{\partial\bm A}{\partial t}.}
+  \label{eq:QM-C02-S02-scalar-potential}
+\end{equation}
+当磁场随时间变化时，$\nabla\times\bm E$ 一般非零，因而不能只写 $\bm E=-\nabla\phi$。
+
+势并不唯一。对任意足够光滑的 $\chi(\bm r,t)$，gauge transformation（规范变换）
+\begin{equation}
+  \bm A'=\bm A+\nabla\chi,
+  \qquad
+  \phi'=\phi-\frac1c\frac{\partial\chi}{\partial t}
+  \label{eq:QM-C02-S02-gauge-transform}
+\end{equation}
+保持 $\bm E$ 与 $\bm B$ 不变，同时令
+\begin{equation}
+  \mathcal L_{\mathrm{em}}'
+  =\mathcal L_{\mathrm{em}}+\frac qc\frac{d\chi}{dt}.
+  \label{eq:QM-C02-S02-gauge-lagrangian}
+\end{equation}
+作用量只增加固定端点处的边界值 $\frac qc[\chi_f-\chi_i]$，所以 Euler--Lagrange 方程不变。这把规范自由度与第 2.1 节的固定端点变分直接联系起来。若空间区域具有非平凡拓扑，全局单一光滑矢势可能不存在；本节只需使用上述局部关系。
+
+\notetopic{QM-C02-S02-T03}{从 Lagrangian 完整恢复 Lorentz force}
+
+令 $x_i$ 为 Cartesian coordinates、$v_i=\dot x_i$，并把式~\eqref{eq:QM-C02-S02-em-lagrangian} 写成
+\[
+  \mathcal L_{\mathrm{em}}
+  =\frac12m\sum_jv_j^2-q\phi
+  +\frac qc\sum_jv_jA_j.
+\]
+首先
+\begin{equation}
+  \frac{\partial\mathcal L_{\mathrm{em}}}{\partial v_i}
+  =mv_i+\frac qcA_i.
+  \label{eq:QM-C02-S02-dl-dv}
+\end{equation}
+由于 $A_i=A_i(\bm r(t),t)$，沿粒子轨迹的全导数必须同时包含显式时间变化与位置变化：
+\begin{equation}
+  \frac{dA_i}{dt}
+  =\frac{\partial A_i}{\partial t}
+  +\sum_jv_j\frac{\partial A_i}{\partial x_j}.
+  \label{eq:QM-C02-S02-total-derivative-A}
+\end{equation}
+因此
+\begin{equation}
+  \frac{d}{dt}
+  \left(\frac{\partial\mathcal L_{\mathrm{em}}}{\partial v_i}\right)
+  =m\dot v_i+\frac qc\frac{\partial A_i}{\partial t}
+  +\frac qc\sum_jv_j\frac{\partial A_i}{\partial x_j}.
+  \label{eq:QM-C02-S02-dt-dl-dv}
+\end{equation}
+另一方面，求 $\partial/\partial x_i$ 时各 $v_j$ 作为独立变量保持不变，故
+\begin{equation}
+  \frac{\partial\mathcal L_{\mathrm{em}}}{\partial x_i}
+  =-q\frac{\partial\phi}{\partial x_i}
+  +\frac qc\sum_jv_j\frac{\partial A_j}{\partial x_i}.
+  \label{eq:QM-C02-S02-dl-dx}
+\end{equation}
+代入 Euler--Lagrange 方程并整理：
+\begin{align}
+  m\dot v_i
+  &=-q\frac{\partial\phi}{\partial x_i}
+    -\frac qc\frac{\partial A_i}{\partial t}
+    +\frac qc\sum_jv_j
+      \left(
+        \frac{\partial A_j}{\partial x_i}
+        -\frac{\partial A_i}{\partial x_j}
+      \right)\notag\\
+  &=qE_i+\frac qc(\bm v\times\bm B)_i.
+  \label{eq:QM-C02-S02-lorentz-components}
+\end{align}
+最后一步使用
+\begin{equation}
+  [\bm v\times(\nabla\times\bm A)]_i
+  =\sum_jv_j
+  \left(
+    \frac{\partial A_j}{\partial x_i}
+    -\frac{\partial A_i}{\partial x_j}
+  \right).
+  \label{eq:QM-C02-S02-curl-identity}
+\end{equation}
+三个分量合并后正好恢复式~\eqref{eq:QM-C02-S02-lorentz-force}。推导中最容易遗漏的是式~\eqref{eq:QM-C02-S02-total-derivative-A} 的对流项 $\sum_jv_j\partial A_i/\partial x_j$；没有它就无法形成 curl 的反对称导数组合。
+
+\notetopic{QM-C02-S02-T04}{正则动量、机械动量与广义势}
+
+由式~\eqref{eq:QM-C02-S02-dl-dv}，canonical momentum 为
+\begin{equation}
+  \boxed{
+  \bm p=\frac{\partial\mathcal L_{\mathrm{em}}}{\partial\bm v}
+  =m\bm v+\frac qc\bm A.}
+  \label{eq:QM-C02-S02-canonical-momentum}
+\end{equation}
+mechanical momentum 记作 $\bm\pi=m\bm v$，所以
+\begin{equation}
+  \boxed{\bm\pi=\bm p-\frac qc\bm A.}
+  \label{eq:QM-C02-S02-mechanical-momentum}
+\end{equation}
+规范变换会使 $\bm p'=\bm p+q\nabla\chi/c$，但式~\eqref{eq:QM-C02-S02-mechanical-momentum} 中的组合保持不变。正则动量是与坐标共轭的变量，机械动量则直接由速度决定；在电磁场中不能把符号 $\bm p$ 自动替换成 $m\bm v$。
+
+形式上可定义 velocity-dependent generalized potential（速度依赖广义势）
+\begin{equation}
+  U(\bm r,\bm v,t)
+  =q\phi-\frac qc\bm v\cdot\bm A,
+  \qquad
+  \mathcal L_{\mathrm{em}}=T-U.
+  \label{eq:QM-C02-S02-generalized-potential}
+\end{equation}
+对于这类 $U$，物理广义力不再是 $-\partial U/\partial q_i$，而是
+\begin{equation}
+  \boxed{
+  Q_i^{\mathrm{appl}}
+  =\frac{d}{dt}\left(\frac{\partial U}{\partial\dot q_i}\right)
+  -\frac{\partial U}{\partial q_i}.}
+  \label{eq:QM-C02-S02-velocity-potential-force}
+\end{equation}
+磁力恒满足 $(q\bm v\times\bm B/c)\cdot\bm v=0$，会改变轨迹方向但不做功。因此 $-q\bm v\cdot\bm A/c$ 不能解释为普通磁势能；Lagrangian 本身也不是系统能量。
+
+\notetopic{QM-C02-S02-T05}{相互作用、坐标几何、约束与非保守力}
+
+Euler--Lagrange 方程右侧为零，不表示系统没有外力；它表示当前模型中由作用量描述的相互作用已经写入 $\mathcal L$。是否由外部给定，不是判断某个作用是否需要放在方程右侧的标准。例如给定电磁场虽可视为外场，其作用已经包含在式~\eqref{eq:QM-C02-S02-em-lagrangian} 中。
+
+需要区分以下来源：
+\begin{itemize}[leftmargin=*]
+  \item \textbf{坐标几何：}曲线坐标使 $T$ 显含 $q_i$，产生的项用于组装该坐标系中的完整加速度，不是额外物理力。
+  \item \textbf{速度依赖相互作用：}即使使用 Cartesian coordinates，$\bm v\cdot\bm A$ 仍会把正则动量从 $m\bm v$ 移开；这是相互作用本身造成的。
+  \item \textbf{理想完整约束：}可用独立广义坐标消去约束，或用 Lagrange multiplier（拉格朗日乘子）保留并求出约束力。
+  \item \textbf{未写入 $\mathcal L$ 的非保守作用：}使用 Lagrange--d'Alembert equation
+  \begin{equation}
+    \frac{d}{dt}\left(\frac{\partial\mathcal L}{\partial\dot q_i}\right)
+    -\frac{\partial\mathcal L}{\partial q_i}
+    =Q_i^{\mathrm{nc}}.
+    \label{eq:QM-C02-S02-lagrange-dalembert}
+  \end{equation}
+\end{itemize}
+仅写 $V=0$ 不能推出没有物理力，还必须排除未建模的外加作用与约束力。反过来，非零角动量也不意味着存在力：不经过坐标原点的自由直线运动可以具有非零且守恒的角动量。固定长度绳子的建模见\relatedexercise{QM-C02-S02-E02}{自编检验题 2}。
+
+\subsection{适用条件与常见误区}
+
+\begin{itemize}[leftmargin=*]
+  \item 教材本节使用 Gaussian units；与 SI 公式比较时必须同步处理 $1/c$。
+  \item $dA_i/dt$ 是沿粒子轨迹的全导数，不能误写成 $\partial A_i/\partial t$。
+  \item $\bm B=\nabla\times\bm A$ 与式~\eqref{eq:QM-C02-S02-scalar-potential} 来自齐次 Maxwell 方程，不是为匹配 Lorentz force 临时定义的。
+  \item 正则动量依赖规范，机械动量及由 $\bm E,\bm B$ 决定的运动不依赖规范。
+  \item $V=0$ 只排除了所写的普通势能，不能自动排除约束力、摩擦力或其他未建模作用。
+\end{itemize}
+
+\subsection{一分钟回顾}
+
+齐次 Maxwell 方程允许用 $\phi$ 与 $\bm A$ 表示电磁场；电磁 Lagrangian 中的 $\bm v\cdot\bm A$ 项通过反对称空间导数组合产生磁力。正则动量为 $\bm p=m\bm v+q\bm A/c$，而可直接由速度确定的机械动量为 $m\bm v$。规范变换只让 Lagrangian 增加全时间导数，不改变场和运动。坐标几何、速度依赖相互作用、理想约束与未建模非保守力必须在建模时分别处理。
