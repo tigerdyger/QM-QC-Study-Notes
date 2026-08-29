@@ -277,3 +277,84 @@ $\lambda$ 是绳子张力的大小。$V=0$ 只表示没有写入普通势能的�
 \end{checkedsolution}
 
 \textbf{检查点：}若约束坐标已被消去，约束力通常不会出现在剩余 Euler--Lagrange 方程中；要恢复约束力，需要保留约束并使用乘子，或另作受力分析。
+
+\section{第 2.3 节教材习题与订正}
+\label{exercise-set:QM-C02-S03}
+
+\exercisemeta
+  {QM-C02-S03-EX}
+  {2026-08-29}
+  {Shankar，第 2 章 \S 2.3，练习 2.3.1}
+  {完成一道教材习题并核对坐标代换}
+  {速度变换、交叉项抵消、约化质量系数与最终 Lagrangian 已核对}
+
+\exercisequestion{QM-C02-S03-E01}{教材练习 2.3.1：分离二体 Lagrangian}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S03-T02}{动能分离与约化质量}。
+
+\textbf{题意。}从两个相互作用粒子的原 Lagrangian 出发，改用质心坐标 $\bm R$ 与相对坐标 $\bm r$，推导分离后的 Lagrangian。教材位置：印刷页 p.~86，PDF p.~99。
+
+\begin{checkedsolution}
+原式为
+\begin{equation}
+  \mathcal L
+  =\frac12m_1|\dot{\bm r}_1|^2
+  +\frac12m_2|\dot{\bm r}_2|^2
+  -V(\bm r_1-\bm r_2).
+  \label{eq:QM-C02-S03-E01-original}
+\end{equation}
+令
+\[
+  M=m_1+m_2,
+  \qquad
+  \bm r=\bm r_1-\bm r_2,
+  \qquad
+  \bm R=\frac{m_1\bm r_1+m_2\bm r_2}{M}.
+\]
+逆变换及其时间导数为
+\begin{align*}
+  \bm r_1&=\bm R+\frac{m_2}{M}\bm r,
+  &\dot{\bm r}_1&=\dot{\bm R}+\frac{m_2}{M}\dot{\bm r},\\
+  \bm r_2&=\bm R-\frac{m_1}{M}\bm r,
+  &\dot{\bm r}_2&=\dot{\bm R}-\frac{m_1}{M}\dot{\bm r}.
+\end{align*}
+因此动能为
+\begin{align*}
+  T={}&\frac12m_1
+  \left|
+    \dot{\bm R}+\frac{m_2}{M}\dot{\bm r}
+  \right|^2
+  +\frac12m_2
+  \left|
+    \dot{\bm R}-\frac{m_1}{M}\dot{\bm r}
+  \right|^2\\
+  ={}&\frac12(m_1+m_2)|\dot{\bm R}|^2
+  +\left(
+    \frac{m_1m_2}{M}-\frac{m_1m_2}{M}
+  \right)\dot{\bm R}\cdot\dot{\bm r}\\
+  &+\frac12\left(
+    \frac{m_1m_2^2}{M^2}
+    +\frac{m_2m_1^2}{M^2}
+  \right)|\dot{\bm r}|^2.
+\end{align*}
+中间的交叉项严格为零，而最后一个系数化简为
+\begin{align*}
+  \frac{m_1m_2^2+m_2m_1^2}{M^2}
+  &=\frac{m_1m_2(m_1+m_2)}{M^2}
+   =\frac{m_1m_2}{m_1+m_2}
+   \equiv\mu.
+\end{align*}
+同时 $V(\bm r_1-\bm r_2)=V(\bm r)$，故
+\begin{equation}
+  \boxed{
+  \mathcal L
+  =\frac12M|\dot{\bm R}|^2
+  +\frac12\mu|\dot{\bm r}|^2
+  -V(\bm r),
+  \qquad
+  \mu=\frac{m_1m_2}{m_1+m_2}.}
+  \label{eq:QM-C02-S03-E01-separated}
+\end{equation}
+\end{checkedsolution}
+
+\textbf{检查点：}交叉项的抵消不是偶然删项，而是来自质心坐标中的质量权重。最终式中质心项的质量必须是 $m_1+m_2$，不能误写成 $m_1+m_1$；相对项的系数则是约化质量而非总质量。

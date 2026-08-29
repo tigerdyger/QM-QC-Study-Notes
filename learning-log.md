@@ -23,3 +23,4 @@
 | 2026-08-26 至 2026-08-27 | Shankar 第 1 章 \S 1.10，印刷页 57--73，PDF 71--87 | `chapters/01-notes.tex`、`exercises/01-exercises.tex` | 函数空间、连续基、Dirac delta、积分核、算符定义域、Fourier 换基、共轭算符、固定弦简正模 | 下一学习节点为第 2.1 节 The Principle of Least Action and Lagrangian Mechanics |
 | 2026-08-27 | Shankar 第 2 章 \S 2.1，印刷页 75--83，PDF 88--96 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | 作用量泛函、平稳作用量、Euler--Lagrange 方程、广义坐标、正则动量、循环坐标、极坐标与角动量守恒 | 下一学习节点为第 2.2 节 The Electromagnetic Lagrangian |
 | 2026-08-28 | Shankar 第 2 章 \S 2.2，印刷页 83--84，PDF 96--97 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | 电磁 Lagrangian、标势与矢势、规范变换、Lorentz force、正则与机械动量、约束和非保守广义力 | 下一学习节点为第 2.3 节 The Two-Body Problem |
+| 2026-08-29 | Shankar 第 2 章 \S 2.3，印刷页 85--86，PDF 98--99 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | 质心与相对坐标、平移不变性、动能分离、约化质量、质心参考系、二体问题的等效单粒子描述 | 下一学习节点为第 2.4 节 How Smart Is a Particle? |

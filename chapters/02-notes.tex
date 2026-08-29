@@ -571,3 +571,226 @@ Euler--Lagrange 方程右侧为零，不表示系统没有外力；它表示当�
 \subsection{一分钟回顾}
 
 齐次 Maxwell 方程允许用 $\phi$ 与 $\bm A$ 表示电磁场；电磁 Lagrangian 中的 $\bm v\cdot\bm A$ 项通过反对称空间导数组合产生磁力。正则动量为 $\bm p=m\bm v+q\bm A/c$，而可直接由速度确定的机械动量为 $m\bm v$。规范变换只让 Lagrangian 增加全时间导数，不改变场和运动。坐标几何、速度依赖相互作用、理想约束与未建模非保守力必须在建模时分别处理。
+
+\section{第 2.3 节：二体问题}
+\label{section:QM-C02-S03}
+
+\studymeta
+  {QM-C02-S03}
+  {2026-08-29}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 2 章 \S 2.3；印刷页 pp.~85--86；PDF pp.~98--99}
+  {正文及教材练习 2.3.1 已核对；坐标变换、约化质量与适用条件已补全}
+
+\subsection{本节主线}
+
+两个只通过内部势相互作用、且不受外力的粒子，表面上需要同时求解 $\bm r_1(t)$ 与 $\bm r_2(t)$。改用 center-of-mass coordinate（质心坐标）$\bm R$ 和 relative coordinate（相对坐标）$\bm r$ 后，Lagrangian 可以分成互不耦合的质心运动与相对运动。原二体问题由此化为两个单粒子问题：一个质量为总质量 $M$ 的自由质心粒子，以及一个质量为 reduced mass（约化质量）$\mu$、在势 $V(\bm r)$ 中运动的等效粒子。
+
+\notetopic{QM-C02-S03-T01}{建模假设与质心--相对坐标}
+
+设两粒子的质量和位置分别为 $m_1,m_2$ 与 $\bm r_1,\bm r_2$。本节假设没有外力，且内部势只依赖两粒子的相对位置：
+\begin{equation}
+  V=V(\bm r_1-\bm r_2).
+  \label{eq:QM-C02-S03-relative-potential}
+\end{equation}
+定义总质量、相对坐标和质心坐标
+\begin{equation}
+  M=m_1+m_2,
+  \qquad
+  \bm r=\bm r_1-\bm r_2,
+  \qquad
+  \bm R=\frac{m_1\bm r_1+m_2\bm r_2}{M}.
+  \label{eq:QM-C02-S03-coordinate-definitions}
+\end{equation}
+解这个线性方程组可得逆变换
+\begin{equation}
+  \boxed{
+  \bm r_1=\bm R+\frac{m_2}{M}\bm r,
+  \qquad
+  \bm r_2=\bm R-\frac{m_1}{M}\bm r.}
+  \label{eq:QM-C02-S03-inverse-transform}
+\end{equation}
+例如 $m_1=3m,m_2=m$ 时，$\bm r_1=\bm R+\bm r/4$、$\bm r_2=\bm R-3\bm r/4$；较重的粒子离质心较近。
+
+若把整个系统平移同一向量 $\bm a$，则
+\begin{equation}
+  \bm r_1\mapsto\bm r_1+\bm a,
+  \quad
+  \bm r_2\mapsto\bm r_2+\bm a,
+  \quad
+  \bm R\mapsto\bm R+\bm a,
+  \quad
+  \bm r\mapsto\bm r.
+  \label{eq:QM-C02-S03-translation}
+\end{equation}
+因此 $V(\bm r)$ 对整体平移不敏感。能够分离质心运动的关键不是“势能不含 $\dot{\bm r}$”，而是势能不含 $\bm R$；前者对普通位置势本来就成立，后者才表达系统的平移不变性。
+
+\notetopic{QM-C02-S03-T02}{动能分离与约化质量}
+
+原 Lagrangian 为
+\begin{equation}
+  \mathcal L
+  =\frac12m_1|\dot{\bm r}_1|^2
+  +\frac12m_2|\dot{\bm r}_2|^2
+  -V(\bm r_1-\bm r_2).
+  \label{eq:QM-C02-S03-original-lagrangian}
+\end{equation}
+对式~\eqref{eq:QM-C02-S03-inverse-transform} 求时间导数：
+\begin{equation}
+  \dot{\bm r}_1=\dot{\bm R}+\frac{m_2}{M}\dot{\bm r},
+  \qquad
+  \dot{\bm r}_2=\dot{\bm R}-\frac{m_1}{M}\dot{\bm r}.
+  \label{eq:QM-C02-S03-velocity-transform}
+\end{equation}
+代入动能并展开，第一部分为
+\begin{align}
+  \frac12m_1|\dot{\bm r}_1|^2
+  ={}&\frac12m_1|\dot{\bm R}|^2
+  +\frac{m_1m_2}{M}\dot{\bm R}\cdot\dot{\bm r}
+  +\frac12m_1\frac{m_2^2}{M^2}|\dot{\bm r}|^2,
+  \label{eq:QM-C02-S03-first-kinetic-expansion}
+\end{align}
+第二部分为
+\begin{align}
+  \frac12m_2|\dot{\bm r}_2|^2
+  ={}&\frac12m_2|\dot{\bm R}|^2
+  -\frac{m_1m_2}{M}\dot{\bm R}\cdot\dot{\bm r}
+  +\frac12m_2\frac{m_1^2}{M^2}|\dot{\bm r}|^2.
+  \label{eq:QM-C02-S03-second-kinetic-expansion}
+\end{align}
+交叉项恰好抵消。相对速度平方项的系数满足
+\begin{align}
+  m_1\frac{m_2^2}{M^2}+m_2\frac{m_1^2}{M^2}
+  &=\frac{m_1m_2(m_1+m_2)}{M^2}
+   =\frac{m_1m_2}{m_1+m_2}.
+  \label{eq:QM-C02-S03-reduced-mass-coefficient}
+\end{align}
+定义
+\begin{equation}
+  \boxed{
+  \mu=\frac{m_1m_2}{m_1+m_2},
+  \qquad
+  \frac1\mu=\frac1{m_1}+\frac1{m_2}.}
+  \label{eq:QM-C02-S03-reduced-mass}
+\end{equation}
+于是
+\begin{equation}
+  \boxed{
+  \mathcal L
+  =\frac12M|\dot{\bm R}|^2
+  +\frac12\mu|\dot{\bm r}|^2
+  -V(\bm r).}
+  \label{eq:QM-C02-S03-separated-lagrangian}
+\end{equation}
+教材练习 2.3.1 要求完成这一变量代换，完整计算见\relatedexercise{QM-C02-S03-E01}{教材练习 2.3.1}。
+
+\notetopic{QM-C02-S03-T03}{两个互不耦合的单粒子问题}
+
+式~\eqref{eq:QM-C02-S03-separated-lagrangian} 可以写成
+\begin{equation}
+  \mathcal L
+  =\underbrace{\frac12M|\dot{\bm R}|^2}_{\mathcal L_{\mathrm{CM}}}
+  +\underbrace{\left(\frac12\mu|\dot{\bm r}|^2-V(\bm r)\right)}_{\mathcal L_{\mathrm{rel}}}.
+  \label{eq:QM-C02-S03-lagrangian-parts}
+\end{equation}
+质心坐标不显含于 $\mathcal L$，所以它是循环坐标，其共轭动量为
+\begin{equation}
+  \boxed{
+  \bm P=\frac{\partial\mathcal L}{\partial\dot{\bm R}}
+  =M\dot{\bm R}
+  =m_1\dot{\bm r}_1+m_2\dot{\bm r}_2,}
+  \qquad
+  \dot{\bm P}=0.
+  \label{eq:QM-C02-S03-total-momentum}
+\end{equation}
+这正是系统总动量。相对坐标的共轭动量和两组运动方程为
+\begin{equation}
+  \boxed{
+  \bm p=\mu\dot{\bm r},
+  \qquad
+  M\ddot{\bm R}=0,
+  \qquad
+  \mu\ddot{\bm r}=-\nabla_{\bm r}V(\bm r).}
+  \label{eq:QM-C02-S03-equations-of-motion}
+\end{equation}
+因此第一个等效粒子质量为 $M$，做自由质心运动；第二个等效粒子质量为 $\mu$，在势 $V(\bm r)$ 中运动。它们只是对原坐标的等效描述，并不表示系统中真的新增了两个粒子。
+
+在 center-of-mass frame（质心参考系）中取 $\bm R=0$、$\dot{\bm R}=0$，则
+\begin{equation}
+  \dot{\bm r}_1=\frac{m_2}{M}\dot{\bm r},
+  \qquad
+  \dot{\bm r}_2=-\frac{m_1}{M}\dot{\bm r},
+  \label{eq:QM-C02-S03-cm-velocities}
+\end{equation}
+并且
+\begin{equation}
+  m_1\dot{\bm r}_1=\mu\dot{\bm r}=\bm p,
+  \qquad
+  m_2\dot{\bm r}_2=-\mu\dot{\bm r}=-\bm p.
+  \label{eq:QM-C02-S03-cm-momenta}
+\end{equation}
+研究内部运动时可以忽略平凡的质心匀速运动，但这不表示质心运动不存在；只是在质心参考系中把它消去了。
+
+\notetopic{QM-C02-S03-T04}{从 Newton 方程理解约化质量}
+
+设粒子 1 受到的内部力为 $\bm F$，粒子 2 受到的内部力为 $-\bm F$。由
+\begin{equation}
+  m_1\ddot{\bm r}_1=\bm F,
+  \qquad
+  m_2\ddot{\bm r}_2=-\bm F
+  \label{eq:QM-C02-S03-newton-pair}
+\end{equation}
+可得
+\begin{align}
+  \ddot{\bm r}
+  &=\ddot{\bm r}_1-\ddot{\bm r}_2
+    =\left(\frac1{m_1}+\frac1{m_2}\right)\bm F
+    =\frac{\bm F}{\mu},
+\end{align}
+即
+\begin{equation}
+  \boxed{\mu\ddot{\bm r}=\bm F.}
+  \label{eq:QM-C02-S03-newton-reduced-mass}
+\end{equation}
+若 $\bm F=-\nabla_{\bm r}V$，这正是式~\eqref{eq:QM-C02-S03-equations-of-motion} 的相对运动方程。约化质量把两个物体共同改变相对距离的效果压缩进一个等效惯性参数中。因为
+\[
+  \frac1\mu=\frac1{m_1}+\frac1{m_2},
+\]
+所以 $\mu<\min(m_1,m_2)$。两个常用极限是
+\begin{equation}
+  m_2\gg m_1\Longrightarrow\mu\simeq m_1,
+  \qquad
+  m_1=m_2=m\Longrightarrow\mu=\frac m2.
+  \label{eq:QM-C02-S03-reduced-mass-limits}
+\end{equation}
+第一种情形表示重粒子近似固定，轻粒子近似以自身质量在势中运动；第二种情形中两粒子的加速度大小相等、方向相反，因此相对加速度是任一粒子加速度的两倍。$\mu=m/2$ 仍只是相对运动的等效质量，不是新的真实粒子。
+
+\notetopic{QM-C02-S03-T05}{分离成立的条件}
+
+坐标变换式~\eqref{eq:QM-C02-S03-coordinate-definitions} 总可以进行，但动力学分离还依赖模型结构：
+\begin{itemize}[leftmargin=*]
+  \item 内部相互作用只依赖 $\bm r_1-\bm r_2$，因而不显含 $\bm R$；
+  \item 系统没有把 $\bm R$ 与 $\bm r$ 重新耦合的一般外势；
+  \item 质心与相对坐标的动能交叉项因质量加权的质心定义而抵消。
+\end{itemize}
+例如，只作用于粒子 1 的外势会变为
+\begin{equation}
+  U(\bm r_1)
+  =U\left(\bm R+\frac{m_2}{M}\bm r\right),
+  \label{eq:QM-C02-S03-external-potential}
+\end{equation}
+一般同时依赖 $\bm R$ 与 $\bm r$，从而破坏分离。这里必须保留“一般”二字：特殊外势仍可能分解成纯质心项与纯相对项。另外，二体分离只要求 $V=V(\bm r)$；更强的 central potential 条件 $V=V(|\bm r|)$ 还会进一步带来相对运动的旋转对称性和角动量守恒。
+
+\subsection{适用条件与常见误区}
+
+\begin{itemize}[leftmargin=*]
+  \item 约化质量是相对坐标的等效惯性参数，不是任何一个真实粒子的质量。
+  \item $M\ddot{\bm R}=0$ 表示质心做匀速运动，不表示质心坐标可以在所有参考系中直接删除。
+  \item 势能不含 $\dot{\bm r}$ 不是分离的理由；关键是 $V$ 不含 $\bm R$。
+  \item 改变量本身不减少自由度，而是把原先耦合的自由度改写成更合适的独立组合。
+  \item 一般外势会耦合 $\bm R$ 与 $\bm r$；是否仍能分离必须代入具体势后判断。
+\end{itemize}
+
+\subsection{一分钟回顾}
+
+质量加权的质心坐标与相对坐标把二体 Lagrangian 对角化为质心部分和相对部分。质心以总质量 $M$ 做自由匀速运动，总动量守恒；相对坐标则等价于一个质量为 $\mu=m_1m_2/(m_1+m_2)$ 的粒子在势 $V(\bm r)$ 中运动。约化质量既可从动能展开得到，也可从两条 Newton 方程相减得到。真正保证分离的是平移不变的内部势与无一般外势，而不是简单地把二体问题“少算一个粒子”。
