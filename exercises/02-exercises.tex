@@ -358,3 +358,39 @@ $\lambda$ 是绳子张力的大小。$V=0$ 只表示没有写入普通势能的�
 \end{checkedsolution}
 
 \textbf{检查点：}交叉项的抵消不是偶然删项，而是来自质心坐标中的质量权重。最终式中质心项的质量必须是 $m_1+m_2$，不能误写成 $m_1+m_1$；相对项的系数则是约化质量而非总质量。
+
+\section{第 2.4 节自编检验题与订正}
+\label{exercise-set:QM-C02-S04}
+
+\exercisemeta
+  {QM-C02-S04-EX}
+  {2026-08-30}
+  {Shankar，第 2 章 \S 2.4；教材本节无正式例题或习题}
+  {完成一道 self-contained check example（自编检验题）}
+  {平稳条件、局部运动规律、路径振幅与经典极限已核对}
+
+\exercisequestion{QM-C02-S04-E01}{自编检验题 1：从平稳作用量到经典路径}
+
+\textbf{对应知识点：}
+\begin{itemize}[leftmargin=*]
+  \item \relatedtopic{QM-C02-S04-T01}{全局变分不等于粒子预知未来}；
+  \item \relatedtopic{QM-C02-S04-T02}{Stationary 不等于 minimum}；
+  \item \relatedtopic{QM-C02-S04-T03}{路径积分预告与经典路径的显现}。
+\end{itemize}
+
+\textbf{题意。}回答下列概念问题：
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+  \item $\delta S=0$ 是否表示经典路径的作用量一定小于所有邻近路径？
+  \item 固定未来终点是否表示粒子必须预知未来？
+  \item 路径积分中各路径的复振幅模长相同，为什么经典极限仍突出平稳作用量路径？
+\end{enumerate}
+
+\begin{checkedsolution}
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+  \item 不是。$\delta S=0$ 只表示一阶变分为零，作用量可能在该路径处取得局部最小、局部最大或鞍点；还需检查更高阶变分才能进一步分类。
+  \item 不表示。未来终点是边值问题中由求解者施加的条件。变分条件导出的 Euler--Lagrange 方程是局部微分方程，也可以结合当前位置和当前速度作为初值向未来演化，无需粒子获得未来信息。
+  \item 相同的是普通实作用量下 $e^{iS[x]/\hbar}$ 的模长，不是相位或概率。非平稳路径附近的微小路径改变会造成 $O(\eta)$ 的作用量变化；当 $S/\hbar\gg1$ 时，相位迅速变化，邻近贡献大多相消。经典路径满足 $\delta S=0$，其附近的作用量差从 $O(\eta^2)$ 开始，相位变化较慢，因而一簇邻近路径的振幅能够更稳定地相干叠加。
+\end{enumerate}
+\end{checkedsolution}
+
+\textbf{检查点：}路径积分中的“所有路径”讨论的是复振幅求和。经典路径的出现依赖 stationary phase，而不是量子理论先把其他路径删除。

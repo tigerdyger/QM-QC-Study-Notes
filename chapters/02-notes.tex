@@ -794,3 +794,134 @@ Euler--Lagrange 方程右侧为零，不表示系统没有外力；它表示当�
 \subsection{一分钟回顾}
 
 质量加权的质心坐标与相对坐标把二体 Lagrangian 对角化为质心部分和相对部分。质心以总质量 $M$ 做自由匀速运动，总动量守恒；相对坐标则等价于一个质量为 $\mu=m_1m_2/(m_1+m_2)$ 的粒子在势 $V(\bm r)$ 中运动。约化质量既可从动能展开得到，也可从两条 Newton 方程相减得到。真正保证分离的是平移不变的内部势与无一般外势，而不是简单地把二体问题“少算一个粒子”。
+
+\section{第 2.4 节：粒子有多聪明？}
+\label{section:QM-C02-S04}
+
+\studymeta
+  {QM-C02-S04}
+  {2026-08-30}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 2 章 \S 2.4；印刷页 p.~86；PDF p.~99}
+  {正文已核对；本节无教材例题或习题，配套题明确标为自编检验题}
+
+\subsection{本节主线}
+
+作用量以整条路径为输入，固定起点与终点后再要求 $\delta S=0$，形式上似乎暗示粒子必须预先知道终点、比较所有路径后才选择运动方式。本节指出这种 teleological（目的论式）理解是错觉：全局的变分表述会导出局部 Euler--Lagrange 方程，经典粒子只需服从当前时刻的局部运动规律。教材随后预告 path integral（路径积分）：量子传播对所有路径的复振幅求和，而经典路径在适当极限中由 stationary phase（平稳相位）机制显现。
+
+\notetopic{QM-C02-S04-T01}{全局变分不等于粒子预知未来}
+
+对固定端点 $x(t_i)=x_i$、$x(t_f)=x_f$，作用量为
+\begin{equation}
+  S[x]=\int_{t_i}^{t_f}
+  \mathcal L(x,\dot x,t)\,dt.
+  \label{eq:QM-C02-S04-action}
+\end{equation}
+允许变分满足
+\[
+  x(t)\mapsto x(t)+\epsilon\eta(t),
+  \qquad
+  \eta(t_i)=\eta(t_f)=0.
+\]
+第 2.1 节的推导给出
+\begin{equation}
+  \delta S
+  =\int_{t_i}^{t_f}
+  \left[
+    \frac{\partial\mathcal L}{\partial x}
+    -\frac{d}{dt}
+      \left(\frac{\partial\mathcal L}{\partial\dot x}\right)
+  \right]\eta(t)\,dt.
+  \label{eq:QM-C02-S04-first-variation}
+\end{equation}
+由于该式对所有允许的 $\eta(t)$ 都为零，得到局部方程
+\begin{equation}
+  \boxed{
+  \frac{d}{dt}
+  \left(\frac{\partial\mathcal L}{\partial\dot x}\right)
+  -\frac{\partial\mathcal L}{\partial x}=0.}
+  \label{eq:QM-C02-S04-euler-lagrange}
+\end{equation}
+因此，“对整条路径取变分”是描述运动规律的数学形式，不表示粒子在物理上逐条计算候选路径。
+
+需要区分两种求解方式：
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Initial-value problem（初值问题）：}给定 $x(t_i)$ 与 $\dot x(t_i)$，用局部微分方程向未来演化；
+  \item \textbf{Boundary-value problem（边值问题）：}给定 $x(t_i)$ 与 $x(t_f)$，寻找满足这些边界条件的平稳路径。
+\end{itemize}
+未来终点是求解者对边值问题施加的条件，用于从可能的运动中选出符合边界的轨迹；它不是粒子获得的未来信息。对
+\begin{equation}
+  \mathcal L=\frac12m\dot x^2-V(x,t)
+  \label{eq:QM-C02-S04-standard-lagrangian}
+\end{equation}
+有
+\begin{equation}
+  \boxed{
+  m\ddot x=-\frac{\partial V(x,t)}{\partial x}.}
+  \label{eq:QM-C02-S04-local-newton}
+\end{equation}
+当前加速度只由当前的 $x,t$ 和该处势能梯度决定；在更一般的速度依赖 Lagrangian 中，局部运动还可能依赖当前速度。
+
+\notetopic{QM-C02-S04-T02}{Stationary 不等于 minimum}
+
+教材沿用 principle of least action（最小作用量原理）的传统名称，并在本节使用“选择最小作用量路径”的直观措辞。严格条件仍然是
+\begin{equation}
+  \boxed{\delta S=0,}
+  \label{eq:QM-C02-S04-stationary-action}
+\end{equation}
+即作用量在经典路径处 stationary（平稳）。它可能是局部最小值、局部最大值或 saddle point（鞍点）；仅有一阶变分为零不能判断二阶性质。因此本节的 least/minimize 应理解为传统而宽松的表述。
+
+教材还说粒子只需探测附近的势并沿变化最快的方向加速。对 Cartesian coordinates 下的普通保守系统
+\[
+  \mathcal L=\frac12m|\dot{\bm r}|^2-V(\bm r,t)
+\]
+确有 $m\ddot{\bm r}=-\nabla V$。但电磁场、曲线坐标、约束或速度依赖相互作用中的局部 Euler--Lagrange 方程不一定能简化为这一形式。
+
+\notetopic{QM-C02-S04-T03}{路径积分预告与经典路径的显现}
+
+本节只作概念预告；后续 Feynman path integral 的标准形式为
+\begin{equation}
+  K(x_f,t_f;x_i,t_i)
+  =\int\mathcal D x(t)\,
+  \exp\left(\frac{i}{\hbar}S[x]\right).
+  \label{eq:QM-C02-S04-path-integral}
+\end{equation}
+$K$ 是从初始时空点传播到末时空点的 quantum amplitude（量子振幅），$\int\mathcal D x(t)$ 形式上表示对所有连接端点的路径求和。对普通实作用量，单条路径的因子满足
+\begin{equation}
+  \left|
+    \exp\left(\frac{i}{\hbar}S[x]\right)
+  \right|=1,
+  \label{eq:QM-C02-S04-equal-modulus}
+\end{equation}
+所以教材所说的 equal weight 应理解为相同模长的复振幅，而不是各路径具有相同经典概率；不同路径的相位 $S[x]/\hbar$ 仍然不同。
+
+在经典路径 $x_{\mathrm{cl}}$ 附近令 $x=x_{\mathrm{cl}}+\eta$，有泛函 Taylor 展开
+\begin{equation}
+  S[x_{\mathrm{cl}}+\eta]
+  =S[x_{\mathrm{cl}}]
+  +\delta S
+  +\frac12\delta^2S+\cdots.
+  \label{eq:QM-C02-S04-action-expansion}
+\end{equation}
+由于 $\delta S[x_{\mathrm{cl}}]=0$，经典路径附近的作用量差从 $O(\eta^2)$ 开始，相位变化较慢，邻近路径的振幅较容易相干叠加。非平稳路径附近一般存在 $O(\eta)$ 的作用量变化；当典型作用量满足
+\begin{equation}
+  \frac{S}{\hbar}\gg1
+  \label{eq:QM-C02-S04-classical-limit}
+\end{equation}
+时，邻近路径的相位会快速改变，其贡献大多相消。因而经典极限中起主要作用的不是一条孤立路径，而是平稳作用量路径附近的一簇相干贡献。
+
+“粒子同时沿所有路径运动”是对路径积分计算形式的启发式说法。路径积分首先是一种计算量子传播振幅的形式体系，不能未经进一步解释就把每条积分路径视为一次可观测的经典轨迹。相关概念检查见\relatedexercise{QM-C02-S04-E01}{自编检验题 1}。
+
+\subsection{适用条件与常见误区}
+
+\begin{itemize}[leftmargin=*]
+  \item 固定未来终点是边值问题的数学条件，不代表粒子拥有未来信息。
+  \item $\delta S=0$ 是平稳条件，不能自动加强为全局最小值。
+  \item equal weight 不等于 equal probability；路径积分相加的是带不同相位的复振幅。
+  \item 非平稳路径的强烈相消依赖经典极限 $S/\hbar\gg1$；量子尺度下不能直接忽略多路径干涉。
+  \item 式~\eqref{eq:QM-C02-S04-path-integral} 在此只是后续知识的方向性预告，路径测度等严格问题留待正式学习路径积分时处理。
+\end{itemize}
+
+\subsection{一分钟回顾}
+
+平稳作用量以整条路径表述问题，却导出只依赖局部状态的 Euler--Lagrange 方程，因此不要求经典粒子预知未来。严格条件是 stationary action，而不一定是 minimum action。量子路径积分对所有路径的复振幅求和；不同相位使非平稳路径在经典极限中大多相消，而平稳作用量路径附近的贡献能够相干叠加，从而显现经典轨迹。
