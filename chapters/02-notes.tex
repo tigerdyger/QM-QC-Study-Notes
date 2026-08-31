@@ -925,3 +925,298 @@ $K$ 是从初始时空点传播到末时空点的 quantum amplitude（量子振�
 \subsection{一分钟回顾}
 
 平稳作用量以整条路径表述问题，却导出只依赖局部状态的 Euler--Lagrange 方程，因此不要求经典粒子预知未来。严格条件是 stationary action，而不一定是 minimum action。量子路径积分对所有路径的复振幅求和；不同相位使非平稳路径在经典极限中大多相消，而平稳作用量路径附近的贡献能够相干叠加，从而显现经典轨迹。
+
+\section{第 2.5 节：Hamilton 形式}
+\label{section:QM-C02-S05}
+
+\studymeta
+  {QM-C02-S05}
+  {2026-08-31}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 2 章 \S 2.5；印刷页 pp.~86--90；PDF pp.~99--103}
+  {正文、教材讲解例题、练习 2.5.1--2.5.4 与收口检查已核对}
+
+\subsection{本节主线}
+
+Lagrange 形式把广义坐标 $q_i$ 与广义速度 $\dot q_i$ 作为基本变量，再由
+\[
+  p_i=\frac{\partial\mathcal L}{\partial\dot q_i}
+\]
+导出正则动量。Hamilton 形式对速度变量作 Legendre transformation（Legendre 变换），改用 $(q_i,p_i)$ 描述同一动力学：$n$ 条二阶 Euler--Lagrange 方程被改写为 $2n$ 条一阶 Hamilton 正则方程。系统状态因而成为 $2n$ 维 phase space（相空间）中的一点，而 Hamiltonian 决定该点如何流动。
+
+需要分开判断两个命题：Hamiltonian 是否等于通常的机械能，以及 Hamiltonian 是否守恒。前者依赖 Lagrangian 对速度的结构，后者依赖是否显含时间；两者不能混为一谈。
+
+\notetopic{QM-C02-S05-T01}{从构型空间到相空间}
+
+对 $n$ 个广义坐标，Lagrange 形式使用
+\begin{equation}
+  \mathcal L=\mathcal L(q_1,\ldots,q_n,
+  \dot q_1,\ldots,\dot q_n,t),
+  \label{eq:QM-C02-S05-lagrangian-variables}
+\end{equation}
+其中 $q_i,\dot q_i$ 是独立变量，正则动量由
+\begin{equation}
+  p_i=\frac{\partial\mathcal L}{\partial\dot q_i}
+  \label{eq:QM-C02-S05-canonical-momentum}
+\end{equation}
+定义。Hamilton 形式则使用
+\begin{equation}
+  \mathcal H=\mathcal H(q_1,\ldots,q_n,p_1,\ldots,p_n,t),
+  \label{eq:QM-C02-S05-hamiltonian-variables}
+\end{equation}
+并由运动方程求出 $\dot q_i,\dot p_i$。
+
+只给构型空间中的位置 $(q_1,\ldots,q_n)$，一般不能确定下一时刻的运动，因为同一位置可以具有不同速度。相空间坐标
+\begin{equation}
+  (q_1,\ldots,q_n,p_1,\ldots,p_n)
+  \label{eq:QM-C02-S05-phase-point}
+\end{equation}
+在 Legendre 变换可逆时等价于 $(q_i,\dot q_i)$，给出了完整的瞬时状态。$n$ 条二阶方程需要 $q_i(t_0),\dot q_i(t_0)$ 共 $2n$ 个初始数据；$2n$ 条一阶方程需要 $q_i(t_0),p_i(t_0)$，初始数据总数不变。
+
+正则动量是式~\eqref{eq:QM-C02-S05-canonical-momentum} 定义的共轭变量，不应预设为 $m_i\dot q_i$。它只在普通 Cartesian kinetic energy 等特定情形下等于相应机械动量；速度依赖相互作用会改变二者关系。
+
+\notetopic{QM-C02-S05-T02}{Legendre 变换及其可逆条件}
+
+先考虑单变量函数 $f(x)$。定义新变量与新函数
+\begin{equation}
+  u=f'(x),
+  \qquad
+  g(u)=x(u)u-f(x(u)).
+  \label{eq:QM-C02-S05-legendre-one-variable}
+\end{equation}
+若 $u=f'(x)$ 可以局部反解为 $x=x(u)$，则
+\begin{align}
+  \frac{\dd g}{\dd u}
+  &=x+u\frac{\dd x}{\dd u}
+    -f'(x)\frac{\dd x}{\dd u}
+    =x.
+  \label{eq:QM-C02-S05-legendre-derivative}
+\end{align}
+因为 $f'(x)=u$，含 $\dd x/\dd u$ 的两项正好抵消。Legendre 变换以切线斜率 $u$ 代替切点坐标 $x$ 描述同一函数；$g(u)$ 等于该切线纵截距的相反数。
+
+例如，对
+\[
+  f(x)=\frac12ax^2,
+  \qquad a\neq0,
+\]
+有
+\begin{equation}
+  u=ax,
+  \qquad
+  x=\frac ua,
+  \qquad
+  g(u)=\frac{u^2}{2a}.
+  \label{eq:QM-C02-S05-quadratic-legendre}
+\end{equation}
+
+Hamiltonian 是只对所有速度变量进行的多变量 Legendre 变换：
+\begin{equation}
+  \boxed{
+  \mathcal H(q,p,t)
+  =\sum_{i=1}^{n}p_i\dot q_i-\mathcal L(q,\dot q,t),
+  \qquad
+  p_i=\frac{\partial\mathcal L}{\partial\dot q_i}.}
+  \label{eq:QM-C02-S05-hamiltonian-definition}
+\end{equation}
+定义完成后，必须把每个 $\dot q_i$ 消去，写成 $\dot q_i(q,p,t)$；否则所得表达式还不是只以 $(q,p,t)$ 为独立变量的普通 Hamiltonian。
+
+\dialoguesupplement{教材没有在此展开变换的正则性条件。严格地说，需要速度 Hessian matrix
+\begin{equation}
+  W_{ij}=\frac{\partial^2\mathcal L}
+  {\partial\dot q_i\partial\dot q_j}
+  =\frac{\partial p_i}{\partial\dot q_j}
+  \label{eq:QM-C02-S05-velocity-hessian}
+\end{equation}
+在所研究区域可逆。局部充分条件是 $\det W\neq0$。若 $\det W=0$，映射 $\dot q\mapsto p$ 可能无法反解，系统需要带约束的 Hamilton 形式，不能直接套用本节普通推导。}
+
+例如
+\begin{equation}
+  \mathcal L=a(q)\dot q-V(q)
+  \label{eq:QM-C02-S05-singular-lagrangian}
+\end{equation}
+给出
+\[
+  p=a(q),
+  \qquad
+  \frac{\partial p}{\partial\dot q}=0.
+\]
+$p$ 完全不含 $\dot q$，所有速度被映到同一个动量值，因而不能由 $(q,p)$ 唯一恢复 $\dot q$。
+
+\notetopic{QM-C02-S05-T03}{Hamilton 正则方程的完整推导}
+
+由 $\mathcal L=\mathcal L(q,\dot q,t)$，其全微分为
+\begin{equation}
+  \dd\mathcal L
+  =\sum_i\frac{\partial\mathcal L}{\partial q_i}\dd q_i
+  +\sum_i p_i\dd\dot q_i
+  +\frac{\partial\mathcal L}{\partial t}\dd t.
+  \label{eq:QM-C02-S05-differential-lagrangian}
+\end{equation}
+对式~\eqref{eq:QM-C02-S05-hamiltonian-definition} 求全微分：
+\begin{align}
+  \dd\mathcal H
+  &=\sum_i\dot q_i\dd p_i
+    +\sum_i p_i\dd\dot q_i-\dd\mathcal L \notag\\
+  &=\sum_i\dot q_i\dd p_i
+    -\sum_i\frac{\partial\mathcal L}{\partial q_i}\dd q_i
+    -\frac{\partial\mathcal L}{\partial t}\dd t.
+  \label{eq:QM-C02-S05-differential-hamiltonian-first}
+\end{align}
+第二行中两组 $\sum_i p_i\dd\dot q_i$ 完全抵消。这正是 Legendre 变换把速度换成动量后，不再留下 $\dd\dot q_i$ 项的原因。
+
+Euler--Lagrange 方程与式~\eqref{eq:QM-C02-S05-canonical-momentum} 给出
+\begin{equation}
+  \frac{\partial\mathcal L}{\partial q_i}
+  =\frac{\dd}{\dd t}
+    \left(\frac{\partial\mathcal L}{\partial\dot q_i}\right)
+  =\dot p_i.
+  \label{eq:QM-C02-S05-el-momentum}
+\end{equation}
+因此
+\begin{equation}
+  \dd\mathcal H
+  =\sum_i\dot q_i\dd p_i
+  -\sum_i\dot p_i\dd q_i
+  -\frac{\partial\mathcal L}{\partial t}\dd t.
+  \label{eq:QM-C02-S05-differential-hamiltonian-second}
+\end{equation}
+另一方面，$\mathcal H=\mathcal H(q,p,t)$ 的全微分是
+\begin{equation}
+  \dd\mathcal H
+  =\sum_i\frac{\partial\mathcal H}{\partial q_i}\dd q_i
+  +\sum_i\frac{\partial\mathcal H}{\partial p_i}\dd p_i
+  +\frac{\partial\mathcal H}{\partial t}\dd t.
+  \label{eq:QM-C02-S05-differential-hamiltonian-general}
+\end{equation}
+逐项比较独立微分 $\dd q_i,\dd p_i,\dd t$ 的系数，得到
+\begin{equation}
+  \boxed{
+  \dot q_i=\frac{\partial\mathcal H}{\partial p_i},
+  \qquad
+  \dot p_i=-\frac{\partial\mathcal H}{\partial q_i},}
+  \label{eq:QM-C02-S05-hamilton-equations}
+\end{equation}
+以及
+\begin{equation}
+  \boxed{
+  \frac{\partial\mathcal H}{\partial t}
+  =-\frac{\partial\mathcal L}{\partial t}.}
+  \label{eq:QM-C02-S05-explicit-time}
+\end{equation}
+第一条正则方程从动量恢复速度，第二条给出动量的演化。若 Legendre 变换正则，这 $2n$ 条一阶方程与原来的 $n$ 条二阶 Euler--Lagrange 方程等价。
+
+若 $\mathcal H$ 不显含某个 $q_k$，则
+\begin{equation}
+  \dot p_k=-\frac{\partial\mathcal H}{\partial q_k}=0,
+  \label{eq:QM-C02-S05-cyclic-hamiltonian}
+\end{equation}
+所以对应正则动量守恒。这是循环坐标在 Hamilton 形式中的直接表达。
+
+\notetopic{QM-C02-S05-T04}{Hamiltonian、能量与守恒必须分开判断}
+
+考虑 standard mechanical Lagrangian
+\begin{equation}
+  \mathcal L(q,\dot q,t)=T(q,\dot q)-V(q,t),
+  \label{eq:QM-C02-S05-standard-mechanical-lagrangian}
+\end{equation}
+其中 $V$ 不依赖速度，并且 $T$ 关于所有 $\dot q_i$ 是二次齐次函数，例如
+\begin{equation}
+  T=\frac12\sum_{i,j}M_{ij}(q)\dot q_i\dot q_j.
+  \label{eq:QM-C02-S05-quadratic-kinetic-energy}
+\end{equation}
+由 Euler 齐次函数定理，
+\begin{equation}
+  \sum_i p_i\dot q_i
+  =\sum_i\frac{\partial T}{\partial\dot q_i}\dot q_i
+  =2T.
+  \label{eq:QM-C02-S05-euler-homogeneous}
+\end{equation}
+所以
+\begin{equation}
+  \boxed{
+  \mathcal H=2T-(T-V)=T+V.}
+  \label{eq:QM-C02-S05-hamiltonian-energy}
+\end{equation}
+$M_{ij}$ 可以依赖坐标，因此该结论也适用于普通极坐标、球坐标等曲线坐标中的标准动能。若 Lagrangian 含一般的速度依赖相互作用，不能未经计算就断言 $\mathcal H=T+V$；必须从定义式~\eqref{eq:QM-C02-S05-hamiltonian-definition} 重新计算。
+
+沿实际轨迹对 $\mathcal H$ 求时间导数，并使用正则方程：
+\begin{align}
+  \frac{\dd\mathcal H}{\dd t}
+  &=\sum_i\frac{\partial\mathcal H}{\partial q_i}\dot q_i
+    +\sum_i\frac{\partial\mathcal H}{\partial p_i}\dot p_i
+    +\frac{\partial\mathcal H}{\partial t} \notag\\
+  &=\sum_i(-\dot p_i)\dot q_i
+    +\sum_i\dot q_i\dot p_i
+    +\frac{\partial\mathcal H}{\partial t}
+   =\frac{\partial\mathcal H}{\partial t}
+   =-\frac{\partial\mathcal L}{\partial t}.
+  \label{eq:QM-C02-S05-hamiltonian-time-derivative}
+\end{align}
+因此 $\partial\mathcal L/\partial t=0$ 保证 Hamiltonian 守恒，但只有在另行确认 $\mathcal H$ 表示物理能量后，才能把它直接称为能量守恒。反过来，即使式~\eqref{eq:QM-C02-S05-hamiltonian-energy} 成立，若 $V(q,t)$ 显含时间，$\mathcal H=T+V$ 一般仍不守恒。
+
+\notetopic{QM-C02-S05-T05}{简谐振子与相空间轨迹}
+
+一维简谐振子的 Lagrangian 是
+\begin{equation}
+  \mathcal L=\frac12m\dot x^2-\frac12kx^2.
+  \label{eq:QM-C02-S05-oscillator-lagrangian}
+\end{equation}
+由 $p=m\dot x$、$\dot x=p/m$ 得
+\begin{equation}
+  \boxed{
+  \mathcal H(x,p)=\frac{p^2}{2m}+\frac12kx^2.}
+  \label{eq:QM-C02-S05-oscillator-hamiltonian}
+\end{equation}
+Hamilton 正则方程为
+\begin{equation}
+  \dot x=\frac pm,
+  \qquad
+  \dot p=-kx.
+  \label{eq:QM-C02-S05-oscillator-hamilton-equations}
+\end{equation}
+消去 $p$ 就恢复 $m\ddot x=-kx$。在相空间中，状态 $(x,p)$ 的瞬时流向是
+\[
+  (\dot x,\dot p)=\left(\frac pm,-kx\right).
+\]
+固定能量 $E$ 的轨迹满足
+\begin{equation}
+  \boxed{
+  \frac{x^2}{2E/k}+\frac{p^2}{2mE}=1,}
+  \label{eq:QM-C02-S05-oscillator-ellipse}
+\end{equation}
+是一条半轴平方为 $a^2=2E/k$、$b^2=2mE$ 的椭圆。椭圆上的不同点是相同能量下的不同运动状态，而不同椭圆对应不同能量。
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.92]
+  \draw[->] (-3.4,0) -- (3.6,0) node[right] {$x$};
+  \draw[->] (0,-2.25) -- (0,2.35) node[above] {$p$};
+  \draw[thick,noteBlue] (0,0) ellipse (2.7 and 1.55);
+  \draw[->,thick,accentRed] (2.7,0.2) -- (2.7,-0.55);
+  \draw[->,thick,accentRed] (-0.45,1.55) -- (0.55,1.55);
+  \draw[->,thick,accentRed] (-2.7,-0.2) -- (-2.7,0.55);
+  \draw[->,thick,accentRed] (0.45,-1.55) -- (-0.55,-1.55);
+  \node[noteBlue,fill=white,inner sep=1pt] at (1.65,1.23)
+    {$\mathcal H(x,p)=E$};
+  \node[below right] at (2.7,0) {$(a,0)$};
+  \node[left] at (0,1.55) {$(0,b)$};
+\end{tikzpicture}
+
+\textit{简谐振子的相空间能量椭圆。红色箭头由 Hamilton 正则方程决定；在右端点 $(a,0)$，$\dot p=-ka<0$，轨迹向下。}
+\end{center}
+
+完整推导见习题部分的\hyperref[exercise:QM-C02-S05-E00]{教材讲解例题}；练习 2.5.1--2.5.4 紧随其后。
+
+\subsection{适用条件与常见误区}
+
+\begin{itemize}[leftmargin=*]
+  \item Hamiltonian 的定义是对速度变量的 Legendre 变换，不是把 $\mathcal L=T-V$ 中的负号机械改为正号。
+  \item $\mathcal H$ 的最终表达式必须只含 $(q,p,t)$，不能遗留尚未消去的 $\dot q_i$。
+  \item 普通 Hamilton 形式要求 $\dot q\mapsto p$ 可逆；速度 Hessian 奇异时不能直接套用本节推导。
+  \item $\mathcal H=T+V$ 与 $\dd\mathcal H/\dd t=0$ 是两个不同命题，分别检查速度结构与显式时间依赖。
+  \item 正则动量不一定等于机械动量；具体关系必须由 $p_i=\partial\mathcal L/\partial\dot q_i$ 计算。
+  \item 二体系统总动量守恒只保证质心静止或匀速直线运动，不表示两个粒子之间没有相对运动。
+\end{itemize}
+
+\subsection{一分钟回顾}
+
+Legendre 变换把广义速度替换为正则动量，使系统状态成为 $2n$ 维相空间中的点。Hamiltonian 的全微分与 Euler--Lagrange 方程共同给出 $\dot q_i=\partial\mathcal H/\partial p_i$、$\dot p_i=-\partial\mathcal H/\partial q_i$。对速度二次齐次、势能不依赖速度的标准系统，$\mathcal H=T+V$；若 Lagrangian 不显含时间，Hamiltonian 守恒。简谐振子在相空间中沿固定能量椭圆运动，显示 Hamiltonian 同时编码能量曲线与时间演化方向。

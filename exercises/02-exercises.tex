@@ -394,3 +394,271 @@ $\lambda$ 是绳子张力的大小。$V=0$ 只表示没有写入普通势能的�
 \end{checkedsolution}
 
 \textbf{检查点：}路径积分中的“所有路径”讨论的是复振幅求和。经典路径的出现依赖 stationary phase，而不是量子理论先把其他路径删除。
+
+\section{第 2.5 节教材讲解例题、习题与订正}
+\label{exercise-set:QM-C02-S05}
+
+\exercisemeta
+  {QM-C02-S05-EX}
+  {2026-08-31}
+  {Shankar，第 2 章 \S 2.5，教材讲解例题与练习 2.5.1--2.5.4}
+  {完成一道教材讲解例题与四道教材习题}
+  {Legendre 变换、正则方程、能量条件、相空间轨迹、耦合振子与二体 Hamiltonian 已核对}
+
+\exercisequestion{QM-C02-S05-E00}{教材讲解例题：简谐振子的 Hamiltonian}
+
+\textbf{对应知识点：}
+\begin{itemize}[leftmargin=*]
+  \item \relatedtopic{QM-C02-S05-T03}{Hamilton 正则方程的完整推导}；
+  \item \relatedtopic{QM-C02-S05-T05}{简谐振子与相空间轨迹}。
+\end{itemize}
+
+\textbf{题意。}一维简谐振子的 Lagrangian 为
+\[
+  \mathcal L=\frac12m\dot x^2-\frac12kx^2.
+\]
+求 Hamiltonian 与两条 Hamilton 正则方程，并验证它们恢复原来的简谐振子方程。教材位置：印刷页 pp.~89--90，PDF pp.~102--103。
+
+\begin{checkedsolution}
+正则动量和速度的逆关系是
+\begin{equation}
+  p=\frac{\partial\mathcal L}{\partial\dot x}=m\dot x,
+  \qquad
+  \dot x=\frac pm.
+  \label{eq:QM-C02-S05-E00-momentum}
+\end{equation}
+因此
+\begin{align}
+  \mathcal H
+  &=p\dot x-\mathcal L \notag\\
+  &=m\dot x^2-\left(\frac12m\dot x^2-\frac12kx^2\right)
+    =\frac12m\dot x^2+\frac12kx^2 \notag\\
+  &=\boxed{\frac{p^2}{2m}+\frac12kx^2}.
+  \label{eq:QM-C02-S05-E00-hamiltonian}
+\end{align}
+Hamilton 正则方程为
+\begin{equation}
+  \dot x=\frac{\partial\mathcal H}{\partial p}=\frac pm,
+  \qquad
+  \dot p=-\frac{\partial\mathcal H}{\partial x}=-kx.
+  \label{eq:QM-C02-S05-E00-hamilton-equations}
+\end{equation}
+对 $p=m\dot x$ 求时间导数并代入第二式，得到
+\begin{equation}
+  \boxed{m\ddot x=-kx.}
+  \label{eq:QM-C02-S05-E00-newton-equation}
+\end{equation}
+因此一条二阶 Euler--Lagrange 方程与两条一阶 Hamilton 方程给出同一动力学。
+\end{checkedsolution}
+
+\textbf{检查点：}计算 $\mathcal H=p\dot x-\mathcal L$ 后，必须使用 $\dot x=p/m$ 消去速度，才能得到以 $(x,p)$ 为独立变量的 Hamiltonian。
+
+\exercisequestion{QM-C02-S05-E01}{教材练习 2.5.1：速度二次型与 Hamiltonian 的能量形式}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S05-T04}{Hamiltonian、能量与守恒必须分开判断}。
+
+\textbf{题意。}设广义速度下的动能为
+\begin{equation}
+  T=\sum_{i,j}T_{ij}(q)\dot q_i\dot q_j,
+  \label{eq:QM-C02-S05-E01-kinetic-energy}
+\end{equation}
+并且 $\mathcal L=T-V(q)$。证明
+\[
+  \sum_kp_k\dot q_k=2T,
+\]
+进而证明 $\mathcal H=T+V$。教材位置：印刷页 p.~89，PDF p.~102。
+
+\begin{checkedsolution}
+固定 $k$ 对 $\dot q_k$ 求偏导时，$\dot q_k$ 可以出现在二次型的第一个或第二个速度因子中。因此
+\begin{align}
+  p_k
+  &=\frac{\partial\mathcal L}{\partial\dot q_k}
+    =\frac{\partial T}{\partial\dot q_k} \notag\\
+  &=\sum_jT_{kj}(q)\dot q_j
+    +\sum_iT_{ik}(q)\dot q_i.
+  \label{eq:QM-C02-S05-E01-momentum}
+\end{align}
+于是
+\begin{align}
+  \sum_kp_k\dot q_k
+  &=\sum_{k,j}T_{kj}\dot q_k\dot q_j
+    +\sum_{i,k}T_{ik}\dot q_i\dot q_k \notag\\
+  &=T+T=2T.
+  \label{eq:QM-C02-S05-E01-homogeneous-identity}
+\end{align}
+这个结果不需要先假定 $T_{ij}$ 对称；两项分别就是对哑指标重新命名后的原二次型。若 $T_{ij}=T_{ji}$，式~\eqref{eq:QM-C02-S05-E01-momentum} 可进一步写成
+\[
+  p_k=2\sum_jT_{kj}\dot q_j.
+\]
+教材的 $T_{ij}$ 已吸收通常二次型中的 $1/2$；若写成 $T=\frac12\sum_{ij}M_{ij}\dot q_i\dot q_j$，则 $p_k=\sum_jM_{kj}\dot q_j$。
+
+最后，
+\begin{equation}
+  \boxed{
+  \mathcal H=\sum_kp_k\dot q_k-\mathcal L
+  =2T-(T-V)=T+V.}
+  \label{eq:QM-C02-S05-E01-hamiltonian-energy}
+\end{equation}
+\end{checkedsolution}
+
+\textbf{检查点：}$\mathcal H=T+V$ 在这里来自 $T$ 对速度的二次齐次性与 $V$ 的速度无关性，不是 Hamiltonian 定义本身无条件保证的恒等式。
+
+\exercisequestion{QM-C02-S05-E02}{教材练习 2.5.2：简谐振子的相空间椭圆}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S05-T05}{简谐振子与相空间轨迹}。
+
+\textbf{题意。}利用能量守恒证明简谐振子的相空间轨迹为
+\[
+  \left(\frac xa\right)^2+\left(\frac pb\right)^2=1,
+\]
+求 $a^2,b^2$，并判断轨迹在右端点的运动方向。教材位置：印刷页 p.~90，PDF p.~103。
+
+\begin{checkedsolution}
+固定能量 $E$ 满足
+\begin{equation}
+  E=\frac{p^2}{2m}+\frac12kx^2.
+  \label{eq:QM-C02-S05-E02-energy}
+\end{equation}
+两边除以 $E$ 并整理：
+\begin{equation}
+  \boxed{
+  \frac{x^2}{2E/k}+\frac{p^2}{2mE}=1,}
+  \label{eq:QM-C02-S05-E02-ellipse}
+\end{equation}
+所以
+\begin{equation}
+  \boxed{
+  a^2=\frac{2E}{k},
+  \qquad
+  b^2=2mE.}
+  \label{eq:QM-C02-S05-E02-semiaxes}
+\end{equation}
+不能漏掉 $E$：$2/k$ 不具有长度平方的量纲，而 $2E/k$ 才有。
+
+在右端点 $(a,0)$，
+\[
+  \dot x=\frac pm=0,
+  \qquad
+  \dot p=-kx=-ka<0,
+\]
+所以相空间点下一瞬间向下运动。整条椭圆是同一个能量 $E$ 的等值线；椭圆上的不同点对应同一振子运动过程中的不同状态。
+\end{checkedsolution}
+
+\textbf{检查点：}能量等值线只给出允许轨迹的几何形状；Hamilton 正则方程还给出沿轨迹运动的方向与速率。
+
+\exercisequestion{QM-C02-S05-E03}{教材练习 2.5.3：耦合振子的 Hamilton 形式}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S05-T03}{Hamilton 正则方程的完整推导}。
+
+\textbf{题意。}两个质量均为 $m$ 的物块由三个劲度系数均为 $k$ 的弹簧连接，两端固定。设位移为 $x_1,x_2$，则
+\begin{equation}
+  \mathcal L
+  =\frac12m(\dot x_1^2+\dot x_2^2)
+  -\frac12k\left[x_1^2+(x_2-x_1)^2+x_2^2\right].
+  \label{eq:QM-C02-S05-E03-lagrangian}
+\end{equation}
+用 Hamilton 形式重新推导耦合运动方程。教材位置：印刷页 p.~90，PDF p.~103；本题要求重做练习 2.1.2。
+
+\begin{checkedsolution}
+正则动量及逆关系为
+\begin{equation}
+  p_1=m\dot x_1,
+  \qquad
+  p_2=m\dot x_2,
+  \qquad
+  \dot x_1=\frac{p_1}{m},
+  \qquad
+  \dot x_2=\frac{p_2}{m}.
+  \label{eq:QM-C02-S05-E03-momenta}
+\end{equation}
+因此
+\begin{equation}
+  \boxed{
+  \mathcal H
+  =\frac{p_1^2}{2m}+\frac{p_2^2}{2m}
+  +\frac12k\left[x_1^2+(x_2-x_1)^2+x_2^2\right].}
+  \label{eq:QM-C02-S05-E03-hamiltonian}
+\end{equation}
+四条 Hamilton 正则方程是
+\begin{align}
+  \dot x_1&=\frac{p_1}{m},
+  &\dot x_2&=\frac{p_2}{m},
+  \label{eq:QM-C02-S05-E03-coordinate-equations}\\
+  \dot p_1&=-2kx_1+kx_2,
+  &\dot p_2&=-2kx_2+kx_1.
+  \label{eq:QM-C02-S05-E03-momentum-equations}
+\end{align}
+利用 $\dot p_i=m\ddot x_i$，可恢复
+\begin{equation}
+  \boxed{
+  m\ddot x_1+2kx_1-kx_2=0,
+  \qquad
+  m\ddot x_2+2kx_2-kx_1=0.}
+  \label{eq:QM-C02-S05-E03-coupled-equations}
+\end{equation}
+这与第 2.1 节从 Euler--Lagrange 方程所得结果一致。
+\end{checkedsolution}
+
+\textbf{检查点：}两个二阶方程改写为四个一阶方程后，自由度没有增加；初始数据只是由 $(x_i,\dot x_i)$ 改写为 $(x_i,p_i)$。
+
+\exercisequestion{QM-C02-S05-E04}{教材练习 2.5.4：二体问题的 Hamiltonian}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S05-T03}{Hamilton 正则方程的完整推导}，并联系第 2.3 节的质心与相对坐标分离。
+
+\textbf{题意。}二体问题在质心坐标 $\bm R$ 与相对坐标 $\bm r$ 下的 Lagrangian 为
+\begin{equation}
+  \mathcal L
+  =\frac12M|\dot{\bm R}|^2
+  +\frac12\mu|\dot{\bm r}|^2
+  -V(\bm r),
+  \qquad
+  M=m_1+m_2,
+  \quad
+  \mu=\frac{m_1m_2}{m_1+m_2}.
+  \label{eq:QM-C02-S05-E04-lagrangian}
+\end{equation}
+推导相应 Hamiltonian，并说明质心动量为什么守恒。教材位置：印刷页 p.~90，PDF p.~103。
+
+\begin{checkedsolution}
+质心坐标与相对坐标的共轭动量分别为
+\begin{equation}
+  \bm P=M\dot{\bm R},
+  \qquad
+  \bm p=\mu\dot{\bm r},
+  \label{eq:QM-C02-S05-E04-momenta}
+\end{equation}
+所以
+\[
+  \dot{\bm R}=\frac{\bm P}{M},
+  \qquad
+  \dot{\bm r}=\frac{\bm p}{\mu}.
+\]
+代入 Legendre 变换：
+\begin{align}
+  \mathcal H
+  &=\bm P\cdot\dot{\bm R}
+    +\bm p\cdot\dot{\bm r}-\mathcal L \notag\\
+  &=\frac{|\bm P|^2}{M}+\frac{|\bm p|^2}{\mu}
+    -\left(
+      \frac{|\bm P|^2}{2M}
+      +\frac{|\bm p|^2}{2\mu}
+      -V(\bm r)
+    \right) \notag\\
+  &=\boxed{
+    \frac{|\bm P|^2}{2M}
+    +\frac{|\bm p|^2}{2\mu}
+    +V(\bm r)}.
+  \label{eq:QM-C02-S05-E04-hamiltonian}
+\end{align}
+相对动量项的分母必须是 $2\mu$，因为 $\bm p$ 与 $\bm r$ 共轭；不能误写成任一原粒子的质量。
+
+由于 $\mathcal H$ 不显含 $\bm R$，
+\begin{equation}
+  \dot{\bm P}
+  =-\frac{\partial\mathcal H}{\partial\bm R}=0.
+  \label{eq:QM-C02-S05-E04-total-momentum}
+\end{equation}
+因此 $\bm P$ 守恒，且 $\dot{\bm R}=\bm P/M$ 为常量。物理结论是质心静止或做匀速直线运动；两个粒子仍可围绕质心发生非平凡的相对运动。
+\end{checkedsolution}
+
+\textbf{检查点：}质心运动和相对运动在 Hamiltonian 中分别由 $(\bm R,\bm P)$ 与 $(\bm r,\bm p)$ 描述。总动量守恒约束的是质心，不会冻结内部相对自由度。
