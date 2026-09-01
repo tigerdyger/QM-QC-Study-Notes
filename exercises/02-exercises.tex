@@ -662,3 +662,136 @@ Hamilton 正则方程为
 \end{checkedsolution}
 
 \textbf{检查点：}质心运动和相对运动在 Hamiltonian 中分别由 $(\bm R,\bm P)$ 与 $(\bm r,\bm p)$ 描述。总动量守恒约束的是质心，不会冻结内部相对自由度。
+
+\section{第 2.6 节自编检验题与订正}
+\label{exercise-set:QM-C02-S06}
+
+\exercisemeta
+  {QM-C02-S06-EX}
+  {2026-09-01}
+  {Shankar，第 2 章 \S 2.6；教材本节无独立例题或习题}
+  {完成一道 self-contained check example（自编检验题）}
+  {电磁 Hamiltonian、循环坐标、正则动量与 Lorentz force 已核对}
+
+\exercisequestion{QM-C02-S06-E01}{自编检验题 1：Landau gauge 下的均匀磁场}
+
+\textbf{对应知识点：}
+\begin{itemize}[leftmargin=*]
+  \item \relatedtopic{QM-C02-S06-T01}{正则动量、机械动量与 Legendre 变换}；
+  \item \relatedtopic{QM-C02-S06-T03}{由 Hamilton 正则方程恢复 Lorentz force}；
+  \item \relatedtopic{QM-C02-S06-T04}{规范变换下什么保持不变}。
+\end{itemize}
+
+\textbf{题意。}在 Gaussian units 中，质量为 $m$、电荷为 $q$ 的粒子在 $xy$ 平面运动。取
+\begin{equation}
+  \phi=0,
+  \qquad
+  \bm A=Bx\,\hat{\bm y},
+  \label{eq:QM-C02-S06-E01-landau-gauge}
+\end{equation}
+它对应均匀磁场 $\bm B=B\hat{\bm z}$。求二维 Hamiltonian，找出循环坐标与守恒的正则动量，写出四条 Hamilton 正则方程，并恢复 Lorentz-force equations。
+
+\begin{checkedsolution}
+令
+\[
+  \alpha\equiv\frac{qB}{c}.
+\]
+因为 $\bm v\cdot\bm A=Bx\dot y$，Lagrangian 为
+\begin{equation}
+  \mathcal L
+  =\frac12m(\dot x^2+\dot y^2)+\alpha x\dot y.
+  \label{eq:QM-C02-S06-E01-lagrangian}
+\end{equation}
+正则动量及速度的逆关系是
+\begin{equation}
+  p_x=m\dot x,
+  \qquad
+  p_y=m\dot y+\alpha x,
+  \qquad
+  \dot x=\frac{p_x}{m},
+  \qquad
+  \dot y=\frac{p_y-\alpha x}{m}.
+  \label{eq:QM-C02-S06-E01-momenta}
+\end{equation}
+Legendre 变换给出
+\begin{align}
+  \mathcal H
+  &=p_x\dot x+p_y\dot y-\mathcal L \notag\\
+  &=\boxed{
+    \frac{p_x^2}{2m}
+    +\frac1{2m}(p_y-\alpha x)^2}.
+  \label{eq:QM-C02-S06-E01-hamiltonian}
+\end{align}
+这正是
+\[
+  \mathcal H
+  =\frac1{2m}
+  \left|\bm p-\frac qc\bm A\right|^2
+\]
+在当前规范中的二维形式。
+
+$\mathcal H$ 显含 $x$，但不显含 $y$，所以 $y$ 是循环坐标，并且
+\begin{equation}
+  \dot p_y
+  =-\frac{\partial\mathcal H}{\partial y}=0.
+  \label{eq:QM-C02-S06-E01-conserved-py}
+\end{equation}
+守恒的是
+\[
+  p_y=m\dot y+\frac{qB}{c}x,
+\]
+而不是单独的机械动量分量 $m\dot y$。
+
+四条 Hamilton 正则方程为
+\begin{align}
+  \dot x
+  &=\frac{\partial\mathcal H}{\partial p_x}
+    =\frac{p_x}{m},
+  &
+  \dot y
+  &=\frac{\partial\mathcal H}{\partial p_y}
+    =\frac{p_y-\alpha x}{m},
+  \label{eq:QM-C02-S06-E01-coordinate-equations}\\
+  \dot p_x
+  &=-\frac{\partial\mathcal H}{\partial x}
+    =\frac{\alpha}{m}(p_y-\alpha x)
+    =\alpha\dot y,
+  &
+  \dot p_y
+  &=-\frac{\partial\mathcal H}{\partial y}=0.
+  \label{eq:QM-C02-S06-E01-momentum-equations}
+\end{align}
+由 $p_x=m\dot x$ 得
+\begin{equation}
+  m\ddot x=\dot p_x
+  =\frac{qB}{c}\dot y.
+  \label{eq:QM-C02-S06-E01-x-equation}
+\end{equation}
+另一方面，对 $p_y=m\dot y+\alpha x$ 求全时间导数，并使用 $\dot p_y=0$：
+\begin{equation}
+  0=m\ddot y+\alpha\dot x,
+  \qquad
+  m\ddot y=-\frac{qB}{c}\dot x.
+  \label{eq:QM-C02-S06-E01-y-equation}
+\end{equation}
+因此
+\begin{equation}
+  \boxed{
+  m\ddot x=\frac{qB}{c}\dot y,
+  \qquad
+  m\ddot y=-\frac{qB}{c}\dot x.}
+  \label{eq:QM-C02-S06-E01-lorentz-equations}
+\end{equation}
+因为
+\[
+  (\dot x,\dot y,0)\times(0,0,B)
+  =(B\dot y,-B\dot x,0),
+\]
+这正是
+\[
+  m\dot{\bm v}=\frac qc\bm v\times\bm B
+\]
+的两个非零分量。
+\end{checkedsolution}
+
+\textbf{检查点：}$p_y$ 守恒不表示 $m\dot y$ 守恒，因为矢势贡献 $\alpha x$ 会随轨迹变化。能否从 Hamiltonian 直接识别守恒量取决于所选规范中的循环坐标，但最终的机械轨迹与规范选择无关。

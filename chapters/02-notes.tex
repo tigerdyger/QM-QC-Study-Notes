@@ -1220,3 +1220,273 @@ Hamilton 正则方程为
 \subsection{一分钟回顾}
 
 Legendre 变换把广义速度替换为正则动量，使系统状态成为 $2n$ 维相空间中的点。Hamiltonian 的全微分与 Euler--Lagrange 方程共同给出 $\dot q_i=\partial\mathcal H/\partial p_i$、$\dot p_i=-\partial\mathcal H/\partial q_i$。对速度二次齐次、势能不依赖速度的标准系统，$\mathcal H=T+V$；若 Lagrangian 不显含时间，Hamiltonian 守恒。简谐振子在相空间中沿固定能量椭圆运动，显示 Hamiltonian 同时编码能量曲线与时间演化方向。
+
+\section{第 2.6 节：Hamilton 形式中的电磁力}
+\label{section:QM-C02-S06}
+
+\studymeta
+  {QM-C02-S06}
+  {2026-09-01}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 2 章 \S 2.6；印刷页 pp.~90--91；PDF pp.~103--104}
+  {正文与自编检验题已核对；教材本节无独立例题或习题}
+
+\subsection{本节主线}
+
+电磁 Lagrangian 含有速度相关项 $(q/c)\bm v\cdot\bm A$，所以第 2.5 节用于普通势能的简化论证不能直接照搬。本节说明 Legendre 变换本身仍然有效：矢势项在以速度表示 Hamiltonian 数值时抵消，却通过正则动量与机械动量的关系重新进入以 $(\bm r,\bm p)$ 为变量的 Hamiltonian。进一步使用 Hamilton 正则方程，可以完整恢复 Lorentz force。
+
+本节沿用教材的 Gaussian units（高斯单位制）。符号 $q$ 表示粒子电荷而非广义坐标；位置变量 $\bm r$ 隐含在
+\[
+  \bm A=\bm A(\bm r,t),
+  \qquad
+  \phi=\phi(\bm r,t)
+\]
+之中。
+
+\notetopic{QM-C02-S06-T01}{正则动量、机械动量与 Legendre 变换}
+
+质量为 $m$、电荷为 $q$ 的粒子具有电磁 Lagrangian
+\begin{equation}
+  \boxed{
+  \mathcal L_{\mathrm{em}}
+  =\frac12m|\bm v|^2-q\phi
+  +\frac qc\bm v\cdot\bm A.}
+  \label{eq:QM-C02-S06-em-lagrangian}
+\end{equation}
+对速度求偏导得到 canonical momentum（正则动量）
+\begin{equation}
+  \boxed{
+  \bm p
+  =\frac{\partial\mathcal L_{\mathrm{em}}}{\partial\bm v}
+  =m\bm v+\frac qc\bm A.}
+  \label{eq:QM-C02-S06-canonical-momentum}
+\end{equation}
+因此 mechanical momentum（机械动量，也称 kinetic momentum）是
+\begin{equation}
+  \boxed{
+  \bm\pi\equiv m\bm v
+  =\bm p-\frac qc\bm A,}
+  \label{eq:QM-C02-S06-mechanical-momentum}
+\end{equation}
+速度则为
+\begin{equation}
+  \bm v
+  =\frac1m\left(\bm p-\frac qc\bm A\right).
+  \label{eq:QM-C02-S06-velocity-in-canonical-variables}
+\end{equation}
+这里的速度 Hessian 是 $mI$，对 $m\neq0$ 可逆，所以速度依赖相互作用并未破坏 Legendre 变换。
+
+由定义
+\[
+  \mathcal H_{\mathrm{em}}
+  =\bm p\cdot\bm v-\mathcal L_{\mathrm{em}},
+\]
+先用式~\eqref{eq:QM-C02-S06-canonical-momentum} 得
+\begin{align}
+  \mathcal H_{\mathrm{em}}
+  &=
+  \left(m\bm v+\frac qc\bm A\right)\cdot\bm v
+  -\left(
+    \frac12m|\bm v|^2-q\phi
+    +\frac qc\bm v\cdot\bm A
+  \right) \notag\\
+  &=\frac12m|\bm v|^2+q\phi.
+  \label{eq:QM-C02-S06-hamiltonian-velocity-form}
+\end{align}
+两个 $\bm A\cdot\bm v$ 项确实抵消。但 Hamiltonian 的独立变量应为 $(\bm r,\bm p,t)$，必须再用式~\eqref{eq:QM-C02-S06-velocity-in-canonical-variables} 消去 $\bm v$：
+\begin{equation}
+  \boxed{
+  \mathcal H_{\mathrm{em}}(\bm r,\bm p,t)
+  =
+  \frac1{2m}
+  \left|
+    \bm p-\frac qc\bm A(\bm r,t)
+  \right|^2
+  +q\phi(\bm r,t).}
+  \label{eq:QM-C02-S06-em-hamiltonian}
+\end{equation}
+
+\notetopic{QM-C02-S06-T02}{矢势为何消失后又重新出现}
+
+式~\eqref{eq:QM-C02-S06-hamiltonian-velocity-form} 和式~\eqref{eq:QM-C02-S06-em-hamiltonian} 的数值相同，但前者使用 $(\bm r,\bm v)$，后者使用 canonical phase-space variables $(\bm r,\bm p)$。矢势没有从动力学中消失，而是暂时隐藏在变量关系
+\[
+  \bm p=m\bm v+\frac qc\bm A
+\]
+中。Hamiltonian 不仅要给出某状态的能量数值，还必须通过对正则变量求偏导生成运动方程；不能拿仍以 $\bm v$ 为变量的表达式直接计算 $\partial\mathcal H/\partial\bm p$。
+
+这也解释了两个并存的事实：
+\begin{itemize}[leftmargin=*]
+  \item 数值上，$\mathcal H_{\mathrm{em}}=T+q\phi$，磁场本身不直接贡献粒子能量；
+  \item 函数结构上，$\bm A$ 必须出现在 $\mathcal H(\bm r,\bm p,t)$ 中，才能生成正确的磁力。
+\end{itemize}
+因此，“数值等于 $T+q\phi$”不等于“可从正则 Hamiltonian 中删去 $\bm A$”。
+
+\notetopic{QM-C02-S06-T03}{由 Hamilton 正则方程恢复 Lorentz force}
+
+定义
+\[
+  \pi_j=p_j-\frac qcA_j,
+  \qquad
+  \mathcal H
+  =\frac1{2m}\sum_j\pi_j^2+q\phi.
+\]
+第一条 Hamilton 正则方程给出
+\begin{align}
+  \dot r_i
+  &=\frac{\partial\mathcal H}{\partial p_i}
+    =\frac1m\sum_j
+      \pi_j\frac{\partial\pi_j}{\partial p_i}
+    =\frac{\pi_i}{m}=v_i,
+  \label{eq:QM-C02-S06-first-hamilton-equation}
+\end{align}
+其中 $\partial\pi_j/\partial p_i=\delta_{ij}$。
+
+第二条正则方程中的 $\partial/\partial r_i$ 必须保持 $\bm p$ 不变。由于
+\[
+  \frac{\partial\pi_j}{\partial r_i}
+  =-\frac qc\frac{\partial A_j}{\partial r_i},
+\]
+有
+\begin{align}
+  \dot p_i
+  &=-\frac{\partial\mathcal H}{\partial r_i} \notag\\
+  &=\frac qc\sum_jv_j
+    \frac{\partial A_j}{\partial r_i}
+    -q\frac{\partial\phi}{\partial r_i}.
+  \label{eq:QM-C02-S06-second-hamilton-equation}
+\end{align}
+但 $\dot p_i$ 不是 $m\dot v_i$。对
+\[
+  p_i=mv_i+\frac qcA_i(\bm r(t),t)
+\]
+沿实际轨迹求全时间导数：
+\begin{align}
+  \dot p_i
+  &=m\dot v_i+\frac qc\frac{\dd A_i}{\dd t} \notag\\
+  &=m\dot v_i+\frac qc
+    \left(
+      \frac{\partial A_i}{\partial t}
+      +\sum_jv_j\frac{\partial A_i}{\partial r_j}
+    \right).
+  \label{eq:QM-C02-S06-total-derivative-momentum}
+\end{align}
+将式~\eqref{eq:QM-C02-S06-second-hamilton-equation} 与式~\eqref{eq:QM-C02-S06-total-derivative-momentum} 相等，得到
+\begin{align}
+  m\dot v_i
+  ={}&
+  -q\frac{\partial\phi}{\partial r_i}
+  -\frac qc\frac{\partial A_i}{\partial t} \notag\\
+  &+\frac qc\sum_jv_j
+  \left(
+    \frac{\partial A_j}{\partial r_i}
+    -\frac{\partial A_i}{\partial r_j}
+  \right).
+  \label{eq:QM-C02-S06-lorentz-components}
+\end{align}
+利用
+\begin{equation}
+  \bm E=-\nabla\phi-\frac1c\frac{\partial\bm A}{\partial t},
+  \qquad
+  \bm B=\nabla\times\bm A,
+  \label{eq:QM-C02-S06-fields-from-potentials}
+\end{equation}
+以及分量恒等式
+\begin{equation}
+  (\bm v\times\bm B)_i
+  =\sum_jv_j
+  \left(
+    \frac{\partial A_j}{\partial r_i}
+    -\frac{\partial A_i}{\partial r_j}
+  \right),
+  \label{eq:QM-C02-S06-magnetic-component-identity}
+\end{equation}
+最终恢复
+\begin{equation}
+  \boxed{
+  m\dot{\bm v}
+  =q\left(
+    \bm E+\frac1c\bm v\times\bm B
+  \right).}
+  \label{eq:QM-C02-S06-lorentz-force}
+\end{equation}
+
+磁场项来自两个不同指标顺序的导数之差：对 Hamiltonian 在固定 $\bm p$ 下求 $\partial/\partial r_i$ 产生 $v_j\partial_iA_j$，而沿轨迹求 $\dd A_i/\dd t$ 产生 $v_j\partial_jA_i$。两者相减后组成旋度，磁力不是在推导末尾人为加入的。
+
+\notetopic{QM-C02-S06-T04}{规范变换下什么保持不变}
+
+\dialoguesupplement{在 Gaussian units 中作 gauge transformation
+\begin{equation}
+  \bm A'=\bm A+\nabla\chi,
+  \qquad
+  \phi'=\phi-\frac1c\frac{\partial\chi}{\partial t},
+  \label{eq:QM-C02-S06-gauge-transformation}
+\end{equation}
+电磁 Lagrangian 只增加全时间导数
+\[
+  \mathcal L'_{\mathrm{em}}
+  =\mathcal L_{\mathrm{em}}
+  +\frac qc\frac{\dd\chi}{\dd t}.
+\]
+正则动量随规范改变：
+\begin{equation}
+  \bm p'
+  =\bm p+\frac qc\nabla\chi.
+  \label{eq:QM-C02-S06-gauge-canonical-momentum}
+\end{equation}
+但机械动量保持不变：
+\begin{align}
+  \bm p'-\frac qc\bm A'
+  &=\bm p+\frac qc\nabla\chi
+    -\frac qc(\bm A+\nabla\chi) \notag\\
+  &=\bm p-\frac qc\bm A=m\bm v.
+  \label{eq:QM-C02-S06-gauge-mechanical-momentum}
+\end{align}
+所以 $\bm p$ 与 $\bm A$ 各自都依赖规范，而可直接联系速度的组合 $\bm p-q\bm A/c$ 规范不变。对于含时规范变换，相应 Hamiltonian 可相差 $-(q/c)\partial_t\chi$；正则变量也同时改变，物理轨迹与电磁场仍不变。}
+
+\notetopic{QM-C02-S06-T05}{静态磁场、含时势与能量}
+
+若 $\bm A,\phi$ 不显含时间，则 $\mathcal H$ 不显含时间，因而
+\[
+  \frac{\dd\mathcal H}{\dd t}
+  =\frac{\partial\mathcal H}{\partial t}=0.
+\]
+对静态纯磁场且 $\phi=0$，
+\begin{equation}
+  \mathcal H=\frac12m|\bm v|^2=\text{constant}.
+  \label{eq:QM-C02-S06-static-magnetic-energy}
+\end{equation}
+这与
+\[
+  \bm v\cdot(\bm v\times\bm B)=0
+\]
+一致：磁场可以改变速度方向，使粒子做圆周或螺旋运动，但不能改变速度大小。
+
+若势函数显含时间，Hamiltonian 一般也显含时间，不能仅凭“磁场不做功”断言粒子能量守恒。真正决定动能变化的是
+\begin{equation}
+  \boxed{
+  \frac{\dd}{\dd t}\left(\frac12m|\bm v|^2\right)
+  =q\bm E\cdot\bm v.}
+  \label{eq:QM-C02-S06-kinetic-power}
+\end{equation}
+其中磁力功率恒为零，电场却可以做功。还需注意，$\partial\bm A/\partial t\neq0$ 本身不是规范不变的判据；是否存在物理电场必须检查完整组合
+\[
+  \bm E=-\nabla\phi-\frac1c\frac{\partial\bm A}{\partial t}.
+\]
+式~\eqref{eq:QM-C02-S06-kinetic-power} 描述的是 kinetic energy（动能），不能未经说明就当作包含 $q\phi$ 的总机械能变化率。
+
+配套的 Landau gauge 检验题见\relatedexercise{QM-C02-S06-E01}{自编检验题 1}。
+
+\subsection{适用条件与常见误区}
+
+\begin{itemize}[leftmargin=*]
+  \item 本节的 $q$ 是电荷，粒子坐标是 $\bm r$；不要与第 2.5 节的一般广义坐标 $q_i$ 混淆。
+  \item 速度依赖项不妨碍 Legendre 变换；真正的判据仍是速度 Hessian 是否可逆。
+  \item $\bm p$ 是正则动量，$\bm p-q\bm A/c=m\bm v$ 才是机械动量；二者不能在求时间导数时混用。
+  \item 求 $-\partial\mathcal H/\partial r_i$ 时保持 $\bm p$ 不变；求 $\dd A_i(\bm r(t),t)/\dd t$ 时则必须使用完整链式法则。
+  \item $\mathcal H=T+q\phi$ 是能量数值的速度表示，不能替代以 $(\bm r,\bm p)$ 为独立变量的正则 Hamiltonian。
+  \item 正则动量和势函数依赖规范；机械动量、速度、电磁场和物理轨迹不依赖规范。
+\end{itemize}
+
+\subsection{一分钟回顾}
+
+电磁相互作用使正则动量成为 $\bm p=m\bm v+q\bm A/c$。Legendre 变换后，Hamiltonian 的数值是 $T+q\phi$，但写成正则变量时必须是 $|\bm p-q\bm A/c|^2/(2m)+q\phi$，因此矢势仍完整参与动力学。两条 Hamilton 正则方程分别恢复速度关系与正则动量演化；将后者转换为机械动量的时间导数，就得到完整 Lorentz force。静态纯磁场保持速率不变，而含时势是否导致能量变化必须通过规范不变的电场与功率判断。

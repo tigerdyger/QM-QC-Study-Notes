@@ -26,3 +26,4 @@
 | 2026-08-29 | Shankar 第 2 章 \S 2.3，印刷页 85--86，PDF 98--99 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | 质心与相对坐标、平移不变性、动能分离、约化质量、质心参考系、二体问题的等效单粒子描述 | 下一学习节点为第 2.4 节 How Smart Is a Particle? |
 | 2026-08-30 | Shankar 第 2 章 \S 2.4，印刷页 86，PDF 99 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | 全局变分与局部方程、初值与边值问题、平稳作用量、路径积分预告、平稳相位与经典极限 | 下一学习节点为第 2.5 节 The Hamiltonian Formalism |
 | 2026-08-31 | Shankar 第 2 章 \S 2.5，印刷页 86--90，PDF 99--103 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | Legendre 变换、相空间、Hamilton 正则方程、Hamiltonian 与能量、简谐振子、耦合振子、二体 Hamiltonian | 下一学习节点为第 2.6 节 The Electromagnetic Force in the Hamiltonian Scheme |
+| 2026-09-01 | Shankar 第 2 章 \S 2.6，印刷页 90--91，PDF 103--104 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | 电磁 Hamiltonian、正则与机械动量、Lorentz force、规范变换、Landau gauge、静态磁场与能量 | 下一学习节点为第 2.7 节 Cyclic Coordinates, Poisson Brackets, and Canonical Transformations |
