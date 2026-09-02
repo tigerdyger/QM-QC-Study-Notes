@@ -795,3 +795,265 @@ $\mathcal H$ 显含 $x$，但不显含 $y$，所以 $y$ 是循环坐标，并且
 \end{checkedsolution}
 
 \textbf{检查点：}$p_y$ 守恒不表示 $m\dot y$ 守恒，因为矢势贡献 $\alpha x$ 会随轨迹变化。能否从 Hamiltonian 直接识别守恒量取决于所选规范中的循环坐标，但最终的机械轨迹与规范选择无关。
+
+\section{第 2.7 节教材习题与订正}
+\label{exercise-set:QM-C02-S07}
+
+\exercisemeta
+  {QM-C02-S07-EX}
+  {2026-09-02}
+  {Shankar，第 2 章 \S 2.7；教材 Exercises 2.7.1 与 2.7.5}
+  {完成两道教材代表题}
+  {Poisson-bracket 代数、基本括号与极坐标正则变换已核对}
+
+\exercisequestion{QM-C02-S07-E01}{教材习题 2.7.1：Poisson 括号的代数性质}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S07-T02}{Poisson 括号的代数与基本括号}。
+
+\textbf{题意。}由 Poisson bracket 的定义验证
+\begin{align}
+  \{F,G\}&=-\{G,F\},
+  \label{eq:QM-C02-S07-E01-antisymmetry}\\
+  \{F,G+K\}&=\{F,G\}+\{F,K\},
+  \label{eq:QM-C02-S07-E01-additivity}\\
+  \{F,GK\}&=\{F,G\}K+G\{F,K\}.
+  \label{eq:QM-C02-S07-E01-product}
+\end{align}
+
+\begin{checkedsolution}
+由定义
+\[
+  \{F,G\}
+  =\sum_i\left(
+    \frac{\partial F}{\partial q_i}
+    \frac{\partial G}{\partial p_i}
+    -
+    \frac{\partial F}{\partial p_i}
+    \frac{\partial G}{\partial q_i}
+  \right).
+\]
+交换 $F,G$ 后，
+\begin{align}
+  \{G,F\}
+  &=\sum_i\left(
+    \frac{\partial G}{\partial q_i}
+    \frac{\partial F}{\partial p_i}
+    -
+    \frac{\partial G}{\partial p_i}
+    \frac{\partial F}{\partial q_i}
+  \right) \notag\\
+  &=-\{F,G\},
+\end{align}
+故反对称性成立，并立即推出 $\{F,F\}=0$。
+
+对第二个变量的和使用偏导线性：
+\begin{align}
+  \{F,G+K\}
+  &=\sum_i\left[
+    \frac{\partial F}{\partial q_i}
+    \left(
+      \frac{\partial G}{\partial p_i}
+      +\frac{\partial K}{\partial p_i}
+    \right)
+    -
+    \frac{\partial F}{\partial p_i}
+    \left(
+      \frac{\partial G}{\partial q_i}
+      +\frac{\partial K}{\partial q_i}
+    \right)
+  \right] \notag\\
+  &=\{F,G\}+\{F,K\}.
+\end{align}
+
+最后使用普通偏导的乘积法则：
+\[
+  \frac{\partial(GK)}{\partial p_i}
+  =\frac{\partial G}{\partial p_i}K
+   +G\frac{\partial K}{\partial p_i},
+  \qquad
+  \frac{\partial(GK)}{\partial q_i}
+  =\frac{\partial G}{\partial q_i}K
+   +G\frac{\partial K}{\partial q_i}.
+\]
+代入括号定义并按 $K$ 与 $G$ 分组：
+\begin{align}
+  \{F,GK\}
+  ={}&
+  \sum_i\left(
+    \frac{\partial F}{\partial q_i}
+    \frac{\partial G}{\partial p_i}
+    -
+    \frac{\partial F}{\partial p_i}
+    \frac{\partial G}{\partial q_i}
+  \right)K \notag\\
+  &+G\sum_i\left(
+    \frac{\partial F}{\partial q_i}
+    \frac{\partial K}{\partial p_i}
+    -
+    \frac{\partial F}{\partial p_i}
+    \frac{\partial K}{\partial q_i}
+  \right) \notag\\
+  ={}&\{F,G\}K+G\{F,K\}.
+\end{align}
+三条性质均得证。它们分别对应对易子的反对称性、线性与 Leibniz rule，但 Poisson bracket 仍是经典相空间上的微分运算。
+\end{checkedsolution}
+
+\textbf{检查点：}乘积法则直接继承自普通偏导的乘积法则；不要把 $\{F,GK\}$ 错写成 $\{F,G\}\{F,K\}$。
+
+\exercisequestion{QM-C02-S07-E02}{教材习题 2.7.5：极坐标变量是正则变量}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S07-T04}{一般正则变换及其判据}。
+
+\textbf{题意。}在二维相空间中定义
+\begin{equation}
+  \rho=\sqrt{x^2+y^2},
+  \qquad
+  \phi=\tan^{-1}\frac yx,
+  \label{eq:QM-C02-S07-E02-polar-coordinates}
+\end{equation}
+以及
+\begin{equation}
+  p_\rho=\frac{xp_x+yp_y}{\rho},
+  \qquad
+  p_\phi=xp_y-yp_x.
+  \label{eq:QM-C02-S07-E02-polar-momenta}
+\end{equation}
+在 $\rho>0$ 且选定连续角坐标分支的区域，证明
+\[
+  (x,y,p_x,p_y)
+  \longmapsto
+  (\rho,\phi,p_\rho,p_\phi)
+\]
+是 canonical transformation。
+
+\begin{checkedsolution}
+在旧变量中，Poisson bracket 是
+\begin{align}
+  \{F,G\}
+  ={}&
+  \frac{\partial F}{\partial x}
+  \frac{\partial G}{\partial p_x}
+  -
+  \frac{\partial F}{\partial p_x}
+  \frac{\partial G}{\partial x} \notag\\
+  &+
+  \frac{\partial F}{\partial y}
+  \frac{\partial G}{\partial p_y}
+  -
+  \frac{\partial F}{\partial p_y}
+  \frac{\partial G}{\partial y}.
+  \label{eq:QM-C02-S07-E02-old-bracket}
+\end{align}
+所需坐标偏导为
+\begin{equation}
+  \rho_x=\frac x\rho,
+  \quad
+  \rho_y=\frac y\rho,
+  \quad
+  \phi_x=-\frac y{\rho^2},
+  \quad
+  \phi_y=\frac x{\rho^2}.
+  \label{eq:QM-C02-S07-E02-coordinate-derivatives}
+\end{equation}
+动量偏导为
+\begin{equation}
+  (p_\rho)_{p_x}=\frac x\rho,
+  \quad
+  (p_\rho)_{p_y}=\frac y\rho,
+  \quad
+  (p_\phi)_{p_x}=-y,
+  \quad
+  (p_\phi)_{p_y}=x.
+  \label{eq:QM-C02-S07-E02-momentum-derivatives}
+\end{equation}
+
+由于 $\rho,\phi$ 都不依赖动量，立刻有
+\begin{equation}
+  \{\rho,\phi\}=0.
+  \label{eq:QM-C02-S07-E02-coordinate-bracket}
+\end{equation}
+两组共轭括号分别为
+\begin{align}
+  \{\rho,p_\rho\}
+  &=\frac x\rho\frac x\rho
+    +\frac y\rho\frac y\rho
+    =\frac{x^2+y^2}{\rho^2}=1,
+  \label{eq:QM-C02-S07-E02-radial-pair}\\
+  \{\phi,p_\phi\}
+  &=\left(-\frac y{\rho^2}\right)(-y)
+    +\frac x{\rho^2}x
+    =\frac{x^2+y^2}{\rho^2}=1.
+  \label{eq:QM-C02-S07-E02-angular-pair}
+\end{align}
+两项交叉括号为
+\begin{align}
+  \{\rho,p_\phi\}
+  &=\frac x\rho(-y)+\frac y\rho x=0,
+  \label{eq:QM-C02-S07-E02-rho-pphi}\\
+  \{\phi,p_\rho\}
+  &=\left(-\frac y{\rho^2}\right)\frac x\rho
+    +\frac x{\rho^2}\frac y\rho=0.
+  \label{eq:QM-C02-S07-E02-phi-prho}
+\end{align}
+
+最后验证动量之间的括号。记
+\[
+  N=xp_x+yp_y,
+  \qquad
+  p_\rho=\frac N\rho.
+\]
+则
+\begin{align}
+  \frac{\partial p_\rho}{\partial x}
+  &=\frac{p_x}{\rho}-\frac{Nx}{\rho^3},
+  &
+  \frac{\partial p_\rho}{\partial y}
+  &=\frac{p_y}{\rho}-\frac{Ny}{\rho^3},
+  \label{eq:QM-C02-S07-E02-prho-position-derivatives}\\
+  \frac{\partial p_\phi}{\partial x}
+  &=p_y,
+  &
+  \frac{\partial p_\phi}{\partial y}
+  &=-p_x.
+  \label{eq:QM-C02-S07-E02-pphi-position-derivatives}
+\end{align}
+因此
+\begin{align}
+  \{p_\rho,p_\phi\}
+  ={}&
+  \left(\frac{p_x}{\rho}-\frac{Nx}{\rho^3}\right)(-y)
+  -\frac x\rho p_y \notag\\
+  &+
+  \left(\frac{p_y}{\rho}-\frac{Ny}{\rho^3}\right)x
+  -\frac y\rho(-p_x) \notag\\
+  ={}&0.
+  \label{eq:QM-C02-S07-E02-momentum-bracket}
+\end{align}
+至此六组基本括号满足
+\begin{equation}
+  \boxed{
+  \{\rho,\phi\}=\{p_\rho,p_\phi\}=0,
+  \quad
+  \{\rho,p_\rho\}=\{\phi,p_\phi\}=1,
+  \quad
+  \{\rho,p_\phi\}=\{\phi,p_\rho\}=0.}
+  \label{eq:QM-C02-S07-E02-canonical-result}
+\end{equation}
+所以极坐标变量构成一组 canonical coordinates。
+
+对于
+\[
+  \mathcal L
+  =\frac12m(\dot\rho^2+\rho^2\dot\phi^2)-V(\rho,\phi),
+\]
+相应动量具有直接物理意义：
+\begin{equation}
+  p_\rho=m\dot\rho,
+  \qquad
+  p_\phi=m\rho^2\dot\phi=L_z.
+  \label{eq:QM-C02-S07-E02-physical-momenta}
+\end{equation}
+若 $V$ 不依赖 $\phi$，则 $\phi$ 是循环坐标，$p_\phi=L_z$ 守恒。
+\end{checkedsolution}
+
+\textbf{检查点：}极坐标变换在原点没有定义，角坐标还需选择局部分支；“六组括号正确”证明的是局部正则性，不能自动消除全局坐标奇点。

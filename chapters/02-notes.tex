@@ -1490,3 +1490,419 @@ Legendre 变换把广义速度替换为正则动量，使系统状态成为 $2n$
 \subsection{一分钟回顾}
 
 电磁相互作用使正则动量成为 $\bm p=m\bm v+q\bm A/c$。Legendre 变换后，Hamiltonian 的数值是 $T+q\phi$，但写成正则变量时必须是 $|\bm p-q\bm A/c|^2/(2m)+q\phi$，因此矢势仍完整参与动力学。两条 Hamilton 正则方程分别恢复速度关系与正则动量演化；将后者转换为机械动量的时间导数，就得到完整 Lorentz force。静态纯磁场保持速率不变，而含时势是否导致能量变化必须通过规范不变的电场与功率判断。
+
+\section{第 2.7 节：循环坐标、Poisson 括号与正则变换}
+\label{section:QM-C02-S07}
+
+\studymeta
+  {QM-C02-S07}
+  {2026-09-02}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 2 章 \S 2.7；印刷页 pp.~91--98；PDF pp.~104--111}
+  {正文、教材习题 2.7.1 与 2.7.5 及收口检查已核对}
+
+\subsection{本节主线}
+
+Hamilton 正则方程不仅给出 $(q_i,p_i)$ 的运动，也能描述任意相空间函数的演化。Poisson bracket（Poisson 括号）把这一规律写成统一形式，并给出守恒量的判据。进一步要求新相空间坐标复制旧坐标的基本 Poisson brackets，就得到 canonical transformation（正则变换）：它允许重新选择甚至混合位置与动量，同时保持 Hamilton 方程和 Poisson-bracket structure 不变。
+
+\notetopic{QM-C02-S07-T01}{循环坐标、任意动力学变量与守恒量}
+
+Hamilton 正则方程为
+\begin{equation}
+  \dot q_i=\frac{\partial\mathcal H}{\partial p_i},
+  \qquad
+  \dot p_i=-\frac{\partial\mathcal H}{\partial q_i}.
+  \label{eq:QM-C02-S07-hamilton-equations}
+\end{equation}
+若 $\mathcal H$ 不显含某个坐标 $q_k$，则
+\[
+  \dot p_k=-\frac{\partial\mathcal H}{\partial q_k}=0.
+\]
+所以
+\begin{equation}
+  \boxed{
+  q_k\text{ 是循环坐标}
+  \quad\Longrightarrow\quad
+  p_k\text{ 守恒}.}
+  \label{eq:QM-C02-S07-cyclic-conservation}
+\end{equation}
+
+现在令
+\[
+  F=F(q_1,\ldots,q_n,p_1,\ldots,p_n,t)
+\]
+为任意动力学变量。沿实际轨迹求全时间导数：
+\begin{align}
+  \frac{\dd F}{\dd t}
+  &=\frac{\partial F}{\partial t}
+  +\sum_i\left(
+    \frac{\partial F}{\partial q_i}\dot q_i
+    +\frac{\partial F}{\partial p_i}\dot p_i
+  \right) \notag\\
+  &=\frac{\partial F}{\partial t}
+  +\sum_i\left(
+    \frac{\partial F}{\partial q_i}
+    \frac{\partial\mathcal H}{\partial p_i}
+    -
+    \frac{\partial F}{\partial p_i}
+    \frac{\partial\mathcal H}{\partial q_i}
+  \right).
+  \label{eq:QM-C02-S07-total-derivative}
+\end{align}
+定义两个相空间函数的 Poisson bracket 为
+\begin{equation}
+  \boxed{
+  \{F,G\}_{q,p}
+  \equiv
+  \sum_i\left(
+    \frac{\partial F}{\partial q_i}
+    \frac{\partial G}{\partial p_i}
+    -
+    \frac{\partial F}{\partial p_i}
+    \frac{\partial G}{\partial q_i}
+  \right).}
+  \label{eq:QM-C02-S07-poisson-definition}
+\end{equation}
+于是任意动力学变量的演化统一为
+\begin{equation}
+  \boxed{
+  \frac{\dd F}{\dd t}
+  =\frac{\partial F}{\partial t}
+  +\{F,\mathcal H\}.}
+  \label{eq:QM-C02-S07-poisson-evolution}
+\end{equation}
+若 $F$ 不显含时间，式~\eqref{eq:QM-C02-S07-poisson-evolution} 简化为 $\dot F=\{F,\mathcal H\}$。因此一般的守恒条件是
+\begin{equation}
+  \boxed{
+  \frac{\partial F}{\partial t}
+  +\{F,\mathcal H\}=0.}
+  \label{eq:QM-C02-S07-conservation-general}
+\end{equation}
+仅有 $\{F,\mathcal H\}=0$ 还不够；还需 $\partial F/\partial t=0$，才能直接断定 $F$ 守恒。对 Hamiltonian 本身，反对称性给出 $\{\mathcal H,\mathcal H\}=0$，故
+\begin{equation}
+  \frac{\dd\mathcal H}{\dd t}
+  =\frac{\partial\mathcal H}{\partial t}.
+  \label{eq:QM-C02-S07-hamiltonian-time-dependence}
+\end{equation}
+
+从几何上看，Hamiltonian 在相空间中产生速度场
+\[
+  (\dot q_i,\dot p_i)
+  =\left(
+    \frac{\partial\mathcal H}{\partial p_i},
+    -\frac{\partial\mathcal H}{\partial q_i}
+  \right),
+\]
+而 $\{F,\mathcal H\}$ 就是 $F$ 沿这一相空间流动的方向导数。
+
+\notetopic{QM-C02-S07-T02}{Poisson 括号的代数与基本括号}
+
+由定义可得反对称性、线性与乘积法则：
+\begin{align}
+  \{F,G\}&=-\{G,F\},
+  \label{eq:QM-C02-S07-antisymmetry}\\
+  \{F,aG+bK\}
+  &=a\{F,G\}+b\{F,K\},
+  \label{eq:QM-C02-S07-linearity}\\
+  \{F,GK\}
+  &=\{F,G\}K+G\{F,K\}.
+  \label{eq:QM-C02-S07-leibniz}
+\end{align}
+这与算符对易子的代数结构相似，是经典 Poisson 括号过渡到量子 commutator 的重要预告。教材习题 2.7.1 的完整验证见\relatedexercise{QM-C02-S07-E01}{教材习题 2.7.1}。
+
+在 Hamilton 形式中，$(q_i,p_i)$ 是相空间上的独立坐标；即使它们沿某条运动轨迹彼此关联，求偏导时仍有
+\[
+  \frac{\partial q_i}{\partial q_k}=\delta_{ik},
+  \qquad
+  \frac{\partial p_i}{\partial p_k}=\delta_{ik},
+  \qquad
+  \frac{\partial q_i}{\partial p_k}
+  =\frac{\partial p_i}{\partial q_k}=0.
+\]
+代入定义便得到 fundamental Poisson brackets：
+\begin{equation}
+  \boxed{
+  \{q_i,q_j\}=0,
+  \qquad
+  \{p_i,p_j\}=0,
+  \qquad
+  \{q_i,p_j\}=\delta_{ij}.}
+  \label{eq:QM-C02-S07-fundamental-brackets}
+\end{equation}
+反对称性同时给出 $\{p_i,q_j\}=-\delta_{ij}$。对任意 $F(q,p)$，因此有
+\begin{equation}
+  \boxed{
+  \{q_i,F\}=\frac{\partial F}{\partial p_i},
+  \qquad
+  \{p_i,F\}=-\frac{\partial F}{\partial q_i}.}
+  \label{eq:QM-C02-S07-coordinate-brackets}
+\end{equation}
+取 $F=\mathcal H$，就重新得到式~\eqref{eq:QM-C02-S07-hamilton-equations}。例如一维简谐振子
+\[
+  \mathcal H=\frac{p^2}{2m}+\frac12kq^2
+\]
+满足
+\[
+  \{q,\mathcal H\}=\frac pm=\dot q,
+  \qquad
+  \{p,\mathcal H\}=-kq=\dot p.
+\]
+
+\notetopic{QM-C02-S07-T03}{点变换及其诱导的动量变换}
+
+Point transformation（点变换）先在位形空间中作可逆坐标变换
+\begin{equation}
+  \bar q_i=\bar q_i(q_1,\ldots,q_n),
+  \label{eq:QM-C02-S07-point-transformation}
+\end{equation}
+当前教材暂不考虑显含时间的情形。令
+\[
+  J_{ij}=\frac{\partial\bar q_i}{\partial q_j},
+  \qquad
+  \det J\neq0.
+\]
+速度按链式法则变换：
+\begin{equation}
+  \dot{\bar q}_i
+  =\sum_j\frac{\partial\bar q_i}{\partial q_j}\dot q_j,
+  \qquad
+  \dot{\bar{\bm q}}=J\dot{\bm q}.
+  \label{eq:QM-C02-S07-point-velocity}
+\end{equation}
+新正则动量必须继续由 Lagrangian 定义：
+\begin{align}
+  \bar p_i
+  &=\frac{\partial\mathcal L}{\partial\dot{\bar q}_i}
+    =\sum_j
+      \frac{\partial\mathcal L}{\partial\dot q_j}
+      \frac{\partial\dot q_j}{\partial\dot{\bar q}_i} \notag\\
+  &=\boxed{
+    \sum_j
+    \frac{\partial q_j}{\partial\bar q_i}p_j}.
+  \label{eq:QM-C02-S07-point-momentum}
+\end{align}
+矩阵形式为
+\begin{equation}
+  \boxed{
+  \bar{\bm p}=J^{-T}\bm p.}
+  \label{eq:QM-C02-S07-covector-transformation}
+\end{equation}
+坐标按 $J$ 变换而动量按逆转置变换，正好保持正则配对：
+\begin{equation}
+  \bar{\bm p}^{,T}\dot{\bar{\bm q}}
+  =(J^{-T}\bm p)^T(J\dot{\bm q})
+  =\bm p^T\dot{\bm q}.
+  \label{eq:QM-C02-S07-canonical-pairing}
+\end{equation}
+因此点变换不能只规定新坐标后再任意选择新动量；只有配上式~\eqref{eq:QM-C02-S07-point-momentum} 所诱导的动量变换，才自动保持 Hamilton 结构。
+
+一个简单例子是 $\bar q=aq$（$a\neq0$）：
+\[
+  \dot{\bar q}=a\dot q,
+  \qquad
+  \bar p=\frac pa,
+  \qquad
+  \bar p\dot{\bar q}=p\dot q.
+\]
+
+\notetopic{QM-C02-S07-T04}{一般正则变换及其判据}
+
+Hamilton 形式允许更一般的相空间变换
+\begin{equation}
+  Q_i=Q_i(q,p),
+  \qquad
+  P_i=P_i(q,p),
+  \label{eq:QM-C02-S07-general-transformation}
+\end{equation}
+其中新位置与新动量可以同时混合旧的 $q,p$。可逆性只保证新变量仍能标记相空间点；若还要求对任意 Hamiltonian 都保持标准形式
+\begin{equation}
+  \dot Q_i=\frac{\partial\bar{\mathcal H}}{\partial P_i},
+  \qquad
+  \dot P_i=-\frac{\partial\bar{\mathcal H}}{\partial Q_i},
+  \label{eq:QM-C02-S07-new-hamilton-equations}
+\end{equation}
+这个变换才称为 canonical transformation（正则变换）。这里 $\bar{\mathcal H}(Q,P)$ 是同一 Hamiltonian 用新变量写出的表达式。
+
+由于 $Q_i(q,p)$ 本身也是动力学变量，
+\[
+  \dot Q_i=\{Q_i,\mathcal H\}_{q,p}.
+\]
+再把 $\mathcal H$ 看成 $\bar{\mathcal H}(Q(q,p),P(q,p))$，对其偏导使用链式法则并按 $\partial\bar{\mathcal H}/\partial Q_k$、$\partial\bar{\mathcal H}/\partial P_k$ 收集，得到
+\begin{equation}
+  \dot Q_i
+  =\sum_k\left[
+    \{Q_i,Q_k\}_{q,p}
+    \frac{\partial\bar{\mathcal H}}{\partial Q_k}
+    +
+    \{Q_i,P_k\}_{q,p}
+    \frac{\partial\bar{\mathcal H}}{\partial P_k}
+  \right].
+  \label{eq:QM-C02-S07-new-q-evolution}
+\end{equation}
+同理，
+\begin{equation}
+  \dot P_i
+  =\sum_k\left[
+    \{P_i,Q_k\}_{q,p}
+    \frac{\partial\bar{\mathcal H}}{\partial Q_k}
+    +
+    \{P_i,P_k\}_{q,p}
+    \frac{\partial\bar{\mathcal H}}{\partial P_k}
+  \right].
+  \label{eq:QM-C02-S07-new-p-evolution}
+\end{equation}
+要让式~\eqref{eq:QM-C02-S07-new-q-evolution}--\eqref{eq:QM-C02-S07-new-p-evolution} 对任意 $\bar{\mathcal H}$ 都化为式~\eqref{eq:QM-C02-S07-new-hamilton-equations}，各偏导前的系数必须满足
+\begin{equation}
+  \boxed{
+  \{Q_i,Q_j\}_{q,p}=0,
+  \qquad
+  \{P_i,P_j\}_{q,p}=0,
+  \qquad
+  \{Q_i,P_j\}_{q,p}=\delta_{ij}.}
+  \label{eq:QM-C02-S07-canonical-conditions}
+\end{equation}
+也就是说，新变量必须复制旧 canonical coordinates 的全部基本 Poisson brackets。
+
+以下三个例子揭示判据的含义：
+\begin{itemize}[leftmargin=*]
+  \item $Q=aq,\ P=p/a$ 满足 $\{Q,P\}=1$，是正则变换；
+  \item $Q=p,\ P=-q$ 满足 $\{Q,P\}=1$，是混合位置与动量的正则变换；
+  \item $Q=q^2,\ P=p/(2q)$ 满足 $\{Q,P\}=1$，但只能在 $q>0$ 或 $q<0$ 的单一分支上作为全局可逆坐标。
+\end{itemize}
+对一个自由度，
+\begin{equation}
+  \{Q,P\}_{q,p}
+  =\frac{\partial(Q,P)}{\partial(q,p)}.
+  \label{eq:QM-C02-S07-one-dimensional-jacobian}
+\end{equation}
+因此正则变换保持有向相空间面积。多自由度时，仅检查总 Jacobian determinant 等于 $1$ 仍不充分，必须核对式~\eqref{eq:QM-C02-S07-canonical-conditions} 的完整结构。
+
+\begin{center}
+\begin{tikzpicture}[x=1.1cm,y=1.1cm,>=Latex]
+  \draw[->] (-0.2,0) -- (3.5,0) node[right] {$q$};
+  \draw[->] (0,-0.2) -- (0,2.6) node[above] {$p$};
+  \fill[blue!18] (0.55,0.55) rectangle (1.55,2.05);
+  \draw[blue!70!black,thick] (0.55,0.55) rectangle (1.55,2.05);
+  \node[blue!70!black] at (1.05,2.28) {$\Delta q\,\Delta p$};
+
+  \draw[->,thick] (3.9,1.25) -- (5.1,1.25)
+    node[midway,above] {$Q=2q,\ P=p/2$};
+
+  \begin{scope}[xshift=6.0cm]
+    \draw[->] (-0.2,0) -- (4.0,0) node[right] {$Q$};
+    \draw[->] (0,-0.2) -- (0,2.6) node[above] {$P$};
+    \fill[red!18] (0.55,0.82) rectangle (2.55,1.57);
+    \draw[red!70!black,thick] (0.55,0.82) rectangle (2.55,1.57);
+    \node[red!70!black] at (1.55,1.88)
+      {$\Delta Q\,\Delta P=\Delta q\,\Delta p$};
+  \end{scope}
+\end{tikzpicture}
+
+\textit{一个自由度的正则缩放把矩形横向拉长、纵向压缩，但保持相空间面积。}
+\end{center}
+
+教材极坐标检验见\relatedexercise{QM-C02-S07-E02}{教材习题 2.7.5}。
+
+\notetopic{QM-C02-S07-T05}{Poisson 括号在正则变换下不变}
+
+若 $(Q,P)$ 满足式~\eqref{eq:QM-C02-S07-canonical-conditions}，对任意 $F(Q,P)$、$G(Q,P)$ 使用链式法则，可以把旧变量中的括号整理为
+\begin{align}
+  \{F,G\}_{q,p}
+  ={}&\sum_{a,b}
+    \frac{\partial F}{\partial Q_a}
+    \frac{\partial G}{\partial Q_b}
+    \{Q_a,Q_b\}_{q,p} \notag\\
+  &+\sum_{a,b}
+    \frac{\partial F}{\partial Q_a}
+    \frac{\partial G}{\partial P_b}
+    \{Q_a,P_b\}_{q,p} \notag\\
+  &+\sum_{a,b}
+    \frac{\partial F}{\partial P_a}
+    \frac{\partial G}{\partial Q_b}
+    \{P_a,Q_b\}_{q,p} \notag\\
+  &+\sum_{a,b}
+    \frac{\partial F}{\partial P_a}
+    \frac{\partial G}{\partial P_b}
+    \{P_a,P_b\}_{q,p}.
+  \label{eq:QM-C02-S07-bracket-chain-expansion}
+\end{align}
+第一项和第四项由 $\{Q_a,Q_b\}=\{P_a,P_b\}=0$ 消失；中间两项分别使用 $\{Q_a,P_b\}=\delta_{ab}$ 与 $\{P_a,Q_b\}=-\delta_{ab}$，得到
+\begin{align}
+  \{F,G\}_{q,p}
+  &=\sum_a\left(
+    \frac{\partial F}{\partial Q_a}
+    \frac{\partial G}{\partial P_a}
+    -
+    \frac{\partial F}{\partial P_a}
+    \frac{\partial G}{\partial Q_a}
+  \right) \notag\\
+  &=\boxed{\{F,G\}_{Q,P}}.
+  \label{eq:QM-C02-S07-poisson-invariance}
+\end{align}
+因此 Poisson bracket 是 canonical-coordinate invariant：具体偏导表达式会改变，但结果不依赖选择哪一组正则坐标。于是动力学方程既可写成
+\[
+  \dot F=\{F,\mathcal H\}_{q,p},
+\]
+也可在新坐标中写成
+\[
+  \dot F=\{F,\bar{\mathcal H}\}_{Q,P}.
+\]
+正则变换的价值正在于可以选择更方便的变量，而不破坏 Hamiltonian mechanics 的形式。
+
+\notetopic{QM-C02-S07-T06}{被动变换、主动变换与不变性}
+
+同一个正则变换可以有两种解释：
+\begin{center}
+\begin{tabularx}{0.92\textwidth}{@{}lXX@{}}
+  \toprule
+  类型 & 改变的对象 & 保持的对象 \\
+  \midrule
+  Passive transformation（被动变换）
+    & 改变描述同一相空间点的坐标及函数表达式
+    & 物理状态与动力学变量的数值 \\
+  Active transformation（主动变换）
+    & 在固定坐标系中把状态送到新的相空间点
+    & 坐标系与动力学变量的函数规则 \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+
+以正则缩放
+\[
+  Q=2q,
+  \qquad
+  P=\frac p2
+\]
+和 $F(q,p)=q^2$ 为例。被动解释中状态不动，因 $q=Q/2$，新表达式是
+\[
+  \bar F(Q,P)=\left(\frac Q2\right)^2,
+\]
+并且在同一状态的对应坐标上 $\bar F(Q,P)=F(q,p)$。主动解释中则保持函数规则 $F(\cdot,\cdot)$ 不变、移动状态：
+\[
+  F(Q,P)=Q^2=4q^2,
+\]
+一般不等于 $F(q,p)$。若一个动力学变量满足
+\begin{equation}
+  F(Q,P)=F(q,p),
+  \label{eq:QM-C02-S07-active-invariance}
+\end{equation}
+才称它在该主动变换下 invariant（不变）。后续第 2.8 节将把这种不变性与对称性、生成元和守恒量联系起来。
+
+被动变换可以类比 Hilbert 空间中的 representation change：抽象态 $|f\rangle$ 不变，而 $f(x)=\langle x|f\rangle$ 与 $\widetilde f(k)=\langle k|f\rangle$ 是不同基下的表示。这个类比只说明“对象不变而坐标表示改变”；Fourier 换基与经典相空间正则变换并不是同一种数学操作。
+
+\subsection{适用条件与常见误区}
+
+\begin{itemize}[leftmargin=*]
+  \item 教材式 $\dot F=\{F,\mathcal H\}$ 假设 $F$ 不显含时间；一般情形必须补上 $\partial F/\partial t$。
+  \item 相空间偏导把 $q_i,p_i$ 视为独立坐标；不要把某条实际轨迹上的函数关系提前代入偏导。
+  \item 可逆的相空间变换不一定正则；必须核对三组基本 Poisson brackets。
+  \item 点变换只有配上 $P_i=\sum_j(\partial q_j/\partial Q_i)p_j$ 才自动成为正则变换。
+  \item $P$ 含有 $q$ 或 $Q$ 含有 $p$ 并不妨碍正则性；判据是括号结构，而不是变量是否混合。
+  \item $Q=q^2$ 一类变换可在局部正则却非全局一一对应；必须说明定义域或坐标分支。
+  \item 一个自由度时 Jacobian determinant 等于 $1$ 足够；多自由度时仅检查行列式不够。
+  \item 被动变换比较同一状态的不同表达，主动变换比较固定坐标系中的不同状态；只有后者的不变性才具有对称性内容。
+\end{itemize}
+
+\subsection{一分钟回顾}
+
+Poisson bracket 把任意相空间函数的演化写成 $\dd F/\dd t=\partial_tF+\{F,\mathcal H\}$，并给出守恒判据。正则坐标满足 $\{q_i,q_j\}=\{p_i,p_j\}=0$、$\{q_i,p_j\}=\delta_{ij}$；任何复制这组基本括号的可逆变量变换都是 canonical transformation。点变换的动量按逆 Jacobian 的转置变换，以保持 $\bm p^T\dot{\bm q}$。Poisson bracket 在正则变换下不变，因此 Hamilton 方程可在任意正则坐标中保持标准形式。被动变换改变表示，主动变换改变相空间状态；主动变换下的不变性将在下一节导向对称性与守恒量。
