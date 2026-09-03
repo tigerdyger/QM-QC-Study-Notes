@@ -1906,3 +1906,417 @@ Hamilton 形式允许更一般的相空间变换
 \subsection{一分钟回顾}
 
 Poisson bracket 把任意相空间函数的演化写成 $\dd F/\dd t=\partial_tF+\{F,\mathcal H\}$，并给出守恒判据。正则坐标满足 $\{q_i,q_j\}=\{p_i,p_j\}=0$、$\{q_i,p_j\}=\delta_{ij}$；任何复制这组基本括号的可逆变量变换都是 canonical transformation。点变换的动量按逆 Jacobian 的转置变换，以保持 $\bm p^T\dot{\bm q}$。Poisson bracket 在正则变换下不变，因此 Hamilton 方程可在任意正则坐标中保持标准形式。被动变换改变表示，主动变换改变相空间状态；主动变换下的不变性将在下一节导向对称性与守恒量。
+
+\section{第 2.8 节：对称性及其后果}
+\label{section:QM-C02-S08}
+
+\studymeta
+  {QM-C02-S08}
+  {2026-09-03}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 2 章 \S 2.8；印刷页 pp.~98--106；PDF pp.~111--119}
+  {正文、教材习题 2.8.1、2.8.3、2.8.5--2.8.7 及收口检查已核对}
+
+\subsection{本节主线}
+
+连续对称性不仅说明 Hamiltonian 在某种变换下数值不变，还给出一个生成该变换的 dynamical variable（动力学变量）。生成元通过 Poisson bracket 决定所有相空间变量的无穷小变化；若它生成的正则变换保持 Hamiltonian 不变，生成元便是守恒量。反过来，Hamiltonian 自身生成真实的时间演化。最后，本节把经典路径的作用量视为端点的函数，并证明其端点导数分别给出动量和 Hamiltonian。
+
+\notetopic{QM-C02-S08-T01}{连续对称性、无穷小变换与生成元}
+
+设相空间中的一参数变换写成
+\begin{equation}
+  (q_i,p_i)\longmapsto
+  (\bar q_i(\epsilon),\bar p_i(\epsilon)),
+  \qquad
+  (\bar q_i(0),\bar p_i(0))=(q_i,p_i).
+  \label{eq:QM-C02-S08-one-parameter-family}
+\end{equation}
+能够由任意小参数 $\epsilon$ 从恒等变换连续生成的称为 continuous transformation（连续变换）。离散对称性只有彼此分立的选择，不能在其对称群内部通过任意小参数逐步到达；本节讨论的是连续情形。
+
+取任意足够光滑的相空间函数 $g(q,p)$，定义
+\begin{equation}
+  \boxed{
+  \delta q_i
+  =\bar q_i-q_i
+  =\epsilon\frac{\partial g}{\partial p_i}
+  =\epsilon\{q_i,g\},
+  \qquad
+  \delta p_i
+  =\bar p_i-p_i
+  =-\epsilon\frac{\partial g}{\partial q_i}
+  =\epsilon\{p_i,g\}.}
+  \label{eq:QM-C02-S08-generator-definition}
+\end{equation}
+$g$ 称为这一 infinitesimal canonical transformation（无穷小正则变换）的 generator（生成元）。参数 $\epsilon$ 的量纲取决于 $g$：例如 $g=p$ 时 $\delta q=\epsilon$，故 $\epsilon$ 具有长度量纲；$g=L_z$ 时 $\epsilon$ 可取为无量纲转角。一般要求 $\epsilon g$ 具有作用量量纲，使式~\eqref{eq:QM-C02-S08-generator-definition} 两侧量纲一致。
+
+任意动力学变量 $F(q,p)$ 在此变换下的一阶变化为
+\begin{align}
+  \delta F
+  &=\sum_i\left(
+    \frac{\partial F}{\partial q_i}\delta q_i
+    +\frac{\partial F}{\partial p_i}\delta p_i
+  \right) \notag\\
+  &=\epsilon\sum_i\left(
+    \frac{\partial F}{\partial q_i}
+    \frac{\partial g}{\partial p_i}
+    -\frac{\partial F}{\partial p_i}
+    \frac{\partial g}{\partial q_i}
+  \right) \notag\\
+  &=\boxed{\epsilon\{F,g\}}.
+  \label{eq:QM-C02-S08-variable-response}
+\end{align}
+所以生成元并不只规定坐标和动量的变化，而是通过 Poisson bracket 同时规定所有相空间函数的变化。
+
+\notetopic{QM-C02-S08-T02}{为什么任意生成元都产生一阶正则变换}
+
+令
+\[
+  \bar q_i=q_i+\epsilon g_{p_i},
+  \qquad
+  \bar p_i=p_i-\epsilon g_{q_i},
+\]
+其中下标表示偏导。保留到 $O(\epsilon)$，有
+\begin{align}
+  \{\bar q_i,\bar q_j\}
+  &=\epsilon\left(
+    \{q_i,g_{p_j}\}+\{g_{p_i},q_j\}
+  \right)+O(\epsilon^2) \notag\\
+  &=\epsilon\left(
+    g_{p_ip_j}-g_{p_jp_i}
+  \right)+O(\epsilon^2)
+  =O(\epsilon^2),
+  \label{eq:QM-C02-S08-infinitesimal-qq}\\
+  \{\bar p_i,\bar p_j\}
+  &=\epsilon\left(
+    g_{q_iq_j}-g_{q_jq_i}
+  \right)+O(\epsilon^2)
+  =O(\epsilon^2),
+  \label{eq:QM-C02-S08-infinitesimal-pp}\\
+  \{\bar q_i,\bar p_j\}
+  &=\delta_{ij}
+    +\epsilon\left(
+      g_{q_jp_i}-g_{p_iq_j}
+    \right)+O(\epsilon^2) \notag\\
+  &=\delta_{ij}+O(\epsilon^2).
+  \label{eq:QM-C02-S08-infinitesimal-qp}
+\end{align}
+这里使用了 $g$ 的二阶混合偏导可交换。故式~\eqref{eq:QM-C02-S08-generator-definition} 对任意这样的 $g$ 都保持基本 Poisson brackets 到一阶；这正是教材习题 2.8.2 的结论。
+
+必须区分两个判断：任意 $g$ 都能产生无穷小正则变换，但该变换未必是给定 Hamiltonian 的 symmetry（对称性）。正则性说明相空间结构被保持；对称性还要求 Hamiltonian 不变。
+
+\notetopic{QM-C02-S08-T03}{对称性与守恒量的 Hamiltonian 形式}
+
+在 $g$ 生成的无穷小变换下，Hamiltonian 的变化是
+\begin{equation}
+  \delta\mathcal H
+  =\epsilon\{\mathcal H,g\}.
+  \label{eq:QM-C02-S08-hamiltonian-variation}
+\end{equation}
+若该变换是对称性，则 $\delta\mathcal H=0$，所以
+\begin{equation}
+  \{\mathcal H,g\}=0.
+  \label{eq:QM-C02-S08-symmetry-bracket}
+\end{equation}
+另一方面，生成元沿真实时间演化满足
+\begin{equation}
+  \frac{\dd g}{\dd t}
+  =\frac{\partial g}{\partial t}+\{g,\mathcal H\}
+  =\frac{\partial g}{\partial t}-\{\mathcal H,g\}.
+  \label{eq:QM-C02-S08-generator-evolution}
+\end{equation}
+因此若 $g$ 不显含时间，便有
+\begin{equation}
+  \boxed{
+  \delta\mathcal H=0
+  \quad\Longleftrightarrow\quad
+  \{\mathcal H,g\}=0
+  \quad\Longleftrightarrow\quad
+  \frac{\dd g}{\dd t}=0.}
+  \label{eq:QM-C02-S08-symmetry-conservation}
+\end{equation}
+这就是连续对称性与守恒量之间的 Hamiltonian 版本联系。若 $g$ 显含时间，则应使用式~\eqref{eq:QM-C02-S08-generator-evolution} 的完整形式，不能只由 $\{\mathcal H,g\}=0$ 断言其守恒。
+
+两个基本生成元是：
+\begin{itemize}[leftmargin=*]
+  \item $g=p$ 给出 $\delta q=\epsilon$、$\delta p=0$，故线动量生成空间平移；若 $\mathcal H$ 平移不变，则 $p$ 守恒。
+  \item $g=L_z=xp_y-yp_x$ 给出
+  \[
+    \delta x=-\epsilon y,
+    \quad
+    \delta y=\epsilon x,
+    \quad
+    \delta p_x=-\epsilon p_y,
+    \quad
+    \delta p_y=\epsilon p_x,
+  \]
+  故 $L_z$ 生成位置与动量的同步旋转；若 $\mathcal H$ 绕 $z$ 轴旋转不变，则 $L_z$ 守恒。
+\end{itemize}
+两个粒子的整体平移由总动量 $P=p_1+p_2$ 生成，详细验证见\relatedexercise{QM-C02-S08-E01}{教材习题 2.8.1}。若相互作用只依赖 $q_1-q_2$，整体平移不改变相对坐标，因此总动量守恒。
+
+\notetopic{QM-C02-S08-T04}{有限正则流与 Hamiltonian 生成的时间演化}
+
+把无穷小参数推广为连续流参数 $s$，由 $g$ 生成的有限变换满足
+\begin{equation}
+  \frac{\dd Q_i(s)}{\dd s}=\{Q_i(s),g\},
+  \qquad
+  \frac{\dd P_i(s)}{\dd s}=\{P_i(s),g\}.
+  \label{eq:QM-C02-S08-finite-flow}
+\end{equation}
+例如 $g=qp$ 时，
+\[
+  \frac{\dd Q}{\dd s}=Q,
+  \qquad
+  \frac{\dd P}{\dd s}=-P,
+\]
+所以
+\begin{equation}
+  Q(s)=\ee^s q,
+  \qquad
+  P(s)=\ee^{-s}p.
+  \label{eq:QM-C02-S08-finite-scaling}
+\end{equation}
+该流把 $q$ 放大、把 $p$ 按反比例缩小，并保持 $\{Q,P\}=1$。
+
+最重要的选择是 $g=\mathcal H$：
+\begin{equation}
+  \frac{\dd q_i}{\dd s}=\{q_i,\mathcal H\}
+  =\frac{\partial\mathcal H}{\partial p_i},
+  \qquad
+  \frac{\dd p_i}{\dd s}=\{p_i,\mathcal H\}
+  =-\frac{\partial\mathcal H}{\partial q_i}.
+  \label{eq:QM-C02-S08-h-generates-time}
+\end{equation}
+这正是 Hamilton 方程，因此流参数 $s$ 就是真实时间：
+\begin{equation}
+  \boxed{\mathcal H\text{ 是时间演化的生成元。}}
+  \label{eq:QM-C02-S08-h-time-generator}
+\end{equation}
+
+对于简谐振子
+\[
+  \mathcal H=\frac{p^2}{2m}+\frac12m\omega^2q^2,
+\]
+有限时间演化为
+\begin{align}
+  q(t)&=q_0\cos\omega t+\frac{p_0}{m\omega}\sin\omega t,
+  \label{eq:QM-C02-S08-oscillator-q}\\
+  p(t)&=p_0\cos\omega t-m\omega q_0\sin\omega t.
+  \label{eq:QM-C02-S08-oscillator-p}
+\end{align}
+定义缩放变量
+\[
+  Q=\sqrt{m\omega}\,q,
+  \qquad
+  P=\frac{p}{\sqrt{m\omega}},
+\]
+则
+\[
+  \mathcal H=\frac{\omega}{2}(Q^2+P^2),
+  \qquad
+  \dot Q=\omega P,
+  \qquad
+  \dot P=-\omega Q.
+\]
+所以原始 $(q,p)$ 坐标中的能量椭圆，在 $(Q,P)$ 坐标中成为圆周，时间演化表现为相空间旋转。
+
+\begin{center}
+\begin{tikzpicture}[x=1.15cm,y=1.15cm,>=Latex]
+  \draw[->] (-3.0,0) -- (3.2,0) node[right] {$Q$};
+  \draw[->] (0,-2.5) -- (0,2.7) node[above] {$P$};
+  \draw[thick,noteBlue] (0,0) circle (2.05);
+  \coordinate (Z) at (1.55,1.34);
+  \fill[accentRed] (Z) circle (1.8pt);
+  \draw[->,thick,verifyOrange] (Z) -- ++(0.95,0.82)
+    node[right] {$\nabla\mathcal H$};
+  \draw[->,thick,accentRed] (Z) -- ++(0.82,-0.95)
+    node[below right] {$\dot{\bm z}=J\nabla\mathcal H$};
+  \draw[->,thick,noteBlue]
+    (1.75,-1.07) arc[start angle=-31,end angle=-67,radius=2.05];
+  \node[align=center] at (-1.65,-2.25)
+    {$\nabla\mathcal H$ 沿法向\\Hamiltonian flow 沿切向};
+\end{tikzpicture}
+
+\textit{简谐振子的相空间流沿等能线运动；梯度是法向量，Hamiltonian vector field 是其辛旋转后的切向量。}
+\end{center}
+
+沿流动有
+\begin{equation}
+  \frac{\dd\mathcal H}{\dd t}
+  =\frac{\partial\mathcal H}{\partial t}
+  +\{\mathcal H,\mathcal H\}
+  =\frac{\partial\mathcal H}{\partial t}.
+  \label{eq:QM-C02-S08-h-time-change}
+\end{equation}
+因此时间演化总是正则流；只有 $\partial\mathcal H/\partial t=0$ 时，时间平移还是 Hamiltonian 的对称性并导致能量守恒。显含时间的 Hamiltonian 仍给出从固定初始时刻到固定终止时刻的正则映射，但通常不再是只依赖时间差的自治一参数群。
+
+\notetopic{QM-C02-S08-T05}{为什么对称变换把解映射成解}
+
+设 $T:(q,p)\mapsto(Q,P)$ 是正则变换。一般情况下，新变量中的 Hamiltonian 是
+\begin{equation}
+  \bar{\mathcal H}(Q,P)
+  =\mathcal H\bigl(T^{-1}(Q,P)\bigr).
+  \label{eq:QM-C02-S08-transformed-hamiltonian}
+\end{equation}
+正则性保证变换后的变量满足标准 Hamilton 方程：
+\[
+  \dot Q_i=\frac{\partial\bar{\mathcal H}}{\partial P_i},
+  \qquad
+  \dot P_i=-\frac{\partial\bar{\mathcal H}}{\partial Q_i}.
+\]
+若 $T$ 同时是主动对称变换，即
+\begin{equation}
+  \mathcal H(Tz)=\mathcal H(z),
+  \label{eq:QM-C02-S08-active-symmetry}
+\end{equation}
+则 $\bar{\mathcal H}$ 与原 Hamiltonian 具有相同函数形式。因此
+\begin{equation}
+  \boxed{
+  z(t)\text{ 是原系统的解}
+  \quad\Longrightarrow\quad
+  Tz(t)\text{ 也是原系统的解}.}
+  \label{eq:QM-C02-S08-symmetry-maps-solutions}
+\end{equation}
+
+这里需要两个独立条件：
+\begin{equation}
+  \boxed{
+  \text{同一动力学系统的轨迹映射}
+  =\text{正则性}+\text{Hamiltonian 对称性}.}
+  \label{eq:QM-C02-S08-two-requirements}
+\end{equation}
+只保持 $\mathcal H$ 的数值，仅保证相空间点仍在同一等能面上；正则性才保证 Poisson-bracket structure 以及由 $J\nabla\mathcal H$ 给出的运动方向被正确保持。
+
+教材习题 2.8.3 与 2.8.5 给出关键反例：二维各向同性振子的 Hamiltonian 在“只旋转位置而保持动量不变”的变换下数值不变，但该变换不正则，因而不会把整条解轨迹映射成另一条解。完整核对见\relatedexercise{QM-C02-S08-E02}{教材习题 2.8.3 与 2.8.5}。
+
+\notetopic{QM-C02-S08-T06}{经典作用量的端点导数}
+
+令 $x_{\mathrm{cl}}(t)$ 是连接 $(x_i,t_i)$ 与 $(x_f,t_f)$ 的经典路径，并定义 on-shell action（在经典解上取值的作用量）
+\begin{equation}
+  S_{\mathrm{cl}}(x_f,t_f;x_i,t_i)
+  =\int_{t_i}^{t_f}
+    \mathcal L(x_{\mathrm{cl}},\dot x_{\mathrm{cl}},t)\,\dd t.
+  \label{eq:QM-C02-S08-classical-action}
+\end{equation}
+$S[x]$ 的输入是整条任意路径，是泛函；而 $S_{\mathrm{cl}}$ 已经对每组端点选取满足运动方程的经典路径，因而可视为端点变量的普通函数。
+
+允许路径发生 $x(t)\mapsto x(t)+\eta(t)$，同时端点时刻变化 $\delta t_i,\delta t_f$。一阶变分为
+\begin{align}
+  \delta S
+  ={}&\int_{t_i}^{t_f}\left(
+    \frac{\partial\mathcal L}{\partial x}\eta
+    +\frac{\partial\mathcal L}{\partial\dot x}\dot\eta
+  \right)\dd t
+  +\mathcal L_f\delta t_f-\mathcal L_i\delta t_i.
+  \label{eq:QM-C02-S08-action-moving-endpoints}
+\end{align}
+对含 $\dot\eta$ 的项分部积分，并使用
+\[
+  p=\frac{\partial\mathcal L}{\partial\dot x},
+\]
+得到
+\begin{align}
+  \delta S
+  ={}&[p\eta]_{t_i}^{t_f}
+  +\int_{t_i}^{t_f}\left[
+    \frac{\partial\mathcal L}{\partial x}
+    -\frac{\dd}{\dd t}
+      \left(\frac{\partial\mathcal L}{\partial\dot x}\right)
+  \right]\eta\,\dd t \notag\\
+  &+\mathcal L_f\delta t_f-\mathcal L_i\delta t_i.
+  \label{eq:QM-C02-S08-action-integration-by-parts}
+\end{align}
+在经典路径上，Euler--Lagrange 方程使体积分为零，所以
+\begin{equation}
+  \delta S_{\mathrm{cl}}
+  =p_f\eta_f-p_i\eta_i
+  +\mathcal L_f\delta t_f-\mathcal L_i\delta t_i.
+  \label{eq:QM-C02-S08-action-boundary-eta}
+\end{equation}
+
+必须区分同一时刻比较路径得到的 $\eta$ 与端点事件的总位移。二者满足
+\begin{equation}
+  \delta x_f=\eta_f+\dot x_f\delta t_f,
+  \qquad
+  \delta x_i=\eta_i+\dot x_i\delta t_i.
+  \label{eq:QM-C02-S08-total-endpoint-shifts}
+\end{equation}
+因此
+\[
+  \eta_f=\delta x_f-\dot x_f\delta t_f,
+  \qquad
+  \eta_i=\delta x_i-\dot x_i\delta t_i.
+\]
+代入式~\eqref{eq:QM-C02-S08-action-boundary-eta}，再用 $\mathcal H=p\dot x-\mathcal L$，得到统一的端点变分公式：
+\begin{equation}
+  \boxed{
+  \delta S_{\mathrm{cl}}
+  =p_f\delta x_f-\mathcal H_f\delta t_f
+  -p_i\delta x_i+\mathcal H_i\delta t_i.}
+  \label{eq:QM-C02-S08-action-endpoint-differential}
+\end{equation}
+比较普通多元函数的全微分，立即得到
+\begin{equation}
+  \boxed{
+  \frac{\partial S_{\mathrm{cl}}}{\partial x_f}=p_f,
+  \qquad
+  \frac{\partial S_{\mathrm{cl}}}{\partial t_f}=-\mathcal H_f,
+  \qquad
+  \frac{\partial S_{\mathrm{cl}}}{\partial x_i}=-p_i,
+  \qquad
+  \frac{\partial S_{\mathrm{cl}}}{\partial t_i}=\mathcal H_i.}
+  \label{eq:QM-C02-S08-action-endpoint-derivatives}
+\end{equation}
+多自由度时，把 $p\,\delta x$ 换为 $\sum_kp_k\,\delta q_k$。
+
+若只将终止时刻延后而保持最终空间位置不变，则 $\delta x_f=0$。式~\eqref{eq:QM-C02-S08-total-endpoint-shifts} 给出
+\begin{equation}
+  \eta_f=-\dot x_f\delta t_f.
+  \label{eq:QM-C02-S08-fixed-position-eta}
+\end{equation}
+原经典轨迹若继续运动 $\delta t_f$ 会到达 $x_f+\dot x_f\delta t_f$；新经典路径却必须在新时刻回到同一 $x_f$，所以相对于延长后的原路径出现上述反向偏移。代入边界项便得到
+\begin{equation}
+  \frac{\partial S_{\mathrm{cl}}}{\partial t_f}
+  =-p_f\dot x_f+\mathcal L_f
+  =-\mathcal H_f.
+  \label{eq:QM-C02-S08-action-time-derivative}
+\end{equation}
+若 Hamiltonian 不显含时间，则沿每条经典轨迹 $\mathcal H=E$，所以
+\begin{equation}
+  \boxed{
+  \frac{\partial S_{\mathrm{cl}}}{\partial t_f}=-E.}
+  \label{eq:QM-C02-S08-action-energy-relation}
+\end{equation}
+改变 $t_f$ 通常也会改变连接相同空间端点的经典路径及其能量，因此不能在没有额外条件时把式~\eqref{eq:QM-C02-S08-action-energy-relation} 直接积分成 $S_{\mathrm{cl}}=-Et_f+\text{常数}$。
+
+例如自由粒子满足
+\begin{equation}
+  S_{\mathrm{cl}}
+  =\frac{m(x_f-x_i)^2}{2(t_f-t_i)}.
+  \label{eq:QM-C02-S08-free-action}
+\end{equation}
+直接求导可得
+\[
+  \frac{\partial S_{\mathrm{cl}}}{\partial x_f}=p_f,
+  \qquad
+  \frac{\partial S_{\mathrm{cl}}}{\partial x_i}=-p_i,
+  \qquad
+  \frac{\partial S_{\mathrm{cl}}}{\partial t_f}=-\mathcal H_f.
+\]
+简谐振子上的完整验证见\relatedexercise{QM-C02-S08-E03}{教材习题 2.8.7}。这些关系说明经典作用量可以作为 generating function（生成函数），也是后续 Hamilton--Jacobi 理论和量子传播子的经典作用量相位的基础。
+
+\subsection{适用条件与常见误区}
+
+\begin{itemize}[leftmargin=*]
+  \item 任意足够光滑的 $g$ 都生成一阶正则变换，但只有满足 $\{\mathcal H,g\}=0$ 的变换才是给定系统的对称性。
+  \item 由对称性推出 $g$ 守恒还要检查 $g$ 是否显含时间；一般公式是 $\dd g/\dd t=\partial_tg+\{g,\mathcal H\}$。
+  \item $\delta q_i=\epsilon\{q_i,g\}$ 中的 $\epsilon$ 不能无故省略；$\{q_i,g\}$ 是单位流参数下的变化率。
+  \item Hamiltonian 数值不变并不足以保证轨迹映射成立；变换还必须保持正则结构。
+  \item $\mathcal H$ 总是生成 Hamiltonian 时间演化，但只有 $\partial\mathcal H/\partial t=0$ 时，它同时是守恒量。
+  \item 简谐振子在原始 $(q,p)$ 坐标中沿椭圆运动；只有适当缩放后才是欧氏意义下的圆周旋转。
+  \item 在端点时刻变化时，路径变化 $\eta_f$ 与端点总位移 $\delta x_f$ 不同；遗漏 $\dot x_f\delta t_f$ 会把 $\partial S_{\mathrm{cl}}/\partial t_f$ 错算成 $\mathcal L_f$。
+  \item $\partial S_{\mathrm{cl}}/\partial t_f=-E$ 中的偏导保持其他端点变量不变，但对应的经典路径以及 $E$ 本身可以随 $t_f$ 改变。
+\end{itemize}
+
+\subsection{一分钟回顾}
+
+生成元 $g$ 通过 $\delta F=\epsilon\{F,g\}$ 规定无穷小正则变换；若该变换保持 Hamiltonian 不变且 $g$ 不显含时间，则 $g$ 守恒。线动量生成平移，角动量生成旋转，Hamiltonian 生成时间演化。一个对称变换要把原系统的解映射成另一条解，既要保持 Hamiltonian，也要保持正则结构。经典路径作用量的端点微分是 $\delta S_{\mathrm{cl}}=p_f\delta x_f-\mathcal H_f\delta t_f-p_i\delta x_i+\mathcal H_i\delta t_i$，因此端点位置导数给出动量，端点时间导数给出 Hamiltonian 的负值。

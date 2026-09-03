@@ -28,3 +28,4 @@
 | 2026-08-31 | Shankar 第 2 章 \S 2.5，印刷页 86--90，PDF 99--103 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | Legendre 变换、相空间、Hamilton 正则方程、Hamiltonian 与能量、简谐振子、耦合振子、二体 Hamiltonian | 下一学习节点为第 2.6 节 The Electromagnetic Force in the Hamiltonian Scheme |
 | 2026-09-01 | Shankar 第 2 章 \S 2.6，印刷页 90--91，PDF 103--104 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | 电磁 Hamiltonian、正则与机械动量、Lorentz force、规范变换、Landau gauge、静态磁场与能量 | 下一学习节点为第 2.7 节 Cyclic Coordinates, Poisson Brackets, and Canonical Transformations |
 | 2026-09-02 | Shankar 第 2 章 \S 2.7，印刷页 91--98，PDF 104--111 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | 循环坐标、Poisson bracket、守恒判据、点变换、正则变换、括号不变性、主动与被动变换、极坐标正则变量 | 下一学习节点为第 2.8 节 Symmetries and Their Consequences |
+| 2026-09-03 | Shankar 第 2 章 \S 2.8，印刷页 98--106，PDF 111--119 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | 连续对称性、无穷小正则变换、生成元、平移与旋转守恒量、Hamiltonian 时间演化、对称轨迹、经典作用量端点导数 | 第 2 章经典力学回顾完成；下一学习节点为第 3 章 |

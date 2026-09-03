@@ -1057,3 +1057,299 @@ $\mathcal H$ 显含 $x$，但不显含 $y$，所以 $y$ 是循环坐标，并且
 \end{checkedsolution}
 
 \textbf{检查点：}极坐标变换在原点没有定义，角坐标还需选择局部分支；“六组括号正确”证明的是局部正则性，不能自动消除全局坐标奇点。
+
+\section{第 2.8 节教材习题与订正}
+\label{exercise-set:QM-C02-S08}
+
+\exercisemeta
+  {QM-C02-S08-EX}
+  {2026-09-03}
+  {Shankar，第 2 章 \S 2.8；教材 Exercises 2.8.1、2.8.3、2.8.5 与 2.8.7}
+  {完成三组教材代表题}
+  {整体平移生成元、非正则反例及简谐振子经典作用量已核对}
+
+\exercisequestion{QM-C02-S08-E01}{教材习题 2.8.1：总动量生成整体平移}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S08-T03}{对称性与守恒量的 Hamiltonian 形式}。
+
+\textbf{题意。}对一维两粒子系统证明总动量
+\[
+  P=p_1+p_2
+\]
+生成两个粒子的同步无穷小平移，并说明平移不变性如何导出总动量守恒。
+
+\begin{checkedsolution}
+以 $P$ 为生成元，式
+\[
+  \delta F=\epsilon\{F,P\}
+\]
+给出
+\begin{align}
+  \delta q_1
+  &=\epsilon\{q_1,p_1+p_2\}
+  =\epsilon,
+  &
+  \delta q_2
+  &=\epsilon\{q_2,p_1+p_2\}
+  =\epsilon,
+  \label{eq:QM-C02-S08-E01-coordinate-shifts}\\
+  \delta p_1
+  &=\epsilon\{p_1,p_1+p_2\}=0,
+  &
+  \delta p_2
+  &=\epsilon\{p_2,p_1+p_2\}=0.
+  \label{eq:QM-C02-S08-E01-momentum-shifts}
+\end{align}
+所以 $P$ 使两个坐标增加相同位移而保持动量不变，正是整体平移。
+
+若
+\begin{equation}
+  \mathcal H
+  =\frac{p_1^2}{2m_1}
+  +\frac{p_2^2}{2m_2}
+  +V(q_1-q_2),
+  \label{eq:QM-C02-S08-E01-two-body-hamiltonian}
+\end{equation}
+则平移后
+\[
+  (q_1+\epsilon)-(q_2+\epsilon)=q_1-q_2,
+\]
+故 $\mathcal H$ 不变。等价地，
+\begin{align}
+  \{P,\mathcal H\}
+  &=-\frac{\partial\mathcal H}{\partial q_1}
+    -\frac{\partial\mathcal H}{\partial q_2} \notag\\
+  &=-V'(q_1-q_2)+V'(q_1-q_2)=0.
+  \label{eq:QM-C02-S08-E01-conservation}
+\end{align}
+因此
+\[
+  \dot P=\{P,\mathcal H\}=0.
+\]
+平移对称性表达的是系统只关心粒子之间的相对位置，不关心整体位于空间中的哪个绝对位置。
+\end{checkedsolution}
+
+\textbf{检查点：}整体平移不改变任一粒子的动量，所以 $\delta p_1=\delta p_2=0$；生成元是总动量，不是相对动量。
+
+\exercisequestion{QM-C02-S08-E02}{教材习题 2.8.3 与 2.8.5：Hamiltonian 不变但变换非正则}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S08-T05}{为什么对称变换把解映射成解}。
+
+\textbf{题意。}考虑二维各向同性简谐振子
+\begin{equation}
+  \mathcal H
+  =\frac{p_x^2+p_y^2}{2m}
+  +\frac12m\omega^2(x^2+y^2).
+  \label{eq:QM-C02-S08-E02-isotropic-oscillator}
+\end{equation}
+同时旋转坐标和动量是由 $L_z=xp_y-yp_x$ 生成的正则对称变换。现在只旋转位置而保持动量不变：
+\begin{equation}
+  X=x\cos\theta-y\sin\theta,
+  \qquad
+  Y=x\sin\theta+y\cos\theta,
+  \qquad
+  P_X=p_x,
+  \qquad
+  P_Y=p_y.
+  \label{eq:QM-C02-S08-E02-position-only-rotation}
+\end{equation}
+验证 $\mathcal H$ 的数值仍不变，但变换不是正则变换，并解释它为什么不能把运动方程的一条解映射成另一条解。
+
+\begin{checkedsolution}
+位置旋转保持
+\[
+  X^2+Y^2=x^2+y^2,
+\]
+而动量根本没有改变，因此
+\[
+  P_X^2+P_Y^2=p_x^2+p_y^2.
+\]
+所以式~\eqref{eq:QM-C02-S08-E02-isotropic-oscillator} 的数值确实不变。
+
+但是基本 Poisson brackets 为
+\begin{align}
+  \{X,P_X\}
+  &=\{x\cos\theta-y\sin\theta,p_x\}
+  =\cos\theta,
+  \label{eq:QM-C02-S08-E02-x-px-bracket}\\
+  \{X,P_Y\}
+  &=\{x\cos\theta-y\sin\theta,p_y\}
+  =-\sin\theta.
+  \label{eq:QM-C02-S08-E02-x-py-bracket}
+\end{align}
+一般情况下它们不等于正则条件要求的 $1$ 与 $0$，所以该变换非正则。
+
+取教材所建议的具体检验：原状态在某时刻为
+\[
+  x=a,
+  \qquad
+  y=0,
+  \qquad
+  p_x=b,
+  \qquad
+  p_y=0.
+\]
+将位置旋转 $90^\circ$ 而保持动量不变，得到
+\[
+  X=0,
+  \qquad
+  Y=a,
+  \qquad
+  P_X=b,
+  \qquad
+  P_Y=0.
+\]
+如果这一新状态按原 Hamiltonian 演化，Hamilton 方程要求
+\begin{equation}
+  \dot X=\frac bm,
+  \qquad
+  \dot Y=0,
+  \qquad
+  \dot P_X=0,
+  \qquad
+  \dot P_Y=-m\omega^2a.
+  \label{eq:QM-C02-S08-E02-required-evolution}
+\end{equation}
+但若先沿原轨迹演化、再在每个时刻只旋转位置，则在该时刻得到
+\begin{equation}
+  \dot X=0,
+  \qquad
+  \dot Y=\frac bm,
+  \qquad
+  \dot P_X=-m\omega^2a,
+  \qquad
+  \dot P_Y=0,
+  \label{eq:QM-C02-S08-E02-transformed-evolution}
+\end{equation}
+与式~\eqref{eq:QM-C02-S08-E02-required-evolution} 不一致。因此，仅仅把一个相空间点送到相同能量面上的另一点，不足以保持由 Hamilton 方程规定的切向速度。
+
+真正的旋转对称必须把位置和动量同步旋转。此时变换是正则的，才会保持 Poisson-bracket structure 并把整条解轨迹映射成另一条解。
+\end{checkedsolution}
+
+\textbf{检查点：}$\mathcal H$ 不变与“变换由某个 $g$ 通过 $\delta F=\epsilon\{F,g\}$ 生成”不是同一条件；后一条件自动带有正则结构。
+
+\exercisequestion{QM-C02-S08-E03}{教材习题 2.8.7：简谐振子的经典作用量}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S08-T06}{经典作用量的端点导数}。
+
+\textbf{题意。}一维简谐振子的经典解为
+\[
+  x(t)=A\cos\omega t+B\sin\omega t.
+\]
+它满足 $x(0)=x_1$、$x(T)=x_2$。求连接两端点的经典作用量 $S_{\mathrm{cl}}(x_1,x_2,T)$，并验证
+\[
+  \frac{\partial S_{\mathrm{cl}}}{\partial T}=-E.
+\]
+
+\begin{checkedsolution}
+在 $\sin\omega T\neq0$ 时，端点条件给出
+\begin{equation}
+  A=x_1,
+  \qquad
+  B=\frac{x_2-x_1\cos\omega T}{\sin\omega T}.
+  \label{eq:QM-C02-S08-E03-ab}
+\end{equation}
+由
+\[
+  \dot x=-A\omega\sin\omega t+B\omega\cos\omega t
+\]
+可得能量
+\begin{align}
+  E
+  &=\frac12m\dot x^2+\frac12m\omega^2x^2
+  =\frac12m\omega^2(A^2+B^2) \notag\\
+  &=\boxed{
+  \frac{m\omega^2}{2\sin^2\omega T}
+  \left[
+    x_1^2+x_2^2-2x_1x_2\cos\omega T
+  \right]}.
+  \label{eq:QM-C02-S08-E03-energy}
+\end{align}
+其中使用了 $\sin^2\omega T+\cos^2\omega T=1$。
+
+经典路径满足 $\ddot x=-\omega^2x$，所以仅在经典解上有
+\begin{align}
+  \mathcal L
+  &=\frac12m(\dot x^2-\omega^2x^2)
+  =\frac12m(\dot x^2+x\ddot x) \notag\\
+  &=\frac m2\frac{\dd}{\dd t}(x\dot x).
+  \label{eq:QM-C02-S08-E03-on-shell-lagrangian}
+\end{align}
+因此不必直接积分三角函数：
+\begin{equation}
+  S_{\mathrm{cl}}
+  =\frac m2[x\dot x]_0^T
+  =\frac m2\left[x_2\dot x(T)-x_1\dot x(0)\right].
+  \label{eq:QM-C02-S08-E03-boundary-action}
+\end{equation}
+两个端点的速度为
+\begin{equation}
+  \dot x(0)
+  =\frac{\omega(x_2-x_1\cos\omega T)}{\sin\omega T},
+  \qquad
+  \dot x(T)
+  =\frac{\omega(x_2\cos\omega T-x_1)}{\sin\omega T}.
+  \label{eq:QM-C02-S08-E03-endpoint-velocities}
+\end{equation}
+代入式~\eqref{eq:QM-C02-S08-E03-boundary-action}：
+\begin{align}
+  S_{\mathrm{cl}}(x_1,x_2,T)
+  &=\frac{m\omega}{2\sin\omega T}
+  \left[
+    x_2(x_2\cos\omega T-x_1)
+    -x_1(x_2-x_1\cos\omega T)
+  \right] \notag\\
+  &=\boxed{
+  \frac{m\omega}{2\sin\omega T}
+  \left[
+    (x_1^2+x_2^2)\cos\omega T-2x_1x_2
+  \right]}.
+  \label{eq:QM-C02-S08-E03-action}
+\end{align}
+第二行中的 $x_1^2$ 前是正号，因为
+\[
+  -x_1(x_2-x_1\cos\omega T)
+  =-x_1x_2+x_1^2\cos\omega T.
+\]
+
+最后令
+\[
+  C=x_1^2+x_2^2,
+  \qquad
+  c=\cos\omega T,
+  \qquad
+  s=\sin\omega T,
+  \qquad
+  N=Cc-2x_1x_2.
+\]
+则
+\[
+  S_{\mathrm{cl}}=\frac{m\omega}{2}\frac Ns,
+  \qquad
+  N'=-\omega Cs,
+  \qquad
+  s'=\omega c.
+\]
+所以
+\begin{align}
+  N's-Ns'
+  &=-\omega Cs^2-\omega c(Cc-2x_1x_2) \notag\\
+  &=-\omega\left[C-2x_1x_2c\right].
+  \label{eq:QM-C02-S08-E03-quotient-numerator}
+\end{align}
+从而
+\begin{align}
+  \frac{\partial S_{\mathrm{cl}}}{\partial T}
+  &=\frac{m\omega}{2}\frac{N's-Ns'}{s^2} \notag\\
+  &=-\frac{m\omega^2}{2\sin^2\omega T}
+  \left[
+    x_1^2+x_2^2-2x_1x_2\cos\omega T
+  \right]
+  =\boxed{-E}.
+  \label{eq:QM-C02-S08-E03-action-derivative}
+\end{align}
+
+式~\eqref{eq:QM-C02-S08-E03-ab}--\eqref{eq:QM-C02-S08-E03-action} 假设 $\sin\omega T\neq0$。当 $T=n\pi/\omega$ 时，端点必须满足 $x_2=(-1)^n x_1$；否则不存在连接这些端点的经典解，而满足时参数 $B$ 不由两个位置端点唯一确定。这正是通式在这些时刻出现奇点的原因。
+\end{checkedsolution}
+
+\textbf{检查点：}化简端点边界项时要保留 $-x_1\dot x(0)$ 的整体负号；验证 $\partial_T S_{\mathrm{cl}}=-E$ 时，$E$ 可以随端点时间 $T$ 所选出的经典轨迹而变化。
