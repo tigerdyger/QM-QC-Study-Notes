@@ -1,0 +1,79 @@
+% 对应单元：QM-C03-S01
+% 来源：Shankar 第 3 章第 3.1 节及学习对话中的自编检查
+% 人工核验：用户作答后完成符号、传播方向与波矢几何订正
+
+\section{第 3.1 节自编检验题与订正}
+\label{exercise-set:QM-C03-S01}
+
+\exercisemeta
+  {QM-C03-S01-EX}
+  {2026-09-04}
+  {Shankar，第 3 章 \S 3.1；本节无独立教材习题}
+  {完成一组自编综合检查并逐项订正}
+  {初始数据、平面波参数与波矢几何已核对}
+
+\exercisequestion{QM-C03-S01-E01}{自编检验题：经典波的初始数据与平面波参数}
+
+\textbf{对应知识点：}\relatedtopic{QM-C03-S01-T01}{经典粒子、经典波与初始数据}、\relatedtopic{QM-C03-S01-T02}{一维平面波、相位与传播速度}及\relatedtopic{QM-C03-S01-T03}{复数表示、强度与三维波矢}。
+
+\textbf{来源说明。}教材第 3.1 节没有独立习题。本题由学习对话生成，用于检查本节三项核心内容，不是教材原题。
+
+\begin{enumerate}[leftmargin=*]
+  \item 说明为什么只给一维波的初始形状 $\psi(x,0)$，一般不能唯一确定它的后续运动。
+  \item 对平面波
+  \[
+    \psi(x,t)=3\ee^{\ii(4x-12t)},
+  \]
+  求 $A,k,\omega,\lambda,T$、传播方向、相速度大小与强度。
+  \item 若三维平面波的波矢为 $\bm k=(1,2,2)$，求 $\abs{\bm k}$、波长和等相位面的单位法向量。
+\end{enumerate}
+
+\begin{checkedsolution}
+只给初始波形不能确定每一点的初始变化率。例如
+\[
+  \psi_+(x,t)=f(x-ct),
+  \qquad
+  \psi_-(x,t)=f(x+ct)
+\]
+在 $t=0$ 时具有相同的 $f(x)$，但初始时间导数分别为 $-cf'(x)$ 与 $cf'(x)$，所以分别向右和向左传播。还必须给出 $\dot\psi(x,0)$。
+
+将第二问与 $A\ee^{\ii(kx-\omega t)}$ 比较，得到
+\[
+  A=3,
+  \qquad
+  k=4,
+  \qquad
+  \omega=12.
+\]
+因此
+\begin{equation}
+  \lambda=\frac{2\pi}{k}=\frac{\pi}{2},
+  \qquad
+  T=\frac{2\pi}{\omega}=\frac{\pi}{6},
+  \qquad
+  \abs{v_{\mathrm{ph}}}=\frac{\omega}{k}=3.
+  \label{eq:QM-C03-S01-E01-plane-wave-results}
+\end{equation}
+固定相位满足 $4x-12t=\phi_0$，即 $x=3t+\phi_0/4$，故波向 $+x$ 传播。其强度为
+\[
+  I=\abs{\psi}^2=\abs{A}^2=9.
+\]
+指数中时间项的系数是 $-\omega$，所以 $-12t$ 对应 $\omega=12$；不能把外面的负号再次并入频率。
+
+第三问中
+\[
+  \abs{\bm k}=\sqrt{1^2+2^2+2^2}=3,
+  \qquad
+  \lambda=\frac{2\pi}{\abs{\bm k}}=\frac{2\pi}{3}.
+\]
+$\bm k$ 本身就是等相位面的法向量，其单位法向量为
+\begin{equation}
+  \boxed{
+  \widehat{\bm k}
+  =\frac{\bm k}{\abs{\bm k}}
+  =\frac13(1,2,2).}
+  \label{eq:QM-C03-S01-E01-unit-normal}
+\end{equation}
+\end{checkedsolution}
+
+\textbf{检查点：}先把指数严格写成 $kx-\omega t$ 再读取参数；传播方向由固定相位点的移动判断。三维中 $\bm k$ 是波面的法向量，而不是位于波面内的平行向量。

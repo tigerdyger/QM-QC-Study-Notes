@@ -1,0 +1,198 @@
+% 教材：Shankar, Principles of Quantum Mechanics, Second Edition
+% 已覆盖：第 3 章第 3.1 节，印刷页 pp. 107--108，PDF pp. 120--121
+% 人工核验：已完成分块讲解、问答和自编收口检查
+
+\section{第 3.1 节：经典物理中的粒子与波}
+\label{section:QM-C03-S01}
+
+\studymeta
+  {QM-C03-S01}
+  {2026-09-04}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 3 章 \S 3.1；印刷页 pp.~107--108；PDF pp.~120--121}
+  {讲解、自编检查与订正已完成}
+
+\textbf{本节主线。}
+
+经典物理把物质与辐射分别放入两套清楚分开的图景：粒子由有限个位置和动量变量描述，并沿确定轨迹运动；波则是定义在整个空间上的场，由波动方程控制。平面波把波长、周期、传播方向和强度压缩进振幅、频率与波矢。第三章将以这组经典区分为出发点，考察实验为何迫使我们修改它。
+
+\notetopic{QM-C03-S01-T01}{经典粒子、经典波与初始数据}
+
+\keyidea{粒子的状态由有限个数给出；波在固定时刻的状态是一整个空间函数。二者都需要与时间二阶运动方程相匹配的两组初始数据，但数据的类型不同。}
+
+在经典粒子图景中，单个三维粒子在时刻 $t_0$ 的状态可由
+\begin{equation}
+  \bm r(t_0),\qquad \dot{\bm r}(t_0)
+  \label{eq:QM-C03-S01-particle-initial-data}
+\end{equation}
+描述；在 Hamiltonian 形式中也可改用 $\bm r(t_0),\bm p(t_0)$。给定运动方程和初值后，原则上可确定一条轨迹 $\bm r(t)$。粒子的能量与动量被看作由局域对象携带；对有限个粒子，状态只需有限个自由度。
+
+经典波则是分布在空间中的扰动。例如一维弦的位移由
+\[
+  \psi(x,t)
+\]
+描述：固定 $t$ 后，$x$ 是标记各空间位置的参数，而 $\psi(x,t)$ 给出每一点的场值。连续介质因此具有连续无穷多个自由度，不能用一个粒子坐标 $x(t)$ 代替整幅波形。
+
+典型三维波动方程为
+\begin{equation}
+  \boxed{
+  \nabla^2\psi(\bm r,t)
+  =\frac{1}{c^2}
+  \frac{\partial^2\psi(\bm r,t)}{\partial t^2}.}
+  \label{eq:QM-C03-S01-wave-equation}
+\end{equation}
+由于它对时间是二阶方程，确定后续演化通常需要两个空间函数：
+\begin{equation}
+  \psi(\bm r,t_0),
+  \qquad
+  \left.\frac{\partial\psi(\bm r,t)}{\partial t}\right|_{t=t_0}.
+  \label{eq:QM-C03-S01-wave-initial-data}
+\end{equation}
+它们分别是初始波形和每个空间点的初始变化率，对应粒子问题中的初始位置与初始速度。
+
+只给初始波形一般不能确定传播方向。以一维波为例，
+\begin{equation}
+  \psi_+(x,t)=f(x-ct),
+  \qquad
+  \psi_-(x,t)=f(x+ct)
+  \label{eq:QM-C03-S01-opposite-traveling-waves}
+\end{equation}
+在 $t=0$ 时都有 $\psi_\pm(x,0)=f(x)$，但
+\[
+  \dot\psi_+(x,0)=-cf'(x),
+  \qquad
+  \dot\psi_-(x,0)=cf'(x).
+\]
+前者向右、后者向左传播。相同初始形状配上不同初始速度，可以产生不同的后续运动。
+
+\notetopic{QM-C03-S01-T02}{一维平面波、相位与传播速度}
+
+一维简谐平面波可写成
+\begin{align}
+  \psi(x,t)
+  &=A\exp\left[\ii\left(
+    \frac{2\pi}{\lambda}x-
+    \frac{2\pi}{T}t
+  \right)\right] \notag\\
+  &=\boxed{A\ee^{\ii(kx-\omega t)}},
+  \label{eq:QM-C03-S01-plane-wave}
+\end{align}
+其中
+\begin{equation}
+  k=\frac{2\pi}{\lambda},
+  \qquad
+  \omega=\frac{2\pi}{T}.
+  \label{eq:QM-C03-S01-k-omega-definitions}
+\end{equation}
+$k$ 是 wavenumber（波数或空间角频率），$\omega$ 是 angular frequency（角频率）。空间前进一个波长 $\lambda$ 或时间经过一个周期 $T$，相位都恰好改变 $2\pi$；因此 $k$ 与 $\omega$ 分别比 $1/\lambda$ 与 $1/T$ 多一个 $2\pi$。
+
+波的相位为
+\[
+  \phi(x,t)=kx-\omega t.
+\]
+追踪某个固定相位点，令 $kx-\omega t=\phi_0$，则
+\begin{equation}
+  x(t)=\frac{\omega}{k}t+\frac{\phi_0}{k},
+  \qquad
+  v_{\mathrm{ph}}=\frac{\dd x}{\dd t}=\frac{\omega}{k}
+  =\frac{\lambda}{T}.
+  \label{eq:QM-C03-S01-phase-velocity}
+\end{equation}
+在 $k,\omega>0$ 的约定下，$\ee^{\ii(kx-\omega t)}$ 向 $+x$ 传播，而 $\ee^{\ii(kx+\omega t)}$ 向 $-x$ 传播。
+
+把式~\eqref{eq:QM-C03-S01-plane-wave} 代入一维波动方程，可以直接得到频率与波数的关系：
+\begin{align}
+  \frac{\partial^2\psi}{\partial x^2}
+  &=-k^2\psi,
+  &
+  \frac{\partial^2\psi}{\partial t^2}
+  &=-\omega^2\psi.
+  \label{eq:QM-C03-S01-plane-wave-second-derivatives}
+\end{align}
+因此
+\begin{equation}
+  -k^2\psi
+  =-\frac{\omega^2}{c^2}\psi
+  \quad\Longrightarrow\quad
+  \boxed{\omega^2=c^2k^2}.
+  \label{eq:QM-C03-S01-dispersion-relation}
+\end{equation}
+这个 $\omega$ 与 $k$ 的函数关系称为 dispersion relation（色散关系）。对正频率、向右传播的分支，$\omega=ck$，所以相速度就是 $c$。
+
+\dialoguesupplement{与标准形式 $A\ee^{\ii(kx-\omega t)}$ 比较时，时间项的系数是 $-\omega$。例如 $3\ee^{\ii(4x-12t)}$ 对应 $k=4$、$\omega=12$，而不是 $\omega=-12$；周期和速率均取正值，传播方向由固定相位随时间的移动方向判断。}
+
+\notetopic{QM-C03-S01-T03}{复数表示、强度与三维波矢}
+
+真实的经典场通常取实值。若
+\[
+  A=\abs{A}\ee^{\ii\alpha},
+\]
+则复平面波的实部为
+\begin{equation}
+  \operatorname{Re}\psi(x,t)
+  =\abs{A}\cos(kx-\omega t+\alpha),
+  \label{eq:QM-C03-S01-real-wave}
+\end{equation}
+其中 $\alpha$ 是初相位。复指数是计算工具：微分只会产生 $\ii k$ 或 $-\ii\omega$ 因子。由于实系数波动方程是线性的，若复函数 $\psi=\psi_R+\ii\psi_I$ 是解，则实部 $\psi_R$ 与虚部 $\psi_I$ 分别也是解；计算结束后可取所需的实部。
+
+教材采用
+\begin{equation}
+  I=\abs{\psi}^2
+  \label{eq:QM-C03-S01-intensity}
+\end{equation}
+表示强度。对理想平面波，
+\begin{equation}
+  \abs{\psi(x,t)}^2
+  =\abs{A}^2
+   \abs{\ee^{\ii(kx-\omega t)}}^2
+  =\boxed{\abs{A}^2},
+  \label{eq:QM-C03-S01-plane-wave-intensity}
+\end{equation}
+因为复相位只在单位圆上转动而不改变模长。实际经典波的时间平均能流与振幅平方成正比；具体比例系数取决于所描述的物理场和归一化约定。
+
+三维平面波写成
+\begin{equation}
+  \boxed{
+  \psi(\bm r,t)
+  =A\ee^{\ii(\bm k\cdot\bm r-\omega t)}},
+  \qquad
+  \abs{\bm k}=\frac{2\pi}{\lambda}.
+  \label{eq:QM-C03-S01-three-dimensional-wave}
+\end{equation}
+$\bm k$ 是 wave vector（波矢）：它的模长给出空间相位变化率，方向给出传播方向。在固定时刻，等相位面满足
+\begin{equation}
+  \bm k\cdot\bm r=\text{常数}.
+  \label{eq:QM-C03-S01-wavefront}
+\end{equation}
+因此 $\bm k$ 是等相位面的法向量，而单位法向量是
+\[
+  \widehat{\bm k}=\frac{\bm k}{\abs{\bm k}}.
+\]
+等相位面与 $\bm k$ 垂直，而不是平行。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[x=1.05cm,y=1.05cm,>=Latex]
+    \foreach \x in {-2,-1,0,1,2}
+      \draw[noteBlue,thick] (\x,-1.35)--(\x,1.35);
+    \draw[->,very thick,accentRed] (-2.55,0)--(2.65,0)
+      node[right] {$\bm k$};
+    \node[noteBlue,align=center] at (0,1.75)
+      {等相位面在二维截面中的投影};
+    \draw[<->,verifyOrange] (0,-1.65)--(1,-1.65)
+      node[midway,below] {$\lambda$};
+  \end{tikzpicture}
+  \caption{相邻波面相隔一个波长；波沿波矢所指的法向传播。}
+  \label{fig:QM-C03-S01-wavefronts}
+\end{figure}
+
+三维相速度的大小为
+\begin{equation}
+  v_{\mathrm{ph}}=\frac{\omega}{\abs{\bm k}}.
+  \label{eq:QM-C03-S01-three-dimensional-phase-velocity}
+\end{equation}
+本节只讨论单一平面波的相位传播；不同波数分量叠加后的波包及其传播将在后文需要时再区分处理。
+
+\textbf{一分钟回顾。}
+
+经典粒子由有限个位置与动量变量描述，经典波则由整个空间上的场函数描述。波动方程对时间为二阶，因此初始波形与初始变化率缺一不可。一维平面波 $A\ee^{\ii(kx-\omega t)}$ 的固定相位以 $\omega/k$ 向右传播，并满足 $\omega^2=c^2k^2$。复指数简化微分运算，实际场可取其实部；理想平面波强度为 $\abs{A}^2$。三维波矢 $\bm k$ 指向传播方向，并垂直于等相位面。
