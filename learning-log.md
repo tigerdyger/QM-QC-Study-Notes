@@ -30,3 +30,4 @@
 | 2026-09-02 | Shankar 第 2 章 \S 2.7，印刷页 91--98，PDF 104--111 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | 循环坐标、Poisson bracket、守恒判据、点变换、正则变换、括号不变性、主动与被动变换、极坐标正则变量 | 下一学习节点为第 2.8 节 Symmetries and Their Consequences |
 | 2026-09-03 | Shankar 第 2 章 \S 2.8，印刷页 98--106，PDF 111--119 | `chapters/02-notes.tex`、`exercises/02-exercises.tex` | 连续对称性、无穷小正则变换、生成元、平移与旋转守恒量、Hamiltonian 时间演化、对称轨迹、经典作用量端点导数 | 第 2 章经典力学回顾完成；下一学习节点为第 3 章 |
 | 2026-09-04 | Shankar 第 3 章 \S 3.1，印刷页 107--108，PDF 120--121 | `chapters/03-notes.tex`、`exercises/03-exercises.tex` | 经典粒子与经典波、波动方程初值、平面波、相位与传播速度、复数表示、强度、三维波矢 | 下一学习节点为第 3.2 节 An Experiment with Waves and Particles (Classical) |
+| 2026-09-05 | Shankar 第 3 章 \S 3.2，印刷页 108--110，PDF 121--123 | `chapters/03-notes.tex`、`exercises/03-exercises.tex` | 经典双缝实验、振幅叠加、干涉项、路程差、明暗条纹、经典概率加法、相干性 | 下一学习节点为第 3.3 节 The Double-Slit Experiment with Light |

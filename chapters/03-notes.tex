@@ -1,5 +1,5 @@
 % 教材：Shankar, Principles of Quantum Mechanics, Second Edition
-% 已覆盖：第 3 章第 3.1 节，印刷页 pp. 107--108，PDF pp. 120--121
+% 已覆盖：第 3 章第 3.1--3.2 节，印刷页 pp. 107--110，PDF pp. 120--123
 % 人工核验：已完成分块讲解、问答和自编收口检查
 
 \section{第 3.1 节：经典物理中的粒子与波}
@@ -196,3 +196,181 @@ $\bm k$ 是 wave vector（波矢）：它的模长给出空间相位变化率，
 \textbf{一分钟回顾。}
 
 经典粒子由有限个位置与动量变量描述，经典波则由整个空间上的场函数描述。波动方程对时间为二阶，因此初始波形与初始变化率缺一不可。一维平面波 $A\ee^{\ii(kx-\omega t)}$ 的固定相位以 $\omega/k$ 向右传播，并满足 $\omega^2=c^2k^2$。复指数简化微分运算，实际场可取其实部；理想平面波强度为 $\abs{A}^2$。三维波矢 $\bm k$ 指向传播方向，并垂直于等相位面。
+
+\section{第 3.2 节：经典波与经典粒子的双缝实验}
+\label{section:QM-C03-S02}
+
+\studymeta
+  {QM-C03-S02}
+  {2026-09-05}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 3 章 \S 3.2；印刷页 pp.~108--110；PDF pp.~121--123}
+  {讲解、自编检查与订正已完成}
+
+\textbf{本节主线。}
+
+同一套双缝装置把经典波与经典粒子的组合规则清楚地区分开来：经典波先叠加复振幅，再取模平方得到强度，因此会出现干涉交叉项；彼此独立的经典粒子沿互斥路径到达探测器，因而直接相加概率或计数率。教材将在下一节用这两个经典基准检验光。
+
+\notetopic{QM-C03-S02-T01}{经典波：振幅叠加、干涉项与条纹位置}
+
+设两缝间距为 $d$，缝屏到探测屏的距离为 $D$，屏上观察点为 $X$，其纵坐标为 $x$；从两缝 $S_1,S_2$ 到 $X$ 的路程分别为 $r_1,r_2$。符号约定如图~\ref{fig:QM-C03-S02-double-slit-geometry} 所示。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[x=1.08cm,y=1.08cm,>=Latex]
+    \foreach \y in {-1.5,-0.9,-0.3,0.3,0.9,1.5}
+      \draw[->,noteBlue] (-2.0,\y)--(-0.25,\y);
+
+    \draw[line width=1.8pt] (0,-2.0)--(0,-0.95);
+    \draw[line width=1.8pt] (0,-0.55)--(0,0.55);
+    \draw[line width=1.8pt] (0,0.95)--(0,2.0);
+    \fill[accentRed] (0,0.75) circle (1.5pt)
+      node[left=3pt] {$S_1$};
+    \fill[accentRed] (0,-0.75) circle (1.5pt)
+      node[left=3pt] {$S_2$};
+
+    \draw[line width=1.3pt] (5,-2.0)--(5,2.0)
+      node[above] {探测屏};
+    \fill[verifyOrange] (5,1.35) circle (1.7pt)
+      node[right=3pt] {$X$};
+    \coordinate (O) at (5,0);
+    \draw[densely dashed,noteBlue] (0,0.75)--(5,1.35)
+      node[pos=0.57,above] {$r_1$};
+    \draw[densely dashed,noteBlue] (0,-0.75)--(5,1.35)
+      node[pos=0.57,below] {$r_2$};
+
+    \draw[<->,verifyOrange] (0.38,-0.75)--(0.38,0.75)
+      node[midway,right] {$d$};
+    \draw[<->] (0,-2.25)--(5,-2.25)
+      node[midway,below] {$D$};
+    \draw[<->] (5.35,0)--(5.35,1.35)
+      node[midway,right] {$x$};
+    \draw[densely dotted] (0,0)--(O);
+  \end{tikzpicture}
+  \caption{双缝几何示意图。图为笔记自绘；远屏近轴近似要求 $D\gg d$ 且 $\abs{x}\ll D$。}
+  \label{fig:QM-C03-S02-double-slit-geometry}
+\end{figure}
+
+只开 $S_1$ 时，屏上的复振幅和强度分别记作
+\[
+  \phi_1(x,t),
+  \qquad
+  I_1(x)=\abs{\phi_1(x,t)}^2;
+\]
+只开 $S_2$ 时同理得到 $\phi_2$ 与 $I_2$。两缝同时打开时，线性波动方程要求先叠加振幅：
+\begin{equation}
+  \phi_{1+2}=\phi_1+\phi_2.
+  \label{eq:QM-C03-S02-amplitude-addition}
+\end{equation}
+所以强度为
+\begin{align}
+  I_{1+2}
+  &=\abs{\phi_1+\phi_2}^2 \notag\\
+  &=(\phi_1+\phi_2)^*(\phi_1+\phi_2) \notag\\
+  &=\abs{\phi_1}^2+\abs{\phi_2}^2
+    +\phi_1^*\phi_2+\phi_2^*\phi_1 \notag\\
+  &=\boxed{I_1+I_2+2\operatorname{Re}(\phi_1^*\phi_2)}.
+  \label{eq:QM-C03-S02-wave-interference}
+\end{align}
+最后两项是 interference term（干涉项）。这里必须保留复共轭；一般不能把干涉项写成 $\phi_1\phi_2$。
+
+若两条波等振幅且同频，取
+\begin{equation}
+  \phi_j=A\ee^{\ii(kr_j-\omega t)},
+  \qquad
+  I_0=\abs{A}^2,
+  \qquad
+  \Delta r=r_2-r_1,
+  \label{eq:QM-C03-S02-equal-amplitude-waves}
+\end{equation}
+则
+\begin{align}
+  I_{1+2}
+  &=2I_0+2I_0\cos(k\Delta r) \notag\\
+  &=\boxed{4I_0\cos^2\left(\frac{k\Delta r}{2}\right)}.
+  \label{eq:QM-C03-S02-interference-intensity}
+\end{align}
+因此
+\begin{align}
+  \Delta r=n\lambda
+  &\quad\Longrightarrow\quad
+  I_{\max}=4I_0,
+  \label{eq:QM-C03-S02-bright-condition}\\
+  \Delta r=\left(n+\frac12\right)\lambda
+  &\quad\Longrightarrow\quad
+  I_{\min}=0,
+  \label{eq:QM-C03-S02-dark-condition}
+\end{align}
+其中 $n\in\mathbb Z$。明纹对应同相叠加，暗纹对应反相抵消。
+
+在 $D\gg d$ 且 $\abs{x}\ll D$ 的远屏近轴条件下，
+\begin{equation}
+  \Delta r\simeq d\sin\theta\simeq\frac{dx}{D}.
+  \label{eq:QM-C03-S02-path-difference-approximation}
+\end{equation}
+代入明暗条件可得
+\begin{align}
+  x_n^{\mathrm{bright}}
+  &\simeq \frac{n\lambda D}{d},
+  &
+  x_n^{\mathrm{dark}}
+  &\simeq \frac{(n+\tfrac12)\lambda D}{d},
+  \label{eq:QM-C03-S02-fringe-positions}
+\end{align}
+相邻明纹或暗纹的间距均为
+\begin{equation}
+  \boxed{\Delta x\simeq\frac{\lambda D}{d}}.
+  \label{eq:QM-C03-S02-fringe-spacing}
+\end{equation}
+因此增大波长或屏距会拉宽条纹，增大缝距会压缩条纹。
+
+\notetopic{QM-C03-S02-T02}{经典粒子：互斥路径的概率直接相加}
+
+把入射波换成具有固定能量、方向有一定分布的经典粒子束。令 $P_1(x)$ 与 $P_2(x)$ 表示在相同入射条件下，粒子分别经 $S_1$、$S_2$ 落入 $x$ 附近同一探测区间的概率贡献；它们不是已经分别归一化为 $1$ 的条件分布。若探测的是单位时间内的粒子数，也可用相应计数率 $I_1(x),I_2(x)$ 表示相同的分布规律。
+
+对每个经典粒子而言，“经 $S_1$ 到达 $x$”与“经 $S_2$ 到达 $x$”是 mutually exclusive（互斥）的两条路径。在两缝之间没有额外相互作用、粒子束条件保持不变的经典假设下，概率加法法则给出
+\begin{equation}
+  \boxed{P_{1+2}(x)=P_1(x)+P_2(x)},
+  \qquad
+  \boxed{I_{1+2}(x)=I_1(x)+I_2(x)}.
+  \label{eq:QM-C03-S02-classical-particle-addition}
+\end{equation}
+这里没有类似式~\eqref{eq:QM-C03-S02-wave-interference} 的交叉项。$P_1P_2$ 描述两个事件同时发生时才可能出现的乘法结构，并不适用于“经 $S_1$ 或经 $S_2$”这一互斥选择。
+
+即使两缝发出的粒子可能彼此碰撞，也可把入射强度降到一次只有一个粒子通过装置，从而排除粒子之间的相互影响。单次事件仍是某一个探测器的一次局域计数；重复足够多次后形成直方图，其平滑包络趋近 $I_1$、$I_2$ 或 $I_{1+2}$。在经典粒子模型中，由于 $P_2(x)\geq 0$，打开第二条路径不可能使某处的总到达概率低于只开第一条路径时的概率。
+
+\notetopic{QM-C03-S02-T03}{实验判据与相干性边界}
+
+两套经典预测的差别不在探测器是否逐点计数，而在组合规则：
+\begin{equation}
+  \boxed{
+  \begin{aligned}
+    \text{经典波：}&\quad
+    \text{先加振幅，再取模平方};\\
+    \text{经典粒子：}&\quad
+    \text{对互斥路径直接加概率}.
+  \end{aligned}}
+  \label{eq:QM-C03-S02-two-composition-rules}
+\end{equation}
+经典波可以满足
+\[
+  I_{1+2}(x)\neq I_1(x)+I_2(x).
+\]
+特别是在干涉极小处，打开第二条缝反而可能降低该处的能流。经典粒子则必须满足式~\eqref{eq:QM-C03-S02-classical-particle-addition}，因此这种局部降低不可能出现。这是比“分布看起来有起伏”更直接的实验判据。
+
+\dialoguesupplement{看不到稳定条纹并不足以单独证明对象服从经典粒子加法。若两束经典波的相对相位 $\delta$ 随时间或样本随机变化，则
+\[
+  I_{1+2}=I_1+I_2+2\sqrt{I_1I_2}\cos\delta.
+\]
+在相位均匀漂移且观测进行时间平均或系综平均时，$\langle\cos\delta\rangle=0$，于是 $\langle I_{1+2}\rangle=I_1+I_2$。瞬时干涉仍可能存在，只是缺乏稳定的相干关系，平均后不再形成可见条纹。}
+
+\newpage
+\textbf{一分钟回顾。}
+
+双缝实验中，经典波先叠加振幅，再计算强度：
+\[
+  \phi_{1+2}=\phi_1+\phi_2,
+  \qquad
+  I_{1+2}=I_1+I_2+\phi_1^*\phi_2+\phi_2^*\phi_1.
+\]
+等振幅时强度为 $4I_0\cos^2(k\Delta r/2)$，远屏近轴下条纹间距为 $\lambda D/d$。经典粒子的两条路径互斥，故 $P_{1+2}=P_1+P_2$，不存在干涉项。打开第二缝能否降低某处的探测率，是区分两种经典组合规则的关键；但“没有稳定条纹”还可能来自经典波失去相干性，不能单独作为粒子性的充分证据。
