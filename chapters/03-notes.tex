@@ -1,5 +1,5 @@
 % 教材：Shankar, Principles of Quantum Mechanics, Second Edition
-% 已覆盖：第 3 章第 3.1--3.2 节，印刷页 pp. 107--110，PDF pp. 120--123
+% 已覆盖：第 3 章第 3.1--3.3 节，印刷页 pp. 107--112，PDF pp. 120--125
 % 人工核验：已完成分块讲解、问答和自编收口检查
 
 \section{第 3.1 节：经典物理中的粒子与波}
@@ -374,3 +374,180 @@ $\bm k$ 是 wave vector（波矢）：它的模长给出空间相位变化率，
   I_{1+2}=I_1+I_2+\phi_1^*\phi_2+\phi_2^*\phi_1.
 \]
 等振幅时强度为 $4I_0\cos^2(k\Delta r/2)$，远屏近轴下条纹间距为 $\lambda D/d$。经典粒子的两条路径互斥，故 $P_{1+2}=P_1+P_2$，不存在干涉项。打开第二缝能否降低某处的探测率，是区分两种经典组合规则的关键；但“没有稳定条纹”还可能来自经典波失去相干性，不能单独作为粒子性的充分证据。
+
+\section{第 3.3 节：光的双缝实验}
+\label{section:QM-C03-S03}
+
+\studymeta
+  {QM-C03-S03}
+  {2026-09-06}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 3 章 \S 3.3；印刷页 pp.~110--112；PDF pp.~123--125}
+  {讲解、自编检查与订正已完成}
+
+\textbf{本节主线。}
+
+光在双缝实验中同时表现出两类不能由同一套经典图景解释的现象：探测器每次记录一个局域、不可继续分割的能量转移事件，而大量这类事件累积出的空间分布却服从振幅叠加产生的干涉规律。量子理论因此不把光简单归入“经典粒子”或“经典波”，而是以概率振幅描述单次事件发生在各处的可能性。
+
+\notetopic{QM-C03-S03-T01}{光的离散探测与光子能量、动量}
+
+在强光下，探测器接收的能量看起来近似连续，经典电磁波的强度描述十分有效。把光强逐步降低并使用足够灵敏的探测器后，能量交换却表现为一次次局域计数，而不是任意小份额的连续沉积。每次计数所对应的电磁辐射量子称为 photon（光子）。
+
+对角频率为 $\omega$、普通频率为 $\nu$ 的单色光，单个光子的能量由实验规律给出：
+\begin{equation}
+  \boxed{E=\hbar\omega=h\nu},
+  \qquad
+  \hbar=\frac{h}{2\pi},
+  \qquad
+  \omega=2\pi\nu.
+  \label{eq:QM-C03-S03-photon-energy}
+\end{equation}
+光子的动量与波矢满足
+\begin{equation}
+  \boxed{\bm p=\hbar\bm k},
+  \qquad
+  p=\hbar k=\frac{h}{\lambda}.
+  \label{eq:QM-C03-S03-photon-momentum}
+\end{equation}
+这里的 $E=\hbar\omega$ 与 $\bm p=\hbar\bm k$ 是由实验建立的量子关系，并不能只从经典波动方程推出。经典理论给出的 $\omega$、$\bm k$ 在量子描述中进一步决定单个光子的能量和动量。
+
+真空中的光满足色散关系 $\omega=ck$，所以
+\begin{equation}
+  E=\hbar\omega
+  =\hbar ck
+  =pc.
+  \label{eq:QM-C03-S03-photon-dispersion}
+\end{equation}
+与相对论能量--动量关系
+\begin{equation}
+  E^2=p^2c^2+m_0^2c^4
+  \label{eq:QM-C03-S03-relativistic-energy-momentum}
+\end{equation}
+比较可知光子的静质量 $m_0=0$。这并不意味着光子没有能量或动量；它们分别由式~\eqref{eq:QM-C03-S03-photon-energy} 和式~\eqref{eq:QM-C03-S03-photon-momentum} 给出。
+
+在理想单色光和固定探测效率的条件下，若平均每秒到达的光子数为 $\dot N$，平均功率为
+\begin{equation}
+  \boxed{\mathcal P=\dot N\hbar\omega}.
+  \label{eq:QM-C03-S03-power-count-rate}
+\end{equation}
+因此在频率不变时降低光强，不会把每个光子的能量按比例削小，而会降低平均光子到达率。例如光强降为原来的 $1/5$ 时，单个光子的 $\hbar\omega$ 不变，单位时间内的平均计数降为原来的 $1/5$。若频率改变，则单个光子的能量也随 $\omega$ 改变。
+
+\notetopic{QM-C03-S03-T02}{单光子双缝实验为何排除经典轨迹模型}
+
+把入射光调弱到装置中平均一次只有一个光子，探测屏仍会记录一个个局域事件。短时间内这些点看似随机；经过大量重复后，计数直方图逐渐显现与经典波强度相同的干涉条纹。由于同一时刻没有第二个光子通过装置，条纹不能解释为不同光子之间碰撞或彼此扰动的结果。
+
+经典粒子模型要得到
+\begin{equation}
+  N_{1+2}(x)=N_1(x)+N_2(x),
+  \label{eq:QM-C03-S03-classical-count-addition}
+\end{equation}
+实际上需要同时采用两项假设：每个粒子经过 $S_1$ 或 $S_2$ 中一条确定路径；并且打开另一条缝不会改变原来那条路径对 $x$ 处计数的贡献。在这些假设下，两类事件互斥，故概率或平均计数率只能相加。
+
+单光子实验却一般满足
+\begin{equation}
+  \boxed{\rho_{1+2}(x)\neq\rho_1(x)+\rho_2(x)},
+  \label{eq:QM-C03-S03-nonclassical-probability-addition}
+\end{equation}
+其中 $\rho$ 表示单位长度内的探测概率密度。最直接的反例是理想暗纹位置 $x_0$。若两条路径在该处分别贡献
+\begin{equation}
+  \psi_1(x_0)=A,
+  \qquad
+  \psi_2(x_0)=-A,
+  \label{eq:QM-C03-S03-dark-fringe-amplitudes}
+\end{equation}
+则只开任一条缝时的概率密度均为 $\abs{A}^2$，而两缝同时打开时
+\begin{equation}
+  \rho_{1+2}(x_0)
+  =\abs{A-A}^2=0.
+  \label{eq:QM-C03-S03-dark-fringe-probability}
+\end{equation}
+打开第二条缝反而把该处的探测概率从正值降为零，这与式~\eqref{eq:QM-C03-S03-classical-count-addition} 冲突。
+
+这里排除的是“光子总有一条确定经典路径，而且另一条缝不影响该路径贡献”的独立轨迹模型。仅凭本节实验，不应把结论夸大为排除了所有可能含有轨迹概念的量子诠释。教材在此要确立的操作性事实是：实验结果不能由经典互斥概率直接相加得到，而必须先组合复概率振幅。
+
+\notetopic{QM-C03-S03-T03}{概率振幅、Born 规则与统计条纹}
+
+用态矢量 $\ket{\psi}$ 描述入射光的量子态。在连续位置基 $\{\ket{x}\}$ 中，
+\begin{equation}
+  \boxed{\psi(x)=\braket{x}{\psi}}
+  \label{eq:QM-C03-S03-position-amplitude}
+\end{equation}
+是态矢量在 $\ket{x}$ 方向上的坐标，称为在位置 $x$ 探测到光子的 probability amplitude（概率振幅）。它本身一般是复数，不是概率，也不是经典电磁场能量密度。
+
+Born 规则把振幅与可观测概率联系起来：
+\begin{align}
+  \Pr(x\leq X<x+\dd x)
+  &=\abs{\psi(x)}^2\dd x,
+  \label{eq:QM-C03-S03-born-infinitesimal}\\
+  \Pr(a\leq X\leq b)
+  &=\int_a^b\abs{\psi(x)}^2\dd x.
+  \label{eq:QM-C03-S03-born-interval}
+\end{align}
+若光子必在整条探测屏上被发现，则态须满足归一化条件
+\begin{equation}
+  \int_{-\infty}^{\infty}\abs{\psi(x)}^2\dd x=1.
+  \label{eq:QM-C03-S03-normalization}
+\end{equation}
+因此 $\abs{\psi(x)}^2$ 的量纲是长度的倒数，$\psi(x)$ 的量纲是 $\mathrm{length}^{-1/2}$。单点在连续空间中的概率通常为零；有物理意义的是有限区间概率或概率密度。
+
+两缝同时打开时，量子理论使用与经典波相同形式的振幅叠加规则：
+\begin{equation}
+  \boxed{\psi_{1+2}(x)=\psi_1(x)+\psi_2(x)}.
+  \label{eq:QM-C03-S03-amplitude-superposition}
+\end{equation}
+但这里的 $\psi_j$ 是到达 $x$ 的概率振幅。应用 Born 规则后，
+\begin{align}
+  \rho_{1+2}(x)
+  &=\abs{\psi_1(x)+\psi_2(x)}^2 \notag\\
+  &=\abs{\psi_1(x)}^2+\abs{\psi_2(x)}^2
+    +\psi_1^*(x)\psi_2(x)+\psi_2^*(x)\psi_1(x) \notag\\
+  &=\boxed{\rho_1(x)+\rho_2(x)
+    +2\operatorname{Re}\!\left[\psi_1^*(x)\psi_2(x)\right]}.
+  \label{eq:QM-C03-S03-born-interference}
+\end{align}
+交叉项可以为正也可以为负，所以打开第二条缝既可能增加、也可能降低某处的探测概率。
+
+一次实验只产生一个完整、局域的探测事件；式~\eqref{eq:QM-C03-S03-born-interference} 预测的是这种事件在大量相同制备下的空间分布。若重复发送 $N$ 个同样制备的光子，则区间 $[a,b]$ 内计数的期望值为
+\begin{equation}
+  \boxed{
+  \mathbb E\!\left[N_{[a,b]}\right]
+  =N\int_a^b\abs{\psi(x)}^2\dd x.}
+  \label{eq:QM-C03-S03-expected-counts}
+\end{equation}
+随着样本数增加，归一化直方图才逐渐逼近 $\abs{\psi(x)}^2$。因此“一个光子的一次探测”与“许多次探测形成干涉条纹”处在不同统计层次，并不矛盾。
+
+\dialoguesupplement{为什么不直接把光视为经典波？经典波理论能准确给出许多实验中的平均干涉包络，但它把场能量视为可连续分割，不能单独解释探测器为何以局域的、能量为 $\hbar\omega$ 的完整事件响应。量子理论保留振幅的叠加结构，同时用 Born 规则把振幅模平方解释为单次事件的概率密度。}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    >=Latex,
+    node distance=0.72cm and 0.65cm,
+    box/.style={draw=noteBlue,rounded corners=2pt,align=center,
+      minimum height=0.82cm,text width=2.55cm,fill=noteBlue!5},
+    event/.style={draw=accentRed,rounded corners=2pt,align=center,
+      minimum height=0.82cm,text width=2.35cm,fill=accentRed!5}
+  ]
+    \node[box] (state) {同一制备的\\单光子态 $\ket{\psi}$};
+    \node[box,right=of state] (paths) {两条路径的振幅贡献\\$\psi_1(x),\ \psi_2(x)$};
+    \node[box,right=of paths] (sum) {总振幅\\$\psi_1(x)+\psi_2(x)$};
+    \node[event,right=of sum] (click) {一次完整的\\局域探测事件};
+    \draw[->,thick] (state)--(paths);
+    \draw[->,thick] (paths)--(sum);
+    \draw[->,thick] (sum)--node[above] {$\abs{\cdot}^2$} (click);
+
+    \node[box,below=1.0cm of sum] (repeat) {重复 $N$ 次\\独立制备与探测};
+    \node[event,right=of repeat] (hist) {计数直方图\\$\propto\abs{\psi(x)}^2$};
+    \draw[->,thick] (click)--(repeat);
+    \draw[->,thick] (repeat)--(hist);
+  \end{tikzpicture}
+  \caption{单光子振幅叠加与统计条纹的层次。图为笔记自绘；两条振幅贡献不是把一个光子的能量分成两半。}
+  \label{fig:QM-C03-S03-single-photon-statistics}
+\end{figure}
+
+\textbf{术语与适用边界。}
+所谓“一个光子与自身干涉”只是对“同一单光子态的不同路径振幅在探测前相干叠加”的简称，不表示光子彼此碰撞，也不表示一次探测只吸收半个光子。更现代的表述把光子视为量子化电磁场的一次激发；本节的单光子概率波图景是进入量子公设前的物理动机，并不是完整的量子电动力学。严格的光子位置表象还存在超出本节范围的技术问题。
+
+\textbf{一分钟回顾。}
+
+光以局域、离散事件与物质交换能量和动量，每个光子满足 $E=\hbar\omega$、$\bm p=\hbar\bm k$，且真空中 $E=pc$。在固定频率下减弱光强，主要降低的是平均光子到达率，而非单个光子的能量。即使一次只有一个光子通过双缝，累计结果仍出现干涉，说明经典互斥路径概率不能直接相加。量子理论先叠加概率振幅 $\psi_1+\psi_2$，再由 Born 规则取模平方得到探测概率密度；单次结果是一个完整局域事件，大量重复才显现 $\abs{\psi(x)}^2$ 所规定的统计条纹。
