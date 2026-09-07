@@ -1,5 +1,5 @@
 % 教材：Shankar, Principles of Quantum Mechanics, Second Edition
-% 已覆盖：第 3 章第 3.1--3.3 节，印刷页 pp. 107--112，PDF pp. 120--125
+% 已覆盖：第 3 章第 3.1--3.4 节，印刷页 pp. 107--112，PDF pp. 120--125
 % 人工核验：已完成分块讲解、问答和自编收口检查
 
 \section{第 3.1 节：经典物理中的粒子与波}
@@ -551,3 +551,169 @@ Born 规则把振幅与可观测概率联系起来：
 \textbf{一分钟回顾。}
 
 光以局域、离散事件与物质交换能量和动量，每个光子满足 $E=\hbar\omega$、$\bm p=\hbar\bm k$，且真空中 $E=pc$。在固定频率下减弱光强，主要降低的是平均光子到达率，而非单个光子的能量。即使一次只有一个光子通过双缝，累计结果仍出现干涉，说明经典互斥路径概率不能直接相加。量子理论先叠加概率振幅 $\psi_1+\psi_2$，再由 Born 规则取模平方得到探测概率密度；单次结果是一个完整局域事件，大量重复才显现 $\abs{\psi(x)}^2$ 所规定的统计条纹。
+
+\section{第 3.4 节：物质波（de Broglie 波）}
+\label{section:QM-C03-S04}
+
+\studymeta
+  {QM-C03-S04}
+  {2026-09-07}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 3 章 \S 3.4；印刷页 p.~112；PDF p.~125}
+  {讲解、教材估算例、自编检查与订正已完成}
+
+\textbf{本节主线。}
+
+光原本被视为波，却以光子的形式携带离散的能量和动量。de Broglie 反向追问：传统上被视为粒子的电子等物质，是否也具有波动性？他的假设把粒子动量与波矢联系起来，并预言物质粒子同样可以发生干涉和衍射。宏观物体并非没有物质波，而是其波长和条纹间距通常小到无法由现实仪器分辨。
+
+\notetopic{QM-C03-S04-T01}{de Broglie 假设与物质波的概率解释}
+
+de Broglie hypothesis（德布罗意假设）认为，动量为 $\bm p$ 的粒子对应波矢 $\bm k$，满足
+\begin{equation}
+  \boxed{\bm p=\hbar\bm k}.
+  \label{eq:QM-C03-S04-de-broglie-vector}
+\end{equation}
+因此 $\bm k$ 与 $\bm p$ 同向，而且
+\begin{equation}
+  k=\frac{p}{\hbar}.
+  \label{eq:QM-C03-S04-wave-number}
+\end{equation}
+结合 $k=2\pi/\lambda$ 和 $h=2\pi\hbar$，得到 de Broglie wavelength（德布罗意波长）
+\begin{align}
+  \frac{2\pi}{\lambda}
+  &=\frac{p}{\hbar},
+  \notag\\
+  \boxed{\lambda=\frac{2\pi\hbar}{p}=\frac{h}{p}}.
+  \label{eq:QM-C03-S04-de-broglie-wavelength}
+\end{align}
+真正普遍的关系是 $\lambda=h/p$。只有在非相对论条件下，才可再用 $p=mv$ 写成
+\begin{equation}
+  \boxed{\lambda=\frac{h}{mv}}.
+  \label{eq:QM-C03-S04-nonrelativistic-wavelength}
+\end{equation}
+速度接近光速时必须使用相对论动量，不能继续把 $p$ 简写为 $mv$。
+
+式~\eqref{eq:QM-C03-S04-de-broglie-wavelength} 给出两个直接判断：
+\begin{itemize}[leftmargin=*]
+  \item 对同一种粒子，动量越大，波长越短；
+  \item 两个粒子若动量大小相同，则 de Broglie 波长相同；若非相对论速度相同，则质量越大的粒子波长越短。
+\end{itemize}
+
+Davisson--Germer experiment（戴维孙--革末实验）观察到了电子衍射，从实验上验证了电子的波数与动量服从 $k=p/\hbar$。物质波并不表示电子沿波浪形轨迹前进，也不应被解释为连续摊开的经典物质密度。教材沿用上一节的概率解释，以
+\begin{equation}
+  \psi(x,t)
+  \label{eq:QM-C03-S04-matter-wave-amplitude}
+\end{equation}
+表示在时刻 $t$ 于位置 $x$ 探测到粒子的 probability amplitude（概率振幅），而
+\begin{equation}
+  \boxed{
+  \Pr(x\leq X<x+\dd x)
+  =\abs{\psi(x,t)}^2\dd x}
+  \label{eq:QM-C03-S04-matter-wave-born-rule}
+\end{equation}
+才是相应的位置概率。
+
+在双缝实验中，两条路径贡献的概率振幅先相加：
+\begin{equation}
+  \psi_{1+2}(x)=\psi_1(x)+\psi_2(x),
+  \label{eq:QM-C03-S04-matter-wave-superposition}
+\end{equation}
+于是
+\begin{equation}
+  \abs{\psi_{1+2}(x)}^2
+  =\abs{\psi_1(x)}^2+\abs{\psi_2(x)}^2
+   +2\operatorname{Re}\!\left[\psi_1^*(x)\psi_2(x)\right].
+  \label{eq:QM-C03-S04-matter-wave-interference}
+\end{equation}
+单个粒子仍只在屏上产生一次局域探测；大量同样制备的粒子才累积出由式~\eqref{eq:QM-C03-S04-matter-wave-interference} 描述的干涉分布。
+
+\dialoguesupplement{本节所排除的是朴素经典模型：粒子经过一条确定且不受另一条缝影响的路径，两条互斥路径的概率直接相加。仅凭这里的论证，不应把结论扩大为排除一切含“轨迹”概念的量子诠释。}
+
+\notetopic{QM-C03-S04-T02}{宏观经典极限：极短波长与不可分辨条纹}
+
+教材考虑质量为 $1\,\mathrm{g}$、速度为 $1\,\mathrm{cm/s}$ 的弹丸。在非相对论条件下，
+\begin{equation}
+  p=mv
+  =1\,\mathrm{g\,cm/s}.
+  \label{eq:QM-C03-S04-pellet-momentum}
+\end{equation}
+使用
+\[
+  h\simeq
+  6.626\times10^{-27}\,
+  \mathrm{g\,cm^2/s},
+\]
+得到
+\begin{align}
+  \lambda
+  &=\frac{h}{p}
+    =\frac{6.626\times10^{-27}\,
+      \mathrm{g\,cm^2/s}}
+      {1\,\mathrm{g\,cm/s}}
+  \notag\\
+  &=6.626\times10^{-27}\,\mathrm{cm}
+    \sim\boxed{10^{-26}\,\mathrm{cm}}.
+  \label{eq:QM-C03-S04-pellet-wavelength}
+\end{align}
+教材指出，这比质子半径还小约 $10^{13}$ 倍。如此短的波长并不等于“没有物质波”，而意味着相应的干涉结构极其细密。
+
+对远屏近轴双缝装置，条纹间距近似为
+\begin{equation}
+  \boxed{\Delta x\simeq\frac{\lambda D}{d}},
+  \label{eq:QM-C03-S04-fringe-spacing}
+\end{equation}
+其中 $D$ 是双缝到屏幕的距离，$d$ 是缝间距。$\lambda$ 越短，$\Delta x$ 也越小。
+
+实际探测器具有有限的空间分辨率。若一个像素覆盖宽度 $\delta x$，它记录的是区间概率
+\begin{equation}
+  P_{\mathrm{pixel}}
+  =\int_{x_0}^{x_0+\delta x}
+   \abs{\psi_{1+2}(x)}^2\dd x,
+  \label{eq:QM-C03-S04-pixel-probability}
+\end{equation}
+而不是数学上无限精确的点值。当
+\begin{equation}
+  \delta x\gg\Delta x
+  \label{eq:QM-C03-S04-unresolved-condition}
+\end{equation}
+时，一个像素内部包含许多明暗条纹。若 $\abs{\psi_1}$、$\abs{\psi_2}$ 的包络在该像素内变化缓慢，快速振荡的交叉项会近似平均为零：
+\begin{equation}
+  \int_{x_0}^{x_0+\delta x}
+  2\operatorname{Re}\!\left[\psi_1^*(x)\psi_2(x)\right]\dd x
+  \simeq0.
+  \label{eq:QM-C03-S04-cross-term-average}
+\end{equation}
+因此仪器看到的粗粒化分布近似满足
+\begin{equation}
+  \boxed{
+  \overline{\rho}_{1+2}(x)
+  \simeq\rho_1(x)+\rho_2(x),}
+  \label{eq:QM-C03-S04-classical-coarse-graining}
+\end{equation}
+与经典粒子预测相同。这里消失的是仪器可分辨的干涉条纹，而不是物质波关系本身。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Latex,node distance=0.8cm and 0.7cm,
+    box/.style={draw=noteBlue,rounded corners=2pt,align=center,
+      minimum height=0.9cm,text width=2.55cm,fill=noteBlue!5},
+    result/.style={draw=accentRed,rounded corners=2pt,align=center,
+      minimum height=0.9cm,text width=2.7cm,fill=accentRed!5}]
+    \node[box] (p) {宏观动量 $p$ 很大};
+    \node[box,right=of p] (lambda) {$\lambda=h/p$\\极小};
+    \node[box,right=of lambda] (fringe) {$\Delta x\simeq\lambda D/d$\\极小};
+    \node[result,right=of fringe] (average) {有限分辨率平均\\干涉交叉项};
+    \draw[->,thick] (p)--(lambda);
+    \draw[->,thick] (lambda)--(fringe);
+    \draw[->,thick] (fringe)--(average);
+  \end{tikzpicture}
+  \caption{本节给出的宏观经典极限。图为笔记自绘；经典分布来自不可分辨条纹的粗粒化平均，而非先验删除物质波。}
+  \label{fig:QM-C03-S04-macroscopic-limit}
+\end{figure}
+
+\textbf{适用边界。}
+上述“条纹过密而被平均”的解释就是教材本节采用的论证。现实宏观物体还会与环境强烈耦合，decoherence（退相干）也会抑制可观测干涉；这属于后续量子理论内容，不是本节推导的前提。
+
+\textbf{一分钟回顾。}
+
+de Broglie 假设把物质粒子的动量与波矢联系为 $\bm p=\hbar\bm k$，因而 $\lambda=h/p$；非相对论时才可进一步写成 $h/(mv)$。物质波 $\psi(x,t)$ 是概率振幅，而不是经典物质密度或波浪形轨迹。单个粒子产生局域探测，大量重复实验通过振幅交叉项形成干涉分布。宏观物体的动量很大，故 $\lambda$ 与双缝条纹间距都极小；当仪器分辨率远大于条纹间距时，交叉项被粗粒化平均，最终呈现近似经典的概率相加规律。
