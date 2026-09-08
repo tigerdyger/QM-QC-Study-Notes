@@ -1,0 +1,257 @@
+% 对应单元：QM-C04-S01
+% 主要来源：Shankar 练习 4.2.1，印刷页 p. 129，PDF p. 141
+% 人工核验：是
+
+\clearpage
+\section{第 4.1 节代表性教材习题与订正}
+\label{exercise-set:QM-C04-S01}
+
+\exercisemeta
+  {QM-C04-S01-EX}
+  {2026-09-08}
+  {Shankar，Exercise 4.2.1 (Very Important)；印刷页 p.~129；PDF p.~141}
+  {完成教材习题的状态、谱、测量与相位计算}
+  {全部答案与概率归一化已核对}
+
+\exercisequestion{QM-C04-S01-E01}{教材练习 4.2.1：三维空间中的测量与相对相位}
+
+\textbf{对应知识点：}
+\begin{itemize}[leftmargin=*]
+  \item \relatedtopic{QM-C04-S01-T01}{状态、整体相位与相对相位}；
+  \item \relatedtopic{QM-C04-S01-T02}{Hermitian 算符及本征问题}；
+  \item \relatedtopic{QM-C04-S01-T03}{Born 规则、简并投影与测量更新}。
+\end{itemize}
+
+\textbf{来源说明。}第 4.1 节只集中陈述四条公设，没有独立习题。本题紧邻本节，教材将其标为 “Very Important”；虽然题号属于第 4.2 节，但只使用已经学过的线性代数和第 4.1 节测量公设，因此作为本节代表题提前完成。
+
+在三维复 Hilbert 空间中，以 $L_z$ 的正交归一本征基
+\[
+  \{\ket{L_z=1},\ket{L_z=0},\ket{L_z=-1}\}
+\]
+表示状态，并采用 $\hbar=1$ 的无量纲约定。给定
+\begin{align}
+  L_x&=\frac1{\sqrt2}
+  \begin{pmatrix}
+    0&1&0\\
+    1&0&1\\
+    0&1&0
+  \end{pmatrix},
+  &
+  L_y&=\frac1{\sqrt2}
+  \begin{pmatrix}
+    0&-\ii&0\\
+    \ii&0&-\ii\\
+    0&\ii&0
+  \end{pmatrix},
+  &
+  L_z&=
+  \begin{pmatrix}
+    1&0&0\\
+    0&0&0\\
+    0&0&-1
+  \end{pmatrix}.
+  \label{eq:QM-C04-S01-E01-angular-momentum-matrices}
+\end{align}
+
+完成下列任务：
+\begin{enumerate}[leftmargin=*]
+  \item 写出测量 $L_z$ 的所有可能结果。
+  \item 对状态 $\ket{L_z=1}$，计算 $\langle L_x\rangle$、$\langle L_z\rangle$ 与
+  \[
+    \Delta L_x
+    =\sqrt{\langle L_x^2\rangle-\langle L_x\rangle^2}.
+  \]
+  \item 在 $L_z$ 基中求 $L_x$ 的全部归一化本征态与本征值。
+  \item 初态为 $\ket{L_z=-1}$。若测量 $L_x$，求所有可能结果及其概率。
+  \item 初态为
+  \[
+    \ket{\psi}
+    =\begin{pmatrix}1/2&1/2&1/\sqrt2\end{pmatrix}^{\mathsf T}.
+  \]
+  若先测量 $L_z^2$ 并得到 $+1$，求该结果的概率和测量后状态；另求直接测量 $L_x$ 时各结果的概率。
+  \item 已知某归一化态满足
+  \[
+    P(L_z=1)=\frac14,
+    \quad P(L_z=0)=\frac12,
+    \quad P(L_z=-1)=\frac14.
+  \]
+  写出最一般的纯态，说明哪些相位具有物理意义，并分别计算 $P(L_x=0)$ 与 $P(L_x=1)$ 对相位的依赖。
+\end{enumerate}
+
+\begin{checkedsolution}
+$L_z$ 已经是对角矩阵，所以可能结果就是它的本征值：
+\begin{equation}
+  \boxed{L_z=1,\ 0,\ -1.}
+  \label{eq:QM-C04-S01-E01-Lz-outcomes}
+\end{equation}
+
+对
+\[
+  \ket{L_z=1}=\begin{pmatrix}1&0&0\end{pmatrix}^{\mathsf T},
+\]
+直接得到
+\begin{equation}
+  \langle L_x\rangle=0,
+  \qquad
+  \langle L_z\rangle=1.
+  \label{eq:QM-C04-S01-E01-first-moments}
+\end{equation}
+又因为
+\[
+  L_x\ket{L_z=1}
+  =\frac1{\sqrt2}\begin{pmatrix}0&1&0\end{pmatrix}^{\mathsf T},
+\]
+所以
+\[
+  \langle L_x^2\rangle
+  =\left\|L_x\ket{L_z=1}\right\|^2
+  =\frac12.
+\]
+故
+\begin{equation}
+  \boxed{\Delta L_x=\frac1{\sqrt2}.}
+  \label{eq:QM-C04-S01-E01-Lx-uncertainty}
+\end{equation}
+
+令 $L_x$ 的本征向量为 $(a,b,c)^{\mathsf T}$。特征方程为
+\begin{equation}
+  \det(L_x-\lambda I)
+  =-\lambda(\lambda^2-1)=0,
+  \label{eq:QM-C04-S01-E01-Lx-characteristic}
+\end{equation}
+因此 $\lambda=1,0,-1$。一组正交归一本征态为
+\begin{align}
+  \ket{L_x=1}
+  &=\frac12
+    \begin{pmatrix}1\\\sqrt2\\1\end{pmatrix},
+  &
+  \ket{L_x=0}
+  &=\frac1{\sqrt2}
+    \begin{pmatrix}1\\0\\-1\end{pmatrix},
+  &
+  \ket{L_x=-1}
+  &=\frac12
+    \begin{pmatrix}1\\-\sqrt2\\1\end{pmatrix}.
+  \label{eq:QM-C04-S01-E01-Lx-eigenvectors}
+\end{align}
+每个本征态都可另乘任意整体相位，不影响下列概率。
+
+把初态 $\ket{L_z=-1}=(0,0,1)^{\mathsf T}$ 展开到 $L_x$ 本征基：
+\begin{equation}
+  \ket{L_z=-1}
+  =\frac12\ket{L_x=1}
+   -\frac1{\sqrt2}\ket{L_x=0}
+   +\frac12\ket{L_x=-1}.
+  \label{eq:QM-C04-S01-E01-zminus-in-x-basis}
+\end{equation}
+故
+\begin{equation}
+  \boxed{
+  P(L_x=1)=\frac14,
+  \quad P(L_x=0)=\frac12,
+  \quad P(L_x=-1)=\frac14.}
+  \label{eq:QM-C04-S01-E01-zminus-Lx-probabilities}
+\end{equation}
+展开系数 $1/2,-1/\sqrt2,1/2$ 是概率振幅；$1/4,1/2,1/4$ 已经是概率，不能再平方。中间负号影响状态重构和干涉，但概率本身没有负号。
+
+第五问中
+\[
+  L_z^2=\operatorname{diag}(1,0,1),
+  \qquad
+  \Pi_{+1}=\operatorname{diag}(1,0,1).
+\]
+因此
+\begin{align}
+  P(L_z^2=1)
+  &=\bra{\psi}\Pi_{+1}\ket{\psi}
+    =\frac14+\frac12
+    =\boxed{\frac34},
+  \label{eq:QM-C04-S01-E01-Lz2-probability}\\
+  \ket{\psi'}
+  &=\frac{\Pi_{+1}\ket{\psi}}{\sqrt{3/4}}
+    =\boxed{
+    \begin{pmatrix}
+      1/\sqrt3\\0\\\sqrt{2/3}
+    \end{pmatrix}}.
+  \label{eq:QM-C04-S01-E01-Lz2-poststate}
+\end{align}
+这里本征值 $+1$ 二重简并，测量只把状态投影到由 $\ket{L_z=1}$ 与 $\ket{L_z=-1}$ 张成的子空间，不会凭空选定其中某一个方向。
+
+若直接测量 $L_x$，将原初态投影到式~\eqref{eq:QM-C04-S01-E01-Lx-eigenvectors}，得到
+\begin{align}
+  \braket{L_x=1}{\psi}
+  &=\frac{1+2\sqrt2}{4},
+  &
+  \braket{L_x=0}{\psi}
+  &=\frac{1-\sqrt2}{2\sqrt2},
+  &
+  \braket{L_x=-1}{\psi}
+  &=\frac14.
+  \label{eq:QM-C04-S01-E01-general-state-Lx-amplitudes}
+\end{align}
+所以
+\begin{equation}
+  \boxed{
+  P(1)=\frac{9+4\sqrt2}{16},
+  \quad
+  P(0)=\frac{3-2\sqrt2}{8},
+  \quad
+  P(-1)=\frac1{16}.}
+  \label{eq:QM-C04-S01-E01-general-state-Lx-probabilities}
+\end{equation}
+三者之和为 $1$。
+
+满足第六问 $L_z$ 概率分布的最一般归一化纯态为
+\begin{equation}
+  \boxed{
+  \ket{\psi}
+  =\frac{\ee^{\ii\delta_1}}2\ket{L_z=1}
+   +\frac{\ee^{\ii\delta_2}}{\sqrt2}\ket{L_z=0}
+   +\frac{\ee^{\ii\delta_3}}2\ket{L_z=-1}.}
+  \label{eq:QM-C04-S01-E01-phase-state}
+\end{equation}
+共同变换 $\delta_j\mapsto\delta_j+\chi$ 只给整个 ket 增加整体相位，故三个相位中只有两个独立的相对相位可能被观测。
+
+对 $L_x=0$，
+\begin{align}
+  \braket{L_x=0}{\psi}
+  &=\frac{\ee^{\ii\delta_1}-\ee^{\ii\delta_3}}{2\sqrt2},
+  \notag\\
+  P(L_x=0)
+  &=\boxed{
+  \frac14\left[1-\cos(\delta_1-\delta_3)\right]}
+   =\frac12\sin^2\frac{\delta_1-\delta_3}{2}.
+  \label{eq:QM-C04-S01-E01-Lx0-phase-probability}
+\end{align}
+因为 $\ket{L_x=0}$ 在 $\ket{L_z=0}$ 方向上没有分量，此概率与 $\delta_2$ 无关。
+
+对学习对话中进一步检查的 $L_x=1$，
+\begin{align}
+  \braket{L_x=1}{\psi}
+  &=\frac14\left(
+    \ee^{\ii\delta_1}
+    +2\ee^{\ii\delta_2}
+    +\ee^{\ii\delta_3}
+  \right),
+  \label{eq:QM-C04-S01-E01-Lx1-phase-amplitude}\\
+  P(L_x=1)
+  &=\boxed{\frac1{16}\left[
+    6
+    +4\cos(\delta_1-\delta_2)
+    +4\cos(\delta_2-\delta_3)
+    +2\cos(\delta_1-\delta_3)
+  \right]}.
+  \label{eq:QM-C04-S01-E01-Lx1-phase-probability}
+\end{align}
+这里三个两两相位关系都会出现，但它们仍是相位\textbf{差}而不是相位和。原因是 Born 规则使用复数模平方：
+\begin{equation}
+  \abs{A}^2=A^*A,
+  \qquad
+  \ee^{-\ii\delta_j}\ee^{\ii\delta_k}
+  =\ee^{\ii(\delta_k-\delta_j)}.
+  \label{eq:QM-C04-S01-E01-modulus-square-phase-difference}
+\end{equation}
+普通平方 $A^2$ 的确会产生 $\delta_j+\delta_k$，但它一般是复数，不能作为概率。整体相位自检也给出同一结论：$\delta_j\mapsto\delta_j+\chi$ 不应改变任何概率，而相位差在该变换下保持不变。
+\end{checkedsolution}
+
+\textbf{检查点：}先区分本征值、概率振幅、概率和测量后状态。概率必须对振幅取模平方 $A^*A$，不能取普通平方 $A^2$。遇到简并结果时投影到完整本征子空间；判断相位是否可观测时，先去掉共同整体相位，再检查测量基是否把相对相位转化为交叉项。

@@ -1,0 +1,285 @@
+% 教材：Shankar, Principles of Quantum Mechanics, Second Edition
+% 已覆盖：第 4 章第 4.1 节，印刷页 pp. 115--116，PDF pp. 127--128
+% 人工核验：已完成分块讲解、教材练习 4.2.1 与订正
+
+\clearpage
+\section{第 4.1 节：量子力学公设}
+\label{section:QM-C04-S01}
+
+\studymeta
+  {QM-C04-S01}
+  {2026-09-08}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 4 章 \S 4.1；印刷页 pp.~115--116；PDF pp.~127--128}
+  {讲解、教材练习 4.2.1 与订正已完成}
+
+\textbf{本节主线。}
+
+前两章分别建立了 Hilbert 空间与经典 Hamiltonian 力学，第三章则说明经典粒子和经典波都不足以单独描述量子实验。第 4.1 节把这些数学工具和实验约束压缩为四条公设：状态由什么表示、物理量由什么表示、测量给出什么结果，以及状态怎样随时间变化。
+
+\textbf{来源边界。}四条公设及其经典对应来自教材第 4.1 节。教材在第 1.10 节讨论了 $X$、$K$ 与 Fourier 变换，在第 3.4 节给出 $p=\hbar k$ 的物理动机，但没有在本节完整重建这些公设的历史发现过程。下文标为“对话补充”的平移生成元、平面波和 Hamiltonian 辨析，是理解公设的辅助推导，不是从经典力学严格证明量子力学。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.8cm and 1.0cm,
+    box/.style={draw=noteBlue,rounded corners=2pt,align=center,
+      minimum height=1.0cm,text width=5.25cm,fill=noteBlue!5},
+    arrow/.style={->,thick,>=Latex}]
+    \node[box] (state) {公设 I：状态\\$\ket{\psi(t)}\in\hilbert$};
+    \node[box,right=of state] (observable) {公设 II：可观测量\\$\omega(x,p)\mapsto\Omega(X,P)$};
+    \node[box,below=of observable] (measurement) {公设 III：测量\\本征值、Born 概率与投影更新};
+    \node[box,left=of measurement] (dynamics) {公设 IV：动力学\\$\ii\hbar\,\dd\ket{\psi}/\dd t=H\ket{\psi}$};
+    \draw[arrow] (state)--(observable);
+    \draw[arrow] (observable)--(measurement);
+    \draw[arrow] (state)--(dynamics);
+    \draw[arrow] (dynamics)--(measurement);
+  \end{tikzpicture}
+  \caption{四条公设的逻辑分工。图为笔记自绘：公设 I 给出状态对象，公设 II 与 III 从状态提取实验预测，公设 IV 给出不测量时的时间演化。}
+  \label{fig:QM-C04-S01-four-postulates}
+\end{figure}
+
+\notetopic{QM-C04-S01-T01}{公设 I：状态是 Hilbert 空间中的射线}
+
+\keyidea{量子态由 Hilbert 空间中的非零 ket 表示；归一化 ket 便于直接读取绝对概率，但真正的物理纯态是相差非零复数倍的一条射线。}
+
+在给定时刻，粒子的状态由
+\begin{equation}
+  \boxed{\ket{\psi(t)}\in\hilbert}
+  \label{eq:QM-C04-S01-state-postulate}
+\end{equation}
+表示。选取离散正交归一基 $\{\ket{i}\}$ 后，
+\begin{equation}
+  \ket{\psi(t)}
+  =\sum_i\ket{i}\braket{i}{\psi(t)}.
+  \label{eq:QM-C04-S01-discrete-state-expansion}
+\end{equation}
+在连续位置基中，同一个抽象态写成
+\begin{align}
+  \psi(x,t)&=\braket{x}{\psi(t)},
+  \label{eq:QM-C04-S01-position-wavefunction}\\
+  \ket{\psi(t)}
+  &=\int_{-\infty}^{\infty}
+    \psi(x,t)\ket{x}\dd x.
+  \label{eq:QM-C04-S01-position-reconstruction}
+\end{align}
+$\psi(x,t)$ 是抽象态在位置基下的坐标，不是与 $\ket{\psi(t)}$ 不同的第二个物理状态。
+
+对 proper state（可正规化态），通常取
+\begin{equation}
+  \braket{\psi}{\psi}=1.
+  \label{eq:QM-C04-S01-normalization}
+\end{equation}
+零向量的范数始终为零，不能通过乘常数变成归一化态，因此不代表物理纯态。若 $c\neq0$，则 $\ket{\psi}$ 与 $c\ket{\psi}$ 给出相同的归一化测量概率；归一化以后仍可乘整体相位：
+\begin{equation}
+  \ket{\psi}\sim\ee^{\ii\alpha}\ket{\psi}.
+  \label{eq:QM-C04-S01-global-phase-equivalence}
+\end{equation}
+所有分量共同获得的 global phase（整体相位）不可观测；不同分量之间的 relative phase（相对相位）通常能够改变另一测量基中的概率。
+
+Hilbert 空间的线性结构给出 superposition principle（叠加原理）：若 $\ket{\psi}$ 与 $\ket{\phi}$ 是允许状态，则非零线性组合
+\[
+  a\ket{\psi}+b\ket{\phi}
+\]
+经归一化后也是允许状态。叠加态不是“系统暗中处于其中一个状态但我们不知道”，因为相对相位能够通过干涉测量显现。
+
+\notetopic{QM-C04-S01-T02}{公设 II：可观测量与 Hermitian 算符}
+
+\keyidea{经典 dynamical variable $\omega(x,p)$ 在量子理论中由 Hermitian 算符 $\Omega(X,P)$ 表示。矩阵或微分表达式只是该抽象算符在某一组基下的表示。}
+
+教材给出基本位置、动量算符在位置本征基中的积分核：
+\begin{align}
+  \bra{x}X\ket{x'}
+  &=x\,\delta(x-x'),
+  \label{eq:QM-C04-S01-X-kernel}\\
+  \bra{x}P\ket{x'}
+  &=-\ii\hbar\,\delta'(x-x').
+  \label{eq:QM-C04-S01-P-kernel}
+\end{align}
+因此它们对位置波函数的作用为
+\begin{align}
+  \bra{x}X\ket{\psi}
+  &=x\psi(x),
+  \label{eq:QM-C04-S01-X-action}\\
+  \bra{x}P\ket{\psi}
+  &=-\ii\hbar\frac{\dd\psi}{\dd x}.
+  \label{eq:QM-C04-S01-P-action}
+\end{align}
+第一式来自 $X\ket{x}=x\ket{x}$；第二式中的导数算符不是凭矩阵运算“算出来”的物理定律，而是数学结构与实验关系共同锁定的表示。
+
+\dialoguesupplement{第 1.10 节中的 wave-number operator 为 $K=-\ii\,\dd/\dd x$。平面波满足
+\[
+  K\ee^{\ii kx}=k\ee^{\ii kx}.
+\]
+第 3.4 节的 de Broglie 关系 $p=\hbar k$ 于是把 $K$ 的本征值 $k$ 对应到动量 $p$，给出 $P=\hbar K=-\ii\hbar\,\dd/\dd x$。同一结论也可由空间平移得到：主动平移 $a$ 后，$\psi_a(x)=\psi(x-a)=\psi(x)-a\psi'(x)+O(a^2)$；而连续幺正平移写成 $T(a)=I-\ii aP/\hbar+O(a^2)$。比较一阶项即得 $P\psi=-\ii\hbar\psi'$。这里真正的物理识别是“动量生成空间平移”；求导形式是该识别在位置表象中的数学结果。}
+
+一般经典变量按
+\begin{equation}
+  \omega(x,p)\longmapsto\Omega(X,P)
+  \label{eq:QM-C04-S01-quantization-map}
+\end{equation}
+构造。若 $\omega$ 同时含 $x,p$，经典乘法可交换而量子算符一般不交换，故可能出现 ordering ambiguity（排序歧义）。例如 $xp=px$ 在经典理论中是同一个函数，但 $XP\neq PX$；常见 Hermitian 选择是
+\begin{equation}
+  xp\longmapsto\frac12(XP+PX).
+  \label{eq:QM-C04-S01-symmetric-ordering}
+\end{equation}
+这不是普适唯一规则；真正有歧义时还需额外物理原则或实验决定。
+
+\textbf{三种逻辑层次。}
+\begin{center}
+\begin{tabularx}{0.95\textwidth}{@{}>{\raggedright\arraybackslash}p{2.5cm}X@{}}
+  \toprule
+  层次 & 本节中的典型内容 \\
+  \midrule
+  数学定义 & $X\ket{x}=x\ket{x}$；选定 Hilbert 空间、基与算符 \\
+  数学后果 & $\bra{x}X\ket{\psi}=x\psi(x)$；平移生成元在位置表象中表现为导数 \\
+  物理识别或公设 & $p=\hbar k$、动量生成平移、Hermitian 算符代表可观测量 \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+不能把第三层说成由纯数学必然推出；数学负责保证结构自洽，实验与对应原理负责判断这套结构是否描述现实。
+
+\notetopic{QM-C04-S01-T03}{公设 III：测量、本征值与 Born 规则}
+
+\keyidea{理想测量的可能结果是可观测算符的本征值；概率由态在对应本征子空间上的投影模平方给出，测量后状态更新为该归一化投影。}
+
+设 Hermitian 算符 $\Omega$ 的谱分解为
+\begin{equation}
+  \Omega=\sum_\omega\omega\Pi_\omega,
+  \label{eq:QM-C04-S01-spectral-decomposition}
+\end{equation}
+其中 $\Pi_\omega$ 投影到本征值 $\omega$ 的完整本征子空间。对归一化初态 $\ket{\psi}$，理想测量满足
+\begin{align}
+  \text{可能结果}&:\quad \omega,
+  \label{eq:QM-C04-S01-measurement-outcomes}\\
+  P(\omega)
+  &=\boxed{\bra{\psi}\Pi_\omega\ket{\psi}},
+  \label{eq:QM-C04-S01-born-projector}\\
+  \ket{\psi}
+  &\longrightarrow
+  \boxed{
+  \frac{\Pi_\omega\ket{\psi}}
+       {\sqrt{\bra{\psi}\Pi_\omega\ket{\psi}}}}
+  \quad\text{若得到 }\omega.
+  \label{eq:QM-C04-S01-state-update}
+\end{align}
+若 $\omega$ 非简并，$\Pi_\omega=\ket{\omega}\bra{\omega}$，于是
+\[
+  P(\omega)=\abs{\braket{\omega}{\psi}}^2.
+\]
+若 $\omega$ 简并，必须投影到整个本征子空间，不能在没有额外测量信息时擅自选定其中某一个本征向量。
+
+算符作用
+\begin{equation}
+  \Omega\ket{\psi}
+  =\sum_\omega\omega\Pi_\omega\ket{\psi}
+  \label{eq:QM-C04-S01-operator-action-not-measurement}
+\end{equation}
+是确定性的线性运算，一般仍是叠加态，也未必归一化；它不是“一次实际测量”。测量则随机给出某个本征值，并按式~\eqref{eq:QM-C04-S01-state-update} 更新状态。
+
+测量的 expectation value（期望值）为
+\begin{equation}
+  \boxed{\langle\Omega\rangle
+  =\bra{\psi}\Omega\ket{\psi}}
+  =\sum_\omega\omega P(\omega),
+  \label{eq:QM-C04-S01-expectation}
+\end{equation}
+它是大量同样制备系统的测量平均，不要求等于某次测量可以取得的本征值。相应 uncertainty（不确定度）为
+\begin{equation}
+  \boxed{
+  \Delta\Omega
+  =\sqrt{\langle\Omega^2\rangle-\langle\Omega\rangle^2}}.
+  \label{eq:QM-C04-S01-uncertainty}
+\end{equation}
+
+连续谱中，$\abs{\braket{\omega}{\psi}}^2$ 是 probability density（概率密度），有限区间概率才是
+\begin{equation}
+  \Pr(a\leq\Omega\leq b)
+  =\int_a^b\abs{\braket{\omega}{\psi}}^2\dd\omega.
+  \label{eq:QM-C04-S01-continuous-born-rule}
+\end{equation}
+离散概率可以直接相加，连续概率密度必须积分；二者不能混用。
+
+本节测量规则的代表性计算见\relatedexercise{QM-C04-S01-E01}{教材练习 4.2.1}。
+
+\notetopic{QM-C04-S01-T04}{公设 IV：Schrödinger 方程与 Hamiltonian}
+
+\keyidea{封闭量子系统在不发生测量时按 Schrödinger 方程作幺正演化。Hamiltonian 的首要结构角色是时间平移生成元；在本节采用的标准非相对论系统中，它同时代表总能量。}
+
+量子态的动力学由
+\begin{equation}
+  \boxed{
+  \ii\hbar\frac{\dd}{\dd t}\ket{\psi(t)}
+  =H(t)\ket{\psi(t)}}
+  \label{eq:QM-C04-S01-schrodinger-abstract}
+\end{equation}
+给出。对于一维标准 Hamiltonian
+\begin{equation}
+  H=\frac{P^2}{2m}+V(X),
+  \label{eq:QM-C04-S01-standard-hamiltonian}
+\end{equation}
+投影到位置基得到
+\begin{equation}
+  \boxed{
+  \ii\hbar\frac{\partial\psi(x,t)}{\partial t}
+  =\left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}
+    +V(x,t)\right]\psi(x,t)}.
+  \label{eq:QM-C04-S01-schrodinger-position}
+\end{equation}
+
+若 $H$ 与时间无关且为 self-adjoint（自伴）算符，则
+\begin{equation}
+  \ket{\psi(t)}
+  =U(t,t_0)\ket{\psi(t_0)},
+  \qquad
+  U(t,t_0)=\ee^{-\ii H(t-t_0)/\hbar},
+  \label{eq:QM-C04-S01-time-evolution-operator}
+\end{equation}
+且 $U^\dagger U=I$，故范数保持不变。若
+\[
+  H\ket{E_n}=E_n\ket{E_n},
+\]
+则能量本征态只获得整体相位：
+\begin{equation}
+  \ket{E_n,t}
+  =\ee^{-\ii E_n(t-t_0)/\hbar}\ket{E_n}.
+  \label{eq:QM-C04-S01-energy-eigenstate-evolution}
+\end{equation}
+一般叠加态的不同能量分量则积累不同相位，relative phase 随时间改变并影响后续测量。
+
+\dialoguesupplement{Schrödinger 方程可获得强烈但非严格的平面波动机。对 $\psi=A\ee^{\ii(kx-\omega t)}$，Planck--Einstein 与 de Broglie 关系给出 $E=\hbar\omega$、$p=\hbar k$，因此
+\[
+  \ii\hbar\partial_t\psi=E\psi,
+  \qquad
+  -\ii\hbar\partial_x\psi=p\psi.
+\]
+把经典非相对论关系 $E=p^2/(2m)+V$ 中的 $E,p$ 替换为这些算符，可得到式~\eqref{eq:QM-C04-S01-schrodinger-position}。这说明公式为何自然，却不能证明自然界必须服从它；普适有效性仍是由实验检验的物理公设。}
+
+\textbf{Hamiltonian 与能量的区别。}
+在教材当前采用的惯性参考系、标准闭合非相对论系统中，公设 II 把经典能量 $\mathcal H(x,p)$ 映射为能量算符 $H(X,P)$，公设 IV 又令同一个 $H$ 生成时间演化，因此
+\begin{equation}
+  \boxed{
+  \text{能量可观测量}
+  =\text{时间演化生成元}
+  =H}
+  \label{eq:QM-C04-S01-H-standard-identification}
+\end{equation}
+在此范围内成立。但“$H$ 是能量算符”不等于“能量守恒”。在通常的定义域条件下，
+\begin{equation}
+  \frac{\dd}{\dd t}\langle H\rangle
+  =\left\langle\frac{\partial H}{\partial t}\right\rangle.
+  \label{eq:QM-C04-S01-energy-balance}
+\end{equation}
+只有 $H$ 无显式时间依赖时，能量分布及其期望值才保持不变；显含时间的外部驱动可以与系统交换能量。
+
+更一般地，若作含时幺正变换 $\ket{\psi'}=U(t)\ket{\psi}$，新表象中的演化生成元为
+\begin{equation}
+  \boxed{
+  H'=UHU^\dagger+\ii\hbar\dot U U^\dagger.}
+  \label{eq:QM-C04-S01-time-dependent-frame-hamiltonian}
+\end{equation}
+$UHU^\dagger$ 是原能量算符在新表象中的表示，附加项来自表象自身随时间变化。因此在含时参考系、有效理论或更一般系统中，必须区分“演化生成元”和实验室能量；不能把 $H=E$ 当成无条件恒等式。
+
+\textbf{一分钟回顾。}
+
+公设 I 用 Hilbert 空间射线表示状态；公设 II 用 Hermitian 算符表示可观测量；公设 III 以本征值、Born 概率和投影更新规定理想测量；公设 IV 以 Hamiltonian 生成不测量时的幺正演化。$X$ 的乘法形式与 $P$ 的导数形式是这些抽象算符在位置表象中的表示，$P=\hbar K$ 由空间平移结构和 $p=\hbar k$ 的物理识别连接起来。平面波可以解释 Schrödinger 方程为何自然，但不能把量子公设化约为纯数学定理。在标准系统中 Hamiltonian 同时是能量算符和时间演化生成元；显式含时或含时换表象时则必须重新检查这两个角色是否仍可直接等同。
