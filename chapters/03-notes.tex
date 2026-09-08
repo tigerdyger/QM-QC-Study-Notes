@@ -1,5 +1,5 @@
 % 教材：Shankar, Principles of Quantum Mechanics, Second Edition
-% 已覆盖：第 3 章第 3.1--3.4 节，印刷页 pp. 107--112，PDF pp. 120--125
+% 已覆盖：第 3 章第 3.1--3.5 节，印刷页 pp. 107--113，PDF pp. 120--126
 % 人工核验：已完成分块讲解、问答和自编收口检查
 
 \section{第 3.1 节：经典物理中的粒子与波}
@@ -717,3 +717,114 @@ Davisson--Germer experiment（戴维孙--革末实验）观察到了电子衍射
 \textbf{一分钟回顾。}
 
 de Broglie 假设把物质粒子的动量与波矢联系为 $\bm p=\hbar\bm k$，因而 $\lambda=h/p$；非相对论时才可进一步写成 $h/(mv)$。物质波 $\psi(x,t)$ 是概率振幅，而不是经典物质密度或波浪形轨迹。单个粒子产生局域探测，大量重复实验通过振幅交叉项形成干涉分布。宏观物体的动量很大，故 $\lambda$ 与双缝条纹间距都极小；当仪器分辨率远大于条纹间距时，交叉项被粗粒化平均，最终呈现近似经典的概率相加规律。
+
+\section{第 3.5 节：结论}
+\label{section:QM-C03-S05}
+
+\studymeta
+  {QM-C03-S05}
+  {2026-09-08}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 3 章 \S 3.5；印刷页 pp.~112--113；PDF pp.~125--126}
+  {讲解、自编检查与订正已完成}
+
+\textbf{本节主线。}
+
+第三章并未给出完整的量子理论，而是用双缝实验说明经典粒子与经典波两套图景都不足以单独描述电子、光子等量子对象。量子对象在探测时呈现局域、完整的事件，却在重复实验的统计分布中呈现概率振幅的叠加与干涉。由此需要用波函数或抽象态矢量描述状态，并把状态随时间的变化作为量子动力学的核心问题；这些经验事实将在下一章被组织成量子力学公设。
+
+\notetopic{QM-C03-S05-T01}{波粒二象性的操作性内容}
+
+量子对象的 particlelike（粒子性）首先体现在单次探测：电子或光子在屏幕上的某个确定位置触发一次局域事件，并在该事件中传递完整的能量、动量与电荷。一次结果可以写成
+\begin{equation}
+  X=x_{\mathrm{det}},
+  \label{eq:QM-C03-S05-local-detection}
+\end{equation}
+但“探测位置确定”并不推出探测前存在一条确定的经典轨迹。
+
+其 wavelike（波动性）则体现在概率振幅的组合规律。若到达同一位置 $x$ 的两种不可区分选择分别贡献 $\psi_1(x,t)$ 与 $\psi_2(x,t)$，则
+\begin{align}
+  \psi(x,t)
+  &=\psi_1(x,t)+\psi_2(x,t),
+  \label{eq:QM-C03-S05-amplitude-sum}\\
+  \rho(x,t)
+  &=\abs{\psi(x,t)}^2 \notag\\
+  &=\abs{\psi_1(x,t)}^2+\abs{\psi_2(x,t)}^2
+    +2\operatorname{Re}\!\left[\psi_1^*(x,t)\psi_2(x,t)\right].
+  \label{eq:QM-C03-S05-interference-density}
+\end{align}
+交叉项使累计分布不能由两条经典互斥路径的概率直接相加得到。对单个粒子，位置测量的 Born 规则为
+\begin{equation}
+  \boxed{
+  \Pr(a\leq X\leq b;t)
+  =\int_a^b\abs{\psi(x,t)}^2\dd x.}
+  \label{eq:QM-C03-S05-position-born-rule}
+\end{equation}
+因此 $\psi(x,t)$ 与每个粒子的量子态相关，而不是只有许多粒子组成的束流才拥有的经典波。一次实验给出一个位置；大量相同制备的实验才使归一化计数分布趋近 $\abs{\psi(x,t)}^2$。
+
+wave--particle duality（波粒二象性）不应理解为量子对象在“经典小球”和“经典连续波”之间来回变形。更准确的说法是：不同实验分别显露出与两种经典图景相似的特征，但量子态本身不等同于任何一种经典对象。
+
+\dialoguesupplement{教材在此排除的是朴素的经典确定路径模型：粒子预先选择一条不受另一条缝影响的路径，且两条路径的普通概率直接相加。仅凭本章实验，不应把结论扩大为排除所有带有轨迹概念的量子诠释。}
+
+\notetopic{QM-C03-S05-T02}{从位置波函数到抽象状态及其动力学}
+
+教材把粒子的状态写成位置波函数 $\psi(x,t)$，也写成抽象 ket $\ket{\psi(t)}$。二者不是两个状态，而满足
+\begin{equation}
+  \boxed{\psi(x,t)=\braket{x}{\psi(t)}}.
+  \label{eq:QM-C03-S05-position-component}
+\end{equation}
+$\ket{\psi(t)}$ 是不依赖所选基的抽象态矢量；$\psi(x,t)$ 是它在连续位置基 $\{\ket{x}\}$ 下的坐标。利用完备关系
+\begin{equation}
+  \int_{-\infty}^{\infty}\ket{x}\bra{x}\dd x=I,
+  \label{eq:QM-C03-S05-position-completeness}
+\end{equation}
+可以反向重建
+\begin{align}
+  \ket{\psi(t)}
+  &=I\ket{\psi(t)} \notag\\
+  &=\int_{-\infty}^{\infty}
+    \ket{x}\braket{x}{\psi(t)}\dd x \notag\\
+  &=\boxed{
+    \int_{-\infty}^{\infty}
+    \psi(x,t)\ket{x}\dd x}.
+  \label{eq:QM-C03-S05-state-reconstruction}
+\end{align}
+这正是有限维展开 $\ket{v}=\sum_i\ket{i}\braket{i}{v}$ 的连续版本。
+
+经典力学与量子力学的动力学问题可作如下对照：
+\begin{center}
+\begin{tabularx}{0.94\textwidth}{@{}>{\raggedright\arraybackslash}p{2.6cm}XX@{}}
+  \toprule
+  & 经典力学 & 量子力学的初步图景 \\
+  \midrule
+  状态 & 相空间点 $(x(t),p(t))$ & 态矢量 $\ket{\psi(t)}$ \\
+  位置描述 & 确定位置 $x(t)$ & 振幅 $\psi(x,t)=\braket{x}{\psi(t)}$ \\
+  位置预测 & 理想情况下由轨迹确定 & $\abs{\psi(x,t)}^2$ 给出概率密度 \\
+  动力学问题 & 求 $(x(0),p(0))\mapsto(x(t),p(t))$ & 求 $\ket{\psi(0)}\mapsto\ket{\psi(t)}$ \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+
+只知道某一组测量结果的概率通常不足以确定状态。例如对离散正交基 $\{\ket{1},\ket{2}\}$，
+\begin{equation}
+  \ket{\phi_+}=\frac{\ket{1}+\ket{2}}{\sqrt2},
+  \qquad
+  \ket{\phi_-}=\frac{\ket{1}-\ket{2}}{\sqrt2}
+  \label{eq:QM-C03-S05-relative-phase-states}
+\end{equation}
+在该基下都给出 $P(1)=P(2)=1/2$，但相对相位不同，换到干涉基后即可区分。这说明概率振幅包含比单组概率更多的信息。
+
+第三章的双缝实验提供了量子公设的物理动机，却不能单独推出量子理论的全部结构。下一章将进一步规定 $\ket{\psi(t)}$ 包含哪些可观测信息、测量如何产生结果，以及状态怎样随时间演化。
+
+\textbf{离散概率与连续概率密度。}
+若测量基是离散的 $\{\ket{n}\}$，则
+\begin{equation}
+  \boxed{P(n)=\abs{\braket{n}{\psi}}^2},
+  \qquad
+  \sum_nP(n)=1,
+  \label{eq:QM-C03-S05-discrete-born-rule}
+\end{equation}
+这里的 $P(n)$ 是 probability mass（离散概率），不需要积分。若测量位置这一连续变量，则 $\abs{\psi(x)}^2$ 是 probability density（概率密度），有限区间概率必须按式~\eqref{eq:QM-C03-S05-position-born-rule} 积分。不能把连续空间中某一点的密度值直接当作该点的概率。
+
+\textbf{一分钟回顾。}
+
+量子对象在单次探测中以完整的局域事件出现，但其重复实验分布必须由概率振幅的叠加与 Born 规则计算；这就是本章所说波粒二象性的操作性内容。抽象态 $\ket{\psi(t)}$ 与位置波函数由 $\psi(x,t)=\braket{x}{\psi(t)}$ 联系，后者只是前者在位置基中的坐标。量子动力学研究的是整个状态 $\ket{\psi(t)}$ 如何演化，而不是预设一条经典确定轨迹。双缝实验为这些结构提供动机，但完整公设仍需由下一章正式给出。

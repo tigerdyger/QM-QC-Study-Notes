@@ -1,6 +1,6 @@
-% 对应单元：QM-C03-S01--QM-C03-S04
-% 来源：Shankar 第 3 章第 3.1--3.4 节及学习对话中的自编检查
-% 人工核验：用户作答后完成经典波、双缝组合规则、Born 规则与物质波经典极限订正
+% 对应单元：QM-C03-S01--QM-C03-S05
+% 来源：Shankar 第 3 章第 3.1--3.5 节及学习对话中的自编检查
+% 人工核验：用户作答后完成经典波、双缝组合规则、Born 规则、物质波经典极限及第 3 章结论订正
 
 \section{第 3.1 节自编检验题与订正}
 \label{exercise-set:QM-C03-S01}
@@ -285,3 +285,164 @@ $\bm k$ 本身就是等相位面的法向量，其单位法向量为
 \end{checkedsolution}
 
 \textbf{检查点：}不要把“分辨不出条纹”误写成“没有物质波”。判断可见性时应依次比较 $p\mapsto\lambda=h/p$、$\lambda\mapsto\Delta x\simeq\lambda D/d$，最后检查仪器分辨率是否足够小。
+
+\section{第 3.5 节自编检验题与订正}
+\label{exercise-set:QM-C03-S05}
+
+\exercisemeta
+  {QM-C03-S05-EX}
+  {2026-09-08}
+  {Shankar，第 3 章 \S 3.5；本节无教材例题或独立习题}
+  {完成一组自编综合检查并订正题干歧义}
+  {波粒二象性、态与表象、相对相位及离散和连续 Born 规则已核对}
+
+\exercisequestion{QM-C03-S05-E01}{自编检验题：相对相位、测量基与位置概率}
+
+\textbf{对应知识点：}
+\begin{itemize}[leftmargin=*]
+  \item \relatedtopic{QM-C03-S05-T01}{波粒二象性的操作性内容}；
+  \item \relatedtopic{QM-C03-S05-T02}{抽象状态与位置表象}。
+\end{itemize}
+
+\textbf{来源说明。}教材第 3.5 节是全章结论，没有独立习题。本题由学习对话生成，用于明确区分离散路径测量和连续位置测量，不是教材原题。
+
+考虑二维复 Hilbert 空间 $\mathcal H=\mathbb C^2$。设 $\{\ket{1},\ket{2}\}$ 是一组正交归一基，满足
+\[
+  \braket{i}{j}=\delta_{ij}.
+\]
+标签 $1,2$ 表示两个\textbf{离散路径状态}，不是连续空间中的位置坐标。定义
+\begin{equation}
+  \ket{\phi_+}
+  =\frac{\ket{1}+\ket{2}}{\sqrt2},
+  \qquad
+  \ket{\phi_-}
+  =\frac{\ket{1}-\ket{2}}{\sqrt2}.
+  \label{eq:QM-C03-S05-E01-phase-states}
+\end{equation}
+
+路径测量的投影算符为
+\[
+  \Pi_1=\ket{1}\bra{1},
+  \qquad
+  \Pi_2=\ket{2}\bra{2}.
+\]
+另定义 interference basis（干涉基）
+\begin{equation}
+  \ket{B}
+  =\frac{\ket{1}+\ket{2}}{\sqrt2},
+  \qquad
+  \ket{D}
+  =\frac{\ket{1}-\ket{2}}{\sqrt2},
+  \label{eq:QM-C03-S05-E01-interference-basis}
+\end{equation}
+其中 $B,D$ 是理想干涉装置的两个离散输出通道，不是屏幕上的两个位置点；相应投影算符为 $\Pi_B=\ket{B}\bra{B}$ 与 $\Pi_D=\ket{D}\bra{D}$。
+
+回答下列问题：
+\begin{enumerate}[leftmargin=*]
+  \item 两个非零 ket 只有在相差整体相位 $\ee^{\ii\alpha}$ 时才表示同一物理纯态。判断 $\ket{\phi_+}$ 与 $\ket{\phi_-}$ 是否表示同一物理状态，并说明理由。
+  \item 分别计算两个状态接受路径测量时的
+  \[
+    P_{\phi_+}(1),\quad P_{\phi_+}(2),\quad
+    P_{\phi_-}(1),\quad P_{\phi_-}(2).
+  \]
+  \item 分别计算两个状态接受干涉基测量时的
+  \[
+    P_{\phi_+}(B),\quad P_{\phi_+}(D),\quad
+    P_{\phi_-}(B),\quad P_{\phi_-}(D).
+  \]
+  \item 解释为什么路径测量不能区分这两个状态，而干涉基测量能够区分；并说明只知道某一组基下的概率为何不足以确定完整量子状态。
+  \item 另引入连续位置基 $\{\ket{x}\}$，并定义
+  \[
+    \psi_1(x)=\braket{x}{1},
+    \qquad
+    \psi_2(x)=\braket{x}{2}.
+  \]
+  求 $\phi_\pm(x)=\braket{x}{\phi_\pm}$ 和位置概率密度 $\rho_\pm(x)=\abs{\phi_\pm(x)}^2$，再写出粒子落在屏幕区间 $[a,b]$ 内的概率。
+\end{enumerate}
+
+\begin{checkedsolution}
+若二者表示同一物理纯态，应存在实数 $\alpha$ 使
+\[
+  \ket{\phi_-}=\ee^{\ii\alpha}\ket{\phi_+}.
+\]
+比较 $\ket{1}$ 分量要求 $\ee^{\ii\alpha}=1$，比较 $\ket{2}$ 分量却要求 $\ee^{\ii\alpha}=-1$，二者矛盾。因此它们不是同一状态。事实上
+\begin{equation}
+  \braket{\phi_+}{\phi_-}
+  =\frac12(1-1)=0,
+  \label{eq:QM-C03-S05-E01-orthogonal-states}
+\end{equation}
+所以它们还是两个正交状态。
+
+路径测量的 Born 规则是
+\[
+  P_\psi(i)
+  =\bra{\psi}\Pi_i\ket{\psi}
+  =\abs{\braket{i}{\psi}}^2.
+\]
+例如
+\begin{align}
+  \braket{1}{\phi_+}
+  &=\frac1{\sqrt2}
+    \left(\braket{1}{1}+\braket{1}{2}\right)
+    =\frac1{\sqrt2},
+  \notag\\
+  P_{\phi_+}(1)
+  &=\abs{\braket{1}{\phi_+}}^2
+    =\frac12.
+  \label{eq:QM-C03-S05-E01-discrete-probability}
+\end{align}
+同理可得
+\begin{equation}
+  \boxed{
+  P_{\phi_+}(1)=P_{\phi_+}(2)
+  =P_{\phi_-}(1)=P_{\phi_-}(2)=\frac12.}
+  \label{eq:QM-C03-S05-E01-path-statistics}
+\end{equation}
+这些是两个离散结果的 probability mass（概率），不是位置概率密度，因此不需要积分。
+
+由定义直接有
+\[
+  \ket{\phi_+}=\ket{B},
+  \qquad
+  \ket{\phi_-}=\ket{D}.
+\]
+故干涉基测量给出
+\begin{equation}
+  \boxed{
+  P_{\phi_+}(B)=1,\quad P_{\phi_+}(D)=0,
+  \qquad
+  P_{\phi_-}(B)=0,\quad P_{\phi_-}(D)=1.}
+  \label{eq:QM-C03-S05-E01-interference-statistics}
+\end{equation}
+路径测量只读取两个基分量的模平方，丢失了它们之间的相对相位；干涉基测量则把这个相对相位转化为不同的输出概率。因此单独知道一组测量的概率分布，通常不足以确定完整量子态。
+
+在连续位置基中，线性性给出
+\begin{equation}
+  \boxed{
+  \phi_\pm(x)
+  =\braket{x}{\phi_\pm}
+  =\frac{\psi_1(x)\pm\psi_2(x)}{\sqrt2}.}
+  \label{eq:QM-C03-S05-E01-position-amplitudes}
+\end{equation}
+因此
+\begin{align}
+  \rho_\pm(x)
+  &=\abs{\phi_\pm(x)}^2 \notag\\
+  &=\boxed{
+    \frac12\left[
+      \abs{\psi_1(x)}^2+\abs{\psi_2(x)}^2
+      \pm2\operatorname{Re}\!\left(\psi_1^*(x)\psi_2(x)\right)
+    \right]}.
+  \label{eq:QM-C03-S05-E01-position-densities}
+\end{align}
+相对符号改变了干涉交叉项，所以两个状态即使在路径基下有相同概率，也可在位置测量中产生不同分布。落入有限区间 $[a,b]$ 的概率为
+\begin{equation}
+  \boxed{
+  \Pr_\pm(a\leq X\leq b)
+  =\int_a^b\rho_\pm(x)\dd x.}
+  \label{eq:QM-C03-S05-E01-interval-probability}
+\end{equation}
+连续空间中的 $\rho_\pm(x)$ 是概率密度；必须积分后才得到概率。
+\end{checkedsolution}
+
+\textbf{检查点：}先确认测量结果是离散标签还是连续变量。离散正交基使用 $P(n)=\abs{\braket{n}{\psi}}^2$；连续位置测量使用 $\Pr(X\in[a,b])=\int_a^b\abs{\braket{x}{\psi}}^2\dd x$。相同的单组离散概率不表示状态相同，因为相对相位可在另一测量基中转化为不同概率。

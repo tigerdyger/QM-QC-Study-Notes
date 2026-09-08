@@ -33,3 +33,4 @@
 | 2026-09-05 | Shankar 第 3 章 \S 3.2，印刷页 108--110，PDF 121--123 | `chapters/03-notes.tex`、`exercises/03-exercises.tex` | 经典双缝实验、振幅叠加、干涉项、路程差、明暗条纹、经典概率加法、相干性 | 下一学习节点为第 3.3 节 The Double-Slit Experiment with Light |
 | 2026-09-06 | Shankar 第 3 章 \S 3.3，印刷页 110--112，PDF 123--125 | `chapters/03-notes.tex`、`exercises/03-exercises.tex` | 光子、能量与动量量子化、单光子双缝、概率振幅、Born 规则、概率密度、统计条纹 | 下一学习节点为第 3.4 节 Matter Waves (de Broglie Waves) |
 | 2026-09-07 | Shankar 第 3 章 \S 3.4，印刷页 112，PDF 125 | `chapters/03-notes.tex`、`exercises/03-exercises.tex` | de Broglie 关系、物质波、电子衍射、概率振幅、宏观经典极限、有限分辨率与粗粒化 | 下一学习节点为第 3.5 节 Conclusions |
+| 2026-09-08 | Shankar 第 3 章 \S 3.5，印刷页 112--113，PDF 125--126 | `chapters/03-notes.tex`、`exercises/03-exercises.tex` | 波粒二象性、局域探测、概率振幅、抽象态与位置表象、相对相位、离散概率与连续概率密度 | 第 3 章完成；下一学习节点为第 4.1 节 The Postulates |
