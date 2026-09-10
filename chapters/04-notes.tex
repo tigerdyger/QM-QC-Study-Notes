@@ -1,6 +1,6 @@
 % 教材：Shankar, Principles of Quantum Mechanics, Second Edition
-% 已覆盖：第 4 章第 4.1 节，印刷页 pp. 115--116，PDF pp. 127--128
-% 人工核验：已完成分块讲解、教材练习 4.2.1 与订正
+% 已覆盖：第 4 章第 4.1--4.2 节，印刷页 pp. 115--143，PDF pp. 127--155
+% 人工核验：已完成分块讲解、教材练习 4.2.1--4.2.3 与订正
 
 \clearpage
 \section{第 4.1 节：量子力学公设}
@@ -283,3 +283,379 @@ $UHU^\dagger$ 是原能量算符在新表象中的表示，附加项来自表象
 \textbf{一分钟回顾。}
 
 公设 I 用 Hilbert 空间射线表示状态；公设 II 用 Hermitian 算符表示可观测量；公设 III 以本征值、Born 概率和投影更新规定理想测量；公设 IV 以 Hamiltonian 生成不测量时的幺正演化。$X$ 的乘法形式与 $P$ 的导数形式是这些抽象算符在位置表象中的表示，$P=\hbar K$ 由空间平移结构和 $p=\hbar k$ 的物理识别连接起来。平面波可以解释 Schrödinger 方程为何自然，但不能把量子公设化约为纯数学定理。在标准系统中 Hamiltonian 同时是能量算符和时间演化生成元；显式含时或含时换表象时则必须重新检查这两个角色是否仍可直接等同。
+
+\clearpage
+\section{第 4.2 节：公设 I--III 的讨论}
+\label{section:QM-C04-S02}
+
+\studymeta
+  {QM-C04-S02}
+  {2026-09-10}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 4 章 \S 4.2；印刷页 pp.~116--143（至 \S 4.3 前）；PDF pp.~128--155}
+  {讲解、教材例题 4.2.1--4.2.5、练习 4.2.2--4.2.3 与订正已完成}
+
+\textbf{本节主线。}
+
+第 4.1 节陈述公设，本节把前三条公设转化为可执行的测量程序，并处理五个关键问题：同一个 ket 如何编码不同可观测量的统计信息；排序、简并与连续谱怎样修改简单规则；投影测量如何制备状态；对易性怎样决定连续测量能否兼容；位置与动量的不确定性如何同时体现 Fourier 结构与测量反作用。
+
+\textbf{来源边界。}本节公式、教材例题与习题均来自 Shankar 第 4.2 节。关于 null-result measurement（负结果测量）的测量算符写法、密度矩阵中的相干项以及“内禀不确定性与测量扰动”的明确区分，是对教材讨论的严格化补充；它们与教材结论一致，但不是教材逐式给出的原文。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.65cm and 0.65cm,
+    box/.style={draw=noteBlue,rounded corners=2pt,align=center,
+      minimum height=0.9cm,text width=3.55cm,fill=noteBlue!5},
+    arrow/.style={->,thick,>=Latex}]
+    \node[box] (state) {给定状态\\$\ket{\psi}$};
+    \node[box,right=of state] (operator) {选择可观测量\\$\Omega$};
+    \node[box,right=of operator] (spectrum) {求谱分解\\$\Omega=\sum_\omega\omega\Pi_\omega$};
+    \node[box,below=of spectrum] (probability) {Born 概率\\$P(\omega)=\bra{\psi}\Pi_\omega\ket{\psi}$};
+    \node[box,left=of probability] (outcome) {抽样得到结果\\$\omega$};
+    \node[box,left=of outcome] (update) {条件状态更新\\$\Pi_\omega\ket{\psi}/\sqrt{P(\omega)}$};
+    \draw[arrow] (state)--(operator);
+    \draw[arrow] (operator)--(spectrum);
+    \draw[arrow] (spectrum)--(probability);
+    \draw[arrow] (probability)--(outcome);
+    \draw[arrow] (outcome)--(update);
+  \end{tikzpicture}
+  \caption{离散谱理想测量的操作流程。简并时 $\Pi_\omega$ 投影到完整本征子空间，连续谱时单点概率改由概率密度和区间积分描述。}
+  \label{fig:QM-C04-S02-measurement-workflow}
+\end{figure}
+
+\notetopic{QM-C04-S02-T01}{状态射线、叠加与不同测量基}
+
+\keyidea{物理纯态是一条 Hilbert 空间射线。同一个抽象 ket 不依赖所测物理量；改变可观测量，只是改用相应算符的本征基读取另一组概率振幅。}
+
+对非零复数 $c$，$\ket{\psi}$ 与 $c\ket{\psi}$ 归一化后只相差整体相位，代表同一物理纯态。若 $\Omega$ 具有离散非简并正交归一本征基 $\{\ket{\omega_i}\}$，则
+\begin{equation}
+  \ket{\psi}
+  =\sum_i\ket{\omega_i}\braket{\omega_i}{\psi}.
+  \label{eq:QM-C04-S02-state-in-observable-basis}
+\end{equation}
+若 $\ket{\psi}$ 已归一化，测量概率为
+\begin{equation}
+  \boxed{P(\omega_i)=\abs{\braket{\omega_i}{\psi}}^2}.
+  \label{eq:QM-C04-S02-born-nondegenerate}
+\end{equation}
+若未归一化，则必须除以 $\braket{\psi}{\psi}$。
+
+预测另一可观测量 $\Lambda$ 时，抽象态不变，只需换到 $\Lambda$ 的本征基：
+\begin{equation}
+  \braket{\lambda_j}{\psi}
+  =\sum_i
+    \braket{\lambda_j}{\omega_i}
+    \braket{\omega_i}{\psi}.
+  \label{eq:QM-C04-S02-change-measurement-basis}
+\end{equation}
+其中 $\braket{\lambda_j}{\omega_i}$ 是两组正交归一本征基之间的变换矩阵元。整体相位不改变任何概率；单独改变某个分量的相位虽不改变 $\Omega$ 基中的概率，却一般会通过式~\eqref{eq:QM-C04-S02-change-measurement-basis} 的交叉项改变 $\Lambda$ 测量。因此 coherent superposition（相干叠加）不是“系统已暗中选定某一本征态而我们不知道”。
+
+\notetopic{QM-C04-S02-T02}{量子化规则的四类困难}
+
+\keyidea{简单替换 $x\mapsto X,p\mapsto P$ 会遇到排序歧义、简并谱、连续谱和无经典对应量四类问题；每一类都需要修改最朴素的测量规则。}
+
+\textbf{排序歧义。}经典变量可交换，但 $\comm{X}{P}=\ii\hbar I$。例如 $xp=px$ 在经典理论中相同，而 $XP\neq PX$。常用 Hermitian 选择为
+\begin{equation}
+  xp\longmapsto\frac12(XP+PX),
+  \qquad
+  \left[\frac12(XP+PX)\right]^\dagger
+  =\frac12(XP+PX).
+  \label{eq:QM-C04-S02-symmetric-ordering}
+\end{equation}
+但高次乘积可有多个不同的 Hermitian 排序，故这不是普适唯一算法，最终需额外物理原则或实验输入。
+
+\textbf{简并谱。}若本征值 $\omega$ 的本征子空间有正交归一基 $\{\ket{\omega,a}\}_{a=1}^{g}$，则
+\begin{align}
+  \Pi_\omega
+  &=\sum_{a=1}^{g}\ket{\omega,a}\bra{\omega,a},
+  \label{eq:QM-C04-S02-degenerate-projector}\\
+  P(\omega)
+  &=\boxed{\bra{\psi}\Pi_\omega\ket{\psi}}
+   =\sum_{a=1}^{g}\abs{\braket{\omega,a}{\psi}}^2.
+  \label{eq:QM-C04-S02-degenerate-probability}
+\end{align}
+测量只分辨本征值时，必须投影到整个本征子空间，不能把正交方向的振幅先相加，也不能无依据地选中其中某一个基向量。
+
+\textbf{连续谱。}若 $\braket{\omega}{\omega'}=\delta(\omega-\omega')$，则
+\begin{equation}
+  \ket{\psi}
+  =\int\ket{\omega}\braket{\omega}{\psi}\dd\omega,
+  \qquad
+  \int\ket{\omega}\bra{\omega}\dd\omega=I.
+  \label{eq:QM-C04-S02-continuous-expansion}
+\end{equation}
+$\abs{\braket{\omega}{\psi}}^2$ 是概率密度而非单点概率：
+\begin{equation}
+  \boxed{
+  \Pr(a\leq\Omega\leq b)
+  =\int_a^b\abs{\braket{\omega}{\psi}}^2\dd\omega}.
+  \label{eq:QM-C04-S02-continuous-interval-probability}
+\end{equation}
+概率密度可以大于 $1$，且通常带有 $[\omega]^{-1}$ 的量纲；只有区间积分才是无量纲概率。
+
+\textbf{无经典对应量。}spin 等量子自由度不存在可直接替换的经典函数 $\omega(x,p)$。此时算符结构需要由实验、对称性、半经典类比和 Hilbert 空间结构共同确定。公设 II 规定可观测量由 Hermitian 算符表示，却不提供自动生成一切算符的万能算法。
+
+\notetopic{QM-C04-S02-T03}{投影测量、状态制备与负结果测量}
+
+\keyidea{理想测量得到 $\omega$ 后，条件状态是初态在 $\omega$ 本征子空间上的归一化投影。理想不等于“对任意输入都无扰动”，而是保证本征子空间内的状态不会离开该子空间。}
+
+测量更新为
+\begin{equation}
+  \boxed{
+  \ket{\psi'}
+  =\frac{\Pi_\omega\ket{\psi}}
+         {\sqrt{\bra{\psi}\Pi_\omega\ket{\psi}}}}
+  \quad\text{若得到 }\omega.
+  \label{eq:QM-C04-S02-projective-update}
+\end{equation}
+由于 $\Pi_\omega^2=\Pi_\omega$，立即重复测量时
+\begin{equation}
+  \Pi_\omega\ket{\psi'}=\ket{\psi'},
+  \qquad P'(\omega)=1.
+  \label{eq:QM-C04-S02-repeatability}
+\end{equation}
+“立即”意味着两次测量之间没有使状态离开该子空间的时间演化。非简并时后测态与 $\ket{\omega}$ 只差整体相位；简并时，已知初态可由式~\eqref{eq:QM-C04-S02-projective-update} 唯一确定投影方向，但若初态未知，结果 $\omega$ 只说明后测态属于该本征子空间。
+
+测量也可用来制备状态：对许多输入系统测量 $\Omega$，只保留结果为 $\omega$ 的样本。非简并时得到 $\ket{\omega}$；简并时只能制备相应子空间，还需继续测量相容观测量才能消除简并。
+
+\dialoguesupplement{坍缩不要求测量必须以一次明显碰撞或能量交换实现。以只监测路径 $S_1$ 的理想探测器为例，联合幺正演化可写成
+\[
+  \ket{S_1}\ket{D_0}\mapsto\ket{S_1}\ket{D_1},
+  \qquad
+  \ket{S_2}\ket{D_0}\mapsto\ket{S_2}\ket{D_0}.
+\]
+于是叠加态演化为
+\[
+  \frac{\ket{S_1}\ket{D_1}+\ket{S_2}\ket{D_0}}{\sqrt2}.
+\]
+在探测效率为 $100\%$、检测窗口足够长且“经过 $S_1$ 必点击”的条件下，无点击是一个可靠的物理记录。条件于探测器仍处于 $\ket{D_0}$，粒子态投影为 $\ket{S_2}$。这称为 null-result measurement（负结果测量）：状态更新来自路径依赖的系统--装置关联，而不是观察者主观推理。若探测效率为 $\eta<1$，无点击测量算符近似为
+\[
+  M_0=\sqrt{1-\eta}\ket{S_1}\bra{S_1}+\ket{S_2}\bra{S_2},
+\]
+故无点击后仍保留部分 $S_1$ 振幅，不能断言粒子必在 $S_2$。}
+
+Born 规则必须用 ensemble（系综）检验：制备大量处于同一初态的系统，对每个系统测量一次。对同一系统立即重复测量，只会重复第一次坍缩后的结果，检验的是测量可重复性而非原始概率分布。
+
+\notetopic{QM-C04-S02-T04}{期望值与不确定度}
+
+\keyidea{期望值是同样制备的系综中测量结果的平均，不一定是某次测量允许取得的本征值；不确定度是测量分布的标准差，不是仪器误差。}
+
+对归一化态和离散谱，
+\begin{align}
+  \langle\Omega\rangle
+  &=\sum_i\omega_i P(\omega_i)
+   =\boxed{\bra{\psi}\Omega\ket{\psi}},
+  \label{eq:QM-C04-S02-expectation}\\
+  (\Delta\Omega)^2
+  &=\sum_iP(\omega_i)
+    \bigl(\omega_i-\langle\Omega\rangle\bigr)^2
+   =\boxed{\langle\Omega^2\rangle-\langle\Omega\rangle^2}.
+  \label{eq:QM-C04-S02-variance}
+\end{align}
+若态未归一化，式~\eqref{eq:QM-C04-S02-expectation} 应除以 $\braket{\psi}{\psi}$。Hermitian 性保证 $\langle\Omega\rangle$ 为实数。
+
+进一步地，
+\begin{equation}
+  (\Delta\Omega)^2
+  =\norm{(\Omega-\langle\Omega\rangle I)\ket{\psi}}^2.
+  \label{eq:QM-C04-S02-variance-as-norm}
+\end{equation}
+故
+\begin{equation}
+  \Delta\Omega=0
+  \iff
+  \Omega\ket{\psi}=\langle\Omega\rangle\ket{\psi}.
+  \label{eq:QM-C04-S02-zero-uncertainty}
+\end{equation}
+状态必须位于一个本征子空间；若本征值简并，它可以是该子空间中任意归一化叠加，不必等于预先选择的某一个本征基向量。
+
+\notetopic{QM-C04-S02-T05}{相容观测量、连续测量与 CSCO}
+
+\keyidea{两个有限维 Hermitian 算符对易，当且仅当存在完整共同正交归一本征基。相容性保证连续测量不破坏先前得到的本征值，但简并时 ket 仍可能在该本征子空间内改变。}
+
+若 $\ket{\omega,\lambda}$ 是 $\Omega,\Lambda$ 的共同本征态，则
+\begin{equation}
+  \comm{\Omega}{\Lambda}\ket{\omega,\lambda}=\ket{0}.
+  \label{eq:QM-C04-S02-common-eigenstate-commutator}
+\end{equation}
+当 $\comm{\Omega}{\Lambda}=0$ 时，$\Lambda$ 保持 $\Omega$ 的每个本征子空间：
+\begin{equation}
+  \Omega\Lambda\ket{\omega,a}
+  =\Lambda\Omega\ket{\omega,a}
+  =\omega\Lambda\ket{\omega,a}.
+  \label{eq:QM-C04-S02-invariant-eigenspace}
+\end{equation}
+因此可在每个简并子空间内继续对角化 $\Lambda$，从而构造完整共同本征基。反过来，若存在完整共同本征基，两算符在该基下同时为对角矩阵，故必然对易。
+
+若先测 $\Omega$ 得到 $\omega$，再测 $\Lambda$ 得到 $\lambda$，联合概率为
+\begin{equation}
+  P(\omega\text{ 后 }\lambda)
+  =\norm{\Pi_\lambda\Pi_\omega\ket{\psi}}^2.
+  \label{eq:QM-C04-S02-sequential-probability}
+\end{equation}
+相容时谱投影对易，故测量次序不改变联合概率：
+\begin{equation}
+  P(\omega\text{ 后 }\lambda)
+  =\bra{\psi}\Pi_\omega\Pi_\lambda\ket{\psi}
+  =P(\lambda\text{ 后 }\omega).
+  \label{eq:QM-C04-S02-compatible-order}
+\end{equation}
+若 $\omega$ 简并，第二次测量可以改变 ket，但不能使其离开 $\omega$ 本征子空间，故第一次得到的本征值保持不变。
+
+$\comm{\Omega}{\Lambda}\neq0$ 意味着不存在完整共同本征基，却未必排除少量共同本征态；只有当交换子没有非零 kernel 时，才连一个共同本征态都不存在。例如
+\begin{equation}
+  \comm{X}{P}=\ii\hbar I
+  \label{eq:QM-C04-S02-canonical-commutator}
+\end{equation}
+不可能湮灭任何非零 ket，因此 $X,P$ 没有非零共同本征态。
+
+一组彼此对易且其共同本征值组合能唯一标记共同本征态的可观测量，称为 complete set of commuting observables（完备对易观测量组，CSCO）。相容不等于统计独立：共同测量结果可以高度相关，只要能够同时具有确定值且连续测量不破坏这些值即可。
+
+\notetopic{QM-C04-S02-T06}{密度矩阵、高斯波包与 improper ket}
+
+\keyidea{密度算符统一描述纯态与统计混合；其非对角元记录相干性。高斯波包则把位置概率、动量 Fourier 变换和最小不确定度联系在一起。}
+
+纯态 $\ket{\psi}$ 的密度算符为
+\begin{equation}
+  \rho=\ket{\psi}\bra{\psi},
+  \qquad
+  \rho^2=\rho,
+  \qquad
+  \Tr\rho^2=1.
+  \label{eq:QM-C04-S02-pure-density-operator}
+\end{equation}
+若系综中以概率 $p_i$ 制备 $\ket{\psi_i}$，则混态为
+\begin{equation}
+  \rho=\sum_i p_i\ket{\psi_i}\bra{\psi_i},
+  \qquad
+  p_i\geq0,
+  \quad\sum_i p_i=1.
+  \label{eq:QM-C04-S02-mixed-density-operator}
+\end{equation}
+任意密度算符满足 $\rho^\dagger=\rho$、$\Tr\rho=1$、$\rho\geq0$，且
+\begin{align}
+  \langle\Omega\rangle
+  &=\boxed{\Tr(\rho\Omega)},
+  \label{eq:QM-C04-S02-density-expectation}\\
+  P(\omega)
+  &=\boxed{\Tr(\rho\Pi_\omega)}.
+  \label{eq:QM-C04-S02-density-born-rule}
+\end{align}
+
+相干叠加 $\ket{+}=(\ket{1}+\ket{2})/\sqrt2$ 与各占一半的统计混合分别为
+\begin{equation}
+  \rho_{\mathrm{coh}}
+  =\frac12\begin{pmatrix}1&1\\1&1\end{pmatrix},
+  \qquad
+  \rho_{\mathrm{mix}}
+  =\frac12\begin{pmatrix}1&0\\0&1\end{pmatrix}.
+  \label{eq:QM-C04-S02-coherent-vs-mixture}
+\end{equation}
+二者在 $\{\ket{1},\ket{2}\}$ 基下有相同概率，却在 $\{\ket{+},\ket{-}\}$ 基下分别给出 $(1,0)$ 与 $(1/2,1/2)$。区别由 $\rho_{\mathrm{coh}}$ 的非对角相干项保存。
+
+教材例 4.2.4 取
+\begin{equation}
+  \psi(x)
+  =\frac1{(\pi\Delta^2)^{1/4}}
+   \exp\left[-\frac{(x-a)^2}{2\Delta^2}\right].
+  \label{eq:QM-C04-S02-gaussian-position}
+\end{equation}
+其位置概率密度以 $a$ 为中心，直接积分得到
+\begin{equation}
+  \boxed{\langle X\rangle=a},
+  \qquad
+  \boxed{\Delta X=\frac{\Delta}{\sqrt2}}.
+  \label{eq:QM-C04-S02-gaussian-position-moments}
+\end{equation}
+动量波函数是 Fourier transform：
+\begin{align}
+  \phi(p)
+  &=\braket{p}{\psi}
+   =\frac1{\sqrt{2\pi\hbar}}
+    \int_{-\infty}^{\infty}
+    \ee^{-\ii px/\hbar}\psi(x)\dd x
+  \notag\\
+  &=\left(\frac{\Delta^2}{\pi\hbar^2}\right)^{1/4}
+    \ee^{-\ii pa/\hbar}
+    \ee^{-p^2\Delta^2/(2\hbar^2)}.
+  \label{eq:QM-C04-S02-gaussian-momentum}
+\end{align}
+相位 $\ee^{-\ii pa/\hbar}$ 不影响动量概率密度，故
+\begin{equation}
+  \boxed{\langle P\rangle=0},
+  \qquad
+  \boxed{\Delta P=\frac{\hbar}{\sqrt2\Delta}},
+  \qquad
+  \boxed{\Delta X\Delta P=\frac{\hbar}{2}}.
+  \label{eq:QM-C04-S02-gaussian-uncertainty}
+\end{equation}
+一个表象中越局域，在 Fourier 共轭表象中越分散。相关计算见
+\begin{itemize}[leftmargin=*]
+  \item \relatedexercise{QM-C04-S02-E01}{教材练习 4.2.2}：实波函数的平均动量；
+  \item \relatedexercise{QM-C04-S02-E02}{教材练习 4.2.3}：位置相位与动量平移。
+\end{itemize}
+
+精确动量本征函数 $\braket{x}{p}=(2\pi\hbar)^{-1/2}\ee^{\ii px/\hbar}$ 在全空间模平方为常数，不能归一化到 $1$。因此 $\ket{p}$ 是 Dirac delta 归一化的 improper ket（广义本征态），是方便的数学基；实验中的“确定动量”实际是动量分布在 $p_0$ 附近很窄但宽度非零的 proper wave packet。
+
+\notetopic{QM-C04-S02-T07}{测量扰动与多自由度推广}
+
+\keyidea{which-path 测量通过建立可区分的系统--装置记录破坏路径相干性；Heisenberg microscope 提供测量反作用的数量级直觉，但不等于不确定关系的严格证明。多自由度量子化则应先在 Cartesian 坐标中完成。}
+
+双缝态 $\ket{\psi}=(\ket{S_1}+\ket{S_2})/\sqrt2$ 与路径探测器耦合后成为
+\begin{equation}
+  \ket{\Psi}
+  =\frac{\ket{S_1}\ket{D_1}+\ket{S_2}\ket{D_2}}{\sqrt2}.
+  \label{eq:QM-C04-S02-which-path-entanglement}
+\end{equation}
+若 $\braket{D_1}{D_2}=0$，忽略装置自由度后，粒子约化态中的 $\ket{S_1}\bra{S_2}$ 与 $\ket{S_2}\bra{S_1}$ 相干项消失，故原干涉条纹消失。关键是路径记录可区分，而不只是一次机械撞击。
+
+Heisenberg microscope 的数量级估算为
+\begin{equation}
+  \Delta X\approx\frac{\lambda}{\sin\delta\theta},
+  \qquad
+  \Delta P_x\approx
+    \frac{2\pi\hbar}{\lambda}\sin\delta\theta,
+  \qquad
+  \Delta X\Delta P_x\sim\hbar.
+  \label{eq:QM-C04-S02-heisenberg-microscope}
+\end{equation}
+缩短波长提高位置分辨率，却增大光子反冲的不确定性。此处的 $\Delta X,\Delta P_x$ 是估算尺度而非严格标准差，不能推出精确下界 $\hbar/2$。严格不确定关系来自算符不对易与 Cauchy--Schwarz；显微镜描述 measurement backaction，而式~\eqref{eq:QM-C04-S02-gaussian-uncertainty} 已显示测量前状态本身具有 intrinsic uncertainty，二者不可混同。
+
+对 $N$ 个 Cartesian 自由度，引入共同广义本征基 $\ket{x_1,\ldots,x_N}$：
+\begin{align}
+  \braket{x_1,\ldots,x_N}{x_1',\ldots,x_N'}
+  &=\prod_{i=1}^{N}\delta(x_i-x_i'),
+  \label{eq:QM-C04-S02-multidimensional-delta}\\
+  \psi(x_1,\ldots,x_N)
+  &=\braket{x_1,\ldots,x_N}{\psi},
+  \label{eq:QM-C04-S02-multidimensional-wavefunction}\\
+  X_i\psi&=x_i\psi,
+  \qquad
+  P_i\psi=-\ii\hbar\frac{\partial\psi}{\partial x_i},
+  \label{eq:QM-C04-S02-multidimensional-actions}\\
+  \comm{X_i}{P_j}&=\ii\hbar\delta_{ij}I.
+  \label{eq:QM-C04-S02-multidimensional-commutator}
+\end{align}
+联合概率元为 $\abs{\psi(x_1,\ldots,x_N)}^2\dd x_1\cdots\dd x_N$。
+
+量子化宜先在 Cartesian 坐标中进行。例如
+\begin{equation}
+  T=-\frac{\hbar^2}{2m}\nabla^2.
+  \label{eq:QM-C04-S02-cartesian-kinetic-energy}
+\end{equation}
+再将 Laplacian 变换到球坐标：
+\begin{equation}
+  \nabla^2
+  =\frac1{r^2}\frac{\partial}{\partial r}
+    \left(r^2\frac{\partial}{\partial r}\right)
+   +\frac1{r^2\sin\theta}\frac{\partial}{\partial\theta}
+    \left(\sin\theta\frac{\partial}{\partial\theta}\right)
+   +\frac1{r^2\sin^2\theta}\frac{\partial^2}{\partial\phi^2}.
+  \label{eq:QM-C04-S02-spherical-laplacian}
+\end{equation}
+不能不加检查地令 $p_r=-\ii\hbar\partial_r$：球坐标内积测度为 $r^2\sin\theta\,\dd r\dd\theta\dd\phi$，算符必须相对于真实测度自伴，还会出现坐标因子与动量的排序问题。Cartesian 量子化后再换坐标可自动保留这些几何项。
+
+\textbf{一分钟回顾。}
+
+同一个态在不同算符本征基中的投影给出不同观测量的概率分布。简并结果对应完整本征子空间，连续谱对应概率密度；投影测量既能改变状态，也能用于状态制备。期望值和不确定度是系综统计量，相容性由共同本征结构和对易性决定，CSCO 用于消除简并。密度矩阵以非对角元区分相干叠加与统计混合；高斯波包通过 Fourier 变换达到 $\Delta X\Delta P=\hbar/2$。负结果测量说明明显碰撞并非状态更新的必要条件，但可靠的系统--装置关联不可缺少。多自由度中应先在 Cartesian 坐标量子化，再作曲线坐标变换。

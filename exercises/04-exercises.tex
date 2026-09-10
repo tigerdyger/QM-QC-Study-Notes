@@ -255,3 +255,134 @@ $L_z$ 已经是对角矩阵，所以可能结果就是它的本征值：
 \end{checkedsolution}
 
 \textbf{检查点：}先区分本征值、概率振幅、概率和测量后状态。概率必须对振幅取模平方 $A^*A$，不能取普通平方 $A^2$。遇到简并结果时投影到完整本征子空间；判断相位是否可观测时，先去掉共同整体相位，再检查测量基是否把相对相位转化为交叉项。
+
+\clearpage
+\section{第 4.2 节教材习题与订正}
+\label{exercise-set:QM-C04-S02}
+
+\exercisemeta
+  {QM-C04-S02-EX}
+  {2026-09-10}
+  {Shankar, Exercises 4.2.2--4.2.3；印刷页 p.~139；PDF p.~151}
+  {实波函数的平均动量、定义域条件与位置相位造成的动量平移}
+  {两题均已完成位置表象、动量表象与算符形式核对}
+
+\exercisequestion{QM-C04-S02-E01}{教材练习 4.2.2：实波函数的平均动量}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C04-S02-T04}{期望值与不确定度}；
+\relatedtopic{QM-C04-S02-T06}{高斯波包与动量表象}。
+
+\textbf{题目。}设一维归一化波函数 $\psi(x)$ 为实函数，并满足使动量期望值存在的可微性、收敛性与边界条件。
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 $\langle P\rangle=0$。
+  \item 推广到 $\psi(x)=c\psi_r(x)$，其中 $\psi_r$ 为实函数，$c\neq0$ 为任意复常数。
+  \item 分别说明位置表象分部积分和动量表象奇偶性证明所需的条件。
+\end{enumerate}
+
+\begin{checkedsolution}
+在位置表象中 $P=-\ii\hbar\,\dd/\dd x$。若 $\psi$ 为实函数，则
+\begin{align}
+  \bra{\psi}P\ket{\psi}
+  &=-\ii\hbar
+    \int_{-\infty}^{\infty}\psi(x)\psi'(x)\dd x
+  \notag\\
+  &=-\frac{\ii\hbar}{2}
+    \left[\psi^2(x)\right]_{-\infty}^{\infty}.
+  \label{eq:QM-C04-S02-E01-position-proof}
+\end{align}
+若边界项为零，便有
+\begin{equation}
+  \boxed{\langle P\rangle=0}.
+  \label{eq:QM-C04-S02-E01-zero-mean-momentum}
+\end{equation}
+一个干净的充分条件是 $\psi\in H^1(\real)$：$\psi,\psi'\in L^2(\real)$，取适当连续代表后 $\psi(x)\to0$（$\abs{x}\to\infty$），且动量矩阵元有定义。仅有 $\psi\in L^2$ 不足以保证逐点边界极限和导数性质。
+
+若 $\psi=c\psi_r$ 且 $\psi_r$ 为实函数，则
+\begin{equation}
+  \bra{\psi}P\ket{\psi}
+  =-\frac{\ii\hbar\abs{c}^2}{2}
+   \left[\psi_r^2(x)\right]_{-\infty}^{\infty}=0.
+  \label{eq:QM-C04-S02-E01-complex-constant}
+\end{equation}
+$c$ 任意时 $\psi$ 未必归一化，严格期望值应写为
+\begin{equation}
+  \langle P\rangle_\psi
+  =\frac{\bra{\psi}P\ket{\psi}}{\braket{\psi}{\psi}}=0.
+  \label{eq:QM-C04-S02-E01-unnormalized-expectation}
+\end{equation}
+
+教材提示给出等价的动量表象证明。对实 $\psi(x)$，Fourier transform 满足
+\begin{equation}
+  \widetilde\psi(-p)=\widetilde\psi(p)^*,
+  \qquad
+  \abs{\widetilde\psi(-p)}^2
+  =\abs{\widetilde\psi(p)}^2.
+  \label{eq:QM-C04-S02-E01-fourier-symmetry}
+\end{equation}
+若 $\int\abs{p}\abs{\widetilde\psi(p)}^2\dd p<\infty$，则动量概率密度为偶函数，而 $p$ 为奇函数，故
+\begin{equation}
+  \langle P\rangle
+  =\int_{-\infty}^{\infty}
+    p\abs{\widetilde\psi(p)}^2\dd p=0.
+  \label{eq:QM-C04-S02-E01-momentum-proof}
+\end{equation}
+\end{checkedsolution}
+
+\exercisequestion{QM-C04-S02-E02}{教材练习 4.2.3：位置相位与动量平移}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C04-S02-T06}{Fourier 变换与动量分布}，以及位置相关的相对相位。
+
+\textbf{题目。}设归一化波函数 $\psi(x)$ 的平均动量为 $\bar p$。定义
+\begin{equation}
+  \psi_{p_0}(x)=\ee^{\ii p_0x/\hbar}\psi(x),
+  \qquad p_0\in\real.
+  \label{eq:QM-C04-S02-E02-boosted-wavefunction}
+\end{equation}
+证明新波函数仍归一化、平均动量为 $\bar p+p_0$，并说明其位置和动量概率分布怎样变化。
+
+\begin{checkedsolution}
+由于 $\abs{\ee^{\ii p_0x/\hbar}}=1$，
+\begin{equation}
+  \int_{-\infty}^{\infty}\abs{\psi_{p_0}(x)}^2\dd x
+  =\int_{-\infty}^{\infty}\abs{\psi(x)}^2\dd x=1.
+  \label{eq:QM-C04-S02-E02-normalization}
+\end{equation}
+同一等式说明位置概率密度完全不变。该因子依赖 $x$，不是可忽略的整体相位；它会被动量导数算符读出：
+\begin{align}
+  P\psi_{p_0}
+  &=-\ii\hbar\frac{\dd}{\dd x}
+    \left(\ee^{\ii p_0x/\hbar}\psi\right)
+  \notag\\
+  &=\ee^{\ii p_0x/\hbar}(p_0+P)\psi.
+  \label{eq:QM-C04-S02-E02-momentum-action}
+\end{align}
+因此
+\begin{equation}
+  \boxed{\langle P\rangle_{p_0}=p_0+\bar p}.
+  \label{eq:QM-C04-S02-E02-shifted-mean}
+\end{equation}
+若 $\psi\in H^1(\real)$，有限 $p_0$ 下乘以此光滑相位仍属于 $H^1(\real)$，故动量算符定义域保持。
+
+在动量表象中，
+\begin{align}
+  \widetilde\psi_{p_0}(p)
+  &=\frac1{\sqrt{2\pi\hbar}}
+    \int\ee^{-\ii px/\hbar}
+      \ee^{\ii p_0x/\hbar}\psi(x)\dd x
+  \notag\\
+  &=\boxed{\widetilde\psi(p-p_0)}.
+  \label{eq:QM-C04-S02-E02-fourier-shift}
+\end{align}
+故 $\abs{\widetilde\psi(p)}^2$ 整体向 $+p$ 方向平移 $p_0$，形状和动量不确定度不变。
+
+令 $U(p_0)=\ee^{\ii p_0X/\hbar}$，同一结论可压缩为
+\begin{equation}
+  \boxed{U^\dagger(p_0)PU(p_0)=P+p_0I},
+  \label{eq:QM-C04-S02-E02-operator-identity}
+\end{equation}
+因此 $U(p_0)$ 是 momentum translation（动量平移）或 momentum boost 算符。
+\end{checkedsolution}
+
+\textbf{检查点：}实波函数给出关于 $p=0$ 对称的动量分布，但位置表象证明必须说明动量算符定义域和边界项。乘 $\ee^{\ii p_0x/\hbar}$ 不改变位置概率密度，却会把动量分布整体平移；判断相位是否可观测，关键在于它是否随位置变化并被相应算符读取。

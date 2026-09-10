@@ -35,3 +35,4 @@
 | 2026-09-07 | Shankar 第 3 章 \S 3.4，印刷页 112，PDF 125 | `chapters/03-notes.tex`、`exercises/03-exercises.tex` | de Broglie 关系、物质波、电子衍射、概率振幅、宏观经典极限、有限分辨率与粗粒化 | 下一学习节点为第 3.5 节 Conclusions |
 | 2026-09-08 | Shankar 第 3 章 \S 3.5，印刷页 112--113，PDF 125--126 | `chapters/03-notes.tex`、`exercises/03-exercises.tex` | 波粒二象性、局域探测、概率振幅、抽象态与位置表象、相对相位、离散概率与连续概率密度 | 第 3 章完成；下一学习节点为第 4.1 节 The Postulates |
 | 2026-09-08 | Shankar 第 4 章 \S 4.1，印刷页 115--116，PDF 127--128 | `chapters/04-notes.tex`、`exercises/04-exercises.tex` | 量子力学四条公设、态与表象、可观测算符、Born 规则、投影测量、Schrödinger 方程、Hamiltonian 与能量、整体相位和相对相位 | 下一学习节点为第 4.2 节 Discussion of Postulates I--III |
+| 2026-09-10 | Shankar 第 4 章 \S 4.2，印刷页 116--143，PDF 128--155 | `chapters/04-notes.tex`、`exercises/04-exercises.tex` | 状态射线、简并与连续谱、投影测量、负结果测量、系综统计、相容观测量、CSCO、密度矩阵、高斯波包、不确定性与多自由度推广 | 下一学习节点为第 4.3 节 The Schrödinger Equation |
