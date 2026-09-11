@@ -1,6 +1,6 @@
 % 教材：Shankar, Principles of Quantum Mechanics, Second Edition
-% 已覆盖：第 4 章第 4.1--4.2 节，印刷页 pp. 115--143，PDF pp. 127--155
-% 人工核验：已完成分块讲解、教材练习 4.2.1--4.2.3 与订正
+% 已覆盖：第 4 章第 4.1--4.3 节，印刷页 pp. 115--150，PDF pp. 127--162
+% 人工核验：已完成分块讲解、教材正文推导与应用、代表性练习及订正
 
 \clearpage
 \section{第 4.1 节：量子力学公设}
@@ -659,3 +659,291 @@ Heisenberg microscope 的数量级估算为
 \textbf{一分钟回顾。}
 
 同一个态在不同算符本征基中的投影给出不同观测量的概率分布。简并结果对应完整本征子空间，连续谱对应概率密度；投影测量既能改变状态，也能用于状态制备。期望值和不确定度是系综统计量，相容性由共同本征结构和对易性决定，CSCO 用于消除简并。密度矩阵以非对角元区分相干叠加与统计混合；高斯波包通过 Fourier 变换达到 $\Delta X\Delta P=\hbar/2$。负结果测量说明明显碰撞并非状态更新的必要条件，但可靠的系统--装置关联不可缺少。多自由度中应先在 Cartesian 坐标量子化，再作曲线坐标变换。
+
+\clearpage
+\section{第 4.3 节：Schrödinger 方程}
+\label{section:QM-C04-S03}
+
+\studymeta
+  {QM-C04-S03}
+  {2026-09-11}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 4 章 \S 4.3；印刷页 pp.~143--150；PDF pp.~155--162}
+  {讲解、教材正文推导与应用、自编综合检验及订正已完成}
+
+\textbf{本节主线。}
+
+本节把第四公设展开为可计算的动力学：先由经典 Hamiltonian 建立量子 Hamiltonian，再求时间无关系统的能量本征态与传播算符；随后处理不同时刻 Hamiltonian 不对易时的时间排序，最后比较位置表象、动量表象和一般构型空间中的 Schrödinger 方程。
+
+\textbf{来源边界。}Schrödinger 方程、Hamiltonian 示例、传播算符、时间排序和表象选择来自教材第 4.3 节。关于算符排序、定义域、显含时间 Hamiltonian 的能量变化以及短时截断的幺正性说明，是为保证推导严谨而加入的补充。教材本节没有独立编号的例题或章末习题；习题部分因此收录两项教材正文推导或应用，并另列一项明确标注的自编综合检验。
+
+\notetopic{QM-C04-S03-T01}{建立 Schrödinger 方程与 Hamiltonian}
+
+\keyidea{Schrödinger 方程规定态的时间变化，Hamiltonian 是其生成元；在常见的保守 Cartesian 系统中，它同时代表总能量，但从经典量到量子算符的替换不是无条件唯一的。}
+
+第四公设写为
+\begin{equation}
+  \boxed{\ii\hbar\frac{\dd}{\dd t}\ket{\psi(t)}
+  =H(t)\ket{\psi(t)}}.
+  \label{eq:QM-C04-S03-schrodinger-abstract}
+\end{equation}
+态的一阶时间导数由当前态决定，所以给定 $\ket{\psi(t_0)}$ 后，理想封闭系统的后续演化由 $H(t)$ 决定。$H(t)$ 必须是 Hermitian 算符；在适当的定义域条件下，这保证演化保持内积和总概率。
+
+对经典 Cartesian Hamiltonian
+\begin{equation}
+  \mathcal H(\bm x,\bm p,t)
+  =\sum_i\frac{p_i^2}{2m_i}+V(\bm x,t),
+  \label{eq:QM-C04-S03-classical-hamiltonian}
+\end{equation}
+作正则量子化
+\begin{equation}
+  x_i\mapsto X_i,
+  \qquad
+  p_i\mapsto P_i,
+  \qquad
+  \comm{X_i}{P_j}=\ii\hbar\delta_{ij}I,
+  \label{eq:QM-C04-S03-canonical-quantization}
+\end{equation}
+得到常见形式
+\begin{equation}
+  H=\sum_i\frac{P_i^2}{2m_i}+V(\bm X,t).
+  \label{eq:QM-C04-S03-standard-hamiltonian}
+\end{equation}
+例如一维谐振子与恒力势分别为
+\begin{equation}
+  H_{\mathrm{osc}}=\frac{P^2}{2m}+\frac12m\omega^2X^2,
+  \qquad
+  H_f=\frac{P^2}{2m}-fX.
+  \label{eq:QM-C04-S03-basic-hamiltonians}
+\end{equation}
+若 $\omega=\omega(t)$，则 $H(t)$ 显含时间，通常不能使用单一能量本征态的定态分离形式，而且
+\begin{equation}
+  \frac{\dd}{\dd t}\langle H\rangle
+  =\left\langle\frac{\partial H}{\partial t}\right\rangle
+  =m\omega\dot\omega\,\langle X^2\rangle
+  \label{eq:QM-C04-S03-time-dependent-energy}
+\end{equation}
+一般不为零。式中等号使用了满足 Schrödinger 方程的精确演化，并默认有关算符作用和定义域均良好。
+
+电磁场中的 minimal coupling 给出
+\begin{equation}
+  H=\frac1{2m}\left(\bm P-\frac qc\bm A(\bm X,t)\right)^2
+    +q\phi(\bm X,t).
+  \label{eq:QM-C04-S03-em-hamiltonian-compact}
+\end{equation}
+由于 $\bm P$ 与位置函数 $\bm A(\bm X,t)$ 一般不对易，平方必须按原顺序展开：
+\begin{equation}
+  H=\frac1{2m}\left[
+    \bm P^2-\frac qc\bigl(\bm P\mathbin{\cdot}\bm A
+    +\bm A\mathbin{\cdot}\bm P\bigr)
+    +\frac{q^2}{c^2}\bm A^2\right]+q\phi.
+  \label{eq:QM-C04-S03-em-hamiltonian-expanded}
+\end{equation}
+一维中对任意测试波函数 $\psi$，
+\begin{align}
+  [P,A(X)]\psi(x)
+  &=-\ii\hbar\frac{\dd}{\dd x}[A(x)\psi(x)]
+    +\ii\hbar A(x)\psi'(x)\notag\\
+  &=-\ii\hbar A'(x)\psi(x),
+  \label{eq:QM-C04-S03-commutator-derivation}
+\end{align}
+故
+\begin{equation}
+  \boxed{[P,A(X)]=-\ii\hbar A'(X)}.
+  \label{eq:QM-C04-S03-commutator-function}
+\end{equation}
+交叉项写成 $P\cdot A+A\cdot P$ 同时保留了正确算符次序和 Hermiticity。只有在额外条件如 $\nabla\cdot\bm A=0$ 下，才可进一步简化。
+
+正则量子化是物理规则而非从经典力学推出的纯数学定理。经典表达式中 $xp=px$，量子化后却有 $XP\neq PX$，因此同一经典量可能对应不同排序；自旋等自由度也没有简单的经典 Cartesian 对应。具体量子 Hamiltonian 还需对称性、实验和更完整理论共同确定。
+
+\notetopic{QM-C04-S03-T02}{时间无关 Hamiltonian、定态与传播算符}
+
+\keyidea{先解时间无关的能量本征问题，再让每个能量分量分别积累相位；这与把一个向量展开在方便的基上后逐分量运算完全同构。}
+
+当 $H$ 不显含时间时，先求
+\begin{equation}
+  H\ket{E,a}=E\ket{E,a},
+  \label{eq:QM-C04-S03-energy-eigenproblem}
+\end{equation}
+其中 $a$ 标记简并方向。由谱定理，离散谱情形下初态可展开为
+\begin{equation}
+  \ket{\psi(0)}
+  =\sum_{E,a}\ket{E,a}\braket{E,a}{\psi(0)}.
+  \label{eq:QM-C04-S03-initial-energy-expansion}
+\end{equation}
+对单个能量本征态，代入
+\begin{equation}
+  \ket{E,a;t}=g_E(t)\ket{E,a}
+  \label{eq:QM-C04-S03-separated-energy-state}
+\end{equation}
+可得
+\begin{equation}
+  \ii\hbar\dot g_E=Eg_E,
+  \qquad
+  g_E(t)=\ee^{-\ii Et/\hbar}g_E(0).
+  \label{eq:QM-C04-S03-energy-phase-ode}
+\end{equation}
+因此一般解为
+\begin{equation}
+  \boxed{\ket{\psi(t)}
+  =\sum_{E,a}\ee^{-\ii Et/\hbar}
+    \ket{E,a}\braket{E,a}{\psi(0)}}.
+  \label{eq:QM-C04-S03-general-energy-solution}
+\end{equation}
+连续谱时应把相应求和改为积分。
+
+把上述逐分量演化重新组合为算符，得到
+\begin{align}
+  U(t)&=\ee^{-\ii Ht/\hbar}
+  =\sum_{E,a}\ee^{-\ii Et/\hbar}
+    \ket{E,a}\bra{E,a},
+  \label{eq:QM-C04-S03-propagator-spectral}\\
+  \ket{\psi(t)}&=U(t)\ket{\psi(0)}.
+  \label{eq:QM-C04-S03-state-propagation}
+\end{align}
+这不是“用 $H$ 定义 $H$”的循环公式，而是把抽象算符换成其在能量本征基中的谱展开：正如向量由各基方向的坐标重构，算符由各本征方向上的作用重构。
+
+由于 $H^\dagger=H$，
+\begin{equation}
+  U^\dagger(t)=\ee^{\ii Ht/\hbar}=U^{-1}(t),
+  \qquad
+  U^\dagger U=I.
+  \label{eq:QM-C04-S03-unitarity}
+\end{equation}
+所以
+\begin{equation}
+  \braket{\phi(t)}{\psi(t)}
+  =\bra{\phi(0)}U^\dagger U\ket{\psi(0)}
+  =\braket{\phi(0)}{\psi(0)}.
+  \label{eq:QM-C04-S03-inner-product-preservation}
+\end{equation}
+范数、正交性及总概率均保持。传播算符的微分方程、复合律和逆算符见
+\relatedexercise{QM-C04-S03-E01}{教材正文推导：传播算符的基本性质}。
+
+若初态全部位于同一个能量本征子空间，则
+\begin{equation}
+  \ket{\psi(t)}=\ee^{-\ii Et/\hbar}\ket{\psi(0)},
+  \label{eq:QM-C04-S03-stationary-state}
+\end{equation}
+时间变化只有整体相位，称为 stationary state（定态）。不同能量的叠加则含相对相位
+\begin{equation}
+  \ee^{-\ii(E_m-E_n)t/\hbar},
+  \label{eq:QM-C04-S03-relative-energy-phase}
+\end{equation}
+故即使能量测量概率不变，其他可观测量的交叉项仍可能随时间振荡。
+
+\notetopic{QM-C04-S03-T03}{含时 Hamiltonian 与时间排序}
+
+\keyidea{当 $H(t_1)$ 与 $H(t_2)$ 不对易时，不同时间的无穷小演化不能交换；真实传播算符是“早时刻在右、晚时刻在左”的有序乘积。}
+
+把区间 $[t_0,t]$ 分成 $N$ 段，$\Delta t=(t-t_0)/N$，则精确传播算符可由短时演化的极限构成：
+\begin{equation}
+  U(t,t_0)
+  =\lim_{N\to\infty}
+  \prod_{n=N-1}^{0}
+  \exp\left[-\frac{\ii}{\hbar}H(t_n)\Delta t\right],
+  \qquad t_n=t_0+n\Delta t.
+  \label{eq:QM-C04-S03-time-sliced-product}
+\end{equation}
+乘积按从右到左的作用顺序排列：最早的因子最先作用，因而位于最右侧。每个精确指数因子在 $H(t_n)$ Hermitian 时都是 unitary，任意有限个因子的乘积仍 unitary；但一阶截断 $I-\ii H\Delta t/\hbar$ 只在忽略 $O(\bigl(\Delta t^2\bigr))$ 时近似 unitary。
+
+记时间排序算符为 $\mathcal T$，则
+\begin{equation}
+  \boxed{U(t,t_0)
+  =\mathcal T\exp\left[-\frac{\ii}{\hbar}
+    \int_{t_0}^{t}H(s)\dd s\right]}.
+  \label{eq:QM-C04-S03-time-ordered-exponential}
+\end{equation}
+其 Dyson 展开前两阶为
+\begin{align}
+  U(t,t_0)
+  ={}&I-\frac{\ii}{\hbar}\int_{t_0}^{t}H(t_1)\dd t_1\notag\\
+  &+\left(-\frac{\ii}{\hbar}\right)^2
+    \int_{t_0}^{t}\dd t_1
+    \int_{t_0}^{t_1}\dd t_2\,
+    H(t_1)H(t_2)+\cdots.
+  \label{eq:QM-C04-S03-dyson-second-order}
+\end{align}
+二阶积分区域 $t_1\ge t_2$ 明确保证晚时刻算符位于左侧。普通指数的一阶项与此相同，差异首次在二阶对易子项中出现。因此仅当
+\begin{equation}
+  [H(t_1),H(t_2)]=0
+  \qquad\text{对所有 }t_1,t_2
+  \label{eq:QM-C04-S03-all-time-commutation}
+\end{equation}
+时，才可去掉 $\mathcal T$，写成普通指数
+\begin{equation}
+  U(t,t_0)=
+  \exp\left[-\frac{\ii}{\hbar}
+    \int_{t_0}^{t}H(s)\dd s\right].
+  \label{eq:QM-C04-S03-ordinary-exponential-condition}
+\end{equation}
+例如 $H(t)=tH_0$ 在任意两时刻均只是同一算符的标量倍数，故
+\begin{equation}
+  U(t,0)=\exp\left(-\frac{\ii H_0t^2}{2\hbar}\right).
+  \label{eq:QM-C04-S03-linear-time-hamiltonian}
+\end{equation}
+
+一般情形仍满足
+\begin{equation}
+  U(t_3,t_2)U(t_2,t_1)=U(t_3,t_1),
+  \qquad
+  U^\dagger(t_2,t_1)=U(t_1,t_2).
+  \label{eq:QM-C04-S03-general-propagator-laws}
+\end{equation}
+时间顺序不可交换的直接计算见
+\relatedexercise{QM-C04-S03-E03}{自编综合检验：分段二能级 Hamiltonian}。
+
+\notetopic{QM-C04-S03-T04}{表象选择与构型空间}
+
+\keyidea{抽象方程不依赖表象；选择基的目的，是让 Hamiltonian 的作用尽量简单。单粒子波函数定义在物理空间，多粒子波函数一般定义在更高维构型空间。}
+
+在位置表象中，
+\begin{equation}
+  X\mapsto x,
+  \qquad
+  P\mapsto-\ii\hbar\frac{\dd}{\dd x},
+  \label{eq:QM-C04-S03-position-representation}
+\end{equation}
+故
+\begin{equation}
+  \ii\hbar\frac{\partial\psi(x,t)}{\partial t}
+  =\left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}
+    +V(x)\right]\psi(x,t).
+  \label{eq:QM-C04-S03-position-schrodinger}
+\end{equation}
+在动量表象中，
+\begin{equation}
+  P\mapsto p,
+  \qquad
+  X\mapsto\ii\hbar\frac{\dd}{\dd p}.
+  \label{eq:QM-C04-S03-momentum-representation}
+\end{equation}
+两种表示描述同一个抽象态，只是坐标不同。选择哪一种表象取决于哪部分 Hamiltonian 更简单。
+
+例如四次势 $H=P^2/(2m)+\lambda X^4$ 的定态方程，在位置表象为二阶常微分方程
+\begin{equation}
+  \left[-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}
+  +\lambda x^4\right]\psi_E(x)=E\psi_E(x),
+  \label{eq:QM-C04-S03-quartic-position}
+\end{equation}
+而在动量表象为四阶常微分方程
+\begin{equation}
+  \left[\frac{p^2}{2m}
+  +\lambda\hbar^4\frac{\dd^4}{\dd p^4}\right]
+  \widetilde\psi_E(p)=E\widetilde\psi_E(p).
+  \label{eq:QM-C04-S03-quartic-momentum}
+\end{equation}
+因此位置表象通常更方便。反之，对恒力势 $H=P^2/(2m)-fX$，动量表象只产生一阶方程，其完整求解见
+\relatedexercise{QM-C04-S03-E02}{教材正文应用：恒力势的动量表象本征函数}。谐振子在位置和动量表象中都是二阶方程，后续将用能量本征基及升降算符进一步简化。
+
+对于三维单粒子，$\psi(\bm r,t)$ 定义在物理空间 $\real^3$。对于 $N$ 个三维粒子，
+\begin{equation}
+  \psi(\bm r_1,\ldots,\bm r_N,t)
+  =\braket{\bm r_1,\ldots,\bm r_N}{\psi(t)}
+  \label{eq:QM-C04-S03-many-particle-wavefunction}
+\end{equation}
+定义在 $3N$ 维构型空间 $\real^{3N}$，而不是通常三维空间中的一个经典标量波。其模平方给出联合构型的概率密度；这也是不能把多粒子量子态简单理解为三维空间中某种经典物质波的原因。
+
+\textbf{一分钟回顾。}
+
+Schrödinger 方程以 Hamiltonian 生成态的时间演化。时间无关时，先在能量本征基展开初态，每个能量分量只积累 $\ee^{-\ii Et/\hbar}$ 相位，从而得到 $U(t)=\ee^{-\ii Ht/\hbar}$；单一能量子空间中的态是定态，不同能量叠加则具有可观测的相对相位演化。含时系统必须把短时传播按“早右晚左”排列；只有所有时刻的 Hamiltonian 两两对易时，时间有序指数才退化为普通指数。位置表象和动量表象只是同一抽象动力学的不同坐标，实际选择应以简化算符为准；多粒子波函数则生活在构型空间中。

@@ -386,3 +386,219 @@ $c$ 任意时 $\psi$ 未必归一化，严格期望值应写为
 \end{checkedsolution}
 
 \textbf{检查点：}实波函数给出关于 $p=0$ 对称的动量分布，但位置表象证明必须说明动量算符定义域和边界项。乘 $\ee^{\ii p_0x/\hbar}$ 不改变位置概率密度，却会把动量分布整体平移；判断相位是否可观测，关键在于它是否随位置变化并被相应算符读取。
+
+\clearpage
+\section{第 4.3 节正文推导、应用与综合检验}
+\label{exercise-set:QM-C04-S03}
+
+\exercisemeta
+  {QM-C04-S03-EX}
+  {2026-09-11}
+  {Shankar 第 4.3 节正文；印刷页 pp.~145--150；PDF pp.~157--162；另含一项自编综合检验}
+  {传播算符、恒力势的动量表象、分段含时 Hamiltonian}
+  {两项教材正文推导或应用与一项自编综合检验均已完成并订正}
+
+\textbf{来源说明。}本节教材没有独立编号的例题或习题。以下 E01 基于教材式 (4.3.14)--(4.3.16) 的正文推导，E02 是教材末尾明确提出的恒力势应用；E03 为用于检查时间排序的自编题，不是教材原题。
+
+\exercisequestion{QM-C04-S03-E01}{教材正文推导：传播算符的基本性质}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C04-S03-T02}{时间无关 Hamiltonian、定态与传播算符}。
+
+\textbf{题目。}设 $H$ 为时间无关 Hermitian 算符，定义
+\begin{equation}
+  U(t_2,t_1)=\exp\left[-\frac{\ii}{\hbar}H(t_2-t_1)\right].
+  \label{eq:QM-C04-S03-E01-definition}
+\end{equation}
+验证它满足 Schrödinger 方程和初始条件，并证明传播算符的复合律、逆算符关系以及内积保持性。
+
+\begin{checkedsolution}
+对 $t_2$ 求导。由于指数中只有同一个 $H$，$H$ 与其指数函数对易，故
+\begin{align}
+  \ii\hbar\frac{\partial}{\partial t_2}U(t_2,t_1)
+  &=\ii\hbar\left(-\frac{\ii}{\hbar}H\right)
+    U(t_2,t_1)\notag\\
+  &=HU(t_2,t_1).
+  \label{eq:QM-C04-S03-E01-evolution-equation}
+\end{align}
+当 $t_2=t_1$ 时，
+\begin{equation}
+  U(t_1,t_1)=\ee^0=I.
+  \label{eq:QM-C04-S03-E01-initial-condition}
+\end{equation}
+
+若 $t_3\ge t_2\ge t_1$，两个指数仍是同一算符 $H$ 的函数，故可合并：
+\begin{align}
+  U(t_3,t_2)U(t_2,t_1)
+  &=\ee^{-\ii H(t_3-t_2)/\hbar}
+    \ee^{-\ii H(t_2-t_1)/\hbar}\notag\\
+  &=\ee^{-\ii H(t_3-t_1)/\hbar}
+   =\boxed{U(t_3,t_1)}.
+  \label{eq:QM-C04-S03-E01-composition}
+\end{align}
+取伴随并使用 $H^\dagger=H$，
+\begin{equation}
+  U^\dagger(t_2,t_1)
+  =\ee^{\ii H(t_2-t_1)/\hbar}
+  =U(t_1,t_2)=U^{-1}(t_2,t_1).
+  \label{eq:QM-C04-S03-E01-adjoint-inverse}
+\end{equation}
+所以 $U^\dagger U=I$。对任意两个同时演化的态，
+\begin{align}
+  \braket{\phi(t_2)}{\psi(t_2)}
+  &=\bra{\phi(t_1)}U^\dagger(t_2,t_1)
+    U(t_2,t_1)\ket{\psi(t_1)}\notag\\
+  &=\braket{\phi(t_1)}{\psi(t_1)}.
+  \label{eq:QM-C04-S03-E01-inner-product}
+\end{align}
+因此范数、总概率和任意两态间的内积均保持。
+\end{checkedsolution}
+
+\exercisequestion{QM-C04-S03-E02}{教材正文应用：恒力势的动量表象本征函数}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C04-S03-T04}{表象选择与构型空间}。
+
+\textbf{题目。}对一维恒力势
+\begin{equation}
+  H=\frac{P^2}{2m}-fX,
+  \qquad f>0,
+  \label{eq:QM-C04-S03-E02-hamiltonian}
+\end{equation}
+在动量表象中求能量本征函数 $\widetilde\psi_E(p)=\braket{p}{E}$，说明它为何不能作普通 $L^2$ 归一化，并确定使其满足 $\braket{E}{E'}=\delta(E-E')$ 的归一化常数。
+
+\begin{checkedsolution}
+动量表象中 $P\mapsto p$、$X\mapsto\ii\hbar\,\dd/\dd p$，故
+\begin{equation}
+  \left(\frac{p^2}{2m}-\ii\hbar f\frac{\dd}{\dd p}\right)
+  \widetilde\psi_E(p)=E\widetilde\psi_E(p).
+  \label{eq:QM-C04-S03-E02-eigen-equation}
+\end{equation}
+整理为可分离的一阶方程：
+\begin{equation}
+  \frac{1}{\widetilde\psi_E}
+  \frac{\dd\widetilde\psi_E}{\dd p}
+  =\frac{\ii}{\hbar f}
+    \left(E-\frac{p^2}{2m}\right).
+  \label{eq:QM-C04-S03-E02-separated-ode}
+\end{equation}
+两边积分，
+\begin{align}
+  \ln\widetilde\psi_E(p)
+  &=\frac{\ii}{\hbar f}
+    \left(Ep-\frac{p^3}{6m}\right)+\ln C,
+  \label{eq:QM-C04-S03-E02-log-solution}\\
+  \widetilde\psi_E(p)
+  &=\boxed{C\exp\left[\frac{\ii}{\hbar f}
+    \left(Ep-\frac{p^3}{6m}\right)\right]}.
+  \label{eq:QM-C04-S03-E02-solution}
+\end{align}
+指数是纯相位，所以 $\abs{\widetilde\psi_E(p)}=\abs C$ 在整个实轴恒定，不能使 $\int\abs{\widetilde\psi_E}^2\dd p=1$。它与平面波类似，是连续谱的广义本征函数，应作 Dirac delta 归一化。
+
+计算两个能量态的内积时，$p^3$ 相位相消：
+\begin{align}
+  \braket{E}{E'}
+  &=\abs C^2\int_{-\infty}^{\infty}
+    \exp\left[\frac{\ii(E'-E)p}{\hbar f}\right]\dd p\notag\\
+  &=\abs C^2(2\pi\hbar f)\delta(E'-E).
+  \label{eq:QM-C04-S03-E02-delta-normalization}
+\end{align}
+因此可取
+\begin{equation}
+  \boxed{C=\frac1{\sqrt{2\pi\hbar f}}}
+  \label{eq:QM-C04-S03-E02-normalization-constant}
+\end{equation}
+另乘任意只依赖 $E$ 的整体相位不影响归一化。若允许 $f<0$，则应改为
+\begin{equation}
+  \abs C=\frac1{\sqrt{2\pi\hbar\abs f}}.
+  \label{eq:QM-C04-S03-E02-normalization-general-force}
+\end{equation}
+\end{checkedsolution}
+
+\exercisequestion{QM-C04-S03-E03}{自编综合检验：分段二能级 Hamiltonian}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C04-S03-T03}{含时 Hamiltonian 与时间排序}。
+
+\textbf{题目。}在基 $\{\ket{1},\ket{2}\}$ 中令
+\begin{equation}
+  Z=\begin{pmatrix}1&0\\0&-1\end{pmatrix},
+  \qquad
+  X=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+  \label{eq:QM-C04-S03-E03-pauli-matrices}
+\end{equation}
+系统初态为 $\ket{\psi(0)}=\ket{1}$，Hamiltonian 分段取值
+\begin{equation}
+  H(t)=
+  \begin{cases}
+    \hbar\omega Z,&0\le t<T,\\
+    \hbar\omega X,&T\le t<2T,
+  \end{cases}
+  \qquad \omega T=\frac{\pi}{4}.
+  \label{eq:QM-C04-S03-E03-piecewise-hamiltonian}
+\end{equation}
+求 $\ket{\psi(2T)}$、在 $\ket{1},\ket{2}$ 基中的测量概率及在 $\ket{+}=(\ket{1}+\ket{2})/\sqrt2$ 上的概率；再交换两个时间段的顺序，比较结果。
+
+\begin{checkedsolution}
+利用 $Z^2=X^2=I$，不能把矩阵指数理解为对矩阵元逐项取指数；应使用
+\begin{equation}
+  \ee^{-\ii\theta A}=I\cos\theta-\ii A\sin\theta,
+  \qquad A^2=I.
+  \label{eq:QM-C04-S03-E03-exponential-identity}
+\end{equation}
+因此
+\begin{align}
+  U_1&=\ee^{-\ii\pi Z/4}
+  =\frac1{\sqrt2}(I-\ii Z)
+  =\frac1{\sqrt2}
+    \begin{pmatrix}1-\ii&0\\0&1+\ii\end{pmatrix},
+  \label{eq:QM-C04-S03-E03-U1}\\
+  U_2&=\ee^{-\ii\pi X/4}
+  =\frac1{\sqrt2}(I-\ii X)
+  =\frac1{\sqrt2}
+    \begin{pmatrix}1&-\ii\\-\ii&1\end{pmatrix}.
+  \label{eq:QM-C04-S03-E03-U2}
+\end{align}
+较晚的第二段位于左侧，所以正确总传播算符是 $U_2U_1$：
+\begin{align}
+  \ket{\psi(2T)}
+  &=U_2U_1\ket{1}
+   =\boxed{\frac12
+    \begin{pmatrix}1-\ii\\-1-\ii\end{pmatrix}}
+  \notag\\
+  &=\frac{\ee^{-\ii\pi/4}}{\sqrt2}
+    \begin{pmatrix}1\\-\ii\end{pmatrix}.
+  \label{eq:QM-C04-S03-E03-correct-state}
+\end{align}
+故
+\begin{equation}
+  P(1)=P(2)=\frac12.
+  \label{eq:QM-C04-S03-E03-z-probabilities}
+\end{equation}
+在 $\ket{+}$ 上的振幅与概率为
+\begin{align}
+  \braket{+}{\psi(2T)}
+  &=\frac{(1-\ii)+(-1-\ii)}{2\sqrt2}
+   =-\frac{\ii}{\sqrt2},
+  \label{eq:QM-C04-S03-E03-plus-amplitude}\\
+  P(+)&=\boxed{\frac12}.
+  \label{eq:QM-C04-S03-E03-plus-probability}
+\end{align}
+
+若交换两个时间段，传播顺序变为 $U_1U_2$：
+\begin{equation}
+  U_1U_2\ket{1}
+  =\frac{\ee^{-\ii\pi/4}}{\sqrt2}
+    \begin{pmatrix}1\\1\end{pmatrix}
+  =\ee^{-\ii\pi/4}\ket{+}.
+  \label{eq:QM-C04-S03-E03-reversed-state}
+\end{equation}
+此时仍有 $P(1)=P(2)=1/2$，但
+\begin{equation}
+  \boxed{P_{\mathrm{reversed}}(+)=1}.
+  \label{eq:QM-C04-S03-E03-reversed-plus-probability}
+\end{equation}
+两种顺序在 $\ket{1},\ket{2}$ 测量中恰好给出相同概率，却在另一测量基中可区分；这说明只比较一组概率不足以判定量子态相同，也直接体现了 $[X,Z]\neq0$ 时演化次序的重要性。
+\end{checkedsolution}
+
+\textbf{检查点：}时间无关传播算符的复合来自同一 $H$ 的指数可合并；含时情形则必须保持时间次序。连续谱本征函数通常不是 $L^2$ 态，应使用 delta 归一化。计算矩阵指数时先利用谱分解或算符满足的多项式关系，不能逐元素取指数。
