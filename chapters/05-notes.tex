@@ -1,0 +1,337 @@
+% 教材：Shankar, Principles of Quantum Mechanics, Second Edition
+% 已覆盖：第 5 章第 5.1 节，印刷页 pp. 151--157，PDF pp. 163--169
+% 人工核验：已完成分块讲解、教材练习 5.1.1--5.1.4 与订正
+
+\clearpage
+\section{第 5.1 节：自由粒子}
+\label{section:QM-C05-S01}
+
+\studymeta
+  {QM-C05-S01}
+  {2026-09-12}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 5 章 \S 5.1；印刷页 pp.~151--157；PDF pp.~163--169}
+  {讲解、教材练习 5.1.1--5.1.4 与订正已完成}
+
+\textbf{本节主线。}
+
+自由粒子没有势能，Hamiltonian 只有动能项 $H=P^2/(2m)$。这一看似最简单的系统第一次把连续谱、简并、广义本征态、传播核、波包扩散和无界算符定义域放在同一套动力学中。核心不是记住若干公式，而是看清三层结构：动量基使演化对角化；位置基中的传播核把同一演化写成积分变换；真正可归一化的粒子态必须由平面波连续叠加成波包。
+
+\textbf{来源边界。}自由粒子谱、传播核、Gaussian 波包和习题 5.1.1--5.1.4 来自教材第 5.1 节。能量归一本征态、Gaussian 宽度记号换算，以及用谱定理区分 $H$ 与 $U(t)$ 的定义域，是对话中为补足严格性而加入的说明。
+
+\notetopic{QM-C05-S01-T01}{自由粒子的能谱、简并与广义本征态}
+
+\keyidea{在动量表象中，自由 Hamiltonian 是乘法算符。能量只依赖 $p^2$，因此每个 $E>0$ 对应相反的两个动量方向；平面波是广义本征态，正规物理态则是它们的连续叠加。}
+
+一维自由粒子的 Hamiltonian 为
+\begin{equation}
+  H=\frac{P^2}{2m}.
+  \label{eq:QM-C05-S01-free-hamiltonian}
+\end{equation}
+由于 $H$ 是 $P$ 的函数，动量本征态同时是能量本征态：
+\begin{equation}
+  P\ket{p}=p\ket{p}
+  \quad\Longrightarrow\quad
+  H\ket{p}=\frac{p^2}{2m}\ket{p}.
+  \label{eq:QM-C05-S01-momentum-energy}
+\end{equation}
+故自由粒子的能谱满足
+\begin{equation}
+  E=\frac{p^2}{2m}\geq 0.
+  \label{eq:QM-C05-S01-energy-spectrum}
+\end{equation}
+这里的非负性也可直接由
+\begin{equation}
+  \bra{\psi}H\ket{\psi}
+  =\frac{1}{2m}\norm{P\ket{\psi}}^2\geq 0
+  \label{eq:QM-C05-S01-positive-hamiltonian}
+\end{equation}
+看出。
+
+对每个 $E>0$，方程 $p^2/(2m)=E$ 有两支解
+\begin{equation}
+  p_\alpha(E)=\alpha\sqrt{2mE},
+  \qquad \alpha=\pm.
+  \label{eq:QM-C05-S01-energy-branches}
+\end{equation}
+所以 $E>0$ 的能量本征空间为二重简并，可用向右和向左传播的两支标记：
+\begin{equation}
+  \ket{E,+}\equiv\ket{+\sqrt{2mE}},
+  \qquad
+  \ket{E,-}\equiv\ket{-\sqrt{2mE}}.
+  \label{eq:QM-C05-S01-energy-branch-kets}
+\end{equation}
+$E=0$ 是谱的端点，两支在 $p=0$ 合并，不能机械地把二重简并结论延伸到该点。
+
+在位置表象中，采用
+\begin{equation}
+  \braket{x}{p}=\frac{1}{\sqrt{2\pi\hbar}}
+  \exp\left(\frac{\ii px}{\hbar}\right),
+  \label{eq:QM-C05-S01-plane-wave}
+\end{equation}
+则固定 $E>0$ 的一般能量本征函数为
+\begin{equation}
+  \psi_E(x)=A\exp\left(\frac{\ii px}{\hbar}\right)
+  +B\exp\left(-\frac{\ii px}{\hbar}\right),
+  \qquad p=\sqrt{2mE}.
+  \label{eq:QM-C05-S01-energy-general-solution}
+\end{equation}
+两个系数分别是能量相同、传播方向相反的分量振幅。单个平面波在整条实轴上不平方可积，而满足
+\begin{equation}
+  \braket{p}{p'}=\delta(p-p'),
+  \qquad
+  \int_{-\infty}^{\infty}\ket{p}\bra{p}\dd p=I,
+  \label{eq:QM-C05-S01-momentum-delta-normalization}
+\end{equation}
+所以它是连续谱的广义本征态，不是可直接制备的正规化波包。
+
+自由演化在动量基中完全对角：
+\begin{equation}
+  U(t)=\exp\left(-\frac{\ii P^2t}{2m\hbar}\right)
+  =\int_{-\infty}^{\infty}
+  \ket{p}\bra{p}\exp\left(-\frac{\ii p^2t}{2m\hbar}\right)\dd p.
+  \label{eq:QM-C05-S01-momentum-propagator}
+\end{equation}
+每个动量分量只获得模长为一的相位，故动量概率分布保持不变。把积分变量由 $p$ 换为 $E$ 时，必须保留两支和 Jacobian，详见
+\relatedexercise{QM-C05-S01-E01}{教材练习 5.1.1}。
+
+\dialoguesupplement{若希望把能量本征态本身归一化为 $\delta(E-E')$，应重新定义
+\[
+  \ket{E,\alpha}_{N}
+  =\left(\frac{m}{\sqrt{2mE}}\right)^{1/2}
+  \ket{p_\alpha(E)}.
+\]
+于是 ${}_{N}\!\braket{E,\alpha}{E',\alpha'}_{N}
+=\delta_{\alpha\alpha'}\delta(E-E')$。教材习题中的 $\ket{E,\alpha}$ 只是对动量本征态重新标记，因而积分测度中仍显式保留 Jacobian。}
+
+\notetopic{QM-C05-S01-T02}{位置表象中的自由传播核}
+
+\keyidea{传播核 $K(x,t;x',0)=\bra{x}U(t)\ket{x'}$ 是演化算符在位置基中的矩阵元；它把初始位置波函数变换为任意时刻的波函数。}
+
+在位置基中插入动量完备关系，得到
+\begin{align}
+  K(x,t;x',0)
+  &=\bra{x}U(t)\ket{x'}
+  \notag\\
+  &=\int_{-\infty}^{\infty}
+  \braket{x}{p}
+  \exp\left(-\frac{\ii p^2t}{2m\hbar}\right)
+  \braket{p}{x'}\dd p
+  \notag\\
+  &=\frac{1}{2\pi\hbar}
+  \int_{-\infty}^{\infty}
+  \exp\left[
+    \frac{\ii p(x-x')}{\hbar}
+    -\frac{\ii p^2t}{2m\hbar}
+  \right]\dd p.
+  \label{eq:QM-C05-S01-kernel-momentum-integral}
+\end{align}
+令 $d=x-x'$，配方为
+\begin{equation}
+  pd-\frac{p^2t}{2m}
+  =-\frac{t}{2m}\left(p-\frac{md}{t}\right)^2
+  +\frac{md^2}{2t}.
+  \label{eq:QM-C05-S01-kernel-complete-square}
+\end{equation}
+利用带有适当收敛规定的 Fresnel Gaussian 积分，得到
+\begin{equation}
+  \boxed{
+  K(x,t;x',0)
+  =\sqrt{\frac{m}{2\pi\ii\hbar t}}
+  \exp\left[
+    \frac{\ii m(x-x')^2}{2\hbar t}
+  \right]}
+  \qquad(t>0).
+  \label{eq:QM-C05-S01-free-kernel}
+\end{equation}
+指数中的
+\begin{equation}
+  S_{\mathrm{cl}}(x,t;x',0)
+  =\frac{m(x-x')^2}{2t}
+  \label{eq:QM-C05-S01-free-classical-action}
+\end{equation}
+正是连接两个端点的经典自由路径的作用量，因此核的相位可写为 $\exp(\ii S_{\mathrm{cl}}/\hbar)$。
+
+对任意初态，演化为
+\begin{equation}
+  \boxed{
+  \psi(x,t)=\int_{-\infty}^{\infty}
+  K(x,t;x',0)\psi(x',0)\dd x'}.
+  \label{eq:QM-C05-S01-kernel-evolution}
+\end{equation}
+这不是先求“粒子从某一点走哪条轨迹”，而是把每个初始位置分量到终点 $x$ 的概率振幅相干相加。由于 $K$ 的量纲是 $L^{-1}$，与 $dd x'$ 相乘后仍给出量纲为 $L^{-1/2}$ 的波函数。
+
+核还必须满足三个一致性条件：
+\begin{align}
+  \lim_{t\to0^+}K(x,t;x',0)&=\delta(x-x'),
+  \label{eq:QM-C05-S01-kernel-delta-limit}\\
+  K(x,t_2;x',t_0)
+  &=\int K(x,t_2;y,t_1)K(y,t_1;x',t_0)\dd y,
+  \label{eq:QM-C05-S01-kernel-composition}\\
+  \int K^*(x,t;y,0)K(x,t;y',0)\dd x
+  &=\delta(y-y').
+  \label{eq:QM-C05-S01-kernel-unitarity}
+\end{align}
+它们分别对应 $U(0)=I$、演化算符的复合律和酉性。式~\eqref{eq:QM-C05-S01-kernel-delta-limit} 要按分布理解：核本身不逐点趋于普通函数，而是在积分中恢复初始波函数。
+
+\notetopic{QM-C05-S01-T03}{Gaussian 波包的平移与扩散}
+
+\keyidea{自由粒子的平均位置按经典速度平移，动量分布保持不变；但非零动量不确定度使不同动量分量以不同速度传播，从而令位置波包扩散。}
+
+取教材的初始 Gaussian 波包
+\begin{equation}
+  \psi(x,0)
+  =\frac{1}{(\pi\Delta^2)^{1/4}}
+  \exp\left(-\frac{x^2}{2\Delta^2}\right)
+  \exp\left(\frac{\ii p_0x}{\hbar}\right).
+  \label{eq:QM-C05-S01-initial-gaussian}
+\end{equation}
+这里 $\Delta$ 是指数中的宽度参数，不是位置标准差。直接计算得
+\begin{equation}
+  \expect{X}_0=0,
+  \qquad
+  \Delta X(0)=\frac{\Delta}{\sqrt2},
+  \qquad
+  \expect{P}_0=p_0,
+  \qquad
+  \Delta P=\frac{\hbar}{\sqrt2\Delta},
+  \label{eq:QM-C05-S01-gaussian-initial-moments}
+\end{equation}
+故 $\Delta X(0)\Delta P=\hbar/2$。
+
+将式~\eqref{eq:QM-C05-S01-initial-gaussian} 代入传播核积分并完成 Gaussian 积分。定义
+\begin{equation}
+  \tau=\frac{\hbar t}{m\Delta^2},
+  \qquad
+  v_0=\frac{p_0}{m},
+  \label{eq:QM-C05-S01-gaussian-tau}
+\end{equation}
+可得
+\begin{align}
+  \psi(x,t)
+  ={}&\frac{1}{(\pi\Delta^2)^{1/4}}
+  \frac{1}{\sqrt{1+\ii\tau}}
+  \exp\left[-\frac{(x-v_0t)^2}{2\Delta^2(1+\ii\tau)}\right]
+  \notag\\
+  &\times
+  \exp\left[\frac{\ii}{\hbar}
+  \left(p_0x-\frac{p_0^2t}{2m}\right)\right].
+  \label{eq:QM-C05-S01-gaussian-evolution}
+\end{align}
+取模平方后，相位消失：
+\begin{equation}
+  \boxed{
+  \abs{\psi(x,t)}^2
+  =\frac{1}{\sqrt\pi\Delta\sqrt{1+\tau^2}}
+  \exp\left[-\frac{(x-v_0t)^2}
+  {\Delta^2(1+\tau^2)}\right]}.
+  \label{eq:QM-C05-S01-gaussian-density}
+\end{equation}
+因此
+\begin{align}
+  \expect{X}_t&=\frac{p_0}{m}t,
+  &
+  \expect{P}_t&=p_0,
+  \label{eq:QM-C05-S01-gaussian-centers}\\
+  \Delta X(t)
+  &=\frac{\Delta}{\sqrt2}
+  \sqrt{1+\left(\frac{\hbar t}{m\Delta^2}\right)^2},
+  &
+  \Delta P(t)&=\frac{\hbar}{\sqrt2\Delta}.
+  \label{eq:QM-C05-S01-gaussian-widths}
+\end{align}
+波包中心遵循经典自由轨迹，但宽度增长。其特征扩散时间为
+\begin{equation}
+  t_s=\frac{m\Delta^2}{\hbar}.
+  \label{eq:QM-C05-S01-spreading-time}
+\end{equation}
+若改用实际初始标准差 $\sigma=\Delta X(0)=\Delta/\sqrt2$，同一结果写成
+\begin{equation}
+  \Delta X(t)=\sigma
+  \sqrt{1+\left(\frac{\hbar t}{2m\sigma^2}\right)^2},
+  \qquad
+  t_s=\frac{2m\sigma^2}{\hbar}.
+  \label{eq:QM-C05-S01-gaussian-sigma-convention}
+\end{equation}
+两套公式没有物理差异，只是宽度参数的定义不同。
+
+扩散不需要外力。初态含有宽度 $\Delta P$ 的动量分布，各分量速度 $p/m$ 不同，传播后逐渐拉开。质量越大或初始位置波包越宽，速度分布越窄，扩散越慢。算符形式
+\begin{equation}
+  X(t)=X(0)+\frac{P(0)}{m}t,
+  \qquad P(t)=P(0)
+  \label{eq:QM-C05-S01-heisenberg-free-motion}
+\end{equation}
+把这一点表达得最直接。利用算符幂级数核对 Gaussian 闭式的计算见
+\relatedexercise{QM-C05-S01-E03}{教材练习 5.1.3：Gaussian 演化的另一种求法}。
+
+\notetopic{QM-C05-S01-T04}{定态方程的局部性质与算符定义域}
+
+\keyidea{定态 Schrödinger 方程是二阶微分方程，但势的奇异程度决定波函数及其导数如何衔接；同时，精确酉演化有定义并不意味着可以把无界 Hamiltonian 的指数逐项作用在任意 $L^2$ 态上。}
+
+一维定态方程为
+\begin{equation}
+  -\frac{\hbar^2}{2m}\psi''(x)+V(x)\psi(x)=E\psi(x),
+  \label{eq:QM-C05-S01-stationary-equation}
+\end{equation}
+即
+\begin{equation}
+  \psi''(x)=-\frac{2m}{\hbar^2}[E-V(x)]\psi(x).
+  \label{eq:QM-C05-S01-second-derivative-equation}
+\end{equation}
+在势足够规则的区间内，给定某点的 $\psi(x_0)$ 与 $\psi'(x_0)$ 就确定唯一局部解。不同势的连接条件如下：
+\begin{itemize}[leftmargin=*]
+  \item 若 $V$ 有限且连续，则通常 $\psi$、$\psi'$ 和 $\psi''$ 都连续；
+  \item 若 $V$ 有有限跳跃，则 $\psi$ 与 $\psi'$ 连续，而 $\psi''$ 可随 $V$ 跳跃；
+  \item 若 $V(x)=g\delta(x-a)$，则 $\psi$ 连续，但对方程跨越 $a$ 积分给出
+  \begin{equation}
+    \boxed{
+    \psi'(a^+)-\psi'(a^-)
+    =\frac{2mg}{\hbar^2}\psi(a)}.
+    \label{eq:QM-C05-S01-delta-derivative-jump}
+  \end{equation}
+\end{itemize}
+更强的奇异势不能仅凭上述规则猜测，必须从方程及算符定义域重新分析。
+
+教材练习 5.1.4 还揭示了形式级数的陷阱。设自由 Hamiltonian $H=P^2/(2m)$。它是无界算符，在 $\hilbert=L^2(\real)$ 上只定义于真子集
+\begin{equation}
+  \mathcal D(H)\subsetneq\hilbert.
+  \label{eq:QM-C05-S01-h-domain}
+\end{equation}
+若 $\psi\notin\mathcal D(H)$，则 $H\psi$ 没有 Hilbert 空间中的意义，更不能直接假定
+\begin{equation}
+  U(t)\psi
+  \stackrel{?}{=}
+  \sum_{n=0}^{\infty}
+  \frac{1}{n!}\left(-\frac{\ii t}{\hbar}\right)^nH^n\psi
+  \label{eq:QM-C05-S01-invalid-power-series}
+\end{equation}
+逐项成立。
+
+但当 $H$ 自伴时，谱定理用有界函数
+\begin{equation}
+  f_t(E)=\exp\left(-\frac{\ii Et}{\hbar}\right),
+  \qquad \abs{f_t(E)}=1
+  \label{eq:QM-C05-S01-bounded-spectral-function}
+\end{equation}
+定义
+\begin{equation}
+  U(t)=f_t(H)=\exp\left(-\frac{\ii Ht}{\hbar}\right).
+  \label{eq:QM-C05-S01-spectral-unitary}
+\end{equation}
+$U(t)$ 是有界酉算符，且
+\begin{equation}
+  \boxed{\mathcal D(U(t))=\hilbert}.
+  \label{eq:QM-C05-S01-u-domain}
+\end{equation}
+所以任何 $L^2$ 初态都能精确演化；只是只有当 $\psi\in\mathcal D(H)$ 时，$t=0$ 处的强导数才满足
+\begin{equation}
+  \left.\frac{\dd}{\dd t}U(t)\psi\right|_{t=0}
+  =-\frac{\ii}{\hbar}H\psi.
+  \label{eq:QM-C05-S01-strong-derivative-domain}
+\end{equation}
+教材反例的完整分析见
+\relatedexercise{QM-C05-S01-E04}{教材练习 5.1.4：无界生成元的著名反例}。
+
+\textbf{一分钟回顾。}
+
+自由 Hamiltonian 在动量基中对角化，$E=p^2/(2m)$ 使每个正能量对应 $\pm p$ 两个方向。位置传播核是同一酉算符的矩阵元，其积分将初态传播到任意时刻。单个平面波不可正规化，Gaussian 波包则是正规动量叠加：中心按经典轨迹移动，动量分布不变，位置宽度因速度分散而增长。定态方程的连接条件由势的奇异程度决定；在无限维空间中还必须区分无界 $H$ 的定义域与有界酉算符 $U(t)$ 的全空间定义域，不能无条件使用形式幂级数。

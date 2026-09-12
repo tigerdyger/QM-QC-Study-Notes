@@ -1,0 +1,254 @@
+% 对应单元：QM-C05-S01
+% 主要来源：Shankar 练习 5.1.1--5.1.4，印刷页 pp. 152--157，PDF pp. 164--169
+% 人工核验：是
+
+\clearpage
+\section{第 5.1 节教材习题与订正}
+\label{exercise-set:QM-C05-S01}
+
+\exercisemeta
+  {QM-C05-S01-EX}
+  {2026-09-12}
+  {Shankar，Exercises 5.1.1--5.1.4；印刷页 pp.~152--157；PDF pp.~164--169}
+  {连续谱换元、自由定态、Gaussian 演化与无界算符定义域}
+  {四题均已完成推导、订正与概念核验}
+
+\exercisequestion{QM-C05-S01-E01}{教材练习 5.1.1：按能量与传播方向重写传播算符}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S01-T01}{自由粒子的能谱、简并与广义本征态}。
+
+自由粒子的传播算符在动量基中为
+\begin{equation}
+  U(t)=\int_{-\infty}^{\infty}
+  \ket{p}\bra{p}\exp\left(-\frac{\ii p^2t}{2m\hbar}\right)\dd p.
+  \label{eq:QM-C05-S01-E01-start}
+\end{equation}
+定义 $E=p^2/(2m)$ 和方向指标 $\alpha=\pm$，并以
+\begin{equation}
+  \ket{E,\alpha}\equiv
+  \ket{\alpha\sqrt{2mE}}
+  \label{eq:QM-C05-S01-E01-branch-definition}
+\end{equation}
+重新标记动量本征态。把式~\eqref{eq:QM-C05-S01-E01-start} 改写为对 $E$ 与 $\alpha$ 的求和积分，并解释测度因子。
+
+\begin{checkedsolution}
+先把动量积分分成负、正两支：
+\begin{equation}
+  U(t)=\int_{-\infty}^{0}(\cdots)\dd p
+  +\int_0^{\infty}(\cdots)\dd p.
+  \label{eq:QM-C05-S01-E01-split}
+\end{equation}
+由 $E=p^2/(2m)$ 得
+\begin{equation}
+  \frac{\dd E}{\dd p}=\frac{p}{m},
+  \qquad
+  \abs{\frac{\dd p}{\dd E}}
+  =\frac{m}{\abs p}
+  =\frac{m}{\sqrt{2mE}}.
+  \label{eq:QM-C05-S01-E01-jacobian}
+\end{equation}
+正支 $p=+\sqrt{2mE}$ 的积分方向仍为 $0\to\infty$。负支中 $p:-\infty\to0$ 对应 $E:\infty\to0$，而 $\dd p/\dd E<0$；导数负号与反向积分限共同给出正测度。合并两支：
+\begin{equation}
+  \boxed{
+  U(t)=\sum_{\alpha=\pm}\int_0^{\infty}
+  \frac{m}{\sqrt{2mE}}
+  \ket{E,\alpha}\bra{E,\alpha}
+  \exp\left(-\frac{\ii Et}{\hbar}\right)\dd E}.
+  \label{eq:QM-C05-S01-E01-energy-propagator}
+\end{equation}
+因教材的 $\ket{E,\alpha}$ 只是原 $\ket p$ 的重新标记，Jacob-ian 必须保留。若改用
+\begin{equation}
+  \ket{E,\alpha}_{N}
+  =\left(\frac{m}{\sqrt{2mE}}\right)^{1/2}
+  \ket{E,\alpha},
+  \label{eq:QM-C05-S01-E01-energy-normalized-ket}
+\end{equation}
+则它满足能量 delta 归一化，传播算符可简写为
+\begin{equation}
+  U(t)=\sum_{\alpha=\pm}\int_0^\infty
+  \ket{E,\alpha}_{N}{}_{N}\!\bra{E,\alpha}
+  \ee^{-\ii Et/\hbar}\dd E.
+  \label{eq:QM-C05-S01-E01-normalized-energy-propagator}
+\end{equation}
+$E=0$ 处两支合并且 Jacobian 发散，是变量换元在谱端点的坐标奇性；它不产生额外的二重简并态。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S01-E02}{教材练习 5.1.2：在位置表象中求自由粒子能量本征函数}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S01-T01}{自由粒子的能谱、简并与广义本征态}。
+
+求解
+\begin{equation}
+  -\frac{\hbar^2}{2m}\psi_E''(x)=E\psi_E(x)
+  \label{eq:QM-C05-S01-E02-equation}
+\end{equation}
+在 $E>0$ 与 $E<0$ 时的一般解，并判断这些解能否成为 $L^2(\real)$ 中的非零能量本征态。
+
+\begin{checkedsolution}
+当 $E>0$ 时，令 $p=\sqrt{2mE}$，则
+\begin{equation}
+  \psi_E''+\frac{p^2}{\hbar^2}\psi_E=0,
+  \label{eq:QM-C05-S01-E02-positive-ode}
+\end{equation}
+故
+\begin{equation}
+  \boxed{
+  \psi_E(x)=A\ee^{\ii px/\hbar}+B\ee^{-\ii px/\hbar}}.
+  \label{eq:QM-C05-S01-E02-positive-solution}
+\end{equation}
+两项分别对应动量 $+p$ 与 $-p$，体现正能量的二重简并。它们在整条实轴上不是平方可积函数，只能作为 delta 归一化的广义本征函数；合适的连续叠加才可形成 $L^2$ 波包。
+
+当 $E<0$ 时，令
+\begin{equation}
+  \kappa=\frac{\sqrt{2m\abs E}}{\hbar}>0,
+  \label{eq:QM-C05-S01-E02-kappa}
+\end{equation}
+一般解为
+\begin{equation}
+  \psi_E(x)=A\ee^{\kappa x}+B\ee^{-\kappa x}.
+  \label{eq:QM-C05-S01-E02-negative-solution}
+\end{equation}
+为使 $x\to+\infty$ 时不发散必须令 $A=0$；为使 $x\to-\infty$ 时不发散又必须令 $B=0$。因此唯一平方可积解是零函数：
+\begin{equation}
+  \boxed{E<0\quad\Longrightarrow\quad\psi_E=0}.
+  \label{eq:QM-C05-S01-E02-no-negative-state}
+\end{equation}
+这与 $H=P^2/(2m)\geq0$ 完全一致。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S01-E03}{教材练习 5.1.3：Gaussian 演化的另一种求法}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S01-T03}{Gaussian 波包的平移与扩散}。
+
+在无量纲宽度下取
+\begin{equation}
+  g(x)=\ee^{-x^2/2},
+  \qquad
+  a=\frac{\ii\hbar t}{2m}.
+  \label{eq:QM-C05-S01-E03-definitions}
+\end{equation}
+自由演化的形式算符为 $\exp(a\partial_x^2)$。教材要求把幂级数重排为闭式 Gaussian。先通过 $a^2$ 阶的直接计算，核对
+\begin{equation}
+  \ee^{a\partial_x^2}g(x)
+  =\frac{1}{\sqrt{1+2a}}
+  \exp\left[-\frac{x^2}{2(1+2a)}\right].
+  \label{eq:QM-C05-S01-E03-target}
+\end{equation}
+
+\begin{checkedsolution}
+逐次求导：
+\begin{align}
+  g''(x)&=(x^2-1)g(x),
+  \label{eq:QM-C05-S01-E03-second-derivative}\\
+  g''''(x)&=(x^4-6x^2+3)g(x).
+  \label{eq:QM-C05-S01-E03-fourth-derivative}
+\end{align}
+所以直接展开算符指数得
+\begin{align}
+  \ee^{a\partial_x^2}g
+  &=g+ag''+\frac{a^2}{2}g''''+O(a^3)
+  \notag\\
+  &=g\left[
+  1+(x^2-1)a
+  +\left(\frac{x^4}{2}-3x^2+\frac32\right)a^2
+  +O(a^3)\right].
+  \label{eq:QM-C05-S01-E03-direct-series}
+\end{align}
+
+再展开目标闭式。前因子为
+\begin{equation}
+  (1+2a)^{-1/2}=1-a+\frac32a^2+O(a^3),
+  \label{eq:QM-C05-S01-E03-prefactor-series}
+\end{equation}
+而
+\begin{align}
+  \exp\left[-\frac{x^2}{2(1+2a)}\right]
+  =g(x)\left[
+  1+x^2a+\left(\frac{x^4}{2}-2x^2\right)a^2
+  +O(a^3)\right].
+  \label{eq:QM-C05-S01-E03-exponent-series}
+\end{align}
+两式相乘得到
+\begin{equation}
+  g(x)\left[
+  1+(x^2-1)a
+  +\left(\frac{x^4}{2}-3x^2+\frac32\right)a^2
+  +O(a^3)\right],
+  \label{eq:QM-C05-S01-E03-closed-series}
+\end{equation}
+与式~\eqref{eq:QM-C05-S01-E03-direct-series} 逐项一致。
+
+这个计算严谨地核验到 $a^2$ 阶，但有限阶一致本身不是全阶证明。完整证明可通过教材所示的全级数重排，或直接把初始 Gaussian 代入自由传播核积分得到式~\eqref{eq:QM-C05-S01-E03-target}。导数中出现的多项式属于 Hermite 多项式结构，全级数求和后仍为宽度变为复数的 Gaussian。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S01-E04}{教材练习 5.1.4：无界生成元的著名反例}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S01-T04}{定态方程的局部性质与算符定义域}。
+
+考虑 $L^2(\real)$ 中的分段函数
+\begin{equation}
+  \psi(x)=
+  \begin{cases}
+    \sin(\pi x/L),&\abs x\leq L/2,\\
+    0,&\abs x>L/2.
+  \end{cases}
+  \label{eq:QM-C05-S01-E04-state}
+\end{equation}
+教材指出：若把
+\begin{equation}
+  U(t)=\exp\left(-\frac{\ii Ht}{\hbar}\right),
+  \qquad H=-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}
+  \label{eq:QM-C05-S01-E04-formal-evolution}
+\end{equation}
+机械展开为 $H$ 的幂级数，会遇到严重问题。解释问题来自哪里，以及为何精确的 $U(t)\psi$ 仍然存在。
+
+\begin{checkedsolution}
+函数在 $x=\pm L/2$ 发生跳跃：区间内的边界值分别为 $-1$ 与 $1$，区间外为零。它仍有有限范数，因而
+\begin{equation}
+  \psi\in L^2(\real).
+  \label{eq:QM-C05-S01-E04-in-l2}
+\end{equation}
+但弱导数含有 Dirac delta，二阶分布导数含有 delta 的导数。令 $k=\pi/L$，可形式地写成
+\begin{align}
+  \psi'(x)
+  &=k\cos(kx)\mathbf 1_{[-L/2,L/2]}(x)
+  -\delta(x+L/2)-\delta(x-L/2),
+  \label{eq:QM-C05-S01-E04-first-distribution-derivative}\\
+  \psi''(x)
+  &=-k^2\sin(kx)\mathbf 1_{[-L/2,L/2]}(x)
+  -\delta'(x+L/2)-\delta'(x-L/2).
+  \label{eq:QM-C05-S01-E04-second-distribution-derivative}
+\end{align}
+因此 $H\psi$ 不是 $L^2$ 函数；该态不属于自由 Hamiltonian 的定义域：
+\begin{equation}
+  \psi\notin\mathcal D(H).
+  \label{eq:QM-C05-S01-E04-not-in-domain}
+\end{equation}
+于是 $H\psi$、$H^2\psi$ 等项不能作为 Hilbert 空间向量逐项使用，形式幂级数
+\begin{equation}
+  \sum_{n=0}^{\infty}
+  \frac{1}{n!}\left(-\frac{\ii t}{\hbar}\right)^nH^n\psi
+  \label{eq:QM-C05-S01-E04-invalid-series}
+\end{equation}
+从第一阶就失去定义。
+
+这不表示量子时间演化不存在。自伴 $H$ 的谱定理定义
+\begin{equation}
+  U(t)=\int\exp\left(-\frac{\ii Et}{\hbar}\right)\dd P_H(E),
+  \label{eq:QM-C05-S01-E04-spectral-definition}
+\end{equation}
+其中指数函数在实谱上模长恒为一。因此 $U(t)$ 是有界酉算符，
+\begin{equation}
+  \boxed{\mathcal D(U(t))=L^2(\real)},
+  \label{eq:QM-C05-S01-E04-full-domain}
+\end{equation}
+精确的 $U(t)\psi$ 对本题初态完全有定义。在动量表象中，这只是在其 Fourier 变换上乘以相位 $\exp[-\ii p^2t/(2m\hbar)]$，不会改变 $L^2$ 范数。
+
+正确区别是：$U(t)\psi$ 对每个 $L^2$ 态存在；但只有 $\psi\in\mathcal D(H)$ 时，轨道 $U(t)\psi$ 才在 $t=0$ 具有由 $-\ii H\psi/\hbar$ 给出的强导数。无界生成元的指数不能由有限维矩阵指数的逐项直觉无条件替代。
+\end{checkedsolution}
+
+\textbf{检查点：}连续谱换元必须同时处理简并分支和 Jacobian；自由平面波是广义本征态而非 $L^2$ 态；有限阶级数匹配只能作为核验，不能冒充全阶证明；在无限维 Hilbert 空间中，写下 $H\psi$ 或 $H^n\psi$ 前必须先检查定义域，而谱定理定义的 $U(t)$ 可以在整个 Hilbert 空间上存在。

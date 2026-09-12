@@ -37,3 +37,4 @@
 | 2026-09-08 | Shankar 第 4 章 \S 4.1，印刷页 115--116，PDF 127--128 | `chapters/04-notes.tex`、`exercises/04-exercises.tex` | 量子力学四条公设、态与表象、可观测算符、Born 规则、投影测量、Schrödinger 方程、Hamiltonian 与能量、整体相位和相对相位 | 下一学习节点为第 4.2 节 Discussion of Postulates I--III |
 | 2026-09-10 | Shankar 第 4 章 \S 4.2，印刷页 116--143，PDF 128--155 | `chapters/04-notes.tex`、`exercises/04-exercises.tex` | 状态射线、简并与连续谱、投影测量、负结果测量、系综统计、相容观测量、CSCO、密度矩阵、高斯波包、不确定性与多自由度推广 | 下一学习节点为第 4.3 节 The Schrödinger Equation |
 | 2026-09-11 | Shankar 第 4 章 \S 4.3，印刷页 143--150，PDF 155--162 | `chapters/04-notes.tex`、`exercises/04-exercises.tex` | Schrödinger 方程、量子 Hamiltonian、能量本征基、传播算符、定态、含时演化、时间排序、Dyson 展开、表象选择与构型空间 | 第 4 章完成；下一学习节点为第 5.1 节 The Free Particle |
+| 2026-09-12 | Shankar 第 5 章 \S 5.1，印刷页 151--157，PDF 163--169 | `chapters/05-notes.tex`、`exercises/05-exercises.tex` | 自由粒子连续谱、正负动量简并、广义本征态、传播核、Gaussian 波包扩散、连接条件、无界算符定义域 | 下一学习节点为第 5.2 节 The Particle in a Box |
