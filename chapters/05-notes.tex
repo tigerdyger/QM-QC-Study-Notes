@@ -1,6 +1,6 @@
 % 教材：Shankar, Principles of Quantum Mechanics, Second Edition
-% 已覆盖：第 5 章第 5.1 节，印刷页 pp. 151--157，PDF pp. 163--169
-% 人工核验：已完成分块讲解、教材练习 5.1.1--5.1.4 与订正
+% 已覆盖：第 5 章第 5.1--5.2 节，印刷页 pp. 151--164，PDF pp. 163--176
+% 人工核验：已完成分块讲解、教材练习 5.1.1--5.2.6 与订正
 
 \clearpage
 \section{第 5.1 节：自由粒子}
@@ -335,3 +335,342 @@ $U(t)$ 是有界酉算符，且
 \textbf{一分钟回顾。}
 
 自由 Hamiltonian 在动量基中对角化，$E=p^2/(2m)$ 使每个正能量对应 $\pm p$ 两个方向。位置传播核是同一酉算符的矩阵元，其积分将初态传播到任意时刻。单个平面波不可正规化，Gaussian 波包则是正规动量叠加：中心按经典轨迹移动，动量分布不变，位置宽度因速度分散而增长。定态方程的连接条件由势的奇异程度决定；在无限维空间中还必须区分无界 $H$ 的定义域与有界酉算符 $U(t)$ 的全空间定义域，不能无条件使用形式幂级数。
+
+\clearpage
+\section{第 5.2 节：一维势阱中的粒子}
+\label{section:QM-C05-S02}
+
+\studymeta
+  {QM-C05-S02}
+  {2026-09-13}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 5 章 \S 5.2；印刷页 pp.~157--164；PDF pp.~169--176}
+  {讲解、教材练习 5.2.1--5.2.6 与订正已完成}
+
+\textbf{本节主线。}
+
+自由粒子允许在整条实轴上传播，动量连续，因而能量也连续。势阱则把定态 Schr\"odinger 方程与边界条件结合起来：只有少数能量能同时满足方程、连接条件和正规化要求，于是出现离散束缚谱。本节先精确求解无限深方势阱，再用有限深方势阱说明指数尾、超越量子化条件和束缚态阈值，最后讨论基态能量、一般态的时间演化和势阱传播核。
+
+\textbf{来源边界。}无限深方势阱、传播核以及练习 5.2.1--5.2.6 来自教材第 5.2 节。有限阱阈值态的 $L^2$ 严格性、Poincar\'e 不等式给出的精确下界，以及“为何自由粒子常用动量基而势阱常用能量基”的说明，是对话中加入的补充。
+
+\notetopic{QM-C05-S02-T01}{无限深方势阱的边界条件与离散谱}
+
+\keyidea{无限高墙把允许波函数限制在有限区间，并在两端施加齐次 Dirichlet 边界条件。微分方程本身允许连续的 $k$，两端边界条件才把 $k$ 筛成离散序列。}
+
+取长度为 $L$、中心位于原点的无限深方势阱：
+\begin{equation}
+  V(x)=
+  \begin{cases}
+    0,&\abs x<L/2,\\
+    \infty,&\abs x\geq L/2.
+  \end{cases}
+  \label{eq:QM-C05-S02-infinite-well-potential}
+\end{equation}
+势阱外波函数为零；阱内满足
+\begin{equation}
+  -\frac{\hbar^2}{2m}\psi''(x)=E\psi(x),
+  \qquad
+  \psi\left(-\frac L2\right)=
+  \psi\left(\frac L2\right)=0.
+  \label{eq:QM-C05-S02-infinite-well-equation}
+\end{equation}
+令
+\begin{equation}
+  k=\frac{\sqrt{2mE}}{\hbar},
+  \label{eq:QM-C05-S02-k-definition}
+\end{equation}
+则阱内一般解为
+\begin{equation}
+  \psi(x)=A\cos kx+B\sin kx.
+  \label{eq:QM-C05-S02-general-inside-solution}
+\end{equation}
+把两个边界条件写成齐次方程组：
+\begin{equation}
+  \begin{pmatrix}
+    \cos(kL/2)&-\sin(kL/2)\\
+    \cos(kL/2)& \sin(kL/2)
+  \end{pmatrix}
+  \begin{pmatrix}A\\B\end{pmatrix}
+  =\begin{pmatrix}0\\0\end{pmatrix}.
+  \label{eq:QM-C05-S02-boundary-system}
+\end{equation}
+要存在非零波函数，系数矩阵必须不可逆，因此
+\begin{equation}
+  \sin(kL)=0
+  \quad\Longrightarrow\quad
+  k_n=\frac{n\pi}{L},
+  \qquad n=1,2,\ldots.
+  \label{eq:QM-C05-S02-quantized-k}
+\end{equation}
+$n=0$ 只给出零函数，负整数则与正整数给出同一物理本征态，故均不另计。归一化后，能量本征函数可写成
+\begin{equation}
+  \psi_n(x)=
+  \begin{cases}
+    \displaystyle\sqrt{\frac2L}\cos\frac{n\pi x}{L},
+      &n\text{ 为奇数且 }\abs x<L/2,\\[6pt]
+    \displaystyle\sqrt{\frac2L}\sin\frac{n\pi x}{L},
+      &n\text{ 为偶数且 }\abs x<L/2,\\[6pt]
+    0,&\abs x\geq L/2.
+  \end{cases}
+  \label{eq:QM-C05-S02-centered-eigenfunctions}
+\end{equation}
+相应能级为
+\begin{equation}
+  \boxed{E_n=\frac{\hbar^2\pi^2n^2}{2mL^2}},
+  \qquad n=1,2,\ldots.
+  \label{eq:QM-C05-S02-infinite-well-energies}
+\end{equation}
+基态为偶函数，随后奇偶宇称交替。若把势阱平移为 $0<x<L$，本征函数变为 $\sqrt{2/L}\sin(n\pi x/L)$，但能谱不变；完整推导见
+\relatedexercise{QM-C05-S02-E05}{教材练习 5.2.5：平移后的无限深势阱}。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Latex,scale=0.88]
+    \begin{scope}[xshift=-3.8cm]
+      \draw[->] (-2.2,0)--(2.35,0) node[right] {$x$};
+      \draw[->] (0,-0.25)--(0,2.35) node[above] {$V$};
+      \draw[very thick,noteBlue] (-1.25,2.0)--(-1.25,0)--(1.25,0)--(1.25,2.0);
+      \draw[very thick,noteBlue,->] (-1.25,2.0)--(-1.25,2.3);
+      \draw[very thick,noteBlue,->] (1.25,2.0)--(1.25,2.3);
+      \node[below] at (-1.25,0) {$-L/2$};
+      \node[below] at (1.25,0) {$L/2$};
+      \node at (0,-0.7) {无限深势阱};
+    \end{scope}
+    \begin{scope}[xshift=3.8cm]
+      \draw[->] (-2.2,0)--(2.35,0) node[right] {$x$};
+      \draw[->] (0,-0.25)--(0,2.35) node[above] {$V$};
+      \draw[very thick,accentRed] (-2.05,1.55)--(-1.25,1.55)--(-1.25,0)--(1.25,0)--(1.25,1.55)--(2.05,1.55);
+      \node[left] at (-0.05,1.55) {$V_0$};
+      \node[below] at (-1.25,0) {$-a$};
+      \node[below] at (1.25,0) {$a$};
+      \node at (0,-0.7) {有限深势阱};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{无限深与有限深方势阱。有限高墙允许束缚态波函数进入经典禁区并形成指数衰减尾。}
+  \label{fig:QM-C05-S02-well-potentials}
+\end{figure}
+
+\textbf{无限墙处的连接条件。}有限势阶跃处通常要求 $\psi$ 与 $\psi'$ 连续，但不能把这条结论直接套到 $V=\infty$ 的奇异理想化上。无限深势阱只要求波函数在墙上为零；阱内导数一般不必与阱外零函数的导数匹配。
+
+\dialoguesupplement{阱内的正弦或余弦可以形式地拆成 $\ee^{\pm\ii kx}$，但这不表示动量测量只会精确得到 $\pm\hbar k$。截断在有限区间内的波函数，其整条实轴 Fourier 变换通常给出连续动量分布，只在 $\pm\hbar k$ 附近出现主要峰。硬墙还破坏平移对称性，使 $P$ 不再与势阱 Hamiltonian 共同对角化；因此 $\hbar k_n$ 在这里首先是波数对应的动量尺度，而不是该定态的确定动量。}
+
+\notetopic{QM-C05-S02-T02}{有限深势阱、指数尾与束缚态量子化}
+
+\keyidea{有限墙不要求波函数在边界消失，而要求阱内振荡解与阱外衰减解平滑连接。正规化删除无穷远处的增长解，边界匹配再把连续能量参数筛成离散根。}
+
+考虑
+\begin{equation}
+  V(x)=
+  \begin{cases}
+    0,&\abs x\leq a,\\
+    V_0,&\abs x>a.
+  \end{cases}
+  \label{eq:QM-C05-S02-finite-well-potential}
+\end{equation}
+束缚态满足 $0<E<V_0$。定义
+\begin{equation}
+  k=\frac{\sqrt{2mE}}{\hbar},
+  \qquad
+  \kappa=\frac{\sqrt{2m(V_0-E)}}{\hbar},
+  \label{eq:QM-C05-S02-finite-k-kappa}
+\end{equation}
+则
+\begin{equation}
+  k^2+\kappa^2=\frac{2mV_0}{\hbar^2}.
+  \label{eq:QM-C05-S02-k-kappa-circle}
+\end{equation}
+阱内解振荡，阱外解指数变化。势关于原点对称，所以可分别取定宇称。对 $x\geq0$，偶态与奇态分别可写成
+\begin{align}
+  \psi_{\mathrm e}(x)&=
+  \begin{cases}
+    A\cos kx,&0\leq x\leq a,\\
+    C\ee^{-\kappa x},&x>a,
+  \end{cases}
+  \label{eq:QM-C05-S02-even-piecewise}\\
+  \psi_{\mathrm o}(x)&=
+  \begin{cases}
+    A\sin kx,&0\leq x\leq a,\\
+    C\ee^{-\kappa x},&x>a.
+  \end{cases}
+  \label{eq:QM-C05-S02-odd-piecewise}
+\end{align}
+左半轴由相应宇称确定。有限阶跃处 $\psi$ 与 $\psi'$ 连续。偶态在 $x=a$ 给出
+\begin{equation}
+  A\cos ka=C\ee^{-\kappa a},
+  \qquad
+  -Ak\sin ka=-\kappa C\ee^{-\kappa a}.
+  \label{eq:QM-C05-S02-even-matching}
+\end{equation}
+两式相除消去振幅，得到
+\begin{equation}
+  \boxed{k\tan ka=\kappa}.
+  \label{eq:QM-C05-S02-even-transcendental}
+\end{equation}
+奇态同理：
+\begin{equation}
+  A\sin ka=C\ee^{-\kappa a},
+  \qquad
+  Ak\cos ka=-\kappa C\ee^{-\kappa a},
+  \label{eq:QM-C05-S02-odd-matching}
+\end{equation}
+故
+\begin{equation}
+  \boxed{k\cot ka=-\kappa}.
+  \label{eq:QM-C05-S02-odd-transcendental}
+\end{equation}
+
+令
+\begin{equation}
+  \alpha=ka,
+  \qquad
+  \beta=\kappa a,
+  \qquad
+  z_0^2=\frac{2mV_0a^2}{\hbar^2},
+  \label{eq:QM-C05-S02-dimensionless-variables}
+\end{equation}
+则允许束缚态是第一象限中圆
+\begin{equation}
+  \alpha^2+\beta^2=z_0^2
+  \label{eq:QM-C05-S02-dimensionless-circle}
+\end{equation}
+与曲线
+\begin{equation}
+  \beta=\alpha\tan\alpha
+  \quad\text{或}\quad
+  \beta=-\alpha\cot\alpha
+  \label{eq:QM-C05-S02-dimensionless-curves}
+\end{equation}
+的交点。每个交点确定一个离散的 $\alpha$，从而确定
+\begin{equation}
+  E=\frac{\hbar^2\alpha^2}{2ma^2}.
+  \label{eq:QM-C05-S02-energy-from-alpha}
+\end{equation}
+
+第一条偶态分支从 $\alpha=0$ 附近的零值连续上升，因此任意 $z_0>0$ 的圆都至少与它相交一次。第一条奇态分支则始于 $\alpha=\pi/2$；真正出现正规化奇束缚态需要
+\begin{equation}
+  z_0>\frac\pi2
+  \quad\Longleftrightarrow\quad
+  \boxed{V_0>\frac{\pi^2\hbar^2}{8ma^2}}.
+  \label{eq:QM-C05-S02-first-odd-threshold}
+\end{equation}
+等号处 $\alpha=\pi/2$、$\beta=0$ 且 $E=V_0$。此时阱外解不再衰减，而是 $C+Dx$；除零函数外不能平方可积，所以它只是连续谱边缘的 threshold solution（阈值解），不是真正束缚态。教材把等号包含在“出现条件”中时，应按阈值意义理解。完整图解与极限分析见
+\relatedexercise{QM-C05-S02-E06}{教材练习 5.2.6：有限深方势阱}。
+
+当 $V_0\to\infty$ 时，对固定低能态有 $\beta\to\infty$。偶态根趋于 $(2r+1)\pi/2$，奇态根趋于 $r\pi$，两族合并为
+\begin{equation}
+  \alpha_n=\frac{n\pi}{2},
+  \qquad
+  E_n=\frac{\hbar^2\pi^2n^2}{8ma^2},
+  \label{eq:QM-C05-S02-infinite-limit}
+\end{equation}
+正好恢复宽度 $2a$ 的无限深势阱。
+
+\textbf{离散束缚谱与连续散射谱。}束缚态必须在左右无穷远同时衰减，因而要满足两端正规化条件和所有边界连接条件；一般只有离散能量能同时满足这些约束。若 $E>V_0$，阱外也变为振荡解，粒子可传播至无穷远，渐近波数可连续变化，得到连续散射谱。离散性来自全局边界条件，不只是“势阱有墙”。例如谐振子虽然没有有限位置的墙，但 $V(x)\to\infty$ 仍要求两端衰减，因此同样产生离散能级。
+
+\dialoguesupplement{若把式~\eqref{eq:QM-C05-S02-finite-well-potential} 整体减去 $V_0$，就得到阱内为 $-V_0$、无穷远为零的纯吸引势；波函数和束缚态数目不变，能量整体变为 $E-V_0$。练习 5.2.2 用变分法说明：在适当局域性条件下，一维任意非零纯吸引势至少存在一个束缚态。奇异的吸引 delta 势同样只有一个束缚态，但其导数在原点发生有限跳跃，见练习 5.2.3。}
+
+\notetopic{QM-C05-S02-T03}{基态能量、时间演化与表象选择}
+
+\keyidea{严格局域在有限区间内的非零波函数不可能同时满足 $\Delta P=0$；因此势阱基态具有非零能量。能量本征基使时间演化对角化，而位置表象则把同一离散谱写成传播核。}
+
+无限深势阱不存在 $E=0$ 的非零定态。若 $E=0$，阱内方程给出
+\begin{equation}
+  \psi''(x)=0
+  \quad\Longrightarrow\quad
+  \psi(x)=A+Bx.
+  \label{eq:QM-C05-S02-zero-energy-linear}
+\end{equation}
+两端条件 $\psi(\pm L/2)=0$ 迫使 $A=B=0$。因此基态能量严格为正：
+\begin{equation}
+  E_1=\frac{\pi^2\hbar^2}{2mL^2}>0.
+  \label{eq:QM-C05-S02-ground-energy}
+\end{equation}
+
+教材用不确定性原理作数量级估计。定态可取为实函数，故 $\expect P=0$，并有
+\begin{equation}
+  \expect H=\frac{(\Delta P)^2}{2m}.
+  \label{eq:QM-C05-S02-energy-from-delta-p}
+\end{equation}
+由支集限制 $\Delta X\leq L/2$ 和
+\begin{equation}
+  \Delta X\Delta P\geq\frac\hbar2
+  \label{eq:QM-C05-S02-uncertainty-bound}
+\end{equation}
+可得粗略下界
+\begin{equation}
+  \expect H\geq\frac{\hbar^2}{2mL^2}.
+  \label{eq:QM-C05-S02-rough-ground-bound}
+\end{equation}
+它正确给出 $\hbar^2/(mL^2)$ 的尺度，却少了精确系数 $\pi^2$。原因是 $\Delta X\leq L/2$ 与 Heisenberg 不等式的等号条件不能在硬墙边界下同时达到，不能把两条不等式都当成等式。
+
+更精确地，对满足 $\psi(\pm L/2)=0$ 的归一化波函数，Poincar\'e 不等式给出
+\begin{equation}
+  \int_{-L/2}^{L/2}\abs{\psi'(x)}^2\dd x
+  \geq
+  \left(\frac\pi L\right)^2
+  \int_{-L/2}^{L/2}\abs{\psi(x)}^2\dd x.
+  \label{eq:QM-C05-S02-poincare-inequality}
+\end{equation}
+因此
+\begin{equation}
+  \expect H
+  =\frac{\hbar^2}{2m}
+  \int_{-L/2}^{L/2}\abs{\psi'(x)}^2\dd x
+  \geq\frac{\pi^2\hbar^2}{2mL^2},
+  \label{eq:QM-C05-S02-exact-variational-bound}
+\end{equation}
+且等号由基态余弦取得。一般的变分下界及其对一维吸引势的应用见
+\relatedexercise{QM-C05-S02-E02}{教材练习 5.2.2：变分下界与一维吸引势}。
+
+任意初态可在箱中能量本征基展开：
+\begin{equation}
+  \ket{\psi(0)}=\sum_{n=1}^{\infty}c_n\ket n,
+  \qquad
+  c_n=\braket{n}{\psi(0)}.
+  \label{eq:QM-C05-S02-general-initial-expansion}
+\end{equation}
+时间演化为
+\begin{equation}
+  \boxed{
+  \ket{\psi(t)}=
+  \sum_{n=1}^{\infty}
+  c_n\ee^{-\ii E_nt/\hbar}\ket n}.
+  \label{eq:QM-C05-S02-general-time-evolution}
+\end{equation}
+能量测量概率 $\abs{c_n}^2$ 不随时间改变，但位置概率密度一般含有
+\begin{equation}
+  c_m^*c_n\psi_m^*(x)\psi_n(x)
+  \ee^{-\ii(E_n-E_m)t/\hbar}
+  \label{eq:QM-C05-S02-position-cross-terms}
+\end{equation}
+这样的交叉项，所以叠加态的 $\abs{\psi(x,t)}^2$ 通常随时间变化。只有单一能量本征态或同一简并能级内的叠加才是 stationary state（定态）。
+
+传播算符和位置传播核分别为
+\begin{align}
+  U(t)
+  &=\sum_{n=1}^{\infty}
+  \ket n\bra n\ee^{-\ii E_nt/\hbar},
+  \label{eq:QM-C05-S02-box-propagator-operator}\\
+  K(x,t;x',0)
+  &=\bra xU(t)\ket{x'}
+  =\sum_{n=1}^{\infty}
+  \psi_n(x)\psi_n^*(x')
+  \ee^{-\ii E_nt/\hbar}.
+  \label{eq:QM-C05-S02-box-kernel}
+\end{align}
+与自由粒子的动量积分相比，这里出现离散求和，是因为箱中 Hamiltonian 的束缚谱离散。
+
+\dialoguesupplement{选择动量基还是能量基，不取决于“动量比能量更基本”，而取决于哪组完备基能把 Hamiltonian 对角化。自由粒子有平移对称性，$[H,P]=0$，所以动量本征态同时是能量本征态，常写成动量积分。硬墙破坏平移对称性，箱中定态一般不是 $P$ 的本征态，直接用能量本征态求和更自然。仍可把箱中波函数 Fourier 变换到连续动量表象，但势能会耦合不同动量，Hamiltonian 不再对角。环形周期边界同时保留离散动量和平移对称性，说明真正判据是“是否对角化 $H$”，而不是“离散就用能量、连续就用动量”。}
+
+势阱参数改变时还需区分两种极限。若墙突然移动，瞬间波函数来不及改变，之后要把旧波函数投影到新能量基；见
+\relatedexercise{QM-C05-S02-E01}{教材练习 5.2.1：势阱突然扩张}。若墙缓慢移动且满足绝热条件，粒子保持在对应的瞬时本征态，能量变化给出广义力
+\begin{equation}
+  F=-\pdv{E_n}{L};
+  \label{eq:QM-C05-S02-adiabatic-force}
+\end{equation}
+其与经典碰壁平均力的一致性见
+\relatedexercise{QM-C05-S02-E04}{教材练习 5.2.4：墙壁所受平均力}。
+
+\textbf{一分钟回顾。}
+
+无限深势阱用 $\psi(\pm L/2)=0$ 把连续波数筛为 $k_n=n\pi/L$，从而得到离散、正的能谱。有限墙允许指数尾，但正规化与边界匹配仍只容许离散束缚能量；高于阱外势的平台则形成连续散射谱。基态非零能量来自空间局域化，Poincar\'e 不等式给出精确下界。时间演化在能量基中只是逐分量积累相位，能量概率不变而位置干涉项可随时间变化。表象的选择应服从“让 Hamiltonian 尽量对角”的计算原则。

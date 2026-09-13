@@ -1,5 +1,5 @@
-% 对应单元：QM-C05-S01
-% 主要来源：Shankar 练习 5.1.1--5.1.4，印刷页 pp. 152--157，PDF pp. 164--169
+% 对应单元：QM-C05-S01--QM-C05-S02
+% 主要来源：Shankar 练习 5.1.1--5.2.6，印刷页 pp. 152--164，PDF pp. 164--176
 % 人工核验：是
 
 \clearpage
@@ -252,3 +252,505 @@ $E=0$ 处两支合并且 Jacobian 发散，是变量换元在谱端点的坐标�
 \end{checkedsolution}
 
 \textbf{检查点：}连续谱换元必须同时处理简并分支和 Jacobian；自由平面波是广义本征态而非 $L^2$ 态；有限阶级数匹配只能作为核验，不能冒充全阶证明；在无限维 Hilbert 空间中，写下 $H\psi$ 或 $H^n\psi$ 前必须先检查定义域，而谱定理定义的 $U(t)$ 可以在整个 Hilbert 空间上存在。
+
+\clearpage
+\section{第 5.2 节教材习题与订正}
+\label{exercise-set:QM-C05-S02}
+
+\exercisemeta
+  {QM-C05-S02-EX}
+  {2026-09-13}
+  {Shankar，Exercises 5.2.1--5.2.6；印刷页 pp.~163--164；PDF pp.~175--176}
+  {无限与有限方势阱、变分下界、delta 势、绝热力和束缚态阈值}
+  {六题均已完成推导、订正与概念核验}
+
+\exercisequestion{QM-C05-S02-E01}{教材练习 5.2.1：势阱突然扩张}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S02-T03}{基态能量、时间演化与表象选择}。
+
+质量为 $m$ 的粒子最初处于长度为 $L$、中心位于原点的无限深势阱基态。势阱突然关于原点对称地扩张为原来的两倍，且瞬间波函数保持不变。求随后测量得到新势阱基态的概率。
+
+\begin{checkedsolution}
+旧势阱与新势阱的基态分别为
+\begin{align}
+  \psi_{\mathrm{old}}(x)
+  &=\begin{cases}
+    \displaystyle\sqrt{\frac2L}\cos\frac{\pi x}{L},
+      &\abs x<L/2,\\[4pt]
+    0,&\abs x\geq L/2,
+  \end{cases}
+  \label{eq:QM-C05-S02-E01-old-ground}\\
+  \psi_{\mathrm{new}}(x)
+  &=\begin{cases}
+    \displaystyle\frac1{\sqrt L}\cos\frac{\pi x}{2L},
+      &\abs x<L,\\[4pt]
+    0,&\abs x\geq L.
+  \end{cases}
+  \label{eq:QM-C05-S02-E01-new-ground}
+\end{align}
+突然扩张意味着 $\psi(x,0^+)=\psi_{\mathrm{old}}(x)$。新基态振幅应在两者支集的交集上积分：
+\begin{align}
+  c_1^{\mathrm{new}}
+  &=\int_{-L/2}^{L/2}
+  \psi_{\mathrm{new}}^*(x)\psi_{\mathrm{old}}(x)\dd x
+  \notag\\
+  &=\frac{\sqrt2}{L}
+  \int_{-L/2}^{L/2}
+  \cos\frac{\pi x}{2L}\cos\frac{\pi x}{L}\dd x.
+  \label{eq:QM-C05-S02-E01-overlap}
+\end{align}
+利用
+\begin{equation}
+  \cos A\cos B
+  =\frac12\left[\cos(A-B)+\cos(A+B)\right],
+  \label{eq:QM-C05-S02-E01-product-to-sum}
+\end{equation}
+有
+\begin{align}
+  c_1^{\mathrm{new}}
+  &=\frac{\sqrt2}{2L}
+  \int_{-L/2}^{L/2}
+  \left[
+    \cos\frac{\pi x}{2L}
+    +\cos\frac{3\pi x}{2L}
+  \right]\dd x
+  \notag\\
+  &=\frac{\sqrt2}{2L}
+  \left(
+    \frac{2\sqrt2L}{\pi}
+    +\frac{2\sqrt2L}{3\pi}
+  \right)
+  =\frac{8}{3\pi}.
+  \label{eq:QM-C05-S02-E01-amplitude}
+\end{align}
+故所求概率为
+\begin{equation}
+  \boxed{
+  P_1=\abs{c_1^{\mathrm{new}}}^2
+  =\left(\frac{8}{3\pi}\right)^2
+  \approx0.7205}.
+  \label{eq:QM-C05-S02-E01-probability}
+\end{equation}
+积分可以形式上写在新区间 $[-L,L]$，但旧波函数在 $L/2<\abs x<L$ 上为零，因此实际贡献区间仍是 $[-L/2,L/2]$。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S02-E02}{教材练习 5.2.2：变分下界与一维吸引势}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S02-T03}{基态能量、时间演化与表象选择}，以及
+\relatedtopic{QM-C05-S02-T02}{有限深势阱、指数尾与束缚态量子化}。
+
+\textbf{(a)} 设 $E_0$ 是 Hamiltonian 的最低本征值。证明任意归一化态 $\ket\psi$ 均满足
+\begin{equation}
+  \bra\psi H\ket\psi\geq E_0,
+  \label{eq:QM-C05-S02-E02-variational-question}
+\end{equation}
+并在基态非简并时确定等号条件。
+
+\textbf{(b)} 设一维势在无穷远趋于零且处处为非正的局域吸引势，$V(x)=-\abs{V(x)}$。使用归一化试探态
+\begin{equation}
+  \psi_\alpha(x)
+  =\left(\frac\alpha\pi\right)^{1/4}
+  \ee^{-\alpha x^2/2},
+  \qquad\alpha>0,
+  \label{eq:QM-C05-S02-E02-trial-state}
+\end{equation}
+说明该势至少有一个束缚态。
+
+\begin{checkedsolution}
+将归一化态在正交归一能量本征基展开：
+\begin{equation}
+  \ket\psi=\sum_n c_n\ket n,
+  \qquad
+  \sum_n\abs{c_n}^2=1.
+  \label{eq:QM-C05-S02-E02-energy-expansion}
+\end{equation}
+于是
+\begin{align}
+  \bra\psi H\ket\psi
+  &=\sum_{m,n}c_m^*c_nE_n\braket{m}{n}
+  =\sum_n\abs{c_n}^2E_n,
+  \label{eq:QM-C05-S02-E02-expectation}\\
+  \bra\psi H\ket\psi-E_0
+  &=\sum_n\abs{c_n}^2(E_n-E_0)\geq0.
+  \label{eq:QM-C05-S02-E02-variational-proof}
+\end{align}
+若基态非简并，则对 $n\geq1$ 有 $E_n-E_0>0$。等号迫使所有激发态系数为零，故
+\begin{equation}
+  \bra\psi H\ket\psi=E_0
+  \quad\Longleftrightarrow\quad
+  \ket\psi=\ee^{\ii\theta}\ket0.
+  \label{eq:QM-C05-S02-E02-equality-condition}
+\end{equation}
+若基态简并，等号条件应改为 $\ket\psi$ 属于整个基态本征子空间。
+
+对 (b)，先由 Gaussian 积分验证
+\begin{equation}
+  \int_{-\infty}^{\infty}\abs{\psi_\alpha(x)}^2\dd x
+  =\sqrt{\frac\alpha\pi}
+  \int_{-\infty}^{\infty}\ee^{-\alpha x^2}\dd x=1.
+  \label{eq:QM-C05-S02-E02-normalization}
+\end{equation}
+两次求导给出
+\begin{equation}
+  \psi_\alpha''(x)
+  =(\alpha^2x^2-\alpha)\psi_\alpha(x),
+  \qquad
+  \expect{x^2}_\alpha=\frac1{2\alpha}.
+  \label{eq:QM-C05-S02-E02-gaussian-derivatives}
+\end{equation}
+因此
+\begin{align}
+  \expect T_\alpha
+  &=-\frac{\hbar^2}{2m}
+  \int\psi_\alpha^*\psi_\alpha''\dd x
+  =\frac{\hbar^2\alpha}{4m},
+  \label{eq:QM-C05-S02-E02-kinetic}\\
+  \expect V_\alpha
+  &=-\sqrt{\frac\alpha\pi}
+  \int_{-\infty}^{\infty}
+  \ee^{-\alpha x^2}\abs{V(x)}\dd x.
+  \label{eq:QM-C05-S02-E02-potential}
+\end{align}
+假设
+\begin{equation}
+  0<I_0\equiv
+  \int_{-\infty}^{\infty}\abs{V(x)}\dd x<\infty.
+  \label{eq:QM-C05-S02-E02-localized-assumption}
+\end{equation}
+控制收敛定理给出
+\begin{equation}
+  \int\ee^{-\alpha x^2}\abs{V(x)}\dd x
+  \longrightarrow I_0
+  \qquad(\alpha\to0^+).
+  \label{eq:QM-C05-S02-E02-dominated-limit}
+\end{equation}
+故试探能量满足
+\begin{align}
+  E(\alpha)
+  &=\frac{\hbar^2\alpha}{4m}
+  -\sqrt{\frac\alpha\pi}
+  \int\ee^{-\alpha x^2}\abs{V(x)}\dd x
+  \notag\\
+  &=\frac{\hbar^2}{4m}\alpha
+  -\frac{I_0}{\sqrt\pi}\sqrt\alpha
+  +o(\sqrt\alpha).
+  \label{eq:QM-C05-S02-E02-trial-energy}
+\end{align}
+当 $\alpha\to0^+$ 时，负的 $O(\sqrt\alpha)$ 项比正的 $O(\alpha)$ 项衰减更慢，因此可取充分小的 $\alpha>0$ 使 $E(\alpha)<0$。由 (a)
+\begin{equation}
+  E_0\leq E(\alpha)<0.
+  \label{eq:QM-C05-S02-E02-negative-ground}
+\end{equation}
+无穷远势能取零时，负能量位于连续散射谱阈值以下；在上述局域性条件下，它对应至少一个离散束缚态。
+
+\textbf{严格性边界。}“任意吸引势”不能在完全没有假设时照字面使用。上述证明采用了势非零、处处非正且绝对可积等充分条件；更奇异或长程的势需要相应的谱论版本。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S02-E03}{教材练习 5.2.3：吸引 delta 势的唯一束缚态}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S02-T02}{有限深势阱、指数尾与束缚态量子化}。
+
+考虑
+\begin{equation}
+  V(x)=-aV_0\delta(x),
+  \qquad aV_0>0.
+  \label{eq:QM-C05-S02-E03-potential}
+\end{equation}
+求其束缚态能量与归一化波函数，并说明为何不存在其他束缚态。
+
+\begin{checkedsolution}
+束缚态能量写成
+\begin{equation}
+  E=-\frac{\hbar^2\kappa^2}{2m},
+  \qquad\kappa>0.
+  \label{eq:QM-C05-S02-E03-negative-energy}
+\end{equation}
+在 $x\neq0$ 处有 $\psi''=\kappa^2\psi$。删除两端无穷远处的增长解并要求 $\psi$ 在原点连续，得到
+\begin{equation}
+  \psi(x)=A\ee^{-\kappa\abs x}.
+  \label{eq:QM-C05-S02-E03-decaying-state}
+\end{equation}
+为求导数的跳跃，把定态方程在 $[-\epsilon,\epsilon]$ 上积分：
+\begin{equation}
+  -\frac{\hbar^2}{2m}
+  \int_{-\epsilon}^{\epsilon}\psi''(x)\dd x
+  -aV_0\int_{-\epsilon}^{\epsilon}
+  \delta(x)\psi(x)\dd x
+  =E\int_{-\epsilon}^{\epsilon}\psi(x)\dd x.
+  \label{eq:QM-C05-S02-E03-integrated-equation}
+\end{equation}
+令 $\epsilon\to0^+$，右侧趋于零，得到
+\begin{equation}
+  \boxed{
+  \psi'(0^+)-\psi'(0^-)
+  =-\frac{2maV_0}{\hbar^2}\psi(0)}.
+  \label{eq:QM-C05-S02-E03-jump-condition}
+\end{equation}
+对式~\eqref{eq:QM-C05-S02-E03-decaying-state}，
+\begin{equation}
+  \psi'(0^+)=-\kappa A,
+  \qquad
+  \psi'(0^-)=\kappa A.
+  \label{eq:QM-C05-S02-E03-one-sided-derivatives}
+\end{equation}
+代入跳跃条件并排除零函数后，唯一得到
+\begin{equation}
+  \kappa=\frac{maV_0}{\hbar^2},
+  \qquad
+  \boxed{E_0=-\frac{ma^2V_0^2}{2\hbar^2}}.
+  \label{eq:QM-C05-S02-E03-energy}
+\end{equation}
+归一化条件为
+\begin{equation}
+  1=2\abs A^2\int_0^\infty\ee^{-2\kappa x}\dd x
+  =\frac{\abs A^2}{\kappa},
+  \label{eq:QM-C05-S02-E03-normalization}
+\end{equation}
+故可取
+\begin{equation}
+  \boxed{
+  \psi_0(x)=\sqrt\kappa\,\ee^{-\kappa\abs x}},
+  \qquad
+  \kappa=\frac{maV_0}{\hbar^2}.
+  \label{eq:QM-C05-S02-E03-normalized-state}
+\end{equation}
+无穷远衰减与原点连续性已把任意负能态限制为式~\eqref{eq:QM-C05-S02-E03-decaying-state}，而跳跃条件又只允许一个 $\kappa$，所以没有第二个束缚能级。若尝试奇态，则连续性要求 $\psi(0)=0$，两侧单指数解只能同时为零。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S02-E04}{教材练习 5.2.4：缓慢移动墙壁时的受力}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S02-T03}{基态能量、时间演化与表象选择}。
+
+质量为 $m$ 的粒子处于长度为 $L$ 的无限深势阱第 $n$ 个本征态。墙壁缓慢移动，使粒子保持在对应的瞬时本征态。计算 $F=-\partial E_n/\partial L$，并与能量同为 $E_n$ 的经典粒子碰撞同一面墙所产生的平均力比较。
+
+\begin{checkedsolution}
+由
+\begin{equation}
+  E_n=\frac{\hbar^2\pi^2n^2}{2mL^2}
+  \label{eq:QM-C05-S02-E04-energy}
+\end{equation}
+得到量子广义力
+\begin{equation}
+  \boxed{
+  F_{\mathrm{QM}}
+  =-\pdv{E_n}{L}
+  =\frac{\hbar^2\pi^2n^2}{mL^3}
+  =\frac{2E_n}{L}}.
+  \label{eq:QM-C05-S02-E04-quantum-force}
+\end{equation}
+正号表示粒子沿增大 $L$ 的方向向外推墙。
+
+经典粒子在阱内只有动能，故
+\begin{equation}
+  v=\sqrt{\frac{2E_n}{m}}
+  =\frac{\hbar\pi n}{mL}.
+  \label{eq:QM-C05-S02-E04-speed}
+\end{equation}
+连续两次撞击同一面墙之间走过 $2L$，所以频率为 $v/(2L)$。一次弹性反射使粒子动量改变 $-2mv$，传给墙的动量大小为 $2mv$。因此
+\begin{equation}
+  F_{\mathrm{cl}}
+  =\frac{v}{2L}(2mv)
+  =\frac{mv^2}{L}
+  =\frac{2E_n}{L}.
+  \label{eq:QM-C05-S02-E04-classical-force}
+\end{equation}
+故
+\begin{equation}
+  \boxed{F_{\mathrm{cl}}=F_{\mathrm{QM}}}.
+  \label{eq:QM-C05-S02-E04-force-agreement}
+\end{equation}
+“缓慢”保证绝热跟随，才能在尺寸变化过程中始终使用同一量子数 $n$ 的 $E_n(L)$；突然移动则应改用练习 5.2.1 的投影方法。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S02-E05}{教材练习 5.2.5：平移后的无限深势阱}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S02-T01}{无限深方势阱的边界条件与离散谱}。
+
+把长度为 $L$ 的无限深势阱取在 $0<x<L$。从阱内一般解出发，求归一化能量本征函数与能谱，并解释平移势阱为何不改变能量。
+
+\begin{checkedsolution}
+阱内一般解为
+\begin{equation}
+  \psi(x)=A\cos kx+B\sin kx.
+  \label{eq:QM-C05-S02-E05-general-solution}
+\end{equation}
+由 $\psi(0)=0$ 得 $A=0$。再由
+\begin{equation}
+  \psi(L)=B\sin kL=0
+  \label{eq:QM-C05-S02-E05-second-boundary}
+\end{equation}
+并排除 $B=0$ 的零函数，得到
+\begin{equation}
+  k_n=\frac{n\pi}{L},
+  \qquad n=1,2,\ldots.
+  \label{eq:QM-C05-S02-E05-wave-numbers}
+\end{equation}
+由于
+\begin{equation}
+  \int_0^L\sin^2\frac{n\pi x}{L}\dd x=\frac L2,
+  \label{eq:QM-C05-S02-E05-normalization-integral}
+\end{equation}
+完整本征函数和能量为
+\begin{align}
+  \psi_n(x)
+  &=\begin{cases}
+    \displaystyle\sqrt{\frac2L}\sin\frac{n\pi x}{L},&0<x<L,\\[5pt]
+    0,&\text{其他位置},
+  \end{cases}
+  \label{eq:QM-C05-S02-E05-eigenfunction}\\
+  E_n
+  &=\boxed{\frac{\hbar^2\pi^2n^2}{2mL^2}}.
+  \label{eq:QM-C05-S02-E05-energy}
+\end{align}
+势阱只从 $[-L/2,L/2]$ 平移到 $[0,L]$，宽度与形状不变。平移前后的 Hamiltonian 酉等价，因此本征函数的节点位置和坐标表达改变，谱却保持不变。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S02-E06}{教材练习 5.2.6：有限深方势阱}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S02-T02}{有限深势阱、指数尾与束缚态量子化}。
+
+考虑
+\begin{equation}
+  V(x)=
+  \begin{cases}
+    0,&\abs x\leq a,\\
+    V_0,&\abs x>a.
+  \end{cases}
+  \label{eq:QM-C05-S02-E06-potential}
+\end{equation}
+推导偶、奇束缚态的量子化条件；用无量纲图解说明能级；验证 $V_0\to\infty$ 时恢复宽度 $2a$ 的无限深势阱；最后确定第一奇束缚态出现的势阱深度阈值。
+
+\begin{checkedsolution}
+束缚态满足 $0<E<V_0$。定义
+\begin{equation}
+  k=\frac{\sqrt{2mE}}{\hbar},
+  \qquad
+  \kappa=\frac{\sqrt{2m(V_0-E)}}{\hbar},
+  \label{eq:QM-C05-S02-E06-k-kappa}
+\end{equation}
+立刻有
+\begin{equation}
+  k^2+\kappa^2=\frac{2mV_0}{\hbar^2}.
+  \label{eq:QM-C05-S02-E06-circle-dimensional}
+\end{equation}
+
+对偶态，在 $x\geq0$ 取
+\begin{equation}
+  \psi(x)=
+  \begin{cases}
+    A\cos kx,&0\leq x\leq a,\\
+    C\ee^{-\kappa x},&x>a.
+  \end{cases}
+  \label{eq:QM-C05-S02-E06-even-wavefunction}
+\end{equation}
+在 $x=a$ 处要求 $\psi$、$\psi'$ 连续：
+\begin{equation}
+  A\cos ka=C\ee^{-\kappa a},
+  \qquad
+  -Ak\sin ka=-\kappa C\ee^{-\kappa a}.
+  \label{eq:QM-C05-S02-E06-even-boundary}
+\end{equation}
+两式相除得到
+\begin{equation}
+  \boxed{k\tan ka=\kappa}.
+  \label{eq:QM-C05-S02-E06-even-condition}
+\end{equation}
+奇态在阱内改取 $A\sin kx$，同理有
+\begin{equation}
+  A\sin ka=C\ee^{-\kappa a},
+  \qquad
+  Ak\cos ka=-\kappa C\ee^{-\kappa a},
+  \label{eq:QM-C05-S02-E06-odd-boundary}
+\end{equation}
+故
+\begin{equation}
+  \boxed{k\cot ka=-\kappa}.
+  \label{eq:QM-C05-S02-E06-odd-condition}
+\end{equation}
+
+令
+\begin{equation}
+  \alpha=ka,
+  \qquad
+  \beta=\kappa a,
+  \qquad
+  z_0^2=\frac{2mV_0a^2}{\hbar^2},
+  \label{eq:QM-C05-S02-E06-dimensionless}
+\end{equation}
+则三组条件变为
+\begin{equation}
+  \alpha^2+\beta^2=z_0^2,
+  \qquad
+  \beta=\alpha\tan\alpha,
+  \qquad
+  \beta=-\alpha\cot\alpha.
+  \label{eq:QM-C05-S02-E06-graph-equations}
+\end{equation}
+$\alpha,\beta>0$，故只看第一象限。圆与偶态或奇态曲线的每个交点同时满足能量关系和边界匹配，因而给出一个离散能级
+\begin{equation}
+  E=\frac{\hbar^2\alpha^2}{2ma^2}.
+  \label{eq:QM-C05-S02-E06-energy-alpha}
+\end{equation}
+
+当 $V_0\to\infty$ 时，$z_0\to\infty$。对固定低能态，$\alpha$ 保持有限而 $\beta\to\infty$。于是
+\begin{align}
+  \text{偶态：}\quad
+  \tan\alpha\to+\infty
+  &\quad\Longrightarrow\quad
+  \alpha\to\frac{(2r+1)\pi}{2},
+  &&r=0,1,\ldots,
+  \label{eq:QM-C05-S02-E06-even-infinite-limit}\\
+  \text{奇态：}\quad
+  \cot\alpha\to-\infty
+  &\quad\Longrightarrow\quad
+  \alpha\to r\pi,
+  &&r=1,2,\ldots.
+  \label{eq:QM-C05-S02-E06-odd-infinite-limit}
+\end{align}
+两族交错合并为
+\begin{equation}
+  \alpha_n=\frac{n\pi}{2},
+  \qquad
+  k_n=\frac{n\pi}{2a},
+  \qquad
+  \boxed{E_n=\frac{\hbar^2\pi^2n^2}{8ma^2}},
+  \label{eq:QM-C05-S02-E06-recovered-spectrum}
+\end{equation}
+即宽度 $2a$ 的无限深势阱能谱。
+
+下面分析束缚态数目。圆的上半支为
+\begin{equation}
+  \beta_{\mathrm c}(\alpha)=\sqrt{z_0^2-\alpha^2}.
+  \label{eq:QM-C05-S02-E06-circle-branch}
+\end{equation}
+在第一偶态区间 $0<\alpha<\min(z_0,\pi/2)$ 内，$\alpha\tan\alpha$ 从零开始上升。若 $z_0<\pi/2$，当 $\alpha\to z_0^-$ 时圆降至零而偶态曲线为正；若 $z_0\geq\pi/2$，当 $\alpha\to(\pi/2)^-$ 时偶态曲线发散而圆保持有限或趋零。由于两曲线连续，介值定理保证任意 $z_0>0$ 都至少有一个偶态交点。
+
+第一奇态正值分支位于
+\begin{equation}
+  \frac\pi2<\alpha<\pi.
+  \label{eq:QM-C05-S02-E06-first-odd-interval}
+\end{equation}
+圆能真正进入该区间必须满足 $z_0>\pi/2$，等价于
+\begin{equation}
+  \boxed{V_0>\frac{\pi^2\hbar^2}{8ma^2}}.
+  \label{eq:QM-C05-S02-E06-odd-threshold}
+\end{equation}
+在临界值 $z_0=\pi/2$ 处，形式交点为
+\begin{equation}
+  \alpha=\frac\pi2,
+  \qquad
+  \beta=0,
+  \qquad
+  E=V_0=\frac{\pi^2\hbar^2}{8ma^2}.
+  \label{eq:QM-C05-S02-E06-threshold-state}
+\end{equation}
+但 $\beta=0$ 意味着 $\kappa=0$。阱外方程成为 $\psi''=0$，其解 $C+Dx$ 除零函数外均不属于 $L^2(\real)$。所以等号只对应连续谱边缘的阈值解；真正的奇束缚态要求严格大于式~\eqref{eq:QM-C05-S02-E06-odd-threshold} 右端。教材写成大于等于时，应把等号理解为“刚到阈值”，而不是已经出现正规化束缚态。
+\end{checkedsolution}
+
+\textbf{检查点：}无限深势阱的离散化来自两端边界条件；突然改变势阱应投影旧态，缓慢改变则可绝热跟随；变分法用任意试探态给出基态能量上界；delta 势保持波函数连续但使导数跳跃；有限阱的束缚能量由指数衰减与边界匹配共同确定，阈值解不一定是可正规化束缚态。
