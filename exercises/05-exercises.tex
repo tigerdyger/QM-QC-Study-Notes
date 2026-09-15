@@ -1,5 +1,5 @@
-% 对应单元：QM-C05-S01--QM-C05-S02
-% 主要来源：Shankar 练习 5.1.1--5.2.6，印刷页 pp. 152--164，PDF pp. 164--176
+% 对应单元：QM-C05-S01--QM-C05-S04
+% 主要来源：Shankar 练习 5.1.1--5.4.3，印刷页 pp. 152--175，PDF pp. 164--187
 % 人工核验：是
 
 \clearpage
@@ -754,3 +754,778 @@ $\alpha,\beta>0$，故只看第一象限。圆与偶态或奇态曲线的每个�
 \end{checkedsolution}
 
 \textbf{检查点：}无限深势阱的离散化来自两端边界条件；突然改变势阱应投影旧态，缓慢改变则可绝热跟随；变分法用任意试探态给出基态能量上界；delta 势保持波函数连续但使导数跳跃；有限阱的束缚能量由指数衰减与边界匹配共同确定，阈值解不一定是可正规化束缚态。
+
+\clearpage
+\section{第 5.3 节教材习题与订正}
+\label{exercise-set:QM-C05-S03}
+
+\exercisemeta
+  {QM-C05-S03-EX}
+  {2026-09-14}
+  {Shankar，Exercises 5.3.1--5.3.4；印刷页 pp.~166--167；PDF pp.~178--179}
+  {复势源汇、实波函数、平面波与左右行波的概率流}
+  {四题均已完成推导、订正与概念核验}
+
+\exercisequestion{QM-C05-S03-E01}{教材练习 5.3.1：复吸收势与概率衰减}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S03-T03}{相位梯度、定态概率流与源汇}。
+
+考虑
+\begin{equation}
+  V(\mathbf r)=V_R(\mathbf r)-\ii V_I,
+  \qquad V_I>0,
+  \label{eq:QM-C05-S03-E01-potential}
+\end{equation}
+其中 $V_I$ 是常数。判断 Hamiltonian 是否 Hermitian；重新推导连续性方程；若无穷远处没有概率流且 $P(0)=1$，求总概率 $P(t)$，并解释该复势为何可描述吸收过程。
+
+\begin{checkedsolution}
+写成
+\begin{equation}
+  H=H_R-\ii V_I I,
+  \qquad
+  H_R=-\frac{\hbar^2}{2m}\nabla^2+V_R.
+  \label{eq:QM-C05-S03-E01-hamiltonian}
+\end{equation}
+在 $H_R$ 自伴的通常定义域上，
+\begin{equation}
+  H^\dagger=H_R+\ii V_I I\neq H,
+  \label{eq:QM-C05-S03-E01-not-hermitian}
+\end{equation}
+所以该有效时间演化不是酉的。
+
+Schr\"odinger 方程及其复共轭为
+\begin{align}
+  \ii\hbar\pdv{\psi}{t}
+  &=\left(-\frac{\hbar^2}{2m}\nabla^2+V_R-\ii V_I\right)\psi,
+  \label{eq:QM-C05-S03-E01-schrodinger}\\
+  -\ii\hbar\pdv{\psi^*}{t}
+  &=\left(-\frac{\hbar^2}{2m}\nabla^2+V_R+\ii V_I\right)\psi^*.
+  \label{eq:QM-C05-S03-E01-conjugate}
+\end{align}
+按正文相同方法相减后，实势 $V_R$ 消失，虚势留下
+\begin{align}
+  \pdv{\rho}{t}
+  &=\frac{\ii\hbar}{2m}
+  (\psi^*\nabla^2\psi-\psi\nabla^2\psi^*)
+  -\frac{2V_I}{\hbar}\rho,\\
+  \boxed{
+  \pdv{\rho}{t}+\nabla\cdot\mathbf j
+  =-\frac{2V_I}{\hbar}\rho}.
+  \label{eq:QM-C05-S03-E01-continuity}
+\end{align}
+更一般地，复势 $V$ 给出的局域源汇项为
+\begin{equation}
+  \pdv{\rho}{t}+\nabla\cdot\mathbf j
+  =\frac{2}{\hbar}\operatorname{Im}V\,\rho.
+  \label{eq:QM-C05-S03-E01-general-complex-source}
+\end{equation}
+
+在全空间积分式~\eqref{eq:QM-C05-S03-E01-continuity}，并使用无穷远零通量条件：
+\begin{equation}
+  \odv{P}{t}=-\frac{2V_I}{\hbar}P.
+  \label{eq:QM-C05-S03-E01-total-ode}
+\end{equation}
+由 $P(0)=1$ 得
+\begin{equation}
+  \boxed{P(t)=\exp\left(-\frac{2V_It}{\hbar}\right)},
+  \qquad
+  \tau=\frac{\hbar}{2V_I}.
+  \label{eq:QM-C05-S03-E01-total-probability}
+\end{equation}
+由于 $V_I I$ 与 $H_R$ 对易，还可直接分解
+\begin{equation}
+  \ee^{-\ii Ht/\hbar}
+  =\ee^{-\ii H_Rt/\hbar}\ee^{-V_It/\hbar}.
+  \label{eq:QM-C05-S03-E01-factorized-evolution}
+\end{equation}
+振幅衰减 $\ee^{-V_It/\hbar}$，模平方因而衰减为 $\ee^{-2V_It/\hbar}$。若 $V_I$ 依赖位置，一般不能作这一简单指数分解，总概率也未必按单一指数衰减，但局域汇项仍由式~\eqref{eq:QM-C05-S03-E01-general-complex-source} 给出。
+
+负虚部把概率从模型保留的通道中移除，可有效描述探测器吸收、非弹性反应或数值边界吸收。若把被省略的环境和反应通道也纳入更大的封闭系统，完整总概率仍应守恒。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S03-E02}{教材练习 5.3.2：实波函数的概率流}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S03-T03}{相位梯度、定态概率流与源汇}。
+
+设
+\begin{equation}
+  \psi(\mathbf r,t)=c\widetilde\psi(\mathbf r,t),
+  \label{eq:QM-C05-S03-E02-state}
+\end{equation}
+其中 $c$ 是与位置无关的任意实或复常数，$\widetilde\psi$ 是实函数。证明概率流恒为零。对话补充：说明这为何不表示动量测量必得零。
+
+\begin{checkedsolution}
+因为 $\widetilde\psi^*=\widetilde\psi$ 且 $c$ 与位置无关，
+\begin{equation}
+  \psi^*=c^*\widetilde\psi,
+  \qquad
+  \nabla\psi=c\nabla\widetilde\psi,
+  \qquad
+  \nabla\psi^*=c^*\nabla\widetilde\psi.
+  \label{eq:QM-C05-S03-E02-conjugates}
+\end{equation}
+因此
+\begin{align}
+  \psi^*\nabla\psi
+  &=\abs c^2\widetilde\psi\nabla\widetilde\psi,\\
+  \psi\nabla\psi^*
+  &=\abs c^2\widetilde\psi\nabla\widetilde\psi,
+\end{align}
+代入概率流公式即得
+\begin{equation}
+  \boxed{\mathbf j=0}.
+  \label{eq:QM-C05-S03-E02-zero-current}
+\end{equation}
+
+但是，动量确定为零要求
+\begin{equation}
+  -\ii\hbar\nabla\psi=0
+  \quad\Longrightarrow\quad
+  \nabla\psi=0,
+  \label{eq:QM-C05-S03-E02-zero-momentum-condition}
+\end{equation}
+即在所考虑区域内为空间常数；在整个 $\real^3$ 上，该常数本身也不是普通可正规化态。一般实函数并不满足这一条件。例如在周期盒归一化下，
+\begin{equation}
+  \cos kx=\frac12
+  (\ee^{\ii kx}+\ee^{-\ii kx})
+  \label{eq:QM-C05-S03-E02-cosine-superposition}
+\end{equation}
+是动量 $\pm\hbar k$ 的等权叠加。两方向的流相消，故 $j=0$、$\expect P=0$，但 $\expect{P^2}=\hbar^2k^2$，动量并不确定为零。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S03-E03}{教材练习 5.3.3：动量本征函数的概率流}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S03-T03}{相位梯度、定态概率流与源汇}。
+
+对三维动量本征函数
+\begin{equation}
+  \psi_{\mathbf p}(\mathbf r)
+  =\left(\frac{1}{2\pi\hbar}\right)^{3/2}
+  \exp\left(\frac{\ii\mathbf p\cdot\mathbf r}{\hbar}\right),
+  \label{eq:QM-C05-S03-E03-plane-wave}
+\end{equation}
+求 $\rho$ 和 $\mathbf j$，并与经典关系 $\mathbf j=\rho\mathbf v$ 比较。解释不可普通归一化为何不妨碍它满足局域连续性方程。
+
+\begin{checkedsolution}
+指数因子模长为一，所以形式上的密度为
+\begin{equation}
+  \rho(\mathbf r)
+  =\abs{\psi_{\mathbf p}(\mathbf r)}^2
+  =\left(\frac{1}{2\pi\hbar}\right)^3.
+  \label{eq:QM-C05-S03-E03-density}
+\end{equation}
+又有
+\begin{equation}
+  \nabla\psi_{\mathbf p}
+  =\frac{\ii\mathbf p}{\hbar}\psi_{\mathbf p},
+  \qquad
+  \nabla\psi_{\mathbf p}^*
+  =-\frac{\ii\mathbf p}{\hbar}\psi_{\mathbf p}^*.
+  \label{eq:QM-C05-S03-E03-gradients}
+\end{equation}
+故
+\begin{align}
+  \mathbf j
+  &=\frac{\hbar}{2m\ii}
+  \left[
+    \psi_{\mathbf p}^*
+    \frac{\ii\mathbf p}{\hbar}\psi_{\mathbf p}
+    -\psi_{\mathbf p}
+    \left(-\frac{\ii\mathbf p}{\hbar}\psi_{\mathbf p}^*\right)
+  \right]\\
+  &=\boxed{\rho\frac{\mathbf p}{m}}
+  =\left(\frac{1}{2\pi\hbar}\right)^3\frac{\mathbf p}{m}.
+  \label{eq:QM-C05-S03-E03-current}
+\end{align}
+这与 $\mathbf v=\mathbf p/m$ 下的经典流密度形式 $\mathbf j=\rho\mathbf v$ 一致。
+
+补上时间因子 $\ee^{-\ii Et/\hbar}$ 后，$\rho$ 仍与时间无关，$\mathbf j$ 仍与位置无关，因此
+\begin{equation}
+  \pdv{\rho}{t}=0,
+  \qquad
+  \nabla\cdot\mathbf j=0.
+  \label{eq:QM-C05-S03-E03-local-continuity}
+\end{equation}
+局域连续性方程成立。另一方面，$\int_{\real^3}\rho\dd^3r$ 发散，所以单个平面波不是普通归一化态，而是满足 $\delta^{(3)}(\mathbf p-\mathbf p')$ 归一化的广义本征态。局域微分方程成立与全局 $L^2$ 归一化是两个不同问题；真正的物理自由粒子态通常是平面波的可正规化波包叠加。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S03-E04}{教材练习 5.3.4：左右行波的净概率流}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S03-T03}{相位梯度、定态概率流与源汇}。
+
+在一维中考虑
+\begin{equation}
+  \psi(x)=A\ee^{\ii px/\hbar}+B\ee^{-\ii px/\hbar},
+  \qquad p>0.
+  \label{eq:QM-C05-S03-E04-state}
+\end{equation}
+求概率密度和概率流，证明流中的左右行交叉项抵消，并解释三种振幅关系对应的净流方向。最后说明 $\abs A=\abs B$ 时 $j=0$ 是否意味着动量确定为零。
+
+\begin{checkedsolution}
+令 $k=p/\hbar$。直接相乘得到
+\begin{align}
+  \rho(x)
+  &=\abs A^2+\abs B^2
+    +AB^*\ee^{2\ii kx}
+    +A^*B\ee^{-2\ii kx}\\
+  &=\abs A^2+\abs B^2
+    +2\operatorname{Re}
+      \left(AB^*\ee^{2\ii kx}\right).
+  \label{eq:QM-C05-S03-E04-density}
+\end{align}
+若 $A=\abs A\ee^{\ii\alpha}$、$B=\abs B\ee^{\ii\beta}$，则交叉项为
+\begin{equation}
+  2\abs A\abs B
+  \cos(2kx+\alpha-\beta),
+  \label{eq:QM-C05-S03-E04-density-phase}
+\end{equation}
+所以相对相位改变条纹位置。
+
+导数为
+\begin{equation}
+  \psi'=\ii kA\ee^{\ii kx}-\ii kB\ee^{-\ii kx}.
+  \label{eq:QM-C05-S03-E04-derivative}
+\end{equation}
+分别展开概率流中的两项：
+\begin{align}
+  \psi^*\psi'
+  &=\ii k(\abs A^2-\abs B^2)
+   +\ii k
+    \left(AB^*\ee^{2\ii kx}-A^*B\ee^{-2\ii kx}\right),\\
+  \psi(\psi^*)'
+  &=-\ii k(\abs A^2-\abs B^2)
+   +\ii k
+    \left(AB^*\ee^{2\ii kx}-A^*B\ee^{-2\ii kx}\right).
+  \label{eq:QM-C05-S03-E04-two-products}
+\end{align}
+两式中的交叉项完全相同，在反对称组合中相消：
+\begin{equation}
+  \psi^*\psi'-\psi(\psi^*)'
+  =2\ii k(\abs A^2-\abs B^2).
+  \label{eq:QM-C05-S03-E04-cross-cancellation}
+\end{equation}
+因此
+\begin{equation}
+  \boxed{j=\frac{p}{m}(\abs A^2-\abs B^2)}.
+  \label{eq:QM-C05-S03-E04-current}
+\end{equation}
+概率密度中的交叉项产生干涉起伏；概率流中的导数给左右行波相反符号，再由反对称组合消去交叉项，只留下右行流减左行流。于是
+\begin{equation}
+  \begin{array}{c|c|c}
+    \text{条件}&j&\text{净流方向}\\
+    \hline
+    \abs A>\abs B&j>0&+x\\
+    \abs A<\abs B&j<0&-x\\
+    \abs A=\abs B&j=0&\text{无净流}
+  \end{array}
+  \label{eq:QM-C05-S03-E04-direction-table}
+\end{equation}
+
+最后，$j=0$ 只表示两方向概率流相消。若在周期盒中正规化，或用两个正交窄波包代替理想平面波，则 $\abs A=\abs B$ 给出等概率的 $+p$ 和 $-p$，并有
+\begin{equation}
+  \expect P=0,
+  \qquad
+  \expect{P^2}=p^2,
+  \qquad
+  \Delta P=p.
+  \label{eq:QM-C05-S03-E04-momentum-spread}
+\end{equation}
+所以零净流不意味着动量测量必得零。相对相位只平移式~\eqref{eq:QM-C05-S03-E04-density-phase} 的条纹，不改变式~\eqref{eq:QM-C05-S03-E04-current} 的净流。
+\end{checkedsolution}
+
+\textbf{检查点：}连续性方程是局域守恒陈述；区域内概率变化由边界通量决定。标准概率流由波函数动力学推出，并读取空间相位梯度。定态只要求流的散度为零；束缚边界才通常进一步给出零流。实波函数、零平均动量和零动量确定态是三个不同概念。复有效势的虚部则在连续性方程中产生源项或汇项。
+
+\clearpage
+\section{第 5.4 节教材习题与订正}
+\label{exercise-set:QM-C05-S04}
+
+\exercisemeta
+  {QM-C05-S04-EX}
+  {2026-09-15}
+  {Shankar，Exercises 5.4.1--5.4.3；印刷页 pp.~174--175；PDF pp.~186--187}
+  {题干与主结果已对照教材；完整推导已核对}
+  {三组教材题均已作答与订正；本版笔记待审阅}
+
+\exercisequestion{QM-C05-S04-E01}{教材练习 5.4.1：波包与定态透射率的一致性}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S04-T03}{概率流、速度因子与波包 Jacobian}。
+
+教材将入射 Gaussian 波包展开到单阶跃势的定态散射本征函数中。对 $E>V_0$，透射部分包含
+\begin{equation}
+  k_2(k_1)=\sqrt{k_1^2-\frac{2mV_0}{\hbar^2}}
+  \label{eq:QM-C05-S04-E01-k2-definition}
+\end{equation}
+以及在 $k_0$ 附近窄峰化的入射权重。按教材提示，在 $k_1=k_0$ 附近把 $k_2(k_1)$ 展开到一阶，识别透射波包，并证明其总概率与定态概率流给出的
+\begin{equation}
+  T=\frac{k_{20}}{k_0}\abs{\frac CA}^2
+\end{equation}
+一致，其中 $k_{20}=k_2(k_0)$。
+
+\begin{checkedsolution}
+先把积分约定写全。取 Fourier 因子 $1/\sqrt{2\pi}$，入射 Gaussian 的波数振幅为
+\begin{equation}
+  a_{\mathrm{in}}(k_1)
+  =\left(\frac{\Delta^2}{\pi}\right)^{1/4}
+    \exp\left[-\frac{\Delta^2(k_1-k_0)^2}{2}\right]
+    \ee^{\ii k_1a}.
+  \label{eq:QM-C05-S04-E01-incident-weight}
+\end{equation}
+它在全波数轴上归一化，初始包中心在 $-a$。假设 $a\gg\Delta$，且
+$k_0-k_*\gg1/\Delta$，其中 $k_*=\sqrt{2mV_0}/\hbar$。这样负动量尾部及低于台阶的能量权重均可忽略。记
+$\tau(k_1)=2k_1/(k_1+k_2)$，则晚时向右传播的部分为
+\begin{equation}
+  \psi_T(x,t)=\frac1{\sqrt{2\pi}}
+  \int_{k_*}^{\infty}a_{\mathrm{in}}(k_1)\tau(k_1)
+  \ee^{\ii k_2(k_1)x-\ii\hbar k_1^2t/(2m)}\,\dd k_1.
+  \label{eq:QM-C05-S04-E01-packet-integral}
+\end{equation}
+这里使用散射前后远离边界的渐近波包；碰撞过程中不能把右侧表达式直接当成全空间的物理波函数。
+
+求导得到
+\begin{equation}
+  \frac{\dd k_2}{\dd k_1}=\frac{k_1}{k_2}.
+  \label{eq:QM-C05-S04-E01-derivative}
+\end{equation}
+令 $q=k_1-k_0$，则
+\begin{equation}
+  k_2(k_1)
+  \simeq k_{20}+\frac{k_0}{k_{20}}q.
+  \label{eq:QM-C05-S04-E01-linearization}
+\end{equation}
+透射积分的主要相位为
+\begin{equation}
+  \Phi(k_1)=k_2(k_1)x
+  -\frac{\hbar k_1^2}{2m}t+k_1a.
+  \label{eq:QM-C05-S04-E01-phase}
+\end{equation}
+代入 $k_1=k_0+q$，其关于 $q$ 的一次项为
+\begin{equation}
+  q\left(
+    \frac{k_0}{k_{20}}x+a-\frac{\hbar k_0}{m}t
+  \right).
+  \label{eq:QM-C05-S04-E01-linear-phase}
+\end{equation}
+故透射包络依赖变量
+\begin{equation}
+  X=\frac{k_0}{k_{20}}x+a-\frac{\hbar k_0}{m}t.
+  \label{eq:QM-C05-S04-E01-envelope-variable}
+\end{equation}
+令 $X=0$ 得波包中心
+\begin{equation}
+  x_c(t)=\frac{\hbar k_{20}}m t-\frac{k_{20}}{k_0}a,
+  \qquad
+  \dot x_c=\frac{\hbar k_{20}}m,
+  \label{eq:QM-C05-S04-E01-center}
+\end{equation}
+正是区域 II 的群速度。在线性相位近似下，另取 $\tau(k_1)\simeq\tau(k_0)=C/A$，并把有效窄峰的积分上下限延伸到全实轴。所需 Gaussian 积分为
+\begin{equation}
+  \int_{-\infty}^{\infty}
+  \ee^{-\Delta^2q^2/2+\ii qX}\,\dd q
+  =\frac{\sqrt{2\pi}}{\Delta}\ee^{-X^2/(2\Delta^2)}.
+\end{equation}
+因此
+\begin{align}
+  \psi_T(x,t)&\simeq\frac CA\,\ee^{\ii\Phi_0}F(X),\\
+  \Phi_0&=k_{20}x-\frac{\hbar k_0^2}{2m}t+k_0a,\qquad
+  F(X)=(\pi\Delta^2)^{-1/4}\ee^{-X^2/(2\Delta^2)}.
+\end{align}
+其中 $\int|F(X)|^2\dd X=1$。忽略扩散和谱形变时，透射包的位置宽度为入射包的 $k_{20}/k_0$ 倍。这是窄谱近似，不是任意时间的精确形状；计算扩散应一致保留 $k_2(k_1)x$ 及 $-\hbar k_1^2t/(2m)$ 的二阶相位。
+
+在窄动量近似下，$C(k_1)/A(k_1)$ 可取为峰值处的常数 $C/A$。由
+\begin{equation}
+  \dd X=\frac{k_0}{k_{20}}\dd x
+  \quad\Longrightarrow\quad
+  \dd x=\frac{k_{20}}{k_0}\dd X,
+  \label{eq:QM-C05-S04-E01-jacobian}
+\end{equation}
+归一化包络给出
+\begin{align}
+  P_T
+  &=\int\abs{\psi_T(x,t)}^2\dd x\\
+  &\simeq\abs{\frac CA}^2
+    \frac{k_{20}}{k_0}
+    \int\abs{F(X)}^2\dd X\\
+  &=\boxed{
+    \frac{k_{20}}{k_0}\abs{\frac CA}^2}.
+  \label{eq:QM-C05-S04-E01-transmission}
+\end{align}
+由于 $v_2/v_1=k_{20}/k_0$，波包的空间压缩及其 Jacobian 正好重现定态概率流中的速度因子。
+
+\textbf{推导补充：不依赖波包形状的概率公式。}
+在式~\eqref{eq:QM-C05-S04-E01-packet-integral} 中改用透射波数 $k_2$，
+$\dd k_1/\dd k_2=k_2/k_1$。透射 Fourier 振幅因此含有一个 Jacobian：
+\begin{equation}
+  b_T(k_2,t)=a_{\mathrm{in}}(k_1)\tau(k_1)
+    \frac{k_2}{k_1}\ee^{-\ii\hbar k_1^2t/(2m)}.
+\end{equation}
+由 Fourier 变换保范数，再换回 $k_1$：
+\begin{align}
+  P_T&=\int_0^\infty|b_T(k_2,t)|^2\,\dd k_2\\
+     &=\int_{k_*}^\infty
+       |a_{\mathrm{in}}(k_1)|^2|\tau(k_1)|^2
+       \frac{k_2}{k_1}\,\dd k_1.
+  \label{eq:QM-C05-S04-E01-spectral-probability}
+\end{align}
+这是渐近入射波包的谱加权透射概率，不需要忽略扩散。窄峰时把流系数取在 $k_0$ 处，即恢复上式；能量分布较宽时则必须保留这个积分。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S04-E02A}{教材练习 5.4.2(a)：排斥 delta 势散射}
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S04-T02}{$E>V_0$：分段解、边界匹配与振幅}与
+\relatedtopic{QM-C05-S04-T03}{概率流、速度因子与波包 Jacobian}。
+
+粒子以能量 $E>0$ 从左侧射向
+\begin{equation}
+  V(x)=V_0a\delta(x),
+  \qquad V_0>0,\quad a>0.
+  \label{eq:QM-C05-S04-E02A-potential}
+\end{equation}
+求反射率 $R$ 和透射率 $T$，并检查零势垒与无限强势垒极限。
+
+\begin{checkedsolution}
+令 $k=\sqrt{2mE}/\hbar$，取
+\begin{equation}
+  \psi_I=A\ee^{\ii kx}+B\ee^{-\ii kx},
+  \qquad
+  \psi_{II}=C\ee^{\ii kx}.
+  \label{eq:QM-C05-S04-E02A-wavefunctions}
+\end{equation}
+波函数连续，而正 delta 势给出导数跳跃：
+\begin{equation}
+  A+B=C,
+  \qquad
+  \psi'(0^+)-\psi'(0^-)
+  =\frac{2mV_0a}{\hbar^2}\psi(0).
+  \label{eq:QM-C05-S04-E02A-boundary}
+\end{equation}
+定义
+\begin{equation}
+  \eta=\frac{mV_0a}{\hbar^2k},
+  \label{eq:QM-C05-S04-E02A-eta}
+\end{equation}
+则导数条件化为
+\begin{equation}
+  2\ii kB=2k\eta C
+  \quad\Longrightarrow\quad
+  B=-\ii\eta C.
+\end{equation}
+与 $1+B/A=C/A$ 联立，得到
+\begin{equation}
+  \boxed{t\equiv\frac CA=\frac{1}{1+\ii\eta}},
+  \qquad
+  \boxed{r\equiv\frac BA=-\frac{\ii\eta}{1+\ii\eta}}.
+  \label{eq:QM-C05-S04-E02A-amplitudes}
+\end{equation}
+两侧波数相同，故无需速度修正：
+\begin{equation}
+  \boxed{T=\frac{1}{1+\eta^2}},
+  \qquad
+  \boxed{R=\frac{\eta^2}{1+\eta^2}},
+  \qquad
+  R+T=1.
+  \label{eq:QM-C05-S04-E02A-RT}
+\end{equation}
+又因 $k^2=2mE/\hbar^2$，
+\begin{equation}
+  \eta^2=\frac{mV_0^2a^2}{2\hbar^2E}.
+\end{equation}
+$V_0a\to0$ 时 $(R,T)\to(0,1)$；$V_0a\to\infty$ 时 $(R,T)\to(1,0)$ 且 $r\to-1$。后一极限使左侧波函数在原点形成节点，等效于硬墙的 $\psi(0)=0$。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S04-E02B}{教材练习 5.4.2(b)：有限方势垒与隧穿}
+\nopagebreak[4]
+
+\textbf{对应知识点：}
+\relatedtopic{QM-C05-S04-T04}{$E<V_0$：倏逝波、全反射与有限势垒隧穿}。
+\nopagebreak[4]
+
+考虑
+\begin{equation}
+  V(x)=
+  \begin{cases}
+    0,&\abs x>a,\\
+    V_0,&\abs x<a,
+  \end{cases}
+  \qquad 0<E<V_0,
+  \label{eq:QM-C05-S04-E02B-potential}
+\end{equation}
+粒子从左侧入射。求 $R,T$，并检查窄势垒、无限高势垒和厚势垒极限。
+
+\begin{checkedsolution}
+定义
+\begin{equation}
+  k=\frac{\sqrt{2mE}}\hbar,
+  \qquad
+  \kappa=\frac{\sqrt{2m(V_0-E)}}\hbar,
+  \qquad
+  c=\cosh(\kappa a),
+  \qquad
+  s=\sinh(\kappa a).
+\end{equation}
+选取边界处振幅较简单的相位约定：
+\begin{align}
+  \psi_I&=\ee^{\ii k(x+a)}+r\ee^{-\ii k(x+a)},&&x<-a,\\
+  \psi_{II}&=C\cosh(\kappa x)+D\sinh(\kappa x),&&-a<x<a,\\
+  \psi_{III}&=t\ee^{\ii k(x-a)},&&x>a.
+  \label{eq:QM-C05-S04-E02B-wavefunctions}
+\end{align}
+若改为以原点为相位参考，$r,t$ 会各乘一个模为 $1$ 的因子，$R,T$ 不变。
+势垒内部是有限区间，因此必须保留两个指数方向，不能以“增长”名义删去其中之一。$x=a$ 处连续性给出
+\begin{equation}
+  t=Cc+Ds,
+  \qquad
+  \frac{\ii k}{\kappa}t=Cs+Dc.
+\end{equation}
+利用 $c^2-s^2=1$ 反解：
+\begin{equation}
+  C=t\left(c-\ii\frac{k}{\kappa}s\right),
+  \qquad
+  D=t\left(-s+\ii\frac{k}{\kappa}c\right).
+  \label{eq:QM-C05-S04-E02B-CD}
+\end{equation}
+$x=-a$ 处的两条条件为
+\begin{equation}
+  1+r=Cc-Ds,
+  \qquad
+  \ii k(1-r)=-\kappa Cs+\kappa Dc.
+\end{equation}
+代入式~\eqref{eq:QM-C05-S04-E02B-CD} 并用
+$c^2+s^2=\cosh(2\kappa a)$、$2sc=\sinh(2\kappa a)$：
+\begin{align}
+  1+r
+  &=t\left[
+    \cosh(2\kappa a)
+    -\ii\frac{k}{\kappa}\sinh(2\kappa a)
+  \right],\\
+  1-r
+  &=t\left[
+    \cosh(2\kappa a)
+    +\ii\frac{\kappa}{k}\sinh(2\kappa a)
+  \right].
+  \label{eq:QM-C05-S04-E02B-two-equations}
+\end{align}
+相加消去 $r$：
+\begin{equation}
+  t=
+  \frac{1}{
+    \cosh(2\kappa a)
+    +\ii\dfrac{\kappa^2-k^2}{2k\kappa}
+      \sinh(2\kappa a)}.
+  \label{eq:QM-C05-S04-E02B-t}
+\end{equation}
+将式~\eqref{eq:QM-C05-S04-E02B-two-equations} 两式相减，得到
+\begin{equation}
+  r=-\ii\frac{k^2+\kappa^2}{2k\kappa}
+    \sinh(2\kappa a)\,t.
+  \label{eq:QM-C05-S04-E02B-r}
+\end{equation}
+两侧传播速度相同，因此 $T=\abs t^2$。利用 $\cosh^2u=1+\sinh^2u$ 及
+\begin{equation}
+  1+\frac{(\kappa^2-k^2)^2}{4k^2\kappa^2}
+  =\frac{(k^2+\kappa^2)^2}{4k^2\kappa^2},
+\end{equation}
+得到
+\begin{equation}
+  T=
+  \left[
+    1+\frac{(k^2+\kappa^2)^2}{4k^2\kappa^2}
+    \sinh^2(2\kappa a)
+  \right]^{-1}.
+\end{equation}
+再用 $k^2+\kappa^2=2mV_0/\hbar^2$：
+\begin{equation}
+  \boxed{
+  T=
+  \left[
+    1+\frac{V_0^2}{4E(V_0-E)}
+    \sinh^2(2\kappa a)
+  \right]^{-1}},
+  \qquad
+  \boxed{R=1-T}.
+  \label{eq:QM-C05-S04-E02B-RT}
+\end{equation}
+$a\to0$ 且 $V_0$ 固定时 $T\to1$。这与 delta 极限不同；后者还需令 $V_0\to\infty$ 并保持面积 $2aV_0$ 有限。$V_0\to\infty$ 时 $T\to0$。若 $\kappa a\gg1$，则
+\begin{equation}
+  \boxed{
+  T\simeq\frac{16E(V_0-E)}{V_0^2}\ee^{-4\kappa a}}
+  =\frac{16E(V_0-E)}{V_0^2}\ee^{-2\kappa L},
+  \qquad L=2a.
+  \label{eq:QM-C05-S04-E02B-thick-limit}
+\end{equation}
+振幅穿过宽度 $L$ 约衰减 $\ee^{-\kappa L}$，概率因模平方而出现 $\ee^{-2\kappa L}$。
+\end{checkedsolution}
+
+\exercisequestion{QM-C05-S04-E03}{教材练习 5.4.3：恒力下的传播子}
+
+\textbf{对应知识点：}第 4.3 节传播算符、第 5.1 节自由粒子传播子，以及连续谱的表象变换。
+
+一维粒子受到恒力 $f$，故
+\begin{equation}
+  V(x)=-fx,
+  \qquad
+  H=\frac{P^2}{2m}-fX.
+  \label{eq:QM-C05-S04-E03-hamiltonian}
+\end{equation}
+求动量表象传播子 $U(p,t;p',0)$，再 Fourier 变换到位置表象。以下取 $m>0$、$t>0$、实常力 $f$；含 $1/f$ 的中间写法先假设 $f\ne0$，最后用多项式形式取 $f\to0$ 极限。
+
+\begin{checkedsolution}
+在动量表象中 $P\to p$、$X\to\ii\hbar\partial_p$，所以
+\begin{equation}
+  \pdv{\widetilde\psi}{t}
+  +f\pdv{\widetilde\psi}{p}
+  =-\frac{\ii p^2}{2m\hbar}\widetilde\psi.
+  \label{eq:QM-C05-S04-E03-momentum-pde}
+\end{equation}
+特征线满足 $\dd p/\dd t=f$。若初始动量为 $p'$，则
+\begin{equation}
+  p(s)=p'+fs,
+  \qquad
+  p=p'+ft.
+  \label{eq:QM-C05-S04-E03-characteristic}
+\end{equation}
+特征线的作用是把偏微分方程化为沿一条曲线的一阶常微分方程。链式法则给出
+\begin{equation}
+  \frac{\dd}{\dd s}\widetilde\psi(p'+fs,s)
+  =\left(\partial_s+f\partial_p\right)\widetilde\psi
+  =-\frac{\ii(p'+fs)^2}{2m\hbar}\widetilde\psi.
+\end{equation}
+这与 $y'(s)=g(s)y(s)$ 的解
+$y(s)=y(0)\exp[\int_0^s g(u)\dd u]$ 相同。指数积分的导数恰好恢复 $g(s)y(s)$，不需另设解法。
+沿特征线积累的能量积分为
+\begin{align}
+  I
+  &=\int_0^t\frac{(p'+fs)^2}{2m}\dd s\\
+  &=\frac{p'^2t}{2m}
+   +\frac{p'ft^2}{2m}
+   +\frac{f^2t^3}{6m}
+   =\frac{p^3-p'^3}{6mf}.
+  \label{eq:QM-C05-S04-E03-phase-integral}
+\end{align}
+因此
+\begin{equation}
+  \widetilde\psi(p,t)
+  =\exp\left[
+    \frac{\ii((p-ft)^3-p^3)}{6mf\hbar}
+  \right]\widetilde\psi(p-ft,0),
+\end{equation}
+对应传播子
+\begin{equation}
+  \boxed{
+  U(p,t;p',0)
+  =\exp\left[
+    \frac{\ii(p'^3-p^3)}{6mf\hbar}
+  \right]\delta(p-p'-ft)}.
+  \label{eq:QM-C05-S04-E03-momentum-propagator}
+\end{equation}
+delta 函数编码经典冲量关系 $p=p'+ft$，指数则记录动力学相位。
+在 delta 函数的支撑上，相位中的能量积分也可写为
+\begin{equation}
+  I=\frac{p^2t}{2m}-\frac{pft^2}{2m}+\frac{f^2t^3}{6m}.
+\end{equation}
+这一形式在 $f=0$ 时没有奇点，并立即还原自由粒子的动量相位。
+
+插入动量完备关系：
+\begin{equation}
+  U(x,t;x',0)
+  =\frac{1}{2\pi\hbar}
+  \int\dd p\dd p'\,
+  \ee^{\ii px/\hbar}
+  U(p,t;p',0)
+  \ee^{-\ii p'x'/\hbar}.
+  \label{eq:QM-C05-S04-E03-fourier-start}
+\end{equation}
+利用 delta 函数先做 $p$ 积分，令 $p=p'+ft$：
+\begin{equation}
+  U(x,t;x',0)=\frac{1}{2\pi\hbar}\int\dd p'\,
+  \exp\left\{\frac{\ii}{\hbar}
+    \left[(p'+ft)x-p'x'
+      +\frac{p'^3-(p'+ft)^3}{6mf}\right]\right\}.
+\end{equation}
+展开 $(p'+ft)^3=p'^3+3p'^2ft+3p'f^2t^2+f^3t^3$，指数方括号化为
+\begin{equation}
+  -\frac{t}{2m}p'^2
+  +\left(x-x'-\frac{ft^2}{2m}\right)p'
+  +ftx-\frac{f^2t^3}{6m}.
+  \label{eq:QM-C05-S04-E03-quadratic-phase}
+\end{equation}
+记
+\begin{equation}
+  b=x-x'-\frac{ft^2}{2m},
+\end{equation}
+则
+\begin{equation}
+  -\frac{t}{2m}p'^2+bp'
+  =-\frac{t}{2m}
+    \left(p'-\frac{mb}{t}\right)^2
+   +\frac{mb^2}{2t}.
+  \label{eq:QM-C05-S04-E03-complete-square}
+\end{equation}
+把与 $p'$ 无关的相位提出积分：
+\begin{align}
+  U(x,t;x',0)
+  &=\frac{\ee^{\frac{\ii}{\hbar}
+       (mb^2/(2t)+ftx-f^2t^3/(6m))}}{2\pi\hbar}\\
+  &\quad\times\int_{-\infty}^{\infty}
+     \exp\left[-\frac{\ii t}{2m\hbar}
+          \left(p'-\frac{mb}{t}\right)^2\right]\dd p'.
+\end{align}
+使用 Fresnel 积分
+\begin{equation}
+  \int_{-\infty}^{\infty}
+  \exp\left[-\frac{\ii t}{2m\hbar}(p'-p_c)^2\right]\dd p'
+  =\sqrt{\frac{2\pi m\hbar}{\ii t}},
+  \qquad t>0,
+\end{equation}
+这里的振荡积分按加入 $\ee^{-\epsilon(p'-p_c)^2}$ 后取 $\epsilon\to0^+$ 理解；$t>0$ 时选择 $1/\sqrt{\ii}=\ee^{-\ii\pi/4}$。乘上原系数 $1/(2\pi\hbar)$，得到 $\sqrt{m/(2\pi\ii\hbar t)}$。
+
+接着单独处理常数相位。展开 $b^2$：
+\begin{equation}
+  \frac{mb^2}{2t}
+  =\frac{m(x-x')^2}{2t}-\frac{ft}{2}(x-x')
+    +\frac{f^2t^3}{8m}.
+\end{equation}
+线性项为 $-\tfrac{ft}{2}(x-x')+ftx=\tfrac{ft}{2}(x+x')$；
+立方时间项的系数为 $1/8-1/6=-1/24$，因此
+\begin{align}
+  \frac{mb^2}{2t}+ftx-\frac{f^2t^3}{6m}
+  &=\frac{m(x-x')^2}{2t}
+   +\frac{ft}{2}(x+x')
+   -\frac{f^2t^3}{24m}.
+  \label{eq:QM-C05-S04-E03-classical-action}
+\end{align}
+最终
+\begin{equation}
+  \boxed{\begin{aligned}
+  U(x,t;x',0)&=\sqrt{\frac{m}{2\pi\ii\hbar t}}\,
+       \exp\left(\frac{\ii}{\hbar}S_{\mathrm{cl}}\right),\\
+  S_{\mathrm{cl}}&=\frac{m(x-x')^2}{2t}
+       +\frac{ft}{2}(x+x')-\frac{f^2t^3}{24m}.
+  \end{aligned}}
+  \label{eq:QM-C05-S04-E03-position-propagator}
+\end{equation}
+$f\to0$ 时立即恢复自由粒子传播子，是符号与系数的自检。
+
+\textbf{物理联系：为何指数是经典作用量。}
+连接 $(x',0)$ 与 $(x,t)$ 的恒力轨迹为
+\begin{equation}
+  y(s)=x'+v_0s+\frac{f}{2m}s^2,\qquad
+  v_0=\frac{x-x'}{t}-\frac{ft}{2m}.
+\end{equation}
+把它代入 $\mathcal L=m\dot y^2/2+fy$，有
+\begin{align}
+  S[y]&=\int_0^t
+      \left[\frac{mv_0^2}{2}+fx'+2fv_0s
+             +\frac{f^2s^2}{m}\right]\dd s\\
+      &=\frac{mv_0^2t}{2}+fx't+fv_0t^2
+             +\frac{f^2t^3}{3m}\\
+      &=\frac{m(x-x')^2}{2t}
+        +\frac{ft}{2}(x+x')-\frac{f^2t^3}{24m}.
+\end{align}
+所以 $S_{\mathrm{cl}}$ 确实是经典路径的作用量。这是将传播子与经典力学联系起来的补充说明；本题的精确性已经由前面的 Fourier 积分保证。只有 $\ee^{\ii S_{\mathrm{cl}}/\hbar}$ 还不是完整传播子，归一化前因子及平方根分支同样不可省略。
+\end{checkedsolution}

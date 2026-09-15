@@ -1,6 +1,6 @@
 % 教材：Shankar, Principles of Quantum Mechanics, Second Edition
-% 已覆盖：第 5 章第 5.1--5.2 节，印刷页 pp. 151--164，PDF pp. 163--176
-% 人工核验：已完成分块讲解、教材练习 5.1.1--5.2.6 与订正
+% 已覆盖：第 5 章第 5.1--5.4 节，印刷页 pp. 151--175，PDF pp. 163--187
+% 人工核验：已完成分块讲解、教材练习 5.1.1--5.4.3 与订正
 
 \clearpage
 \section{第 5.1 节：自由粒子}
@@ -674,3 +674,580 @@ $n=0$ 只给出零函数，负整数则与正整数给出同一物理本征态�
 \textbf{一分钟回顾。}
 
 无限深势阱用 $\psi(\pm L/2)=0$ 把连续波数筛为 $k_n=n\pi/L$，从而得到离散、正的能谱。有限墙允许指数尾，但正规化与边界匹配仍只容许离散束缚能量；高于阱外势的平台则形成连续散射谱。基态非零能量来自空间局域化，Poincar\'e 不等式给出精确下界。时间演化在能量基中只是逐分量积累相位，能量概率不变而位置干涉项可随时间变化。表象的选择应服从“让 Hamiltonian 尽量对角”的计算原则。
+
+\clearpage
+\section{第 5.3 节：概率连续性方程}
+\label{section:QM-C05-S03}
+
+\studymeta
+  {QM-C05-S03}
+  {2026-09-14}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 5 章 \S 5.3；印刷页 pp.~165--167；PDF pp.~177--179}
+  {讲解、教材练习 5.3.1--5.3.4 与订正已完成}
+
+\textbf{本节主线。}
+
+酉演化保证全空间总概率不变，但只知道“总量不变”还不能说明概率如何在空间中转移。连续性方程把整体守恒加强为局域守恒：任一区域内概率的变化只能由穿过边界的概率流解释。对标准的实标势 Hamiltonian，这一方程不是额外公设，而是 Born 概率密度与 Schr\"odinger 方程的直接推论。
+
+\textbf{来源边界。}整体与局域守恒的对比、概率流的推导、系综解释以及教材练习 5.3.1--5.3.4 来自教材第 5.3 节。振幅--相位分解、stationary state 不必满足 $\mathbf j=0$、实波函数不等于零动量本征态，以及复势作为开放通道有效模型的解释，是对话中的严格性与物理直觉补充。
+
+\notetopic{QM-C05-S03-T01}{整体概率守恒与局域连续性方程}
+
+\keyidea{整体概率守恒只约束全空间积分；局域守恒进一步要求，固定区域内概率的减少必须等于穿过其边界的净向外概率流。}
+
+定义三维位置概率密度
+\begin{equation}
+  \rho(\mathbf r,t)=\abs{\psi(\mathbf r,t)}^2.
+  \label{eq:QM-C05-S03-density}
+\end{equation}
+若封闭系统按酉算符 $U(t)$ 演化，则
+\begin{align}
+  \int_{\real^3}\rho(\mathbf r,t)\dd^3r
+  &=\braket{\psi(t)}{\psi(t)} \\
+  &=\bra{\psi(0)}U^\dagger(t)U(t)\ket{\psi(0)}
+  =\braket{\psi(0)}{\psi(0)}.
+  \label{eq:QM-C05-S03-global-conservation}
+\end{align}
+归一化初态因而始终满足全空间总概率为一。这是 global conservation（整体守恒），却不排除“某处消失、远处同时出现而总量碰巧不变”的非局域重排。局域守恒要求存在 probability current density（概率流密度）$\mathbf j$，使
+\begin{equation}
+  \boxed{
+  \pdv{\rho}{t}+\nabla\cdot\mathbf j=0}.
+  \label{eq:QM-C05-S03-continuity}
+\end{equation}
+
+对固定区域 $\Omega$ 定义
+\begin{equation}
+  P_\Omega(t)=\int_\Omega\rho(\mathbf r,t)\dd^3r.
+  \label{eq:QM-C05-S03-region-probability}
+\end{equation}
+将式~\eqref{eq:QM-C05-S03-continuity} 在 $\Omega$ 上积分，并使用散度定理，得到
+\begin{equation}
+  \boxed{
+  \odv{P_\Omega}{t}
+  =-\oint_{\partial\Omega}\mathbf j\cdot\dd\mathbf S}.
+  \label{eq:QM-C05-S03-integral-continuity}
+\end{equation}
+$\dd\mathbf S=\mathbf n\dd S$ 按约定指向区域外侧。边界上的净向外通量为正时，区域内概率减少；净向内通量为正时，区域内概率增加。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Latex,scale=0.9]
+    \draw[thick,fill=blue!4]
+      plot[smooth cycle,tension=0.8]
+      coordinates {(-2.4,0.1) (-1.5,1.45) (0.2,1.7) (2.2,0.8)
+                   (2.45,-0.5) (0.8,-1.5) (-1.4,-1.25)};
+    \node at (0,0) {$\Omega$};
+    \node[above] at (0.2,1.7) {$\partial\Omega$};
+    \draw[->,thick,blue!70!black] (-1.85,0.95)--(-2.75,1.55);
+    \draw[->,thick,blue!70!black] (1.65,1.2)--(2.25,2.0);
+    \draw[->,thick,blue!70!black] (2.35,-0.1)--(3.35,-0.15);
+    \draw[->,thick,blue!70!black] (0.2,-1.45)--(0.15,-2.35);
+    \node[right,blue!70!black] at (3.35,-0.15)
+      {$\mathbf j\cdot\mathbf n$};
+    \draw[->,thick,red!70!black] (-3.2,-0.55)--(-2.15,-0.45);
+    \node[left,red!70!black] at (-3.2,-0.55) {流入};
+  \end{tikzpicture}
+  \caption{固定区域内概率的变化由穿过边界的净通量决定。蓝色箭头表示沿外法向的流出，红色箭头表示流入。}
+  \label{fig:QM-C05-S03-boundary-flux}
+\end{figure}
+
+一维区间 $[a,b]$ 上的积分形式尤其直观：
+\begin{equation}
+  \boxed{
+  \odv{}{t}\int_a^b\rho(x,t)\dd x
+  =j(a,t)-j(b,t)}.
+  \label{eq:QM-C05-S03-one-dimensional-balance}
+\end{equation}
+这里约定 $j>0$ 指向 $+x$：$j(a)$ 是从左端进入的有向流，$j(b)$ 是从右端离开的有向流；公式本身也自动处理反向流。
+
+将 $\Omega$ 扩展到全空间，若无穷远边界满足
+\begin{equation}
+  \lim_{R\to\infty}\oint_{S_R}\mathbf j\cdot\dd\mathbf S=0,
+  \label{eq:QM-C05-S03-no-flux-at-infinity}
+\end{equation}
+则局域连续性方程推出整体概率守恒。反过来，只有总积分不变不能推出局域连续性方程；在无穷远无通量的通常情形下，整体守恒只是局域守恒的必要而非充分条件。
+
+\notetopic{QM-C05-S03-T02}{从 Schr\"odinger 方程推导概率流}
+
+\keyidea{对 Schr\"odinger 方程及其复共轭作适当的乘法与相减，势能项因实标势而抵消，动能项则可由乘积法则写成一个散度。}
+
+对实值标势 $V(\mathbf r,t)$，位置表象中的 Schr\"odinger 方程及其复共轭分别为
+\begin{align}
+  \ii\hbar\pdv{\psi}{t}
+  &=-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi,
+  \label{eq:QM-C05-S03-schrodinger}\\
+  -\ii\hbar\pdv{\psi^*}{t}
+  &=-\frac{\hbar^2}{2m}\nabla^2\psi^*+V\psi^*.
+  \label{eq:QM-C05-S03-conjugate-schrodinger}
+\end{align}
+第二式使用了 $V^*=V$；在适当定义域和边界条件下，这对应乘法势算符的 Hermitian 性。用 $\psi^*$ 乘第一式，用 $\psi$ 乘第二式，再将两式相减：
+\begin{align}
+  \ii\hbar
+  \left(
+    \psi^*\pdv{\psi}{t}
+    +\psi\pdv{\psi^*}{t}
+  \right)
+  &=-\frac{\hbar^2}{2m}
+  \left(
+    \psi^*\nabla^2\psi
+    -\psi\nabla^2\psi^*
+  \right),\\
+  \ii\hbar\pdv{\rho}{t}
+  &=-\frac{\hbar^2}{2m}
+  \left(
+    \psi^*\nabla^2\psi
+    -\psi\nabla^2\psi^*
+  \right).
+  \label{eq:QM-C05-S03-density-time-derivative}
+\end{align}
+势能项确实消失，因为
+\begin{equation}
+  \psi^*V\psi-\psi V\psi^*=0.
+  \label{eq:QM-C05-S03-potential-cancellation}
+\end{equation}
+
+乘积法则给出
+\begin{align}
+  \nabla\cdot(\psi^*\nabla\psi)
+  &=\nabla\psi^*\cdot\nabla\psi+\psi^*\nabla^2\psi,\\
+  \nabla\cdot(\psi\nabla\psi^*)
+  &=\nabla\psi\cdot\nabla\psi^*+\psi\nabla^2\psi^*.
+\end{align}
+相减后，两个梯度内积相同而抵消，因此
+\begin{equation}
+  \psi^*\nabla^2\psi-\psi\nabla^2\psi^*
+  =\nabla\cdot
+  (\psi^*\nabla\psi-\psi\nabla\psi^*).
+  \label{eq:QM-C05-S03-divergence-identity}
+\end{equation}
+代回式~\eqref{eq:QM-C05-S03-density-time-derivative} 并与连续性方程比较，得到
+\begin{equation}
+  \boxed{
+  \mathbf j
+  =\frac{\hbar}{2m\ii}
+  (\psi^*\nabla\psi-\psi\nabla\psi^*)
+  =\frac{\hbar}{m}\operatorname{Im}(\psi^*\nabla\psi)}.
+  \label{eq:QM-C05-S03-probability-current}
+\end{equation}
+一维时只需把 $\nabla$ 换成 $\partial_x$：
+\begin{equation}
+  j(x,t)=\frac{\hbar}{2m\ii}
+  \left(
+    \psi^*\pdv{\psi}{x}
+    -\psi\pdv{\psi^*}{x}
+  \right).
+  \label{eq:QM-C05-S03-current-one-dimensional}
+\end{equation}
+因此 $\rho$ 来自 Born 规则，而 $\mathbf j$ 的具体形式由 Schr\"odinger 动力学和局域守恒共同确定，并不是另加的独立概率公设。
+
+\notetopic{QM-C05-S03-T03}{相位梯度、定态概率流与源汇}
+
+\keyidea{概率密度由波函数振幅决定，概率流还读取空间相位梯度。定态只要求流的散度为零，不要求流本身为零；非 Hermitian 有效势则会在连续性方程中产生源项或汇项。}
+
+把波函数写成振幅--相位形式
+\begin{equation}
+  \psi(\mathbf r,t)=R(\mathbf r,t)
+  \exp\left(\frac{\ii S(\mathbf r,t)}{\hbar}\right),
+  \qquad R\geq0,
+  \label{eq:QM-C05-S03-polar-wavefunction}
+\end{equation}
+则
+\begin{equation}
+  \rho=R^2,
+  \qquad
+  \boxed{\mathbf j=\frac{\rho}{m}\nabla S}.
+  \label{eq:QM-C05-S03-current-phase}
+\end{equation}
+所以振幅决定局部概率密度，相位梯度决定概率的局部流向。只要 $\rho\neq0$，还可定义
+\begin{equation}
+  \mathbf v_{\mathrm{flow}}
+  =\frac{\mathbf j}{\rho}
+  =\frac{\nabla S}{m}.
+  \label{eq:QM-C05-S03-flow-velocity}
+\end{equation}
+它是概率流的局域速度场，不等于一般叠加态的一次动量测量结果；在波函数节点 $\rho=0$ 处也不应使用该比值。
+
+对动量为 $\mathbf p$ 的平面波，
+\begin{equation}
+  \psi_{\mathbf p}(\mathbf r,t)
+  =A\exp\left[
+    \frac{\ii}{\hbar}
+    (\mathbf p\cdot\mathbf r-Et)
+  \right],
+  \label{eq:QM-C05-S03-plane-wave}
+\end{equation}
+有
+\begin{equation}
+  \rho=\abs A^2,
+  \qquad
+  \boxed{\mathbf j=\rho\frac{\mathbf p}{m}}.
+  \label{eq:QM-C05-S03-plane-wave-current}
+\end{equation}
+这里 $\rho$ 和 $\mathbf j$ 都是常量，因此 $\partial_t\rho=0$、$\nabla\cdot\mathbf j=0$。平面波虽不可普通归一化，却仍在形式上满足局域连续性方程；完整计算见
+\relatedexercise{QM-C05-S03-E03}{教材练习 5.3.3：动量本征函数的概率流}。
+
+若 $\psi(x,t)=\phi(x)\ee^{-\ii Et/\hbar}$ 是 stationary state，则 $\partial_t\rho=0$，一维连续性方程只推出
+\begin{equation}
+  \pdv{j}{x}=0
+  \quad\Longrightarrow\quad
+  j=\text{常数},
+  \label{eq:QM-C05-S03-stationary-constant-current}
+\end{equation}
+而不自动推出 $j=0$。自由平面波就是具有非零恒定流的定态。对通常的一维正规化束缚态，无穷远处没有概率流，常数才被迫为零；若空间函数可取为实函数，式~\eqref{eq:QM-C05-S03-current-one-dimensional} 也直接给出 $j=0$。
+
+\dialoguesupplement{实空间波函数只保证净概率流为零，不保证动量测量必得零。例如 $\cos kx=(\ee^{\ii kx}+\ee^{-\ii kx})/2$ 是 $\pm\hbar k$ 两个动量方向的等权叠加，二者的流抵消，但动量涨落并不为零。相应推导见\relatedexercise{QM-C05-S03-E02}{教材练习 5.3.2：实波函数的概率流}。}
+
+更一般地，一维左右行波叠加
+\begin{equation}
+  \psi(x)=A\ee^{\ii px/\hbar}+B\ee^{-\ii px/\hbar}
+  \label{eq:QM-C05-S03-counterpropagating-state}
+\end{equation}
+具有概率密度
+\begin{equation}
+  \rho(x)=\abs A^2+\abs B^2
+  +2\operatorname{Re}
+  \left(AB^*\ee^{2\ii px/\hbar}\right),
+  \label{eq:QM-C05-S03-counterpropagating-density}
+\end{equation}
+但概率流为
+\begin{equation}
+  \boxed{j=\frac{p}{m}(\abs A^2-\abs B^2)}.
+  \label{eq:QM-C05-S03-counterpropagating-current}
+\end{equation}
+$\rho$ 中的交叉项形成空间干涉条纹；$j$ 的反对称导数组合则使这些交叉项抵消，只留下右行流减左行流。相对相位会平移条纹，却不改变净流。完整推导见
+\relatedexercise{QM-C05-S03-E04}{教材练习 5.3.4}。
+
+概率流还有直接的 ensemble interpretation（系综解释）：若 $N$ 个独立、同样制备的粒子都处于态 $\psi$，则短时间 $\dd t$ 内穿过有向面积元 $\dd\mathbf S$ 的期望粒子数为
+\begin{equation}
+  \dd N=N\mathbf j\cdot\dd\mathbf S\dd t.
+  \label{eq:QM-C05-S03-ensemble-flux}
+\end{equation}
+三维中 $[\rho]=L^{-3}$、$[\mathbf j]=L^{-2}T^{-1}$，与这一解释一致。
+
+最后，若采用复有效势
+\begin{equation}
+  V=V_R-\ii V_I,
+  \qquad V_I>0,
+  \label{eq:QM-C05-S03-complex-potential}
+\end{equation}
+则 Hamiltonian 不再 Hermitian，连续性方程变为
+\begin{equation}
+  \boxed{
+  \pdv{\rho}{t}+\nabla\cdot\mathbf j
+  =-\frac{2V_I}{\hbar}\rho}.
+  \label{eq:QM-C05-S03-sink-continuity}
+\end{equation}
+右端是 probability sink（概率汇）。若 $V_I$ 为常数、无穷远没有通量且初始总概率为一，则
+\begin{equation}
+  P(t)=\exp\left(-\frac{2V_It}{\hbar}\right).
+  \label{eq:QM-C05-S03-total-decay}
+\end{equation}
+这类非 Hermitian 势是只保留某些通道的有效描述：概率离开所保留的子空间进入吸收装置、反应产物或其他未显式建模的自由度。把环境和所有通道纳入更大的封闭系统后，总演化仍应是酉的。完整推导见
+\relatedexercise{QM-C05-S03-E01}{教材练习 5.3.1：复吸收势与概率衰减}。
+
+\textbf{一分钟回顾。}
+
+概率连续性方程 $\partial_t\rho+\nabla\cdot\mathbf j=0$ 把整体归一化提升为局域守恒；对任意固定区域，概率变化率等于负的边界净向外通量。标准概率流由 Schr\"odinger 方程推出，既依赖振幅又依赖空间相位。定态只要求 $\nabla\cdot\mathbf j=0$，束缚边界才通常进一步迫使 $\mathbf j=0$。实波函数的零净流不等于零动量确定态；左右行波可在密度中干涉而在净流中相减。负虚势则作为有效概率汇，使保留通道中的范数衰减。
+
+\clearpage
+\section{第 5.4 节：单阶跃势与一维散射}
+\label{section:QM-C05-S04}
+
+\studymeta
+  {QM-C05-S04}
+  {2026-09-15}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 5 章 \S 5.4；印刷页 pp.~167--175；PDF pp.~179--187}
+  {讲解、教材练习 5.4.1--5.4.3 与订正已完成}
+
+\textbf{本节主线。}
+
+一维散射把真实的局域波包过程与便于计算的定态平面波方法连接起来。对单阶跃势，先由分段 Schr\"odinger 方程和边界匹配求入射、反射与透射振幅，再用概率流而非单纯振幅模平方定义反射率和透射率。$E>V_0$ 时量子粒子仍可部分反射；$E<V_0$ 时半无限台阶中存在无净流的倏逝波，而有限宽势垒则允许非零隧穿。
+
+\textbf{来源边界。}阶跃势、Gaussian 入射波包、定态散射算法、反射与透射系数及 $E<V_0$ 的讨论来自教材第 5.4 节。有限势垒的完整匹配公式、虚波数的严格解释以及传播子中经典作用量的说明，是结合教材习题与对话推导补全的内容。教材脚注把本节标为较难，并允许读者学完第 7 章后再读；本笔记仍按当前所需前置知识展开全部关键步骤。
+
+\notetopic{QM-C05-S04-T01}{真实波包、散射通道与定态算法}
+
+\keyidea{局域波包负责描述“何时到达、如何分裂”的动态过程；动量足够尖锐时，各波数分量近似具有相同散射系数，因而可用单能量定态解计算最终反射和透射概率。}
+
+以下取质量 $m>0$ 恒定、实势且无吸收，并考虑高度 $V_0>0$ 的单阶跃势
+\begin{equation}
+  V(x)=
+  \begin{cases}
+    0,&x<0\quad(\text{区域 I}),\\
+    V_0,&x>0\quad(\text{区域 II}).
+  \end{cases}
+  \label{eq:QM-C05-S04-step-potential}
+\end{equation}
+经典粒子从左侧入射时，$E>V_0$ 将越过台阶并减速，$E<V_0$ 则完全反射。量子计算将分别显示：前者仍有非零反射，后者的波函数仍可渗入经典禁区。
+
+严格平面波遍布全空间，不能描述一个最初位于左侧、随后碰撞台阶的粒子。教材因此从 Gaussian 波包出发：
+\begin{equation}
+  \psi_I(x,0)
+  =(\pi\Delta^2)^{-1/4}
+  \exp[\ii k_0(x+a)]
+  \exp\left[-\frac{(x+a)^2}{2\Delta^2}\right].
+  \label{eq:QM-C05-S04-incident-gaussian}
+\end{equation}
+它满足
+\begin{equation}
+  \expect X=-a,
+  \qquad
+  \expect P=\hbar k_0,
+  \qquad
+  \Delta X=\frac{\Delta}{\sqrt2},
+  \qquad
+  \Delta P=\frac{\hbar}{\sqrt2\Delta}.
+  \label{eq:QM-C05-S04-gaussian-data}
+\end{equation}
+取 $k_0>0$、$a\gg\Delta$ 使初态远离台阶；取 $k_0\Delta\gg1$ 则使动量分布窄峰化于 $k_0$，从而近似具有确定入射能量
+\begin{equation}
+  E_0=\frac{\hbar^2k_0^2}{2m}.
+  \label{eq:QM-C05-S04-incident-energy}
+\end{equation}
+这里必须接受不确定性带来的权衡：能量越尖锐，入射波包在位置空间越宽。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Latex,scale=0.9]
+    \draw[->] (-5,0)--(5,0) node[right] {$x$};
+    \draw[->] (-5,0)--(-5,1.9) node[above] {$V(x)$};
+    \draw[thick] (-5,0)--(0,0)--(0,1.1)--(4.5,1.1);
+    \node[above] at (3.7,1.1) {$V_0$};
+    \node[below] at (-2.5,0) {区域 I};
+    \node[below] at (2.5,0) {区域 II};
+    \draw[->] (-5,-2.5)--(5,-2.5) node[right] {$x$};
+    \draw[->] (-5,-2.5)--(-5,-0.8) node[above] {$|\psi|^2$};
+    \draw[dashed] (0,-2.7)--(0,1.5);
+    \draw[thick,blue!70!black,domain=-4.7:-0.7,samples=80]
+      plot (\x,{-2.5+1.15*exp(-2*(\x+2.7)^2)});
+    \draw[->,blue!70!black] (-2.2,-1.45)--(-3.3,-1.45);
+    \node[above,blue!70!black] at (-2.7,-1.45) {反射包};
+    \draw[thick,red!70!black,domain=0.6:3.4,samples=80]
+      plot (\x,{-2.5+0.95*exp(-4*(\x-1.8)^2)});
+    \draw[->,red!70!black] (1.5,-1.5)--(2.5,-1.5);
+    \node[above,red!70!black] at (2.0,-1.5) {透射包};
+  \end{tikzpicture}
+  \caption{上图为势能台阶，下图示意 $E_0>V_0$ 时碰撞后分离的两个波包及其传播方向。密度曲线仅作示意，面积和高度不代表特定参数下的数值结果。}
+  \label{fig:QM-C05-S04-packet-scattering}
+\end{figure}
+
+在足够晚的时刻，反射包与透射包彼此分离，定义
+\begin{equation}
+  R=\int\abs{\psi_R(x,t)}^2\dd x,
+  \qquad
+  T=\int\abs{\psi_T(x,t)}^2\dd x,
+  \qquad
+  R+T=1.
+  \label{eq:QM-C05-S04-packet-RT}
+\end{equation}
+$R,T$ 是重复制备同一初态后得到两类结果的概率，并非单个粒子被分割。完整动态算法是：求定态散射本征函数，投影初始包，给每个能量分量附加时间相位，再在晚时识别两个波包。窄动量极限使散射振幅可在 $k_0$ 处提出积分，最终退化为下面的定态概率流计算。
+
+\notetopic{QM-C05-S04-T02}{\texorpdfstring{$E>V_0$}{E > V0}：分段解、边界匹配与振幅}
+
+\keyidea{有限势阶不含 delta 奇点，因此波函数及其一阶导数在边界连续；“只从左侧入射”则排除区域 II 中从 $+\infty$ 向左传播的分量。}
+
+对定态能量 $E>V_0$，定义
+\begin{equation}
+  k_1=\frac{\sqrt{2mE}}{\hbar},
+  \qquad
+  k_2=\frac{\sqrt{2m(E-V_0)}}{\hbar}.
+  \label{eq:QM-C05-S04-wave-numbers}
+\end{equation}
+两区的一般振荡解为
+\begin{align}
+  \psi_I(x)&=A\ee^{\ii k_1x}+B\ee^{-\ii k_1x},\\
+  \psi_{II}(x)&=C\ee^{\ii k_2x}+D\ee^{-\ii k_2x}.
+  \label{eq:QM-C05-S04-general-propagating-solutions}
+\end{align}
+$A,B,C,D$ 依次对应右行入射、左行反射、右行透射和从右侧入射的左行波。给定只有左侧入射源，故 $D=0$，但 $B$ 可由台阶反射产生。
+
+若 $\psi$ 在边界跳跃，则 $\psi''$ 含有 delta 的导数，而有限势对应的 $(V-E)\psi$ 无法与之平衡，故 $\psi$ 连续。再把定态 Schr\"odinger 方程在 $[-\epsilon,\epsilon]$ 上积分：
+\begin{equation}
+  \psi'(\epsilon)-\psi'(-\epsilon)
+  =\frac{2m}{\hbar^2}
+    \int_{-\epsilon}^{\epsilon}(V-E)\psi\,\dd x
+  \longrightarrow0.
+\end{equation}
+有限 $V_0$ 不产生有限面积的奇异项，因此
+\begin{equation}
+  \psi(0^-)=\psi(0^+),
+  \qquad
+  \psi'(0^-)=\psi'(0^+).
+  \label{eq:QM-C05-S04-finite-step-boundary}
+\end{equation}
+这与 delta 势“$\psi$ 连续、$\psi'$ 跳跃”形成直接对比。代入分段解得到
+\begin{equation}
+  A+B=C,
+  \qquad
+  k_1(A-B)=k_2C.
+  \label{eq:QM-C05-S04-matching-equations}
+\end{equation}
+由 $k_1(A-B)=k_2(A+B)$ 得 $(k_1-k_2)A=(k_1+k_2)B$，于是
+\begin{equation}
+  \boxed{
+  r\equiv\frac BA=\frac{k_1-k_2}{k_1+k_2}},
+  \qquad
+  \boxed{
+  t\equiv\frac CA=\frac{2k_1}{k_1+k_2}}.
+  \label{eq:QM-C05-S04-amplitudes-above-step}
+\end{equation}
+$r,t$ 是振幅比而非概率。$V_0=0$ 时 $k_1=k_2$，于是 $r=0,t=1$，这是最直接的边界自检。
+
+\notetopic{QM-C05-S04-T03}{概率流、速度因子与波包 Jacobian}
+
+\keyidea{散射概率比较的是单位时间通过截面的概率，而不是局部密度。平面波流满足 $j=\rho v$；两侧速度不同时，透射率必须包含速度比。}
+
+右行和左行平面波的概率流分别为
+\begin{equation}
+  \psi=F\ee^{\pm\ii kx}
+  \quad\Longrightarrow\quad
+  j=\pm\frac{\hbar k}{m}\abs F^2.
+  \label{eq:QM-C05-S04-plane-wave-current}
+\end{equation}
+因此
+\begin{equation}
+  j_{\mathrm{in}}=\frac{\hbar k_1}{m}\abs A^2,
+  \qquad
+  j_{\mathrm{ref}}=-\frac{\hbar k_1}{m}\abs B^2,
+  \qquad
+  j_{\mathrm{tr}}=\frac{\hbar k_2}{m}\abs C^2.
+  \label{eq:QM-C05-S04-three-currents}
+\end{equation}
+区域 I 中左右行波的交叉项在概率流的反对称组合中抵消，详见式~\eqref{eq:QM-C05-S03-counterpropagating-current}。按流的正大小定义
+\begin{align}
+  R&=\frac{\abs{j_{\mathrm{ref}}}}{j_{\mathrm{in}}}
+   =\abs{\frac BA}^2
+   =\boxed{\left(\frac{k_1-k_2}{k_1+k_2}\right)^2},
+  \label{eq:QM-C05-S04-reflection-coefficient}\\
+  T&=\frac{j_{\mathrm{tr}}}{j_{\mathrm{in}}}
+   =\frac{k_2}{k_1}\abs{\frac CA}^2
+   =\boxed{\frac{4k_1k_2}{(k_1+k_2)^2}}.
+  \label{eq:QM-C05-S04-transmission-coefficient}
+\end{align}
+所以
+\begin{equation}
+  R+T=1.
+  \label{eq:QM-C05-S04-current-conservation}
+\end{equation}
+只有入射区与透射区波数相同，才可把 $T$ 简写为 $\abs{C/A}^2$。例如 $E\to V_0^+$ 时 $k_2\to0$，虽有 $C/A\to2$，但透射速度趋零，故 $T\to0$。
+
+教材练习 5.4.1 从完整波包演化验证同一速度因子。令
+\begin{equation}
+  k_2(k_1)=\sqrt{k_1^2-\frac{2mV_0}{\hbar^2}},
+  \qquad
+  k_{20}=k_2(k_0),
+  \qquad
+  q=k_1-k_0.
+\end{equation}
+要求入射谱远离传播阈值，即 $k_0-\sqrt{2mV_0}/\hbar\gg1/\Delta$，才能在整个有效窄峰上作一阶展开：
+\begin{equation}
+  \frac{\dd k_2}{\dd k_1}=\frac{k_1}{k_2},
+  \qquad
+  k_2(k_1)\simeq k_{20}+\frac{k_0}{k_{20}}q.
+  \label{eq:QM-C05-S04-k2-linearization}
+\end{equation}
+透射包络因而依赖
+\begin{equation}
+  X=\frac{k_0}{k_{20}}x+a-\frac{\hbar k_0}{m}t.
+  \label{eq:QM-C05-S04-transmitted-envelope-coordinate}
+\end{equation}
+其中心和群速度为
+\begin{equation}
+  x_c(t)=\frac{\hbar k_{20}}{m}t-\frac{k_{20}}{k_0}a,
+  \qquad
+  \dot x_c=\frac{\hbar k_{20}}m.
+  \label{eq:QM-C05-S04-transmitted-center}
+\end{equation}
+变量替换给出
+\begin{equation}
+  \dd x=\frac{k_{20}}{k_0}\dd X,
+  \label{eq:QM-C05-S04-packet-jacobian}
+\end{equation}
+于是归一化包络的总透射概率为
+\begin{equation}
+  \boxed{
+  P_T\simeq\frac{k_{20}}{k_0}\abs{\frac CA}^2}.
+  \label{eq:QM-C05-S04-packet-transmission}
+\end{equation}
+这正是 $v_2/v_1$，振幅比取峰值 $k_0$ 处。上述形状与中心采用窄谱、线性相位近似；若计算长时间扩散，须一致保留空间相位 $k_2(k_1)x$ 和时间相位中的二阶项，不能把线性近似无限外推。总透射概率还可直接由动量积分的变量替换得到，无需近似波包形状。完整推导见
+\relatedexercise{QM-C05-S04-E01}{教材练习 5.4.1：波包与定态透射率的一致性}。
+
+\notetopic{QM-C05-S04-T04}{\texorpdfstring{$E<V_0$}{E < V0}：倏逝波、全反射与有限势垒隧穿}
+
+\keyidea{半无限台阶中的倏逝波具有非零概率密度但零净流；有限宽势垒提供第二个边界，使衰减后的振幅重新接入传播通道，从而产生指数小但非零的透射。}
+
+当 $0<E<V_0$ 时，区域 I 仍取
+\begin{equation}
+  \psi_I=A\ee^{\ii kx}+B\ee^{-\ii kx},
+  \qquad
+  k=\frac{\sqrt{2mE}}{\hbar},
+\end{equation}
+而区域 II 满足 $\psi''=\kappa^2\psi$，其中
+\begin{equation}
+  \kappa=\frac{\sqrt{2m(V_0-E)}}{\hbar}.
+  \label{eq:QM-C05-S04-kappa}
+\end{equation}
+排除 $x\to+\infty$ 发散项后，
+\begin{equation}
+  \psi_{II}=C\ee^{-\kappa x}.
+  \label{eq:QM-C05-S04-evanescent-wave}
+\end{equation}
+边界匹配为 $A+B=C$ 和 $\ii k(A-B)=-\kappa C$，解得
+\begin{equation}
+  r=\frac BA=\frac{k-\ii\kappa}{k+\ii\kappa},
+  \qquad
+  t=\frac CA=\frac{2k}{k+\ii\kappa}.
+  \label{eq:QM-C05-S04-below-step-amplitudes}
+\end{equation}
+分子和分母模长相同，因此
+\begin{equation}
+  \boxed{R=\abs r^2=1}.
+  \label{eq:QM-C05-S04-total-reflection}
+\end{equation}
+$r$ 一般仍有非平凡相位，故全反射不等于波函数原样返回。区域 II 的密度与概率流分别为
+\begin{equation}
+  \rho_{II}=\abs C^2\ee^{-2\kappa x}\neq0,
+  \qquad
+  \boxed{j_{II}=0}.
+  \label{eq:QM-C05-S04-evanescent-density-current}
+\end{equation}
+由于 $\psi'_{II}=-\kappa\psi_{II}$，流公式中两项均为 $-\kappa|\psi_{II}|^2$，相减为零。所以禁区附近仍可探测到粒子，但没有向 $+\infty$ 输运的概率。这里的 $j_{II}=0$ 是单能量定态结论；真实波包碰撞期间可以暂时流入禁区，再流回左侧，不代表禁区概率从不变化。
+
+倏逝波不是“虚概率波”，其密度仍是实数且非负。形式记号 $k_2=\ii\kappa$ 只表示振荡解变为指数解；$\ii\hbar\kappa$ 不是自伴动量算符的可测量本征值。
+
+若高势只存在于 $\abs x<a$，禁区宽度 $L=2a$，则右侧重新具有传播通道。势垒内部必须保留 $\psi=F\ee^{\kappa x}+G\ee^{-\kappa x}$；两个指数项都在有限区间内有界，其交叉项可以携带非零流：
+\begin{equation}
+  j=\frac{2\hbar\kappa}{m}\operatorname{Im}(FG^*).
+\end{equation}
+因此隧穿过程的流穿过整个势垒，并非只在第二边界才重新出现。对 $0<E<V_0$，完整匹配结果为
+\begin{equation}
+  \boxed{
+  T=
+  \left[
+    1+\frac{V_0^2}{4E(V_0-E)}
+    \sinh^2(2\kappa a)
+  \right]^{-1}},
+  \qquad
+  R=1-T.
+  \label{eq:QM-C05-S04-finite-barrier-transmission}
+\end{equation}
+厚势垒 $\kappa a\gg1$ 时
+\begin{equation}
+  T\simeq
+  \frac{16E(V_0-E)}{V_0^2}
+  \ee^{-4\kappa a}
+  =\frac{16E(V_0-E)}{V_0^2}
+  \ee^{-2\kappa L}.
+  \label{eq:QM-C05-S04-thick-barrier}
+\end{equation}
+因此增大势垒宽度、高度差 $V_0-E$ 或质量都会指数压低隧穿率，但有限参数下不把它严格变为零。完整匹配见
+\relatedexercise{QM-C05-S04-E02B}{教材练习 5.4.2(b)：有限方势垒}；排斥 delta 势的散射见
+\relatedexercise{QM-C05-S04-E02A}{教材练习 5.4.2(a)：delta 势散射}。
+
+对更一般、在 $x\to\pm\infty$ 足够快趋于常数的实势，当能量高于两侧渐近势能时，仍可指定左侧入射通道，求相应的渐近平面波，再以概率流之比定义 $R,T$。理想平面波不可普通归一化，但其流之比有限；它是窄动量波包极限下的稳态计算工具。
+
+\textbf{一分钟回顾。}
+
+散射的真实对象是局域波包，定态平面波则把窄能量分布的动态问题化为边界匹配。有限势阶要求 $\psi$ 与 $\psi'$ 连续；只从左侧入射则排除右侧来波。反射率和透射率必须比较概率流，故透射振幅模平方还要乘速度比。$E<V_0$ 的半无限台阶允许倏逝密度却没有透射流；有限势垒的第二边界把倏逝振幅重新接入传播通道，产生 $T\propto\ee^{-2\kappa L}$ 的隧穿。波函数非零、概率流非零和穿过整个势垒是三个不同判断。
