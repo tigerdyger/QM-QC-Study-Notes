@@ -1,6 +1,6 @@
 % 教材：Shankar, Principles of Quantum Mechanics, Second Edition
-% 已覆盖：第 5 章第 5.1--5.4 节，印刷页 pp. 151--175，PDF pp. 163--187
-% 人工核验：已完成分块讲解、教材练习 5.1.1--5.4.3 与订正
+% 已覆盖：第 5 章第 5.1--5.5 节，印刷页 pp. 151--176，PDF pp. 163--188
+% 人工核验：已完成讲解、教材练习 5.1.1--5.4.3 及第 5.5 节自编应用题
 
 \clearpage
 \section{第 5.1 节：自由粒子}
@@ -1251,3 +1251,96 @@ $r$ 一般仍有非平凡相位，故全反射不等于波函数原样返回。�
 \textbf{一分钟回顾。}
 
 散射的真实对象是局域波包，定态平面波则把窄能量分布的动态问题化为边界匹配。有限势阶要求 $\psi$ 与 $\psi'$ 连续；只从左侧入射则排除右侧来波。反射率和透射率必须比较概率流，故透射振幅模平方还要乘速度比。$E<V_0$ 的半无限台阶允许倏逝密度却没有透射流；有限势垒的第二边界把倏逝振幅重新接入传播通道，产生 $T\propto\ee^{-2\kappa L}$ 的隧穿。波函数非零、概率流非零和穿过整个势垒是三个不同判断。
+
+\clearpage
+\section{第 5.5 节：双缝实验}
+\label{section:QM-C05-S05}
+
+\studymeta
+  {QM-C05-S05}
+  {2026-09-16}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 5 章 \S 5.5；印刷页 p.~175 末至 p.~176 开头；PDF pp.~187--188}
+  {讲解与一道自编短应用题已完成并核对}
+
+\textbf{来源边界。}教材用一小段文字，将第三章双缝实验重新解释为波函数的传播、干涉及 Born 概率规则的应用，没有编号习题。下文的 Helmholtz 方程、几何展开和通量说明是对话中的推导补充；条纹间距联系教材第 3.2 节及图 3.1（印刷页 pp.~108--109，PDF pp.~121--122）。
+
+\notetopic{QM-C05-S05-T01}{从边界条件到干涉图样与概率解释}
+
+\keyidea{经典波动理论提供传播和干涉的数学方法；量子力学再用 Born 规则解释波函数模平方。相同的波动方程不意味着波函数与经典物理场具有相同含义。}
+
+\textbf{装置与波动方程。}
+考虑非相对论、有质量的粒子，静止挡板的实体部分以无限高势垒理想化，波函数在硬壁边界为零；狭缝是开放通道，不能也设为零。实际入射态应是波包，动量分布足够窄时可用平面波近似计算图样。对自由区域中的定态，
+\begin{equation}
+  \psi(\mathbf r,t)=\phi(\mathbf r)\ee^{-\ii Et/\hbar},
+  \qquad
+  -\frac{\hbar^2}{2m}\nabla^2\phi=E\phi
+  \quad\Longleftrightarrow\quad
+  \nabla^2\phi+k^2\phi=0,
+  \label{eq:QM-C05-S05-helmholtz}
+\end{equation}
+其中 $k=\sqrt{2mE}/\hbar=p/\hbar$、$\lambda=2\pi/k=h/p$。这与经典单色波的 Helmholtz 方程同形，故可借用波动理论处理开口后的衍射和传播。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Latex,scale=0.85]
+    \draw[very thick] (0,-1.55)--(0,-0.87);
+    \draw[very thick] (0,-0.63)--(0,0.63);
+    \draw[very thick] (0,0.87)--(0,1.55);
+    \draw[very thick] (5,-1.55)--(5,1.8);
+    \draw[dashed] (-3.1,0)--(5,0);
+    \draw[->] (-3.1,0.4)--(-1.9,0.4);
+    \node[above] at (-2.5,0.4) {入射};
+    \node[above] at (0,1.55) {双缝挡板};
+    \node[above] at (5,1.8) {探测屏};
+    \node[left] at (0,0.75) {$S_1$};
+    \node[left] at (0,-0.75) {$S_2$};
+    \draw[<->] (-0.8,-0.75)--node[left] {$a$} (-0.8,0.75);
+    \draw[blue!70!black] (0,0.75)--node[above] {$r_1$} (5,1.15);
+    \draw[red!70!black] (0,-0.75)--node[below] {$r_2$} (5,1.15);
+    \fill (5,1.15) circle (2pt);
+    \draw[<->] (5.4,0)--node[right] {$x$} (5.4,1.15);
+    \draw[<->] (0,-1.9)--node[below] {$d$} (5,-1.9);
+  \end{tikzpicture}
+  \caption{双缝几何示意（按教材图 3.1 自绘，不按比例）。$a$ 为缝距，$d$ 为挡板到探测屏的距离，$x$ 为屏上横向坐标。}
+  \label{fig:QM-C05-S05-geometry}
+\end{figure}
+
+\textbf{相干叠加与条纹间距。}
+在教材的开口近似中，两缝是同一入射波的等效源，并非创造两个新粒子。写总场为 $\phi=\phi_1+\phi_2$，两项指同一双缝装置下的相干贡献；严格计算须解整个边界问题，不能一般地把改变边界后两个单缝实验的解直接相加。忽略两路振幅大小的差异、设两缝初相位相同，在观察位置处取
+\begin{equation}
+  \phi_1=A\ee^{\ii kr_1},\qquad
+  \phi_2=A\ee^{\ii kr_2},\qquad
+  \delta=k(r_2-r_1).
+\end{equation}
+则
+\begin{align}
+  \rho=\abs{\phi_1+\phi_2}^2
+  &=\abs{\phi_1}^2+\abs{\phi_2}^2
+    +\phi_1^*\phi_2+\phi_2^*\phi_1\\
+  &=2\abs A^2(1+\cos\delta)
+   =\boxed{4\abs A^2\cos^2(\delta/2)}.
+  \label{eq:QM-C05-S05-interference}
+\end{align}
+路程差为 $n\lambda$ 时相长，为 $(n+1/2)\lambda$ 时相消；完全相消还要求两路振幅大小相同。几何上
+\begin{equation}
+  r_1=\sqrt{d^2+(x-a/2)^2},\qquad
+  r_2=\sqrt{d^2+(x+a/2)^2}.
+\end{equation}
+在远场近轴条件 $a,\abs x\ll d$ 下，使用 $\sqrt{d^2+u^2}\simeq d+u^2/(2d)$ 得
+\begin{equation}
+  r_2-r_1\simeq\frac{(x+a/2)^2-(x-a/2)^2}{2d}
+  =\frac{ax}{d},\qquad
+  \boxed{\Delta x\simeq\frac{\lambda d}{a}=\frac{hd}{pa}}.
+  \label{eq:QM-C05-S05-fringe-spacing}
+\end{equation}
+相邻亮纹的相位差增加 $2\pi$，所以间距随动量增大而减小。有限缝宽会带来衍射包络；$A$ 是局部近似振幅，不能视作整张屏上的常数。相位与动量的短应用见\relatedexercise{QM-C05-S05-E01}{自编应用题}。
+
+\textbf{概率密度、计数与单次事件。}
+Born 规则给出可归一化波包在有限区域 $\Omega$ 内的概率
+\begin{equation}
+  P_\Omega(t)=\int_\Omega\abs{\psi(\mathbf r,t)}^2\dd^3r.
+\end{equation}
+不能把某点的密度值直接当作单点概率。单次探测产生局域事件，重复实验的统计分布显示干涉，不需要不同粒子相互碰撞，也不意味着一个粒子被分成两份。
+
+探测屏的到达计数更精确地涉及概率通量；在理想单向探测、近轴且纵向速度近似相同的条件下，$j_n\simeq v_n\abs\psi^2$，计数图样才与相应的密度图样成正比。教材在这里采用这一理想化解释。边界条件与 Schr\"odinger 方程决定振幅，而概率含义来自 Born 公设，并不是由经典波动理论推导出的新结论。

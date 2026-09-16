@@ -41,3 +41,4 @@
 | 2026-09-13 | Shankar 第 5 章 \S 5.2，印刷页 157--164，PDF 169--176 | `chapters/05-notes.tex`、`exercises/05-exercises.tex` | 无限深方势阱、离散束缚谱、有限阱指数尾、变分下界、delta 势、绝热力、阈值态 | 下一学习节点为第 5.3 节 The Continuity Equation for Probability |
 | 2026-09-14 | Shankar 第 5 章 \S 5.3，印刷页 165--167，PDF 177--179 | `chapters/05-notes.tex`、`exercises/05-exercises.tex` | 整体与局域概率守恒、连续性方程、概率流密度、相位梯度、定态流、复势源汇、系综解释 | 下一学习节点为第 5.4 节 The Single-Step Potential: A Problem in Scattering |
 | 2026-09-15 | Shankar 第 5 章 \S 5.4，印刷页 167--175，PDF 179--187 | `chapters/05-notes.tex`、`exercises/05-exercises.tex` | 单阶跃势、波包散射、边界匹配、反射与透射、概率流速度因子、倏逝波、有限势垒隧穿、恒力传播子 | 下一学习节点为第 5.5 节 The Double-Slit Experiment |
+| 2026-09-16 | Shankar 第 5 章 \S 5.5，印刷页 175 末至 176 开头，PDF 187--188 | `chapters/05-notes.tex`、`exercises/05-exercises.tex` | 双缝边界模型、Helmholtz 方程、相干叠加、条纹间距、Born 概率解释与到达通量；自编短应用题已核对 | 下一学习节点为第 5.6 节 Some Theorems |

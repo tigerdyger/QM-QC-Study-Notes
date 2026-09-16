@@ -1,5 +1,6 @@
-% 对应单元：QM-C05-S01--QM-C05-S04
+% 对应单元：QM-C05-S01--QM-C05-S05
 % 主要来源：Shankar 练习 5.1.1--5.4.3，印刷页 pp. 152--175，PDF pp. 164--187
+% 第 5.5 节无编号习题；仅收录已完成的自编短应用题
 % 人工核验：是
 
 \clearpage
@@ -1528,4 +1529,48 @@ $f\to0$ 时立即恢复自由粒子传播子，是符号与系数的自检。
         +\frac{ft}{2}(x+x')-\frac{f^2t^3}{24m}.
 \end{align}
 所以 $S_{\mathrm{cl}}$ 确实是经典路径的作用量。这是将传播子与经典力学联系起来的补充说明；本题的精确性已经由前面的 Fourier 积分保证。只有 $\ee^{\ii S_{\mathrm{cl}}/\hbar}$ 还不是完整传播子，归一化前因子及平方根分支同样不可省略。
+\end{checkedsolution}
+
+\clearpage
+\section{第 5.5 节自编应用题}
+\label{exercise-set:QM-C05-S05}
+
+\exercisemeta
+  {QM-C05-S05-EX}
+  {2026-09-16}
+  {依据 Shankar 第 5.5 节及第 3.2 节编写；非教材编号习题}
+  {题干、解答及近似条件已核对}
+  {已作答，两问均正确}
+
+\exercisequestion{QM-C05-S05-E01}{相位差与动量对双缝图样的影响（自编）}
+
+\textbf{对应知识点：}\relatedtopic{QM-C05-S05-T01}{从边界条件到干涉图样与概率解释}。
+
+在相干双缝实验中，同一观察位置处的两个波函数贡献为 $A$ 和 $A\ee^{\ii\theta}$，其中 $A\ne0$ 为该位置的复振幅。回答：
+\begin{enumerate}
+  \item $\theta=0,\pi/2,\pi$ 时，该处的概率密度分别是多少？
+  \item 固定缝距 $a$ 和屏距 $d$，保持远场近轴近似成立，把入射动量大小 $p$ 加倍，条纹间距如何变化？
+\end{enumerate}
+
+\begin{checkedsolution}
+先加振幅再取模平方：
+\begin{equation}
+  \rho=\abs{A+A\ee^{\ii\theta}}^2
+  =\abs A^2(1+\ee^{-\ii\theta})(1+\ee^{\ii\theta})
+  =2\abs A^2(1+\cos\theta).
+\end{equation}
+因此
+\begin{equation}
+  \boxed{\rho(0)=4\abs A^2,\qquad
+  \rho(\pi/2)=2\abs A^2,\qquad \rho(\pi)=0}.
+\end{equation}
+这些量是同一位置在不同相位条件下的密度值，不是三个互斥结果的概率，无需相加为一；有限区域的概率仍须积分。
+
+由 $\lambda=h/p$ 和 $\Delta x\simeq\lambda d/a$，
+\begin{equation}
+  \Delta x_{\mathrm{new}}
+  =\frac{hd}{(2p)a}
+  =\boxed{\frac12\Delta x_{\mathrm{old}}}.
+\end{equation}
+所以动量加倍，波长及条纹间距都减半。
 \end{checkedsolution}
