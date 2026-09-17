@@ -1,6 +1,7 @@
-% 对应单元：QM-C05-S01--QM-C05-S05
+% 对应单元：QM-C05-S01--QM-C05-S06
 % 主要来源：Shankar 练习 5.1.1--5.4.3，印刷页 pp. 152--175，PDF pp. 164--187
 % 第 5.5 节无编号习题；仅收录已完成的自编短应用题
+% 第 5.6 节收录教材正文的未编号计算提示，印刷页 p. 177，PDF p. 189
 % 人工核验：是
 
 \clearpage
@@ -1573,4 +1574,51 @@ $f\to0$ 时立即恢复自由粒子传播子，是符号与系数的自检。
   =\boxed{\frac12\Delta x_{\mathrm{old}}}.
 \end{equation}
 所以动量加倍，波长及条纹间距都减半。
+\end{checkedsolution}
+
+\clearpage
+\section{第 5.6 节教材正文计算检验}
+\label{exercise-set:QM-C05-S06}
+
+\exercisemeta
+  {QM-C05-S06-EX}
+  {2026-09-17}
+  {Shankar，第 5.6 节定理 15 后的计算提示；印刷页 p.~177；PDF p.~189}
+  {无教材独立题号；下列题干按正文提示展开}
+  {计算及边界条件解释已完成并核对}
+
+\exercisequestion{QM-C05-S06-E01}{自由粒子的 Wronskian 与同能量简并（教材正文检验）}
+
+\textbf{对应知识点：}\relatedtopic{QM-C05-S06-T01}{一维束缚能级为何不简并}。
+
+对于实轴上的自由粒子，取 $k>0$ 及两个同能量的广义本征函数
+\begin{equation}
+  \psi_1(x)=\ee^{\ii kx},\qquad
+  \psi_2(x)=\ee^{-\ii kx},\qquad
+  E=\frac{\hbar^2k^2}{2m}.
+\end{equation}
+省略不影响判断的非零常数归一化因子。计算
+\begin{equation}
+  W(x)=\psi_1\psi_2'-\psi_2\psi_1',
+\end{equation}
+并解释为何 $W'=0$ 不足以推出线性相关，以及该例为何不违反一维束缚态非简并定理。这里的 $W$ 定义固定了符号；若反向定义 Wronskian，整体符号相反，结论不变。
+
+\begin{checkedsolution}
+两函数的导数为
+\begin{equation}
+  \psi_1'=\ii k\ee^{\ii kx},\qquad
+  \psi_2'=-\ii k\ee^{-\ii kx}.
+\end{equation}
+因此
+\begin{align}
+  W(x)
+  &=\ee^{\ii kx}(-\ii k\ee^{-\ii kx})
+    -\ee^{-\ii kx}(\ii k\ee^{\ii kx})\\
+  &=-\ii k-\ii k=\boxed{-2\ii k\ne0}.
+\end{align}
+这是非零常数，故同时满足 $W'=0$ 和 $W\ne0$。两函数线性无关，分别对应动量 $+\hbar k$、$-\hbar k$，体现 $E>0$ 自由粒子能量的二重简并。
+
+$W'=0$ 只说明 Wronskian 不随位置变化。对于同一个、满足初值唯一性条件的二阶线性齐次方程的两个解，在某一点 $W=0$ 才能进一步推出线性相关；不能把“常数”直接替换成“零”。
+
+本例的平面波在无穷远不衰减，不属于 $L^2(\mathbb R)$ 中的束缚态，因此不能使用 $W(\infty)=0$ 的边界步骤。结论不与教材定理 15 冲突。若恢复动量 delta 归一化因子，$W$ 的数值会随两个常数因子缩放，但仍不为零。
 \end{checkedsolution}

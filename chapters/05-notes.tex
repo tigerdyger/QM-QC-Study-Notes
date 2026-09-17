@@ -1,6 +1,6 @@
 % 教材：Shankar, Principles of Quantum Mechanics, Second Edition
-% 已覆盖：第 5 章第 5.1--5.5 节，印刷页 pp. 151--176，PDF pp. 163--188
-% 人工核验：已完成讲解、教材练习 5.1.1--5.4.3 及第 5.5 节自编应用题
+% 已覆盖：第 5 章第 5.1--5.6 节，印刷页 pp. 151--178，PDF pp. 163--190
+% 人工核验：已完成讲解、教材练习 5.1.1--5.4.3、第 5.5 节自编应用题及第 5.6 节正文计算检验
 
 \clearpage
 \section{第 5.1 节：自由粒子}
@@ -1344,3 +1344,142 @@ Born 规则给出可归一化波包在有限区域 $\Omega$ 内的概率
 不能把某点的密度值直接当作单点概率。单次探测产生局域事件，重复实验的统计分布显示干涉，不需要不同粒子相互碰撞，也不意味着一个粒子被分成两份。
 
 探测屏的到达计数更精确地涉及概率通量；在理想单向探测、近轴且纵向速度近似相同的条件下，$j_n\simeq v_n\abs\psi^2$，计数图样才与相应的密度图样成正比。教材在这里采用这一理想化解释。边界条件与 Schr\"odinger 方程决定振幅，而概率含义来自 Born 公设，并不是由经典波动理论推导出的新结论。
+
+\clearpage
+\section{第 5.6 节：一维束缚态的非简并性与本征函数的实性}
+\label{section:QM-C05-S06}
+
+\studymeta
+  {QM-C05-S06}
+  {2026-09-17}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 5 章 \S 5.6；印刷页 pp.~176--178；PDF pp.~188--190}
+  {两条定理的讲解及教材正文计算检验已完成并核对}
+
+\textbf{来源边界。}本节对应教材定理 15、16 及定理 15 后的自由粒子计算提示，没有独立编号习题。用初值唯一性处理波函数节点、明确复共轭对边界条件的要求，以及与概率流的联系，是对话中的严格性补充。
+
+\notetopic{QM-C05-S06-T01}{一维束缚能级为何不简并}
+
+\keyidea{同能量的两个解使 Wronskian 成为常数；束缚态边界条件进一步使该常数为零，才得到两个解线性相关。}
+
+\textbf{定理与适用范围。}
+考虑单分量波函数及
+\begin{equation}
+  H=-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}+V(x),
+  \qquad V(x)\in\mathbb R.
+  \label{eq:QM-C05-S06-hamiltonian}
+\end{equation}
+对连通的一维区间，采用通常束缚态或硬墙边界条件；先假设势连续、微分方程满足初值解唯一性。定理 15 断言：同一束缚能量 $E$ 的任意两个非零本征函数必有 $\psi_2=C\psi_1$，其中 $C$ 与位置无关。因此该能量本征空间只有一维。两者都归一化时 $\abs C=1$，仅相差整体相位，不代表两个简并态。
+
+这不是对所有“一维系统”的无条件断言。环上的周期边界条件、额外自旋自由度，或无限高内墙分开的不连通区间，不能直接套用上述结论。
+
+\textbf{第一步：消去势能项。}
+设两个解具有相同能量：
+\begin{equation}
+  -\frac{\hbar^2}{2m}\psi_1''+(V-E)\psi_1=0,
+  \qquad
+  -\frac{\hbar^2}{2m}\psi_2''+(V-E)\psi_2=0.
+\end{equation}
+分别乘以 $\psi_2$、$\psi_1$ 后相减，得到
+\begin{equation}
+  \psi_1\psi_2''-\psi_2\psi_1''=0.
+\end{equation}
+这里没有取复共轭，也不是计算内积。定义 Wronskian（朗斯基行列式）
+\begin{equation}
+  W(x)=\psi_1\psi_2'-\psi_2\psi_1'.
+  \label{eq:QM-C05-S06-wronskian}
+\end{equation}
+由乘积求导法则，
+\begin{equation}
+  W'=\psi_1'\psi_2'+\psi_1\psi_2''
+      -\psi_2'\psi_1'-\psi_2\psi_1''=0,
+  \qquad W(x)=C_W.
+  \label{eq:QM-C05-S06-constant-wronskian}
+\end{equation}
+两项一阶导数乘积抵消。到这里尚未使用束缚态条件，故只能说 $W$ 是常数，不能说它为零。
+
+\textbf{第二步：边界条件决定常数。}
+对前面讨论的常规实轴束缚态，波函数及其导数在无穷远衰减，于是
+\begin{equation}
+  C_W=\lim_{x\to+\infty}
+    (\psi_1\psi_2'-\psi_2\psi_1')=0,
+  \qquad \boxed{W(x)=0}.
+\end{equation}
+仅凭任意函数趋于零，不能断言其导数也趋于零；此处使用满足相应方程和衰减边界条件的束缚解。若区间以硬墙为端点 $x_b$，由 $\psi_1(x_b)=\psi_2(x_b)=0$ 及有限的内侧导数，同样得到 $W(x_b)=0$。
+
+\textbf{第三步：推出全区间成比例。}
+在 $\psi_1\ne0$ 的区间内，
+\begin{equation}
+  \frac{\dd}{\dd x}\left(\frac{\psi_2}{\psi_1}\right)
+  =\frac{W}{\psi_1^2}=0.
+\end{equation}
+这给出局部比例关系，但在节点处不能直接除以 $\psi_1$。完整论证是：选取 $\psi_1(x_0)\ne0$，令 $C=\psi_2(x_0)/\psi_1(x_0)$。由 $W(x_0)=0$，有
+\begin{equation}
+  \psi_2(x_0)=C\psi_1(x_0),\qquad
+  \psi_2'(x_0)=C\psi_1'(x_0).
+\end{equation}
+差函数 $\chi=\psi_2-C\psi_1$ 满足同一个齐次二阶方程，并且
+\begin{equation}
+  \chi(x_0)=0,\qquad \chi'(x_0)=0.
+\end{equation}
+初值解唯一性保证 $\chi\equiv0$，因此
+\begin{equation}
+  \boxed{\psi_2(x)=C\psi_1(x)}.
+  \label{eq:QM-C05-S06-nondegeneracy}
+\end{equation}
+这个论证跨越节点仍成立，不允许在不同节点之间任意改变比例系数。有限势阶可以分段应用，利用 $\psi,\psi'$ 的连续性连接各段。
+
+\textbf{物理含义与反例。}
+固定能量的二阶方程有两个局部独立解，但束缚态边界条件使允许解最多只剩一个独立方向。自由粒子的 $\ee^{\ii kx}$ 与 $\ee^{-\ii kx}$ 不在无穷远衰减，不能使用令 $W=0$ 的步骤，因此同能量的两个传播方向并不与定理矛盾。完整计算见\relatedexercise{QM-C05-S06-E01}{教材正文计算检验：自由粒子的 Wronskian}。
+
+\notetopic{QM-C05-S06-T02}{何时可以选择实本征函数}
+
+\keyidea{Hamiltonian 及边界条件在复共轭下不变，保证可以构造实的能量本征函数；再加上非简并性，才保证原来的本征态仅差一个整体相位便能取实。}
+
+\textbf{实性与 Hermitian 是不同条件。}
+教材定理 16 针对式~\eqref{eq:QM-C05-S06-hamiltonian} 的实微分表达式，且算符定义域在复共轭下保持不变。衰减与硬墙边界条件满足这一要求。自伴性保证能量 $E$ 为实数，而位置表象中的实性保证
+\begin{equation}
+  (H\psi)^*=H\psi^*.
+\end{equation}
+不能只由 $H^\dagger=H$ 推出此式；例如 Hermitian 矩阵可以有非实的非对角元。实性还依赖所选表象，而 Hermitian 性在酉基变换下保持。
+
+\textbf{取复共轭并分离实部、虚部。}
+由 $H\psi=E\psi$，取复共轭得到
+\begin{equation}
+  H\psi^*=E\psi^*.
+\end{equation}
+写成 $\psi=u+\ii v$，其中
+\begin{equation}
+  u=\frac{\psi+\psi^*}{2},\qquad
+  v=\frac{\psi-\psi^*}{2\ii},\qquad u,v\in\mathbb R.
+\end{equation}
+由线性性，
+\begin{equation}
+  Hu=\frac{H\psi+H\psi^*}{2}=Eu,
+  \qquad
+  Hv=\frac{H\psi-H\psi^*}{2\ii}=Ev.
+  \label{eq:QM-C05-S06-real-imag-eigenfunctions}
+\end{equation}
+因此 $u,v$ 中任意非零的一个都是同能量的实本征函数；二者不可能同时为零。对同一能级的复本征基取实部和虚部，再选取其中的独立函数，可以构造实本征基。此论证不要求一维或非简并，但要求 Hamiltonian 与定义域具备上述实性。
+
+\textbf{非简并时，取实不会改变物理状态。}
+若 $E$ 非简并，从 $u,v$ 中选一个非零实函数并归一化为 $f$。原来的归一化本征函数与 $f$ 必须成比例，故
+\begin{equation}
+  \boxed{\psi(x)=\ee^{\ii\theta}f(x),\qquad f(x)\in\mathbb R},
+  \qquad \theta\text{ 与位置无关}.
+  \label{eq:QM-C05-S06-real-up-to-phase}
+\end{equation}
+所以对常规一维实势束缚态，可以去掉整体相位而不改变物理状态。简并时则一般不能如此：$\ee^{\ii kx}=\cos kx+\ii\sin kx$，虽然三者具有相同自由粒子能量，但 $\ee^{\ii kx}$ 与 $\cos kx$ 不成比例，改用后者改变了物理状态。前者有确定的正动量，后者包含等幅的正、负动量分量；它们作为广义本征函数使用。
+
+\textbf{空间实性不等于含时波函数为实数。}
+完整定态仍有时间相位：
+\begin{equation}
+  \Psi(x,t)=\ee^{\ii\theta}f(x)\ee^{-\ii Et/\hbar}.
+\end{equation}
+因为这些相位都与位置无关，概率流为
+\begin{equation}
+  j=\frac{\hbar}{2m\ii}
+    \left(\Psi^*\partial_x\Psi-\Psi\partial_x\Psi^*\right)
+   =\frac{\hbar}{2m\ii}(ff'-ff')=\boxed{0}.
+\end{equation}
+这解释了常规一维实势束缚定态没有净概率流，但并不意味着动量确定为零，也不适用于任意能量叠加态。有磁场时，位置表象中的 Hamiltonian 一般不再具有上述实性，教材因此明确提醒不能直接照搬定理 16 的证明。
