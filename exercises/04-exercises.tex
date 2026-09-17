@@ -257,15 +257,69 @@ $L_z$ 已经是对角矩阵，所以可能结果就是它的本征值：
 \textbf{检查点：}先区分本征值、概率振幅、概率和测量后状态。概率必须对振幅取模平方 $A^*A$，不能取普通平方 $A^2$。遇到简并结果时投影到完整本征子空间；判断相位是否可观测时，先去掉共同整体相位，再检查测量基是否把相对相位转化为交叉项。
 
 \clearpage
-\section{第 4.2 节教材习题与订正}
+\section{第 4.2 节教材例题、习题与订正}
 \label{exercise-set:QM-C04-S02}
 
 \exercisemeta
   {QM-C04-S02-EX}
   {2026-09-10}
-  {Shankar, Exercises 4.2.2--4.2.3；印刷页 p.~139；PDF p.~151}
-  {实波函数的平均动量、定义域条件与位置相位造成的动量平移}
-  {两题均已完成位置表象、动量表象与算符形式核对}
+  {Shankar，例 4.2.4 与练习 4.2.2--4.2.3；印刷页 pp.~134--139；PDF pp.~146--151}
+  {高斯波包、实波函数的平均动量与位置相位造成的动量平移}
+  {例题与两道习题的位置表象、动量表象计算均已核对}
+
+\exercisequestion{QM-C04-S02-E00}{教材例 4.2.4：高斯波包的位置与动量分布}
+
+\textbf{对应知识点：}\relatedtopic{QM-C04-S02-T06}{高斯波包与表象}。
+
+\textbf{题意。}给定 $\psi(x)=N\exp[-(x-a)^2/(2\Delta^2)]$，其中 $a\in\mathbb R$、$\Delta>0$。求归一化常数、动量波函数、位置和动量的均值及不确定度。教材位置：印刷页 pp.~134--138，PDF pp.~146--150。
+
+\begin{checkedsolution}
+由 Gaussian 积分，归一化要求 $|N|^2\sqrt\pi\Delta=1$。取 $N$ 为正实数，得到
+\begin{equation}
+  \psi(x)
+  =\frac1{(\pi\Delta^2)^{1/4}}
+   \exp\left[-\frac{(x-a)^2}{2\Delta^2}\right].
+  \label{eq:QM-C04-S02-gaussian-position}
+\end{equation}
+令 $y=x-a$，则
+\[
+  \langle y\rangle=0,\qquad
+  \langle y^2\rangle
+  =\frac1{\sqrt\pi\Delta}\int_{-\infty}^{\infty}
+    y^2\ee^{-y^2/\Delta^2}\dd y
+  =\frac{\Delta^2}{2}.
+\]
+因此位置均值与不确定度为
+\begin{equation}
+  \boxed{\langle X\rangle=a},
+  \qquad
+  \boxed{\Delta X=\frac{\Delta}{\sqrt2}}.
+  \label{eq:QM-C04-S02-gaussian-position-moments}
+\end{equation}
+动量波函数是 Fourier transform：
+\begin{align}
+  \phi(p)
+  &=\braket{p}{\psi}
+   =\frac1{\sqrt{2\pi\hbar}}
+    \int_{-\infty}^{\infty}
+    \ee^{-\ii px/\hbar}\psi(x)\dd x
+  \notag\\
+  &=\left(\frac{\Delta^2}{\pi\hbar^2}\right)^{1/4}
+    \ee^{-\ii pa/\hbar}
+    \ee^{-p^2\Delta^2/(2\hbar^2)}.
+  \label{eq:QM-C04-S02-gaussian-momentum}
+\end{align}
+相位 $\ee^{-\ii pa/\hbar}$ 不影响动量概率密度，故
+\begin{equation}
+  \boxed{\langle P\rangle=0},
+  \qquad
+  \boxed{\Delta P=\frac{\hbar}{\sqrt2\Delta}},
+  \qquad
+  \boxed{\Delta X\Delta P=\frac{\hbar}{2}}.
+  \label{eq:QM-C04-S02-gaussian-uncertainty}
+\end{equation}
+这里 $\Delta$ 是波函数的宽度参数，并不等于位置标准差 $\Delta X$。位置平移仅给动量波函数增加相位，不改变动量概率密度。
+\end{checkedsolution}
 
 \exercisequestion{QM-C04-S02-E01}{教材练习 4.2.2：实波函数的平均动量}
 

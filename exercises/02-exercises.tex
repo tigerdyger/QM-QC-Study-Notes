@@ -1,12 +1,104 @@
-\section{第 2.1 节教材习题与订正}
+\section{第 2.1 节教材例题、习题与订正}
 \label{exercise-set:QM-C02-S01}
 
 \exercisemeta
   {QM-C02-S01-EX}
   {2026-08-27}
-  {Shankar，第 2 章 \S 2.1，练习 2.1.1--2.1.3}
-  {完成三道教材习题并逐题核对}
+  {Shankar，第 2 章 \S 2.1，例 2.1.1 与练习 2.1.1--2.1.3}
+  {收录一道教材例题与三道已核对习题}
   {题意、Euler--Lagrange 推导与关键计算已核对}
+
+\exercisequestion{QM-C02-S01-E00}{教材例 2.1.1：平面极坐标}
+
+\textbf{对应知识点：}\relatedtopic{QM-C02-S01-T04}{曲线坐标中的几何项}。
+
+\textbf{题意。}质量为 $m$ 的粒子在平面内运动，势能为 $V(x,y)$。用极坐标 $(\rho,\phi)$ 写出 Lagrangian 与运动方程，解释几何项，并讨论中心势 $V(\rho)$ 下的守恒量。教材位置：印刷页 pp.~81--82，PDF pp.~94--95；面积速度为相应的补充结论。
+
+\begin{checkedsolution}
+令
+\[
+  x=\rho\cos\phi,
+  \qquad
+  y=\rho\sin\phi.
+\]
+微分后平方相加：
+\begin{align}
+  dx&=\cos\phi\,d\rho-\rho\sin\phi\,d\phi,\notag\\
+  dy&=\sin\phi\,d\rho+\rho\cos\phi\,d\phi,\notag\\
+  ds^2=dx^2+dy^2&=d\rho^2+\rho^2d\phi^2.
+  \label{eq:QM-C02-S01-polar-line-element}
+\end{align}
+因此速度平方和 Lagrangian 为
+\begin{equation}
+  v^2=\dot\rho^2+\rho^2\dot\phi^2,
+  \qquad
+  \mathcal L
+  =\frac12m(\dot\rho^2+\rho^2\dot\phi^2)-V(\rho,\phi).
+  \label{eq:QM-C02-S01-polar-lagrangian}
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.95,>=Latex]
+    \draw[->] (-0.2,0)--(5.4,0) node[right] {$x$};
+    \draw[->] (0,-0.2)--(0,4.2) node[above] {$y$};
+    \coordinate (P) at (4,2.7);
+    \draw[noteBlue,very thick,->] (0,0)--(P) node[midway,below right] {$\rho$};
+    \draw[->] (1.15,0) arc[start angle=0,end angle=34,radius=1.15];
+    \node at (1.35,0.45) {$\phi$};
+    \fill (P) circle (2pt);
+    \draw[->,verifyOrange,thick] (P)--($(P)+(1.2,0.81)$) node[right] {$\hat{\bm e}_\rho$};
+    \draw[->,noteBlue,thick] (P)--($(P)+(-0.81,1.2)$) node[above] {$\hat{\bm e}_\phi$};
+    \draw[dashed] (P)--(4,0);
+  \end{tikzpicture}
+  \caption{极坐标的径向与角向基矢；基矢随 $\phi$ 改变。}
+  \label{fig:QM-C02-S01-polar-basis}
+\end{figure}
+
+径向坐标给出
+\begin{align}
+  \frac{\partial\mathcal L}{\partial\dot\rho}&=m\dot\rho,
+  &
+  \frac{\partial\mathcal L}{\partial\rho}
+  &=m\rho\dot\phi^2-\frac{\partial V}{\partial\rho},
+\end{align}
+故
+\begin{equation}
+  \boxed{
+  m(\ddot\rho-\rho\dot\phi^2)
+  =-\frac{\partial V}{\partial\rho}.}
+  \label{eq:QM-C02-S01-polar-radial}
+\end{equation}
+角坐标给出
+\begin{equation}
+  \boxed{
+  \frac{d}{dt}(m\rho^2\dot\phi)
+  =-\frac{\partial V}{\partial\phi},}
+  \label{eq:QM-C02-S01-polar-angular-conservative}
+\end{equation}
+或展开为
+\begin{equation}
+  \boxed{
+  m(\rho\ddot\phi+2\dot\rho\dot\phi)
+  =-\frac1\rho\frac{\partial V}{\partial\phi}.}
+  \label{eq:QM-C02-S01-polar-angular}
+\end{equation}
+$-\rho\dot\phi^2$ 和 $2\dot\rho\dot\phi$ 来自曲线坐标基的变化；Lagrange 方法把这些几何信息编码在动能中，无须单独对旋转基矢求导。
+特别地，$\partial\mathcal L/\partial\rho=m\rho\dot\phi^2-\partial V/\partial\rho$ 中，$m\rho\dot\phi^2$ 是动能的坐标导数，不是额外的径向作用力。真正的径向物理力为 $-\partial V/\partial\rho$，而完整径向加速度是 $\ddot\rho-\rho\dot\phi^2$。
+
+若 $V=V(\rho)$，则 $\phi$ 是循环坐标，
+\begin{equation}
+  p_\phi=m\rho^2\dot\phi=L_z=\text{constant}.
+  \label{eq:QM-C02-S01-polar-angular-momentum}
+\end{equation}
+相应的面积速度为
+\begin{equation}
+  \frac{dA}{dt}=\frac12\rho^2\dot\phi=\frac{L_z}{2m},
+  \label{eq:QM-C02-S01-areal-velocity}
+\end{equation}
+所以中心力运动满足等时扫过等面积。教材例题还表明，适当选取坐标后，守恒量常可由“某坐标不显含于 $\mathcal L$”直接读出。
+
+\end{checkedsolution}
 
 \exercisequestion{QM-C02-S01-E01}{教材练习 2.1.1：一维简谐振子}
 

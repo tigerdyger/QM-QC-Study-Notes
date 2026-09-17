@@ -554,42 +554,8 @@ $\comm{\Omega}{\Lambda}\neq0$ 意味着不存在完整共同本征基，却未�
 \end{equation}
 二者在 $\{\ket{1},\ket{2}\}$ 基下有相同概率，却在 $\{\ket{+},\ket{-}\}$ 基下分别给出 $(1,0)$ 与 $(1/2,1/2)$。区别由 $\rho_{\mathrm{coh}}$ 的非对角相干项保存。
 
-教材例 4.2.4 取
-\begin{equation}
-  \psi(x)
-  =\frac1{(\pi\Delta^2)^{1/4}}
-   \exp\left[-\frac{(x-a)^2}{2\Delta^2}\right].
-  \label{eq:QM-C04-S02-gaussian-position}
-\end{equation}
-其位置概率密度以 $a$ 为中心，直接积分得到
-\begin{equation}
-  \boxed{\langle X\rangle=a},
-  \qquad
-  \boxed{\Delta X=\frac{\Delta}{\sqrt2}}.
-  \label{eq:QM-C04-S02-gaussian-position-moments}
-\end{equation}
-动量波函数是 Fourier transform：
-\begin{align}
-  \phi(p)
-  &=\braket{p}{\psi}
-   =\frac1{\sqrt{2\pi\hbar}}
-    \int_{-\infty}^{\infty}
-    \ee^{-\ii px/\hbar}\psi(x)\dd x
-  \notag\\
-  &=\left(\frac{\Delta^2}{\pi\hbar^2}\right)^{1/4}
-    \ee^{-\ii pa/\hbar}
-    \ee^{-p^2\Delta^2/(2\hbar^2)}.
-  \label{eq:QM-C04-S02-gaussian-momentum}
-\end{align}
-相位 $\ee^{-\ii pa/\hbar}$ 不影响动量概率密度，故
-\begin{equation}
-  \boxed{\langle P\rangle=0},
-  \qquad
-  \boxed{\Delta P=\frac{\hbar}{\sqrt2\Delta}},
-  \qquad
-  \boxed{\Delta X\Delta P=\frac{\hbar}{2}}.
-  \label{eq:QM-C04-S02-gaussian-uncertainty}
-\end{equation}
+高斯波包说明了位置与动量分布的 Fourier 对偶性：增大空间宽度会减小动量宽度；对于不带位置相关相位的最小不确定度高斯态，$\Delta X\Delta P=\hbar/2$。归一化、两种表象的波函数及均值与方差计算见\relatedexercise{QM-C04-S02-E00}{教材例 4.2.4}。
+
 一个表象中越局域，在 Fourier 共轭表象中越分散。相关计算见
 \begin{itemize}[leftmargin=*]
   \item \relatedexercise{QM-C04-S02-E01}{教材练习 4.2.2}：实波函数的平均动量；

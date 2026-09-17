@@ -804,16 +804,7 @@ $U+W$ 是包含 $U$ 和 $W$ 的最小子空间：它对线性组合封闭，且�
   \label{eq:QM-C01-S06-operator-expansion}
 \end{equation}
 
-教材例 1.6.1 对旋转算符使用按列规则：$R\ket{1}=\ket{1}$、$R\ket{2}=\ket{3}$、$R\ket{3}=-\ket{2}$ 给出
-\[
-  [R]=
-  \begin{pmatrix}
-    1&0&0\\
-    0&0&-1\\
-    0&1&0
-  \end{pmatrix}.
-\]
-从矩阵反推基向量作用见\relatedexercise{QM-C01-S06-E01}{教材练习 1.6.1}。
+按列构造旋转矩阵的完整示范见\relatedexercise{QM-C01-S06-E00}{教材例 1.6.1}；反向读取矩阵的练习见\relatedexercise{QM-C01-S06-E01}{教材练习 1.6.1}。
 
 \dialoguesupplement{公式 $\Omega_{ij}=\bra{i}\Omega\ket{j}$ 直接给出坐标矩阵的前提是基正交归一。对一般基 $\{\ket{e_i}\}$，若 $\Omega\ket{e_j}=\sum_i C_{ij}\ket{e_i}$、$G_{ki}=\braket{e_k}{e_i}$ 且 $B_{kj}=\bra{e_k}\Omega\ket{e_j}$，则 $B_{kj}=\sum_iG_{ki}C_{ij}$，即 $B=GC$。所以真正的坐标矩阵是 $C=G^{-1}B$；内积数表 $B$ 一般不是坐标。}
 
@@ -1220,79 +1211,17 @@ Hermitian 算符存在完整正交归一特征基，可用维数归纳严格证�
 
 \notetopic{QM-C01-S08-T06}{耦合振子、简正模与传播算符}
 
-教材例 1.8.6 考虑两个质量均为 $m$ 的物块，由三个劲度系数均为 $k$ 的弹簧连接：
-
-\begin{figure}[htbp]
-  \centering
-  \begin{tikzpicture}[x=1cm,y=1cm,>=Stealth]
-    \draw[very thick] (0,-0.7)--(0,0.7);
-    \foreach \y in {-0.55,-0.3,-0.05,0.2,0.45}
-      \draw (-0.25,\y-0.12)--(0,\y+0.12);
-    \draw[decorate,decoration={coil,segment length=4pt,amplitude=3pt}] (0,0)--(1.7,0);
-    \node[draw,fill=blue!8,minimum width=1.1cm,minimum height=0.8cm] (m1) at (2.25,0) {$m$};
-    \draw[decorate,decoration={coil,segment length=4pt,amplitude=3pt}] (2.8,0)--(4.3,0);
-    \node[draw,fill=blue!8,minimum width=1.1cm,minimum height=0.8cm] (m2) at (4.85,0) {$m$};
-    \draw[decorate,decoration={coil,segment length=4pt,amplitude=3pt}] (5.4,0)--(7.1,0);
-    \draw[very thick] (7.1,-0.7)--(7.1,0.7);
-    \foreach \y in {-0.55,-0.3,-0.05,0.2,0.45}
-      \draw (7.1,\y+0.12)--(7.35,\y-0.12);
-    \draw[->,noteBlue,thick] (2.25,-0.7)--(3.05,-0.7) node[right] {$x_1$};
-    \draw[->,noteBlue,thick] (4.85,-0.7)--(5.65,-0.7) node[right] {$x_2$};
-    \node at (0.85,0.45) {$k$};
-    \node at (3.55,0.45) {$k$};
-    \node at (6.25,0.45) {$k$};
-  \end{tikzpicture}
-  \caption{等质量耦合弹簧系统及统一取向的位移坐标。}
-  \label{fig:QM-C01-S08-coupled-oscillator}
-\end{figure}
-
-以向右为两个位移的正方向。第一个物块所受总力为 $-kx_1+k(x_2-x_1)$，第二个物块同理，故
-\begin{equation}
-  \begin{pmatrix}\ddot x_1\\\ddot x_2\end{pmatrix}
-  =\frac{k}{m}
-  \begin{pmatrix}-2&1\\1&-2\end{pmatrix}
-  \begin{pmatrix}x_1\\x_2\end{pmatrix},
-  \qquad
-  \ket{\ddot x(t)}=\Omega\ket{x(t)}.
-  \label{eq:QM-C01-S08-coupled-equation}
-\end{equation}
-非对角元表示两个坐标彼此耦合。$\Omega$ 的正交归一特征向量及频率为
+对具有实对称运动矩阵的线性小振动系统，
 \[
-  \ket{I}=\frac1{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},
-  \quad \Omega\ket{I}=-\omega_I^2\ket{I},
-  \quad \omega_I=\sqrt{\frac{k}{m}},
+  \ket{\ddot x}=\Omega\ket{x},\qquad
+  \Omega\ket{a}=-\omega_a^2\ket{a},
 \]
+在正交归一特征基中取 $x_a=\braket{a}{x}$，便有 $\ddot x_a+\omega_a^2x_a=0$。对稳定且 $\omega_a>0$ 的模式，
 \[
-  \ket{II}=\frac1{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix},
-  \quad \Omega\ket{II}=-\omega_{II}^2\ket{II},
-  \quad \omega_{II}=\sqrt{\frac{3k}{m}}.
+  x_a(t)=x_a(0)\cos(\omega_at)
+  +\frac{\dot x_a(0)}{\omega_a}\sin(\omega_at).
 \]
-这里 $\Omega$ 的特征值是 $-\omega_a^2$，不是频率 $\omega_a$ 本身。对应的简正坐标与逆变换为
-\begin{equation}
-  x_I=\frac{x_1+x_2}{\sqrt2},
-  \quad
-  x_{II}=\frac{x_1-x_2}{\sqrt2},
-  \qquad
-  x_1=\frac{x_I+x_{II}}{\sqrt2},
-  \quad
-  x_2=\frac{x_I-x_{II}}{\sqrt2}.
-  \label{eq:QM-C01-S08-normal-coordinates}
-\end{equation}
-
-这里也可以不先做矩阵对角化，而直接从牛顿方程看出两个模。令
-\[
-  s=x_1+x_2,
-  \qquad
-  d=x_1-x_2.
-\]
-将两个物块的方程分别相加、相减，立即得到
-\begin{equation}
-  \ddot s+\frac{k}{m}s=0,
-  \qquad
-  \ddot d+\frac{3k}{m}d=0.
-  \label{eq:QM-C01-S08-sum-difference}
-\end{equation}
-若初始时 $d(0)=\dot d(0)=0$，则微分方程解的唯一性保证 $d(t)=0$，所以两个物块始终同向等位移，中间弹簧始终不伸缩。若 $s(0)=\dot s(0)=0$，则始终有 $s(t)=0$，即 $x_1=-x_2$；此时中间弹簧的形变量为单个物块位移的两倍。归一化后的 $s,d$ 正是式~\eqref{eq:QM-C01-S08-normal-coordinates} 中的 $x_I,x_{II}$，因此“取和与差”和“换到特征向量基”是同一件事的两种写法。
+因此，对角化不仅简化矩阵，还找到了各自独立演化的集体运动方向。零频模式应取极限 $x_a(t)=x_a(0)+t\dot x_a(0)$。
 
 \keyidea{把新的线性小振动问题转成特征值问题时，可以沿用下面的固定步骤。}
 \begin{enumerate}[leftmargin=*,itemsep=0.2em]
@@ -1304,37 +1233,13 @@ Hermitian 算符存在完整正交归一特征基，可用维数归纳严格证�
 \end{enumerate}
 这个流程没有取消原来的微分方程，而是用特征向量选择一组能够让耦合方程彼此独立的坐标。
 
-在此基中，运动方程解耦为
-\begin{equation}
-  \ddot x_a+\omega_a^2x_a=0,
-  \qquad
-  x_a(t)=x_a(0)\cos(\omega_at)
-  +\frac{\dot x_a(0)}{\omega_a}\sin(\omega_at),
-  \quad a=I,II.
-  \label{eq:QM-C01-S08-normal-mode-solution}
-\end{equation}
-$\ket{I}$ 表示两物块同向等位移，中间弹簧不伸缩；$\ket{II}$ 表示两物块反向等位移，中间弹簧形变为单个物块位移的两倍，因此总恢复力更大、频率更高。简正模在演化中不转向其他特征方向，只改变其标量系数。
+零初速度时，位移传播算符为
+\[
+  U_{\mathrm c}(t)=\sum_a\ket{a}\bra{a}\cos(\omega_at).
+\]
+它一般不是 unitary；一般初值仍需同时指定初始位移和初始速度。
 
-教材先限制 $\ket{\dot x(0)}=\ket{0}$。此时位移传播算符为
-\begin{equation}
-  U_{\mathrm c}(t)
-  =\ket{I}\bra{I}\cos(\omega_It)
-  +\ket{II}\bra{II}\cos(\omega_{II}t),
-  \qquad
-  \ket{x(t)}=U_{\mathrm c}(t)\ket{x(0)}.
-  \label{eq:QM-C01-S08-classical-propagator}
-\end{equation}
-在 $\ket{1},\ket{2}$ 基中，令 $c_I=\cos(\omega_It)$、$c_{II}=\cos(\omega_{II}t)$，则
-\begin{equation}
-  [U_{\mathrm c}(t)]
-  =\frac12
-  \begin{pmatrix}
-    c_I+c_{II}&c_I-c_{II}\\
-    c_I-c_{II}&c_I+c_{II}
-  \end{pmatrix}.
-  \label{eq:QM-C01-S08-classical-propagator-matrix}
-\end{equation}
-这个仅传播位移且假定零初速度的 $U_{\mathrm c}(t)$ 一般不是 unitary；二阶方程的一般初值问题必须同时给出位移和速度。教材习题 1.8.11 的具体初态见\relatedexercise{QM-C01-S08-E05}{耦合振子初值问题}。
+完整的双物块模型、受力推导及传播矩阵见\hyperref[exercise:QM-C01-S08-E06]{教材例 1.8.6}，具体初态的计算见\hyperref[exercise:QM-C01-S08-E05]{教材练习 1.8.11}。
 
 教材在此预告量子力学的对应结构：若 $H\ket{E_n}=E_n\ket{E_n}$，则
 \begin{equation}
@@ -1869,126 +1774,33 @@ Fourier 变换因此不是改变 $\ket{f}$，而是把同一个抽象向量从 $
 \end{equation}
 同一关系在 $K$ 基中由 $X=\ii d/dk$、$K=k$ 得到完全相同的结果。以后令动量算符 $P=\hbar K$，便有 $[X,P]=\ii\hbar I$。
 
-\notetopic{QM-C01-S10-T07}{固定弦的特征函数与离散简正模}
+\notetopic{QM-C01-S10-T07}{边界条件、特征函数与离散简正模}
 
-教材例 1.10.1 考虑波速取为 $1$、两端固定且初速度为零的弦：
-\begin{equation}
-  \frac{\partial^2\psi}{\partial t^2}
-  =\frac{\partial^2\psi}{\partial x^2},
-  \qquad
-  \psi(0,t)=\psi(L,t)=0.
-  \label{eq:QM-C01-S10-wave-equation}
-\end{equation}
-令 $\psi(x,t)=\braket{x}{\psi(t)}$，并记 Dirichlet Laplacian 为
-\[
-  A=-\frac{d^2}{dx^2}.
-\]
-教材形式地写 $A=K^2$，于是抽象方程为
-\begin{equation}
-  \ket{\ddot\psi(t)}=-A\ket{\psi(t)}.
-  \label{eq:QM-C01-S10-abstract-wave-equation}
-\end{equation}
-由于一阶算符 $-\ii d/dx$ 配合两端取零并非 self-adjoint，更严格的对象是带 Dirichlet 定义域的 $A$ 本身。
+微分表达式只有配合定义域和边界条件，才确定一个算符及其谱。有限区间 $[0,L]$ 上的 Dirichlet 算符 $A=-d^2/dx^2$ 要求函数两端为零；它的特征函数为正弦模，谱是离散的。这与全实轴上一阶算符 $K=-\ii d/dx$ 的连续平面波谱是不同的问题，不能只看 $A$ 的形式就忽略定义域。
 
-求 $A$ 的特征值问题
-\begin{equation}
-  A\ket{m}=k_m^2\ket{m}.
-  \label{eq:QM-C01-S10-string-abstract-eigenproblem}
-\end{equation}
-在两边左乘 $\bra{x}$ 并定义 $\phi_m(x)=\braket{x}{m}$，得到
-\begin{equation}
-  -\frac{d^2\phi_m}{dx^2}=k_m^2\phi_m.
-  \label{eq:QM-C01-S10-string-x-eigenproblem}
-\end{equation}
-这里右侧的 $k_m^2$ 是与基无关的标量特征值，并不是 $K$ 基中的乘法算符。若改到连续 $K$ 表象，同一抽象方程会写成 $k^2\widetilde\phi_m(k)=k_m^2\widetilde\phi_m(k)$。
-
-微分方程通解为
-\[
-  \phi_m(x)=C_m\cos(k_mx)+D_m\sin(k_mx).
-\]
-由 $\phi_m(0)=0$ 得 $C_m=0$；为避免零解，$\phi_m(L)=0$ 要求
-\begin{equation}
-  \sin(k_mL)=0,
-  \qquad
-  k_m=\frac{m\pi}{L},
-  \qquad m=1,2,\ldots.
-  \label{eq:QM-C01-S10-string-wavenumbers}
-\end{equation}
-$m=0$ 只给出零函数，负 $m$ 也不产生新的线性无关方向。归一化积分
-\[
-  \int_0^L\sin^2\left(\frac{m\pi x}{L}\right)dx=\frac L2
-\]
-给出正交归一模
-\begin{equation}
-  \boxed{
-  \phi_m(x)=\braket{x}{m}
-  =\sqrt{\frac2L}\sin\left(\frac{m\pi x}{L}\right).}
-  \label{eq:QM-C01-S10-string-normal-modes}
-\end{equation}
-这些正弦模是 $A=K^2$ 的特征函数，却不是 $K$ 的特征函数，因为 $K\sin(kx)=-\ii k\cos(kx)$ 不与原函数成比例。形式恒等式
-\[
-  \sin(kx)=\frac{\ee^{\ii kx}-\ee^{-\ii kx}}{2\ii}
-\]
-说明它混合了 $+k$ 与 $-k$ 两个方向；平方后两者具有相同的 $k^2$。在固定端区间上，平面波本身不满足 Dirichlet 条件，因此这只是解释简并结构的代数直觉。
+抽象特征方程 $A\ket{m}=k_m^2\ket{m}$ 投影到位置表象，右侧仍是标量 $k_m^2$ 乘以 $\phi_m(x)=\braket{x}{m}$；特征值不因换基而改变。边界条件如何筛出允许波数、如何归一化以及为什么正弦模不是动量特征函数，见\relatedexercise{QM-C01-S10-E00}{教材例 1.10.1}。
 
 \notetopic{QM-C01-S10-T08}{模展开、一般初值与传播核}
 
-将弦的状态在正交归一模上展开：
-\begin{equation}
-  \ket{\psi(t)}=\sum_{m=1}^{\infty}q_m(t)\ket{m},
-  \qquad
-  q_m(t)=\braket{m}{\psi(t)}.
-  \label{eq:QM-C01-S10-string-mode-expansion}
-\end{equation}
-把它代入式~\eqref{eq:QM-C01-S10-abstract-wave-equation}，再左乘 $\bra{n}$：
-\begin{align}
-  \sum_m\ddot q_m(t)\braket{n}{m}
-  &=-\sum_m q_m(t)k_m^2\braket{n}{m},\\
-  \ddot q_n(t)+k_n^2q_n(t)&=0.
-  \label{eq:QM-C01-S10-decoupled-string-modes}
-\end{align}
-所以一个偏微分方程被对角化成无穷多个彼此独立的一维谐振子。若恢复波速 $c$，则 $\omega_m=ck_m=cm\pi/L$。一般初值解为
-\begin{equation}
+设正算符 $A$ 具有完整正交归一特征基 $A\ket{m}=\omega_m^2\ket{m}$，其中 $\omega_m>0$。将波动方程 $\ket{\ddot\psi}=-A\ket{\psi}$ 展开为
+\[
+  \ket{\psi(t)}=\sum_m q_m(t)\ket{m}
+\]
+并投影到各模，得到互不耦合的方程 $\ddot q_m+\omega_m^2q_m=0$。因此
+\[
   q_m(t)=q_m(0)\cos(\omega_mt)
-  +\frac{\dot q_m(0)}{\omega_m}\sin(\omega_mt),
-  \label{eq:QM-C01-S10-general-mode-evolution}
-\end{equation}
-其中两个初始坐标分别由位移和速度投影得到：
-\begin{equation}
-  q_m(0)=\int_0^L\phi_m^*(x)\psi(x,0)\,dx,
-  \qquad
-  \dot q_m(0)=\int_0^L\phi_m^*(x)\dot\psi(x,0)\,dx.
-  \label{eq:QM-C01-S10-initial-mode-projections}
-\end{equation}
-判断第 $m$ 个模完全未被激发，必须同时有 $q_m(0)=\dot q_m(0)=0$；只有前者为零仅表示初始位移分量为零。
+  +\frac{\dot q_m(0)}{\omega_m}\sin(\omega_mt).
+\]
+一个模式未被激发，要求初始位移和初始速度的投影同时为零。
 
-教材取 $c=1$ 且 $\dot\psi(x,0)=0$，此时
-\begin{equation}
-  \ket{\psi(t)}
-  =\sum_{m=1}^{\infty}
-    \ket{m}\braket{m}{\psi(0)}\cos(\omega_mt),
+在零初速度条件下，
+\[
+  U_{\mathrm c}(t)=\sum_m\ket{m}\bra{m}\cos(\omega_mt),
   \qquad
-  U_{\mathrm c}(t)=\sum_{m=1}^{\infty}
-    \ket{m}\bra{m}\cos(\omega_mt).
-  \label{eq:QM-C01-S10-string-propagator}
-\end{equation}
-在 $X$ 基中，它的积分核为
-\begin{align}
   U_{\mathrm c}(x,x';t)
-  &=\bra{x}U_{\mathrm c}(t)\ket{x'} \\
-  &=\sum_{m=1}^{\infty}\frac2L
-    \sin\left(\frac{m\pi x}{L}\right)
-    \sin\left(\frac{m\pi x'}{L}\right)
-    \cos(\omega_mt),
-  \label{eq:QM-C01-S10-string-propagator-kernel}
-\end{align}
-从而
-\begin{equation}
-  \psi(x,t)=\int_0^L
-  U_{\mathrm c}(x,x';t)\psi(x',0)\,dx'.
-  \label{eq:QM-C01-S10-string-kernel-evolution}
-\end{equation}
-这个 $U_{\mathrm c}(t)$ 只传播位移并已假定零初速度，一般不是 unitary。二阶时间方程的完整初态是位移和速度组成的有序对；教材练习 1.10.4 的三角形初态见\relatedexercise{QM-C01-S10-E04}{固定弦的模展开}。
+  =\sum_m\phi_m(x)\phi_m^*(x')\cos(\omega_mt).
+\]
+积分核把初始位移传到后续时刻，但这个仅传播位移的算符一般不是 unitary。固定弦的完整计算见教材例 1.10.1，三角形初始位移的投影计算见\relatedexercise{QM-C01-S10-E04}{教材练习 1.10.4}。
 
 \subsection{一分钟回顾}
 
