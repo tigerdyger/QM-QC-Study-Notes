@@ -43,3 +43,4 @@
 | 2026-09-15 | Shankar 第 5 章 \S 5.4，印刷页 167--175，PDF 179--187 | `chapters/05-notes.tex`、`exercises/05-exercises.tex` | 单阶跃势、波包散射、边界匹配、反射与透射、概率流速度因子、倏逝波、有限势垒隧穿、恒力传播子 | 下一学习节点为第 5.5 节 The Double-Slit Experiment |
 | 2026-09-16 | Shankar 第 5 章 \S 5.5，印刷页 175 末至 176 开头，PDF 187--188 | `chapters/05-notes.tex`、`exercises/05-exercises.tex` | 双缝边界模型、Helmholtz 方程、相干叠加、条纹间距、Born 概率解释与到达通量；自编短应用题已核对 | 下一学习节点为第 5.6 节 Some Theorems |
 | 2026-09-17 | Shankar 第 5 章 \S 5.6，印刷页 176--178，PDF 188--190 | `chapters/05-notes.tex`、`exercises/05-exercises.tex` | 一维束缚态非简并、Wronskian、节点与初值唯一性、本征函数实性、整体相位与零概率流；教材正文计算检验已核对 | 第五章已完成；下一学习节点为第 6 章 The Classical Limit |
+| 2026-09-17 至 2026-09-18 | Shankar 第 6 章全文，印刷页 179--184，PDF 191--196；以 6.1 作为整章学习单元 | `chapters/06-notes.tex`、`exercises/06-exercises.tex` | Ehrenfest 定理、平均力与经典轨迹、中心矩修正、Gaussian 宏观局域化与扩散、Example 6.1；讲解及概念核对完成 | 笔记已确认；下一学习节点为第 7.1 节 Why Study the Harmonic Oscillator? |

@@ -1,0 +1,205 @@
+\clearpage
+\section{第 6.1 单元：经典极限}
+\label{section:QM-C06-S01}
+
+\studymeta
+  {QM-C06-S01}
+  {2026-09-17 至 2026-09-18}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 6 章全文；印刷页 pp.~179--184；PDF pp.~191--196}
+  {分块讲解、概念核对及教材 Example 6.1 已完成；笔记已确认}
+
+\textbf{范围与主线。}教材第六章没有编号小节，本笔记以 6.1 表示整章学习单元，而不是教材中的独立小节。内容分为三个核心块：期望值的精确运动方程、恢复经典方程的近似条件、宏观尺度下的局域化与扩散。教材唯一的 Example 6.1 收于课程题目部分；本章没有单列 Exercise。四次势的中心矩展开、误差尺度表述及显含时间的守恒边界属于对话补充。
+
+\notetopic{QM-C06-S01-T01}{Ehrenfest 定理：期望值的精确运动方程}
+
+\keyidea{从整个态的 Schr\"odinger 演化出发，可以直接求出可观测量平均值的变化率；这一步尚未使用经典近似。}
+
+\textbf{从态演化到平均值。}
+在 Schr\"odinger 绘景中，对归一化态和可观测算符 $\Omega(t)$，
+\begin{equation}
+  \expect{\Omega}_t=\bra{\psi(t)}\Omega(t)\ket{\psi(t)}.
+\end{equation}
+假设 $H(t)$ 自伴，态足够规则，使相关算符乘积、期望值及求导有意义。对 bra、算符和 ket 分别求导：
+\begin{equation}
+  \odv{}{t}\expect{\Omega}
+  =\bra{\dot\psi}\Omega\ket\psi
+   +\bra\psi\pdv{\Omega}{t}\ket\psi
+   +\bra\psi\Omega\ket{\dot\psi}.
+\end{equation}
+$\partial_t\Omega$ 只表示算符的显式时间依赖，不包含态变化带来的贡献。由 Schr\"odinger 方程及其伴随，
+\begin{equation}
+  \ket{\dot\psi}=-\frac{\ii}{\hbar}H\ket\psi,
+  \qquad
+  \bra{\dot\psi}=\frac{\ii}{\hbar}\bra\psi H.
+\end{equation}
+取伴随既改变 $\ii$ 的符号，也反转乘积次序。代入得到
+\begin{align}
+  \odv{}{t}\expect{\Omega}
+  &=\frac{\ii}{\hbar}\bra\psi H\Omega\ket\psi
+    -\frac{\ii}{\hbar}\bra\psi\Omega H\ket\psi
+    +\expect{\partial_t\Omega}\\
+  &=\boxed{\frac{1}{\ii\hbar}\expect{[\Omega,H]}
+    +\expect{\partial_t\Omega}}.
+  \label{eq:QM-C06-S01-ehrenfest}
+\end{align}
+教材随后假设 $\partial_t\Omega=0$，把所得关系称为 Ehrenfest 定理。推导本身不要求 $H$ 不显含时间。
+
+\textbf{与经典力学的结构对应。}
+经典相空间函数满足
+\begin{equation}
+  \odv{F}{t}=\{F,\mathcal H\}+\pdv{F}{t}.
+\end{equation}
+量子公式中的 $[\Omega,H]/(\ii\hbar)$ 与 Poisson bracket 的作用相似，但左边是期望值的变化率；这种结构相似并不自动建立确定的粒子轨迹，也不能无条件推广为所有经典函数的精确量子化规则。
+
+\textbf{守恒与确定值不是同一概念。}
+若 $\partial_t\Omega=0$ 且 $[\Omega,H(t)]=0$ 在演化期间成立，则 $\expect\Omega$ 守恒。这是对所有适当态成立的充分条件，并不要求态是 $\Omega$ 的本征态；不含时 Hamiltonian 的不同能量本征态叠加也可以有守恒的平均能量。反过来，某个特殊态的期望值守恒，并不足以推出算符对易。
+
+取 $\Omega=H(t)$，虽然 $[H,H]=0$，仍有
+\begin{equation}
+  \boxed{\odv{}{t}\expect H=\expect{\pdv{H}{t}}}.
+  \label{eq:QM-C06-S01-energy-rate}
+\end{equation}
+因此不含时 $H$ 保证平均能量守恒；显含时间时则一般不守恒，但某个态下右边仍可能为零，不能把“可能变化”写成“必然变化”。
+
+\notetopic{QM-C06-S01-T02}{从平均力到经典轨迹：何时可以忽略涨落}
+
+\keyidea{平均力不一定等于平均位置处的力。两者的差别由分布宽度、更高阶中心矩及力的非线性变化决定。}
+
+\textbf{位置和动量的精确方程。}
+考虑实轴上的一维系统
+\begin{equation}
+  H=\frac{P^2}{2m}+V(X),\qquad [X,P]=\ii\hbar I,
+  \qquad x_c=\expect X,\quad p_c=\expect P.
+\end{equation}
+这里假定实势足够光滑，相关期望值存在；硬墙或奇异势需要另行处理定义域及边界项。由于 $[X,V(X)]=0$，
+\begin{equation}
+  [X,P^2]=[X,P]P+P[X,P]=2\ii\hbar P,
+\end{equation}
+所以
+\begin{equation}
+  \boxed{\dot x_c=\frac{p_c}{m}}.
+  \label{eq:QM-C06-S01-position-rate}
+\end{equation}
+对动量，$[P,P^2]=0$。在位置表象作用于适当的测试函数 $\psi$，
+\begin{align}
+  [P,V(X)]\psi
+  &=-\ii\hbar\frac{\dd}{\dd x}(V\psi)
+      +\ii\hbar V\psi'\\
+  &=-\ii\hbar V'(x)\psi.
+\end{align}
+因此 $[P,V(X)]=-\ii\hbar V'(X)$，从而
+\begin{equation}
+  \boxed{\dot p_c=-\expect{V'(X)}},\qquad
+  \boxed{m\ddot x_c=-\expect{V'(X)}}.
+  \label{eq:QM-C06-S01-mean-force}
+\end{equation}
+这两个平均值方程均为精确关系。但通常
+\begin{equation}
+  \expect{V'(X)}
+  =\int V'(x)\abs{\psi(x,t)}^2\dd x
+  \ne V'(x_c).
+\end{equation}
+左边考虑整个位置分布上的力，右边把分布压缩成 $x_c$ 处的一个质点。
+
+\textbf{Taylor 展开显示近似误差。}
+定义偏离平均位置的算符及其中心矩：
+\begin{equation}
+  \delta X=X-x_cI,\qquad
+  \expect{\delta X}=0,\qquad
+  \sigma_x^2=\expect{(\delta X)^2},\qquad
+  \mu_3=\expect{(\delta X)^3}.
+\end{equation}
+$\delta X$ 是算符，$\sigma_x$ 是标准差，不混用同一个符号。若势能在波包主要支撑范围内足够光滑，Taylor 展开余项及所需矩可控，则
+\begin{align}
+  V'(x)&=V'(x_c)+V''(x_c)(x-x_c)
+          +\frac12V'''(x_c)(x-x_c)^2+\cdots,\\
+  \expect{V'(X)}
+    &=V'(x_c)+\frac12V'''(x_c)\sigma_x^2
+      +\frac16V^{(4)}(x_c)\mu_3+\cdots.
+  \label{eq:QM-C06-S01-force-expansion}
+\end{align}
+一次中心矩为零；其余项同时包含波包的涨落与力的非线性变化。当它们在要求的精度内可忽略时，才有
+\begin{equation}
+  \dot x_c\simeq\left.\pdv{\mathcal H}{p}\right|_{x_c,p_c},
+  \qquad
+  \dot p_c\simeq-\left.\pdv{\mathcal H}{x}\right|_{x_c,p_c},
+  \qquad
+  \mathcal H(x,p)=\frac{p^2}{2m}+V(x).
+\end{equation}
+其中位置方程本来就是精确的，近似出现在平均力的替换。“波包窄”必须相对于势能的空间变化尺度而言，并且应在所考察的整个时间内保持有效。若经典力接近零，不宜用除以 $V'(x_c)$ 的相对误差判据，应直接比较绝对误差与所需精度。
+
+\textbf{精确的特殊情况：至多二次的势能。}
+若 $V(x)=ax^2+bx+c$，则力为线性函数，严格有
+\begin{equation}
+  \expect{V'(X)}=2ax_c+b=V'(x_c).
+\end{equation}
+因此自由粒子、恒力及谐振子的 $x_c,p_c$ 精确满足经典方程，不要求窄波包。特别地，谐振子满足 $\ddot x_c+\omega^2x_c=0$。更一般的至多二次正则 Hamiltonian 也有这一平均值性质；它不意味着波包宽度为零，也不保证所有非线性可观测量都能用 $x_c,p_c$ 代入求得。相关区别见\hyperref[exercise:QM-C06-S01-E01]{教材 Example 6.1}。
+
+\dialoguesupplement{四次势中的涨落修正。}
+对 $V(X)=\lambda X^4$，直接展开 $X=x_cI+\delta X$ 得
+\begin{equation}
+  \expect{X^3}=x_c^3+3x_c\sigma_x^2+\mu_3,
+  \qquad
+  m\ddot x_c=-4\lambda(x_c^3+3x_c\sigma_x^2+\mu_3).
+\end{equation}
+分布在当前时刻关于 $x_c$ 对称时 $\mu_3=0$，但方差项不消失。对 $x_c\ne0$，相对修正为 $3\sigma_x^2/x_c^2$，很小则可近似采用经典力。这只是充分条件：若 $x_c=0$ 且分布对称，即使波包很宽，平均力仍与中心处的力同为零。初始对称也不保证以后始终关于移动的中心对称。
+
+\notetopic{QM-C06-S01-T03}{宏观尺度下的局域化、扩散与适用边界}
+
+\keyidea{经典的“位置和动量确定”是相对于观察尺度的近似，不是两个不确定度同时为零。大质量有助于压低速度涨落，但不能把任意量子态自动变成经典质点。}
+
+\textbf{同时近似局域在位置和动量上。}
+取无初始位置--动量相关的最小不确定度 Gaussian：
+\begin{equation}
+  \psi(x)=\frac{1}{(2\pi\sigma_x^2)^{1/4}}
+    \exp\left[-\frac{(x-x_c)^2}{4\sigma_x^2}
+              +\frac{\ii p_cx}{\hbar}\right].
+\end{equation}
+它满足
+\begin{equation}
+  \expect X=x_c,\quad \expect P=p_c,\quad
+  \sigma_p=\frac{\hbar}{2\sigma_x},\quad
+  \sigma_v=\frac{\sigma_p}{m}.
+  \label{eq:QM-C06-S01-gaussian-scales}
+\end{equation}
+教材式 (6.9) 使用 $\exp[-(x-x_c)^2/(2\Delta^2)]$，所以该宽度参数与本笔记的标准差满足 $\sigma_x=\Delta/\sqrt2$，相应 $\sigma_p=\hbar/(\sqrt2\Delta)$。
+
+\textbf{小不确定度应相对于物理尺度判断。}
+设 $L_*,P_*$ 是位置、动量的相关容许误差尺度。要使 $\sigma_x\ll L_*$、$\sigma_p\ll P_*$ 同时成立，对于上述 Gaussian 需要能选取
+\begin{equation}
+  \boxed{\frac{\hbar}{2P_*}\ll\sigma_x\ll L_*}.
+\end{equation}
+这要求作用量尺度 $L_*P_*$ 远大于 $\hbar$。它表达的是尺度分离，而不是让自然常数真的为零；同时还需满足上一块的平均力近似，不能把尺度乘积大单独当作充分的经典性判据。
+
+教材用 $m\sim1\,\mathrm g$、位置宽度约 $10^{-13}\,\mathrm{cm}$ 作数量级说明。由 $\hbar\simeq1.05\times10^{-27}\,\mathrm{g\,cm^2/s}$，可得 $\sigma_p$ 为 $10^{-14}\,\mathrm{g\,cm/s}$ 量级，$\sigma_v$ 为 $10^{-14}\,\mathrm{cm/s}$ 量级。这里忽略 Gaussian 宽度约定带来的常数因子。位置和速度的不确定度均可远低于日常宏观分辨尺度。
+
+\textbf{相对展宽不等于宏观可见的展宽。}
+自由粒子有 $X(t)=X(0)+P(0)t/m$。定义初始对称协方差
+\begin{equation}
+  C_{xp}=\frac12\expect{\delta X\delta P+\delta P\delta X}_{t=0},
+  \qquad \delta P=P-p_cI,
+\end{equation}
+则一般地
+\begin{equation}
+  \sigma_x(t)^2=\sigma_x(0)^2+\frac{2t}{m}C_{xp}
+                         +\frac{t^2}{m^2}\sigma_p(0)^2.
+\end{equation}
+对上述 $C_{xp}=0$ 的 Gaussian，
+\begin{equation}
+  \boxed{\sigma_x(t)=\sigma_x(0)\sqrt{1+(t/t_s)^2}},
+  \qquad
+  \boxed{t_s=\frac{2m\sigma_x(0)^2}{\hbar}}.
+  \label{eq:QM-C06-S01-spreading}
+\end{equation}
+$t_s$ 衡量相对初始宽度的变化。达到给定宏观宽度 $\ell\gg\sigma_x(0)$ 所需的时间则约为 $\ell/\sigma_v$。例如 $\ell\sim0.1\,\mathrm{cm}$、$\sigma_v\sim10^{-14}\,\mathrm{cm/s}$ 时，需约 $10^{13}\,\mathrm s$，即几十万年。初始极窄的波包可以很快扩大许多倍，却仍然远小于宏观分辨率。
+
+固定初始 $\sigma_x$ 时，增大质量不改变 $\sigma_p$，却使 $\sigma_v\propto m^{-1}$、$t_s\propto m$。上述精确扩散公式只针对自由粒子；外势中的局域化及其持续时间须另行判断。
+
+\textbf{测量精度与经典描述的边界。}
+教材用有限波长的光定位粒子说明经典测量并非无限精确。其数量级图像为 $\delta x\sim\lambda$、光子动量 $h/\lambda$：若把位置定位得极端精细，即使是宏观质量也可能获得不可忽略的动量不确定度或反冲。这里是对测量尺度的启发式说明，不是适用于所有测量装置的精确误差公式。真实的 $X,P$ 同时本征态仍不存在。
+
+经典近似并不使量子概率消失。质量大、中心运动经典、所有相关观测量均可忽略涨落，是不同层次的判断；非线性观测量的反例见\hyperref[exercise:QM-C06-S01-E01]{教材 Example 6.1}。
+
+\subsection{一分钟回顾}
+Ehrenfest 定理精确成立，显含时间时须保留 $\expect{\partial_t\Omega}$。经典质点近似还要求平均力可由中心处的力替代；至多二次势下这一替代精确成立，但波包仍有涨落。一般的经典近似须结合初态、观察尺度及持续时间判断。

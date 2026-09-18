@@ -1,0 +1,76 @@
+\clearpage
+\section{第 6.1 单元教材例题}
+\label{exercise-set:QM-C06-S01}
+
+\exercisemeta
+  {QM-C06-S01-EX}
+  {2026-09-18}
+  {Shankar，第 6 章 Example 6.1；印刷页 p.~184；PDF p.~196}
+  {教材例题；归一化和积分步骤为展开推导，末尾谐振子联系为补充}
+  {例题讲解已完成；笔记已确认}
+
+\exercisequestion{QM-C06-S01-E01}{函数的平均值与平均值的函数（Example 6.1）}
+
+\textbf{对应知识点：}\hyperref[topic:QM-C06-S01-T02]{平均力近似与涨落修正}。
+
+设实轴上的归一化态为
+\begin{equation}
+  \psi(x)=A\exp\left[-\frac{(x-a)^2}{2\Delta^2}\right],
+  \qquad a\in\mathbb R,\quad\Delta>0,
+\end{equation}
+其中 $A$ 是归一化常数。对 $\Omega(X)=X^2$，判断 $\expect{\Omega(X)}$ 是否等于 $\Omega(\expect X)$，并求两者之差。注意 $\Delta$ 是指数中的宽度参数，不是位置标准差。
+
+\begin{checkedsolution}
+由 Gaussian 积分，
+\begin{equation}
+  1=\abs A^2\int_{-\infty}^{\infty}
+       \ee^{-(x-a)^2/\Delta^2}\dd x
+    =\abs A^2\sqrt\pi\Delta.
+\end{equation}
+取无关的整体相位为零，有 $A=(\pi\Delta^2)^{-1/4}$，所以
+\begin{equation}
+  \rho(x)=\frac{1}{\sqrt\pi\Delta}
+            \ee^{-(x-a)^2/\Delta^2}.
+\end{equation}
+分布关于 $a$ 对称，故 $\expect X=a$。令 $y=x-a$，则
+\begin{align}
+  \expect{X^2}
+  &=\frac{1}{\sqrt\pi\Delta}
+     \int_{-\infty}^{\infty}(a+y)^2\ee^{-y^2/\Delta^2}\dd y\\
+  &=a^2+\frac{1}{\sqrt\pi\Delta}
+     \int_{-\infty}^{\infty}y^2\ee^{-y^2/\Delta^2}\dd y.
+\end{align}
+一次项是奇函数，积分为零。对 $b>0$，由
+\begin{equation}
+  \int\ee^{-by^2}\dd y=\sqrt{\frac\pi b},\qquad
+  \int y^2\ee^{-by^2}\dd y
+  =-\odv{}{b}\sqrt{\frac\pi b}
+  =\frac{\sqrt\pi}{2b^{3/2}},
+\end{equation}
+其中积分限均为 $(-\infty,\infty)$。代入 $b=\Delta^{-2}$ 得
+\begin{equation}
+  \boxed{\expect{X^2}=a^2+\frac{\Delta^2}{2}},
+  \qquad
+  \boxed{\expect X^2=a^2}.
+\end{equation}
+所以函数平均值与平均值的函数并不相等：
+\begin{equation}
+  \boxed{\expect{\Omega(X)}-\Omega(\expect X)
+    =\expect{X^2}-\expect X^2
+    =\sigma_x^2=\frac{\Delta^2}{2}>0}.
+\end{equation}
+以一个中心位置代替整个分布会丢失宽度信息，而非线性可观测量可以检测这种差别。若要求相对 $a^2$ 的误差小且 $a\ne0$，可用 $\Delta^2/(2a^2)\ll1$；$a=0$ 时应根据绝对误差判断，不能使用该相对比值。
+
+\textbf{补充：中心运动经典不代表平均势能等于中心处势能。}
+若该 Gaussian 作为谐振子在某时刻的态，则
+\begin{equation}
+  \expect V=\frac12m\omega^2\expect{X^2}
+    =\frac12m\omega^2a^2+\frac14m\omega^2\Delta^2.
+\end{equation}
+最后一项来自位置涨落。一般地，任意具有有限二阶矩的谐振子态都满足
+\begin{equation}
+  \expect V=\frac12m\omega^2x_c^2
+               +\frac12m\omega^2\sigma_x^2,
+\end{equation}
+尽管它的中心始终精确满足 $\ddot x_c+\omega^2x_c=0$。
+\end{checkedsolution}
