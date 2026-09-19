@@ -1,0 +1,111 @@
+\clearpage
+\section{第 7.1 节：为什么研究谐振子}
+\label{section:QM-C07-S01}
+
+\studymeta
+  {QM-C07-S01}
+  {2026-09-19}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 7 章 \S 7.1；印刷页 pp.~185--188；PDF pp.~197--200}
+  {讲解与概念核对已完成；笔记待确认}
+
+\textbf{范围与主线。}本节解释谐振子为何反复出现在物理问题中：稳定平衡附近的非简并小振动近似为单个谐振子；多个耦合自由度可在二次近似下分解为独立的正常模；晶体振动和自由电磁场提供了多模系统的例子。本节回顾第 1.8 节的教材例 1.8.6，其完整题干和解答已收于\relatedexercise{QM-C01-S08-E06}{课程题目部分}，此处不重复。四次势及零、负曲率的边界属于严格性补充。
+
+\notetopic{QM-C07-S01-T01}{稳定平衡附近的二次近似}
+
+\keyidea{谐振子不是任意势能的精确模型；它来自平衡点附近保留最低非零二次项的局部近似。}
+
+令 $x_0$ 为光滑势能 $V(x)$ 的平衡位置，$q=x-x_0$ 为小位移。若 $x_0$ 是内点，则 $V'(x_0)=0$。在足够光滑的条件下，
+\begin{align}
+  V(x_0+q)
+  &=V(x_0)+V'(x_0)q+\frac12V''(x_0)q^2
+    +\frac16V'''(x_0)q^3+\cdots\\
+  &=V(x_0)+\frac12k_{\mathrm{eff}}q^2+O(q^3),
+  \qquad k_{\mathrm{eff}}:=V''(x_0).
+  \label{eq:QM-C07-S01-taylor}
+\end{align}
+势能常数 $V(x_0)$ 不影响经典运动，可精确地调整能量零点；线性项因平衡条件精确消失。只有舍去三次及更高次项是近似，要求在所考察的位移范围内这些项相对二次项足够小。例如三次项非零时，可检查
+\begin{equation}
+  \left|\frac{V'''(x_0)q}{3V''(x_0)}\right|\ll1,
+\end{equation}
+同时还须检查更高阶项。
+
+若 $k_{\mathrm{eff}}>0$，该平衡点在二次阶非简并。于是
+\begin{equation}
+  m\ddot q=-V'(x_0+q)\simeq-k_{\mathrm{eff}}q,
+  \qquad
+  \boxed{\ddot q+\omega^2q\simeq0},
+  \qquad
+  \boxed{\omega=\sqrt{\frac{V''(x_0)}{m}}}.
+  \label{eq:QM-C07-S01-local-frequency}
+\end{equation}
+若势能本来就是二次函数，方程精确成立；对一般势能，它只描述平衡附近的小振动。此处是\emph{经典}小振动的动机，尚未给出量子谐振子的能谱。
+
+\textbf{适用边界。}稳定平衡不必满足 $V''(x_0)>0$：例如 $V(q)=\lambda q^4$（$\lambda>0$）在 $q=0$ 稳定，但二次项为零，不能由式~\eqref{eq:QM-C07-S01-local-frequency} 得到非零的谐振频率。若某方向的二次曲率为负，该方向的平衡则不稳定，见下文的矩阵判据。
+
+\notetopic{QM-C07-S01-T02}{两个耦合振子：换到正常坐标}
+
+\keyidea{原坐标中的耦合可以来自坐标选择；对角化二次势能后，每个正常坐标独立振动。}
+
+以教材例 1.8.6 中两个等质量物块、三个相同弹簧为例。设弹簧劲度系数为 $k$，$\omega_0^2=k/m$，则
+\begin{equation}
+  H=\frac{p_1^2+p_2^2}{2m}
+    +\frac{k}{2}\bigl[x_1^2+(x_1-x_2)^2+x_2^2\bigr]
+   =\frac{\mathbf p^{\mathsf T}\mathbf p}{2m}
+    +\frac12\mathbf x^{\mathsf T}K\mathbf x,
+  \qquad
+  K=k\begin{pmatrix}2&-1\\-1&2\end{pmatrix}.
+\end{equation}
+对称矩阵 $K$ 的两个正交归一特征向量是 $(1,1)^{\mathsf T}/\sqrt2$ 和 $(1,-1)^{\mathsf T}/\sqrt2$，特征值分别为 $k$ 和 $3k$。据此取
+\begin{equation}
+  Q_I=\frac{x_1+x_2}{\sqrt2},\qquad
+  Q_{II}=\frac{x_1-x_2}{\sqrt2},\qquad
+  P_I=\frac{p_1+p_2}{\sqrt2},\qquad
+  P_{II}=\frac{p_1-p_2}{\sqrt2}.
+\end{equation}
+该变换正交，所以 $p_1^2+p_2^2=P_I^2+P_{II}^2$；将 $x_1=(Q_I+Q_{II})/\sqrt2$、$x_2=(Q_I-Q_{II})/\sqrt2$ 代入势能，得到
+\begin{equation}
+  x_1^2+(x_1-x_2)^2+x_2^2=Q_I^2+3Q_{II}^2.
+\end{equation}
+于是
+\begin{equation}
+  \boxed{H=\left(\frac{P_I^2}{2m}+\frac{kQ_I^2}{2}\right)
+       +\left(\frac{P_{II}^2}{2m}+\frac{3kQ_{II}^2}{2}\right)},
+  \qquad
+  \boxed{\omega_I=\omega_0,\quad\omega_{II}=\sqrt3\,\omega_0}.
+  \label{eq:QM-C07-S01-two-modes}
+\end{equation}
+当 $Q_{II}=0$ 时 $x_1=x_2$，中间弹簧不伸缩；只激发 $Q_{II}$ 时 $x_1=-x_2$，中间弹簧参与恢复力。$3\omega_0^2$ 是频率的\emph{平方}，因此频率为 $\sqrt3\,\omega_0$。模振幅 $Q_{II}$ 本身可正可负，其符号与特征值 $3k>0$ 无关。教材例题中从运动方程求正常模及位移传播算符的推导见\relatedexercise{QM-C01-S08-E06}{例 1.8.6}。
+
+\notetopic{QM-C07-S01-T03}{多自由度系统与正常模的适用范围}
+
+\keyidea{在二次近似下，一个耦合系统可以改写为独立振子的集合；每个模是整个系统的一种集体运动图样。}
+
+对于 $N$ 个等质量位移自由度，令 $\mathbf q$ 表示相对平衡位置的位移。平衡点处的一阶导数为零，势能的二次近似为
+\begin{equation}
+  V(\mathbf q)\simeq V(\mathbf0)+\frac12\mathbf q^{\mathsf T}K\mathbf q,
+  \qquad
+  K_{ij}=\left.\frac{\partial^2V}{\partial q_i\partial q_j}\right|_{\mathbf q=\mathbf0}.
+\end{equation}
+在所需光滑性下，$K$ 是实对称矩阵。取正交矩阵 $O$，使
+\begin{equation}
+  O^{\mathsf T}KO=\operatorname{diag}(\kappa_1,\ldots,\kappa_N),
+  \qquad \mathbf Q=O^{\mathsf T}\mathbf q,\quad
+  \mathbf P=O^{\mathsf T}\mathbf p.
+\end{equation}
+舍去势能常数并保留二次项后，
+\begin{equation}
+  H\simeq\sum_{\alpha=1}^{N}
+     \left(\frac{P_\alpha^2}{2m}+\frac12\kappa_\alpha Q_\alpha^2\right),
+  \qquad
+  \ddot Q_\alpha+\frac{\kappa_\alpha}{m}Q_\alpha\simeq0.
+  \label{eq:QM-C07-S01-general-modes}
+\end{equation}
+若 $\kappa_\alpha>0$，该模稳定振动，频率为 $\sqrt{\kappa_\alpha/m}$。若 $\kappa_\alpha=0$，二次近似在该方向没有恢复力，是否真正自由还取决于更高阶项或对称性。若 $\kappa_\alpha<0$，则 $\ddot Q_\alpha=(|\kappa_\alpha|/m)Q_\alpha$，小偏离一般呈指数增长，不能解释为稳定振动；负的是势能曲率，而非坐标 $Q_\alpha$ 的取值。
+
+\textbf{不同质量及非线性。}不同质量时，动能不是 $\mathbf p^{\mathsf T}\mathbf p/(2m)$，须使用质量矩阵或质量加权坐标再对角化。舍去的三次及更高阶项会耦合不同正常模，因此“独立振子”一般只在小振动的谐近似内成立。
+
+\textbf{晶体与场。}含 $N_0$ 个可在三维空间位移的原子的有限晶体，在谐近似下有 $3N_0$ 个位移自由度，因而可分解为相应数量的正常模。在具有平移对称性的理想晶体中，可进一步用波矢和分支标记集体振动；波矢描述空间振动图样，而不是某个原子的行进轨迹。自由电磁场在选取物理横向自由度后，也可按波矢及两个横向偏振分解为模式。晶体的具体分支结构和场的边界条件需分别处理，不能把简单模型中的“一个纵模、两个横模”当作任意晶体在所有波矢处的普遍结论。
+
+\subsection{一分钟回顾}
+平衡附近出现谐振子，需要非零正二次曲率以及足够小的位移。耦合系统的正常模由二次势能矩阵的特征向量给出；特征值决定频率的平方，不决定模振幅的正负。晶体振动与自由场说明了为何要先研究单个振子，再研究许多振子的组合。
