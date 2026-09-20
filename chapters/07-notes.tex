@@ -7,7 +7,7 @@
   {2026-09-19}
   {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
   {第 7 章 \S 7.1；印刷页 pp.~185--188；PDF pp.~197--200}
-  {讲解与概念核对已完成；笔记待确认}
+  {讲解与概念核对已完成；笔记已确认}
 
 \textbf{范围与主线。}本节解释谐振子为何反复出现在物理问题中：稳定平衡附近的非简并小振动近似为单个谐振子；多个耦合自由度可在二次近似下分解为独立的正常模；晶体振动和自由电磁场提供了多模系统的例子。本节回顾第 1.8 节的教材例 1.8.6，其完整题干和解答已收于\relatedexercise{QM-C01-S08-E06}{课程题目部分}，此处不重复。四次势及零、负曲率的边界属于严格性补充。
 
@@ -109,3 +109,65 @@
 
 \subsection{一分钟回顾}
 平衡附近出现谐振子，需要非零正二次曲率以及足够小的位移。耦合系统的正常模由二次势能矩阵的特征向量给出；特征值决定频率的平方，不决定模振幅的正负。晶体振动与自由场说明了为何要先研究单个振子，再研究许多振子的组合。
+
+\section{第 7.2 节：经典谐振子回顾}
+\label{section:QM-C07-S02}
+
+\studymeta
+  {QM-C07-S02}
+  {2026-09-19 至 2026-09-20}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 7 章 \S 7.2；印刷页 pp.~188--189；PDF pp.~200--201}
+  {讲解与概念核对已完成；笔记待确认}
+
+\textbf{范围与主线。}本节复习一维经典谐振子的运动与能量，为下一节比较量子振子作准备。教材此处没有独立编号的 Example 或 Exercise；速度符号的说明是对式 (7.2.5) 的严格性补充。
+
+\notetopic{QM-C07-S02-T01}{运动方程、初始条件与连续能量}
+
+\keyidea{经典谐振子的能量由振幅决定且连续可取；同一能量和位置通常对应两个相反方向的动量。}
+
+考虑无驱动、无阻尼的振子，取 $m>0$、$\omega>0$，其 Hamiltonian 为
+\begin{equation}
+  \mathcal H(x,p)=\frac{p^2}{2m}+\frac12m\omega^2x^2.
+\end{equation}
+Hamilton 方程及由此得到的二阶方程是
+\begin{equation}
+  \dot x=\pdv{\mathcal H}{p}=\frac{p}{m},\qquad
+  \dot p=-\pdv{\mathcal H}{x}=-m\omega^2x,
+  \qquad
+  \boxed{\ddot x+\omega^2x=0}.
+  \label{eq:QM-C07-S02-motion}
+\end{equation}
+设初始数据为 $x_i=x(0)$、$p_i=p(0)$。通解可以写成
+\begin{align}
+  x(t)&=A\cos\omega t+B\sin\omega t
+       =x_0\cos(\omega t+\phi),\\
+  A&=x_i,\qquad B=\frac{p_i}{m\omega},\qquad
+  x_0=\sqrt{x_i^2+\left(\frac{p_i}{m\omega}\right)^2}\ge0.
+  \label{eq:QM-C07-S02-solution}
+\end{align}
+这里教材的 $x_0$ 表示\emph{振幅}，一般并非初始位置 $x_i$；它与相位 $\phi$ 一起由初始位置和动量确定。对应动量为
+\begin{equation}
+  p(t)=m\dot x(t)=-m\omega x_0\sin(\omega t+\phi).
+\end{equation}
+代入 $\mathcal H$，并利用 $\sin^2+\cos^2=1$，得到守恒的能量
+\begin{equation}
+  \boxed{E=\frac12m\dot x^2+\frac12m\omega^2x^2
+         =\frac12m\omega^2x_0^2}.
+  \label{eq:QM-C07-S02-energy}
+\end{equation}
+因为经典振幅 $x_0$ 可连续取非负值，所以经典能量可连续取 $E\ge0$；最低能量 $E=0$ 对应 $x=p=0$，即始终静止于平衡位置。
+
+\textbf{位置、速率与运动方向。}由能量式解出
+\begin{equation}
+  \dot x^2=\frac{2E}{m}-\omega^2x^2
+            =\omega^2(x_0^2-x^2),
+  \qquad
+  \boxed{\dot x=\pm\omega\sqrt{x_0^2-x^2}}
+  \quad (\abs{x}\le x_0).
+  \label{eq:QM-C07-S02-velocity-branches}
+\end{equation}
+在 $\abs{x}<x_0$ 且 $E>0$ 时，正负号分别表示向右和向左运动；两个转折点 $x=\pm x_0$ 的速度为零，原点处的速率最大。教材式 (7.2.5) 只写正平方根，应将其理解为速率 $\abs{\dot x}$，或理解为 $\dot x\ge0$ 的分支，而非整个周期的有符号速度。
+
+\subsection{一分钟回顾}
+Hamilton 方程给出 $\ddot x+\omega^2x=0$。振幅由位置与动量两项初始数据共同决定，能量为 $m\omega^2x_0^2/2$ 且在经典理论中连续。同一能量和内部位置对应两种运动方向；下一节将以这些结论对照量子谐振子。

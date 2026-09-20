@@ -44,4 +44,5 @@
 | 2026-09-16 | Shankar 第 5 章 \S 5.5，印刷页 175 末至 176 开头，PDF 187--188 | `chapters/05-notes.tex`、`exercises/05-exercises.tex` | 双缝边界模型、Helmholtz 方程、相干叠加、条纹间距、Born 概率解释与到达通量；自编短应用题已核对 | 下一学习节点为第 5.6 节 Some Theorems |
 | 2026-09-17 | Shankar 第 5 章 \S 5.6，印刷页 176--178，PDF 188--190 | `chapters/05-notes.tex`、`exercises/05-exercises.tex` | 一维束缚态非简并、Wronskian、节点与初值唯一性、本征函数实性、整体相位与零概率流；教材正文计算检验已核对 | 第五章已完成；下一学习节点为第 6 章 The Classical Limit |
 | 2026-09-17 至 2026-09-18 | Shankar 第 6 章全文，印刷页 179--184，PDF 191--196；以 6.1 作为整章学习单元 | `chapters/06-notes.tex`、`exercises/06-exercises.tex` | Ehrenfest 定理、平均力与经典轨迹、中心矩修正、Gaussian 宏观局域化与扩散、Example 6.1；讲解及概念核对完成 | 笔记已确认；下一学习节点为第 7.1 节 Why Study the Harmonic Oscillator? |
-| 2026-09-19 | Shankar 第 7 章 \S 7.1，印刷页 185--188，PDF 197--200 | `chapters/07-notes.tex`；相关例题见 `exercises/01-exercises.tex` | 平衡点 Taylor 展开、非简并小振动、耦合振子、正常模、多自由度系统、晶体与自由电磁场；讲解及概念核对完成 | 笔记待确认；下一学习节点为第 7.2 节 |
+| 2026-09-19 | Shankar 第 7 章 \S 7.1，印刷页 185--188，PDF 197--200 | `chapters/07-notes.tex`；相关例题见 `exercises/01-exercises.tex` | 平衡点 Taylor 展开、非简并小振动、耦合振子、正常模、多自由度系统、晶体与自由电磁场；讲解及概念核对完成 | 笔记已确认；下一学习节点为第 7.2 节 |
+| 2026-09-19 至 2026-09-20 | Shankar 第 7 章 \S 7.2，印刷页 188--189，PDF 200--201 | `chapters/07-notes.tex` | 经典谐振子的 Hamilton 方程、初值与振幅、连续能量、转折点和速度双分支；概念核对完成 | 笔记待确认；下一学习节点为第 7.3 节 Quantization of the Oscillator (Coordinate Basis) |
