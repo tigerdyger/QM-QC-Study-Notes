@@ -1,0 +1,127 @@
+\clearpage
+\section{第 7.3 节教材习题}
+\label{exercise-set:QM-C07-S03}
+\exercisemeta
+  {QM-C07-S03-EX}
+  {2026-09-21}
+  {Shankar，Exercises 7.3.3、7.3.6；印刷页 pp.~196--197；PDF pp.~208--209}
+  {教材习题；完整题意与核对后的解答，边界条件与完备性理由为补充}
+  {选定习题已核对；笔记已确认}
+
+\exercisequestion{QM-C07-S03-E03}{宇称与低阶本征函数的正交性（Exercise 7.3.3）}
+\textbf{对应知识点：}\hyperref[topic:QM-C07-S03-T03]{Hermite 本征函数与归一化}。
+
+设 $f,g\in L^2(\mathbb R)$，其中 $f$ 为偶函数、$g$ 为奇函数，两者可以取复值。
+\begin{enumerate}
+  \item 证明 $\int_{-\infty}^{\infty}f^*(x)g(x)\dd x=0$。
+  \item 利用宇称说明谐振子的 $\psi_2$ 与 $\psi_1$ 正交。
+  \item 直接积分验证 $\psi_0$ 与 $\psi_2$ 正交，说明为什么这一问不能只凭宇称作答。
+\end{enumerate}
+这里 $b=\sqrt{\hbar/(m\omega)}$，并使用
+\begin{align}
+  \psi_0(x)&=A_0\ee^{-x^2/(2b^2)},\\
+  \psi_1(x)&=A_1\frac{2x}{b}\ee^{-x^2/(2b^2)},\\
+  \psi_2(x)&=A_2\left(\frac{4x^2}{b^2}-2\right)\ee^{-x^2/(2b^2)},
+  \qquad A_n=(b\sqrt\pi\,2^n n!)^{-1/2}.
+\end{align}
+可使用 $\int\ee^{-y^2}\dd y=\sqrt\pi$ 和
+$\int y^2\ee^{-y^2}\dd y=\sqrt\pi/2$，积分范围均为全实轴。
+
+\begin{checkedsolution}
+\textbf{1. 先保证积分有意义。}由 Cauchy--Schwarz 不等式，
+\begin{equation}
+  \int_{-\infty}^{\infty}|f^*g|\dd x
+  \le\left(\int|f|^2\dd x\right)^{1/2}
+      \left(\int|g|^2\dd x\right)^{1/2}<\infty.
+\end{equation}
+因此内积绝对收敛。由于复共轭不改变偶性，
+\begin{equation}
+  f^*(-x)g(-x)=-f^*(x)g(x).
+\end{equation}
+记内积为 $I$，作代换 $x=-t$ 并处理积分上下限，有
+\begin{equation}
+  I=\int_{-\infty}^{\infty}f^*(-t)g(-t)\dd t
+    =-\int_{-\infty}^{\infty}f^*(t)g(t)\dd t=-I.
+\end{equation}
+故 $\boxed{I=0}$。
+
+\textbf{2. 奇偶态正交。}Gaussian 为偶函数，$4x^2/b^2-2$ 为偶函数而 $2x/b$ 为奇函数，所以 $\psi_2$ 偶、$\psi_1$ 奇，由第一问立刻得到
+\begin{equation}
+  \boxed{\braket{\psi_2}{\psi_1}=0}.
+\end{equation}
+
+\textbf{3. 两个偶态的积分抵消。}令 $y=x/b$，
+\begin{align}
+  \braket{\psi_0}{\psi_2}
+  &=A_0^*A_2\int_{-\infty}^{\infty}
+       \left(\frac{4x^2}{b^2}-2\right)\ee^{-x^2/b^2}\dd x\\
+  &=bA_0^*A_2\int_{-\infty}^{\infty}(4y^2-2)\ee^{-y^2}\dd y\\
+  &=bA_0^*A_2\left(4\frac{\sqrt\pi}{2}-2\sqrt\pi\right)=0.
+\end{align}
+所以 $\boxed{\braket{\psi_0}{\psi_2}=0}$。两个偶函数的乘积仍为偶函数，其积分\emph{未必}为零；本题为零来自正负部分的精确抵消。这也与自伴 Hamiltonian 的不同能量本征态正交相符。
+\end{checkedsolution}
+
+\exercisequestion{QM-C07-S03-E06}{无限墙约束的半谐振子（Exercise 7.3.6）}
+\textbf{对应知识点：}\hyperref[topic:QM-C07-S03-T05]{宇称与边界条件}。
+
+设 $m,\omega>0$，势能为
+\begin{equation}
+  V(x)=\begin{cases}
+    \frac12m\omega^2x^2,&x>0,\\
+    +\infty,&x\le0.
+  \end{cases}
+\end{equation}
+利用全实轴普通谐振子的结果，求允许能量及归一化本征函数；明确边界条件、保留的宇称分支和归一化变化。
+
+\begin{checkedsolution}
+\textbf{1. 边界条件。}原点的无限墙要求
+\begin{equation}
+  \boxed{\phi(0)=0},\qquad
+  \lim_{x\to+\infty}\phi(x)=0,\qquad
+  \int_0^\infty|\phi(x)|^2\dd x<\infty.
+\end{equation}
+物理波函数在 $x\le0$ 为零，但墙壁\emph{不要求} $\phi'(0^+)=0$；无限墙处不能套用有限势阶跃的一阶导数连续条件。
+
+\textbf{2. 选择满足墙壁条件的态。}普通谐振子有
+\begin{equation}
+  \psi_n(-x)=(-1)^n\psi_n(x),\qquad
+  E_n=\left(n+\frac12\right)\hbar\omega.
+\end{equation}
+奇数编号态在原点为零。偶数编号态则因
+$H_{2r}(0)=(-1)^r(2r)!/r!\ne0$，不满足墙壁条件。因此保留
+$n=1,3,5,\ldots$。令 $n=2r+1$，得到
+\begin{equation}
+  \boxed{E_r=\left(2r+\frac32\right)\hbar\omega},
+  \qquad r=0,1,2,\ldots.
+\end{equation}
+半谐振子的基态能量为 $3\hbar\omega/2$，相邻能级间隔为 $2\hbar\omega$。
+
+\textbf{为什么这样没有漏掉其他能量？}任取半轴上的非零平方可积本征解 $\phi$，将它\emph{辅助性地奇延拓}为
+\begin{equation}
+  \Phi(x)=\begin{cases}\phi(x),&x>0,\\
+             0,&x=0,\\-\phi(-x),&x<0.
+          \end{cases}
+\end{equation}
+$\phi(0)=0$ 使延拓连续，两侧一阶导数也同为 $\phi'(0^+)$，故不会在二阶导数中产生额外的 delta 项。延拓满足全实轴普通谐振子的方程且平方可积，只能是其奇宇称本征态。因此上述筛选既充分又必要。这里的 $\Phi$ 只是证明用的延拓，\emph{不是}禁区内非零的物理波函数。
+
+\textbf{3. 半轴重新归一化。}由于 $|\psi_{2r+1}|^2$ 为偶函数，
+\begin{equation}
+  \int_0^\infty|\psi_{2r+1}(x)|^2\dd x
+    =\frac12\int_{-\infty}^{\infty}|\psi_{2r+1}(x)|^2\dd x
+    =\frac12.
+\end{equation}
+因此限制到右半轴后应乘 $\sqrt2$，完整物理波函数为
+\begin{equation}
+  \boxed{\phi_r(x)=\begin{cases}
+      \sqrt2\,\psi_{2r+1}(x),&x>0,\\
+      0,&x\le0,
+    \end{cases}}
+  \qquad r=0,1,2,\ldots.
+\end{equation}
+特别地，半谐振子的基态来自\emph{普通谐振子第一激发态在右半轴上的部分}：
+\begin{equation}
+  \phi_0(x)=\frac{2x}{\pi^{1/4}b^{3/2}}\ee^{-x^2/(2b^2)}
+  \quad(x>0),\qquad b=\sqrt{\frac{\hbar}{m\omega}}.
+\end{equation}
+它在允许区域内部没有节点。零延拓后的半谐振子物理态不是全实轴上的奇函数；“保留奇态”指借用原问题的奇态构造半轴解。
+\end{checkedsolution}

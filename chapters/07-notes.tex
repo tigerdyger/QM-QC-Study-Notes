@@ -118,7 +118,7 @@
   {2026-09-19 至 2026-09-20}
   {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
   {第 7 章 \S 7.2；印刷页 pp.~188--189；PDF pp.~200--201}
-  {讲解与概念核对已完成；笔记待确认}
+  {讲解与概念核对已完成；笔记已确认}
 
 \textbf{范围与主线。}本节复习一维经典谐振子的运动与能量，为下一节比较量子振子作准备。教材此处没有独立编号的 Example 或 Exercise；速度符号的说明是对式 (7.2.5) 的严格性补充。
 
@@ -171,3 +171,250 @@ Hamilton 方程及由此得到的二阶方程是
 
 \subsection{一分钟回顾}
 Hamilton 方程给出 $\ddot x+\omega^2x=0$。振幅由位置与动量两项初始数据共同决定，能量为 $m\omega^2x_0^2/2$ 且在经典理论中连续。同一能量和内部位置对应两种运动方向；下一节将以这些结论对照量子谐振子。
+
+\section{第 7.3 节：坐标表象中的谐振子量子化}
+\label{section:QM-C07-S03}
+\studymeta
+  {QM-C07-S03}
+  {2026-09-20 至 2026-09-21}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 7 章 \S 7.3；印刷页 pp.~189--202；PDF pp.~201--214}
+  {讲解与选定教材习题已核对；笔记已确认}
+
+\textbf{范围与主线。}从坐标表象的定态方程出发，利用全实轴上的正规化条件确定离散能量，再讨论本征函数、零点能与经典极限。教材本节没有独立编号的 Example；选取 Exercises 7.3.3、7.3.6，完整题意及解答见课程题目部分，其余习题不作为本节必做内容。
+
+\notetopic{QM-C07-S03-T01}{定态方程与自然尺度}
+取 $m>0$、$\omega>0$，并把势能最低点选为能量零点：
+\begin{equation}
+  H=\frac{P^2}{2m}+\frac12m\omega^2X^2,
+  \qquad H\ket n=E_n\ket n.
+\end{equation}
+对算符定义域内的归一化态，
+\begin{equation}
+  \expect H=\frac{\norm{P\ket\psi}^2}{2m}
+            +\frac{m\omega^2}{2}\norm{X\ket\psi}^2\ge0.
+\end{equation}
+这只能给出非负性，尚不能确定最低能量，也没有证明能量离散。在位置表象中，需要解
+\begin{equation}
+  -\frac{\hbar^2}{2m}\psi''(x)+\frac12m\omega^2x^2\psi(x)
+  =E\psi(x),\qquad x\in\mathbb R,
+  \label{eq:QM-C07-S03-eigen-ode}
+\end{equation}
+并要求非零解平方可积；本题束缚态在 $x\to\pm\infty$ 时衰减。
+
+\textbf{无量纲化。}定义自然长度、无量纲位置与能量
+\begin{equation}
+  b=\sqrt{\frac{\hbar}{m\omega}},\qquad
+  y=\frac{x}{b},\qquad \epsilon=\frac{E}{\hbar\omega},
+  \qquad \chi(y)=\sqrt b\,\psi(by).
+\end{equation}
+最后一个因子保证 $\int|\chi|^2\dd y=\int|\psi|^2\dd x$。由
+$\dd^2/\dd x^2=b^{-2}\dd^2/\dd y^2$，定态方程变成
+\begin{equation}
+  \chi''(y)+\left(\frac{2mEb^2}{\hbar^2}
+     -\frac{m^2\omega^2b^4}{\hbar^2}y^2\right)\chi(y)=0.
+\end{equation}
+由于 $m^2\omega^2b^4/\hbar^2=1$，得到
+\begin{equation}
+  \boxed{\chi''+(2\epsilon-y^2)\chi=0}.
+  \label{eq:QM-C07-S03-dimensionless}
+\end{equation}
+因此更换 $m,\omega$ 只改变长度与能量尺度，不改变无量纲方程的形状。
+
+\textbf{先看远处，再求完整解。}在 $|y|\gg1$ 时，主导平衡为
+$\chi''\simeq y^2\chi$，对应衰减和增长两种主导指数
+$\ee^{-y^2/2}$、$\ee^{y^2/2}$。它们不是完整方程的一般精确解：直接求导仍有常数项，精确渐近式也可能含幂次前因子。这个观察提示作\emph{精确的未知函数替换}
+\begin{equation}
+  \chi(y)=u(y)\ee^{-y^2/2}.
+\end{equation}
+提取 Gaussian 不等于已经保证正规化；若 $u$ 增长过快，乘积仍会发散。原点是普通点，不能擅自要求 $\chi(0)=0$，否则会提前排除全部偶态。
+
+\notetopic{QM-C07-S03-T02}{幂级数、截断与离散能级}
+逐次求导可得
+\begin{align}
+  \chi'&=\ee^{-y^2/2}(u'-yu),\\
+  \chi''&=\ee^{-y^2/2}\bigl[u''-2yu'+(y^2-1)u\bigr].
+\end{align}
+代入式~\eqref{eq:QM-C07-S03-dimensionless}，消去 Gaussian，得到
+\begin{equation}
+  u''-2yu'+(2\epsilon-1)u=0.
+  \label{eq:QM-C07-S03-hermite-ode}
+\end{equation}
+令 $u(y)=\sum_{j=0}^{\infty}c_jy^j$，则
+\begin{equation}
+  u''=\sum_{j=0}^{\infty}(j+2)(j+1)c_{j+2}y^j,
+  \qquad yu'=\sum_{j=0}^{\infty}jc_jy^j.
+\end{equation}
+逐次幂比较系数，得到
+\begin{equation}
+  (j+2)(j+1)c_{j+2}+(2\epsilon-1-2j)c_j=0,
+  \qquad
+  \boxed{c_{j+2}=\frac{2j+1-2\epsilon}{(j+2)(j+1)}c_j}.
+  \label{eq:QM-C07-S03-recursion}
+\end{equation}
+递推每次跨两阶，因此形成互不混合的两条链：$c_0,c_2,c_4,\ldots$ 为偶次链，$c_1,c_3,c_5,\ldots$ 为奇次链；两项起始系数对应二阶方程的两个独立解。
+
+\textbf{为什么需要截断？}对未截断的链，充分大的 $j$ 有
+\begin{equation}
+  \frac{c_{j+2}}{c_j}\sim\frac{2}{j}.
+\end{equation}
+例如 $\ee^{y^2}=\sum_{r\ge0}y^{2r}/r!$ 的相邻偶次系数比为
+$1/(r+1)\sim2/j$。这一渐近比较表明未截断解会含有 $\ee^{y^2}$ 型增长，乘回 $\ee^{-y^2/2}$ 后仍不能在两端平方可积。问题不在于“无限级数都发散”，而在于\emph{此递推所产生的无穷远增长}。
+
+这里必须同时考虑两个无穷远端点。若未截断偶解和奇解的增长项在一端通过线性组合抵消，另一端奇解变号、偶解不变，通常不能再抵消。更直接地，若一个全实轴平方可积解存在，它的偶、奇部分也分别是平方可积解；因此非零的宇称分量必须满足各自的衰减条件，而不是依靠另一宇称分量遮蔽增长。
+
+若非零链在最高次 $j=n$ 截断，须有 $c_n\ne0$ 而 $c_{n+2}=0$，故
+\begin{equation}
+  2n+1-2\epsilon=0
+  \quad\Longrightarrow\quad
+  \boxed{E_n=\left(n+\frac12\right)\hbar\omega},
+  \qquad n=0,1,2,\ldots.
+  \label{eq:QM-C07-S03-spectrum}
+\end{equation}
+只保留与 $n$ 同奇偶的链，另一条链的起始系数取零。此时 $u$ 为 $n$ 次多项式，多项式乘 Gaussian 在两端确实平方可积。
+
+例如 $\epsilon=5/2$ 时，偶次链满足 $c_2=-2c_0$、$c_4=0$；取 $c_1=0$ 后，$u=c_0(1-2y^2)$。能级离散不是额外强加的规定，而是\textbf{微分方程与全实轴正规化条件共同筛选的结果}。
+
+\notetopic{QM-C07-S03-T03}{Hermite 本征函数与时间演化}
+式~\eqref{eq:QM-C07-S03-hermite-ode} 在允许能量下成为
+$u''-2yu'+2nu=0$。约定最高次系数为 $2^n$，其多项式解称为物理学家约定的 Hermite 多项式：
+\begin{equation}
+  H_0=1,\quad H_1=2y,\quad H_2=4y^2-2,\quad H_3=8y^3-12y.
+\end{equation}
+这里 $H_n(y)$ 是多项式，不要与 Hamiltonian 算符 $H$ 混淆。教材给出的递推与正交关系为
+\begin{align}
+  H_n'&=2nH_{n-1},\qquad H_{n+1}=2yH_n-2nH_{n-1},\\
+  \int_{-\infty}^{\infty}\ee^{-y^2}H_n(y)H_m(y)\dd y
+    &=\sqrt\pi\,2^n n!\,\delta_{nm}.
+  \label{eq:QM-C07-S03-hermite-orthogonality}
+\end{align}
+此处引用多项式恒等式，不展开一般 $n$ 的证明；低阶态的直接积分验证见
+\hyperref[exercise:QM-C07-S03-E03]{Exercise 7.3.3}。
+
+\textbf{归一化因子。}设 $\psi_n(x)=A_nH_n(x/b)\ee^{-x^2/(2b^2)}$。变量替换 $x=by$ 给出
+\begin{equation}
+  1=|A_n|^2b\int_{-\infty}^{\infty}H_n(y)^2\ee^{-y^2}\dd y
+   =|A_n|^2b\sqrt\pi\,2^n n!.
+\end{equation}
+取 $A_n$ 正实，得到
+\begin{equation}
+  \boxed{\psi_n(x)=\frac{H_n(x/b)\ee^{-x^2/(2b^2)}}
+     {\sqrt{b\sqrt\pi\,2^n n!}}}.
+  \label{eq:QM-C07-S03-eigenfunctions}
+\end{equation}
+这组函数在普通内积 $\int\psi_m^*\psi_n\dd x$ 下正交归一，并构成 $L^2(\mathbb R)$ 的完整基；Hermite \emph{多项式}则是在权函数 $\ee^{-y^2}$ 下正交，两种说法不应混淆。
+
+前三个函数也可写成
+\begin{equation}
+  \psi_0=\frac{\ee^{-x^2/(2b^2)}}{\pi^{1/4}\sqrt b},\qquad
+  \psi_1=\sqrt2\frac xb\psi_0,\qquad
+  \psi_2=\frac1{\sqrt2}\left(\frac{2x^2}{b^2}-1\right)\psi_0.
+\end{equation}
+$\psi_2(0)<0$ 来自所选的整体符号约定，不是负概率。把整个 $\psi_2$ 乘 $-1$ 不改变该本征态的物理状态；但在已有叠加态中，若更换基函数的相位，展开系数也必须作反向相位变换，才能保持同一个态。\emph{只}改变一个展开系数的相位一般会改变相对相位和物理状态。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.94\textwidth]{07-03-eigenfunctions.png}
+  \caption{归一化无量纲本征函数 $\chi_n(y)=\sqrt b\,\psi_n(by)$。奇偶性、节点数及整体符号可直接观察；纵轴是振幅，不是概率密度。图由式~\eqref{eq:QM-C07-S03-eigenfunctions} 数值绘制。}
+  \label{fig:QM-C07-S03-eigenfunctions}
+\end{figure}
+
+\textbf{从定态回到一般态。}对初态求投影
+$c_n=\int\psi_n^*(x)\psi(x,0)\dd x$，便有
+\begin{align}
+  \psi(x,t)&=\sum_{n=0}^{\infty}c_n\psi_n(x)\ee^{-\ii E_nt/\hbar},\\
+  K(x,t;x',0)&=\sum_{n=0}^{\infty}\psi_n(x)\psi_n^*(x')\ee^{-\ii E_nt/\hbar}.
+\end{align}
+传播子级数按核的适当分布意义理解。教材还给出了其闭式；这里记录结果，求和或路径积分推导留待后续。为避免平方根分支问题，先限定 $0<t<\pi/\omega$：
+\begin{equation}
+  K=\sqrt{\frac{m\omega}{2\pi\ii\hbar\sin\omega t}}
+  \exp\left\{\frac{\ii m\omega}{2\hbar\sin\omega t}
+       \bigl[(x^2+x'^2)\cos\omega t-2xx'\bigr]\right\}.
+\end{equation}
+平方根取与短时自由传播子连续衔接的分支；更长时间不能忽略相位分支。在 $\sin\omega t=0$ 的时刻，演化算符仍存在，核应按分布极限理解，而不是把公式分母为零视为物理演化失效。
+
+\notetopic{QM-C07-S03-T04}{零点能与不确定性下界}
+基态能量为 $E_0=\hbar\omega/2$，而非经典最低值零。令
+$x_c=\expect X$、$p_c=\expect P$，用 $\sigma_x,\sigma_p$ 表示标准差，则
+\begin{equation}
+  \expect H=\frac{p_c^2+\sigma_p^2}{2m}
+               +\frac12m\omega^2(x_c^2+\sigma_x^2).
+\end{equation}
+对具有相应有限二阶矩的态，由 $\sigma_x\sigma_p\ge\hbar/2$，令 $s=\sigma_x^2>0$，得到
+\begin{equation}
+  \expect H\ge F(s)=\frac{\hbar^2}{8ms}+\frac12m\omega^2s.
+\end{equation}
+第一项是压窄位置分布所需的动能代价，第二项是把位置分布展开所需的势能代价。求最小值得
+\begin{equation}
+  F'(s)=-\frac{\hbar^2}{8ms^2}+\frac12m\omega^2=0
+  \quad\Longrightarrow\quad s_* =\frac{\hbar}{2m\omega}=\frac{b^2}{2}.
+\end{equation}
+$F''(s)=\hbar^2/(4ms^3)>0$，且 $s\to0^+$ 或 $s\to\infty$ 时 $F\to\infty$，故这是全局最小值：
+\begin{equation}
+  \boxed{\expect H\ge\frac12\hbar\omega}.
+\end{equation}
+\textbf{下界必须检验能否达到。}基态 Gaussian 为实偶函数，故 $x_c=p_c=0$；由 Gaussian 积分及 $\psi_0'=-x\psi_0/b^2$，
+\begin{align}
+  \sigma_x^2&=\int x^2|\psi_0|^2\dd x=\frac{b^2}{2},\\
+  \sigma_p^2&=\hbar^2\int|\psi_0'|^2\dd x
+    =\frac{\hbar^2}{b^4}\expect{X^2}=\frac{\hbar^2}{2b^2}.
+\end{align}
+因此均值项为零、不确定性乘积饱和、$s=s_*$ 三项取等条件同时成立，并有
+\begin{equation}
+  \boxed{\expect T_0=\expect V_0=\frac14\hbar\omega},\qquad
+  \sigma_x\sigma_p=\frac\hbar2.
+\end{equation}
+这里的 $\expect T_0,\expect V_0$ 分别表示基态动能、势能期望值。位置宽度还可以压得更小，但这会增加总能量；“基态最低”不等于“位置不确定度不能再小”。同样，基态 $\expect P=0$、概率流为零，也不代表动量确定为零或动能为零。
+
+\textbf{不确定性原理的逻辑位置。}本节先使用这一结论，而不是把它当作额外公设。教材 \S 9.2（印刷页 pp.~237--239，PDF pp.~247--249）将用 Cauchy--Schwarz 不等式与对易子证明一般的不确定性关系；\S 9.3 接着讨论等号条件和最小不确定性 Gaussian。本节先由定态方程求出了基态，再用它核验下界确实可达，因此没有依靠未经检查的估计来认定精确能量。
+
+\notetopic{QM-C07-S03-T05}{宇称、禁区尾部与经典极限}
+\textbf{宇称是什么？}在当前一维、无自旋的问题中，空间反演指 $x\mapsto-x$；宇称（parity）描述波函数在这一变换下的性质。如果 $\psi(-x)=\psi(x)$，称为\emph{偶宇称}，对应偶函数，宇称值为 $+1$；如果 $\psi(-x)=-\psi(x)$，称为\emph{奇宇称}，对应奇函数，宇称值为 $-1$。一般波函数既非奇函数也非偶函数，因而不一定具有确定宇称。
+
+\textbf{谐振子的宇称与节点。}前面的截断解在 $n$ 为偶数时只含偶次幂，在 $n$ 为奇数时只含奇次幂；再乘上偶函数 Gaussian，奇偶性不变。因此 $H_n(-y)=(-1)^nH_n(y)$，并有
+\begin{equation}
+  \psi_n(-x)=(-1)^n\psi_n(x).
+\end{equation}
+这里 $(-1)^n$ 只是把两种情况合写：$n$ 偶数取 $+1$，$n$ 奇数取 $-1$。教材在印刷页 p.~201（PDF p.~213）明确分情况列出这一结论，并将其对称性解释留到第十一章；本节先掌握函数层面的含义，不预先要求宇称算符的系统理论。
+
+基态为无节点偶函数；随后奇、偶交替，$\psi_n$ 有 $n$ 个实节点。两种宇称自动正交，但同为偶函数或同为奇函数的正交性不能仅凭宇称判断。若在原点加入无限墙，边界条件将选出奇态，见
+\hyperref[exercise:QM-C07-S03-E06]{Exercise 7.3.6：半谐振子}。
+
+\textbf{转折点不再是支撑边界。}与 $E_n$ 对应的经典转折点满足
+\begin{equation}
+  \frac12m\omega^2x_{\rm turn}^2=E_n,
+  \qquad x_{\rm turn}=b\sqrt{2n+1}.
+\end{equation}
+量子本征函数在 $|x|>x_{\rm turn}$ 仍有衰减尾部，测量可以在那里找到粒子；这不等于束缚态不断向外泄漏。对实势的一维定态，连续性方程先给出 $\partial_x j=0$；再结合束缚态边界条件才有 $j=0$。不能只凭“定态”断定零流，散射平面波就是反例。
+
+\textbf{高能并不使绝对能级间距缩小。}
+\begin{equation}
+  E_{n+1}-E_n=\hbar\omega,\qquad
+  \frac{E_{n+1}-E_n}{E_n}=\frac1{n+1/2}\longrightarrow0.
+\end{equation}
+固定 $\omega$ 时，缩小的是相对间距；只有在不分辨单个能级的尺度上，能量才显得近似连续。正常模每增加一份激发需要能量 $\hbar\omega$；声子、光子分别是相应振动模或电磁场模的量子激发解释，不应理解为所有力学振子内部都额外装有某种物质粒子。
+
+\textbf{经典位置分布。}以周期内均匀抽取时刻的方式观察经典振子，其速率为
+$|v(x)|=\omega\sqrt{x_{\rm turn}^2-x^2}$。一个周期 $\mathcal T=2\pi/\omega$ 内，内部小区间 $\dd x$ 被经过两次，故
+\begin{equation}
+  \rho_{\rm cl}(x)\dd x=\frac{2\dd x}{\mathcal T|v(x)|},\qquad
+  \boxed{\rho_{\rm cl}(x)=\frac1{\pi\sqrt{x_{\rm turn}^2-x^2}}}
+  \quad (|x|<x_{\rm turn}).
+\end{equation}
+区间外密度为零。转折点附近的发散可积，表示运动较慢、停留时间较长，不是转折点具有有限的点概率。
+
+高激发态 $|\psi_n|^2$ 有越来越密的\emph{空间}起伏；在包含多个起伏、但又小于整体振幅尺度的区间内平均后，才逐渐接近经典分布。这不是逐点相等，更不是一个能量本征态的密度在随时间往返运动：
+\begin{equation}
+  |\psi_n(x)\ee^{-\ii E_nt/\hbar}|^2=|\psi_n(x)|^2.
+\end{equation}
+描述随时间移动的局域波包需要适当的能量叠加态；高 $n$ 的单个定态仍不是一条经典轨迹。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.98\textwidth]{07-03-classical-limit.png}
+  \caption{在 $q=x/x_{\rm turn}$ 坐标下比较量子密度 $x_{\rm turn}|\psi_n(x_{\rm turn}q)|^2$ 与经典密度 $1/(\pi\sqrt{1-q^2})$。阴影是经典禁区；虚线在端点发散，图中只画到端点附近。$n=11$ 仍有明显起伏，经典对应应理解为粗粒化，而非逐点收敛。}
+  \label{fig:QM-C07-S03-classical}
+\end{figure}
+
+\subsection{一分钟回顾}
+谐振子量子化的主线是：无量纲定态方程、提取 Gaussian、递推关系、正规化迫使多项式截断，从而得到 $E_n=(n+1/2)\hbar\omega$。Hermite 本征函数提供完整展开基；零点能来自位置与动量涨落的共同代价，基态恰好达到不确定性给出的能量下界。高激发态的相对能级间距变小、粗粒化位置分布趋近经典，但单个本征态始终是定态。边界条件若改变，允许的态和能谱也随之改变。
