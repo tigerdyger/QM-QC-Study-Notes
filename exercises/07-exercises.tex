@@ -125,3 +125,163 @@ $\phi(0)=0$ 使延拓连续，两侧一阶导数也同为 $\phi'(0^+)$，故不�
 \end{equation}
 它在允许区域内部没有节点。零延拓后的半谐振子物理态不是全实轴上的奇函数；“保留奇态”指借用原问题的奇态构造半轴解。
 \end{checkedsolution}
+
+\section{第 7.4 节教材计算示范与选定习题}
+\label{exercise-set:QM-C07-S04}
+\exercisemeta
+  {QM-C07-S04-EX}
+  {2026-09-22}
+  {Shankar，正文未编号计算示范（印刷页 pp.~208--209，PDF pp.~220--221）；Exercises 7.4.2、7.4.5（印刷页 p.~212，PDF p.~224）}
+  {区分教材计算示范与教材习题；完整题意及核对后的解答}
+  {选定题目已核对；笔记已确认}
+
+\exercisequestion{QM-C07-S04-E00}{教材未编号计算示范：三次位置算符的矩阵元}
+\textbf{类型与来源：}教材正文的计算示范，非独立编号 Example；印刷页 pp.~208--209。对应\hyperref[topic:QM-C07-S04-T03]{能量基中的矩阵元}。
+
+对质量 $m>0$、角频率 $\omega>0$ 的一维谐振子，使用归一化能量本征基和相位约定
+\begin{equation}
+  a\ket n=\sqrt n\ket{n-1},\qquad
+  a^\dagger\ket n=\sqrt{n+1}\ket{n+1},\qquad
+  X=s(a+a^\dagger),\quad s=\sqrt{\frac{\hbar}{2m\omega}}.
+\end{equation}
+不用位置波函数积分，求 $\bra3 X^3\ket2$。
+
+\begin{checkedsolution}
+从 $\ket2$ 到 $\ket3$，三次升降操作的净效果必须为升高一层。只有两次升高、一次降低的三个有序乘积有贡献；其余五项或给出正交能级，或因降低到基态以下而为零。因此
+\begin{equation}
+  \bra3 X^3\ket2=s^3\bra3
+  \bigl(a^\dagger a^\dagger a+a^\dagger aa^\dagger+aa^\dagger a^\dagger\bigr)\ket2.
+\end{equation}
+从右向左逐次作用：
+\begin{align}
+  a^\dagger a^\dagger a\ket2
+    &=\sqrt2\,\sqrt2\,\sqrt3\ket3=2\sqrt3\ket3,\\
+  a^\dagger aa^\dagger\ket2
+    &=\sqrt3\,\sqrt3\,\sqrt3\ket3=3\sqrt3\ket3,\\
+  aa^\dagger a^\dagger\ket2
+    &=\sqrt3\,\sqrt4\,\sqrt4\ket3=4\sqrt3\ket3.
+\end{align}
+利用 $\braket33=1$，得到
+\begin{equation}
+  \boxed{\bra3 X^3\ket2
+    =9\sqrt3\left(\frac{\hbar}{2m\omega}\right)^{3/2}}.
+\end{equation}
+三项的系数不同，不能把它们合并成 $3a^\dagger a^\dagger a$。结果量纲为长度的三次方，与 $X^3$ 一致。
+\end{checkedsolution}
+
+\exercisequestion{QM-C07-S04-E02}{教材习题：能量本征态的均值与不确定度（Exercise 7.4.2）}
+\textbf{来源：}印刷页 p.~212，PDF p.~224。对归一化谐振子能量本征态 $\ket n$，求
+\begin{equation}
+  \expect X_n,\quad\expect P_n,\quad
+  \expect{X^2}_n,\quad\expect{P^2}_n,\quad\Delta X\Delta P,
+\end{equation}
+其中 $\Delta X=\sqrt{\expect{X^2}_n-\expect X_n^2}$，$\Delta P$ 同理。使用前题的升降约定，并令 $P=\ii p_*(a^\dagger-a)$、$p_*=\sqrt{m\hbar\omega/2}$。
+
+\begin{checkedsolution}
+一次升降使态与原来的 $\ket n$ 正交，故
+\begin{equation}
+  \boxed{\expect X_n=\expect P_n=0}.
+\end{equation}
+两次同向升降也不能回到原能级，而先升后降与先降后升不同：
+\begin{equation}
+  \expect{a^2}_n=\expect{(a^\dagger)^2}_n=0,\qquad
+  \expect{a^\dagger a}_n=n,\qquad\expect{aa^\dagger}_n=n+1.
+\end{equation}
+因此
+\begin{align}
+  \expect{X^2}_n
+    &=s^2\expect{a^2+aa^\dagger+a^\dagger a+(a^\dagger)^2}_n\\
+    &=s^2(2n+1)
+     =\boxed{\frac{\hbar}{m\omega}\left(n+\frac12\right)}.
+\end{align}
+动量平方的展开须同时保留 $\ii^2=-1$ 和交叉项顺序：
+\begin{align}
+  (a^\dagger-a)^2&=(a^\dagger)^2-a^\dagger a-aa^\dagger+a^2,\\
+  \expect{P^2}_n
+    &=-p_*^2\expect{(a^\dagger)^2-a^\dagger a-aa^\dagger+a^2}_n\\
+    &=-p_*^2[-n-(n+1)]
+     =\boxed{m\hbar\omega\left(n+\frac12\right)}.
+\end{align}
+因为一阶矩为零，标准差为
+\begin{equation}
+  \Delta X=\sqrt{\frac{\hbar}{m\omega}\left(n+\frac12\right)},\qquad
+  \Delta P=\sqrt{m\hbar\omega\left(n+\frac12\right)},
+\end{equation}
+所以
+\begin{equation}
+  \boxed{\Delta X\Delta P=\hbar\left(n+\frac12\right)}.
+\end{equation}
+在这组能量本征态中，只有 $n=0$ 达到 $\hbar/2$；这不是对\emph{所有}量子态的唯一性判断。均值为零也不代表位置、动量确定为零。
+
+\textbf{直接推论（Exercise 7.4.3 的谐振子部分）。}由二阶矩，
+\begin{equation}
+  \expect T_n=\frac{\expect{P^2}_n}{2m}
+    =\frac12\hbar\omega\left(n+\frac12\right),\qquad
+  \expect V_n=\frac12m\omega^2\expect{X^2}_n=\expect T_n.
+\end{equation}
+故两者均为 $E_n/2$，与谐振子的 virial theorem（维里定理）一致。原题另有经典幂律势的部分，这里未作该部分。
+\end{checkedsolution}
+
+\exercisequestion{QM-C07-S04-E05}{教材习题：两能级叠加态与 Ehrenfest 定理（Exercise 7.4.5）}
+\textbf{来源：}印刷页 p.~212，PDF p.~224。对应\hyperref[topic:QM-C07-S04-T03]{能量表象中的计算}。
+
+取时间无关的谐振子 $H=\hbar\omega(N+I/2)$，初态为
+\begin{equation}
+  \ket{\psi(0)}=\frac1{\sqrt2}(\ket0+\ket1),
+\end{equation}
+其中 $\ket0,\ket1$ 是归一化基态和第一激发态，使用上述升降相位约定。
+\begin{enumerate}
+  \item 写出 $\ket{\psi(t)}$。
+  \item 求 $\expect X_t,\expect P_t$，并给出初始值。
+  \item 由 Ehrenfest 定理写出均值的运动方程，求解初值问题并与第二问比较；也可直接验证第二问的解满足方程和初值，再由唯一性确认一致。
+\end{enumerate}
+
+\begin{checkedsolution}
+\textbf{1. 各能量分量分别积累相位。}利用 $E_0=\hbar\omega/2$、$E_1=3\hbar\omega/2$，
+\begin{equation}
+  \boxed{\ket{\psi(t)}
+    =\frac1{\sqrt2}\left(\ee^{-\ii\omega t/2}\ket0
+          +\ee^{-3\ii\omega t/2}\ket1\right)
+    =\frac{\ee^{-\ii\omega t/2}}{\sqrt2}
+          \left(\ket0+\ee^{-\ii\omega t}\ket1\right)}.
+\end{equation}
+整体相位不影响期望值；括号内的相对相位则随时间变化。
+
+\textbf{2. 不能丢弃交叉项。}先算升降算符的期望值：
+\begin{align}
+  \expect a_t
+    &=\frac12(\bra0+\ee^{\ii\omega t}\bra1)
+          a(\ket0+\ee^{-\ii\omega t}\ket1)\\
+    &=\frac12\left[\bra0a\ket0
+       +\ee^{-\ii\omega t}\bra0a\ket1
+       +\ee^{\ii\omega t}\bra1a\ket0+\bra1a\ket1\right]\\
+    &=\frac12\ee^{-\ii\omega t},\qquad
+  \expect{a^\dagger}_t=\expect a_t^*=\frac12\ee^{\ii\omega t}.
+\end{align}
+唯一非零项是 $\bra0a\ket1=1$ 所产生的交叉项。代入 $X=s(a+a^\dagger)$、$P=\ii p_*(a^\dagger-a)$，
+\begin{align}
+  \boxed{\expect X_t=s\cos\omega t},\qquad
+  \boxed{\expect P_t=-p_*\sin\omega t},\\
+  \boxed{\expect X_0=s=\sqrt{\frac{\hbar}{2m\omega}}},\qquad
+  \boxed{\expect P_0=0}.
+\end{align}
+动量负号来自 $\ii(\ee^{\ii\omega t}-\ee^{-\ii\omega t})/2=-\sin\omega t$。
+
+\textbf{3. 与经典形式的均值方程一致。}Ehrenfest 定理及对易关系给出
+\begin{align}
+  \frac{\dd\expect A_t}{\dd t}
+    &=\frac1{\ii\hbar}\expect{[A,H]}_t
+       \quad(A\text{ 不显含时间}),\\
+  [X,H]&=\frac{\ii\hbar}{m}P,\qquad
+  [P,H]=-\ii\hbar m\omega^2X.
+\end{align}
+因此，令 $x_c=\expect X_t$、$p_c=\expect P_t$，有
+\begin{equation}
+  \boxed{\dot x_c=p_c/m},\qquad
+  \boxed{\dot p_c=-m\omega^2x_c},\qquad
+  \ddot x_c+\omega^2x_c=0.
+\end{equation}
+初值 $x_c(0)=s$、$\dot x_c(0)=0$ 给出 $x_c=s\cos\omega t$；再由 $p_c=m\dot x_c$ 及 $m\omega s=p_*$，得到 $p_c=-p_*\sin\omega t$。也可直接求导核验第二问的两式，均满足方程和初值；线性初值问题的唯一性保证两种方法一致。
+
+能量测量概率始终为 $1/2,1/2$，但状态不是定态，位置和动量均值因相对相位而振荡。这是谐振子均值精确满足经典方程的例子，不意味着粒子同时具有确定的位置、动量或一条确定轨迹。
+\end{checkedsolution}

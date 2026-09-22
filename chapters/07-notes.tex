@@ -418,3 +418,246 @@ $|v(x)|=\omega\sqrt{x_{\rm turn}^2-x^2}$。一个周期 $\mathcal T=2\pi/\omega$
 
 \subsection{一分钟回顾}
 谐振子量子化的主线是：无量纲定态方程、提取 Gaussian、递推关系、正规化迫使多项式截断，从而得到 $E_n=(n+1/2)\hbar\omega$。Hermite 本征函数提供完整展开基；零点能来自位置与动量涨落的共同代价，基态恰好达到不确定性给出的能量下界。高激发态的相对能级间距变小、粗粒化位置分布趋近经典，但单个本征态始终是定态。边界条件若改变，允许的态和能谱也随之改变。
+
+\section{第 7.4 节：能量表象中的谐振子}
+\label{section:QM-C07-S04}
+\studymeta
+  {QM-C07-S04}
+  {2026-09-21 至 2026-09-22}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 7 章 \S 7.4；正文印刷页 pp.~202--212，PDF pp.~214--224；习题延至印刷页 p.~216，PDF p.~228}
+  {讲解与选定题目已核对；笔记已确认}
+
+\textbf{范围与主线。}不先求位置波函数，而由 $H$ 的算符表达式与正则对易关系直接构造能量阶梯、矩阵元和本征态。正文按因式分解、离散能谱、能量表象计算、量子化与表象自由四条主线组织。教材的未编号矩阵元计算示范及 Exercises 7.4.2、7.4.5 收于课程题目部分；7.4.3 只记录由已求二阶矩直接得到的谐振子结论，不计为完成整题。实函数相位变换的条件及量子化规则的适用边界为严格性补充。
+
+\notetopic{QM-C07-S04-T01}{因式分解与无量纲升降算符}
+\textbf{来源：}印刷页 pp.~202--204，PDF pp.~214--216，式 (7.4.1)--(7.4.6)。
+
+取 $m,\omega>0$，势能最低点为能量零点。研究同一个谐振子
+\begin{equation}
+  H=\frac{P^2}{2m}+\frac12m\omega^2X^2,
+  \qquad [X,P]=\ii\hbar I.
+\end{equation}
+上一节把本征方程写成位置表象的微分方程；本节先操作抽象算符，不需要预先知道 $X,P$ 在能量基中的矩阵。以下代数恒等式在适当的共同不变定义域上使用，例如谐振子本征态的有限线性组合；不把无界算符的任意乘积默认作用于所有 $L^2$ 向量。
+
+\textbf{定义的动机。}普通数满足 $(u-\ii v)(u+\ii v)=u^2+v^2$，提示把两个平方项组合起来。定义
+\begin{equation}
+  \boxed{a=\sqrt{\frac{m\omega}{2\hbar}}X
+              +\ii\sqrt{\frac1{2m\omega\hbar}}P},\qquad
+  \boxed{a^\dagger=\sqrt{\frac{m\omega}{2\hbar}}X
+              -\ii\sqrt{\frac1{2m\omega\hbar}}P}.
+  \label{eq:QM-C07-S04-ladder-definition}
+\end{equation}
+两者均无量纲；第二式利用 $X^\dagger=X$、$P^\dagger=P$。$a$ 称降低算符（lowering operator），$a^\dagger$ 称升高算符（raising operator），名称的理由将在下文证明。它们本身不是 Hermitian 算符，$a^\dagger$ 也不是 $a^{-1}$。
+
+不能把普通数的因式分解直接照搬到非对易算符。保留乘积顺序有
+\begin{align}
+  a^\dagger a
+    &=\frac{m\omega}{2\hbar}X^2+\frac{P^2}{2m\omega\hbar}
+      +\frac{\ii}{2\hbar}(XP-PX)
+      =\frac{H}{\hbar\omega}-\frac12I,\\
+  aa^\dagger
+    &=\frac{m\omega}{2\hbar}X^2+\frac{P^2}{2m\omega\hbar}
+      -\frac{\ii}{2\hbar}(XP-PX)
+      =\frac{H}{\hbar\omega}+\frac12I.
+\end{align}
+因此
+\begin{equation}
+  \boxed{[a,a^\dagger]=I},\qquad
+  \boxed{H=\hbar\omega\left(a^\dagger a+\frac12I\right)}.
+  \label{eq:QM-C07-S04-factorization}
+\end{equation}
+常数 $1/2$ 来自 $[X,P]=\ii\hbar I$，不是为配合已知能谱而添加。对相应定义域内的归一化态，
+\begin{equation}
+  \expect H=\hbar\omega\left(\norm{a\ket\psi}^2+\frac12\right)
+     \ge\frac12\hbar\omega,
+  \qquad
+  \expect H=\frac12\hbar\omega\iff a\ket\psi=0.
+  \label{eq:QM-C07-S04-energy-bound}
+\end{equation}
+非负范数给出精确下界；达到下界还要求存在被 $a$ 消去的非零正规化态。
+
+\notetopic{QM-C07-S04-T02}{能量阶梯、终止条件与数算符}
+\textbf{来源：}印刷页 pp.~204--207，PDF pp.~216--219，式 (7.4.7)--(7.4.23)。
+
+由乘积对易公式可得
+\begin{align}
+  [H,a]&=\hbar\omega[a^\dagger a,a]
+       =\hbar\omega[a^\dagger,a]a=-\hbar\omega a,\\
+  [H,a^\dagger]&=\hbar\omega a^\dagger.
+\end{align}
+若 $H\ket E=E\ket E$，则
+\begin{align}
+  H(a\ket E)&=(aH-\hbar\omega a)\ket E
+                 =(E-\hbar\omega)a\ket E,\\
+  H(a^\dagger\ket E)&=(a^\dagger H+\hbar\omega a^\dagger)\ket E
+                 =(E+\hbar\omega)a^\dagger\ket E.
+  \label{eq:QM-C07-S04-energy-shift}
+\end{align}
+只有输出\emph{非零}时才能称为本征向量；输出的范数也未必为 $1$。这是构造其他能量本征态的操作，不是无扰动谐振子会在时间演化中自动跳跃能级。
+
+\textbf{为什么必须落在整数阶梯上？}设 $\ket E$ 已归一化，写
+$\nu=E/(\hbar\omega)-1/2\ge0$。其降低后范数平方为
+\begin{equation}
+  \norm{a\ket E}^2=\nu.
+\end{equation}
+若 $\nu$ 不是整数，令 $r=\lfloor\nu\rfloor$。前 $r$ 次降低并分别归一化后，剩余激发量为 $\nu-r\in(0,1)$；再降低的范数仍严格为正，却会得到能量低于 $\hbar\omega/2$ 的非零本征态，与式~\eqref{eq:QM-C07-S04-energy-bound} 矛盾。故 $\nu=n$ 必为非负整数。第 $n$ 次降低后到达能量 $\hbar\omega/2$，下一次降低的范数为零，阶梯在此终止：
+\begin{equation}
+  \boxed{a\ket0=0},\qquad
+  H\ket0=\frac12\hbar\omega\ket0,\qquad
+  \boxed{E_n=\left(n+\frac12\right)\hbar\omega}.
+  \label{eq:QM-C07-S04-spectrum}
+\end{equation}
+这里 $\ket0$ 是范数为 $1$ 的基态，标签 $0$ 表示最低激发层；右边的 $0$ 是\emph{零向量}。两者不同，$a\ket0=0$ 更不表示基态能量为零。
+
+\textbf{归一化决定平方根系数。}一维束缚态非简并，所以可写
+$a\ket n=C_n\ket{n-1}$（$n\ge1$）。由
+\begin{equation}
+  |C_n|^2=\bra n a^\dagger a\ket n=n,
+  \qquad \norm{a^\dagger\ket n}^2=\bra n aa^\dagger\ket n=n+1,
+\end{equation}
+依次选择能量基向量的相位，可使系数均为正实数：
+\begin{equation}
+  \boxed{a\ket n=\sqrt n\ket{n-1}},\qquad
+  \boxed{a^\dagger\ket n=\sqrt{n+1}\ket{n+1}}.
+  \label{eq:QM-C07-S04-ladder-action}
+\end{equation}
+第一式不引入 $\ket{-1}$，$n=0$ 时直接使用 $a\ket0=0$。升高后的范数永不为零，所以阶梯向上不终止。反复升高给出
+\begin{equation}
+  \boxed{\ket n=\frac{(a^\dagger)^n}{\sqrt{n!}}\ket0}.
+\end{equation}
+从任意本征态向下都必须到达同一个非简并基态；反向升高可恢复该态，因此没有另一个独立的能级阶梯。谐振子完整离散本征基的存在与完备性已由上一节的位置表象解确立，此处不把一般算符的对易关系本身当成完备性的证明。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[x=1cm,y=.9cm,>=Stealth]
+    \foreach \n in {0,1,2,3}{
+      \draw[thick,noteBlue] (0,\n)--(3.2,\n);
+      \node[left] at (0,\n) {$|\n\rangle$};
+    }
+    \node[right] at (3.2,0) {$\hbar\omega/2$};
+    \node[right] at (3.2,1) {$3\hbar\omega/2$};
+    \node[right] at (3.2,2) {$5\hbar\omega/2$};
+    \node[right] at (3.2,3) {$7\hbar\omega/2$};
+    \draw[->,thick] (.9,1.08)--(.9,1.92)
+      node[midway,left] {$a^\dagger$};
+    \draw[->,thick] (2.2,1.92)--(2.2,1.08)
+      node[midway,right] {$a$};
+    \node at (1.6,3.55) {$\vdots$};
+    \node at (1.6,-.65) {$a|0\rangle=0$};
+  \end{tikzpicture}
+  \caption{能量阶梯的示意图。箭头表示算符的升降作用，每步改变能量 $\hbar\omega$；输出另带式~\eqref{eq:QM-C07-S04-ladder-action} 的范数系数，而非图中隐含一次物理跃迁。}
+\end{figure}
+
+\textbf{数算符与名称。}定义数算符（number operator）
+\begin{equation}
+  \boxed{N=a^\dagger a},\qquad N\ket n=n\ket n,
+  \qquad H=\hbar\omega(N+\tfrac12I).
+\end{equation}
+$n$ 数的是相对于基态的激发量子数，不是势阱中物质粒子的个数。$a^\dagger,a$ 也称产生、湮灭算符（creation/annihilation operators），此处指增加、去掉一份 $\hbar\omega$ 激发。本征态整体相位可选择，但若重新选择基底相位，表示同一叠加态的展开系数也必须同步改变。
+
+\notetopic{QM-C07-S04-T03}{能量表象中的矩阵元与计算}
+\textbf{来源：}印刷页 pp.~207--209，PDF pp.~219--221，式 (7.4.24)--(7.4.35)。
+
+由升降关系和正交归一性，
+\begin{equation}
+  \bra m a\ket n=\sqrt n\,\delta_{m,n-1},\qquad
+  \bra m a^\dagger\ket n=\sqrt{n+1}\,\delta_{m,n+1}.
+\end{equation}
+按 $\ket0,\ket1,\ket2,\ldots$ 排列，$a$ 的非零元素在上副对角线上，$a^\dagger$ 在下副对角线上。\emph{第 $n$ 列记录算符作用于 $\ket n$ 后的展开系数}；此处行列从 $0$ 编号。
+
+将式~\eqref{eq:QM-C07-S04-ladder-definition} 相加、相减，定义
+$s=\sqrt{\hbar/(2m\omega)}$、$p_*=\sqrt{m\hbar\omega/2}$，有
+\begin{equation}
+  \boxed{X=s(a+a^\dagger)},\qquad
+  \boxed{P=\ii p_*(a^\dagger-a)}.
+\end{equation}
+这里 $s,p_*$ 是位置、动量尺度，不是本征值或期望值。于是
+\begin{align}
+  X\ket n&=s\left(\sqrt n\ket{n-1}+\sqrt{n+1}\ket{n+1}\right),\\
+  P\ket n&=\ii p_*\left(\sqrt{n+1}\ket{n+1}-\sqrt n\ket{n-1}\right),\\
+  \bra m X\ket n&=s\left(\sqrt n\delta_{m,n-1}+\sqrt{n+1}\delta_{m,n+1}\right),\\
+  \bra m P\ket n&=\ii p_*\left(\sqrt{n+1}\delta_{m,n+1}-\sqrt n\delta_{m,n-1}\right).
+  \label{eq:QM-C07-S04-xp-elements}
+\end{align}
+$n=0$ 时省略降低项。在该基中，
+\begin{equation}
+  X=s\begin{pmatrix}
+  0&1&0&\cdots\\1&0&\sqrt2&\cdots\\
+  0&\sqrt2&0&\ddots\\\vdots&\vdots&\ddots&\ddots
+  \end{pmatrix},\qquad
+  P=\ii p_*\begin{pmatrix}
+  0&-1&0&\cdots\\1&0&-\sqrt2&\cdots\\
+  0&\sqrt2&0&\ddots\\\vdots&\vdots&\ddots&\ddots
+  \end{pmatrix}.
+\end{equation}
+$X$ 为实对称矩阵，$P$ 为纯虚反对称矩阵，两者均 Hermitian；同时
+\begin{equation}
+  H=\hbar\omega\,\diag\left(\frac12,\frac32,\frac52,\ldots\right).
+\end{equation}
+这些是无限矩阵的示意，不能将有限截断误认为仍严格满足全部对易关系。
+
+\textbf{选择定则与有序乘积。}式~\eqref{eq:QM-C07-S04-xp-elements} 说明 $X,P$ 的非零矩阵元只连接 $m=n\pm1$，称为选择定则（selection rule）。这是矩阵元限制，不是说位置、动量测量只能得到相邻的\emph{能量}。计算 $X^r$ 时先按净升降次数筛选，再从右向左逐次作用；不能对不对易的 $a,a^\dagger$ 使用普通数的二项式合并。具体的 $X^3$ 计算见\hyperref[exercise:QM-C07-S04-E00]{教材未编号示范}。
+
+\textbf{能量本征态中的均值与涨落。}完整推导见\hyperref[exercise:QM-C07-S04-E02]{Exercise 7.4.2}，结果为
+\begin{align}
+  \expect X_n&=\expect P_n=0,\\
+  \expect{X^2}_n&=\frac{\hbar}{m\omega}\left(n+\frac12\right),\qquad
+  \expect{P^2}_n=m\hbar\omega\left(n+\frac12\right),\\
+  \boxed{\Delta X\Delta P}&=\hbar\left(n+\frac12\right),\qquad
+  \expect T_n=\expect V_n=\frac{E_n}{2}.
+\end{align}
+下标 $n$ 表示在 $\ket n$ 中取期望。均值为零不等于测量结果确定；在\emph{能量本征态这一族}中仅基态饱和 $\Delta X\Delta P\ge\hbar/2$，不能推广为所有量子态中只有基态饱和。能量叠加态还会有交叉项，相对相位可使位置、动量期望值随时间变化；与 Ehrenfest 定理的联系见\hyperref[exercise:QM-C07-S04-E05]{Exercise 7.4.5}。
+
+\notetopic{QM-C07-S04-T04}{不依赖表象的量子化规则与相位自由}
+\textbf{来源：}印刷页 pp.~210--212，PDF pp.~222--224；位置基相位变换参见 Exercise 7.4.9（印刷页 pp.~213--214，PDF pp.~225--226）。这里只整理相关理论，不将整道习题记为已完成。
+
+\textbf{抽象规则与具体表示。}本节把量子化公设写成不依赖表象的形式：经典笛卡尔位置、动量对应自伴算符，满足
+\begin{equation}
+  \boxed{[X_i,P_j]=\ii\hbar\delta_{ij}I},\qquad
+  [X_i,X_j]=[P_i,P_j]=0.
+  \label{eq:QM-C07-S04-canonical}
+\end{equation}
+再对具体的经典物理量构造算符并处理排序歧义。$X\mapsto x$、$P\mapsto-\ii\hbar\dd/\dd x$ 是常用位置表象中的表示，不是抽象算符唯一的写法；上述物理公设也不是单凭代数推导出的实验规律。
+
+在一维位置表象中，取具有动量量纲的实函数 $f(x)$，则
+\begin{equation}
+  P_f=-\ii\hbar\frac{\dd}{\dd x}+f(x),\qquad
+  [x,P_f]=[x,-\ii\hbar\dd/\dd x]+[x,f(x)]=\ii\hbar I.
+\end{equation}
+因为 $x$ 与 $f(x)$ 均为乘法算符，第二个对易子为零。仅由基本对易关系，不能唯一选定纯导数表示。
+
+\textbf{为什么可以描述同一物理系统？}以下限定全实轴、足够光滑的实函数 $f$，并同步变换算符定义域。令 $g'(x)=f(x)$，位置基重新选相位为
+\begin{equation}
+  \ket{x}_{\rm new}=\ee^{\ii g(x)/\hbar}\ket x,
+  \qquad
+  \psi_{\rm new}(x)={}_{\rm new}\!\braket{x}{\psi}
+       =\ee^{-\ii g(x)/\hbar}\psi(x).
+\end{equation}
+记乘法幺正变换 $W\psi=\ee^{-\ii g/\hbar}\psi$。新坐标中的算符为
+\begin{equation}
+  X_{\rm new}=WXW^{-1}=x,\qquad
+  P_{\rm new}=WPW^{-1}=-\ii\hbar\frac{\dd}{\dd x}+g'(x)=P_f.
+\end{equation}
+具体地，由乘积求导法则，
+\begin{align}
+  -\ii\hbar\frac{\dd}{\dd x}\left(\ee^{-\ii g/\hbar}\psi\right)
+    &=\ee^{-\ii g/\hbar}(-g'\psi-\ii\hbar\psi'),\\
+  P_f\psi_{\rm new}&=\ee^{-\ii g/\hbar}(-\ii\hbar\psi')=W(P\psi).
+\end{align}
+$H$ 及其他可观测算符也须变为 $WHW^{-1}$、$WOW^{-1}$。此时内积和期望值不变：
+\begin{equation}
+  \braket{W\phi}{W\psi}=\braket\phi\psi,\qquad
+  \langle W\psi\mid WOW^{-1}\mid W\psi\rangle
+     =\bra\psi O\ket\psi.
+\end{equation}
+算符本征值也由幺正等价保持。这是\emph{同一个抽象态换坐标}，不是物理动量真的增加了 $f(x)$。若只修改波函数而保持原基底、算符不变，则一般改变物理态；位置概率密度不变不能保证其他测量分布不变。周期空间等情形还须核对相位的单值性与边界条件，不能不加条件照搬全实轴的结论。
+
+\textbf{Poisson bracket 对应的边界。}式~\eqref{eq:QM-C07-S04-canonical} 与经典基本 Poisson bracket 对应，两种括号都满足乘积展开规则。但对任意复杂函数，不能把
+$[F(X,P),G(X,P)]=\ii\hbar\,\widehat{\{F,G\}}$
+当作无条件精确恒等式；量子化后的排序和高阶量子修正可能介入。教材式 (7.4.40) 也附有排序歧义的限定。
+
+同样，直接替换规则先在笛卡尔坐标中使用。换成曲线坐标后，积分测度、算符对称性和排序都需重新核对；满足对易关系并不自动保证得到正确的 Hamiltonian。教材 Exercise 7.4.10（印刷页 pp.~214--216）讨论这一限制，本单元不展开其完整计算。
+
+\subsection{一分钟回顾}
+把 $H$ 因式分解为 $\hbar\omega(a^\dagger a+1/2)$，非负范数给出能量下界；升降对易关系与向下终止条件选出整数阶梯。归一化决定 $\sqrt n$、$\sqrt{n+1}$，能量基中的 $X,P$ 因而只连接相邻层。矩阵元可以通过有序升降计算，不必先求位置波函数。最后，抽象算符与具体表示必须区分：同步换基保持物理，而只改变波函数的空间相位通常改变状态。
