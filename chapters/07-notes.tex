@@ -661,3 +661,147 @@ $[F(X,P),G(X,P)]=\ii\hbar\,\widehat{\{F,G\}}$
 
 \subsection{一分钟回顾}
 把 $H$ 因式分解为 $\hbar\omega(a^\dagger a+1/2)$，非负范数给出能量下界；升降对易关系与向下终止条件选出整数阶梯。归一化决定 $\sqrt n$、$\sqrt{n+1}$，能量基中的 $X,P$ 因而只连接相邻层。矩阵元可以通过有序升降计算，不必先求位置波函数。最后，抽象算符与具体表示必须区分：同步换基保持物理，而只改变波函数的空间相位通常改变状态。
+
+\section{第 7.5 节：从能量基到位置基}
+\label{section:QM-C07-S05}
+\studymeta
+  {QM-C07-S05}
+  {2026-09-22 至 2026-09-23}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 7 章 \S 7.5；正文印刷页 pp.~216--218，PDF pp.~228--230；选定习题印刷页 p.~218，PDF p.~230}
+  {讲解与选定习题已核对；笔记已确认}
+
+\textbf{范围与主线。}上一节得到抽象能量本征态 $\ket n$，本节求其位置波函数 $\psi_n(x)=\braket{x}{n}$：先将基态条件写成一阶微分方程，再用升算符生成激发态。两者连接第 7.3 节的微分方程法与第 7.4 节的代数法，并非改变物理系统或状态。Exercises 7.5.1、7.5.2 的完整题意与解答见课程题目；7.5.3 及热力学拓展题 7.5.4 本次未选。归一化测度、级数收敛和宇称说明为学习中的补充。
+
+\notetopic{QM-C07-S05-T01}{基态条件与位置高斯波函数}
+\textbf{来源：}印刷页 pp.~216--218，PDF pp.~228--230，式 (7.5.1)--(7.5.6)。
+
+取 $m,\omega>0$，使用标准位置表象 $X\mapsto x$、$P\mapsto-\ii\hbar\dd/\dd x$。由上一节的 $a\ket0=0$，左乘 $\bra x$：
+\begin{align}
+  0=\bra x a\ket0
+    &=\sqrt{\frac{m\omega}{2\hbar}}x\psi_0(x)
+      +\frac{\ii}{\sqrt{2m\hbar\omega}}
+         \left(-\ii\hbar\frac{\dd\psi_0}{\dd x}\right)\\
+    &=\sqrt{\frac{m\omega}{2\hbar}}x\psi_0(x)
+      +\sqrt{\frac{\hbar}{2m\omega}}\frac{\dd\psi_0}{\dd x}.
+\end{align}
+其中 $\psi_0(x)=\braket{x}{0}$，而 $\ii(-\ii)=1$ 决定导数项的正号。令
+\begin{equation}
+  b=\sqrt{\frac{\hbar}{m\omega}},\qquad y=\frac{x}{b},
+\end{equation}
+得到
+\begin{equation}
+  \boxed{\psi_0'(x)=-\frac{x}{b^2}\psi_0(x)}.
+  \label{eq:QM-C07-S05-ground-ode}
+\end{equation}
+这比能量本征方程低一阶，因为已利用代数法确定的\emph{基态条件}；不能对任意激发态也要求 $a\ket n=0$。
+
+\textbf{解方程与归一化。}用乘积求导可以避免先除以未知函数：
+\begin{equation}
+  \frac{\dd}{\dd x}\left[\ee^{x^2/(2b^2)}\psi_0(x)\right]
+  =\ee^{x^2/(2b^2)}\left(\psi_0'+\frac{x}{b^2}\psi_0\right)=0.
+\end{equation}
+故 $\psi_0(x)=C\ee^{-x^2/(2b^2)}$。由
+\begin{equation}
+  1=\int_{-\infty}^{\infty}|\psi_0(x)|^2\dd x
+   =|C|^2\int_{-\infty}^{\infty}\ee^{-x^2/b^2}\dd x
+   =|C|^2b\sqrt\pi,
+\end{equation}
+选整体相位使 $C>0$，得
+\begin{equation}
+  \boxed{\psi_0(x)=\frac{\ee^{-x^2/(2b^2)}}{\pi^{1/4}\sqrt b}
+    =\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+        \ee^{-m\omega x^2/(2\hbar)}}.
+  \label{eq:QM-C07-S05-ground-function}
+\end{equation}
+高斯形状来自基态条件，不是额外假设；结果与第 7.3 节一致。将同一条件投影到动量表象也得到高斯，见\hyperref[exercise:QM-C07-S05-E01]{Exercise 7.5.1}。
+
+\textbf{升降不对称的检验。}位置表象中
+\begin{equation}
+  a\mapsto\frac1{\sqrt2}\left(y+\frac{\dd}{\dd y}\right),\qquad
+  a^\dagger\mapsto\frac1{\sqrt2}\left(y-\frac{\dd}{\dd y}\right).
+  \label{eq:QM-C07-S05-ladder-differential}
+\end{equation}
+微分表达式的伴随关系需结合衰减边界条件；此处可在谐振子本征函数的有限线性组合上使用。若反过来要求 $a^\dagger\ket\chi=0$，则 $\chi'=x\chi/b^2$，非零解为 $C\ee^{+x^2/(2b^2)}$，不能在全实轴归一化。因此不存在被升算符消去的物理最高态，与能量阶梯向上不终止一致。
+
+\notetopic{QM-C07-S05-T02}{生成激发态与 Hermite 多项式}
+\textbf{来源：}印刷页 p.~218，PDF p.~230，式 (7.5.7)--(7.5.8)；联系第 7.3 节式 (7.3.22)。
+
+由归一化的抽象态构造
+\begin{equation}
+  \ket n=\frac{(a^\dagger)^n}{\sqrt{n!}}\ket0,\qquad n=0,1,2,\ldots,
+\end{equation}
+投影到位置基，并使用式~\eqref{eq:QM-C07-S05-ladder-differential}，得到
+\begin{equation}
+  \boxed{\psi_n(x)=\frac1{\pi^{1/4}\sqrt{2^n n!\,b}}
+    \left[\left(y-\frac{\dd}{\dd y}\right)^n
+      \ee^{-y^2/2}\right]_{y=x/b}}.
+  \label{eq:QM-C07-S05-generated-functions}
+\end{equation}
+先完成对 $y$ 的微分，再代入 $y=x/b$。归一化已由 $1/\sqrt{n!}$ 的态构造保证；不必每次升阶后重新求积分确定常数。
+
+\textbf{为什么出现多项式乘高斯？}对任意多项式 $F(y)$，乘积法则给出
+\begin{align}
+  \left(y-\frac{\dd}{\dd y}\right)
+    \left[F(y)\ee^{-y^2/2}\right]
+    &=\left(yF-F'+yF\right)\ee^{-y^2/2}\\
+    &=\left(2yF-F'\right)\ee^{-y^2/2}.
+\end{align}
+高斯因子保留，多项式部分从 $1$ 依次变为 $2y$、$4y^2-2$。与已知的 Hermite 波函数比较，得到
+\begin{equation}
+  \boxed{H_n(y)=\ee^{y^2/2}
+    \left(y-\frac{\dd}{\dd y}\right)^n\ee^{-y^2/2}},
+\end{equation}
+以及熟悉的归一化表达式
+\begin{equation}
+  \boxed{\psi_n(x)=\frac{H_n(x/b)}{\pi^{1/4}\sqrt{2^n n!\,b}}
+        \ee^{-x^2/(2b^2)}}.
+  \label{eq:QM-C07-S05-hermite-functions}
+\end{equation}
+反向把降算符投影到位置表象，则得到 $H_n'(y)=2nH_{n-1}(y)$；完整推导及归一化系数比见\hyperref[exercise:QM-C07-S05-E02]{Exercise 7.5.2}。
+
+\textbf{宇称（parity）是空间反演下的奇偶性。}一维中，宇称算符将 $f(x)$ 变成 $f(-x)$；偶函数的宇称为 $+1$，奇函数为 $-1$。乘以 $y$ 与对 $y$ 求导都会翻转函数的奇偶性，所以 $a^\dagger$ 每作用一次也翻转奇偶性。从偶函数基态出发，
+\begin{equation}
+  \boxed{\psi_n(-x)=(-1)^n\psi_n(x)}.
+\end{equation}
+这指波函数而非概率密度；所有 $|\psi_n(x)|^2$ 都是偶函数。
+
+\textbf{换变量不等于重新归一化。}以上始终使用位置波函数及测度 $\dd x$。只作变量代换时，
+\begin{equation}
+  1=\int|\psi_n(x)|^2\dd x
+   =b\int|\psi_n(by)|^2\dd y.
+\end{equation}
+若另定义按 $\dd y$ 归一化的无量纲波函数，则应取
+$\varphi_n(y)=\sqrt b\,\psi_n(by)$，不能只把自变量符号换掉而遗漏 Jacobian。
+
+\textbf{任意态的展开与归一化是两件事。}能量基的完备性与投影的线性性给出
+\begin{equation}
+  \ket\Psi=\sum_{n=0}^{\infty}c_n\ket n
+  \quad\Longrightarrow\quad
+  \boxed{\Psi(x)=\sum_{n=0}^{\infty}c_n\psi_n(x)},\qquad
+  c_n=\braket{n}{\Psi}.
+\end{equation}
+展开本身不要求 $\ket\Psi$ 已归一化。对平方可积态，正交归一性给出
+\begin{equation}
+  \norm{\Psi}^2=\sum_{n=0}^{\infty}|c_n|^2
+    =\int_{-\infty}^{\infty}|\Psi(x)|^2\dd x;
+\end{equation}
+只有归一化态才使共同值为 $1$。一般级数按 $L^2$ 范数收敛，不默认处处逐点收敛。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Stealth]
+    \node (ket) at (0,1.4) {$|0\rangle$};
+    \node (exc) at (6,1.4) {$|n\rangle$};
+    \node (g) at (0,0) {$\psi_0(x)$};
+    \node (h) at (6,0) {$\psi_n(x)$};
+    \draw[->] (ket)--node[above] {$(a^\dagger)^n/\sqrt{n!}$}(exc);
+    \draw[->] (ket)--node[left] {$\langle x|$}(g);
+    \draw[->] (exc)--node[right] {$\langle x|$}(h);
+    \draw[->] (g)--node[below] {$(x/b-b\,\dd/\dd x)^n/\sqrt{2^n n!}$}(h);
+  \end{tikzpicture}
+  \caption{两条等价的计算路线：先在抽象态上升阶再投影，或先写出基态波函数再施加微分算符。竖直箭头只改变表示；水平箭头生成不同能量态。}
+\end{figure}
+
+\subsection{一分钟回顾}
+第 7.3 节从二阶微分方程求能级与波函数，第 7.4 节从算符代数构造能量阶梯，第 7.5 节用投影连接二者。基态条件 $a\ket0=0$ 化为一阶方程，直接给出归一化高斯；反复升阶产生 Hermite 多项式及其波函数。降阶关系对应多项式求导关系。表象转换保持物理态，展开关系不以归一化为前提；使用无量纲坐标时仍须正确处理积分测度。

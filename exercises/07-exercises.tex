@@ -285,3 +285,109 @@ $\phi(0)=0$ 使延拓连续，两侧一阶导数也同为 $\phi'(0^+)$，故不�
 
 能量测量概率始终为 $1/2,1/2$，但状态不是定态，位置和动量均值因相对相位而振荡。这是谐振子均值精确满足经典方程的例子，不意味着粒子同时具有确定的位置、动量或一条确定轨迹。
 \end{checkedsolution}
+
+\section{第 7.5 节选定教材习题}
+\label{exercise-set:QM-C07-S05}
+\exercisemeta
+  {QM-C07-S05-EX}
+  {2026-09-23}
+  {Shankar，Exercises 7.5.1、7.5.2；印刷页 p.~218，PDF p.~230}
+  {完整题意、必要约定与核对后的解答；未选 7.5.3、7.5.4}
+  {选定习题已核对；笔记已确认}
+
+\noindent\begin{minipage}{\linewidth}
+\exercisequestion{QM-C07-S05-E01}{教材习题：动量表象的谐振子基态（Exercise 7.5.1）}
+\textbf{来源：}印刷页 p.~218，PDF p.~230。对应\hyperref[topic:QM-C07-S05-T01]{基态条件的表象转换}。
+
+将教材式 (7.5.1) 即 $a\ket0=0$ 投影到动量基，求归一化的基态波函数 $\widetilde\psi_0(p)=\braket p0$。取 $m,\omega>0$，使用
+\par
+\end{minipage}
+\begin{equation}
+  a=\sqrt{\frac{m\omega}{2\hbar}}X
+     +\frac{\ii}{\sqrt{2m\hbar\omega}}P,\qquad
+  P\mapsto p,\quad X\mapsto\ii\hbar\frac{\dd}{\dd p},
+\end{equation}
+以及 $\braket p{p'}=\delta(p-p')$、$\int|\widetilde\psi_0(p)|^2\dd p=1$。整体相位可自由选择。
+
+\begin{checkedsolution}
+左乘 $\bra p$，将两个算符分别作用于动量波函数：
+\begin{align}
+  0&=\sqrt{\frac{m\omega}{2\hbar}}\,\ii\hbar
+        \frac{\dd\widetilde\psi_0}{\dd p}
+     +\frac{\ii p}{\sqrt{2m\hbar\omega}}\widetilde\psi_0\\
+   &=\frac{\ii}{\sqrt{2m\hbar\omega}}
+      \left(m\hbar\omega\frac{\dd}{\dd p}+p\right)\widetilde\psi_0.
+\end{align}
+两项都带 $\ii$，约去非零公因子得到
+\begin{equation}
+  \boxed{\frac{\dd\widetilde\psi_0}{\dd p}
+       =-\frac{p}{m\hbar\omega}\widetilde\psi_0}.
+\end{equation}
+等价地，$\dd[\ee^{p^2/(2m\hbar\omega)}\widetilde\psi_0]/\dd p=0$，因此
+\begin{equation}
+  \widetilde\psi_0(p)=C\exp\left(-\frac{p^2}{2m\hbar\omega}\right).
+\end{equation}
+归一化给出
+\begin{equation}
+  1=|C|^2\int_{-\infty}^{\infty}\ee^{-p^2/(m\hbar\omega)}\dd p
+   =|C|^2\sqrt{\pi m\hbar\omega}.
+\end{equation}
+取 $C>0$，最终
+\begin{equation}
+  \boxed{\widetilde\psi_0(p)=\frac1{(\pi m\hbar\omega)^{1/4}}
+           \exp\left(-\frac{p^2}{2m\hbar\omega}\right)}.
+\end{equation}
+它的量纲为动量的 $-1/2$ 次方，与按 $\dd p$ 归一化一致。位置和动量波函数都是高斯，但宽度不能混用：由对应概率密度得
+\begin{equation}
+  \expect X=\expect P=0,\qquad
+  \Delta X=\sqrt{\frac{\hbar}{2m\omega}},\qquad
+  \Delta P=\sqrt{\frac{m\hbar\omega}{2}},\qquad
+  \Delta X\Delta P=\frac\hbar2.
+\end{equation}
+这里宽度指概率密度的标准差，不是直接读取振幅高斯的指数分母。
+\end{checkedsolution}
+
+\noindent\begin{minipage}{\linewidth}
+\exercisequestion{QM-C07-S05-E02}{教材习题：降算符与 Hermite 求导关系（Exercise 7.5.2）}
+\textbf{来源：}印刷页 p.~218，PDF p.~230。对应\hyperref[topic:QM-C07-S05-T02]{升降操作与 Hermite 多项式}。
+
+将 $a\ket n=\sqrt n\ket{n-1}$（$n\ge1$）投影到位置基，并利用教材式 (7.3.22)，证明
+\begin{equation}
+  H_n'(y)=2nH_{n-1}(y).
+\end{equation}
+\end{minipage}
+其中 $y=x/b$、$b=\sqrt{\hbar/(m\omega)}$，约定
+\begin{equation}
+  \psi_n(x)=N_nH_n(y)\ee^{-y^2/2},\qquad
+  N_n=\frac1{\pi^{1/4}\sqrt{2^n n!\,b}},\qquad
+  a\mapsto\frac1{\sqrt2}\left(y+\frac{\dd}{\dd y}\right).
+\end{equation}
+
+\begin{checkedsolution}
+左乘 $\bra x$，并把 $\psi_n(x)$ 写成 $y=x/b$ 的复合表达式：
+\begin{equation}
+  \frac1{\sqrt2}\left(y+\frac{\dd}{\dd y}\right)
+       \left[N_nH_n(y)\ee^{-y^2/2}\right]
+  =\sqrt n\,N_{n-1}H_{n-1}(y)\ee^{-y^2/2}.
+\end{equation}
+左边由乘积求导展开为
+\begin{align}
+  \frac{N_n}{\sqrt2}
+    \left[yH_n(y)+H_n'(y)-yH_n(y)\right]\ee^{-y^2/2}
+  =\frac{N_n}{\sqrt2}H_n'(y)\ee^{-y^2/2}.
+\end{align}
+来自乘法项和高斯导数的两个 $yH_n$ 项恰好抵消。对有限实数 $y$，高斯因子非零，故可约去，得
+\begin{equation}
+  H_n'(y)=\sqrt{2n}\,\frac{N_{n-1}}{N_n}H_{n-1}(y).
+\end{equation}
+不能省略不同能级的归一化系数之比：
+\begin{equation}
+  \frac{N_{n-1}}{N_n}
+  =\sqrt{\frac{2^n n!\,b}{2^{n-1}(n-1)!\,b}}=\sqrt{2n}.
+\end{equation}
+于是
+\begin{equation}
+  \boxed{H_n'(y)=2nH_{n-1}(y),\qquad n\ge1}.
+\end{equation}
+例如 $H_1'=2=2H_0$，$H_2'=8y=4H_1$，与低阶多项式一致。抽象态的降阶关系，在位置表象中转化为 Hermite 多项式的求导关系。
+\end{checkedsolution}
