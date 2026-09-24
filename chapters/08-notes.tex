@@ -1,0 +1,73 @@
+\clearpage
+\section{第 8.1 节：路径积分的规则}
+\label{section:QM-C08-S01}
+\studymeta
+  {QM-C08-S01}
+  {2026-09-23 至 2026-09-24}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 8 章 \S 8.1；正文印刷页 p.~223，PDF p.~234；图 8.1 位于印刷页 p.~224，PDF p.~235}
+  {讲解与概念核对已完成；笔记已确认}
+
+\textbf{范围与主线。}本节只给出路径积分（path integral）的基本规则：由连接固定时空端点的所有路径及其作用量，直接构造传播核。经典极限的分析留到第 8.2 节，时间切片的具体定义留到第 8.4 节。
+
+\notetopic{QM-C08-S01-T01}{从作用量到传播核：对路径的振幅求和}
+\textbf{来源：}教材式 (8.1.1) 与图 8.1。传播核的记号区分、概率解释及形式化求和的限定为学习补充。
+
+\textbf{目标不变，求法改变。}用 $U(t_f,t_i)$ 表示抽象演化算符，用 $K$ 表示其位置表象的核；教材也以 $U$ 表示这个核：
+\begin{align}
+  K(x_f,t_f;x_i,t_i)&=\bra{x_f}U(t_f,t_i)\ket{x_i},\\
+  \psi(x_f,t_f)&=\int_{-\infty}^{\infty}
+     K(x_f,t_f;x_i,t_i)\psi(x_i,t_i)\dd x_i.
+  \label{eq:QM-C08-S01-evolution}
+\end{align}
+原来的主要路线是从 Hamiltonian 的谱构造传播子；新路线从 Lagrangian 与作用量出发，直接求同一个传播核。求得 $K$ 后仍须按式~\eqref{eq:QM-C08-S01-evolution} 演化初态，再取 $|\psi(x_f,t_f)|^2$ 得到位置概率密度，不能把 $K$ 本身当作概率。
+
+\textbf{固定端点，不限定中间路径满足运动方程。}以 $q(\tau)$ 表示一条候选路径，避免把路径函数与端点坐标混淆：
+\begin{equation}
+  q(t_i)=x_i,\qquad q(t_f)=x_f,\qquad
+  S[q]=\int_{t_i}^{t_f}L(q(\tau),\dot q(\tau),\tau)\dd\tau.
+\end{equation}
+对于本节考虑的普通非相对论粒子，$L=\tfrac12m\dot q^{\,2}-V(q,\tau)$。不同路径具有相同的时空端点，但中间的位置、速度及作用量可以不同。求和并不要求每条路径满足 Newton 或 Euler--Lagrange 方程；经典路径只是其中的一条。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,x=1cm,y=1cm]
+  \draw[->] (0,0)--(8.3,0) node[right] {$\tau$};
+  \draw[->] (0,0)--(0,2.65) node[above] {$q$};
+  \coordinate (start) at (1,0.55);
+  \coordinate (end) at (7,2.05);
+  \draw[noteBlue,thick] (start) .. controls (2.6,2.3) and (5.2,2.5) .. (end);
+  \draw[thick] (start) .. controls (2.8,0.6) and (5.5,1.4) .. (end);
+  \draw[accentRed,thick] (start) .. controls (3.2,-0.15) and (5.4,0.4) .. (end);
+  \draw[dashed,gray] (1,0)--(start);
+  \draw[dashed,gray] (7,0)--(end);
+  \fill (start) circle (2pt) node[left] {$x_i$};
+  \fill (end) circle (2pt) node[right] {$x_f$};
+  \node[below] at (1,0) {$t_i$};
+  \node[below] at (7,0) {$t_f$};
+\end{tikzpicture}
+
+\small 固定两个时空端点，中间路径不同。依据教材图 8.1 的含义原创示意，曲线不指定具体势能。
+\end{minipage}
+\end{center}
+
+\textbf{路径决定相位，振幅相加得到传播核。}教材给出的形式化规则为
+\begin{equation}
+  \boxed{K(x_f,t_f;x_i,t_i)
+     =A\sum_{\substack{q(t_i)=x_i\\q(t_f)=x_f}}
+         \ee^{\ii S[q]/\hbar}}.
+  \label{eq:QM-C08-S01-recipe}
+\end{equation}
+求和遍及连接两端点的路径，不是只对经典解求和。作用量与 $\hbar$ 的量纲均为能量乘时间，因此 $S[q]/\hbar$ 是无量纲相位。对实作用量，$|\ee^{\ii S[q]/\hbar}|=1$；路径间的作用量差决定相位差，复振幅因而可能相增或相消。
+
+\textbf{解释与适用边界。}
+\begin{itemize}
+  \item 相加的是\emph{概率振幅}，不是各路径的概率。相位因子模为 $1$ 不表示每条路径的发生概率为 $1$，也不能将规则解释为先随机选一条经典路径。
+  \item $A$ 表示整体归一化因子；它须结合路径求和的测度与离散化理解，不能靠给每条路径分配普通概率来确定。
+  \item 连续的路径集合不是普通的有限或可数求和。本节保留教材的形式化写法；时间切片将进一步说明其含义，不能据此假定所有路径都是光滑的经典轨迹。
+\end{itemize}
+
+\textbf{与已有知识的联系。}双缝实验要求将不可区分备选过程的振幅相加；这里把振幅叠加用于固定起终点之间的所有中间路径，并以作用量决定相位。这是理解规则的类比，不是从双缝实验或经典 $\delta S=0$ 单独推导出式~\eqref{eq:QM-C08-S01-recipe}。本节先陈述规则，后续再讨论经典极限及其与原有量子演化的联系。
+
+\textbf{一分钟回顾。}固定时空端点，计算各路径的作用量，按 $\ee^{\ii S/\hbar}$ 叠加得到传播核；再让传播核作用于初始波函数。变化的是求传播子的途径，不是量子态与概率的解释。

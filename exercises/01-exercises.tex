@@ -146,48 +146,6 @@
 
 \textbf{检查点：}相关性只需一个非平凡解；无关性要求证明齐次方程只有平凡解。
 
-\exercisequestion{QM-C01-S01-E06}{自拟检查题：分量运算与换基}
-
-\textbf{对应知识点：}\relatedtopic{QM-C01-S01-T05}{坐标唯一性与换基}。
-
-\textbf{来源说明。}本题由学习对话生成，不是教材习题。它用于检查坐标运算、换基和“向量不随坐标改变”的区别。
-
-在基 $\{\ket{1},\ket{2}\}$ 下，设
-\[
-  \ket{V}=3\ket{1}-2\ket{2},\qquad
-  \ket{W}=-\ket{1}+4\ket{2}.
-\]
-求 $2\ket{V}+\ket{W}$ 的坐标。再令
-\[
-  \ket{1'}=\ket{1}+\ket{2},\qquad
-  \ket{2'}=\ket{1}-\ket{2},
-\]
-求 $\ket{V}$ 在新基下的坐标。
-
-\begin{checkedsolution}
-第一问有
-\[
-  2\ket{V}+\ket{W}=5\ket{1},
-\]
-所以在原基下的坐标为 $(5,0)$。
-
-设 $\ket{V}=a\ket{1'}+b\ket{2'}$。展开后
-\[
-  \ket{V}=(a+b)\ket{1}+(a-b)\ket{2},
-\]
-故
-\[
-  a+b=3,\qquad a-b=-2.
-\]
-解得
-\[
-  a=\frac12,\qquad b=\frac52.
-\]
-新坐标为 $(1/2,5/2)$；改变的只是坐标，抽象向量 $\ket{V}$ 本身没有改变。
-\end{checkedsolution}
-
-\textbf{检查点：}换基后将新坐标代回新基，必须能够重建原来的向量。
-
 \section{第 1.2 节相关教材习题与订正}
 \label{exercise-set:QM-C01-S02}
 
@@ -491,131 +449,6 @@ Schwarz 不等式的证明给出
 
 \textbf{检查点：}“两组基都取自 $U+W$”只能证明它们张成的空间包含于 $U+W$；必须再展开任意 $\ket{u}+\ket{w}$ 才能证明反向包含。不应预先使用待证的维数结论。
 
-\exercisequestion{QM-C01-S04-E03}{自拟检查题：和、交与分解唯一性}
-
-\textbf{对应知识点：}\relatedtopic{QM-C01-S04-T02}{子空间的和、直和与唯一分解}。
-
-\textbf{来源说明。}本题由学习对话生成，不是教材习题。设
-\[
-  U=\{(x,y,0):x,y\in\real\},
-  \qquad
-  W=\{(0,y,z):y,z\in\real\}.
-\]
-求 $U+W$ 和 $U\cap W$，并判断这个和是否为直和。
-
-\begin{checkedsolution}
-任意 $(a,b,c)\in\real^3$ 都有
-\[
-  (a,b,c)=(a,b,0)+(0,0,c),
-\]
-所以 $U+W=\real^3$。同时
-\[
-  U\cap W=\{(0,y,0):y\in\real\}
-  =\operatorname{span}\{(0,1,0)\},
-\]
-其维数为 $1$。交集非零，因此不是直和。分解也确实不唯一：对任意 $t\in\real$，
-\[
-  (a,b,c)=(a,b-t,0)+(0,t,c).
-\]
-维数公式给出 $2+2-1=3$，与 $U+W=\real^3$ 一致。
-\end{checkedsolution}
-
-\exercisequestion{QM-C01-S04-E04}{自拟收口题：维数、正交补与集合并}
-
-\textbf{对应知识点：}\relatedtopic{QM-C01-S04-T03}{和空间的维数公式}、\relatedtopic{QM-C01-S04-T04}{正交补及其维数}。
-
-\textbf{来源说明。}本题由学习对话生成，不是教材习题。
-
-\begin{checkedsolution}
-若 $\dim U=4$，$\dim W=3$，$\dim(U\cap W)=2$，则
-\[
-  \dim(U+W)=4+3-2=5.
-\]
-由于交集维数非零，这个和不是直和。
-
-在 $\complex^3$ 中，对 $\ket{v}=(1,\ii,0)^{\mathsf T}$，条件 $\braket{v}{w}=0$ 为
-\[
-  w_1-\ii w_2=0.
-\]
-因此可取
-\[
-  v^\perp=\operatorname{span}\left\{
-  \begin{pmatrix}\ii\\1\\0\end{pmatrix},
-  \begin{pmatrix}0\\0\\1\end{pmatrix}
-  \right\},
-  \qquad \dim v^\perp=2.
-\]
-
-最后，$U+W$ 包含所有跨越两个子空间的线性组合，而 $U\cup W$ 只保留原来两个集合中的元素。仅当
-\[
-  U\subseteq W\quad\text{或}\quad W\subseteq U
-\]
-时，$U\cup W$ 才是子空间。
-\end{checkedsolution}
-
-\textbf{检查点：}对子空间应使用包含记号 $U\subseteq W$，而不是表示元素归属的 $U\in W$。
-
-\section{第 1.5 节自编检验题与订正}
-\label{exercise-set:QM-C01-S05}
-
-\exercisemeta
-  {QM-C01-S05-EX}
-  {2026-08-21}
-  {Shankar，第 1 章 \S 1.5；本节无编号习题}
-  {一道自编综合检验题}
-  {已确认（对话作答与逐项核对）}
-
-\exercisequestion{QM-C01-S05-E01}{自编综合检查题：线性、乘积、对易子与逆}
-
-\textbf{对应知识点：}线性算符、算符乘积、对易子与逆算符。
-
-\textbf{来源说明。}本题由学习对话生成，不是教材习题。在二维向量空间的基 $\{\ket{1},\ket{2}\}$ 上定义
-\[
-  A\ket{1}=\ket{1}+\ket{2},\qquad
-  A\ket{2}=\ket{1}-\ket{2},
-\]
-\[
-  B\ket{1}=\ket{1},\qquad
-  B\ket{2}=-\ket{2}.
-\]
-求 $A$ 对一般向量的作用，比较 $AB$ 与 $BA$，再求 $A^{-1}$ 和 $(AB)^{-1}$。
-
-\begin{checkedsolution}
-由线性性，
-\[
-  A\bigl(a\ket{1}+b\ket{2}\bigr)
-  =(a+b)\ket{1}+(a-b)\ket{2}.
-\]
-分别对基向量计算得
-\begin{align*}
-  AB\ket{1}&=\ket{1}+\ket{2},
-  &BA\ket{1}&=\ket{1}-\ket{2},\\
-  AB\ket{2}&=-\ket{1}+\ket{2},
-  &BA\ket{2}&=\ket{1}+\ket{2}.
-\end{align*}
-因而
-\[
-  [A,B]\ket{1}=2\ket{2}\neq\ket{0},
-\]
-所以 $[A,B]$ 不是零算符，$A$ 与 $B$ 不对易。要否定“对所有向量等于零”，找到一个反例向量已经足够。
-
-再次作用 $A$ 可得
-\[
-  A^2\ket{1}=2\ket{1},\qquad
-  A^2\ket{2}=2\ket{2}.
-\]
-基向量张成整个空间，故 $A^2=2I$，从而
-\[
-  A^{-1}=\frac12 A.
-\]
-同理 $B^2=I$，故 $B^{-1}=B$。利用乘积求逆的反序法则，
-\[
-  (AB)^{-1}=B^{-1}A^{-1}=\frac12 BA.
-\]
-\end{checkedsolution}
-
-\textbf{检查点：}证明两个算符不相等，一个反例向量足够；证明它们相等，则必须验证所有向量，或在线性情形下验证一组基。
-
 \section{第 1.6 节教材例题、习题与订正}
 \label{exercise-set:QM-C01-S06}
 
@@ -623,7 +456,7 @@ Schwarz 不等式的证明给出
   {QM-C01-S06-EX}
   {2026-08-22}
   {Shankar，第 1 章 \S 1.6，例 1.6.1 及练习 1.6.1--1.6.6}
-  {全部完成，并完成一道自编综合检查题}
+  {教材例题与习题全部完成并核对}
   {已确认（对话推导、矩阵计算与收口问答）}
 
 \exercisequestion{QM-C01-S06-E00}{教材例 1.6.1：由基向量的像构造旋转矩阵}
@@ -768,48 +601,6 @@ Schwarz 不等式的证明给出
 \end{checkedsolution}
 
 \textbf{检查点：}验证方阵 unitary 性时，检查全部列向量正交归一通常比完整展开 $U^\dagger U$ 更简洁。
-
-\exercisequestion{QM-C01-S06-E05}{自编综合检查题：投影差算符}
-
-\textbf{来源说明。}本题由学习对话生成，不是教材习题。定义
-\[
-  \ket{u}=\frac{\ket{1}+\ket{2}}{\sqrt2},
-  \qquad
-  \ket{v}=\frac{\ket{1}-\ket{2}}{\sqrt2},
-  \qquad
-  A=\ket{u}\bra{u}-\ket{v}\bra{v}.
-\]
-求 $A$ 的矩阵，并判断其 Hermitian 与 unitary 性。
-
-\begin{checkedsolution}
-两个投影矩阵为
-\[
-  P_u=\frac12
-  \begin{pmatrix}1&1\\1&1\end{pmatrix},
-  \qquad
-  P_v=\frac12
-  \begin{pmatrix}1&-1\\-1&1\end{pmatrix},
-\]
-所以
-\[
-  A=P_u-P_v=
-  \begin{pmatrix}0&1\\1&0\end{pmatrix},
-  \qquad
-  A^\dagger=A.
-\]
-由于 $\ket{u},\ket{v}$ 正交归一，$P_uP_v=P_vP_u=0$ 且 $P_u+P_v=I$，因而
-\[
-  A^2=(P_u-P_v)^2=P_u+P_v=I.
-\]
-所以 $A$ 同时为 Hermitian 和 unitary，并满足
-\[
-  A\ket{1}=\ket{2},
-  \qquad
-  A\ket{2}=\ket{1}.
-\]
-\end{checkedsolution}
-
-\textbf{检查点：}对投影多项式进行运算时，优先使用 $P_i^2=P_i$ 和正交投影乘积为零，不必先展开矩阵元。
 
 \section{第 1.7 节教材习题与订正}
 \label{exercise-set:QM-C01-S07}
