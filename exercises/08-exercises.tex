@@ -1,0 +1,71 @@
+\clearpage
+\section{第 8.2 节教材正文例题}
+\label{exercise-set:QM-C08-S02}
+\exercisemeta
+  {QM-C08-S02-EX}
+  {2026-09-24 至 2026-09-25}
+  {Shankar，第 8.2 节正文例子；印刷页 pp.~224--225；PDF pp.~235--236；式 (8.2.1)--(8.2.2)，图 8.3}
+  {教材未编号讲解例；恢复量纲与积分步骤为展开推导}
+  {例题讲解已完成；笔记已确认}
+
+\exercisequestion{QM-C08-S02-E01}{两条自由粒子路径的作用量与相位差}
+\textbf{对应知识点：}\relatedtopic{QM-C08-S02-T02}{作用量差与相干范围}。
+
+\textbf{例题。}质量为 $m$ 的自由粒子在 $t=0$ 时位于原点，在 $t=T$ 时到达 $x=\ell$，其中 $T,\ell>0$。比较两条连接相同端点的路径
+\begin{equation}
+  x_{\mathrm{cl}}(t)=\ell\frac{t}{T},\qquad
+  x_{\mathrm{alt}}(t)=\ell\left(\frac{t}{T}\right)^2.
+\end{equation}
+计算两者的作用量及相位差，并在 $\ell=1\,\mathrm{cm}$、$T=1\,\mathrm{s}$ 时比较质量为 $1\,\mathrm g$ 的粒子与电子。教材以厘米、秒为单位把这两式简写为 $x=t$ 与 $x=t^2$；这里显式保留量纲。
+
+\begin{checkedsolution}
+\textbf{两条路径与运动方程。}二者均满足 $x(0)=0$、$x(T)=\ell$，但
+\begin{equation}
+  \dot x_{\mathrm{cl}}=\frac{\ell}{T},\quad
+  \ddot x_{\mathrm{cl}}=0;\qquad
+  \dot x_{\mathrm{alt}}=\frac{2\ell t}{T^2},\quad
+  \ddot x_{\mathrm{alt}}=\frac{2\ell}{T^2}.
+\end{equation}
+只有前者满足自由粒子的经典运动方程。后者仍是路径积分的候选路径：固定端点不意味着每条路径都必须满足 Newton 方程。
+
+\textbf{作用量积分。}自由粒子的 $V=0$，故 $L=\frac12m\dot x^2$。经典路径给出
+\begin{equation}
+  S_{\mathrm{cl}}
+  =\int_0^T\frac12m\frac{\ell^2}{T^2}\dd t
+  =\boxed{\frac{m\ell^2}{2T}}.
+\end{equation}
+另一条路径给出
+\begin{align}
+  S_{\mathrm{alt}}
+  &=\int_0^T\frac12m\left(\frac{2\ell t}{T^2}\right)^2\dd t
+    =\frac{2m\ell^2}{T^4}\int_0^Tt^2\dd t\\
+  &=\frac{2m\ell^2}{T^4}\frac{T^3}{3}
+    =\boxed{\frac{2m\ell^2}{3T}}.
+\end{align}
+所以
+\begin{equation}
+  \boxed{\Delta S=S_{\mathrm{alt}}-S_{\mathrm{cl}}
+    =\frac{m\ell^2}{6T}},\qquad
+  \boxed{\Delta\theta=\frac{\Delta S}{\hbar}
+    =\frac{m\ell^2}{6\hbar T}}.
+  \label{eq:QM-C08-S02-free-phase}
+\end{equation}
+其中 $m\ell^2/T$ 的单位为 $\mathrm{kg\,m^2/s}=\mathrm{J\,s}$，与 $\hbar$ 相同。
+
+\noindent\begin{minipage}{\linewidth}
+\textbf{宏观与微观比较。}取 $\ell=10^{-2}\,\mathrm m$、$T=1\,\mathrm s$，使用 $\hbar\simeq1.055\times10^{-34}\,\mathrm{J\,s}$：
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  对象 & 质量 $m$ & $\Delta S\ (\mathrm{J\,s})$ & $\Delta\theta\ (\mathrm{rad})$\\
+  \midrule
+  宏观粒子 & $10^{-3}\,\mathrm{kg}$ & $1.67\times10^{-8}$ & $1.58\times10^{26}$\\
+  电子 & $9.11\times10^{-31}\,\mathrm{kg}$ & $1.52\times10^{-35}$ & $0.144$\\
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{minipage}\par
+教材粗略取电子质量为 $10^{-27}\,\mathrm g$、$\hbar\simeq10^{-27}\,\mathrm{erg\,s}$，因而得到 $\Delta\theta\simeq1/6$；与表中的较精细估值表达同一数量级结论。
+
+对宏观粒子，同样的路径变形对应极强的相位变化；在平稳相位近似下，相干贡献集中于经典路径的狭窄邻域。对电子，这条明显弯曲的候选路径与经典路径仍只相差约 $0.14$ rad，不能仅依据偏离经典轨迹就将其忽略。此比较展示相位变化的尺度，不是用两项振幅代替完整路径积分，也不是凭两个相位相差巨大就认定它们恰好抵消。
+\end{checkedsolution}

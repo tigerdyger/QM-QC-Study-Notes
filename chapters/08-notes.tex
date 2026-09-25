@@ -71,3 +71,101 @@
 \textbf{与已有知识的联系。}双缝实验要求将不可区分备选过程的振幅相加；这里把振幅叠加用于固定起终点之间的所有中间路径，并以作用量决定相位。这是理解规则的类比，不是从双缝实验或经典 $\delta S=0$ 单独推导出式~\eqref{eq:QM-C08-S01-recipe}。本节先陈述规则，后续再讨论经典极限及其与原有量子演化的联系。
 
 \textbf{一分钟回顾。}固定时空端点，计算各路径的作用量，按 $\ee^{\ii S/\hbar}$ 叠加得到传播核；再让传播核作用于初始波函数。变化的是求传播子的途径，不是量子态与概率的解释。
+
+\clearpage
+\section{第 8.2 节：平稳相位与经典路径}
+\label{section:QM-C08-S02}
+\studymeta
+  {QM-C08-S02}
+  {2026-09-24 至 2026-09-25}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 8 章 \S 8.2；印刷页 pp.~224--225，PDF pp.~235--236；式 (8.2.1)--(8.2.2)，图 8.2--8.3}
+  {讲解与教材正文例子已核对；笔记已确认}
+
+\textbf{范围与主线。}各路径的相位因子模长相同，经典路径为何仍能在适当极限下占主导？本节用平稳相位解释相干叠加，再以自由粒子比较宏观与微观的作用量尺度。教材采用启发式路径求和，尚未证明它与 Schrödinger 演化等价；传播子的具体近似留到第 8.3 节。
+
+\notetopic{QM-C08-S02-T01}{经典路径的优势来自邻近路径的相干叠加}
+\textbf{来源：}教材印刷页 p.~224 及图 8.2；下列变分展开是联系第二章的推导补充。
+
+对实作用量，每条路径贡献的相位因子满足
+\begin{equation}
+  Z[q]=\ee^{\ii S[q]/\hbar},\qquad |Z[q]|=1.
+\end{equation}
+经典路径并没有更大的单项模长。求和结果取决于各项的\emph{相位关系}：相位随路径快速变化时，复振幅大量相消；相位变化缓慢时，邻近的一簇路径可以较一致地相加。这就是 stationary phase（平稳相位）的基本图像；单项模长相同不等于每条路径具有相同的可观测概率。
+
+\textbf{为什么经典路径附近相位更稳定？}令
+\begin{equation}
+  q_\epsilon(t)=q(t)+\epsilon\eta(t),\qquad
+  \eta(t_i)=\eta(t_f)=0,
+\end{equation}
+其中 $\epsilon$ 是小的无量纲参数，$\eta$ 是保持端点不变的光滑变形。对足够光滑的作用量作局部展开：
+\begin{equation}
+  S[q+\epsilon\eta]
+  =S[q]+\epsilon\,\delta S[q;\eta]
+      +\frac{\epsilon^2}{2}\delta^2S[q;\eta]+O(\epsilon^3).
+  \label{eq:QM-C08-S02-action-expansion}
+\end{equation}
+这里 $\delta S[q;\eta]=\left.\dd S[q+\epsilon\eta]/\dd\epsilon\right|_{\epsilon=0}$。由第二章的固定端点变分，
+\begin{equation}
+  \delta S[q;\eta]
+  =\int_{t_i}^{t_f}\left(
+      \frac{\partial L}{\partial q}
+      -\frac{\dd}{\dd t}\frac{\partial L}{\partial\dot q}
+    \right)\eta(t)\dd t.
+\end{equation}
+经典路径 $q_{\mathrm{cl}}$ 满足 Euler--Lagrange 方程，因而对\emph{所有}允许的 $\eta$，一阶变分均为零。于是
+\begin{equation}
+  \Delta\theta
+  =\frac{S[q_{\mathrm{cl}}+\epsilon\eta]-S[q_{\mathrm{cl}}]}{\hbar}
+  =\frac{\epsilon^2}{2\hbar}\delta^2S[q_{\mathrm{cl}};\eta]
+       +O(\epsilon^3).
+\end{equation}
+相位变化从二阶或更高阶开始，而非一般的一阶。\emph{平稳不等于完全不变，也不要求作用量一定取极小值。}能较一致地贡献的是经典路径附近的一簇路径，不是只剩一条经典路径。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,x=0.85cm,y=0.85cm]
+  \begin{scope}
+    \draw[->,gray] (0,0)--(4.9,0) node[right] {$\operatorname{Re}Z$};
+    \draw[->,gray] (0,0)--(0,1.7) node[above] {$\operatorname{Im}Z$};
+    \draw[->,thick,noteBlue] (0,0)--++(12:1) coordinate (a1);
+    \draw[->,thick,noteBlue] (a1)--++(15:1) coordinate (a2);
+    \draw[->,thick,noteBlue] (a2)--++(18:1) coordinate (a3);
+    \draw[->,thick,noteBlue] (a3)--++(21:1);
+    \node at (2,-0.6) {相位接近：合振幅较大};
+  \end{scope}
+  \begin{scope}[xshift=7cm]
+    \draw[->,gray] (0,0)--(3.6,0) node[right] {$\operatorname{Re}Z$};
+    \draw[->,gray] (0,0)--(0,1.7) node[above] {$\operatorname{Im}Z$};
+    \draw[->,thick,accentRed] (0,0)--++(20:1) coordinate (b1);
+    \draw[->,thick,accentRed] (b1)--++(105:1) coordinate (b2);
+    \draw[->,thick,accentRed] (b2)--++(190:1) coordinate (b3);
+    \draw[->,thick,accentRed] (b3)--++(275:1);
+    \node at (1.5,-0.6) {相位分散：大量抵消};
+  \end{scope}
+\end{tikzpicture}
+
+\small 依据教材图 8.2 的含义原创示意：等长复振幅首尾相接。箭头方向仅示意相位关系，并非实际计算的路径积分。
+\end{minipage}
+\end{center}
+
+\notetopic{QM-C08-S02-T02}{作用量差与相干范围}
+\textbf{来源：}教材印刷页 pp.~224--225 的相干范围估计与自由粒子例子。
+
+两条路径的相对相位由作用量\emph{差}决定：
+\begin{equation}
+  \Delta\theta=\frac{\Delta S}{\hbar},\qquad
+  \Delta S=S[q]-S[q_{\mathrm{cl}}].
+\end{equation}
+作用量与 $\hbar$ 的量纲均为能量乘时间，故该比值无量纲。教材用
+\begin{equation}
+  \frac{|\Delta S|}{\hbar}\lesssim\pi
+\end{equation}
+粗略估计经典路径附近的相干范围。它不是硬边界，也不是判定某条路径是否存在的规则。在二阶项主导时，二阶变分的绝对值越大，在给定变形方向上保持较小相位变化所允许的偏离就越小。
+
+\textbf{经典极限的含义。}在相关作用量变化尺度远大于 $\hbar$、且平稳相位近似适用时，非平稳区域的振幅随路径快速振荡，求和后大量相消；经典路径附近的贡献因而突出。若有多条经典路径，可能需要保留多个平稳区域，不能预先假定只有一个。
+
+不能仅凭任意两条路径的 $|\Delta S|/\hbar$ 很大就断言它们相消，因为相位以 $2\pi$ 为周期。关键是\emph{相位在一片路径中变化得快不快，以及整体求和的结果}。因此经典极限不是逐条删除非经典路径，也不能仅凭质量大小判断。教材中质量、距离和传播时间共同决定相位变化的具体计算见\relatedexercise{QM-C08-S02-E01}{两条自由粒子路径的作用量比较}。
+
+\textbf{一分钟回顾。}经典路径没有更大的单项振幅；它的特殊性在于一阶作用量变化为零，使附近一簇路径较易相干叠加。经典近似取决于作用量差相对于 $\hbar$ 的尺度及整体的振荡相消，而非相位完全不变或非经典路径不再参与。
