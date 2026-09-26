@@ -169,3 +169,107 @@
 不能仅凭任意两条路径的 $|\Delta S|/\hbar$ 很大就断言它们相消，因为相位以 $2\pi$ 为周期。关键是\emph{相位在一片路径中变化得快不快，以及整体求和的结果}。因此经典极限不是逐条删除非经典路径，也不能仅凭质量大小判断。教材中质量、距离和传播时间共同决定相位变化的具体计算见\relatedexercise{QM-C08-S02-E01}{两条自由粒子路径的作用量比较}。
 
 \textbf{一分钟回顾。}经典路径没有更大的单项振幅；它的特殊性在于一阶作用量变化为零，使附近一簇路径较易相干叠加。经典近似取决于作用量差相对于 $\hbar$ 的尺度及整体的振荡相消，而非相位完全不变或非经典路径不再参与。
+
+\clearpage
+\section{第 8.3 节：由经典作用量求自由粒子传播子}
+\label{section:QM-C08-S03}
+\studymeta
+  {QM-C08-S03}
+  {2026-09-25 至 2026-09-26}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 8 章 \S 8.3；印刷页 pp.~225--226，PDF pp.~236--237；式 (8.3.1)--(8.3.4)}
+  {两块讲解已完成；笔记已确认}
+
+\textbf{范围与主线。}利用经典路径确定自由粒子传播核的相位，再结合短时间边界条件与量纲分析确定前因子。本节是启发式推导，完整的时间切片积分留到第 8.4 节。教材无编号例题或习题，末尾的量纲讨论并入正文，不另设题组。
+
+\notetopic{QM-C08-S03-T01}{经典轨迹决定传播核的相位}
+\textbf{来源：}教材印刷页 pp.~225--226，式 (8.3.1)--(8.3.3)。
+
+考虑全实轴上一维自由粒子，$H=P^2/(2m)$，势能零点取 $V=0$。令 $T=t-t'>0$，沿用传播核记号
+\begin{equation}
+  K(x,t;x',t')=\bra{x}U(t,t')\ket{x'}.
+\end{equation}
+教材也用 $U(x,t;x',t')$ 表示此核。上一节的相干邻域图像提示
+\begin{equation}
+  K(x,t;x',t')\approx A'(T)\ee^{\ii S_{\mathrm{cl}}/\hbar}.
+  \label{eq:QM-C08-S03-ansatz}
+\end{equation}
+$S_{\mathrm{cl}}$ 是连接固定时空端点的经典作用量；$A'$ 概括其余路径叠加产生的因子，不是普通意义下的路径条数。该写法不表示只剩一条路径，也不表示邻近路径的作用量严格相同。前因子与端点位置无关的自由粒子特殊性，将由下文的涨落展开说明。
+
+\textbf{固定端点的经典解。}自由粒子满足 $\ddot x=0$。为区分端点位置与沿途位置，以 $\tau$ 表示积分时间：
+\begin{equation}
+  x_{\mathrm{cl}}(\tau)=x'+\frac{x-x'}{T}(\tau-t'),\qquad
+  \dot x_{\mathrm{cl}}=\frac{x-x'}{T},\qquad t'\leq\tau\leq t.
+\end{equation}
+它恰好满足 $x_{\mathrm{cl}}(t')=x'$、$x_{\mathrm{cl}}(t)=x$。由 $L=\tfrac12m\dot x^2$，
+\begin{align}
+  S_{\mathrm{cl}}
+  &=\int_{t'}^t\frac12m\left(\frac{x-x'}{T}\right)^2\dd\tau
+    =\frac{m(x-x')^2}{2T^2}(t-t')\\
+  &=\boxed{\frac{m(x-x')^2}{2T}}.
+\end{align}
+于是
+\begin{equation}
+  K(x,t;x',t')\approx A'(T)
+    \exp\!\left[\frac{\ii m(x-x')^2}{2\hbar T}\right].
+\end{equation}
+经典匀速运动已经给出相位结构，但还没有给出完整传播核。由波函数的积分演化式~\eqref{eq:QM-C08-S01-evolution}，积分测度带有一个长度量纲，故一维核与 $A'$ 的量纲均为长度的倒数；这不是说 $A'$ 等于函数 $1/x$。
+
+\notetopic{QM-C08-S03-T02}{前因子的确定与精确性的来源}
+\textbf{来源：}教材印刷页 p.~226，式 (8.3.4) 及其前后讨论。Fresnel 积分的正则化与二次涨落展开为讲解补充。
+
+\textbf{短时间条件及其局限。}没有经过时间，态应保持不变，因此
+\begin{equation}
+  \lim_{T\to0^+}\int K(x,t'+T;x',t')\psi(x',t')\dd x'
+  =\psi(x,t'),\qquad K\longrightarrow\delta(x-x').
+  \label{eq:QM-C08-S03-initial}
+\end{equation}
+此处是分布或积分作用意义的极限，不是逐点收敛。\emph{仅凭这一极限，一般不能确定所有时间下的前因子：}再乘一个满足 $f(T)\to1$ 的函数，短时间条件仍可能成立。
+
+在 $A'$ 只依赖 $m,\hbar,T$、不另引入物理尺度且不依赖端点位置的前提下，量纲分析给出
+\begin{equation}
+  A'(T)=C\sqrt{\frac{m}{\hbar T}},\qquad [C]=1.
+\end{equation}
+这里 $[\hbar]=\mathsf M\mathsf L^2\mathsf T^{-1}$。若 $m^a\hbar^bT^c$ 无量纲，则长度、质量、时间的指数分别要求 $2b=0$、$a+b=0$、$c-b=0$，故 $a=b=c=0$。因此仅用这三个量无法构造非平凡的无量纲变量来承载额外的时间依赖；这才把未知量缩减为常数 $C$，不是短时间条件单独完成了全部推导。
+
+\textbf{振荡高斯的系数。}令 $\gamma=m/(2\hbar T)>0$，先加入收敛因子，再取极限：
+\begin{align}
+  I(T)&=\lim_{\varepsilon\to0^+}\int_{-\infty}^{\infty}
+     \ee^{-(\varepsilon-\ii\gamma)y^2}\dd y\\
+  &=\lim_{\varepsilon\to0^+}\sqrt{\frac{\pi}{\varepsilon-\ii\gamma}}
+    =\ee^{\ii\pi/4}\sqrt{\frac{2\pi\hbar T}{m}}
+    =\sqrt{\frac{2\pi\ii\hbar T}{m}}.
+\end{align}
+$\varepsilon$ 的量纲为长度的负二次方；平方根分支由 $\varepsilon>0$ 连续取极限确定。该 Fresnel 积分不是绝对收敛积分，教材的复高斯 delta 表示也应按振荡积分的分布极限理解。
+
+对于光滑、快速衰减的测试函数，振荡高斯在 $T\to0^+$ 时提取 $x'=x$ 的值，其系数为 $A'(T)I(T)=C\sqrt{2\pi\ii}$。结合式~\eqref{eq:QM-C08-S03-initial}，须有 $C\sqrt{2\pi\ii}=1$。于是
+\begin{equation}
+  \boxed{K(x,t;x',t')=\sqrt{\frac{m}{2\pi\ii\hbar T}}
+    \exp\!\left[\frac{\ii m(x-x')^2}{2\hbar T}\right]},
+  \qquad T=t-t'>0.
+  \label{eq:QM-C08-S03-free-kernel}
+\end{equation}
+此处 $1/\sqrt{\ii}=\ee^{-\ii\pi/4}$。结果与此前由动量表象得到的自由传播核相同。系数按 $T^{-1/2}$ 变化，不能任意设为 $1$；$T=0$ 则由分布极限定义。
+
+\textbf{为什么本次结果精确？}对于满足固定端点条件的光滑路径，写成
+\begin{equation}
+  x(\tau)=x_{\mathrm{cl}}(\tau)+\eta(\tau),\qquad
+  \eta(t')=\eta(t)=0.
+\end{equation}
+自由粒子的作用量恰好是二次型，因此展开没有三阶或更高阶项：
+\begin{align}
+  S[x]&=S_{\mathrm{cl}}
+    +m\int_{t'}^t\dot x_{\mathrm{cl}}\dot\eta\dd\tau
+    +\frac m2\int_{t'}^t\dot\eta^2\dd\tau,\\
+  m\int_{t'}^t\dot x_{\mathrm{cl}}\dot\eta\dd\tau
+    &=m\frac{x-x'}{T}[\eta(t)-\eta(t')]=0.
+\end{align}
+故精确地
+\begin{equation}
+  \boxed{S[x]=S_{\mathrm{cl}}+\frac m2\int_{t'}^t\dot\eta^2\dd\tau}.
+\end{equation}
+提出 $\ee^{\ii S_{\mathrm{cl}}/\hbar}$ 后，剩余项仍须对涨落 $\eta$ 积分；它不含端点位置 $x,x'$，只留下依赖 $m,\hbar,T$ 的前因子。这里的连续展开揭示结构，并不假定路径积分中的全部路径都光滑；相应二次分解也可在时间切片中实现，完整积分留到第 8.4 节。
+
+\textbf{适用边界。}一般势能展开会产生更高阶涨落，不能默认同样的简单形式精确成立。教材将二次作用量的进一步讨论留到第 8.6 节；本节不把启发式分析当作一般路径积分的严格证明。
+
+\textbf{一分钟回顾。}经典路径给出 $S_{\mathrm{cl}}=m(x-x')^2/(2T)$，涨落叠加给出前因子。短时间 delta 条件须结合前因子的依赖范围与量纲分析使用；自由作用量恰为二次型，使所得传播核精确，但不意味着粒子只走经典路径。
