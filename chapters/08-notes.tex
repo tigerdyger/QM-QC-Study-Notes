@@ -1,4 +1,3 @@
-\clearpage
 \section{第 8.1 节：路径积分的规则}
 \label{section:QM-C08-S01}
 \studymeta
@@ -72,7 +71,6 @@
 
 \textbf{一分钟回顾。}固定时空端点，计算各路径的作用量，按 $\ee^{\ii S/\hbar}$ 叠加得到传播核；再让传播核作用于初始波函数。变化的是求传播子的途径，不是量子态与概率的解释。
 
-\clearpage
 \section{第 8.2 节：平稳相位与经典路径}
 \label{section:QM-C08-S02}
 \studymeta
@@ -170,7 +168,6 @@
 
 \textbf{一分钟回顾。}经典路径没有更大的单项振幅；它的特殊性在于一阶作用量变化为零，使附近一簇路径较易相干叠加。经典近似取决于作用量差相对于 $\hbar$ 的尺度及整体的振荡相消，而非相位完全不变或非经典路径不再参与。
 
-\clearpage
 \section{第 8.3 节：由经典作用量求自由粒子传播子}
 \label{section:QM-C08-S03}
 \studymeta
@@ -273,3 +270,241 @@ $\varepsilon$ 的量纲为长度的负二次方；平方根分支由 $\varepsilo
 \textbf{适用边界。}一般势能展开会产生更高阶涨落，不能默认同样的简单形式精确成立。教材将二次作用量的进一步讨论留到第 8.6 节；本节不把启发式分析当作一般路径积分的严格证明。
 
 \textbf{一分钟回顾。}经典路径给出 $S_{\mathrm{cl}}=m(x-x')^2/(2T)$，涨落叠加给出前因子。短时间 delta 条件须结合前因子的依赖范围与量纲分析使用；自由作用量恰为二次型，使所得传播核精确，但不意味着粒子只走经典路径。
+
+\section{第 8.4 节：用路径积分计算自由粒子传播子}
+\label{section:QM-C08-S04}
+\studymeta
+  {QM-C08-S04}
+  {2026-09-26 至 2026-09-27}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 8 章 \S 8.4；印刷页 pp.~226--229，PDF pp.~237--240；式 (8.4.1)--(8.4.8)，图 8.4}
+  {三块讲解已完成；笔记已确认}
+
+\textbf{范围与主线。}上一节由经典作用量与前因子的条件确定自由传播核，本节真正执行时间切片后的多重积分：先把路径编码成中间位置，再逐次合并振荡高斯，最后确定归一化与路径积分测度。教材无编号 Example 或 Exercise，整段计算属于正文推导，不另设题组。以下只讨论全实轴上一维自由粒子，$H=P^2/(2m)$，$m>0$，势能零点取 $V=0$。
+
+\notetopic{QM-C08-S04-T01}{时间切片：从路径函数到中间位置的积分}
+\textbf{来源：}教材印刷页 pp.~226--227，式 (8.4.1)--(8.4.3) 与图 8.4。
+
+沿用 $K$ 表示位置表象的传播核，教材则也将其记为 $U$：
+\begin{equation}
+  K(x_N,t_N;x_0,t_0)=\bra{x_N}U(t_N,t_0)\ket{x_0}
+  =\int_{x(t_0)=x_0}^{x(t_N)=x_N}\mathcal D[x]\,
+    \ee^{\ii S[x]/\hbar}.
+\end{equation}
+两端的时刻与位置固定，积分对象是连接它们的路径，不是端点坐标。令总传播时间 $T=t_N-t_0>0$，划分为 $N$ 个等长时间段：
+\begin{equation}
+  \epsilon=\frac TN,\qquad t_j=t_0+j\epsilon,\qquad
+  x_j=x(t_j),\qquad j=0,\ldots,N.
+\end{equation}
+在相邻采样点之间作直线插值。$N+1$ 个采样位置中，$x_0,x_N$ 已固定，因此一条折线路径由 $N-1$ 个数 $(x_1,\ldots,x_{N-1})$ 唯一指定；积分所有这些数，就是对全部这类折线路径求和。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth,x=1cm,y=1cm]
+  \draw[->] (0,0)--(9,0) node[right] {$t$};
+  \draw[->] (0,0)--(0,3.3) node[above] {$x$};
+  \foreach \t in {1,2.5,4,5.5,7,8.5}
+    {\draw[gray,dashed] (\t,0)--(\t,3);}
+  \draw[noteBlue,thick] (1,1.1)--(2.5,2.7)--(4,0.55)--(5.5,2.3)--(7,1.35)--(8.5,2);
+  \foreach \t/\v in {1/1.1,2.5/2.7,4/0.55,5.5/2.3,7/1.35,8.5/2}
+    {\fill[noteBlue] (\t,\v) circle (2pt);}
+  \node[left] at (1,1.1) {$x_0$};
+  \node[above] at (2.5,2.7) {$x_1$};
+  \node[above right] at (4,0.55) {$x_2$};
+  \node[right] at (8.5,2) {$x_N$};
+  \node[below] at (1,0) {$t_0$};
+  \node[below] at (2.5,0) {$t_1$};
+  \node[below] at (4,0) {$t_2$};
+  \node[below] at (5.5,0) {$\cdots$};
+  \node[below] at (7,0) {$t_{N-1}$};
+  \node[below] at (8.5,0) {$t_N$};
+\end{tikzpicture}
+
+\small 依据教材图 8.4 的含义原创示意：时间等分，端点固定，中间位置任意。
+\end{minipage}
+\end{center}
+
+\textbf{积分范围。}自由粒子没有空间围墙，每个 $x_j$ 独立遍历整个 $\mathbb R$，不是只遍历 $x_0$ 与 $x_N$ 构成的数值区间。固定的是时间顺序，路径可以在空间中折返或超出两端位置。二维自由粒子的相应变量则是遍历整个 $\mathbb R^2$ 的中间位置向量；不应把“连接两端点”理解成只允许沿两端点间的线段运动。
+
+\textbf{离散作用量。}第 $j$ 段直线上的速度为 $(x_{j+1}-x_j)/\epsilon$，因而
+\begin{align}
+  S_N&=\sum_{j=0}^{N-1}\frac m2
+     \left(\frac{x_{j+1}-x_j}{\epsilon}\right)^2\epsilon\\
+  &=\frac{m}{2\epsilon}\sum_{j=0}^{N-1}(x_{j+1}-x_j)^2.
+  \label{eq:QM-C08-S04-discrete-action}
+\end{align}
+这是所选折线路径的精确作用量。转角处速度不连续，但自由 Lagrangian 不含加速度，有限个转角不会额外贡献作用量；这不等于假定连续路径积分中的所有路径都光滑。
+
+定义有限切片表达式
+\begin{equation}
+  K_N=A_N\int_{\mathbb R^{N-1}}
+    \exp\!\left[\frac{\ii m}{2\hbar\epsilon}
+      \sum_{j=0}^{N-1}(x_{j+1}-x_j)^2\right]
+    \dd x_1\cdots\dd x_{N-1}.
+  \label{eq:QM-C08-S04-sliced-kernel}
+\end{equation}
+$A_N$ 尚待确定，允许依赖切片数与时间步长。路径积分按 $N\to\infty$、$\epsilon=T/N\to0$ 的极限理解，\emph{总时间 $T$ 始终保持不变}。下面的实时间积分均为正则化的振荡积分，不以绝对收敛为前提。
+
+\notetopic{QM-C08-S04-T02}{逐次高斯积分与完整归纳证明}
+\textbf{来源：}教材印刷页 pp.~228--229，式 (8.4.4)--(8.4.6) 及其后的通式；配方细节、归纳证明和分支说明为讲解补充。
+
+令
+\begin{equation}
+  y_j=\sqrt{\frac{m}{2\hbar\epsilon}}x_j,\qquad
+  \dd x_1\cdots\dd x_{N-1}
+  =\left(\frac{2\hbar\epsilon}{m}\right)^{(N-1)/2}
+    \dd y_1\cdots\dd y_{N-1}.
+\end{equation}
+于是所求积分的核心化为无量纲形式
+\begin{equation}
+  I_N=\int_{\mathbb R^{N-1}}
+    \exp\!\left[\ii\sum_{j=0}^{N-1}(y_{j+1}-y_j)^2\right]
+    \dd y_1\cdots\dd y_{N-1},\qquad
+  K_N=A_N\left(\frac{2\hbar\epsilon}{m}\right)^{(N-1)/2}I_N.
+\end{equation}
+教材指数中写的 $-1/\ii$ 与这里的 $\ii$ 相同。反复使用的 Fresnel 积分为
+\begin{equation}
+  \lim_{\eta\to0^+}\int_{-\infty}^{\infty}
+  \ee^{-(\eta-\ii c)u^2}\dd u
+  =\ee^{\ii\pi/4}\sqrt{\frac\pi c},\qquad c>0.
+  \label{eq:QM-C08-S04-fresnel}
+\end{equation}
+先加正的高斯阻尼，再连续取极限；多重积分采用相容的高斯正则化。统一取 $\sqrt{\ii}=\ee^{\ii\pi/4}$，后面的 $(\ii\pi)^{r/2}$ 均表示 $\pi^{r/2}\ee^{\ii r\pi/4}$，不能对每一步的复数乘积重新任取平方根。
+
+\textbf{第一次积分：消去 $y_1$。}只有相邻两段含有 $y_1$。配方得到
+\begin{equation}
+  (y_1-y_0)^2+(y_2-y_1)^2
+  =2\left(y_1-\frac{y_0+y_2}{2}\right)^2
+    +\frac{(y_2-y_0)^2}{2}.
+\end{equation}
+平移积分变量并应用式~\eqref{eq:QM-C08-S04-fresnel}，
+\begin{align}
+  \int_{\mathbb R}\ee^{\ii[(y_1-y_0)^2+(y_2-y_1)^2]}\dd y_1
+  &=\ee^{\ii(y_2-y_0)^2/2}\int_{\mathbb R}\ee^{2\ii u^2}\dd u\\
+  &=\sqrt{\frac{\ii\pi}{2}}\,
+     \ee^{\ii(y_2-y_0)^2/2}.
+\end{align}
+这把两段的贡献合并为连接 $y_0,y_2$ 的一个因子。\emph{配方中心是中点，不表示把 $y_1$ 固定在中点：所有 $y_1\in\mathbb R$ 的贡献均已积分。}
+
+\textbf{第二次积分：消去 $y_2$。}将上一步结果与第三段的因子相乘，所需配方为
+\begin{equation}
+  \frac{(y_2-y_0)^2}{2}+(y_3-y_2)^2
+  =\frac32\left(y_2-\frac{y_0+2y_3}{3}\right)^2
+    +\frac{(y_3-y_0)^2}{3}.
+\end{equation}
+因此
+\begin{align}
+  &\sqrt{\frac{\ii\pi}{2}}
+    \int_{\mathbb R}\ee^{\ii[(y_2-y_0)^2/2+(y_3-y_2)^2]}\dd y_2
+    \notag\\
+  &\qquad=\sqrt{\frac{\ii\pi}{2}}\sqrt{\frac{2\ii\pi}{3}}
+    \ee^{\ii(y_3-y_0)^2/3}
+    =\frac{\ii\pi}{\sqrt3}\ee^{\ii(y_3-y_0)^2/3}.
+\end{align}
+
+\textbf{一般结果及归纳法。}记合并 $r$ 段、积分掉 $r-1$ 个中间位置后的结果为
+\begin{equation}
+  J_r(y_r,y_0)=\int_{\mathbb R^{r-1}}
+    \ee^{\ii\sum_{j=0}^{r-1}(y_{j+1}-y_j)^2}
+    \dd y_1\cdots\dd y_{r-1}.
+\end{equation}
+要证明
+\begin{equation}
+  \boxed{J_r(y_r,y_0)=\frac{(\ii\pi)^{(r-1)/2}}{\sqrt r}
+    \ee^{\ii(y_r-y_0)^2/r}}.
+  \label{eq:QM-C08-S04-induction}
+\end{equation}
+起始情形 $r=1$ 没有积分变量，$J_1=\ee^{\ii(y_1-y_0)^2}$，公式成立。假设对 $r$ 成立，加入下一段后
+\begin{equation}
+  J_{r+1}=\int_{\mathbb R}J_r(y_r,y_0)
+    \ee^{\ii(y_{r+1}-y_r)^2}\dd y_r.
+\end{equation}
+利用配方恒等式
+\begin{equation}
+  \frac{(y_r-y_0)^2}{r}+(y_{r+1}-y_r)^2
+  =\frac{r+1}{r}\left(y_r-\frac{y_0+r y_{r+1}}{r+1}\right)^2
+    +\frac{(y_{r+1}-y_0)^2}{r+1},
+\end{equation}
+得到
+\begin{align}
+  J_{r+1}
+  &=\frac{(\ii\pi)^{(r-1)/2}}{\sqrt r}
+    \sqrt{\frac{\ii\pi r}{r+1}}\,
+    \ee^{\ii(y_{r+1}-y_0)^2/(r+1)}\\
+  &=\frac{(\ii\pi)^{r/2}}{\sqrt{r+1}}\,
+    \ee^{\ii(y_{r+1}-y_0)^2/(r+1)}.
+\end{align}
+这正是 $r+1$ 的形式，归纳完成。取 $r=N$ 即得
+\begin{equation}
+  \boxed{I_N=\frac{(\ii\pi)^{(N-1)/2}}{\sqrt N}
+    \ee^{\ii(y_N-y_0)^2/N}},\qquad
+  \frac{(y_N-y_0)^2}{N}
+    =\frac{m(x_N-x_0)^2}{2\hbar N\epsilon}
+    =\frac{m(x_N-x_0)^2}{2\hbar T}.
+\end{equation}
+经典作用量的相位由全部中间位置的积分产生，并非事先删除了非经典路径。
+
+\notetopic{QM-C08-S04-T03}{归一化、路径测度与精确传播核}
+\textbf{来源：}教材印刷页 p.~229，式 (8.4.7)--(8.4.8)。短时核的解释、量纲与有限切片精确性为讲解补充。
+
+\textbf{恢复系数。}补回变量替换的 Jacobian，得到
+\begin{equation}
+  K_N=A_N\left(\frac{2\pi\ii\hbar\epsilon}{m}\right)^{(N-1)/2}
+    \frac1{\sqrt N}\,
+    \exp\!\left[\frac{\ii m(x_N-x_0)^2}{2\hbar T}\right].
+\end{equation}
+定义
+\begin{equation}
+  B=\sqrt{\frac{2\pi\ii\hbar\epsilon}{m}},\qquad
+  \frac{B^{N-1}}{\sqrt N}
+  =B^N\sqrt{\frac{m}{2\pi\ii\hbar N\epsilon}}.
+\end{equation}
+于是
+\begin{equation}
+  K_N=A_NB^N\sqrt{\frac{m}{2\pi\ii\hbar T}}\,
+    \exp\!\left[\frac{\ii m(x_N-x_0)^2}{2\hbar T}\right].
+\end{equation}
+教材通过匹配正确的自由传播核选择
+\begin{equation}
+  \boxed{A_N=B^{-N}
+    =\left(\frac{m}{2\pi\ii\hbar\epsilon}\right)^{N/2}}.
+  \label{eq:QM-C08-S04-normalization}
+\end{equation}
+因此
+\begin{equation}
+  \boxed{K(x_N,t_N;x_0,t_0)
+    =\sqrt{\frac{m}{2\pi\ii\hbar T}}
+      \exp\!\left[\frac{\ii m(x_N-x_0)^2}{2\hbar T}\right]},
+  \qquad T=t_N-t_0>0.
+  \label{eq:QM-C08-S04-free-kernel}
+\end{equation}
+它与式~\eqref{eq:QM-C08-S03-free-kernel} 相同；区别是本节明确算出了对中间位置的积分。
+
+\textbf{为什么是 $N$ 个归一化因子？}每一个时间段配置短时核
+\begin{equation}
+  K_\epsilon(x_{j+1},x_j)=\frac1B
+    \exp\!\left[\frac{\ii m(x_{j+1}-x_j)^2}{2\hbar\epsilon}\right].
+\end{equation}
+其前因子使短时极限满足 $K_\epsilon(x',x)\to\delta(x'-x)$，即演化趋于恒等操作。将 $N$ 段依次复合：
+\begin{equation}
+  K_N=\int_{\mathbb R^{N-1}}\left[
+    \prod_{j=0}^{N-1}K_\epsilon(x_{j+1},x_j)\right]
+    \dd x_1\cdots\dd x_{N-1}.
+\end{equation}
+有 $N$ 个时间段，所以有 $N$ 个 $1/B$；只有 $N-1$ 个中间位置，所以只有 $N-1$ 次积分。这也直接解释式~\eqref{eq:QM-C08-S04-normalization}。
+
+\textbf{归一化条件的边界。}不能只凭“极限存在”确定 $A_N$。短时 delta 极限本身也不能排除每段多乘 $\ee^{-\ii C\epsilon/\hbar}$，因为它仍趋于 $1$，但 $N$ 段后留下 $\ee^{-\ii CT/\hbar}$，对应 $H=P^2/(2m)+C$。这里同时采用 $V=0$ 的能量零点和自由演化的复合规律；与 Schrödinger 方程的一般联系留到第 8.5 节。
+
+\textbf{时间切片测度。}教材习惯把 $N-1$ 个 $1/B$ 放入各个积分测度，剩下一个放在整体前面。因此符号的具体含义是
+\begin{equation}
+  \boxed{\int\mathcal D[x]\,(\cdots)
+    =\lim_{\substack{N\to\infty\\\epsilon=T/N}}
+      \frac1B\int_{\mathbb R^{N-1}}
+      \frac{\dd x_1}{B}\cdots\frac{\dd x_{N-1}}B\,(\cdots)}.
+\end{equation}
+括号内须使用相应的离散表达式，例如 $\ee^{\ii S_N/\hbar}$。$\mathcal D[x]$ 不只是普通微分的无限乘积，也不是路径上的均匀概率分布；本节定义的是经正则化理解的实时间振幅积分。
+
+\textbf{量纲与精确性。}$B$ 的量纲是长度，$\dd x_j/B$ 无量纲，剩余的 $1/B$ 使一维传播核具有长度的倒数量纲，与 $\psi(x_N,t_N)=\int K\psi(x_0,t_0)\dd x_0$ 一致。对于自由粒子，上述归一化后的 $K_N$ 已对每个正整数 $N$ 给出同一精确结果，故连续极限不再改变它。原因是作用量为二次型，高斯卷积保持相同形式；一般势能不能据此断言任意有限切片都精确。$T=0$ 仍由分布极限定义，不直接代入公式。
+
+\textbf{一分钟回顾。}固定两端，把路径编码成 $N-1$ 个中间位置；逐次高斯积分产生经典作用量相位与前因子。$N$ 段传播对应 $B^{-N}$ 的归一化，测度必须连同它一起定义。结果精确不表示只积分经典路径，而是自由粒子的全部切片积分恰好可以算完。

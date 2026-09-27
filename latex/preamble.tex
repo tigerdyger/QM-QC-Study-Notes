@@ -6,6 +6,7 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{fancyhdr}
+\usepackage{needspace}
 \usepackage{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
 \usetikzlibrary{arrows.meta,calc,decorations.pathmorphing,fit,positioning}
@@ -74,11 +75,13 @@
 }
 
 \newcommand{\notetopic}[2]{%
+  \Needspace{6\baselineskip}%
   \subsection{#2}\label{topic:#1}%
   \recordid{#1}\par
 }
 
 \newcommand{\exercisequestion}[2]{%
+  \Needspace{6\baselineskip}%
   \subsection{#2}\label{exercise:#1}%
   \recordid{#1}\par
 }
