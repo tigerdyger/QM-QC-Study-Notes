@@ -508,3 +508,174 @@ $A_N$ 尚待确定，允许依赖切片数与时间步长。路径积分按 $N\t
 \textbf{量纲与精确性。}$B$ 的量纲是长度，$\dd x_j/B$ 无量纲，剩余的 $1/B$ 使一维传播核具有长度的倒数量纲，与 $\psi(x_N,t_N)=\int K\psi(x_0,t_0)\dd x_0$ 一致。对于自由粒子，上述归一化后的 $K_N$ 已对每个正整数 $N$ 给出同一精确结果，故连续极限不再改变它。原因是作用量为二次型，高斯卷积保持相同形式；一般势能不能据此断言任意有限切片都精确。$T=0$ 仍由分布极限定义，不直接代入公式。
 
 \textbf{一分钟回顾。}固定两端，把路径编码成 $N-1$ 个中间位置；逐次高斯积分产生经典作用量相位与前因子。$N$ 段传播对应 $B^{-N}$ 的归一化，测度必须连同它一起定义。结果精确不表示只积分经典路径，而是自由粒子的全部切片积分恰好可以算完。
+
+\section{第 8.5 节：路径积分与薛定谔方程的等价性}
+\label{section:QM-C08-S05}
+\studymeta
+  {QM-C08-S05}
+  {2026-09-27 至 2026-10-03}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 8 章 \S 8.5；印刷页 pp.~229--231，PDF pp.~240--242；式 (8.5.1)--(8.5.8)}
+  {三块讲解与核对已完成；笔记已确认}
+
+\textbf{范围与主线。}自由传播核正确，还不足以说明路径积分对有势能的系统也成立。本节从单个短时间片出发，把路径积分给出的波函数变化展开到时间一阶，恢复 Schrödinger 方程。以下考虑全实轴上一维粒子
+\begin{equation}
+  H(t)=\frac{P^2}{2m}+V(X,t),\qquad m>0,
+\end{equation}
+其中 $V$ 为实势；所用波函数、势能及其导数须足够光滑，并满足进行振荡积分渐近展开的条件。无限高墙等奇异情形不能直接照搬本节的 Taylor 展开。教材无编号 Example 或 Exercise，不另设题组。参数求导计算高斯矩与余项说明为讲解补充。
+
+\notetopic{QM-C08-S05-T01}{短时间演化：比较同一初态的两种描述}
+\textbf{来源：}教材印刷页 pp.~229--230，式 (8.5.1)--(8.5.5)。
+
+\textbf{比较目标。}Schrödinger 方程描述局部时间变化率，路径积分直接组织端点之间的传播振幅。取初始时刻为 $0$，时间步长为 $\epsilon>0$。对具备相应时间可微性的状态，前者要求
+\begin{equation}
+  \psi(x,\epsilon)-\psi(x,0)
+  =-\frac{\ii\epsilon}{\hbar}
+    \left[-\frac{\hbar^2}{2m}\partial_x^2+V(x,0)\right]
+    \psi(x,0)+o(\epsilon).
+  \label{eq:QM-C08-S05-target}
+\end{equation}
+若时间二阶导数也适当受控，可把此处余项加强为 $O(\epsilon^2)$。教材的无穷小等式均按时间一阶理解；本节只需余项除以 $\epsilon$ 后趋于零。
+
+\textbf{短时作用量与核。}用一段直线连接 $(x',0)$ 与 $(x,\epsilon)$，速度为 $(x-x')/\epsilon$。动能作用量为
+\begin{equation}
+  \epsilon\frac m2\left(\frac{x-x'}{\epsilon}\right)^2
+  =\frac{m(x-x')^2}{2\epsilon}.
+\end{equation}
+采用空间中点的势能采样，离散作用量写成
+\begin{equation}
+  S_\epsilon(x,x')=
+    \frac{m(x-x')^2}{2\epsilon}
+    -\epsilon V\left(\frac{x+x'}2,0\right).
+\end{equation}
+结合上一节的 $1/B$ 归一化，定义单时间片近似核
+\begin{equation}
+  \boxed{K_\epsilon(x,x')=
+    \sqrt{\frac{m}{2\pi\ii\hbar\epsilon}}
+    \exp\!\left[\frac{\ii m(x-x')^2}{2\hbar\epsilon}\right]
+    \exp\!\left[-\frac{\ii\epsilon}{\hbar}
+      V\left(\frac{x+x'}2,0\right)\right]}.
+  \label{eq:QM-C08-S05-short-kernel}
+\end{equation}
+这是时间切片处方，不是一般势能下任意有限时间的精确传播核。其准确性在作用于合适波函数后的短时展开中检验，不把它当作对所有 $x,x'$ 一致成立的有限时间公式。若 $V$ 显含时间，在这一步用 $0$ 代替片内时刻所产生的势能变化为 $O(\epsilon)$，再乘时间长度后只影响更高阶项。
+
+利用传播核演化初态，需计算
+\begin{equation}
+  \int_{\mathbb R}K_\epsilon(x,x')\psi(x',0)\dd x'.
+  \label{eq:QM-C08-S05-evolve}
+\end{equation}
+单个时间片没有\emph{内部中间位置}需要积分，但式~\eqref{eq:QM-C08-S05-evolve} 仍须对\emph{初始位置 $x'$} 求和：它叠加同一个初态在不同位置的振幅对最终位置 $x$ 的贡献。这是矩阵作用 $v_i^{\rm new}=\sum_j U_{ij}v_j^{\rm old}$ 的连续版本，不是叠加不同的初态。
+
+\notetopic{QM-C08-S05-T02}{空间位移的尺度与展开阶数}
+\textbf{来源：}教材印刷页 pp.~230--231，式 (8.5.6)--(8.5.7) 及随后展开。
+
+令 $\eta=x'-x$，并记
+\begin{equation}
+  N_\epsilon=\sqrt{\frac{m}{2\pi\ii\hbar\epsilon}},\qquad
+  G_\epsilon(\eta)=\exp\!\left(\frac{\ii m\eta^2}{2\hbar\epsilon}\right).
+\end{equation}
+则待算的短时演化积分是
+\begin{equation}
+  N_\epsilon\int_{\mathbb R}G_\epsilon(\eta)
+    \exp\!\left[-\frac{\ii\epsilon}{\hbar}
+      V\left(x+\frac\eta2,0\right)\right]
+    \psi(x+\eta,0)\dd\eta.
+  \label{eq:QM-C08-S05-eta-integral}
+\end{equation}
+
+\textbf{为什么是 $\sqrt{\epsilon}$？}动能相位在 $\eta=0$ 处平稳；当 $\epsilon$ 很小时，其他位置的快速振荡与光滑振幅相乘后产生抵消。相位变化约为一个弧度的尺度满足
+\begin{equation}
+  \frac{m\eta^2}{2\hbar\epsilon}\sim1,
+  \qquad |\eta|\sim\sqrt{\frac{\hbar\epsilon}{m}}.
+  \label{eq:QM-C08-S05-scale}
+\end{equation}
+教材用相位变化约为 $\pi$ 估计相干范围，给出 $|\eta|\lesssim\sqrt{2\pi\hbar\epsilon/m}$；这不是积分的硬截断。$|G_\epsilon|=1$，远处并非因模长衰减而消失，积分仍遍历整个实轴。这里讨论的是振荡积分的尺度，不是每条路径的位移必须满足某个上限，也不是在作 $\hbar\to0$ 的经典近似。
+
+因此，在固定 $m,\hbar$ 下按时间阶数计数，有 $\eta\sim\epsilon^{1/2}$、$\eta^2\sim\epsilon$。波函数展开必须保留到空间二阶：
+\begin{equation}
+  \psi(x+\eta,0)=\psi+\eta\psi_x
+    +\frac{\eta^2}{2}\psi_{xx}+\cdots,
+  \label{eq:QM-C08-S05-psi-taylor}
+\end{equation}
+右侧均取在 $(x,0)$。$\eta^2$ 前面没有额外的 $\epsilon$，它经积分恰能产生时间一阶贡献。
+
+\textbf{为什么势能只需零阶空间值？}先对其指数展开，再展开空间依赖：
+\begin{align}
+  \exp\!\left[-\frac{\ii\epsilon}{\hbar}V\left(x+\frac\eta2,0\right)\right]
+    &=1-\frac{\ii\epsilon}{\hbar}V\left(x+\frac\eta2,0\right)+\cdots,\\
+  V\left(x+\frac\eta2,0\right)
+    &=V(x,0)+\frac\eta2V_x(x,0)+\frac{\eta^2}{8}V_{xx}(x,0)+\cdots.
+\end{align}
+空间修正已有额外的 $\epsilon$：$\epsilon\eta$ 的尺度为 $\epsilon^{3/2}$，$\epsilon\eta^2$ 为 $\epsilon^2$，均不影响一阶结果。相乘后的必要部分为
+\begin{equation}
+  \boxed{\psi+\eta\psi_x+\frac{\eta^2}{2}\psi_{xx}
+    -\frac{\ii\epsilon}{\hbar}V\psi}.
+  \label{eq:QM-C08-S05-retained}
+\end{equation}
+快速振荡的 $G_\epsilon$ 必须保留，不作指数的小相位截断：在相关尺度 $\eta^2\sim\epsilon$ 上，它的相位是 $O(1)$ 而不是趋于零。上述阶数判断是积分的渐近展开，不声称 Taylor 多项式在整个实轴上一致近似原函数。
+
+\notetopic{QM-C08-S05-T03}{高斯矩与薛定谔方程的恢复}
+\textbf{来源：}教材印刷页 p.~231，式 (8.5.8)；下面补全教材引用高斯积分表时省略的计算。
+
+定义归一化的振荡高斯矩
+\begin{equation}
+  M_r=N_\epsilon\int_{\mathbb R}\eta^rG_\epsilon(\eta)\dd\eta.
+\end{equation}
+这里不是正概率分布的矩；积分先乘高斯阻尼 $\ee^{-\delta\eta^2}$，在 $\delta>0$ 时计算，再取 $\delta\to0^+$ 的 Fresnel 极限。沿用 $\sqrt{\ii}=\ee^{\ii\pi/4}$ 的分支。
+
+\textbf{零阶与一阶。}由上一节的 Fresnel 积分及奇偶性，
+\begin{equation}
+  \int_{\mathbb R}G_\epsilon(\eta)\dd\eta
+    =\sqrt{\frac{2\pi\ii\hbar\epsilon}{m}},
+  \qquad \boxed{M_0=1,\quad M_1=0}.
+\end{equation}
+零阶归一化保证短时演化趋于恒等操作；一阶积分为零是因为 $\eta G_\epsilon(\eta)$ 为奇函数。
+
+\textbf{二阶：对参数求导。}令 $a=m/(2\hbar\epsilon)>0$，
+\begin{equation}
+  I_\delta(a)=\int_{\mathbb R}\ee^{-(\delta-\ii a)\eta^2}\dd\eta
+    =\sqrt\pi(\delta-\ii a)^{-1/2}.
+\end{equation}
+阻尼存在时可以在积分号下求导：
+\begin{equation}
+  \frac{\dd I_\delta}{\dd a}
+    =\ii\int_{\mathbb R}\eta^2\ee^{-(\delta-\ii a)\eta^2}\dd\eta
+    =\frac{\ii}{2(\delta-\ii a)}I_\delta(a).
+\end{equation}
+因此取极限后，记 $I(a)=\ee^{\ii\pi/4}\sqrt{\pi/a}$，得到
+\begin{equation}
+  \int_{\mathbb R}\eta^2\ee^{\ii a\eta^2}\dd\eta
+    =\frac{\ii}{2a}I(a),\qquad
+  \boxed{M_2=\frac{\ii\hbar\epsilon}{m}}.
+  \label{eq:QM-C08-S05-second-moment}
+\end{equation}
+$M_2$ 是纯虚数不矛盾，因为权重是复振幅，不是概率密度。这一步明确给出了 $\eta^2$ 项的时间一阶贡献及其符号。
+
+\textbf{代回与取极限。}将式~\eqref{eq:QM-C08-S05-retained} 逐项积分，
+\begin{align}
+  \int_{\mathbb R}K_\epsilon(x,x')\psi(x',0)\dd x'
+    &=M_0\psi+M_1\psi_x+\frac{M_2}{2}\psi_{xx}
+      -\frac{\ii\epsilon}{\hbar}M_0V\psi+o(\epsilon)\\
+    &=\psi+\frac{\ii\hbar\epsilon}{2m}\psi_{xx}
+      -\frac{\ii\epsilon}{\hbar}V\psi+o(\epsilon).
+\end{align}
+这与式~\eqref{eq:QM-C08-S05-target} 完全一致。路径积分短时演化给出的变化率因而为
+\begin{equation}
+  \lim_{\epsilon\to0^+}
+  \frac{\psi(x,\epsilon)-\psi(x,0)}{\epsilon}
+    =\frac{\ii\hbar}{2m}\psi_{xx}(x,0)
+      -\frac{\ii}{\hbar}V(x,0)\psi(x,0).
+\end{equation}
+起始时刻任意，将 $0$ 换成 $t$ 并乘 $\ii\hbar$，得到
+\begin{equation}
+  \boxed{\ii\hbar\frac{\partial\psi(x,t)}{\partial t}
+    =\left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}
+      +V(x,t)\right]\psi(x,t)}.
+  \label{eq:QM-C08-S05-schrodinger}
+\end{equation}
+
+\textbf{各项的来源与证明边界。}零阶高斯矩保留原态；波函数的二阶空间展开产生动能项；势能相位的一阶展开产生 $V\psi$。两种表述具有同一个短时生成元及初始条件。在相应演化问题适定、时间切片乘积收敛的条件下，它们确定同一有限时间演化；这些条件不由本节的形式展开自动证明。教材给出的是物理层面的等价性推导，而不是覆盖任意奇异势与任意定义域的分析学证明。
+
+路径振幅 $\ee^{\ii S/\hbar}$ 和归一化处方已经包含量子动力学的物理输入。本节并非从纯数学或经典力学推出量子公设，而是说明路径积分与 Schrödinger 方程是同一动力学的两种表述。
+
+\textbf{一分钟回顾。}单时间片没有内部位置积分，但演化初态仍须积分 $x'$。短时振荡积分中 $\eta\sim\sqrt{\epsilon}$，所以时间一阶必须保留波函数的空间二阶项；$M_0=1$、$M_1=0$、$M_2=\ii\hbar\epsilon/m$ 将积分演化化为 Schrödinger 方程。快速相位不能直接截断，相干范围也不是路径的空间边界。
