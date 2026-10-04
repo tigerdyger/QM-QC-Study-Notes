@@ -679,3 +679,135 @@ $M_2$ 是纯虚数不矛盾，因为权重是复振幅，不是概率密度。�
 路径振幅 $\ee^{\ii S/\hbar}$ 和归一化处方已经包含量子动力学的物理输入。本节并非从纯数学或经典力学推出量子公设，而是说明路径积分与 Schrödinger 方程是同一动力学的两种表述。
 
 \textbf{一分钟回顾。}单时间片没有内部位置积分，但演化初态仍须积分 $x'$。短时振荡积分中 $\eta\sim\sqrt{\epsilon}$，所以时间一阶必须保留波函数的空间二阶项；$M_0=1$、$M_1=0$、$M_2=\ii\hbar\epsilon/m$ 将积分演化化为 Schrödinger 方程。快速相位不能直接截断，相干范围也不是路径的空间边界。
+
+\section{第 8.6 节：二次作用量与精确传播核}
+\label{section:QM-C08-S06}
+\studymeta
+  {QM-C08-S06}
+  {2026-10-03 至 2026-10-04}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 8 章 \S 8.6；正文印刷页 pp.~231--234，PDF pp.~242--245；式 (8.6.1)--(8.6.14)；选定习题 8.6.1、8.6.2：印刷页 p.~234，PDF p.~245}
+  {三块讲解与选定习题已完成；笔记已确认}
+
+\textbf{范围与主线。}本节考察教材标题中的广义势
+\begin{equation}
+  V(x,\dot x)=a+bx+cx^2+d\dot x+ex\dot x,
+  \qquad \mathcal L=\frac m2\dot x^2-V(x,\dot x),
+\end{equation}
+其中 $m>0$，$a,b,c,d,e$ 为实常数。这里允许速度依赖，不能把 $V$ 一概理解成只含位置的普通势能；关键是 $\mathcal L$ 对 $x,\dot x$ 的\textbf{总次数最多为二}。主线是：以经典路径为参照改写所有路径，消去作用量的一阶项，再把其余路径的贡献收进前因子。教材习题 8.6.1、8.6.2 的完整解答放在课程题目部分；8.6.3 仅引用给定的谐振子前因子，未展开其计算，8.6.4 未选做。
+
+\notetopic{QM-C08-S06-T01}{平移路径变量与一阶变分消失}
+\textbf{来源：}教材印刷页 pp.~231--232，式 (8.6.1)--(8.6.7)。
+
+\textbf{固定端点，改写路径。}传播核 $K(x,t;x',0)$ 的端点是 $(x',0)$ 与 $(x,t)$。设该边值问题存在经典路径 $x_{\mathrm{cl}}(\tau)$，其中 $t>0$ 是固定的总时长，$\tau\in[0,t]$ 是积分中的时间变量。写成
+\begin{equation}
+  x(\tau)=x_{\mathrm{cl}}(\tau)+y(\tau),\qquad
+  \boxed{y(0)=y(t)=0}.
+\end{equation}
+两端为零的是\textbf{偏离量 $y$}，不是粒子的位置。任意连接原端点的路径都对应一个这样的 $y$；这一步既没有要求 $y$ 很小，也没有只保留经典路径附近的路径。
+
+在时间切片中，$x_j=x_{\mathrm{cl}}(\tau_j)+y_j$ 是各积分变量的平移，故 $\dd x_j=\dd y_j$，Jacobian 为 $1$。每个中间位置仍在全实轴积分，切片归一化也不变。因此形式上
+\begin{equation}
+  K(x,t;x',0)=\int_{y(0)=0}^{y(t)=0}\mathcal D[y]\,
+  \exp\!\left(\frac{\ii}{\hbar}S[x_{\mathrm{cl}}+y]\right).
+\end{equation}
+以下连续路径记号用于组织作用量展开；路径积分仍按相容的时间切片处方定义，并不假定所有量子路径都具有普通导数。
+
+\textbf{为什么一次项为零。}把作用量按 $y,\dot y$ 展开，一次项是
+\begin{equation}
+  S^{(1)}=\int_0^t
+  \left[\left.\mathcal L_x\right|_{\mathrm{cl}}y
+  +\left.\mathcal L_{\dot x}\right|_{\mathrm{cl}}\dot y\right]\dd\tau.
+\end{equation}
+对第二项分部积分，
+\begin{align}
+  S^{(1)}
+  &=\left[\left.\mathcal L_{\dot x}\right|_{\mathrm{cl}}y\right]_0^t
+    +\int_0^t\left[\mathcal L_x
+      -\frac{\dd}{\dd\tau}\mathcal L_{\dot x}\right]_{\mathrm{cl}}y\,\dd\tau\\
+  &=0.
+\end{align}
+边界项由 $y(0)=y(t)=0$ 消失，积分项由经典路径满足 Euler--Lagrange 方程消失。\textbf{平稳只消去一次项，不会自动消去二次及更高次项。}一般作用量仍有 $S=S_{\mathrm{cl}}+S^{(2)}+S^{(3)}+\cdots$；下一块的特殊性在于高阶项原本就不存在。
+
+\notetopic{QM-C08-S06-T02}{二次作用量的精确分解}
+\textbf{来源：}教材印刷页 pp.~232--233，式 (8.6.7)--(8.6.12)。
+
+本节 Lagrangian 为
+\begin{equation}
+  \mathcal L=\frac m2\dot x^2-a-bx-cx^2-d\dot x-ex\dot x.
+\end{equation}
+其二阶导数是常数，所有三阶及更高阶导数均为零：
+\begin{equation}
+  \mathcal L_{xx}=-2c,\qquad
+  \mathcal L_{x\dot x}=-e,\qquad
+  \mathcal L_{\dot x\dot x}=m.
+\end{equation}
+因此 Taylor 展开的二次部分为
+\begin{align}
+  S^{(2)}[y]
+  &=\frac12\int_0^t
+    \left(\mathcal L_{xx}y^2+2\mathcal L_{x\dot x}y\dot y
+      +\mathcal L_{\dot x\dot x}\dot y^2\right)\dd\tau\\
+  &=\int_0^t\left(\frac m2\dot y^2-cy^2-ey\dot y\right)\dd\tau.
+\end{align}
+\textbf{教材勘误。}印刷页 p.~233 的式 (8.6.10) 将 $\frac12\mathcal L_{\dot x\dot x}$ 的右侧印为 $m$，应为 $m/2$；紧接着的式 (8.6.11) 使用了正确系数。
+
+结合一次项为零，得到没有高阶余项的精确等式
+\begin{equation}
+  \boxed{S[x_{\mathrm{cl}}+y]
+    =S_{\mathrm{cl}}(x,t;x',0)+S^{(2)}[y]}.
+  \label{eq:QM-C08-S06-action-split}
+\end{equation}
+$S_{\mathrm{cl}}$ 与积分变量 $y$ 无关，可以提出路径积分：
+\begin{align}
+  \boxed{K(x,t;x',0)=A(t)\ee^{\ii S_{\mathrm{cl}}(x,t;x',0)/\hbar}},
+  \label{eq:QM-C08-S06-factorization}\\
+  A(t)=\int_{y(0)=0}^{y(t)=0}\mathcal D[y]\,
+  \exp\!\left[\frac{\ii}{\hbar}\int_0^t
+    \left(\frac m2\dot y^2-cy^2-ey\dot y\right)\dd\tau\right].
+  \label{eq:QM-C08-S06-prefactor}
+\end{align}
+\textbf{为什么前因子不含 $x,x'$。}偏离路径的两端固定为零，二次作用量的系数又不含 $x_{\mathrm{cl}}$，所以积分不再依赖原端点。$A(t)$ 的记号省略了系统参数；它不是一个与质量、势能参数或 $\hbar$ 无关的普适常数。此处 $e$ 为常数时，$\int_0^t ey\dot y\,\dd\tau=\frac e2[y^2]_0^t=0$，所以这个混合项实际上也不改变前因子。
+
+\textbf{精确性不等于只剩经典路径。}所有偏离路径仍在 $A(t)$ 中被积分；只是它们对端点的依赖可以完全分离。这不是小 $y$ 近似。相反，若增加 $\lambda x^4$，展开会包含 $x_{\mathrm{cl}}^2y^2$、$x_{\mathrm{cl}}y^3$、$y^4$ 等项，不能直接套用本节这个与端点无关的精确 $A(t)$。
+
+上述普通函数形式用于经典边值问题与高斯积分非奇异的时间区间。谐振子等系统的特殊聚焦时刻须另作分布意义下的处理，不能把公式中的零分母直接代入。
+
+\notetopic{QM-C08-S06-T03}{自由粒子、线性势与谐振子的前因子}
+\textbf{来源：}教材印刷页 pp.~233--234，式 (8.6.13)--(8.6.14)；谐振子前因子的值见习题 8.6.3 第 (1) 问中的给定条件。
+
+\textbf{自由粒子与线性势。}当 $c=e=0$，偏离作用量就是自由粒子的作用量。故对 $V=a+bx$，
+\begin{equation}
+  \boxed{A(t)=A_{\mathrm{free}}(t)
+    =\sqrt{\frac{m}{2\pi\ii\hbar t}}},\qquad t>0.
+\end{equation}
+不同的线性势改变经典路径与 $S_{\mathrm{cl}}$，但不改变这一个偏离路径积分。
+
+\relatedexercise{QM-C08-S06-E01}{教材习题 8.6.1} 以 $V=-fx$ 展示从经典路径到完整传播核的计算。
+
+\textbf{谐振子。}对 $V=\frac12m\omega^2x^2$，偏离作用量变为
+\begin{equation}
+  S^{(2)}[y]=\frac m2\int_0^t(\dot y^2-\omega^2y^2)\dd\tau,
+\end{equation}
+因此不能继续直接沿用自由前因子。教材正文在此给出路径积分形式；引用习题 8.6.3 给定的积分结果，得到
+\begin{equation}
+  \boxed{A_{\mathrm{osc}}(t)
+    =\sqrt{\frac{m\omega}{2\pi\ii\hbar\sin\omega t}}},
+  \qquad 0<t<\frac\pi\omega.
+\end{equation}
+平方根分支与 $t\to0^+$ 的自由粒子结果一致；跨过 $\sin\omega t=0$ 的时刻需要追踪相位与分布极限，不能不加说明地延用同一平方根。\relatedexercise{QM-C08-S06-E02}{教材习题 8.6.2} 利用已知经典作用量写出 $K$，并检查固定 $t$、$\omega\to0$ 时的自由粒子极限。
+
+\textbf{已知初态时，归一化能补回什么。}设
+\begin{equation}
+  F(x,t)=\int_{\mathbb R}
+    \ee^{\ii S_{\mathrm{cl}}(x,t;x',0)/\hbar}\psi(x',0)\dd x',
+  \qquad \psi(x,t)=A(t)F(x,t).
+\end{equation}
+在这些积分存在、$0<\int|F|^2\dd x<\infty$ 时，归一化给出
+\begin{equation}
+  |A(t)|^2=\frac1{\int_{\mathbb R}|F(x,t)|^2\dd x},\qquad
+  \rho(x,t)=\frac{|F(x,t)|^2}{\int_{\mathbb R}|F(x,t)|^2\dd x}.
+\end{equation}
+所以只求这一初态在给定时刻的位置概率密度时，可以先计算 $F$ 再归一化。但这\textbf{不能确定 $A(t)$ 的相位}，也不意味着传播核中可以令 $A=1$。完整的核还必须满足短时 $\delta$ 极限、演化方程与复合关系；在一维中它的量纲为长度的倒数，纯相位本身也不能提供这个量纲。
+
+\textbf{一分钟回顾。}路径平移 $x=x_{\mathrm{cl}}+y$ 不限制 $y$ 的大小；固定端点与经典方程只消去作用量一次项。二次 Lagrangian 没有高阶余项，故所有量子偏离的积分可收进 $A(t)$，精确得到 $K=A(t)\ee^{\ii S_{\mathrm{cl}}/\hbar}$。线性势与自由粒子的前因子相同，谐振子则不同；经典作用量给出端点相关相位，不等于完整传播核。

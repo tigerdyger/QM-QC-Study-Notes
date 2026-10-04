@@ -68,3 +68,129 @@
 
 对宏观粒子，同样的路径变形对应极强的相位变化；在平稳相位近似下，相干贡献集中于经典路径的狭窄邻域。对电子，这条明显弯曲的候选路径与经典路径仍只相差约 $0.14$ rad，不能仅依据偏离经典轨迹就将其忽略。此比较展示相位变化的尺度，不是用两项振幅代替完整路径积分，也不是凭两个相位相差巨大就认定它们恰好抵消。
 \end{checkedsolution}
+
+\section{第 8.6 节选定教材习题}
+\label{exercise-set:QM-C08-S06}
+\exercisemeta
+  {QM-C08-S06-EX}
+  {2026-10-03 至 2026-10-04}
+  {Shankar，习题 8.6.1、8.6.2；印刷页 p.~234；PDF p.~245}
+  {选取恒力与谐振子两题；积分中间步骤及自由极限为展开说明，不另编概念小题}
+  {选定习题已完成并核对；笔记已确认}
+
+\exercisequestion{QM-C08-S06-E01}{教材习题 8.6.1：恒力的经典作用量与传播核}
+\textbf{对应知识点：}\relatedtopic{QM-C08-S06-T01}{路径与固定端点}、\relatedtopic{QM-C08-S06-T03}{线性势的前因子}。
+
+\textbf{题意。}质量 $m>0$ 的粒子处于恒力 $f$ 下，$V(x)=-fx$。求从 $(x',0)$ 到 $(x,t)$（$t>0$）的经典路径及经典作用量，利用本节结论得到传播核，并与教材式 (5.4.31) 比较。
+
+\begin{checkedsolution}
+\textbf{经典路径与初速度。}由 $m\ddot x_{\mathrm{cl}}=f$，积分两次：
+\begin{equation}
+  x_{\mathrm{cl}}(\tau)=\frac{f}{2m}\tau^2+C_1\tau+C_0.
+\end{equation}
+起点条件给出 $C_0=x'$，终点条件则给出
+\begin{equation}
+  x=x'+C_1t+\frac{ft^2}{2m}
+  \quad\Longrightarrow\quad
+  \boxed{v_0=C_1=\frac{x-x'}t-\frac{ft}{2m}}.
+\end{equation}
+这里 $v_0=\dot x_{\mathrm{cl}}(0)$ 是初速度，由\textbf{两个位置端点与总时长}确定，不是另加的假设。记 $\Delta=x-x'$，则
+\begin{equation}
+  \boxed{x_{\mathrm{cl}}(\tau)
+    =x'+\frac{\Delta}{t}\tau+\frac{f}{2m}\tau(\tau-t)},
+  \qquad \dot x_{\mathrm{cl}}(\tau)=v_0+\frac fm\tau.
+\end{equation}
+最后一项在 $\tau=0,t$ 均为零，端点条件直接满足。注意 $\tau$ 在积分中遍历整个 $[0,t]$，并非恒等于 $t/2$。匀加速运动恰好有 $\dot x_{\mathrm{cl}}(t/2)=\Delta/t$，即\textbf{中点时刻的速度等于全程平均速度}；这不是用中点代替整个作用量积分。
+
+\textbf{直接积分作用量。}由于 $\mathcal L=\frac m2\dot x^2+fx$，代入 $x_{\mathrm{cl}}=x'+v_0\tau+f\tau^2/(2m)$，
+\begin{align}
+  \mathcal L_{\mathrm{cl}}(\tau)
+  &=\frac m2\left(v_0+\frac fm\tau\right)^2
+    +f\left(x'+v_0\tau+\frac{f}{2m}\tau^2\right)\\
+  &=\frac m2v_0^2+fx'+2fv_0\tau+\frac{f^2}{m}\tau^2.
+\end{align}
+因此
+\begin{equation}
+  S_{\mathrm{cl}}=\int_0^t\mathcal L_{\mathrm{cl}}\dd\tau
+    =\frac m2v_0^2t+fx't+fv_0t^2+\frac{f^2t^3}{3m}.
+\end{equation}
+为了把结果完全写成端点的函数，分别代入
+\begin{align}
+  \frac m2v_0^2t&=\frac{m\Delta^2}{2t}-\frac{f\Delta t}{2}
+     +\frac{f^2t^3}{8m},\\
+  fv_0t^2&=f\Delta t-\frac{f^2t^3}{2m}.
+\end{align}
+一次力项合并为 $fx't+f\Delta t/2=ft(x+x')/2$，二次力项的系数为
+\begin{equation}
+  \frac18-\frac12+\frac13=-\frac1{24}.
+\end{equation}
+故
+\begin{equation}
+  \boxed{S_{\mathrm{cl}}(x,t;x',0)
+    =\frac{m(x-x')^2}{2t}+\frac{ft}{2}(x+x')-\frac{f^2t^3}{24m}}.
+\end{equation}
+
+\textbf{恢复完整传播核。}线性势与自由粒子的偏离作用量相同，故
+\begin{equation}
+  \boxed{K(x,t;x',0)=\sqrt{\frac{m}{2\pi\ii\hbar t}}
+    \exp\!\left\{\frac{\ii}{\hbar}\left[
+    \frac{m(x-x')^2}{2t}+\frac{ft}{2}(x+x')-\frac{f^2t^3}{24m}
+    \right]\right\}}.
+\end{equation}
+这与\relatedexercise{QM-C05-S04-E03}{教材习题 5.4.3 的动量表象及 Fourier 积分结果}相同；这里不再解含时偏微分方程，而是利用二次作用量结构。令 $f\to0$，立即恢复自由粒子传播核，符号与量纲也一致。
+\end{checkedsolution}
+
+\exercisequestion{QM-C08-S06-E02}{教材习题 8.6.2：由经典作用量写出谐振子传播核}
+\textbf{对应知识点：}\relatedtopic{QM-C08-S06-T02}{精确因子分解}、\relatedtopic{QM-C08-S06-T03}{谐振子前因子}。
+
+\textbf{题意。}对 $\mathcal L=\frac m2(\dot x^2-\omega^2x^2)$，利用教材习题 2.8.7 已求出的经典作用量，将谐振子传播核写成 $A(t)\exp(\ii S_{\mathrm{cl}}/\hbar)$ 的形式。本题不要求计算 $A(t)$。以下取 $m,\omega>0$、$0<t<\pi/\omega$，端点为 $(x',0)$ 与 $(x,t)$；最后附上讲解中检查的自由粒子极限。
+
+\Needspace{4\baselineskip}
+\begin{checkedsolution}
+\textbf{经典作用量的来源。}\relatedexercise{QM-C02-S08-E03}{教材习题 2.8.7} 已完成推导。为明确端点记号，经典路径为
+\begin{equation}
+  x_{\mathrm{cl}}(\tau)=x'\cos\omega\tau
+    +\frac{x-x'\cos\omega t}{\sin\omega t}\sin\omega\tau.
+\end{equation}
+由 $\ddot x_{\mathrm{cl}}=-\omega^2x_{\mathrm{cl}}$，沿经典解有
+\begin{equation}
+  \mathcal L_{\mathrm{cl}}
+    =\frac m2\frac{\dd}{\dd\tau}(x_{\mathrm{cl}}\dot x_{\mathrm{cl}}),
+  \qquad S_{\mathrm{cl}}=\frac m2[x_{\mathrm{cl}}\dot x_{\mathrm{cl}}]_0^t.
+\end{equation}
+两端速度分别为
+\begin{equation}
+  \dot x_{\mathrm{cl}}(0)=\omega\frac{x-x'\cos\omega t}{\sin\omega t},
+  \qquad
+  \dot x_{\mathrm{cl}}(t)=\omega\frac{x\cos\omega t-x'}{\sin\omega t}.
+\end{equation}
+代入边界表达式即得
+\begin{equation}
+  \boxed{S_{\mathrm{cl}}=\frac{m\omega}{2\sin\omega t}
+    \left[(x^2+x'^2)\cos\omega t-2xx'\right]}.
+\end{equation}
+因此题目要求的结果是
+\begin{equation}
+  \boxed{K(x,t;x',0)=A(t)\exp\!\left\{
+    \frac{\ii m\omega}{2\hbar\sin\omega t}
+    \left[(x^2+x'^2)\cos\omega t-2xx'\right]\right\}}.
+\end{equation}
+这里尚未通过计算求出 $A(t)$。若引用下一道教材习题 8.6.3 给定的值，
+\begin{equation}
+  A(t)=\sqrt{\frac{m\omega}{2\pi\ii\hbar\sin\omega t}},
+\end{equation}
+即可得到完整传播核；不能把这个引用当作本题已经推导了前因子。
+
+\textbf{自由粒子极限。}保持总时长 $t$ 固定，令 $\omega\to0$，则
+\begin{equation}
+  \frac{\omega}{\sin\omega t}\longrightarrow\frac1t,
+  \qquad \cos\omega t\longrightarrow1.
+\end{equation}
+所以
+\begin{equation}
+  S_{\mathrm{cl}}\longrightarrow
+    \frac m{2t}(x^2+x'^2-2xx')
+    =\boxed{\frac{m(x-x')^2}{2t}}.
+\end{equation}
+这是自由粒子的经典作用量。同时，引用的谐振子前因子趋于 $\sqrt{m/(2\pi\ii\hbar t)}$，所以\textbf{完整传播核}也趋于自由粒子结果。仅验证作用量极限，只检查了指数中的相位部分。
+\end{checkedsolution}
