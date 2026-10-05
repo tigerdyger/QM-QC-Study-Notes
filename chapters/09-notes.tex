@@ -1,0 +1,49 @@
+\section{第 9.1 节：不确定性关系的引言}
+\label{section:QM-C09-S01}
+\studymeta
+  {QM-C09-S01}
+  {2026-10-04 至 2026-10-05}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 9 章 \S 9.1 Introduction；印刷页 p.~237，PDF p.~247；式 (9.1.1)--(9.1.2)}
+  {讲解与概念核对已完成；笔记已确认}
+
+\textbf{范围。}本节定义不确定度并提出两个可观测量的联合约束问题；同页下方开始的 \S 9.2 才正式证明不确定性关系。本节无编号 Example 或 Exercise，不另设题组。
+
+\notetopic{QM-C09-S01-T01}{测量分布的平均值与分散程度}
+\textbf{从经典状态到量子状态。}经典力学指定相空间点 $(x_0,p_0)$ 后，动力学量 $\Omega(x,p)$ 的值就是 $\Omega(x_0,p_0)$。量子力学指定状态 $\ket{\psi}$ 后，通常确定的是可观测量的\textbf{测量结果分布}，而不是唯一结果。期望值描述分布的平均位置，不确定度描述结果围绕平均值的分散程度。
+
+\textbf{定义与计算。}设 $\Omega$ 为自伴可观测量，$\ket{\psi}$ 已归一化，以下算符乘积及二阶矩有定义且有限。教材定义
+\begin{equation}
+  \boxed{\langle\Omega\rangle=\bra{\psi}\Omega\ket{\psi}},\qquad
+  \boxed{\Delta\Omega=
+    \sqrt{\bra{\psi}(\Omega-\langle\Omega\rangle I)^2\ket{\psi}}}.
+  \label{eq:QM-C09-S01-definition}
+\end{equation}
+$\langle\Omega\rangle$ 是实数，$I$ 是恒等算符；教材省略了与平均值相乘的 $I$。这里 $\Delta\Omega$ 是一个非负实数，即 standard deviation（标准差），不是算符，也不是测量仪器的误差。它描述\textbf{反复制备相同状态后}，理想测量结果本身的分散程度。
+
+展开平方并利用归一化，得到
+\begin{align}
+  (\Delta\Omega)^2
+    &=\langle\Omega^2\rangle
+      -2\langle\Omega\rangle^2+\langle\Omega\rangle^2\langle I\rangle\notag\\
+    &=\boxed{\langle\Omega^2\rangle-\langle\Omega\rangle^2}.
+  \label{eq:QM-C09-S01-variance}
+\end{align}
+平均值为零只说明分布的中心为零，不能推出标准差为零。
+
+\textbf{零不确定度与本征态。}教材指出本征态的不确定度为零。利用自伴性，可以补全双向证明：
+\begin{equation}
+  (\Delta\Omega)^2
+    =\left\|(\Omega-\langle\Omega\rangle I)\ket{\psi}\right\|^2,
+\end{equation}
+范数为零当且仅当向量为零，因此
+\begin{equation}
+  \boxed{\Delta\Omega=0
+    \iff \Omega\ket{\psi}=\langle\Omega\rangle\ket{\psi}}.
+  \label{eq:QM-C09-S01-zero-uncertainty}
+\end{equation}
+所以零不确定度表示\textbf{测量结果确定}，并不要求该结果等于零。若本征值简并，同一本征子空间中的任意归一化叠加仍有该确定结果。这里讨论归一化态；连续谱的理想广义本征态不能直接当作满足上述条件的普通态。
+
+\textbf{本章要解决的问题。}对同一个状态中的两个可观测量 $\Omega,\Lambda$，考察 $\Delta\Omega\,\Delta\Lambda$ 的下界。教材强调，一般下界既依赖算符，也依赖状态；位置与动量的 $\hbar/2$ 是重要的、与状态无关的下界，但不是任意可观测量组合通用的数值。具体推导留待 \S 9.2。
+
+\textbf{一分钟回顾。}不确定度是测量结果分布的标准差，不是仪器误差；$\langle\Omega\rangle=0$ 与 $\Delta\Omega=0$ 是不同命题。后者等价于状态属于某个确定本征值的本征子空间；两个可观测量的不确定度如何相互约束，是下一节的主题。
