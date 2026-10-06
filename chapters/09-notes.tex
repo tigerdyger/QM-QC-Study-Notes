@@ -47,3 +47,137 @@ $\langle\Omega\rangle$ 是实数，$I$ 是恒等算符；教材省略了与平�
 \textbf{本章要解决的问题。}对同一个状态中的两个可观测量 $\Omega,\Lambda$，考察 $\Delta\Omega\,\Delta\Lambda$ 的下界。教材强调，一般下界既依赖算符，也依赖状态；位置与动量的 $\hbar/2$ 是重要的、与状态无关的下界，但不是任意可观测量组合通用的数值。具体推导留待 \S 9.2。
 
 \textbf{一分钟回顾。}不确定度是测量结果分布的标准差，不是仪器误差；$\langle\Omega\rangle=0$ 与 $\Delta\Omega=0$ 是不同命题。后者等价于状态属于某个确定本征值的本征子空间；两个可观测量的不确定度如何相互约束，是下一节的主题。
+
+\section{第 9.2 节：不确定性关系的推导}
+\label{section:QM-C09-S02}
+\studymeta
+  {QM-C09-S02}
+  {2026-10-05 至 2026-10-06}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 9 章 \S 9.2 Derivation of the Uncertainty Relations；印刷页 pp.~237--239，PDF pp.~247--249；式 (9.2.1)--(9.2.15)}
+  {讲解与概念核对已完成；笔记已确认}
+
+\textbf{范围与主线。}将方差写成涨落向量的范数，应用第 1 章的 Cauchy--Schwarz inequality（柯西--施瓦茨不等式），再由内积的虚部提取对易子的贡献，得到下界及取等条件。本节无编号 Example 或 Exercise，不另设题组；最小不确定度波函数留待 \S 9.3 求解。
+
+\notetopic{QM-C09-S02-T01}{中心化算符、涨落向量与柯西--施瓦茨不等式}
+\textbf{条件与符号。}固定归一化态 $\ket{\psi}$ 和 Hermitian 可观测量 $\Omega,\Lambda$；期望值均在此态中计算。假定二阶矩有限，所需算符乘积与伴随运算有定义；无界算符还须检查相应的共同定义域。
+
+定义 centered operators（中心化算符）
+\begin{equation}
+  \widehat\Omega=\Omega-\langle\Omega\rangle I,
+  \qquad
+  \widehat\Lambda=\Lambda-\langle\Lambda\rangle I.
+  \label{eq:QM-C09-S02-centered}
+\end{equation}
+教材此处的帽子表示\textbf{减去平均值}，不是区分经典量与量子算符。平均值为实数，故中心化算符仍为 Hermitian；它们的期望值为零，但不确定度不变。减去的是与所有算符对易的标量乘 $I$，因此
+\begin{equation}
+  [\widehat\Omega,\widehat\Lambda]
+  =[\Omega,\Lambda]
+  =\ii\Gamma,\qquad \Gamma=-\ii[\Omega,\Lambda].
+  \label{eq:QM-C09-S02-commutator}
+\end{equation}
+这只是重写算符，未改变状态，也不是一次测量。
+
+\textbf{把不确定度变成长度。}构造辅助向量
+\begin{equation}
+  \ket{u}=\widehat\Omega\ket{\psi},\qquad
+  \ket{v}=\widehat\Lambda\ket{\psi}.
+\end{equation}
+它们通常不归一化，不应直接视为测量后的状态。利用 Hermitian 性，
+\begin{align}
+  \norm{u}^2
+  &=\bra{\psi}\widehat\Omega^\dagger\widehat\Omega\ket{\psi}
+   =\bra{\psi}\widehat\Omega^2\ket{\psi}
+   =(\Delta\Omega)^2,\notag\\
+  \norm{v}^2&=(\Delta\Lambda)^2.
+\end{align}
+所以不确定度正好是对应辅助向量的范数。柯西--施瓦茨不等式给出
+\begin{equation}
+  \norm{u}^2\norm{v}^2\ge\abs{\braket{u}{v}}^2,
+\end{equation}
+而
+\begin{equation}
+  \braket{u}{v}
+  =\bra{\psi}\widehat\Omega^\dagger\widehat\Lambda\ket{\psi}
+  =\langle\widehat\Omega\widehat\Lambda\rangle.
+\end{equation}
+因此得到教材式 (9.2.9)：
+\begin{equation}
+  \boxed{(\Delta\Omega)^2(\Delta\Lambda)^2
+    \ge\abs{\langle\widehat\Omega\widehat\Lambda\rangle}^2}.
+  \label{eq:QM-C09-S02-cauchy-schwarz}
+\end{equation}
+此步取等当且仅当 $\ket{u},\ket{v}$ 线性相关，包含其中一个为零向量的情形；两者非零时可写为 $\ket{u}=c\ket{v}$，其中 $c\in\complex$。
+
+\notetopic{QM-C09-S02-T02}{实部、虚部与一般不确定性下界}
+\textbf{为什么拆分乘积。}右端的期望值一般为复数。为了识别其模平方中的不同贡献，作恒等分解
+\begin{equation}
+  \widehat\Omega\widehat\Lambda
+  =\frac12[\widehat\Omega,\widehat\Lambda]_+
+   +\frac12[\widehat\Omega,\widehat\Lambda],
+\end{equation}
+其中 anticommutator（反对易子）按教材记号定义为 $[A,B]_+=AB+BA$。由取伴随时乘积顺序反转，
+\begin{align}
+  [\widehat\Omega,\widehat\Lambda]_+^\dagger
+   &=[\widehat\Omega,\widehat\Lambda]_+,\notag\\
+  [\Omega,\Lambda]^\dagger&=-[\Omega,\Lambda],\qquad
+  \Gamma^\dagger=\Gamma.
+\end{align}
+所以反对易子的期望值为实数，对易子的期望值为纯虚数或零。结合式~\eqref{eq:QM-C09-S02-commutator}，
+\begin{equation}
+  \langle\widehat\Omega\widehat\Lambda\rangle
+  =\underbrace{\frac12\langle[\widehat\Omega,\widehat\Lambda]_+\rangle}_{\text{实部}}
+   +\ii\underbrace{\frac12\langle\Gamma\rangle}_{\text{虚部}}.
+\end{equation}
+利用实数 $a,b$ 满足 $|a+\ii b|^2=a^2+b^2$，得到教材式 (9.2.12)：
+\begin{equation}
+  \boxed{(\Delta\Omega)^2(\Delta\Lambda)^2
+  \ge\frac14\langle[\widehat\Omega,\widehat\Lambda]_+\rangle^2
+     +\frac14\langle\Gamma\rangle^2}.
+  \label{eq:QM-C09-S02-full-bound}
+\end{equation}
+\textbf{对话补充：协方差的含义。}定义实数
+\begin{equation}
+  C_{\Omega\Lambda}
+   =\frac12\langle[\widehat\Omega,\widehat\Lambda]_+\rangle
+   =\frac12\langle\Omega\Lambda+\Lambda\Omega\rangle
+     -\langle\Omega\rangle\langle\Lambda\rangle.
+\end{equation}
+它称为 symmetrized covariance（对称化协方差），描述这两个可观测量的二阶相关性。对非对易量采用对称化组合，保证它为实数；为零不等于统计独立。
+
+舍去式~\eqref{eq:QM-C09-S02-full-bound} 中\textbf{非负、但可以为零}的协方差平方项，再取非负平方根，可得较弱但常用的形式
+\begin{equation}
+  \boxed{\Delta\Omega\,\Delta\Lambda
+    \ge\frac12\abs{\langle\Gamma\rangle}
+    =\frac12\abs{\langle[\Omega,\Lambda]\rangle}}.
+  \label{eq:QM-C09-S02-robertson}
+\end{equation}
+\textbf{下界通常依赖状态。}$[\Omega,\Lambda]\ne0$ 不保证 $\langle[\Omega,\Lambda]\rangle\ne0$；非零算符在某些态中的期望值仍可为零。若右端为零，此式本身只给出平凡下界，不能据此断定两个不确定度为零，或算符对易。
+
+\notetopic{QM-C09-S02-T03}{正则共轭量与两项取等条件}
+\textbf{位置与动量的状态无关下界。}正则共轭量满足 $[\Omega,\Lambda]=\ii\hbar I$，故任意满足上述条件的归一化态都有 $\langle\Gamma\rangle=\hbar$。特别地，$[X,P]=\ii\hbar I$ 给出
+\begin{equation}
+  \boxed{\Delta X\,\Delta P\ge\frac{\hbar}{2}}.
+  \label{eq:QM-C09-S02-xp-bound}
+\end{equation}
+它约束\textbf{同一状态中两个测量分布的标准差}，不是仪器误差，也不需要用测量碰撞或测量扰动来证明。
+
+\textbf{取等必须检查两次不等式。}令 $\widehat X=X-\langle X\rangle I$、$\widehat P=P-\langle P\rangle I$。完整链条是
+\begin{align}
+  (\Delta X)^2(\Delta P)^2
+  &\ge\abs{\langle\widehat X\widehat P\rangle}^2\notag\\
+  &=\frac14\langle\widehat X\widehat P+
+                 \widehat P\widehat X\rangle^2
+    +\frac{\hbar^2}{4}\notag\\
+  &\ge\frac{\hbar^2}{4}.
+\end{align}
+因此教材式 (9.2.15) 要求\textbf{同时}满足
+\begin{enumerate}
+  \item 柯西--施瓦茨取等：$\widehat X\ket{\psi}=c\widehat P\ket{\psi}$，即两个涨落向量线性相关。此处的不确定度都非零，故可用比例关系表示；它不是算符恒等式 $\widehat X=c\widehat P$。
+  \item 舍去的项为零：$\langle\widehat X\widehat P+\widehat P\widehat X\rangle=0$，即对称化协方差为零。
+\end{enumerate}
+仅第一个条件只保证完整下界取等；若协方差不为零，乘积仍严格大于 $\hbar/2$。\S 9.3 将据此求出达到最小乘积的波函数，本节不提前求解。
+
+\textbf{与已学结果的联系（对话补充）。}谐振子能量本征态满足 $\Delta X\,\Delta P=\hbar(n+\tfrac12)$，所以\textbf{在这组能量本征态中}只有基态达到 $\hbar/2$；这并不意味着所有量子态中只有谐振子基态能取等。推导的数学部分来自范数与柯西--施瓦茨不等式；位置、动量满足 $[X,P]=\ii\hbar I$ 则是量子理论的物理输入，不能由纯粹的向量代数单独推出。
+
+\textbf{一分钟回顾。}中心化不改变对易子；不确定度是涨落向量的长度。柯西--施瓦茨给出内积模的下界，反对易子与对易子分别给出内积的实部与虚部。一般下界依赖状态，$X,P$ 的 $\hbar/2$ 下界则与状态无关；要取等，必须同时满足涨落向量线性相关和对称化协方差为零。
