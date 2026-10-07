@@ -181,3 +181,111 @@ $\langle\Omega\rangle$ 是实数，$I$ 是恒等算符；教材省略了与平�
 \textbf{与已学结果的联系（对话补充）。}谐振子能量本征态满足 $\Delta X\,\Delta P=\hbar(n+\tfrac12)$，所以\textbf{在这组能量本征态中}只有基态达到 $\hbar/2$；这并不意味着所有量子态中只有谐振子基态能取等。推导的数学部分来自范数与柯西--施瓦茨不等式；位置、动量满足 $[X,P]=\ii\hbar I$ 则是量子理论的物理输入，不能由纯粹的向量代数单独推出。
 
 \textbf{一分钟回顾。}中心化不改变对易子；不确定度是涨落向量的长度。柯西--施瓦茨给出内积模的下界，反对易子与对易子分别给出内积的实部与虚部。一般下界依赖状态，$X,P$ 的 $\hbar/2$ 下界则与状态无关；要取等，必须同时满足涨落向量线性相关和对称化协方差为零。
+
+\section{第 9.3 节：最小不确定度波包}
+\label{section:QM-C09-S03}
+\studymeta
+  {QM-C09-S03}
+  {2026-10-06 至 2026-10-07}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 9 章 \S 9.3 The Minimum Uncertainty Packet；印刷页 pp.~239--241，PDF pp.~249--251；式 (9.3.1)--(9.3.7)}
+  {两块讲解与问答已完成；笔记已确认}
+
+\textbf{本节任务。}从上一节的\hyperref[topic:QM-C09-S02-T03]{两项取等条件}出发，反求满足 $\Delta X\,\Delta P=\hbar/2$ 的波函数，而不是先猜高斯再验证。讨论全实轴上归一化、相关算符作用及二阶矩有定义的态。本节无编号 Example 或 Exercise，不另设题组；不进入 \S 9.4 的应用。
+
+\notetopic{QM-C09-S03-T01}{由取等条件反推出衰减高斯}
+\textbf{保留一般中心。}记 $x_0=\langle X\rangle$、$p_0=\langle P\rangle$，并令 $\widehat X=X-x_0I$、$\widehat P=P-p_0I$。两项条件为
+\begin{equation}
+  \widehat P\ket{\psi}=c\widehat X\ket{\psi},\qquad
+  \langle\widehat P\widehat X+\widehat X\widehat P\rangle=0.
+  \label{eq:QM-C09-S03-equality}
+\end{equation}
+本节按教材把 $\widehat P$ 放在比例关系左边，因此 $c$ 是上一节反向写法中比例常数的倒数。教材先平移坐标原点使 $x_0=0$，最后恢复一般中心；以下直接保留 $x_0$，两种推导等价。平移坐标原点只是更换描述，不是改变物理态。
+
+\textbf{协方差条件约束 $c$。}将第一个条件取伴随，得到
+\begin{equation}
+  \bra{\psi}\widehat P=c^*\bra{\psi}\widehat X.
+\end{equation}
+分别在适当一侧使用原式和伴随式，有
+\begin{align}
+  \langle\widehat P\widehat X\rangle&=c^*\langle\widehat X^2\rangle,\notag\\
+  \langle\widehat X\widehat P\rangle&=c\langle\widehat X^2\rangle.
+\end{align}
+代入第二个条件，得到 $(c+c^*)(\Delta X)^2=0$。由于有限不确定度的取等态不可能有 $\Delta X=0$，故
+\begin{equation}
+  c+c^*=0,\qquad \boxed{c=\ii\gamma,\quad\gamma\in\real}.
+\end{equation}
+此步只确定 $c$ 为纯虚数；正负号还要由可归一化性确定。
+
+\textbf{位置表象中的一阶方程。}左乘 $\bra{x}$，令 $\psi(x)=\braket{x}{\psi}$，并用 $P=-\ii\hbar\,\dd/\dd x$，有
+\begin{align}
+  \left(-\ii\hbar\frac{\dd}{\dd x}-p_0\right)\psi(x)
+    &=\ii\gamma(x-x_0)\psi(x),\notag\\
+  \frac{\dd\psi}{\dd x}
+    &=\left[\frac{\ii p_0}{\hbar}-\frac{\gamma}{\hbar}(x-x_0)\right]\psi(x).
+  \label{eq:QM-C09-S03-ode}
+\end{align}
+利用 $(\ee^{F(x)})'=F'(x)\ee^{F(x)}$，将方括号积分即可得到通解
+\begin{equation}
+  \boxed{\psi(x)=C\exp\!\left[
+    \frac{\ii p_0(x-x_0)}{\hbar}
+    -\frac{\gamma(x-x_0)^2}{2\hbar}\right]}.
+  \label{eq:QM-C09-S03-gaussian-gamma}
+\end{equation}
+这里 $C$ 吸收了积分常数与常相位；对右端求导即可直接验证，并不需要除以可能为零的 $\psi$。
+
+\textbf{归一化选出符号。}纯相位的模长为 $1$，因此 $|\psi(x)|^2=|C|^2\ee^{-\gamma(x-x_0)^2/\hbar}$。若 $\gamma<0$，两端增长；若 $\gamma=0$，密度为非零常数；二者都不能在全实轴归一化。非零物理态必须满足 $\gamma>0$。这补全了教材从纯虚数直接写成 $c=\ii|c|$ 时隐含的符号选择：\textbf{两项取等条件加上可归一化性，选出衰减高斯包络与线性相位。}
+
+\notetopic{QM-C09-S03-T02}{归一化、宽度与状态的自由参数}
+\textbf{教材的宽度参数。}按式 (9.3.6) 定义
+\begin{equation}
+  \Delta^2=\frac{\hbar}{\gamma},\qquad \Delta>0.
+\end{equation}
+单独的 $\Delta$ 是高斯宽度参数，\textbf{不是位置标准差 $\Delta X$}。以下补全归一化及二阶矩的计算。由高斯积分，
+\begin{equation}
+  1=|C|^2\int_{-\infty}^{\infty}
+    \ee^{-(x-x_0)^2/\Delta^2}\dd x
+   =|C|^2\sqrt\pi\Delta.
+\end{equation}
+略去任意整体相位，取 $C>0$，得到教材式 (9.3.7) 的归一化形式：
+\begin{equation}
+  \boxed{\psi(x)=\frac{1}{(\pi\Delta^2)^{1/4}}
+    \exp\!\left[\frac{\ii p_0(x-x_0)}{\hbar}
+    -\frac{(x-x_0)^2}{2\Delta^2}\right]}.
+  \label{eq:QM-C09-S03-normalized}
+\end{equation}
+
+\textbf{验证平均值与不确定度。}密度关于 $x_0$ 对称，故 $\langle X\rangle=x_0$。令 $y=(x-x_0)/\Delta$，得到
+\begin{align}
+  (\Delta X)^2
+   &=\frac{1}{\sqrt\pi\Delta}\int_{-\infty}^{\infty}
+       (x-x_0)^2\ee^{-(x-x_0)^2/\Delta^2}\dd x\notag\\
+   &=\frac{\Delta^2}{\sqrt\pi}\int_{-\infty}^{\infty}y^2\ee^{-y^2}\dd y
+    =\frac{\Delta^2}{\sqrt\pi}\frac{\sqrt\pi}{2}
+    =\frac{\Delta^2}{2}.
+\end{align}
+对于动量，直接使用式~\eqref{eq:QM-C09-S03-ode} 对应的关系
+\begin{equation}
+  (P-p_0I)\ket{\psi}
+   =\frac{\ii\hbar}{\Delta^2}(X-x_0I)\ket{\psi}.
+\end{equation}
+取期望，右端为零，验证了 $\langle P\rangle=p_0$；再取两边的范数平方，得到
+\begin{equation}
+  (\Delta P)^2=\norm{(P-p_0I)\ket{\psi}}^2
+   =\frac{\hbar^2}{\Delta^4}(\Delta X)^2
+   =\frac{\hbar^2}{2\Delta^2}.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{\Delta X=\frac{\Delta}{\sqrt2},\qquad
+    \Delta P=\frac{\hbar}{\sqrt2\Delta},\qquad
+    \Delta X\,\Delta P=\frac{\hbar}{2}}.
+  \label{eq:QM-C09-S03-uncertainties}
+\end{equation}
+上述计算也验证了构造时使用的 $x_0,p_0$ 确实是所得态的平均值。
+
+\textbf{三个自由参数。}$x_0\in\real$ 决定平均位置；$p_0\in\real$ 通过线性相位决定平均动量，不改变位置概率密度；$\Delta>0$ 决定宽度，位置分布越宽，动量分布越窄。最小化的是\textbf{乘积}，不是把两个标准差同时压到零；任意有限正宽度都可以取等。谐振子基态对应 $x_0=p_0=0$、$\Delta=\sqrt{\hbar/(m\omega)}$，只是这一族中的特例。
+
+\textbf{相位与演化的边界（对话补充）。}推导未使用具体势能或 Hamiltonian，因此不是谐振子专属结论；它约束的是\textbf{某一时刻的状态}。以后是否继续取等，取决于动力学。仅有高斯概率密度还不够：若在式~\eqref{eq:QM-C09-S03-normalized} 上加入非零的二次位置相位，密度不变，却会引入位置与动量的对称化协方差，使乘积大于 $\hbar/2$。此前自由高斯波包演化后密度仍为高斯、位置展宽而动量宽度不变，就是不能把“高斯密度”与“始终最小不确定度”混同的例子。
+
+\textbf{一分钟回顾。}涨落向量线性相关给出一阶方程，协方差为零使比例常数为纯虚数，可归一化性再确定衰减符号。最终得到具有任意中心、平均动量和正宽度的高斯波包；教材宽度 $\Delta=\sqrt2\,\Delta X$。最小不确定度是完整波函数的性质，不能只凭密度形状判断，也不自动在演化中保持。
