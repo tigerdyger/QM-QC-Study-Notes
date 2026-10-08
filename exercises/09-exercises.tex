@@ -1,0 +1,101 @@
+\section{第 9.4 节教材习题}
+\label{exercise-set:QM-C09-S04}
+\exercisemeta
+  {QM-C09-S04-EX}
+  {2026-10-07 至 2026-10-08}
+  {Shankar，第 9.4 节；习题印刷页 p.~244，PDF p.~254}
+  {选做教材 Exercise 9.4.2、9.4.4；未选做 9.4.1、9.4.3}
+  {两题解答已核对；笔记已确认}
+
+\exercisequestion{QM-C09-S04-E01}{教材习题 9.4.2：氢原子基态与径向尺度}
+\textbf{对应知识点：}\relatedtopic{QM-C09-S04-T01}{尺度替换}、\relatedtopic{QM-C09-S04-T02}{精确结果比较}。
+
+\textbf{题意。}给定
+\begin{equation}
+  \psi(\mathbf r)=\frac1{\sqrt{\pi a_0^3}}\ee^{-r/a_0},
+  \qquad r=\sqrt{x^2+y^2+z^2},\qquad a_0=\frac{\hbar^2}{me^2}>0.
+\end{equation}
+验证三维归一化；利用球对称性说明 $(\Delta X)^2=\langle r^2\rangle/3$ 并计算 $\Delta X$；计算 $\langle1/r\rangle$ 和 $1/\langle r\rangle$，检验教材所述二者与 $me^2/\hbar^2$ 数量级相当。可使用
+\begin{equation}
+  \int_0^\infty r^n\ee^{-\lambda r}\dd r
+   =\frac{n!}{\lambda^{n+1}},\qquad
+   \lambda>0,\quad n=0,1,2,\ldots.
+\end{equation}
+
+\begin{checkedsolution}
+\textbf{三维测度与统一积分。}球坐标体积元为 $r^2\sin\theta\,\dd r\,\dd\theta\,\dd\phi$；波函数与角度无关，角积分给出 $4\pi$。因此
+\begin{equation}
+  \langle f(r)\rangle=\frac4{a_0^3}\int_0^\infty
+      f(r)r^2\ee^{-2r/a_0}\dd r.
+\end{equation}
+不能把 $|\psi(r)|^2\dd r$ 直接当作径向概率；径向概率密度为 $4\pi r^2|\psi(r)|^2$。
+
+\textbf{归一化。}取 $f=1$，
+\begin{equation}
+  \int_{\real^3}|\psi|^2\dd^3r
+   =\frac4{a_0^3}\frac{2!}{(2/a_0)^3}=\boxed{1}.
+\end{equation}
+
+\textbf{位置方差。}密度在 $x\mapsto-x$ 下不变，故 $x|\psi|^2$ 关于 $x$ 为奇函数，$\langle X\rangle=0$。球对称性又给出
+\begin{equation}
+  \langle X^2\rangle=\langle Y^2\rangle=\langle Z^2\rangle,
+  \qquad \langle X^2\rangle=\frac13\langle r^2\rangle.
+\end{equation}
+由径向积分，
+\begin{equation}
+  \langle r^2\rangle=\frac4{a_0^3}\int_0^\infty
+     r^4\ee^{-2r/a_0}\dd r
+   =\frac4{a_0^3}\frac{4!}{(2/a_0)^5}=3a_0^2.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{(\Delta X)^2=\langle X^2\rangle-\langle X\rangle^2=a_0^2},
+  \qquad \boxed{\Delta X=a_0}.
+\end{equation}
+
+\textbf{倒数的平均与平均的倒数。}分别计算
+\begin{align}
+  \left\langle\frac1r\right\rangle
+    &=\frac4{a_0^3}\int_0^\infty r\ee^{-2r/a_0}\dd r
+      =\frac4{a_0^3}\frac{1!}{(2/a_0)^2}=\frac1{a_0},\\
+  \langle r\rangle
+    &=\frac4{a_0^3}\int_0^\infty r^3\ee^{-2r/a_0}\dd r
+      =\frac4{a_0^3}\frac{3!}{(2/a_0)^4}=\frac32a_0.
+\end{align}
+所以
+\begin{equation}
+  \boxed{\frac1{\langle r\rangle}=\frac2{3a_0}},\qquad
+  \left\langle\frac1r\right\rangle=\frac32\frac1{\langle r\rangle}.
+\end{equation}
+二者不相等，但均为 $1/a_0=me^2/\hbar^2$ 的数量级。进一步对照正文的第三项，有
+\begin{equation}
+  \boxed{\left\langle\frac1r\right\rangle=\frac1{a_0},\qquad
+    \frac1{\langle r\rangle}=\frac2{3a_0},\qquad
+    \frac1{\sqrt{\langle r^2\rangle}}=\frac1{\sqrt3\,a_0}}.
+\end{equation}
+这些精确系数表明：教材的尺度替换抓住了量纲与大小，却不能用于推出精确能量。
+\end{checkedsolution}
+
+\exercisequestion{QM-C09-S04-E02}{教材习题 9.4.4：位置与动能的不确定性关系}
+\textbf{对应知识点：}\relatedtopic{QM-C09-S02-T02}{一般不确定性下界}、\relatedtopic{QM-C09-S04-T02}{应用中的结论边界}。
+
+\textbf{题意。}在一维中令 $T=P^2/(2m)$，且 $[X,P]=\ii\hbar I$。推导 $\Delta T\,\Delta X$ 的不确定性下界，并解释为何这一关系没有位置--动量不确定性关系那么著名。讨论归一化、相关算符作用、期望值与方差均有定义的态。题目未指定状态，因此要求的是下界，而不是某个唯一的乘积数值。
+
+\begin{checkedsolution}
+\textbf{对易子。}应用乘积法则，
+\begin{align}
+  [X,P^2]&=[X,P]P+P[X,P]=2\ii\hbar P,\\
+  [X,T]&=\frac1{2m}[X,P^2]=\boxed{\frac{\ii\hbar}{m}P}.
+\end{align}
+于是一般不确定性关系给出
+\begin{equation}
+  \Delta X\,\Delta T\ge\frac12\abs{\langle[X,T]\rangle}
+   =\boxed{\frac{\hbar}{2m}\abs{\langle P\rangle}}.
+\end{equation}
+
+\textbf{下界的状态依赖。}位置--动量关系的 $\hbar/2$ 是与状态无关的正下界；这里的下界依赖平均动量。当 $\langle P\rangle=0$ 时，上式只剩 $\Delta X\,\Delta T\ge0$，并不要求乘积为零。
+
+\textbf{对话补充的反例。}全实轴上中心在原点、无额外相位的归一化高斯波包满足 $\langle P\rangle=0$，但位置展宽非零，动量分布中的 $p^2/(2m)$ 也不确定，故 $\Delta X>0$、$\Delta T>0$。这检验了“下界为零不等于取等”。
+
+因此这条关系虽然严格，却不能像 $\Delta X\Delta P\ge\hbar/2$ 那样对所有允许态给出同一个正下界；在常见的零平均动量态中，它不提供非零的乘积约束。
+\end{checkedsolution}

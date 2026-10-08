@@ -289,3 +289,107 @@ $\langle\Omega\rangle$ 是实数，$I$ 是恒等算符；教材省略了与平�
 \textbf{相位与演化的边界（对话补充）。}推导未使用具体势能或 Hamiltonian，因此不是谐振子专属结论；它约束的是\textbf{某一时刻的状态}。以后是否继续取等，取决于动力学。仅有高斯概率密度还不够：若在式~\eqref{eq:QM-C09-S03-normalized} 上加入非零的二次位置相位，密度不变，却会引入位置与动量的对称化协方差，使乘积大于 $\hbar/2$。此前自由高斯波包演化后密度仍为高斯、位置展宽而动量宽度不变，就是不能把“高斯密度”与“始终最小不确定度”混同的例子。
 
 \textbf{一分钟回顾。}涨落向量线性相关给出一阶方程，协方差为零使比例常数为纯虚数，可归一化性再确定衰减符号。最终得到具有任意中心、平均动量和正宽度的高斯波包；教材宽度 $\Delta=\sqrt2\,\Delta X$。最小不确定度是完整波函数的性质，不能只凭密度形状判断，也不自动在演化中保持。
+
+\section{第 9.4 节：不确定性原理的应用}
+\label{section:QM-C09-S04}
+\studymeta
+  {QM-C09-S04}
+  {2026-10-07 至 2026-10-08}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 9 章 \S 9.4 Applications of the Uncertainty Principle；印刷页 pp.~241--244，PDF pp.~251--254；式 (9.4.1)--(9.4.9)}
+  {两块讲解及习题 9.4.2、9.4.4 已核对；笔记已确认}
+
+\textbf{本节任务。}不求解氢原子的完整本征方程，利用不确定性原理估计基态能量与空间宽度，并区分尺度估算和严格下界。本节无编号 Example；选做教材习题 9.4.2、9.4.4，未选做 9.4.1、9.4.3，不进入 \S 9.5。
+
+\notetopic{QM-C09-S04-T01}{从精确能量期望值到尺度模型}
+\textbf{物理模型与单位。}把质子固定在原点，忽略其运动，电子质量为 $m$，则
+\begin{equation}
+  H=\frac{P_x^2+P_y^2+P_z^2}{2m}-\frac{e^2}{r},
+  \qquad r=(X^2+Y^2+Z^2)^{1/2}.
+\end{equation}
+这里沿用教材的电磁单位约定；改用 SI 制时，每个 $e^2$ 应换成 $e^2/(4\pi\varepsilon_0)$。抽象表达中的 $r$ 是位置算符的函数，在位置表象中对应 $\sqrt{x^2+y^2+z^2}$。电子分布收缩会降低库仑势能，却增加局域化所需的动量展宽与动能；基态尺度来自二者竞争。
+
+\textbf{去掉平均动量的精确步骤。}在相关期望值与方差有定义的归一化态中，
+\begin{equation}
+  \langle H\rangle=\frac1{2m}\sum_{i=x,y,z}
+   \left[(\Delta P_i)^2+\langle P_i\rangle^2\right]
+   -e^2\left\langle\frac1r\right\rangle.
+\end{equation}
+寻找最低能量时，可限定 $\langle\mathbf P\rangle=0$。其理由不只是把公式中的正项删去：若原态的平均动量为 $\mathbf p_0$，令
+\begin{equation}
+  \psi'(\mathbf r)=\ee^{-\ii\mathbf p_0\cdot\mathbf r/\hbar}\psi(\mathbf r),
+\end{equation}
+则位置密度、势能期望与各动量方差均不变，平均动量变为零，能量降低 $|\mathbf p_0|^2/(2m)$。因此在这类态中精确地有
+\begin{equation}
+  \boxed{\langle H\rangle=
+    \frac{(\Delta P_x)^2+(\Delta P_y)^2+(\Delta P_z)^2}{2m}
+    -e^2\left\langle\frac1r\right\rangle}.
+\end{equation}
+平均动量为零不意味着动能为零；动量方差仍可非零。
+
+\textbf{近似从哪里开始。}谐振子的势能正比于 $X^2$，可以直接用均值与方差表示；库仑势中的 $\langle1/r\rangle$ 却不能只凭位置方差确定。教材引入
+\begin{equation}
+  \left\langle\frac1r\right\rangle
+   \sim\frac1{\langle r\rangle}
+   \sim\frac1{\sqrt{\langle r^2\rangle}}.
+  \label{eq:QM-C09-S04-scale-replacement}
+\end{equation}
+这里 $\sim$ 只表示\textbf{数量级相当}，不是恒等式，也不是对任意分布都可靠的近似。真实势能依赖完整分布；上述替换丢失了形状信息。\relatedexercise{QM-C09-S04-E01}{教材习题 9.4.2} 用精确基态检验这三种量的不同系数。
+
+\textbf{球对称的候选分布。}依据系统的球对称性，考虑以质子为中心、各方向展宽相同的候选态：
+\begin{equation}
+  \langle X\rangle=\langle Y\rangle=\langle Z\rangle=0,
+  \quad \Delta X=\Delta Y=\Delta Z=\sigma>0,
+  \quad \Delta P_x=\Delta P_y=\Delta P_z.
+\end{equation}
+这一步采用球对称的基态候选，不是在此证明基态的球对称性。此时 $\langle r^2\rangle=3\sigma^2$，教材式 (9.4.5) 化为
+\begin{equation}
+  \langle H\rangle\sim\frac{3(\Delta P_x)^2}{2m}
+      -\frac{e^2}{\sqrt3\,\sigma}.
+\end{equation}
+再用严格关系 $\Delta P_x\,\sigma\ge\hbar/2$，以允许的最小动量展宽构造能量尺度模型：
+\begin{equation}
+  \boxed{E_{\mathrm{est}}(\sigma)=\frac{3\hbar^2}{8m\sigma^2}
+     -\frac{e^2}{\sqrt3\,\sigma}}.
+  \label{eq:QM-C09-S04-energy-model}
+\end{equation}
+正动能按 $1/\sigma^2$ 增长，负势能仅按 $1/\sigma$ 增长，故极度压缩并不能无限降低这个模型的能量。由于势能已被近似替换，$E_{\mathrm{est}}$ \textbf{不是已经证明的真实能量下界，也不是某个试探态的精确能量期望值}。
+
+\notetopic{QM-C09-S04-T02}{最优尺度、精确结果与适用边界}
+\textbf{极小化估算模型。}对式~\eqref{eq:QM-C09-S04-energy-model} 求导，
+\begin{equation}
+  \frac{\dd E_{\mathrm{est}}}{\dd\sigma}
+   =-\frac{3\hbar^2}{4m\sigma^3}
+     +\frac{e^2}{\sqrt3\,\sigma^2}=0.
+\end{equation}
+乘以 $\sigma^3$，得到
+\begin{equation}
+  \boxed{\sigma_* =\frac{3\sqrt3}{4}\frac{\hbar^2}{me^2}}.
+\end{equation}
+导数在 $\sigma<\sigma_*$ 时为负、在 $\sigma>\sigma_*$ 时为正，因此这是模型的最小值。代入时两项分别为
+\begin{equation}
+  \frac{3\hbar^2}{8m\sigma_*^2}=\frac{2me^4}{9\hbar^2},
+  \qquad -\frac{e^2}{\sqrt3\,\sigma_*}=-\frac{4me^4}{9\hbar^2},
+\end{equation}
+故
+\begin{equation}
+  \boxed{E_{\mathrm{est,min}}=-\frac{2me^4}{9\hbar^2}}.
+\end{equation}
+这里的 $\sigma_*$ 是单个笛卡尔方向的位置标准差，不是确定轨道的半径。
+
+\textbf{与教材引用的精确解比较。}定义 Bohr radius（玻尔半径）$a_0=\hbar^2/(me^2)$。在相同的固定质子模型中，精确结果为
+\begin{equation}
+  E_0=-\frac{me^4}{2\hbar^2},\qquad
+  \psi_0(\mathbf r)=\frac1{\sqrt{\pi a_0^3}}\ee^{-r/a_0},
+  \qquad \Delta X=a_0.
+\end{equation}
+本节引用这些结果作比较，不在这里求解氢原子本征方程；归一化和 $\Delta X$ 的验证见课程题目。
+估算的 $\sigma_*=(3\sqrt3/4)a_0\approx1.30a_0$ 与精确宽度约相差 $30\%$；精确束缚能的大小是估计值的 $9/4$ 倍。估算抓住的是长度尺度 $\hbar^2/(me^2)$ 与能量尺度 $me^4/\hbar^2$，不是精确数值系数。
+
+\textbf{不能把近似当作严格界。}精确值 $-me^4/(2\hbar^2)$ 直接否定了 $E_0\ge-2me^4/(9\hbar^2)$。误差来自式~\eqref{eq:QM-C09-S04-scale-replacement} 的尺度替换，而非极小化的算术。这里也未计算试探态的精确能量期望值，不能借用变分法的上界保证。
+
+\textbf{基态不一定是最小不确定度态。}基态最小化的是 $\langle T\rangle+\langle V\rangle$，不是不确定度乘积；波函数形状同时影响两项。谐振子基态恰好是高斯，库仑势的精确基态却是 $\ee^{-r/a_0}$。估算中采用最小动量展宽，不能反推真实基态必为高斯。
+
+\relatedexercise{QM-C09-S04-E02}{教材习题 9.4.4} 则给出位置与动能的严格下界；它依赖平均动量，不涉及势能近似。
+
+\textbf{一分钟回顾。}局域化提高动能，库仑吸引降低势能；两者竞争给出原子尺度。势能按数量级替换后，不再保证严格界。应区分不确定性定理、近似模型与精确解，也不把基态等同于最小不确定度态。
