@@ -99,3 +99,54 @@
 
 因此这条关系虽然严格，却不能像 $\Delta X\Delta P\ge\hbar/2$ 那样对所有允许态给出同一个正下界；在常见的零平均动量态中，它不提供非零的乘积约束。
 \end{checkedsolution}
+
+\section{第 9.5 节教材例题}
+\label{exercise-set:QM-C09-S05}
+\exercisemeta
+  {QM-C09-S05-EX}
+  {2026-10-08 至 2026-10-09}
+  {Shankar，第 9.5 节；Example 9.5.1，印刷页 pp.~245--246，PDF pp.~255--256}
+  {教材 Example 由讲解者示范；本节无编号 Exercise，不额外编题}
+  {教材例题已讲解；笔记已确认}
+
+\exercisequestion{QM-C09-S05-E01}{教材例题 9.5.1：核力的作用范围}
+\textbf{对应知识点：}\relatedtopic{QM-C09-S05-T02}{时间尺度与守恒的边界}。
+
+\textbf{题意（概述）。}教材用冰面上两人交换雪球时的反冲与动量传递，类比粒子之间的相互作用；再考虑核子之间交换质量为 $\mu$ 的 pion（$\pi$ 介子），利用能量--时间尺度关系估计核力的作用距离，并说明模型的局限。这里的 $\mu$ 是交换粒子的质量，不是约化质量；$c$ 为光速。
+
+\begin{checkedsolution}
+\textbf{交换物体的类比。}发射雪球者反冲，接收者获得雪球携带的动量；看不见雪球时，可把两人动量的变化描述成相互作用。此类比只说明动量传递，不能解释所有力的性质，尤其不能据此推出吸引力。教材也明确提醒它是简化图像。
+
+\textbf{教材的尺度估算。}从静能尺度 $\mathcal E\sim\mu c^2$ 配出时间，再用 $c$ 换成距离：
+\begin{equation}
+  \tau_{\mathrm{est}}\sim\frac\hbar{\mathcal E}
+     \sim\frac\hbar{\mu c^2},
+  \qquad
+  \boxed{\ell\sim c\tau_{\mathrm{est}}\sim\frac\hbar{\mu c}}.
+\end{equation}
+$\ell$ 是 reduced Compton wavelength（约化康普顿波长）；教材简称 Compton wavelength，而未约化定义为 $h/(\mu c)$。质量越大，所得距离尺度越短。采用近似数值
+\begin{equation}
+  \mu c^2\simeq140\,\mathrm{MeV},\qquad
+  \hbar c\simeq197\,\mathrm{MeV\,fm},
+\end{equation}
+便有
+\begin{equation}
+  \ell\sim\frac{\hbar c}{\mu c^2}
+      \simeq\frac{197}{140}\,\mathrm{fm}
+      \simeq1.4\,\mathrm{fm},\qquad
+  1\,\mathrm{fm}=10^{-15}\,\mathrm m.
+\end{equation}
+这与教材给出的核尺度数量级一致，而非精确的硬截止半径。
+
+\textbf{估算不等于真实飞行过程。}上述步骤不是从 $\Delta E\Delta t\ge\hbar/2$ 严格推出的时间上限。教材的“短暂产生粒子并违反能量守恒”不应按字面接受；$\tau_{\mathrm{est}}$ 既不是实 $\pi$ 介子的衰变寿命，也不表示一个真实粒子先借能量出现、以光速飞行后再归还能量。有质量的真实粒子不能以光速传播，这里仅用 $c$ 建立相对论性的长度尺度。
+
+\textbf{更可靠的物理解释（对话补充）。}简单的有质量粒子交换模型给出 Yukawa potential（汤川势）的径向因子
+\begin{equation}
+  V(r)\propto\frac{\ee^{-\mu cr/\hbar}}r
+       =\frac{\ee^{-r/\ell}}r,\qquad
+  \boxed{\ell=\frac\hbar{\mu c}}.
+\end{equation}
+这一结果来自场论的交换相互作用计算，本节引用而不推导。指数因子给出与教材估算相同的尺度，却不要求暂时违反能量守恒；距离超过 $\ell$ 后相互作用受到强烈抑制，并非突然归零。真实核力含自旋、同位旋等结构，不是单一的中心汤川势；$\pi$ 介子交换主要描述核子间核力较长程的部分。
+
+\textbf{补充来源。}\href{https://www.damtp.cam.ac.uk/user/tong/qft/qfthtml/S3.html}{David Tong，\textit{Quantum Field Theory}，\S 3.5.2 The Yukawa Potential}；核力背景见其\href{https://www.damtp.cam.ac.uk/user/tong/pp/pp3.pdf}{\textit{Particle Physics}，第 3 章 The Strong Force}。以上补充用于澄清教材启发式解释，不把核力模型当成本节不确定性公式的严格推论。
+\end{checkedsolution}

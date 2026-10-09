@@ -393,3 +393,104 @@ $\langle\Omega\rangle$ 是实数，$I$ 是恒等算符；教材省略了与平�
 \relatedexercise{QM-C09-S04-E02}{教材习题 9.4.4} 则给出位置与动能的严格下界；它依赖平均动量，不涉及势能近似。
 
 \textbf{一分钟回顾。}局域化提高动能，库仑吸引降低势能；两者竞争给出原子尺度。势能按数量级替换后，不再保证严格界。应区分不确定性定理、近似模型与精确解，也不把基态等同于最小不确定度态。
+
+\section{第 9.5 节：能量--时间不确定性关系}
+\label{section:QM-C09-S05}
+\studymeta
+  {QM-C09-S05}
+  {2026-10-08 至 2026-10-09}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 9 章 \S 9.5 The Energy-Time Uncertainty Relation；印刷页 pp.~245--246，PDF pp.~255--256；式 (9.5.1)，Example 9.5.1}
+  {两块讲解与教材例题已完成；笔记已确认}
+
+\textbf{本节任务。}把能量--时间关系与此前两个可观测量的不确定性关系区分开，理解有限时间信号的频谱、寿命与谱线宽度，以及能量守恒的适用对象。本节无编号 Exercise；教材 Example 9.5.1 放在课程题目板块，不额外编题。下文 Fourier 积分和指数衰减模型是对话补充，展开教材的定性论证；不进入第十章。
+
+\notetopic{QM-C09-S05-T01}{时间参数与有限持续时间的频谱}
+\textbf{相似形式不等于相同定义。}教材式 (9.5.1) 写为
+\begin{equation}
+  \Delta E\,\Delta t\ge\frac{\hbar}{2}.
+\end{equation}
+在目前使用的 Schr\"odinger 方程中，$t$ 是演化参数，不是已经定义的时间可观测量。因此不能擅自设定一个时间算符并使用 $[H,T]=\ii\hbar I$，也不能未定义 $\Delta t$ 就把本式当作 \S 9.2 的直接代入。\textbf{能量--时间关系有不同的具体表述，必须先说明时间尺度与能量宽度的含义。}本节教材采用有限持续时间与频率展宽的解释；下面的数量级估算不构成精确系数 $1/2$ 的证明。
+
+\textbf{能量与时间频率。}对于不含时的 Hamiltonian，
+\begin{equation}
+  H\ket E=E\ket E
+  \quad\Longrightarrow\quad
+  \ket{\psi(t)}=\ee^{-\ii Et/\hbar}\ket E,
+  \qquad \omega_0=\frac E\hbar.
+\end{equation}
+不同能量分量对应不同的时间振荡频率，类似于不同动量对应不同的空间波数。但在整个时间轴上振荡的 $\ee^{-\ii\omega_0t}$，与仅在有限时间内存在的一段振荡，是不同的函数。
+
+\textbf{有限时间窗口（对话补充）。}取持续时间 $\tau>0$ 的信号
+\begin{equation}
+  g(t)=\begin{cases}
+    \ee^{-\ii\omega_0t},&0<t<\tau,\\
+    0,&\text{其他时间}.
+  \end{cases}
+\end{equation}
+略去 Fourier 变换的整体归一化系数，令 $\delta\omega=\omega-\omega_0$，则
+\begin{align}
+  \widetilde g(\omega)
+    &\propto\int_0^\tau\ee^{\ii\delta\omega t}\dd t
+     =\frac{\ee^{\ii\delta\omega\tau}-1}{\ii\delta\omega}\notag\\
+    &=\ee^{\ii\delta\omega\tau/2}
+      \frac{2\sin(\delta\omega\tau/2)}{\delta\omega}.
+\end{align}
+在 $\delta\omega=0$ 处取连续极限，振幅为 $\tau$，不是奇点；谱强度正比于
+\begin{equation}
+  |\widetilde g(\omega)|^2\propto
+   \tau^2\left[\frac{\sin(\delta\omega\tau/2)}{\delta\omega\tau/2}\right]^2.
+\end{equation}
+中心两侧最近的零点为 $\delta\omega=\pm2\pi/\tau$。因此中央峰的特征宽度与 $1/\tau$ 成正比，换成能量尺度就是
+\begin{equation}
+  \boxed{\text{频率特征宽度}\sim\frac1\tau,
+  \qquad\text{能量特征宽度}\sim\frac\hbar\tau}.
+\end{equation}
+这里的宽度不是已经计算出的标准差。事实上，理想矩形时间窗的频谱尾部使频率二阶矩发散，不能把中央峰宽直接当作 $\Delta\omega$ 的标准差。
+
+\textbf{物理上的时间窗口。}教材讨论有限时间开启的光源以及有限寿命的激发态：即使载频写成 $\omega_0$，完整信号还包含开启、关闭或衰减的包络，因而具有频谱宽度。\textbf{截取观测记录会使记录的频谱展宽，却不自动改变被观察系统的能量分布。}若系统仍处于能量本征态，单纯缩短观察时长不会使它的 $\Delta E$ 从零变成非零。
+
+\notetopic{QM-C09-S05-T02}{寿命、谱线宽度与能量守恒}
+\textbf{为什么激发态可以衰减。}“仅观察一小段时间”不同于“某个态分量实际只能维持有限时间”。原子自发辐射应考虑
+\begin{equation}
+  H_{\text{总}}=H_{\text{原子}}+H_{\text{辐射场}}+H_{\text{相互作用}}.
+\end{equation}
+原子单独的激发本征态与无光子场态的乘积，一般不是完整 $H_{\text{总}}$ 的本征态，故可演化成原子退激发并发出光子的状态。这不与能量本征态只积累整体相位的结论矛盾。
+
+\textbf{指数衰减模型（对话补充）。}若激发态的存活概率近似为 $P_e(t)=\ee^{-t/\tau}$，相应振幅可取
+\begin{equation}
+  c_e(t)=\ee^{-t/(2\tau)}\ee^{-\ii E_et/\hbar},\qquad t\ge0.
+\end{equation}
+$\tau$ 是概率的衰减寿命；振幅指数中的 $2$ 不能漏掉。取该振幅的能量 Fourier 谱，
+\begin{align}
+  F(E)&\propto\int_0^\infty
+    \exp\!\left[-\left(\frac1{2\tau}
+    -\frac{\ii(E-E_e)}\hbar\right)t\right]\dd t\notag\\
+   &=\frac1{\dfrac1{2\tau}-\dfrac{\ii(E-E_e)}\hbar},\\
+  |F(E)|^2&\propto
+    \frac1{(E-E_e)^2+\left(\dfrac\hbar{2\tau}\right)^2}.
+\end{align}
+这给出 Lorentzian（洛伦兹型）谱线。峰值位于 $E_e$，两个半峰值点满足
+\begin{equation}
+  (E-E_e)^2+\left(\frac\hbar{2\tau}\right)^2
+     =2\left(\frac\hbar{2\tau}\right)^2,
+  \qquad E-E_e=\pm\frac\hbar{2\tau}.
+\end{equation}
+故 full width at half maximum（半高全宽）为
+\begin{equation}
+  \boxed{\Gamma=\frac\hbar\tau,\qquad\Gamma\tau=\hbar}.
+\end{equation}
+寿命越短，谱线越宽。$\Gamma$ \textbf{不是能量标准差}：理想全轴洛伦兹谱没有有限的二阶矩。该结果是在指数衰减模型中的线宽关系，不是对任意系统证明 $\Delta E\Delta t=\hbar/2$。实际衰减也不要求在所有时间尺度上严格指数化；辐射线宽还可能包含其他展宽机制。
+
+\textbf{不确定不等于不守恒。}对不含时的完整 Hamiltonian，离散谱情形可写为
+\begin{equation}
+  \ket{\psi(t)}=\sum_n c_n\ee^{-\ii E_nt/\hbar}\ket{E_n},
+  \qquad P(E_n)=|c_n|^2.
+\end{equation}
+不同能量分量只积累相位，能量概率分布不随时间变化；连续谱有对应的积分形式。只要相关矩存在，$\langle H\rangle$ 与 $\Delta H$ 均保持不变，且 $\Delta H$ 完全可以非零。辐射时原子子系统的能量变化，必须连同辐射场和相互作用一起核算；外部驱动也需计入能量来源。
+
+\textbf{教材表述的边界。}教材用“短时间违反能量守恒”引出交换粒子的直觉。这不是能量--时间关系允许暂借能量的定律，也不能把不等式反向读成某种粒子的最大存活时间。
+
+\relatedexercise{QM-C09-S05-E01}{核力范围例题} 保留教材的尺度估算，并以交换模型中的指数衰减距离说明其物理含义。
+
+\textbf{一分钟回顾。}时间在当前理论中是参数；有限时间包络对应频谱展宽，而不只是载频。指数衰减模型给出 $\Gamma\tau=\hbar$，其中 $\Gamma$ 是半高全宽而非标准差。有限观察时间、实际寿命与能量标准差不可混用；完整孤立系统的能量守恒不因能量展宽而失效。
