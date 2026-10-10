@@ -1,0 +1,132 @@
+\section{第 10.1 节教材习题}
+\label{exercise-set:QM-C10-S01}
+\exercisemeta
+  {QM-C10-S01-EX}
+  {2026-10-09 至 2026-10-10}
+  {Shankar，第 10.1 节；Exercise 10.1.2，印刷页 pp.~251--252，PDF pp.~261--262；Exercise 10.1.3，印刷页 p.~258，PDF p.~268}
+  {选做 10.1.2 第 (3) 问的一种方法、10.1.3 第 (1) 问；其余未列入选做范围}
+  {两题解答已核对；笔记已确认}
+
+\exercisequestion{QM-C10-S01-E01}{教材习题 10.1.2：张量积算符的矩阵}
+\textbf{对应知识点：}\relatedtopic{QM-C10-S01-T02}{乘积基与算符提升}。
+
+\textbf{题意与选做范围。}两个单粒子 Hilbert 空间各有正交归一基 $\{\ket+ ,\ket-\}$，算符在各自基下的矩阵为
+\begin{equation}
+  \sigma_1=\begin{pmatrix}a&b\\c&d\end{pmatrix},\qquad
+  \sigma_2=\begin{pmatrix}e&f\\g&h\end{pmatrix}.
+\end{equation}
+这些符号表示一般算符，不是特指 Pauli 矩阵。在有序联合基
+\begin{equation}
+  \ket{++},\quad\ket{+-},\quad\ket{-+},\quad\ket{--}
+\end{equation}
+中求 $\sigma_1\otimes\sigma_2$ 的矩阵，其中 $\ket{+-}=\ket+\otimes\ket-$，第一个因子属于粒子 1。本次选做原题第 (3) 问，采用对基向量直接作用的方法，不重复原题要求的另一种计算路线。
+
+\begin{checkedsolution}
+\textbf{先求一列。}矩阵第一列给出
+\begin{equation}
+  \sigma_1\ket+=a\ket++c\ket-,\qquad
+  \sigma_2\ket+=e\ket++g\ket-.
+\end{equation}
+由张量积的双线性，
+\begin{align}
+  (\sigma_1\otimes\sigma_2)\ket{++}
+   &=(a\ket++c\ket-)\otimes(e\ket++g\ket-)\notag\\
+   &=ae\ket{++}+ag\ket{+-}+ce\ket{-+}+cg\ket{--}.
+\end{align}
+所以第一列为 $(ae,ag,ce,cg)^{\mathsf T}$。其余三列分别由另外三个基向量的像得到，最终
+\begin{equation}
+  \boxed{\sigma_1\otimes\sigma_2=
+    \begin{pmatrix}
+      ae&af&be&bf\\
+      ag&ah&bg&bh\\
+      ce&cf&de&df\\
+      cg&ch&dg&dh
+    \end{pmatrix}
+    =\begin{pmatrix}
+      a\sigma_2&b\sigma_2\\c\sigma_2&d\sigma_2
+    \end{pmatrix}}.
+\end{equation}
+右边是 $2\times2$ 的分块写法，每个块本身是 $2\times2$ 矩阵，整体维数仍为 $4\times4$。矩阵的列记录基向量的像，不能把展开系数误放成一行；若改变有序基，矩阵排列也相应变化。
+\end{checkedsolution}
+
+\exercisequestion{QM-C10-S01-E02}{教材习题 10.1.3：耦合振子的正常模量子化}
+\textbf{对应知识点：}\relatedtopic{QM-C10-S01-T03}{能量相加}、\relatedtopic{QM-C10-S01-T04}{动力学分离}。
+
+\textbf{题意与选做范围。}两个质量均为 $m>0$ 的一维粒子具有经典 Hamiltonian
+\begin{equation}
+  \mathcal H=\frac{p_1^2+p_2^2}{2m}
+   +\frac12m\omega^2\left[x_1^2+x_2^2+(x_1-x_2)^2\right],\qquad\omega>0.
+\end{equation}
+定义正常坐标与动量
+\begin{equation}
+  x_{\mathrm I}=\frac{x_1+x_2}{\sqrt2},\quad
+  x_{\mathrm{II}}=\frac{x_1-x_2}{\sqrt2},\qquad
+  p_{\mathrm I}=\frac{p_1+p_2}{\sqrt2},\quad
+  p_{\mathrm{II}}=\frac{p_1-p_2}{\sqrt2}.
+\end{equation}
+本次选做第 (1) 问：用新变量改写 $\mathcal H$；验证它们满足正则 Poisson bracket；再提升为量子算符，在 $X_{\mathrm I},X_{\mathrm{II}}$ 的联合位置表象中写出能量本征方程。原题第 (2) 问的“先量子化、再变换微分方程”路线未选做。
+
+\begin{checkedsolution}
+\textbf{改写能量。}逆变换为
+\begin{equation}
+  x_1=\frac{x_{\mathrm I}+x_{\mathrm{II}}}{\sqrt2},\qquad
+  x_2=\frac{x_{\mathrm I}-x_{\mathrm{II}}}{\sqrt2},
+\end{equation}
+动量有同样形式。因此
+\begin{align}
+  x_1^2+x_2^2&=x_{\mathrm I}^2+x_{\mathrm{II}}^2,
+  &(x_1-x_2)^2&=2x_{\mathrm{II}}^2,\\
+  p_1^2+p_2^2&=p_{\mathrm I}^2+p_{\mathrm{II}}^2.
+\end{align}
+代回得到
+\begin{equation}
+  \boxed{\mathcal H=
+   \underbrace{\frac{p_{\mathrm I}^2}{2m}
+      +\frac12m\omega^2x_{\mathrm I}^2}_{\mathcal H_{\mathrm I}}
+   +\underbrace{\frac{p_{\mathrm{II}}^2}{2m}
+      +\frac12m(3\omega^2)x_{\mathrm{II}}^2}_{\mathcal H_{\mathrm{II}}}}.
+\end{equation}
+交叉项消失，两个正常模频率为 $\omega_{\mathrm I}=\omega$、$\omega_{\mathrm{II}}=\sqrt3\,\omega$。
+
+\textbf{正则性。}由原变量的 $\{x_i,p_j\}=\delta_{ij}$，
+\begin{align}
+  \{x_{\mathrm I},p_{\mathrm I}\}
+    &=\tfrac12\{x_1+x_2,p_1+p_2\}
+      =\tfrac12(1+0+0+1)=1,\\
+  \{x_{\mathrm I},p_{\mathrm{II}}\}
+    &=\tfrac12\{x_1+x_2,p_1-p_2\}
+      =\tfrac12(1-0+0-1)=0.
+\end{align}
+同理 $\{x_{\mathrm{II}},p_{\mathrm{II}}\}=1$、$\{x_{\mathrm{II}},p_{\mathrm I}\}=0$。新坐标仅含旧坐标，新动量仅含旧动量，故彼此的同类括号为零。综上，
+\begin{equation}
+  \{x_\alpha,p_\beta\}=\delta_{\alpha\beta},\qquad
+  \{x_\alpha,x_\beta\}=\{p_\alpha,p_\beta\}=0,
+  \qquad \alpha,\beta=\mathrm I,\mathrm{II}.
+\end{equation}
+
+\textbf{量子化。}要求 $[X_\alpha,P_\beta]=\ii\hbar\delta_{\alpha\beta}I$，其余基本对易子为零。联合位置表象中 $X_\alpha$ 为乘法，$P_\alpha=-\ii\hbar\partial/\partial x_\alpha$，所以
+\begin{equation}
+  \boxed{\left[
+     -\frac{\hbar^2}{2m}\left(
+       \frac{\partial^2}{\partial x_{\mathrm I}^2}
+       +\frac{\partial^2}{\partial x_{\mathrm{II}}^2}\right)
+     +\frac12m\omega^2(x_{\mathrm I}^2+3x_{\mathrm{II}}^2)
+   \right]\Psi_E=E\Psi_E}.
+\end{equation}
+这里 $\Psi_E=\Psi_E(x_{\mathrm I},x_{\mathrm{II}})$。正常坐标的线性变换保留了全平面位置积分的测度，因此归一化条件为
+\begin{equation}
+  \int_{\real^2}|\Psi_E|^2\dd x_{\mathrm I}\dd x_{\mathrm{II}}=1.
+\end{equation}
+
+\textbf{已学谐振子结果的直接推论（对话补充）。}两个模式独立，因此可选本征函数与能量为
+\begin{align}
+  \Psi_{n_{\mathrm I},n_{\mathrm{II}}}(x_{\mathrm I},x_{\mathrm{II}})
+    &=\phi_{n_{\mathrm I}}^{(\omega)}(x_{\mathrm I})
+      \phi_{n_{\mathrm{II}}}^{(\sqrt3\omega)}(x_{\mathrm{II}}),\\
+  E_{n_{\mathrm I},n_{\mathrm{II}}}
+    &=\hbar\omega\left(n_{\mathrm I}+\tfrac12\right)
+      +\hbar\sqrt3\,\omega\left(n_{\mathrm{II}}+\tfrac12\right),
+      \quad n_{\mathrm I},n_{\mathrm{II}}=0,1,2,\ldots.
+\end{align}
+$\phi_n^{(\Omega)}$ 表示质量 $m$、频率 $\Omega$ 的归一化单模谐振子本征函数。独立的是两个正常模，原粒子之间的弹簧耦合没有被删除；乘积本征函数换回 $x_1,x_2$ 后一般不能按粒子分解。
+\end{checkedsolution}
