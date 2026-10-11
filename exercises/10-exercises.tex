@@ -130,3 +130,141 @@
 \end{align}
 $\phi_n^{(\Omega)}$ 表示质量 $m$、频率 $\Omega$ 的归一化单模谐振子本征函数。独立的是两个正常模，原粒子之间的弹簧耦合没有被删除；乘积本征函数换回 $x_1,x_2$ 后一般不能按粒子分解。
 \end{checkedsolution}
+
+\section{第 10.2 节教材习题}
+\label{exercise-set:QM-C10-S02}
+\exercisemeta
+  {QM-C10-S02-EX}
+  {2026-10-10 至 2026-10-11}
+  {Shankar，第 10.2 节；Exercise 10.2.1，印刷页 p.~259，PDF p.~269；Exercise 10.2.2，印刷页 pp.~259--260，PDF pp.~269--270}
+  {选做 10.2.1；10.2.2 第 (1)、(2) 问和第 (3) 问的简并度部分；其余部分及 10.2.3 未选做}
+  {两题选做解答已核对；笔记已确认}
+
+\exercisequestion{QM-C10-S02-E01}{教材习题 10.2.1：三维盒子中的粒子}
+\textbf{对应知识点：}\relatedtopic{QM-C10-S02-T01}{多维联合表象与分离条件}。
+
+\textbf{题意。}质量 $m>0$ 的粒子被限制在边长 $L>0$ 的立方体 $0<x,y,z<L$ 内。盒内 $V=0$，盒外为无限高势垒；波函数在六个面上及盒外为零。利用一维无限深势阱结果，构造一组归一化能量本征函数，注明量子数范围并验证对应能谱。
+
+\begin{checkedsolution}
+\textbf{方程与分离条件。}盒内有
+\begin{equation}
+  -\frac{\hbar^2}{2m}\left(
+    \frac{\partial^2}{\partial x^2}
+    +\frac{\partial^2}{\partial y^2}
+    +\frac{\partial^2}{\partial z^2}\right)\psi=E\psi.
+\end{equation}
+Hamiltonian 是三个方向的一维 Hamiltonian 之和；立方体区域是三个区间 $(0,L)$ 的直积，六个面的 Dirichlet 条件也逐方向分离。因此可构造乘积本征函数，能量为三项之和。只检查盒内 $V=0$ 不够，边界条件同样重要。
+
+\textbf{本征函数与边界。}第 5.2 节的一维归一化结果为
+\begin{equation}
+  \phi_n(u)=\sqrt{\frac2L}\sin\frac{n\pi u}{L},
+  \qquad 0<u<L,\qquad n=1,2,3,\ldots.
+\end{equation}
+故盒内的一组归一化本征函数为
+\begin{equation}
+  \boxed{\psi_{n_x,n_y,n_z}(x,y,z)
+    =\left(\frac2L\right)^{3/2}
+      \sin\frac{n_x\pi x}{L}
+      \sin\frac{n_y\pi y}{L}
+      \sin\frac{n_z\pi z}{L}},
+\end{equation}
+盒外取零，$n_x,n_y,n_z$ 独立取正整数。任一坐标为 $0$ 或 $L$ 时，相应正弦因子为零，故满足全部边界条件；任一量子数取零都会得到零波函数，不能作为物理态。
+
+\textbf{能谱与代回验证。}一维能量相加给出
+\begin{equation}
+  \boxed{E_{n_x,n_y,n_z}
+    =\frac{\pi^2\hbar^2}{2mL^2}(n_x^2+n_y^2+n_z^2)}.
+\end{equation}
+每个方向求两次导数只作用于相应正弦，因而
+\begin{equation}
+  \nabla^2\psi
+    =-\frac{\pi^2}{L^2}(n_x^2+n_y^2+n_z^2)\psi,
+\end{equation}
+代回定态方程即得上述本征值。归一化则由非负乘积积分分解为
+\begin{align}
+  \int_{\real^3}|\psi|^2\dd^3r
+  &=\left(\int_0^L|\phi_{n_x}(x)|^2\dd x\right)
+    \left(\int_0^L|\phi_{n_y}(y)|^2\dd y\right)
+    \left(\int_0^L|\phi_{n_z}(z)|^2\dd z\right)\notag\\
+  &=1\cdot1\cdot1=1.
+\end{align}
+以上构造的是一组乘积本征基；若某能级简并，其本征态还包括该子空间内的线性组合，不必都保持单个乘积形式。
+\end{checkedsolution}
+
+\exercisequestion{QM-C10-S02-E02}{教材习题 10.2.2：二维谐振子的宇称与简并}
+\textbf{对应知识点：}\relatedtopic{QM-C10-S02-T01}{空间方向作为自由度}。
+
+\textbf{题意与选做范围。}质量 $m>0$ 的粒子在二维平面内运动，经典 Hamiltonian 为
+\begin{equation}
+  \mathcal H=\frac{p_x^2+p_y^2}{2m}
+    +\frac12m\omega_x^2x^2+\frac12m\omega_y^2y^2,
+  \qquad \omega_x,\omega_y>0.
+\end{equation}
+第 (1)、(2) 问要求量子化，给出能谱及用一维谐振子函数表示的归一化本征函数，并判断同时反转 $x,y$ 时的宇称。第 (3) 问仅选做各向同性情形 $\omega_x=\omega_y=\omega$ 的能量与简并度：令 $N=n_x+n_y$，计算固定 $N$ 的能量本征空间维数。该问要求的最低三个态的显式展开、极坐标改写未选做。
+
+\begin{checkedsolution}
+\textbf{量子化与乘积本征基。}取 $P_x=-\ii\hbar\partial_x$、$P_y=-\ii\hbar\partial_y$，有
+\begin{equation}
+  H=\underbrace{-\frac{\hbar^2}{2m}\partial_x^2
+        +\frac12m\omega_x^2x^2}_{H_x}
+    +\underbrace{-\frac{\hbar^2}{2m}\partial_y^2
+        +\frac12m\omega_y^2y^2}_{H_y}.
+\end{equation}
+两个方向的动力学独立。以 $\phi_n^{(\Omega)}(u)$ 表示质量 $m$、频率 $\Omega$ 的归一化一维谐振子本征函数，则可选
+\begin{equation}
+  \boxed{\psi_{n_x,n_y}(x,y)
+    =\phi_{n_x}^{(\omega_x)}(x)\phi_{n_y}^{(\omega_y)}(y)},
+  \qquad n_x,n_y=0,1,2,\ldots.
+\end{equation}
+$H_x$ 只作用于第一个因子，$H_y$ 只作用于第二个因子，故一维本征值相加：
+\begin{equation}
+  \boxed{E_{n_x,n_y}
+    =\hbar\omega_x\left(n_x+\tfrac12\right)
+      +\hbar\omega_y\left(n_y+\tfrac12\right)}.
+\end{equation}
+这里量子数从 $0$ 开始，与盒子问题不同；谐振子的 $n=0$ 波函数非零，代表具有零点能的基态。归一化满足
+\begin{equation}
+  \int_{\real^2}|\psi_{n_x,n_y}|^2\dd x\dd y
+  =\left(\int_{\real}|\phi_{n_x}^{(\omega_x)}|^2\dd x\right)
+   \left(\int_{\real}|\phi_{n_y}^{(\omega_y)}|^2\dd y\right)=1.
+\end{equation}
+
+\textbf{宇称。}本题的 parity（宇称）指两个坐标同时反转：
+\begin{equation}
+  (\Pi\psi)(x,y)=\psi(-x,-y).
+\end{equation}
+由一维关系 $\phi_n^{(\Omega)}(-u)=(-1)^n\phi_n^{(\Omega)}(u)$，
+\begin{align}
+  \psi_{n_x,n_y}(-x,-y)
+  &=(-1)^{n_x}\phi_{n_x}^{(\omega_x)}(x)
+    (-1)^{n_y}\phi_{n_y}^{(\omega_y)}(y)\notag\\
+  &=\boxed{(-1)^{n_x+n_y}\psi_{n_x,n_y}(x,y)}.
+\end{align}
+因此 $n_x+n_y$ 为偶数时是偶宇称，为奇数时是奇宇称。这里不是仅反转其中一个坐标。
+
+\textbf{各向同性能级与简并度。}令 $\omega_x=\omega_y=\omega$，则
+\begin{equation}
+  \boxed{E_N=\hbar\omega(N+1)},\qquad
+  N=n_x+n_y=0,1,2,\ldots.
+\end{equation}
+对固定的 $N$，允许的有序配对为
+\begin{equation}
+  (n_x,n_y)=(0,N),(1,N-1),\ldots,(N,0).
+\end{equation}
+$n_x$ 可取 $0$ 到 $N$，每选定一个 $n_x$，$n_y=N-n_x$ 就唯一确定，故有 $N+1$ 个配对。乘积基的正交性为
+\begin{equation}
+  \braket{n_x',n_y'}{n_x,n_y}
+    =\delta_{n_x'n_x}\delta_{n_y'n_y},
+\end{equation}
+而两组一维本征基的乘积是完备的，因此这些态构成该能级的一组基，简并度为
+\begin{equation}
+  \boxed{g_N=N+1}.
+\end{equation}
+同一能级内每个乘积基向量都有宇称 $(-1)^N$。由 $\Pi$ 的线性性，任意线性组合
+\begin{equation}
+  \Psi_N=\sum_{j=0}^{N}c_j\psi_{j,N-j}
+  \quad\Longrightarrow\quad
+  \Pi\Psi_N=(-1)^N\Psi_N.
+\end{equation}
+所以本题的能量简并不导致宇称不确定；该结论来自此能级内各基向量具有相同宇称，并非对任意简并系统的普遍结论。
+\end{checkedsolution}

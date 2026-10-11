@@ -252,3 +252,90 @@ $P_r$ 的经典对应物为 $\mu(\dot x_1-\dot x_2)$，不是一般的 $p_1-p_2$
 \relatedexercise{QM-C10-S01-E02}{教材习题 10.1.3 的正常模量子化} 将两个耦合粒子改写为频率不同的独立模式。该线性正则变换可在量子化前进行，也可在原坐标量子化后改写微分方程；本次只选做前一路线。对曲线坐标或一般非线性正则变换，不能据此保证直接替换给出唯一量子化；教材提醒先在笛卡尔坐标量子化，再处理坐标变换。
 
 \textbf{一分钟回顾。}联合波函数描述整个系统；边缘密度对未观察的位置积分。张量积的维数相乘，乘积基完备不等于任意态都是乘积；相位可以使位置分布独立的纯态仍然纠缠。无相互作用时总能量相加、传播算符分解，但初态未必可分。相互作用二体问题有时能按质心与相对运动分离，说明可分离性必须注明相对于哪组自由度。
+
+\section{第 10.2 节：更多粒子与更多空间维度}
+\label{section:QM-C10-S02}
+\studymeta
+  {QM-C10-S02}
+  {2026-10-10 至 2026-10-11}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 10 章 \S 10.2 More Particles in More Dimensions；印刷页 pp.~259--260，PDF pp.~269--270，至 \S 10.3 开始前}
+  {一块理论与两道选定习题已核对；笔记已确认}
+
+\textbf{范围与主线。}本节把上一节的多自由度形式推广到更多空间方向。教材正文集中于记号与联合表象，以下将其算符关系、归一化和演化方程展开说明。无编号 Example；习题选做 10.2.1，以及 10.2.2 第 (1)、(2) 问和第 (3) 问的简并度部分，不收录未选做部分。这里只讨论轨道自由度，不引入自旋或下一节的全同粒子约束。
+
+\notetopic{QM-C10-S02-T01}{粒子编号、空间方向与联合表象}
+\textbf{两个一维粒子与一个二维粒子。}前者需要位置变量 $(x_1,x_2)$，后者需要 $(x,y)$；都对应两个位置自由度，但物理含义不同：下标 $1,2$ 区分粒子，$x,y$ 区分同一个粒子的空间方向。二维单粒子的正则关系为
+\begin{equation}
+  [X,P_x]=[Y,P_y]=\ii\hbar I,\qquad
+  [X,Y]=[P_x,P_y]=[X,P_y]=[Y,P_x]=0.
+\end{equation}
+因此可以使用共同位置基 $\ket{x,y}$，并定义 $\psi(x,y)=\braket{x,y}{\psi}$。对质量 $m$、位置势 $V(x,y)$ 的模型，位置表象中的演化方程为
+\begin{equation}
+  \ii\hbar\frac{\partial\psi}{\partial t}
+  =\left[-\frac{\hbar^2}{2m}
+    \left(\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}\right)
+    +V(x,y)\right]\psi.
+\end{equation}
+若上一节两粒子质量均为 $m$，且势能形式与定义域对应，方程在重新命名变量后具有相同结构。\textbf{数学形式可以对应，不表示两个物理系统相同。}
+
+\textbf{三维记号。}将三个实坐标合写为 $\mathbf r=(x,y,z)$，令
+\begin{equation}
+  \ket{\mathbf r}=\ket{x,y,z},\qquad
+  \psi(\mathbf r)=\braket{\mathbf r}{\psi}.
+\end{equation}
+广义正交归一和完备关系为
+\begin{align}
+  \braket{\mathbf r}{\mathbf r'}
+    &=\delta(x-x')\delta(y-y')\delta(z-z')
+      =\delta^{(3)}(\mathbf r-\mathbf r'),\\
+  \int_{\real^3}\ketbra{\mathbf r}{\mathbf r}\dd^3r&=I.
+\end{align}
+$\delta^{(3)}$ 表示三维 delta，不是一维 delta 的三次方；$\dd^3r=\dd x\dd y\dd z$。因此
+\begin{equation}
+  \int_{\real^3}|\psi(\mathbf r)|^2\dd^3r=1,
+\end{equation}
+且 $|\psi|^2$ 是单位体积的概率密度。动量同样写成 $\mathbf p=(p_x,p_y,p_z)$，共同本征基满足 $\braket{\mathbf p}{\mathbf p'}=\delta^{(3)}(\mathbf p-\mathbf p')$。
+
+\textbf{多个三维粒子。}位置基记为 $\ket{\mathbf r_1,\ldots,\mathbf r_N}$，动量基记为 $\ket{\mathbf p_1,\ldots,\mathbf p_N}$。每个粗体标签包含三个分量；例如 $\ket{\mathbf p_1,\mathbf p_2}$ 同时指定两个粒子各自的三维动量。波函数及归一化为
+\begin{equation}
+  \Psi(\mathbf r_1,\ldots,\mathbf r_N,t)
+    =\braket{\mathbf r_1,\ldots,\mathbf r_N}{\Psi(t)},\qquad
+  \int_{\real^{3N}}|\Psi|^2\dd^3r_1\cdots\dd^3r_N=1.
+\end{equation}
+物理空间仍为三维，构型空间为 $3N$ 维；相应的 $L^2(\real^{3N})$ Hilbert 空间是无限维的，不是 $3N$ 维。
+
+令 $i,j$ 标记粒子，$\alpha,\beta\in\{x,y,z\}$ 标记方向。基本关系统一为
+\begin{equation}
+  \boxed{[X_{i\alpha},P_{j\beta}]
+    =\ii\hbar\delta_{ij}\delta_{\alpha\beta}I},\qquad
+  [X_{i\alpha},X_{j\beta}]=[P_{i\alpha},P_{j\beta}]=0.
+\end{equation}
+只有同一粒子、同一方向的位置和动量构成一对正则共轭量。位置表象中
+\begin{equation}
+  X_{i\alpha}\Psi=r_{i\alpha}\Psi,\qquad
+  P_{i\alpha}\Psi=-\ii\hbar\frac{\partial\Psi}{\partial r_{i\alpha}},
+\end{equation}
+故非相对论位置势模型的联合方程为
+\begin{equation}
+  \boxed{\ii\hbar\partial_t\Psi
+   =\left[-\sum_{i=1}^{N}\frac{\hbar^2}{2m_i}\nabla_i^2
+     +V(\mathbf r_1,\ldots,\mathbf r_N,t)\right]\Psi}.
+\end{equation}
+$\nabla_i^2$ 只对第 $i$ 个粒子的三个坐标求二阶导数；增加自由度并未改变 Schr\"odinger 演化规律。
+
+\textbf{联合表象不等于动力学分离（对话补充）。}两个位置变量可以分别取值，并不表示它们在概率上独立，也不表示运动互不影响。对二维单粒子，
+\begin{equation}
+  L^2(\real^2)\simeq L^2(\real_x)\otimes L^2(\real_y)
+\end{equation}
+是空间的构造，而不是对任意 $\psi(x,y)$ 施加 $\psi=f(x)g(y)$ 的限制。要按 $x,y$ 方向拆成独立问题，还须有
+\begin{equation}
+  H=H_x\otimes I_y+I_x\otimes H_y.
+\end{equation}
+对于标准笛卡尔动能，这要求势能能写成 $V_x(x)+V_y(y)$，并且定义域和边界条件也与分离相容。按\textbf{不同粒子}拆分 Hamiltonian，同样需要检查这些条件；粒子编号不同本身并不排除相互作用。
+
+\relatedexercise{QM-C10-S02-E01}{三维立方盒} 展示三个方向的方程与边界条件同时可分离。
+
+\relatedexercise{QM-C10-S02-E02}{二维谐振子} 在乘积本征基上讨论宇称与能级简并。
+
+\textbf{一分钟回顾。}粒子编号和空间方向都可标记自由度，但物理含义不同。三维 delta 是三个一维 delta 的乘积；$N$ 个三维粒子的波函数依赖 $3N$ 个位置变量。联合表象并不要求动力学独立；能否分离须检查 Hamiltonian 及边界条件，能否把给定态写成乘积则是另一件事。
