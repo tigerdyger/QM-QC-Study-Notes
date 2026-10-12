@@ -268,3 +268,241 @@ $n_x$ 可取 $0$ 到 $N$，每选定一个 $n_x$，$n_y=N-n_x$ 就唯一确定�
 \end{equation}
 所以本题的能量简并不导致宇称不确定；该结论来自此能级内各基向量具有相同宇称，并非对任意简并系统的普遍结论。
 \end{checkedsolution}
+
+\section{第 10.3 节教材示例与选定习题}
+\label{exercise-set:QM-C10-S03}
+\exercisemeta
+  {QM-C10-S03-EX}
+  {2026-10-11 至 2026-10-12}
+  {Shankar，第 10.3 节；正文示例印刷页 pp.~268--271、274--277，PDF pp.~278--281、284--287；Exercises 印刷页 pp.~277--278，PDF pp.~287--288}
+  {保留两个无独立编号的教材正文示例；选做 10.3.1、10.3.3、10.3.5 第 (4) 问；其余未选做}
+  {教材示例与三道选定习题已核对；笔记已确认}
+
+\exercisequestion{QM-C10-S03-E01}{教材正文示例：盒中两粒子的交换干涉}
+\textbf{来源：}印刷页 pp.~268--271，PDF pp.~278--281。此为教材正文中的计算示例，不另编教材 Example 编号。
+
+\textbf{对应知识点：}\relatedtopic{QM-C10-S03-T04}{交换干涉与无标签密度}。
+
+\textbf{情景。}两个全同、无相互作用的粒子位于 $0<x<L$ 的无限深方势阱。只考虑空间自由度，或假设内部态相同；一个占据 $n=3$、另一个占据 $n=4$ 的单粒子态。构造归一化对称与反对称态，比较不分辨粒子标签的位置测量结果。对照制备为两个可区分粒子分别处于这两个轨道的乘积态。
+
+\begin{checkedsolution}
+\textbf{构造与归一化。}一维本征函数为
+\begin{equation}
+  u_n(x)=\sqrt{\frac2L}\sin\frac{n\pi x}{L},\qquad 0<x<L,
+\end{equation}
+阱外取零，且 $\braket{3}{4}=0$。因此
+\begin{equation}
+  \ket{\Psi_{S/A}}=\frac{\ket{3,4}\pm\ket{4,3}}{\sqrt2},\qquad
+  \Psi_{S/A}(x_1,x_2)=\frac{u_3(x_1)u_4(x_2)\pm u_4(x_1)u_3(x_2)}{\sqrt2}.
+\end{equation}
+两个乘积项各自的范数平方为 $1$；交叉内积为
+\begin{equation}
+  \braket{3,4}{4,3}=\braket{3}{4}\braket{4}{3}=0.
+\end{equation}
+故 $\braket{\Psi_{S/A}}{\Psi_{S/A}}=(1+1)/2=1$。显式位置形式是
+\begin{equation}
+  \Psi_{S/A}=\frac{\sqrt2}{L}
+   \left[\sin\frac{3\pi x_1}{L}\sin\frac{4\pi x_2}{L}
+    \pm\sin\frac{4\pi x_1}{L}\sin\frac{3\pi x_2}{L}\right].
+\end{equation}
+
+\textbf{密度比较。}记 $F=u_3(x_1)u_4(x_2)$、$G=u_4(x_1)u_3(x_2)$。沿用教材的无标签密度约定 $P=2|\Psi|^2$，
+\begin{align}
+  P_S&=|F|^2+|G|^2+2\operatorname{Re}(F^*G),\\
+  P_A&=|F|^2+|G|^2-2\operatorname{Re}(F^*G),\\
+  P_D&=|F|^2+|G|^2.
+\end{align}
+最后一式把可区分对照中的两种标签记录的概率相加，不把它们的振幅相加。三者均只在无序构型的一份代表区域（例如 $x_1<x_2$）积分，或在全有序平面积分后除以 $2$。
+
+在 $x_1,x_2\to x$ 的重合极限，$F,G\to u_3(x)u_4(x)$，所以
+\begin{equation}
+  \boxed{P_A(x,x)=0,\qquad
+    P_S(x,x)=4|u_3(x)u_4(x)|^2=2P_D(x,x)}.
+\end{equation}
+这是符合密度的比较，不是“连续变量恰好等于一点”的概率。有限探测区间中的概率仍须积分。在本例中不需要粒子间吸引力或排斥力，交换符号本身就产生差别；若存在未计入的内部标签，则须先对完整态计算并对未观测变量求和。
+\end{checkedsolution}
+
+\exercisequestion{QM-C10-S03-E02}{教材正文示例：远距离局域波包与有效标签}
+\textbf{来源：}印刷页 pp.~274--277，PDF pp.~284--287。以下将教材的地球--月球局域情景用波包记号重述，并补充粒子数密度的计数说明。
+
+\textbf{对应知识点：}\relatedtopic{QM-C10-S03-T06}{忽略交换效应的条件}。
+
+\textbf{情景。}两个归一化单粒子波包 $g_E,g_M$ 分别局域在远隔的区域 $E,M$。先用支撑完全不相交的理想化情形作精确计算，再讨论真实波包的近似。比较局部位置探测与不保留来源信息的联合动量探测。
+
+\begin{checkedsolution}
+\textbf{完整态。}理想的不相交支撑给出 $\braket{g_E}{g_M}=0$，因此
+\begin{equation}
+  \Psi_{S/A}(x_1,x_2)
+   =\frac{g_E(x_1)g_M(x_2)\pm g_M(x_1)g_E(x_2)}{\sqrt2}.
+\end{equation}
+这仍是对称或反对称态，不是带粒子身份标签的乘积。真实的远隔高斯波包尾部不严格为零，重叠一般很小而非等于零；此时还须修正归一化，$1/\sqrt2$ 只是重叠可忽略时的近似。
+
+\textbf{局部联合位置测量。}令 $x_E\in E$、$x_M\in M$。由于 $g_M(x_E)=g_E(x_M)=0$，交换后的安排在这一探测事件中无贡献，故
+\begin{equation}
+  \boxed{P_{S/A}(x_E,x_M)=2|\Psi_{S/A}(x_E,x_M)|^2
+    =|g_E(x_E)|^2|g_M(x_M)|^2}.
+\end{equation}
+对 $E\times M$ 积分得到 $1$。局部实验因此可以把两个波包分别当作“位于 $E$ 的粒子”和“位于 $M$ 的粒子”，但这种有效标签不等于追踪一个永久的内禀身份。
+
+\textbf{边缘密度与粒子数密度。}对记账坐标 $x_2$ 积分，交叉项含 $\braket{g_E}{g_M}=0$，所以
+\begin{align}
+  \rho_1(x)&=\int|\Psi_{S/A}(x,x_2)|^2\dd x_2
+    =\frac12\bigl(|g_E(x)|^2+|g_M(x)|^2\bigr),\\
+  n(x)&=2\rho_1(x)=|g_E(x)|^2+|g_M(x)|^2.
+\end{align}
+于是
+\begin{equation}
+  \int_{\real}\rho_1(x)\dd x=1,\qquad
+  \int_{\real}n(x)\dd x=2,\qquad
+  \int_E n(x)\dd x=\int_M n(x)\dd x=1.
+\end{equation}
+每个区域恰有一个粒子，不是“每个区域只有半个粒子”。$\rho_1$ 中的 $1/2$ 来自带编号坐标的记账，$n$ 才给出局部粒子数的期望。
+
+\textbf{为什么不能推广到所有测量？}例如 $g_M(x)=g_E(x-d)$。Fourier 变换给出
+\begin{equation}
+  \widetilde g_M(p)=\ee^{-\ii pd/\hbar}\widetilde g_E(p),
+\end{equation}
+故两个动量分布完全重叠，而非随着 $d$ 增大分开。完整的联合动量振幅为
+\begin{equation}
+  \widetilde\Psi_{S/A}(p_1,p_2)
+    =\frac{\widetilde g_E(p_1)\widetilde g_M(p_2)
+       \pm\widetilde g_M(p_1)\widetilde g_E(p_2)}{\sqrt2}.
+\end{equation}
+代入平移关系，其模平方中出现
+\begin{equation}
+  |\widetilde\Psi_{S/A}|^2
+   =|\widetilde g_E(p_1)\widetilde g_E(p_2)|^2
+     \left[1\pm\cos\frac{(p_1-p_2)d}{\hbar}\right].
+\end{equation}
+这是不保留来源位置信息、并能分辨相应条纹的联合动量测量的预测。局部位置探测可忽略交换，不保证这种测量也可忽略；若测量仍保留来源标签或分辨率不足，具体结果须按相应测量方式另算。
+\end{checkedsolution}
+
+\exercisequestion{QM-C10-S03-E03}{教材习题 10.3.1：非正交玻色态的归一化}
+\textbf{来源与对应知识点：}印刷页 p.~277，PDF p.~287；\relatedtopic{QM-C10-S03-T03}{对称化与归一化}。
+
+\textbf{题意。}两个全同玻色子分别涉及已归一化但不必正交的单粒子态 $\ket\phi,\ket\psi$。记 $s=\braket\phi\psi$，求对称化态
+\begin{equation}
+  \ket\Psi=N(\ket{\phi,\psi}+\ket{\psi,\phi}),\qquad N>0
+\end{equation}
+的归一化系数。
+
+\begin{checkedsolution}
+张量积内积逐因子相乘，两个对角项为
+\begin{equation}
+  \braket{\phi,\psi}{\phi,\psi}
+    =\braket\phi\phi\braket\psi\psi=1,
+  \qquad \braket{\psi,\phi}{\psi,\phi}=1.
+\end{equation}
+交叉项则为
+\begin{equation}
+  \braket{\phi,\psi}{\psi,\phi}
+   =\braket\phi\psi\braket\psi\phi=ss^*=|s|^2,
+\end{equation}
+另一个交叉项同样为 $|s|^2$。因此
+\begin{align}
+  1=\braket\Psi\Psi
+   &=N^2\bigl(1+|s|^2+|s|^2+1\bigr),\\
+  N&=\boxed{\frac1{\sqrt{2(1+|s|^2)}}}.
+\end{align}
+最终
+\begin{equation}
+  \boxed{\ket\Psi=
+   \frac{\ket\phi_1\ket\psi_2+\ket\psi_1\ket\phi_2}
+        {\sqrt{2(1+|\braket\phi\psi|^2)}}}.
+\end{equation}
+当 $s=0$ 时恢复 $1/\sqrt2$。当 $|s|=1$ 时，两态仅差整体相位；写成 $\ket\psi=\ee^{\ii\theta}\ket\phi$，分子为 $2\ee^{\ii\theta}\ket{\phi,\phi}$，而 $N=1/2$，故最终就是归一化的同态占据，至多带整体相位。非正交时不能删去交叉项并照搬 $1/\sqrt2$。
+\end{checkedsolution}
+
+\exercisequestion{QM-C10-S03-E04}{教材习题 10.3.3：三个粒子的状态计数}
+\textbf{来源与对应知识点：}印刷页 p.~277，PDF p.~287；\relatedtopic{QM-C10-S03-T05}{多粒子对称化与占据数}。
+
+\textbf{题意。}单粒子空间由三个正交归一的完整态 $a,b,c$ 张成，放入三个粒子。分别计算可区分粒子、全同玻色子、全同费米子的独立多粒子基向量数。这里数的是空间维数，不是所有线性组合的个数，也不特指最低能量的“基态”。
+
+\begin{checkedsolution}
+\textbf{可区分粒子。}三个标签各有三种选择，有序乘积基为 $\ket{i,j,k}$，故
+\begin{equation}
+  \boxed{N_D=3^3=27}.
+\end{equation}
+
+\textbf{玻色子。}同一占据的排列对称化后只算一个基向量，用占据数表示：
+\begin{equation}
+  n_a+n_b+n_c=3,\qquad n_a,n_b,n_c\ge0.
+\end{equation}
+在三个粒子符号中放入两个分隔符，五个位置中选择两个放分隔符，得到
+\begin{equation}
+  \boxed{N_B=\binom52=\binom53=10}.
+\end{equation}
+也可按占据型核对：$(3,0,0)$ 的排列有 $3$ 种，$(2,1,0)$ 有 $6$ 种，$(1,1,1)$ 有 $1$ 种，总计 $10$。
+
+\textbf{费米子。}完整单粒子态不能重复占据，所以 $n_a,n_b,n_c\in\{0,1\}$，而总数为 $3$，唯一选择为 $(1,1,1)$：
+\begin{equation}
+  \boxed{N_F=\binom33=1}.
+\end{equation}
+六个标签排列组成同一个归一化 Slater 态，不是六个独立费米态。汇总为
+\begin{center}
+\begin{tabular}{lc}
+  \toprule
+  粒子类型 & 独立多粒子基向量数 \\
+  \midrule
+  可区分粒子 & $27$ \\
+  全同玻色子 & $10$ \\
+  全同费米子 & $1$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+这里 $10+1\ne27$，与三粒子张量积还包含混合对称性部分一致；不能套用两粒子空间仅分成 $S,A$ 两部分的维数分解。
+\end{checkedsolution}
+
+\exercisequestion{QM-C10-S03-E05}{教材习题 10.3.5 第 (4) 问：交换对称性的保持}
+\textbf{来源与对应知识点：}印刷页 p.~278，PDF p.~288；\relatedtopic{QM-C10-S03-T02}{交换算符与允许的状态空间}。仅选做第 (4) 问，前面小问的交换性质在此作为已知条件使用。
+
+\textbf{题意与本次具体化。}证明交换对称的 Hamiltonian 所产生的时间演化保持原有的交换符号。本次用以下非相对论模型具体演算：
+\begin{equation}
+  H=\frac{P_1^2}{2m}+\frac{P_2^2}{2m}+V(X_1,X_2),\qquad
+  V(X_1,X_2)=V(X_2,X_1).
+\end{equation}
+假定 $H$ 不显含时间、自伴，其定义域与边界条件也在粒子交换下不变。$V$ 可包含相互作用，无须拆成两项单粒子势。交换算符满足
+\begin{equation}
+  \mathsf P_{12}^2=I,\qquad
+  \mathsf P_{12}X_1\mathsf P_{12}=X_2,\qquad
+  \mathsf P_{12}P_1\mathsf P_{12}=P_2,
+\end{equation}
+反向交换同理。若 $\mathsf P_{12}\ket{\Psi(0)}=\eta\ket{\Psi(0)}$，$\eta=\pm1$，证明 $\mathsf P_{12}\ket{\Psi(t)}=\eta\ket{\Psi(t)}$。
+
+\begin{checkedsolution}
+\textbf{Hamiltonian 不变。}由 $\mathsf P_{12}^2=I$，
+\begin{equation}
+  \mathsf P_{12}P_1^2\mathsf P_{12}
+   =(\mathsf P_{12}P_1\mathsf P_{12})
+    (\mathsf P_{12}P_1\mathsf P_{12})=P_2^2.
+\end{equation}
+另一动能项同理；交换势能的两个变量后利用其对称性，得
+\begin{align}
+  \mathsf P_{12}H\mathsf P_{12}
+   &=\frac{P_2^2}{2m}+\frac{P_1^2}{2m}+V(X_2,X_1)\notag\\
+   &=H.
+\end{align}
+右乘 $\mathsf P_{12}$ 即有 $\mathsf P_{12}H=H\mathsf P_{12}$，所以
+\begin{equation}
+  \boxed{[\mathsf P_{12},H]=0}.
+\end{equation}
+
+\textbf{演化算符不变。}时间演化为 $U(t)=\ee^{-\ii Ht/\hbar}$。算符函数在酉共轭下保持相应变换，故
+\begin{align}
+  \mathsf P_{12}U(t)\mathsf P_{12}
+   &=\exp\left[-\frac{\ii t}{\hbar}
+       (\mathsf P_{12}H\mathsf P_{12})\right]\notag\\
+   &=\exp\left(-\frac{\ii t}{\hbar}H\right)=U(t).
+\end{align}
+因此 $[\mathsf P_{12},U(t)]=0$。这里不要求把无界 $H$ 的指数幂级数逐项作用于任意态；自伴算符的指数可按谱定义。
+
+\textbf{保持交换符号。}利用对易关系，
+\begin{align}
+  \mathsf P_{12}\ket{\Psi(t)}
+   &=\mathsf P_{12}U(t)\ket{\Psi(0)}\notag\\
+   &=U(t)\mathsf P_{12}\ket{\Psi(0)}\notag\\
+   &=\eta U(t)\ket{\Psi(0)}
+    =\boxed{\eta\ket{\Psi(t)}}.
+\end{align}
+所以初始对称态始终处于对称子空间，初始反对称态始终处于反对称子空间。这是整个状态的交换性质被保持，不只是某个期望值守恒；交换对称的相互作用也不会破坏这一结论。
+\end{checkedsolution}

@@ -339,3 +339,215 @@ $\nabla_i^2$ 只对第 $i$ 个粒子的三个坐标求二阶导数；增加自�
 \relatedexercise{QM-C10-S02-E02}{二维谐振子} 在乘积本征基上讨论宇称与能级简并。
 
 \textbf{一分钟回顾。}粒子编号和空间方向都可标记自由度，但物理含义不同。三维 delta 是三个一维 delta 的乘积；$N$ 个三维粒子的波函数依赖 $3N$ 个位置变量。联合表象并不要求动力学独立；能否分离须检查 Hamiltonian 及边界条件，能否把给定态写成乘积则是另一件事。
+
+\section{第 10.3 节：全同粒子}
+\label{section:QM-C10-S03}
+\studymeta
+  {QM-C10-S03}
+  {2026-10-11 至 2026-10-12}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 10 章 \S 10.3 Identical Particles；正文印刷页 pp.~260--277，PDF pp.~270--287；习题印刷页 pp.~277--278，PDF pp.~287--288}
+  {六块讲解与三道选定习题已核对；笔记已确认}
+
+\textbf{范围与主线。}从全同性与可区分性的区别出发，建立两粒子的交换对称性、概率计数与交换干涉，再推广到 $N$ 个粒子，最后限定忽略交换效应的近似条件。本节无独立编号 Example；盒中两粒子和远距离局域波包两个教材正文示例置于课程题目板块。习题选做 10.3.1、10.3.3 和 10.3.5 第 (4) 问，不收录课堂概念检查。以下采用教材的普通玻色子、费米子框架，不讨论其他统计类型。
+
+\notetopic{QM-C10-S03-T01}{全同性、粒子标签与可区分性}
+\textbf{全同不等于同态。}identical particles（全同粒子）具有相同的内禀性质，如质量、电荷和自旋量子数 $s$。位置、动量、轨道和自旋投影属于状态信息；两个电子处于不同位置或不同自旋状态，并不会因此变成不同种类的粒子。
+
+\textbf{经典标签为何可用。}教材图 10.1 的两只同样台球，即使终态外观不能区分，经典理论仍允许用连续运动历史追溯它们来自何处。因此可以给它们附上持续有效的身份标签。标准量子态描述不提供这种未经测量的经典轨迹，不能照搬“每个粒子早已有一条可追踪身份”的假设。
+
+\textbf{交换不产生新物理状态。}在带编号的张量积空间中，$\ket{a,b}=\ket a_1\otimes\ket b_2$ 与 $\ket{b,a}$ 是不同的记账向量。对全同粒子，交换所有粒子标签应不改变物理状态；允许纯态在交换下至多获得整体相位。这是本节采用的物理要求，不能仅由不确定性关系或张量积代数推出。位置测量给出的是无序结果对 $\{a,b\}$，而非带永久身份的有序对；仅知道和 $a+b$ 则更弱，并不能唯一确定这对结果。
+
+\notetopic{QM-C10-S03-T02}{交换算符、玻色子、费米子与 Pauli 原理}
+\textbf{交换算符。}定义
+\begin{equation}
+  \mathsf P_{12}\ket{a,b}=\ket{b,a},\qquad
+  \mathsf P_{12}^2=I,\qquad
+  \mathsf P_{12}^{\dagger}=\mathsf P_{12}^{-1}=\mathsf P_{12}.
+\end{equation}
+$\mathsf P_{12}$ 是交换算符，不是动量 $P_i$。若非零物理态满足 $\mathsf P_{12}\ket\Psi=\eta\ket\Psi$，交换两次给出
+\begin{equation}
+  \ket\Psi=\mathsf P_{12}^2\ket\Psi=\eta^2\ket\Psi
+  \quad\Longrightarrow\quad \boxed{\eta=\pm1}.
+\end{equation}
+取 $\eta=+1$ 的称 symmetric（对称）态，取 $\eta=-1$ 的称 antisymmetric（反对称）态。
+
+\textbf{两个正交单粒子态。}设 $\ket a,\ket b$ 已归一化且正交。将 $\ket\Psi=c_1\ket{a,b}+c_2\ket{b,a}$ 代入交换条件，比较系数得 $c_2=\eta c_1$，故
+\begin{equation}
+  \boxed{\ket{a,b;S/A}=\frac{\ket{a,b}\pm\ket{b,a}}{\sqrt2}},
+  \qquad a\ne b.
+  \label{eq:QM-C10-S03-two-states}
+\end{equation}
+玻色子（bosons）使用对称态，费米子（fermions）使用反对称态。同一物种的统计类型固定；一般的 $S$ 与 $A$ 相干叠加不满足固定交换符号的要求。\textbf{交换后整体变号不改变该态，但对称态和反对称态不是同一个态}：两项间的相对符号不同，不能用整体相位消除，而且两者正交。
+
+\textbf{物理输入的边界。}交换两次的论证只给出本框架内的 $\pm1$，不能决定某物种取哪一个。教材引述三维相对论量子场论中的 spin--statistics relation（自旋--统计关系）：整数自旋量子数对应玻色子，半整数对应费米子；本节不证明该定理。将电子的轨道运动限制在一维不会消除其内部自旋，也不会改变其费米性质。
+
+\textbf{Pauli exclusion principle（泡利不相容原理）。}若两个费米子占据同一\textbf{完整单粒子态}，则反对称化得到
+\begin{equation}
+  \ket{a,a}-\ket{a,a}=0,
+\end{equation}
+零向量不是物理态，故这样的占据不允许。完整态须包含自旋等所有自由度；例如 $\phi(\mathbf r)\chi_\uparrow(s)$ 与 $\phi(\mathbf r)\chi_\downarrow(s)$ 正交，可以共享同一空间轨道。反对称性约束的是完整波函数，不必由空间部分单独承担。
+
+\textbf{对话补充：不相互作用也必须反对称。}关掉相互作用只改变 $H$，不会改变粒子种类和允许的状态空间。若 $H=H_1+H_2$ 且单粒子本征值为 $E_a,E_b$，仍有
+\begin{equation}
+  (H_1+H_2)\ket{a,b;A}=(E_a+E_b)\ket{a,b;A}.
+\end{equation}
+这也体现了 \S 10.1 的区别：Hamiltonian 可拆开，不意味着给定态能拆成按粒子标签的乘积。交换对称的演化还会保持原来的 $S/A$ 子空间，证明见 \relatedexercise{QM-C10-S03-E05}{习题 10.3.5 第 (4) 问}。
+
+\notetopic{QM-C10-S03-T03}{物理子空间、归一化与无标签概率}
+\textbf{两粒子 Hilbert 空间。}先在 $\hilbert\otimes\hilbert$ 中记账，再选取相应物理子空间：
+\begin{equation}
+  \hilbert\otimes\hilbert=\hilbert_S\oplus\hilbert_A.
+\end{equation}
+不同交换本征值的向量正交。若单粒子空间维数为 $d$，玻色基按 $a\le b$ 枚举，费米基按 $a<b$ 枚举，因此
+\begin{equation}
+  \dim\hilbert_S=\frac{d(d+1)}2,\qquad
+  \dim\hilbert_A=\frac{d(d-1)}2,
+\end{equation}
+两者相加为 $d^2$。玻色子的同态占据 $\ket{a,a}$ 已经归一化，不再乘 $\sqrt2$；式 \eqref{eq:QM-C10-S03-two-states} 的系数只适用于不同的正交态。非正交情形须保留内积交叉项，见 \relatedexercise{QM-C10-S03-E03}{习题 10.3.1}。
+
+\textbf{离散结果每种只数一次。}在上述物理基下，展开系数的模平方给出相应无序结果的概率。玻色子对 $a\le b$ 求和，费米子对 $a<b$ 求和。若改用完整有序双重求和，只能把 $a\ne b$ 的重复部分除以 $2$；玻色子的 $a=b$ 项本来只出现一次，不能整体机械减半。
+
+\textbf{位置波函数的通常归一化。}以下先只考虑一维位置自由度，记
+\begin{equation}
+  \psi_\eta(x_1,x_2)=\braket{x_1,x_2}{\Psi_\eta},\qquad
+  \psi_\eta(x_2,x_1)=\eta\psi_\eta(x_1,x_2),\qquad
+  \int_{\real^2}|\psi_\eta|^2\dd x_1\dd x_2=1.
+\end{equation}
+两种交换符号都使 $|\psi_\eta|^2$ 对称，但不意味着 $S$ 与 $A$ 的概率分布相同。
+
+对互不重叠的区域 $A,B$，“一个粒子在 $A$、另一个在 $B$”包含两种坐标记录，故
+\begin{align}
+  \Pr(A,B)
+  &=\int_A\dd x_1\int_B\dd x_2\,|\psi_\eta|^2
+    +\int_B\dd x_1\int_A\dd x_2\,|\psi_\eta|^2\notag\\
+  &=\boxed{2\int_A\dd x_1\int_B\dd x_2\,|\psi_\eta(x_1,x_2)|^2}.
+  \label{eq:QM-C10-S03-unordered-event}
+\end{align}
+这是同一事件在有序坐标中的两个不重叠积分区域；交换干涉已包含在 $\psi_\eta$ 中，不在这一步再次相加振幅。
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85,>=Stealth]
+  \draw[->] (0,0) -- (4.2,0) node[right] {$x_1$};
+  \draw[->] (0,0) -- (0,4.2) node[above] {$x_2$};
+  \draw[dashed,gray] (0,0) -- (3.9,3.9) node[above right] {$x_1=x_2$};
+  \filldraw[fill=noteBlue!12,draw=noteBlue] (0.5,2.4) rectangle (1.5,3.4);
+  \filldraw[fill=accentRed!10,draw=accentRed] (2.4,0.5) rectangle (3.4,1.5);
+  \node at (1,2.9) {$A\times B$};
+  \node at (2.9,1) {$B\times A$};
+  \node[below] at (1,0) {$A$}; \node[below] at (2.9,0) {$B$};
+  \node[left] at (0,1) {$A$}; \node[left] at (0,2.9) {$B$};
+\end{tikzpicture}
+
+{\small 无标签事件对应两个镜像区域；只保留一个区域时须合并两者的概率权重。}
+\end{center}
+
+\textbf{教材中因子 $2$ 的来源。}对 $x_1\ne x_2$，引入对称化的广义位置态
+\begin{equation}
+  \ket{x_1,x_2;\eta}
+   =\frac{\ket{x_1,x_2}+\eta\ket{x_2,x_1}}{\sqrt2}.
+\end{equation}
+利用交换性质，
+\begin{equation}
+  \braket{x_1,x_2;\eta}{\Psi_\eta}
+   =\frac{\psi_\eta(x_1,x_2)+\eta\psi_\eta(x_2,x_1)}{\sqrt2}
+   =\sqrt2\,\psi_\eta(x_1,x_2).
+\end{equation}
+教材因此定义无标签密度 $P_\eta=2|\psi_\eta|^2$，归一化必须相应写成
+\begin{equation}
+  \boxed{\int_{x_1<x_2}P_\eta\dd x_1\dd x_2
+    =\frac12\int_{\real^2}P_\eta\dd x_1\dd x_2=1}.
+\end{equation}
+这没有修改 Born 规则，只改变了计数约定。连续位置态使用分布归一化，不是普通单位向量；对于通常的连续联合密度，对角线 $x_1=x_2$ 测度为零，其上的密度值按极限理解。离散同态占据不能用这一理由忽略。
+
+\notetopic{QM-C10-S03-T04}{交换干涉与统计类型的实验判定}
+取两个正交归一单粒子波函数 $u,v$，定义两种安排的振幅
+\begin{equation}
+  F=u(x_1)v(x_2),\qquad G=v(x_1)u(x_2),\qquad
+  \psi_{S/A}=\frac{F\pm G}{\sqrt2}.
+\end{equation}
+按上一主题的无标签计数约定，
+\begin{equation}
+  \boxed{P_{S/A}=|F|^2+|G|^2\pm2\operatorname{Re}(F^*G)}.
+  \label{eq:QM-C10-S03-interference}
+\end{equation}
+作为对照，两个\textbf{可区分}粒子处于乘积态 $u(x_1)v(x_2)$、记录时仅忽略标签，得到 $P_D=|F|^2+|G|^2$。这只是该对照制备的结论，不是说可区分粒子的任何纠缠态都没有干涉。全同粒子的交换效应不能解释成“不知道原有身份”造成的经典概率混合。
+
+\textbf{重合极限。}当 $x_1,x_2\to x$ 时，$F,G\to u(x)v(x)$，因此
+\begin{equation}
+  P_A(x,x)=0,\qquad P_S(x,x)=4|u(x)v(x)|^2,
+  \qquad P_D(x,x)=2|u(x)v(x)|^2.
+\end{equation}
+在此制备及无隐藏内部标签的条件下，重合处费米密度被抵消，玻色密度是对照的两倍。这比较的是密度或有限探测区域内的相关性，不是连续变量恰好等于一点的非零概率。其他位置的 $\operatorname{Re}(F^*G)$ 可为负，不能说玻色子在所有位置组合都增强。
+
+\textbf{不是吸引力或排斥力。}上述差别在无相互作用模型中已存在，来自复振幅的交换干涉，而非附加的粒子间作用力。反复制备相同条件并测量两粒子联合位置分布，才可与不同统计类型的预测比较；单次符合事件不能确定物种统计。
+
+教材的盒中计算见 \relatedexercise{QM-C10-S03-E01}{两个不同能级的交换干涉}。
+
+\textbf{内部自由度不能遗漏。}若两个电子分别占据 $u\chi_\uparrow$ 和 $v\chi_\downarrow$，完整态仍反对称；对不分辨自旋的位置测量求和时，交叉项含 $\braket{\uparrow}{\downarrow}=0$，于是消失。电子仍然全同，只是内部态可以区分这两种安排。不能因为同一空间轨道中出现两个电子，就断言违反 Pauli 原理或电子不是费米子。
+
+\notetopic{QM-C10-S03-T05}{多个全同粒子与 Slater 行列式}
+\textbf{全部排列。}给定 $N$ 个不同且正交归一的单粒子态，$N!$ 个标签排列对应正交的乘积向量。玻色态把它们全部同号相加，费米态按排列奇偶性相加：
+\begin{align}
+  \ket{a_1,\ldots,a_N;S}
+    &=\frac1{\sqrt{N!}}\sum_{\pi\in S_N}
+      \ket{a_{\pi(1)},\ldots,a_{\pi(N)}},\\
+  \ket{a_1,\ldots,a_N;A}
+    &=\frac1{\sqrt{N!}}\sum_{\pi\in S_N}\operatorname{sgn}(\pi)
+      \ket{a_{\pi(1)},\ldots,a_{\pi(N)}}.
+\end{align}
+$S_N$ 表示全部排列；$\operatorname{sgn}(\pi)$ 对偶排列取 $+1$、奇排列取 $-1$，即两两交换次数的奇偶性。$1/\sqrt{N!}$ 来自 $N!$ 个正交项的归一化；玻色子重复占据时排列不再全不同，必须重新计数。此处每个固定占据的公式构造一个多粒子基向量，一般态仍可为它们的线性组合。
+
+\textbf{三个粒子的符号。}省略逗号，对三个不同态 $a,b,c$，反对称组合为
+\begin{equation}
+  \ket{abc;A}=\frac1{\sqrt6}
+   \bigl(\ket{abc}+\ket{bca}+\ket{cab}
+         -\ket{acb}-\ket{bac}-\ket{cba}\bigr).
+\end{equation}
+任意两粒子交换均使它变号；对应的玻色组合把六项全部取正。
+
+\textbf{Slater determinant（斯莱特行列式）。}以 $q_i$ 表示第 $i$ 个粒子的完整变量，包括需要考虑的自旋。对正交归一的 $\phi_1,\ldots,\phi_N$，
+\begin{equation}
+  \boxed{\Psi_A(q_1,\ldots,q_N)=\frac1{\sqrt{N!}}
+   \begin{vmatrix}
+     \phi_1(q_1)&\phi_2(q_1)&\cdots&\phi_N(q_1)\\
+     \phi_1(q_2)&\phi_2(q_2)&\cdots&\phi_N(q_2)\\
+     \vdots&\vdots&&\vdots\\
+     \phi_1(q_N)&\phi_2(q_N)&\cdots&\phi_N(q_N)
+   \end{vmatrix}}.
+\end{equation}
+交换粒子就是交换两行，自动变号；两个完整单粒子态相同则两列相同，行列式为零，自动实现 Pauli 原理。相同空间轨道、不同自旋的两列并不相同。一般多费米子态可能需要多个 Slater 行列式叠加，不一定是单个行列式。
+
+\textbf{不能给不同粒子对任意指定交换符号。}在要求态是各交换算符的共同本征态这一前提下，令本征值为 $\eta_{ij}=\pm1$。三粒子交换满足
+\begin{equation}
+  \mathsf P_{13}=\mathsf P_{12}\mathsf P_{23}\mathsf P_{12}
+    =\mathsf P_{23}\mathsf P_{12}\mathsf P_{23}.
+\end{equation}
+作用于该态便有 $\eta_{13}=\eta_{12}^2\eta_{23}=\eta_{23}$，也有 $\eta_{13}=\eta_{23}^2\eta_{12}=\eta_{12}$，所以只能一致取正或负。这个直接的交换运算证明是对教材文字结论的补充。\textbf{$N\ge3$ 时完整张量积空间还包含混合对称性部分}，不能把两粒子的 $\hilbert\otimes\hilbert=\hilbert_S\oplus\hilbert_A$ 原样推广；本框架只选完全对称或完全反对称的物理子空间。占据计数见 \relatedexercise{QM-C10-S03-E04}{习题 10.3.3}。
+
+\notetopic{QM-C10-S03-T06}{忽略交换效应的条件与限制}
+\textbf{近似的是测量预测，不是全同性。}若不同单粒子波包在所关心的位置区域及时间内保持充分分离，则某个局域位置事件中通常只有一种安排的振幅显著，交换后的另一项及干涉项可忽略。这时可用波包所在区域作有效标签，分别计算局部实验。完整态仍须对称化或反对称化，不能因此称两个全同粒子不再全同，也不能把带标签乘积态当成完整态的全局近似。
+
+\textbf{无相互作用还不够。}教材第 274 页由 Hamiltonian 分离直接写出波函数乘积，省略了初态条件。对于可分系统，初始乘积态保持乘积；已有纠缠不会因删去相互作用而自动消失。对全同粒子，允许态还必须满足交换要求。局部可分近似须另外检查波包与测量中的交换项，不能只检查 $V_{\mathrm{int}}=0$。
+
+\textbf{粒子数密度与边缘密度（对话补充）。}对已在全有序构型空间归一化的两粒子波函数，定义
+\begin{equation}
+  \rho_1(x)=\int|\Psi(x,x_2)|^2\dd x_2,\qquad
+  n(x)=2\rho_1(x).
+\end{equation}
+$\rho_1$ 是记账坐标的边缘密度，积分为 $1$；$n(x)$ 是粒子数密度，积分为 $2$。$\int_A n(x)\dd x$ 给出区域 $A$ 内粒子数的期望，一般不是“至少找到一个粒子”的概率；在该区域至多有一个粒子的条件下二者才相同。教材的地球--月球局域波包计算及此处计数的具体含义，见 \relatedexercise{QM-C10-S03-E02}{远距离局域波包示例}。
+
+\textbf{时间限制。}波包若被分别束缚，局域标签可以长期有效；若靠近或自由扩散至显著重叠，原来的近似就须重审。教材用位置 delta 态说明极端情形，但它不是 $L^2$ 中的正规化态；物理上应使用有限宽度波包。初始局域化越强，可能有越大的动量展宽，不能从某一时刻的位置分离推出永远可区分。
+
+\textbf{测量限制。}位置不重叠并不保证动量不重叠。若波包只相差平移，
+\begin{equation}
+  g_M(x)=g_E(x-d)
+  \quad\Longrightarrow\quad
+  \widetilde g_M(p)=\ee^{-\ii pd/\hbar}\widetilde g_E(p),\qquad
+  |\widetilde g_M(p)|^2=|\widetilde g_E(p)|^2.
+\end{equation}
+对于不保留来源位置信息的联合动量测量，两种安排仍可能干涉，必须 Fourier 变换完整的对称或反对称波函数。反之，动量上可区分的波包，也未必在其他测量中可忽略交换。判断依据是当前观测中替代安排的振幅和可区分信息，不只是距离。
+
+\textbf{统计类型不随远处粒子数变化。}若两个波包位于同一实验区、第三个位于远处，只可忽略实验区与远处之间的相关交换贡献；区内两粒子的交换对称性仍须保留。若同一物种在两粒子时取 $S$、三粒子时却取 $A$，则远处一个无关粒子的存在会改变局部两粒子统计。教材用孤立子系统应可独立描述这一物理要求排除这种做法；这不是仅由排列代数推出的结论。
+
+\textbf{一分钟回顾。}全同描述内禀性质，不要求同态；交换完整粒子标签时，玻色态不变、费米态变号。Pauli 原理来自反对称化得到零向量，不是相互作用力。位置概率必须区分有序记账与无序事件，粒子数密度也不等于归一化边缘密度。交换干涉改变联合测量分布；Slater 行列式统一实现多个费米子的反对称化。忽略交换效应必须注明波包、时间及测量条件，不能仅凭无相互作用或空间分离。
