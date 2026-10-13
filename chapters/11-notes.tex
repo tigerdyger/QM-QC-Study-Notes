@@ -1,0 +1,50 @@
+\section{第 11.1 节：对称性及其后果的概述}
+\label{section:QM-C11-S01}
+\studymeta
+  {QM-C11-S01}
+  {2026-10-12 至 2026-10-13}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 11 章 \S 11.1 Overview；印刷页 p.~279，PDF p.~289；至同页 \S 11.2 开始前}
+  {讲解与概念核对已完成；笔记已确认}
+
+\textbf{范围。}本节回顾经典力学中对称性的两个后果，并提出建立量子对应关系的目标。教材建议先复习\hyperref[section:QM-C02-S07]{\S 2.7 的正则变换}与\hyperref[section:QM-C02-S08]{\S 2.8 的对称性和守恒量}。本节没有编号 Example 或 Exercise，不另设题组；以下公式是对已学经典结论的简要展开，不提前推导 \S 11.2 的量子平移算符。
+
+\notetopic{QM-C11-S01-T01}{同一动力学规律下的守恒量与运动解}
+\keyidea{对称性要求变换保持系统的动力学规律，不要求每一个具体状态或每一条轨迹在变换后保持不变。}
+
+\textbf{连续对称性与守恒量。}设 $g(q,p)$ 是不显含时间的 generator（生成元），它产生的 infinitesimal canonical transformation（无穷小正则变换）为
+\begin{equation}
+  \delta q_i=\epsilon\frac{\partial g}{\partial p_i},\qquad
+  \delta p_i=-\epsilon\frac{\partial g}{\partial q_i}.
+\end{equation}
+这里 $\epsilon$ 是变换参数，$\delta$ 表示关于 $\epsilon$ 的一阶变化；$\{\ ,\ \}$ 表示 Poisson bracket（泊松括号）。在固定时刻，Hamiltonian 的变化为
+\begin{align}
+  \delta\mathcal H
+  &=\sum_i\left(
+      \frac{\partial\mathcal H}{\partial q_i}\delta q_i
+     +\frac{\partial\mathcal H}{\partial p_i}\delta p_i\right)\notag\\
+  &=\epsilon\sum_i\left(
+      \frac{\partial\mathcal H}{\partial q_i}\frac{\partial g}{\partial p_i}
+     -\frac{\partial\mathcal H}{\partial p_i}\frac{\partial g}{\partial q_i}\right)
+   =\epsilon\{\mathcal H,g\}.
+\end{align}
+若该变换保持 $\mathcal H$ 不变，则 $\{\mathcal H,g\}=0$。沿真实运动轨迹，由 Hamilton 方程及括号的反对称性得到
+\begin{equation}
+  \boxed{\frac{\dd g}{\dd t}=\{g,\mathcal H\}
+    =-\{\mathcal H,g\}=0}.
+  \label{eq:QM-C11-S01-conserved-generator}
+\end{equation}
+即\textbf{连续对称性的生成元是守恒量}。若生成元显含时间，必须恢复 $\dd g/\dd t=\partial_tg+\{g,\mathcal H\}$，不能仅由括号为零断言守恒。离散对称性也不能直接套用这段无穷小生成元论证。
+
+\textbf{对称变换把解映射成解。}设 $z=(q,p)$ 为相空间点，$T$ 是不显含时间的正则变换，且在每一时刻满足 $\mathcal H(Tz,t)=\mathcal H(z,t)$。正则性保持 Hamilton 方程的结构，Hamiltonian 不变则保证变换前后对应\textbf{同一个动力学系统}，因此
+\begin{equation}
+  \boxed{z(t)\text{ 是运动方程的解}
+    \quad\Longrightarrow\quad Tz(t)\text{ 也是同一系统的解}}.
+\end{equation}
+两个条件缺一不可：只保持 Hamiltonian 的数值，并不足以保证运动方程被保持。新轨迹可以具有不同初始条件，并不必与原轨迹重合。
+
+\textbf{对话补充：平移的直观含义。}一维自由粒子的 $\mathcal H=p^2/(2m)$ 不依赖位置。取 $g=p$，便有 $\delta q=\epsilon$、$\delta p=0$，所以平移不改变 Hamiltonian，动量守恒。原轨迹 $q(t)=q_0+p_0t/m$ 平移后成为 $q(t)+a$，仍满足同样的自由运动方程，但位置不同。在量子语言中，局域波包的整体平移同样可以改变物理状态；系统的平移对称性不等于波包必须平移不变。
+
+\textbf{量子问题的入口。}本章随后要说明量子态的变换如何实现、如何判断 Hamiltonian 的对称性，以及它如何产生守恒量并将 Schr\"odinger 方程的解映射成另一解。\S 11.1 只提出这一目标，尚未建立具体的量子变换公式。
+
+\textbf{一分钟回顾。}本节的两个经典结论是：不显含时间的连续对称性生成元守恒；保持 Hamiltonian 的不含时正则变换把运动解映射成同一系统的另一解。对称性描述规律不变，不要求状态不变；第 11 章将建立它们的量子对应关系。
