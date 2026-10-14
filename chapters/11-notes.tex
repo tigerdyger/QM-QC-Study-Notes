@@ -48,3 +48,307 @@
 \textbf{量子问题的入口。}本章随后要说明量子态的变换如何实现、如何判断 Hamiltonian 的对称性，以及它如何产生守恒量并将 Schr\"odinger 方程的解映射成另一解。\S 11.1 只提出这一目标，尚未建立具体的量子变换公式。
 
 \textbf{一分钟回顾。}本节的两个经典结论是：不显含时间的连续对称性生成元守恒；保持 Hamiltonian 的不含时正则变换把运动解映射成同一系统的另一解。对称性描述规律不变，不要求状态不变；第 11 章将建立它们的量子对应关系。
+
+\section{第 11.2 节：量子理论中的平移不变性}
+\label{section:QM-C11-S02}
+\studymeta
+  {QM-C11-S02}
+  {2026-10-13 至 2026-10-14}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 11 章 \S 11.2；印刷页 pp.~279--294，PDF pp.~289--304；至 \S 11.3 开始前}
+  {五块讲解与习题 11.2.1、11.2.2 已核对；笔记已确认}
+
+\textbf{主线。}先定义怎样平移量子态，再确定其生成元为动量，最后判断这种变换是否为系统的对称性。两项后果分别是动量守恒，以及平移后的初态按同样规律演化。教材关于经典正则变换的两段选读保留核心对应关系；11.2.3 未选做。完整习题和教材的原子--电容器示例见课程题目；不收录课堂概念检查。
+
+\textbf{适用范围。}先讨论全实轴上无内部自由度的粒子，采用 $P=-\ii\hbar\partial_x$ 与 $[X,P]=\ii\hbar I$。无界算符的导数、乘积和对易子均在适当的共同定义域上使用；对称性还须保持定义域和边界条件。下文的指数由自伴生成元定义，不能仅凭微分表达式形式上的对易就忽略这些条件。
+
+\notetopic{QM-C11-S02-T01}{平移量子态：主动与被动描述}
+\textbf{来源：}印刷页 pp.~279--282，PDF pp.~289--292。
+\keyidea{位置平移不是把粒子置于一个确定位置，而是将整个状态的位置分布刚性移动，保持动量分布不变。}
+
+\textbf{从期望值到算符条件。}取 $a>0$ 表示向右平移。对任意归一化态，要求
+\begin{equation}
+  \ket{\psi_a}=T(a)\ket\psi,\qquad
+  \expect{X}_a=\expect{X}+a,\qquad
+  \expect{P}_a=\expect{P}.
+\end{equation}
+将变换移到算符上，得到等价条件
+\begin{equation}
+  \boxed{T^\dagger(a)XT(a)=X+aI,\qquad
+         T^\dagger(a)PT(a)=P}.
+  \label{eq:QM-C11-S02-transformed-XP}
+\end{equation}
+这里的“任意态”不可省略：一个 Hermitian 差算符若对所有态的期望都为零，其矩阵元也为零，才可推出算符本身为零；单个态的零期望不能这样使用。
+
+主动描述保持测量坐标不动，把状态向右移 $a$；被动描述保持状态不动，把原点向左移 $a$，同一点的新坐标增加 $a$。两种描述通过
+\begin{equation}
+  \bra{\psi_a}\Omega\ket{\psi_a}
+  =\bra\psi T^\dagger(a)\Omega T(a)\ket\psi
+\end{equation}
+给出相同的数值。注意这是一对\textbf{方向相反}的操作；原点向右移 $a$ 对应的坐标变化是 $X-aI$。
+
+\textbf{位置表象中的作用。}先选取不附加位置相关相位的约定
+\begin{equation}
+  T(a)\ket x=\ket{x+a}.
+\end{equation}
+插入位置完备关系，有
+\begin{align}
+  \psi_a(x)
+    &=\bra x T(a)\ket\psi
+      =\int_{\real}\braket{x}{y+a}\psi(y)\dd y\notag\\
+    &=\int_{\real}\delta(x-y-a)\psi(y)\dd y
+      =\boxed{\psi(x-a)}.
+\end{align}
+若原波包中心是 $x_0$，新峰值满足 $x-a=x_0$，所以位于 $x_0+a$。自变量里的减号对应分布向右移动，并不矛盾。
+
+平移保持整个内积：
+\begin{equation}
+  \int_{\real}\phi^*(x-a)\psi(x-a)\dd x
+   =\int_{\real}\phi^*(y)\psi(y)\dd y.
+\end{equation}
+又因反向平移是其逆，$T$ 是 unitary（酉）算符。归一化和位置标准差不变，而位置期望增加 $a$。到这里构造的是一种变换，\textbf{尚未假定 Hamiltonian 在它作用下不变}。
+
+\notetopic{QM-C11-S02-T02}{相位自由与动量生成元}
+\textbf{来源：}印刷页 pp.~282--285，PDF pp.~292--295。
+
+\textbf{为什么还要检查动量？}位置概率不能识别相位。只要求位置分布平移时，仍允许
+\begin{equation}
+  T_g(\epsilon)\ket x
+   =\ee^{\ii\epsilon g(x)/\hbar}\ket{x+\epsilon},
+  \qquad g(x)\in\real,
+\end{equation}
+对应
+\begin{equation}
+  \psi_\epsilon(x)
+   =\ee^{\ii\epsilon g(x-\epsilon)/\hbar}\psi(x-\epsilon),
+  \qquad |\psi_\epsilon(x)|^2=|\psi(x-\epsilon)|^2.
+\end{equation}
+然而动量包含空间导数，相位也被求导，因而
+\begin{equation}
+  \boxed{\expect P_\epsilon=\expect P
+      +\epsilon\expect{g'(X)}}.
+\end{equation}
+完整推导见\relatedexercise{QM-C11-S02-E01}{教材习题 11.2.1}。要对\emph{所有}允许的初态保持平均动量，必须有 $g'(x)=0$，故 $g$ 仅为常数；它只产生整体相位，可约定为零。固定 $P=-\ii\hbar\partial_x$ 时，位置相关相位不能当作无关紧要的整体相位删掉。
+
+\textbf{从小位移读出生成元。}写成
+\begin{equation}
+  T(\epsilon)=I-\frac{\ii\epsilon}{\hbar}G+O(\epsilon^2).
+\end{equation}
+其中 generator（生成元）$G$ 描述状态对平移参数的一阶响应。酉性的一阶条件给出 $G^\dagger=G$，计算见\relatedexercise{QM-C11-S02-E02}{教材习题 11.2.2}。在位置表象中比较
+\begin{align}
+  \bra x T(\epsilon)\ket\psi
+    &=\psi(x)-\frac{\ii\epsilon}{\hbar}\bra xG\ket\psi
+       +O(\epsilon^2),\\
+  \psi(x-\epsilon)
+    &=\psi(x)-\epsilon\psi'(x)+O(\epsilon^2),
+\end{align}
+便有
+\begin{equation}
+  \bra xG\ket\psi=-\ii\hbar\psi'(x)=\bra xP\ket\psi,
+  \qquad \boxed{G=P}.
+\end{equation}
+这解释了动量算符与空间导数的联系：\textbf{动量生成空间平移}，不是因为平移会增加动量。
+
+\textbf{从被动条件再推一次。}对任意算符 $\Omega$，一阶展开为
+\begin{equation}
+  T^\dagger\Omega T
+   =\Omega+\frac{\epsilon}{\ii\hbar}[\Omega,G]
+       +O(\epsilon^2).
+\end{equation}
+代入式~\eqref{eq:QM-C11-S02-transformed-XP}，得到
+\begin{equation}
+  [X,G]=\ii\hbar I,\qquad [P,G]=0.
+\end{equation}
+第一式与 $[X,P]=\ii\hbar I$ 比较，说明 $G-P$ 与 $X$ 对易；在这里的无内部自由度位置表示中，可写成 $G=P+F(X)$。再由
+\begin{equation}
+  0=[P,G]=[P,F(X)]=-\ii\hbar F'(X)
+\end{equation}
+知 $F$ 为常数。去掉对应的整体相位，仍得 $G=P$。只用第一条位置条件不能唯一确定生成元，还需要动量条件。
+
+\notetopic{QM-C11-S02-T03}{平移不变性与动量守恒的层次}
+\textbf{来源：}印刷页 pp.~283--289，PDF pp.~293--299；单态与全体态的区别为对话补充。
+\keyidea{能定义平移算符，不等于系统具有平移对称性。对称性要求变换保持同一个 Hamiltonian。}
+
+\textbf{系统的对称性条件。}要求对任意态均有
+\begin{equation}
+  \bra{\psi_a}H\ket{\psi_a}=\bra\psi H\ket\psi
+  \quad\Longleftrightarrow\quad
+  \boxed{T^\dagger(a)HT(a)=H}.
+\end{equation}
+酉共轭保持乘积次序。例如 $T^\dagger ABT=(T^\dagger AT)(T^\dagger BT)$，所以对已固定算符排序的 $H(X,P)$，
+\begin{equation}
+  T^\dagger H(X,P)T=H(X+aI,P).
+\end{equation}
+于是平移对称性就是 $H(X+aI,P)=H(X,P)$。对于通常的单粒子模型 $H=P^2/(2m)+V(X)$，任意距离的连续平移对称要求 $V(x+a)=V(x)$ 对所有 $a$ 成立，因此 $V$ 为常数。只对某个固定周期成立是\emph{离散}平移对称，不能据此推出连续平移的动量守恒结论。
+
+取无穷小平移，
+\begin{align}
+  T^\dagger(\epsilon)HT(\epsilon)
+   &=\left(I+\frac{\ii\epsilon}{\hbar}P\right)
+        H\left(I-\frac{\ii\epsilon}{\hbar}P\right)
+      +O(\epsilon^2)\notag\\
+   &=H+\frac{\ii\epsilon}{\hbar}[P,H]+O(\epsilon^2).
+\end{align}
+与不变条件比较得到 $[P,H]=0$。由 Ehrenfest 定理，
+\begin{equation}
+  \boxed{\frac{\dd}{\dd t}\expect P
+     =\frac1{\ii\hbar}\expect{[P,H]}=0}.
+\end{equation}
+对上述标量势模型，这也就是 $\dd\expect P/\dd t=-\expect{V'(X)}$。
+
+\Needspace{4\baselineskip}
+\textbf{必须分清的三个层次。}
+\begin{enumerate}
+  \item 对某一个态，$\expect{[P,H]}_{t_0}=0$ 只保证\emph{该时刻}平均动量的导数为零；要在一段时间内守恒，必须在整段演化上成立。
+  \item 对某条演化轨迹，始终有 $\expect{[P,H]}_t=0$，即可保证该态的平均动量恒定，不要求算符 $[P,H]$ 为零。
+  \item 系统具有连续平移对称性，则在前述适用条件下 $[P,H]=0$，并保证\emph{任意初态}的动量分布保持，不仅是某个态的一阶矩。
+\end{enumerate}
+例如谐振子满足 $[P,H]=-\ii\hbar m\omega^2X\ne0$，但基态始终有 $\expect X=\expect P=0$。这个单态的平均动量恒为零，并不能证明谐振子具有平移对称性。
+
+\textbf{为何不止平均值守恒？}若 $H$ 不含时且与 $P$ 相容，则
+\begin{equation}
+  U(t)=\ee^{-\ii Ht/\hbar},\qquad [P,U(t)]=0.
+\end{equation}
+若初态是动量本征态，在广义本征态意义下
+\begin{equation}
+  PU(t)\ket p=U(t)P\ket p=p\,U(t)\ket p,
+\end{equation}
+所以本征值仍为同一个 $p$。对一般正规化态，$U$ 同样与动量的谱投影对易，任意动量区间的测量概率保持不变。含时 $H(t)$ 的情形，只要每个时刻都有相同的平移对称性，结论仍成立，但此时不能直接把演化写成 $\ee^{-\ii tH(t)/\hbar}$。
+
+\notetopic{QM-C11-S02-T04}{有限平移与三种指数算符的区别}
+\textbf{来源：}印刷页 pp.~287--291，PDF pp.~297--301；动量平移和时间演化的并列比较为对话补充。
+
+\textbf{累积小平移。}将位移拆成许多小段，平移群的复合关系要求
+\begin{equation}
+  T(a+\epsilon)=T(\epsilon)T(a),\qquad T(0)=I.
+\end{equation}
+在生成元定义域上比较一阶项，得到
+\begin{equation}
+  \frac{\dd T(a)}{\dd a}=-\frac{\ii}{\hbar}PT(a),
+  \qquad \boxed{T(a)=\ee^{-\ii aP/\hbar}}.
+\end{equation}
+因此
+\begin{equation}
+  T(a)T(b)=T(a+b),\qquad T^\dagger(a)=T(-a)=T^{-1}(a).
+\end{equation}
+位置表象中可形式地写作 $\ee^{-a\partial_x}$。当 Taylor 级数适用时，
+\begin{equation}
+  \ee^{-a\partial_x}\psi(x)
+    =\psi(x)-a\psi'(x)+\frac{a^2}{2!}\psi''(x)+\cdots
+    =\psi(x-a).
+\end{equation}
+\textbf{严格性补充。}自伴动量的谱定义使 $T(a)$ 在整个 $L^2(\real)$ 上有意义；平移公式不要求每个波函数都有收敛的 Taylor 级数。不能反过来把形式导数级数当成对任意态都成立的定义。
+
+\textbf{在动量基中，平移只是逐分量加相位。}
+\begin{equation}
+  T(a)\ket p=\ee^{-\ii ap/\hbar}\ket p,
+  \qquad \widetilde\psi_a(p)=\ee^{-\ii ap/\hbar}\widetilde\psi(p).
+\end{equation}
+这里指数里的 $p$ 是本征值，不再是算符。单个 $\ket p$ 仅获得整体相位；不同动量分量却获得不同相位，所以一般波包会改变。动量密度 $|\widetilde\psi(p)|^2$ 不变，当然也不是把 $\expect P$ 变为 $\expect P+p$。
+
+\textbf{对话补充：位置平移、动量平移、时间演化。}令
+\begin{equation}
+  T(a)=\ee^{-\ii aP/\hbar},\qquad
+  B(p_0)=\ee^{\ii p_0X/\hbar},\qquad
+  U(t)=\ee^{-\ii tH/\hbar}\quad(H\text{ 不含时}).
+\end{equation}
+参数 $a$ 是位移，$p_0$ 是动量增量，$t$ 是经过的时间；它们不是把位置、动量或能量固定为参数值。
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}lXX@{}}
+  \toprule
+  变换 & 位置表象 & 动量表象 \\
+  \midrule
+  $T(a)$ & $\psi(x-a)$ & $\ee^{-\ii ap/\hbar}\widetilde\psi(p)$ \\
+  $B(p_0)$ & $\ee^{\ii p_0x/\hbar}\psi(x)$ & $\widetilde\psi(p-p_0)$ \\
+  $U(t)$ & 由具体 $H$ 决定 & 由具体 $H$ 决定 \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+前两行的互换来自 Fourier 变换。例如
+\begin{equation}
+  \frac1{\sqrt{2\pi\hbar}}\int_{\real}
+    \ee^{-\ii px/\hbar}\ee^{\ii p_0x/\hbar}\psi(x)\dd x
+     =\widetilde\psi(p-p_0).
+\end{equation}
+相应地，
+\begin{align}
+  T^\dagger XT&=X+aI,& T^\dagger PT&=P,\\
+  B^\dagger XB&=X,& B^\dagger PB&=P+p_0I.
+\end{align}
+所以 $B$ 不改位置密度，但使 $\expect P$ 增加 $p_0$；这不是测量，也不把动量分布压缩成一个本征值。两个指数的符号不同，保证所定义的位移和动量增量都取正方向，与 $[X,P]=\ii\hbar I$ 一致。
+
+时间演化则在能量基中给每个分量乘上 $\ee^{-\ii Et/\hbar}$。自由粒子尤其能看清区别：
+\begin{equation}
+  \widetilde\psi(p,t)=\ee^{-\ii p^2t/(2m\hbar)}\widetilde\psi(p,0).
+\end{equation}
+位置平移的相位对 $p$ 是线性的，保持形状；自由演化的相位对 $p$ 是二次的，一般会导致波包展宽，不能用某个统一位移代替。只有特殊模型，如 $H=vP$，才有 $U(t)=T(vt)$。\textbf{指数形式相似，只说明都有生成元，不说明实施的是同一种变换。}
+
+\textbf{教材选读：与正则变换的对应。}对 $U_G(\epsilon)=I-\ii\epsilon G/\hbar+O(\epsilon^2)$，
+\begin{equation}
+  \delta\Omega=\frac{\epsilon}{\ii\hbar}[\Omega,G]
+  \quad\longleftrightarrow\quad
+  \delta\omega=\epsilon\{\omega,g\}.
+\end{equation}
+酉共轭还保持对易关系，因为
+\begin{equation}
+  [U^\dagger X_iU,U^\dagger P_jU]
+    =U^\dagger[X_i,P_j]U=\ii\hbar\delta_{ij}I.
+\end{equation}
+这对应经典正则变换保持基本 Poisson brackets；但保持正则结构还不等于保持 $H$，因此酉变换也不自动成为动力学对称性。这里是结构对应，不是任意经典函数都可无排序歧义地精确量子化的保证。
+
+有限变换可展开为嵌套对易子：
+\begin{equation}
+  T^\dagger(a)\Omega T(a)
+   =\Omega+\frac{a}{\ii\hbar}[\Omega,P]
+     +\frac{a^2}{2!(\ii\hbar)^2}[[\Omega,P],P]+\cdots.
+\end{equation}
+经典对应式是 $\omega+a\{\omega,p\}+a^2\{\{\omega,p\},p\}/2!+\cdots$。各式按其级数适用条件理解；本次保留这一联系，不另做 11.2.3 的旋转级数练习。
+
+\notetopic{QM-C11-S02-T05}{整体平移、总动量与相同的演化规律}
+\textbf{来源：}印刷页 pp.~292--294，PDF pp.~302--304。
+
+\textbf{多粒子的生成元。}整体平移要求所有位置同时增加相同的 $a$，所以
+\begin{align}
+  (T(a)\Psi)(x_1,\ldots,x_N)
+    &=\Psi(x_1-a,\ldots,x_N-a),\\
+  \Psi(x_1-\epsilon,\ldots,x_N-\epsilon)
+    &=\Psi-\epsilon\sum_i\partial_{x_i}\Psi+O(\epsilon^2).
+\end{align}
+与无穷小生成元比较，得到
+\begin{equation}
+  \boxed{P_{\mathrm{tot}}=\sum_iP_i,\qquad
+      T(a)=\ee^{-\ii aP_{\mathrm{tot}}/\hbar}}.
+\end{equation}
+有内部相互作用的系统仍可平移不变。例如
+\begin{equation}
+  H=\sum_i\frac{P_i^2}{2m_i}+\sum_{i<j}V_{ij}(X_i-X_j)
+\end{equation}
+在整体平移下，位置差变成 $(X_i+aI)-(X_j+aI)=X_i-X_j$，故 $T^\dagger HT=H$，总动量守恒。单个粒子的动量可以通过相互作用改变，不能推出每个 $P_i$ 都守恒。只移动一个粒子则通常改变位置差，不是这个系统的对称变换。
+
+三维中相应地有 $T(\mathbf a)=\exp[-\ii\mathbf a\cdot\mathbf P_{\mathrm{tot}}/\hbar]$。沿哪个方向具有连续平移对称，就得到哪个总动量分量的守恒。
+
+\textbf{对称性将动力学解映射成另一解。}若 $T^\dagger HT=H$，则 $[T,H]=0$；对不含时 $H$，进一步有 $[T,U(t)]=0$。因而
+\begin{equation}
+  \boxed{U(t)T(a)\ket{\psi(0)}
+        =T(a)U(t)\ket{\psi(0)}}.
+\end{equation}
+两份初态只差一个位移，则之后始终只差同一个位移，而不是各自的波函数必须静止或不展宽。下图按教材图 11.1 的关系重新绘制：
+\begin{center}
+\begin{tikzpicture}[>=Stealth, every node/.style={font=\small}]
+  \node (a) at (0,0) {$\ket{\psi(0)}$};
+  \node (b) at (7,0) {$T(a)\ket{\psi(0)}$};
+  \node (c) at (0,-1.6) {$U(t)\ket{\psi(0)}$};
+  \node (d) at (7,-1.6) {$T(a)U(t)\ket{\psi(0)}$};
+  \draw[->] (a) -- node[above]{平移 $T(a)$} (b);
+  \draw[->] (a) -- node[left]{演化 $U(t)$} (c);
+  \draw[->] (b) -- node[right]{演化 $U(t)$} (d);
+  \draw[->] (c) -- node[below]{平移 $T(a)$} (d);
+\end{tikzpicture}
+\end{center}
+这才是“同一个实验换个地点仍给出同样结果”的动力学内容；量子语境中的同样结果是\textbf{相应测量的概率分布相同}，不是两次随机测量必定取得同一个数。
+
+\textbf{外部环境与空间均匀性。}若仅移动研究对象，却把对它施力的装置留在原处，对象与装置的相对位置已改变，一般不再是相同的实验。把相关场源也纳入系统并整体平移，才能讨论完整系统的空间均匀性。教材原子--电容器的具体模型见\relatedexercise{QM-C11-S02-E03}{教材正文示例}。不能简单断言“只要有外场就没有任何平移对称性”，应检查实际外势、平移方向和边界条件。
+
+\textbf{一分钟回顾。}位置平移 $T(a)=\ee^{-\ii aP/\hbar}$ 由动量生成，但不增加动量；动量平移 $B(p_0)=\ee^{\ii p_0X/\hbar}$ 才增加 $p_0$。系统还需满足 $T^\dagger HT=H$ 才具有平移对称性，并由此得到动量守恒及 $TU=UT$。某个态的零对易子期望不能代替全系统的算符对易；多粒子整体平移对应的是总动量。

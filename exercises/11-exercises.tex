@@ -1,0 +1,131 @@
+\section{第 11.2 节题组：平移生成元与对称性}
+\label{exercises:QM-C11-S02}
+\exercisemeta
+  {QM-C11-S02}
+  {2026-10-13 至 2026-10-14}
+  {Shankar, Second Edition；习题 11.2.1、11.2.2：印刷页 p.~283，PDF p.~293；正文示例：印刷页 pp.~293--294，PDF pp.~303--304}
+  {两道选定习题的推导已核对；教材正文示例已讲解；11.2.3 未选做}
+  {题目与订正已完成；笔记已确认}
+
+本组按教材题号整理完整题意及解答。最后一项是教材的无编号正文示例，不是另编的习题，也不属于编号 Example；课堂概念检查不收录。
+
+\exercisequestion{QM-C11-S02-E01}{教材习题 11.2.1：位置相关相位改变平均动量}
+\textbf{来源与对应知识点：}印刷页 p.~283，PDF p.~293；所用变换定义见前一页。\relatedtopic{QM-C11-S02-T02}{相位自由与动量生成元}。
+
+\textbf{题意。}教材要求验证式 (11.2.11b)。将引用展开：设 $\psi$ 已归一化，$g(x)$ 是实可微函数，考虑
+\begin{equation}
+  T_g(\epsilon)\ket x
+    =\ee^{\ii\epsilon g(x)/\hbar}\ket{x+\epsilon},
+  \qquad
+  \psi_\epsilon(x)
+    =\ee^{\ii\epsilon g(x-\epsilon)/\hbar}\psi(x-\epsilon).
+\end{equation}
+假设波函数足够光滑、衰减良好，涉及的期望值存在。用 $P=-\ii\hbar\dd/\dd x$ 验证一阶关系
+\begin{equation}
+  \expect P_\epsilon=\expect P
+        +\epsilon\expect{g'(X)}+O(\epsilon^2),
+  \qquad
+  \expect{g'(X)}=\int_{\real}|\psi(x)|^2g'(x)\dd x.
+\end{equation}
+
+\begin{checkedsolution}
+\textbf{导数必须作用于两个因子。}乘积法则给出
+\begin{align}
+  \psi_\epsilon'(x)
+    &=\ee^{\ii\epsilon g(x-\epsilon)/\hbar}
+      \left[\frac{\ii\epsilon}{\hbar}g'(x-\epsilon)
+                    \psi(x-\epsilon)+\psi'(x-\epsilon)\right],\\
+  P\psi_\epsilon(x)
+    &=\ee^{\ii\epsilon g(x-\epsilon)/\hbar}
+      \left[\epsilon g'(x-\epsilon)\psi(x-\epsilon)
+                 -\ii\hbar\psi'(x-\epsilon)\right].
+\end{align}
+第一项来自相位的空间变化，并不会在求导前消失。
+
+\textbf{代入期望值。}因为 $g$ 为实函数，复共轭中的相位与上式相消：
+\begin{align}
+  \expect P_\epsilon
+    &=\int_{\real}\psi_\epsilon^*(x)P\psi_\epsilon(x)\dd x\notag\\
+    &=\int_{\real}\psi^*(x-\epsilon)(-\ii\hbar)
+                      \psi'(x-\epsilon)\dd x\notag\\
+    &\quad+\epsilon\int_{\real}|\psi(x-\epsilon)|^2
+                         g'(x-\epsilon)\dd x.
+\end{align}
+令 $y=x-\epsilon$，全实轴积分限不变，得到
+\begin{align}
+  \expect P_\epsilon
+    &=\int_{\real}\psi^*(y)(-\ii\hbar)\psi'(y)\dd y
+      +\epsilon\int_{\real}|\psi(y)|^2g'(y)\dd y\notag\\
+    &=\boxed{\expect P+\epsilon\expect{g'(X)}}.
+\end{align}
+对题目显示的精确波函数变换，这个等式本身是精确的，因此自然满足教材要求的一阶关系。这里只核对该无穷小变换的动量响应，并未声称任意 $g$ 都定义同一个有限平移群。
+
+若要求对\emph{每一个}初态都保持平均动量，则 $\expect{g'(X)}=0$ 必须对所有态成立，从而 $g'=0$，$g$ 只能是常数。一个特定态的积分为零可能来自正负抵消，不能推出 $g'$ 处处为零。
+\end{checkedsolution}
+
+\exercisequestion{QM-C11-S02-E02}{教材习题 11.2.2：酉变换的生成元}
+\textbf{来源与对应知识点：}印刷页 p.~283，PDF p.~293；\relatedtopic{QM-C11-S02-T02}{相位自由与动量生成元}。
+
+\textbf{题意。}设实参数 $\epsilon$ 对应的酉变换可展开为
+\begin{equation}
+  T(\epsilon)=I-\frac{\ii\epsilon}{\hbar}G+O(\epsilon^2).
+\end{equation}
+利用 $T^\dagger(\epsilon)T(\epsilon)=I$，保留一阶项，证明教材中的 $G^\dagger=G$。
+
+\begin{checkedsolution}
+取伴随时，$\ii$ 变为 $-\ii$，$G$ 变为 $G^\dagger$：
+\begin{equation}
+  T^\dagger(\epsilon)
+     =I+\frac{\ii\epsilon}{\hbar}G^\dagger+O(\epsilon^2).
+\end{equation}
+于是
+\begin{align}
+  T^\dagger T
+    &=\left(I+\frac{\ii\epsilon}{\hbar}G^\dagger\right)
+      \left(I-\frac{\ii\epsilon}{\hbar}G\right)
+       +O(\epsilon^2)\notag\\
+    &=I+\frac{\ii\epsilon}{\hbar}(G^\dagger-G)
+       +O(\epsilon^2).
+\end{align}
+酉性要求一阶系数为零，故
+\begin{equation}
+  \boxed{G^\dagger=G}.
+\end{equation}
+这里必须取伴随，而不是仅转置。两个显式一阶因子相乘的二阶项为 $+\epsilon^2G^\dagger G/\hbar^2$，但 $T$ 本身还有未写出的二阶项；不能由截断表达式要求 $G^\dagger G=0$。
+
+\textbf{定义域补充。}有限维中这就是 Hermitian 条件；对无界算符，一阶内积计算首先给出共同定义域上的对称性，不能单凭此步证明其与伴随算符的定义域相同。全实轴上的实际平移群由具有适当定义域的自伴动量生成。
+\end{checkedsolution}
+
+\exercisequestion{QM-C11-S02-E03}{教材正文示例：原子与电容器的整体平移}
+\textbf{来源与对应知识点：}印刷页 pp.~293--294，PDF pp.~303--304 的无编号说明性示例；\relatedtopic{QM-C11-S02-T05}{整体平移与相同的演化规律}。以下是模型及论证的整理，不额外添加作业。
+
+\textbf{情境。}氢原子处于带电电容器产生的外势 $\Phi_{\mathrm{ext}}$ 中。比较“只移动原子”与“把原子和相关场源一起移动”，说明空间均匀性究竟要求平移什么。
+
+\begin{checkedsolution}
+\textbf{只把原子作为系统。}沿用教材的静电单位约定，电子和质子的 Hamiltonian 为
+\begin{equation}
+  H_{\mathrm{atom}}
+   =\sum_{i=1}^2\frac{\mathbf P_i^2}{2m_i}
+    +\frac{q_1q_2}{|\mathbf R_1-\mathbf R_2|}
+    +\sum_{i=1}^2q_i\Phi_{\mathrm{ext}}(\mathbf R_i).
+\end{equation}
+只平移原子时，内部库仑项不变，但外势变成
+\begin{equation}
+  \sum_{i=1}^2q_i\Phi_{\mathrm{ext}}(\mathbf R_i+\mathbf aI),
+\end{equation}
+一般不等于原式。例如把原子从有限电容器附近移到远处，其经历的场就变了。这不是同一实验的整体搬迁，因为影响动力学的装置留在原处。
+
+\textbf{把场源也纳入系统。}若将电容器的 $N$ 个电荷也作为动力学自由度，在教材的非相对论静电模型中写成
+\begin{equation}
+  H_{\mathrm{all}}
+   =\sum_{i=1}^{N+2}\frac{\mathbf P_i^2}{2m_i}
+     +\sum_{i<j}^{N+2}\frac{q_iq_j}{|\mathbf R_i-\mathbf R_j|}.
+\end{equation}
+对所有粒子作 $\mathbf R_i\mapsto\mathbf R_i+\mathbf aI$，每个位置差与动能都不变，因此
+\begin{equation}
+  T^\dagger(\mathbf a)H_{\mathrm{all}}T(\mathbf a)=H_{\mathrm{all}}.
+\end{equation}
+守恒的是所纳入完整系统的总动量，而非受到外场作用的原子动量。若另有不可忽略的支撑、外场源或环境耦合，也必须相应纳入；实际“孤立系统”通常是可控制精度下的近似。
+
+\textbf{结论。}空间均匀性比较的是整体移动后、内部相对安排相同的系统。固定外场的具体模型可能保留某些方向或特殊形式的平移对称性，应按 Hamiltonian 判断，不能把“有外场”当作一律破坏平移对称性的判据。
+\end{checkedsolution}
