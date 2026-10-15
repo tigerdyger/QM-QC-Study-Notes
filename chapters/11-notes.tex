@@ -352,3 +352,110 @@
 \textbf{外部环境与空间均匀性。}若仅移动研究对象，却把对它施力的装置留在原处，对象与装置的相对位置已改变，一般不再是相同的实验。把相关场源也纳入系统并整体平移，才能讨论完整系统的空间均匀性。教材原子--电容器的具体模型见\relatedexercise{QM-C11-S02-E03}{教材正文示例}。不能简单断言“只要有外场就没有任何平移对称性”，应检查实际外势、平移方向和边界条件。
 
 \textbf{一分钟回顾。}位置平移 $T(a)=\ee^{-\ii aP/\hbar}$ 由动量生成，但不增加动量；动量平移 $B(p_0)=\ee^{\ii p_0X/\hbar}$ 才增加 $p_0$。系统还需满足 $T^\dagger HT=H$ 才具有平移对称性，并由此得到动量守恒及 $TU=UT$。某个态的零对易子期望不能代替全系统的算符对易；多粒子整体平移对应的是总动量。
+
+\section{第 11.3 节：时间平移不变性}
+\label{section:QM-C11-S03}
+\studymeta
+  {QM-C11-S03}
+  {2026-10-14 至 2026-10-15}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 11 章 \S 11.3 Time Translational Invariance；印刷页 pp.~294--296，PDF pp.~304--306；至 \S 11.4 开始前}
+  {两块讲解与概念核对已完成；笔记已确认}
+
+\textbf{主线与范围。}比较同一初态在不同时刻开始、经过相同时间后的演化，由此联系 Hamiltonian 不显含时间、能量守恒与定态。最后区分外部环境变化和自然规律变化。本节没有编号 Example 或 Exercise，不另设题组；放电电容器仅保留为教材正文的简短情境说明，不收录课堂检查题。
+
+\notetopic{QM-C11-S03-T01}{时间均匀性与能量守恒}
+\textbf{来源：}印刷页 pp.~294--295，PDF pp.~304--305；整体相位的限定为对话补充。
+\keyidea{时间平移不变性要求演化规律不依赖实验的开始时刻，不要求同一次实验的状态停止变化。}
+
+\textbf{比较两次实验，而非一条历史的两个时刻。}分别在 $t_1$、$t_2$ 重新准备同一个初态 $\ket{\psi_0}$，再等待同样长的时间 $\tau$。时间均匀性要求两次所得的物理态相同，即相应测量的概率分布相同，不要求两次随机测量取得同一个数。固定整体相位约定后，可表为
+\begin{equation}
+  U(t_1+\tau,t_1)\ket{\psi_0}
+    =U(t_2+\tau,t_2)\ket{\psi_0}.
+  \label{eq:QM-C11-S03-equal-elapsed-time}
+\end{equation}
+这个条件须对任意允许的初态和开始时刻成立；一个特殊初态的偶然相同不能证明系统的对称性。
+
+\textbf{短时展开确定 Hamiltonian。}在 Schr\"odinger 绘景中，假设短时展开适用，取相同的小时间间隔 $\epsilon$：
+\begin{align}
+  \ket{\psi_1(t_1+\epsilon)}
+    &=\left[I-\frac{\ii\epsilon}{\hbar}H(t_1)\right]
+       \ket{\psi_0}+O(\epsilon^2),\\
+  \ket{\psi_2(t_2+\epsilon)}
+    &=\left[I-\frac{\ii\epsilon}{\hbar}H(t_2)\right]
+       \ket{\psi_0}+O(\epsilon^2).
+\end{align}
+下标 $1,2$ 区分两次独立准备的实验。由式~\eqref{eq:QM-C11-S03-equal-elapsed-time}，两式相减得
+\begin{equation}
+  0=-\frac{\ii\epsilon}{\hbar}
+     [H(t_2)-H(t_1)]\ket{\psi_0}+O(\epsilon^2).
+\end{equation}
+除以 $\epsilon$ 并令其趋于零，便有 $[H(t_2)-H(t_1)]\ket{\psi_0}=0$。由于初态任意，得到 $H(t_2)=H(t_1)$；再由开始时刻任意，得到
+\begin{equation}
+  \boxed{\frac{\partial H}{\partial t}=0}.
+\end{equation}
+这里的偏导表示算符在固定描述中\textbf{没有显式时间依赖}，不是说位置、动量或状态不随时间演化。无界算符的短时导数按适当的共同定义域理解。
+
+\textbf{能量守恒不能只靠 $[H,H]=0$。}由完整的 Ehrenfest 定理，
+\begin{align}
+  \frac{\dd}{\dd t}\expect{H(t)}
+    &=\frac1{\ii\hbar}\expect{[H(t),H(t)]}
+       +\expect{\frac{\partial H}{\partial t}}\notag\\
+    &=\expect{\frac{\partial H}{\partial t}}.
+\end{align}
+对易子恒为零，但显式时间导数未必为零。时间平移不变性给出额外条件 $\partial_tH=0$，于是
+\begin{equation}
+  \boxed{\frac{\dd}{\dd t}\expect H=0}.
+\end{equation}
+这是对任意初态成立的结论，不要求初态为能量本征态。反过来，某个态的 $\expect{\partial_tH}=0$ 可能来自抵消，不能据此推出 $\partial_tH=0$。
+
+\textbf{对话补充：整体相位与能量零点。}教材直接比较态矢量，隐含固定相位约定。物理态只确定到整体相位：若 $H(t)=H_0+c(t)I$，其中 $c(t)$ 为实函数、$H_0$ 不含时，则
+\begin{equation}
+  U(t_0+\tau,t_0)
+   =\exp\!\left[-\frac{\ii}{\hbar}
+      \int_{t_0}^{t_0+\tau}c(s)\dd s\right]
+      \ee^{-\ii H_0\tau/\hbar}.
+\end{equation}
+第一个因子对所有分量相同，仅改变整体相位，可通过相位约定去掉。此时 $\expect{H(t)}=\expect{H_0}+c(t)$ 的变化只是所选能量零点移动；固定零点后，守恒的是 $\expect{H_0}$。因此不能把这种纯标量项与真正改变可观测动力学的含时外势混为一谈。
+
+\notetopic{QM-C11-S03-T02}{定态、时间演化与完整系统}
+\textbf{来源：}印刷页 p.~296，PDF p.~306；叠加态与环境自由度的说明结合已学内容展开。
+
+\textbf{演化只依赖经过的时间。}对不含时的自伴 $H$，
+\begin{equation}
+  \boxed{U(t_0+\tau,t_0)=\ee^{-\ii H\tau/\hbar}}.
+\end{equation}
+右侧不含开始时刻 $t_0$，直接实现时间平移不变性。若 $H\ket{E}=E\ket{E}$，则
+\begin{equation}
+  \ket{\psi(t_0+\tau)}
+   =\ee^{-\ii E\tau/\hbar}\ket E.
+\end{equation}
+整个态只获得整体相位，所以是 stationary state（定态）。\textbf{系统具有时间平移不变性，不等于其中任意状态都是定态。}
+
+例如在离散谱下，先在能量本征基中展开初态，便有
+\begin{align}
+  \ket{\psi(t_0)}&=\sum_n c_n\ket{E_n},\\
+  \ket{\psi(t_0+\tau)}
+    &=\sum_n c_n\ee^{-\ii E_n\tau/\hbar}\ket{E_n},\\
+  U(t_0+\tau,t_0)
+    &=\sum_n\ee^{-\ii E_n\tau/\hbar}\ketbra{E_n}{E_n}.
+\end{align}
+简并时将简并指标一并列入；连续谱用相应谱积分。这说明整个演化问题可归结为求解不含时本征方程，再展开初态。各能量分量的模方 $|c_n|^2$ 不变，但不同能量之间的相对相位会变化，因而位置密度等仍可变化。能量守恒保持的是整个能量测量分布，而不只是平均值；它不把原本的叠加态变成能量确定的态。
+
+\textbf{完整系统与外部环境。}教材以正在放电的电容器中的氢原子说明这一点。只研究原子时，电场被作为随时间变化的外部条件，势能算符写入
+\begin{equation}
+  H_{\mathrm{atom}}(t)=H_{\mathrm{atom},0}+V_{\mathrm{ext}}(t).
+\end{equation}
+稍后若只重新准备原子、却不重新给电容器充电，原子初态虽相同，外场条件却已不同，因此结果可以不同。这不是在同一个\emph{完整初态}下重复实验，也不能据此断言自然规律随时间改变。
+
+将相关场源作为动力学自由度纳入，在封闭、没有额外时变驱动的模型中，可以用
+\begin{equation}
+  H_{\mathrm{tot}}
+    =H_{\mathrm{atom},0}+H_{\mathrm{env}}+H_{\mathrm{int}},
+  \qquad \frac{\partial H_{\mathrm{tot}}}{\partial t}=0
+\end{equation}
+描述整体。环境本身仍会演化，原子与环境可以交换能量，但 $\dd\expect{H_{\mathrm{tot}}}/\dd t=0$。实际放电涉及的电路、场或其他环境耦合若不可忽略，也需相应纳入，不能仅靠扩大系统名称就保证封闭性。\textbf{环境状态变化不等于总 Hamiltonian 显含时间；总能量守恒不要求各子系统能量分别守恒。}
+
+教材最后将时空均匀性与实验规律的可重复使用联系起来：相同的完整条件在不同时空位置遵循同样规律，不表示不同状态必须给出相同结果，也不表示我们对规律的认识不能发展。
+
+\textbf{一分钟回顾。}时间平移比较两次同初态实验经过相同时长后的结果。固定整体相位与能量零点后，不含时 $H$ 给出只依赖时间差的演化及能量守恒；能量本征态是定态，一般叠加态仍可变化。含时外势可能来自未纳入的环境，完整系统的能量守恒与子系统的能量交换并不矛盾。
