@@ -459,3 +459,150 @@
 教材最后将时空均匀性与实验规律的可重复使用联系起来：相同的完整条件在不同时空位置遵循同样规律，不表示不同状态必须给出相同结果，也不表示我们对规律的认识不能发展。
 
 \textbf{一分钟回顾。}时间平移比较两次同初态实验经过相同时长后的结果。固定整体相位与能量零点后，不含时 $H$ 给出只依赖时间差的演化及能量守恒；能量本征态是定态，一般叠加态仍可变化。含时外势可能来自未纳入的环境，完整系统的能量守恒与子系统的能量交换并不矛盾。
+
+\section{第 11.4 节：宇称不变性}
+\label{section:QM-C11-S04}
+\studymeta
+  {QM-C11-S04}
+  {2026-10-15 至 2026-10-16}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 11 章 \S 11.4 Parity Invariance；印刷页 pp.~297--301，PDF pp.~307--311；至 \S 11.5 开始前}
+  {三块讲解与习题 11.4.2、11.4.4 已核对；笔记已确认}
+
+\textbf{主线与范围。}从一维空间反转定义 parity（宇称），再区分算符性质、Hamiltonian 的对称性与状态的宇称，最后讨论三维镜面反射和弱相互作用。本节的钴-60 衰变是教材无编号正文示例，完整分析放在课程题目；只选做 11.4.2、11.4.4。11.4.1 的宇称保持论证已在正文覆盖，11.4.3 不另设题目。
+
+\notetopic{QM-C11-S04-T01}{空间反转、宇称算符与偶奇态}
+\textbf{来源：}印刷页 pp.~297--298，PDF pp.~307--308。
+\keyidea{宇称首先是一种离散变换；能定义这个变换，不等于它是给定 Hamiltonian 的对称性。}
+
+\textbf{从位置基定义。}先讨论全实轴上没有内部自由度的粒子，选定原点及相位约定：
+\begin{equation}
+  \boxed{\Pi\ket x=\ket{-x}}.
+\end{equation}
+将任意态在位置基中展开，再令 $y=-x$，得到
+\begin{equation}
+  \Pi\ket\psi
+    =\int_{\real}\ket{-x}\psi(x)\dd x
+      =\int_{\real}\ket y\psi(-y)\dd y,
+  \qquad \boxed{\bra x\Pi\ket\psi=\psi(-x)}.
+\end{equation}
+这是保持坐标系统不动、主动反转状态。对 $\braket{x}{p}=(2\pi\hbar)^{-1/2}\ee^{\ii px/\hbar}$，代入 $-x$ 就变成动量 $-p$ 的平面波，因此
+\begin{equation}
+  \Pi\ket p=\ket{-p},\qquad
+  \widetilde\psi(p)\longmapsto\widetilde\psi(-p).
+\end{equation}
+
+\textbf{酉性、自伴性与本征值。}反转两次恢复原态，故 $\Pi^2=I$、$\Pi^{-1}=\Pi$。另一方面，变量替换给出
+\begin{equation}
+  \braket{\Pi\phi}{\Pi\psi}
+    =\int_{\real}\phi^*(-x)\psi(-x)\dd x
+    =\braket\phi\psi.
+\end{equation}
+结合可逆性可知 $\Pi$ 是 unitary（酉）算符，因而
+\begin{equation}
+  \boxed{\Pi^\dagger=\Pi^{-1}=\Pi}.
+\end{equation}
+这里先验证保持内积；不能对任意算符仅凭平方等于 $I$ 就断言酉性。若 $\Pi\ket\psi=\eta\ket\psi$ 且 $\ket\psi\ne0$，则 $\eta^2=1$，所以
+\begin{equation}
+  \boxed{\eta=+1\text{（偶宇称）},\qquad
+         \eta=-1\text{（奇宇称）}}.
+\end{equation}
+在位置表象中，这分别对应 $\psi(-x)=\psi(x)$ 与 $\psi(-x)=-\psi(x)$；动量表象中也有同样的偶奇关系。在一般其他表象中，不能未经检查就把“宇称确定”解释成系数函数关于其标签为偶函数或奇函数。
+
+\textbf{整体相位不等于所有态都不变。}奇宇称态经反转得到 $-\ket\psi$，与原态是同一条射线，因此没有改变物理状态；但一般态不必是宇称本征态。例如同时含有非零偶、奇分量时，反转只改变奇分量的符号，改变的是两部分之间的\emph{相对相位}，一般会改变物理状态。宇称为 $-1$ 也不是“概率为负”，概率仍由振幅模平方给出。
+
+\notetopic{QM-C11-S04-T02}{Hamiltonian 的宇称对称性及其后果}
+\textbf{来源：}印刷页 pp.~298--299，PDF pp.~308--309；定义域与简并情形的限定结合已学内容展开。
+
+\textbf{位置和动量同时反号。}由位置基上的定义可知
+\begin{equation}
+  \Pi X\Pi\ket x=\Pi X\ket{-x}=-x\ket x.
+\end{equation}
+对足够光滑的 $\psi$，链式法则给出
+\begin{equation}
+  (P\Pi\psi)(x)
+   =-\ii\hbar\frac{\dd}{\dd x}\psi(-x)
+   =\ii\hbar\psi'(-x)=-(\Pi P\psi)(x).
+\end{equation}
+因此
+\begin{equation}
+  \boxed{\Pi^\dagger X\Pi=-X,\qquad
+         \Pi^\dagger P\Pi=-P}.
+\end{equation}
+对固定算符排序的 $H(X,P)$，酉共轭保持乘积次序，于是宇称不变性要求
+\begin{equation}
+  \boxed{\Pi^\dagger H(X,P)\Pi=H(-X,-P)=H(X,P)}
+  \quad\Longleftrightarrow\quad [\Pi,H]=0.
+  \label{eq:QM-C11-S04-parity-symmetry}
+\end{equation}
+无界算符的这些等式还要求宇称保持 Hamiltonian 的定义域和边界条件，不能只比较微分表达式。
+
+\textbf{标量势模型的判据。}对 $H=P^2/(2m)+V(X)$，动能自动不变，因此在上述边界条件下
+\begin{equation}
+  \boxed{[\Pi,H]=0\quad\Longleftrightarrow\quad V(-x)=V(x)}.
+\end{equation}
+要求的是势能关于所选原点为偶函数，\textbf{不是势能不依赖位置}。谐振子势 $m\omega^2x^2/2$ 依赖 $x$，却具有宇称对称性。任意距离的连续平移对称性才要求此模型中 $V$ 为常数；只有周期性则仍不够保证通常的动量守恒，见\relatedexercise{QM-C11-S04-E01}{教材习题 11.4.2}。
+
+边界同样重要：中心位于原点的无限深势阱 $(-L/2,L/2)$ 保持不变，而 $(0,L)$ 在 $x\mapsto-x$ 下不保持不变。后者的正弦表达式只适用于阱内，不能忽略阱外为零这一条件，直接称其为关于原点的奇函数。它仍具有关于阱中心的反射对称性 $x\mapsto L-x$；讨论空间反转时必须说明中心。
+
+\textbf{非简并能量本征态具有确定宇称。}若 $[\Pi,H]=0$ 且 $H\ket E=E\ket E$，则
+\begin{equation}
+  H\Pi\ket E=\Pi H\ket E=E\Pi\ket E.
+\end{equation}
+故 $\Pi\ket E$ 仍属于能量 $E$ 的本征空间。若该空间一维，就只能有 $\Pi\ket E=c\ket E$；再由 $\Pi^2=I$ 得 $c=\pm1$。若能级简并，则可以在其本征空间内选取共同的宇称本征基，但任意能量本征态未必已有确定宇称。
+
+这统一了先前的结果：一维谐振子满足 $\Pi\ket n=(-1)^n\ket n$，$n=0,1,\ldots$；中心势阱满足 $\Pi\ket n=(-1)^{n+1}\ket n$，$n=1,2,\ldots$。宇称对称性给出“可按偶奇分类”，各态具体的正负号还需结合其波函数或结构确定。
+
+\textbf{时间演化保持宇称。}对不含时的自伴 $H$，式~\eqref{eq:QM-C11-S04-parity-symmetry} 保证
+\begin{equation}
+  [\Pi,U(t)]=0,\qquad U(t)=\ee^{-\ii Ht/\hbar}.
+\end{equation}
+因此若初态满足 $\Pi\ket{\psi(0)}=\eta\ket{\psi(0)}$，
+\begin{equation}
+  \Pi\ket{\psi(t)}
+    =\Pi U(t)\ket{\psi(0)}
+    =U(t)\Pi\ket{\psi(0)}
+    =\boxed{\eta\ket{\psi(t)}}.
+\end{equation}
+这是教材 11.4.1 的核心论证，不再单独设题。初态不必是能量本征态；同一宇称的不同能量分量可以叠加，演化时仍保持宇称而不必是定态。更一般地，$U(t)\Pi\ket\psi=\Pi U(t)\ket\psi$ 表示两份互为反转的初态，之后仍互为反转。若 $H(t)$ 含时，只要各时刻都具有同一宇称对称性且演化存在，保持宇称的结论仍成立。
+
+\notetopic{QM-C11-S04-T03}{三维反转、镜面反射与弱相互作用}
+\textbf{来源：}印刷页 pp.~299--301，PDF pp.~309--311；外势与基本规律的区别为对话补充。
+
+\textbf{三维宇称不是单个平面的镜像。}空间反转使三个坐标同时反号：
+\begin{equation}
+  \mathbf r\longmapsto-\mathbf r,
+  \qquad (\Pi\psi)(\mathbf r)=\psi(-\mathbf r).
+\end{equation}
+这仍是平方为 $I$ 的酉、自伴变换。向三维推广并不会自动破坏宇称：例如 $P^2/(2m)+m\omega^2r^2/2$ 仍与 $\Pi$ 对易。
+
+polar vector（极向量）如 $\mathbf r,\mathbf p$ 在宇称下反号；axial vector（轴向量）如角动量则不反号，因为
+\begin{equation}
+  \mathbf L=\mathbf r\times\mathbf p
+     \longmapsto(-\mathbf r)\times(-\mathbf p)=\mathbf L.
+\end{equation}
+自旋 $\mathbf S$ 同样是轴向量，但这不表示粒子是一颗经典自转小球。讨论粒子产生或衰变时，还可能涉及内部自由度和内禀宇称，不能把单粒子空间波函数的定义当成完整相互作用模型。
+
+关于 $xy$ 平面的镜面反射只将 $z$ 反号，而宇称将三个分量全反号。两者的关系为
+\begin{equation}
+  \boxed{M_{xy}=R_z(\pi)\Pi}.
+\end{equation}
+因此\emph{已知旋转不变性成立时}，镜面反射不变性与宇称不变性等价。完整坐标验证和逻辑论证见\relatedexercise{QM-C11-S04-E02}{教材习题 11.4.4}。对不具有相应旋转对称性的系统，不能略去这个前提。
+
+\textbf{外部安排不对称与基本规律不对称。}固定均匀电场中的粒子具有外势
+\begin{equation}
+  V_{\mathbf E}(\mathbf r)=-q\mathbf E\cdot\mathbf r.
+\end{equation}
+只反转粒子、却固定场源时，$V_{\mathbf E}(-\mathbf r)\ne V_{\mathbf E}(\mathbf r)$；这说明这个\emph{给定背景下的粒子模型}不具有宇称对称性。若连同相关电荷和场源一起反转，则极向量 $\mathbf E\mapsto-\mathbf E$，于是
+\begin{equation}
+  V_{-\mathbf E}(-\mathbf r)
+   =-q(-\mathbf E)\cdot(-\mathbf r)
+   =V_{\mathbf E}(\mathbf r).
+\end{equation}
+这个外势例子并未推翻产生它的电磁规律的宇称对称性。与前两节类似，必须区分\textbf{具体环境不对称}和\textbf{基本相互作用规律不对称}。
+
+\textbf{弱相互作用的结论。}弱衰变中的宇称破坏并非只因装置没有一起反转，而是完整反转过程后，其概率规律一般也不保持。相关 Hamiltonian 包含自旋、多粒子和粒子转化，不能只检查一个标量 $V(x)$ 是否为偶函数。教材的钴-60 示例用核自旋与电子动量的方向关联展示这一点，见\relatedexercise{QM-C11-S04-E03}{教材正文示例与图 11.2 的整理}。
+
+历史上，李政道、杨振宁在 1956 年指出，当时缺乏弱相互作用宇称守恒的实验依据，并提出检验方案；吴健雄及合作者随后在 1957 年发表极化钴-60 的实验结果。\footnote{历史补充核对：T.~D.~Lee and C.~N.~Yang, \textit{Phys. Rev.} \textbf{104}, 254 (1956), \href{https://doi.org/10.1103/PhysRev.104.254}{doi:10.1103/PhysRev.104.254}；C.~S.~Wu et al., \textit{Phys. Rev.} \textbf{105}, 1413 (1957), \href{https://doi.org/10.1103/PhysRev.105.1413}{doi:10.1103/PhysRev.105.1413}。}重大之处不是构造一个不对称外势，而是发现曾被视为普遍的反转对称性并不适用于弱相互作用。宇称破坏改变的是 $[\Pi,H]=0$ 这一动力学条件，不是 $\Pi^2=I$、酉性或自伴性这些算符性质。
+
+\textbf{一分钟回顾。}宇称是空间反转，偶奇态是其 $\pm1$ 本征态。$[\Pi,H]=0$ 才使宇称随时间保持，并使非简并能量本征态具有确定宇称；简并时需选择共同本征基。三维反转不等于单平面镜像，但在旋转不变性下可互相联系。固定外势的不对称不能直接证明基本规律破坏宇称，弱相互作用的实验结论属于后一个层次。

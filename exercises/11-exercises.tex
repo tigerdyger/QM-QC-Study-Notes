@@ -129,3 +129,123 @@
 
 \textbf{结论。}空间均匀性比较的是整体移动后、内部相对安排相同的系统。固定外场的具体模型可能保留某些方向或特殊形式的平移对称性，应按 Hamiltonian 判断，不能把“有外场”当作一律破坏平移对称性的判据。
 \end{checkedsolution}
+
+\section{第 11.4 节题组：离散对称性与宇称}
+\label{exercises:QM-C11-S04}
+\exercisemeta
+  {QM-C11-S04}
+  {2026-10-15 至 2026-10-16}
+  {Shankar, Second Edition；11.4.2：印刷页 p.~300，PDF p.~310；11.4.4：印刷页 pp.~300--301，PDF pp.~310--311；钴-60 正文示例：印刷页 pp.~299--300，PDF pp.~309--310}
+  {两道选定习题已核对；钴-60 正文示例已讲解；11.4.1 的论证见正文，11.4.3 未选做}
+  {题目与订正已完成；笔记已确认}
+
+本组保留两道教材习题，以及教材关于弱衰变的无编号正文示例；最后一项是已有讲解的整理，不是追加作业。不收录课堂概念检查。
+
+\exercisequestion{QM-C11-S04-E01}{教材习题 11.4.2：周期势与动量守恒}
+\textbf{来源与对应知识点：}印刷页 p.~300，PDF p.~310；\relatedtopic{QM-C11-S04-T02}{对称性及其动力学后果}。
+
+\textbf{题意。}一维粒子处于周期势
+\begin{equation}
+  H=\frac{P^2}{2m}+V(X),\qquad
+  V(x)=V_0\sin\frac{2\pi x}{a},\qquad a>0,\quad V_0\ne0.
+\end{equation}
+势能在离散平移 $x\mapsto x+na$（$n\in\mathbb Z$）下不变。这是否意味着通常的动量 $P$ 是系统守恒量？说明理由。这里讨论对任意允许初态成立的系统守恒量，而非某个特殊态的平均值。
+
+\begin{checkedsolution}
+\textbf{从对易子与平均力判断。}在适当的共同定义域上，由乘积求导法则
+\begin{equation}
+  [V(X),P]\psi(x)=\ii\hbar V'(x)\psi(x),
+\end{equation}
+故
+\begin{equation}
+  [H,P]=\ii\hbar\frac{2\pi V_0}{a}
+                     \cos\frac{2\pi X}{a}\ne0.
+\end{equation}
+Ehrenfest 定理给出
+\begin{equation}
+  \boxed{\frac{\dd\expect P}{\dd t}
+    =\frac{\ii}{\hbar}\expect{[H,P]}
+    =-\frac{2\pi V_0}{a}
+                 \expect{\cos\frac{2\pi X}{a}}}.
+\end{equation}
+它一般不为零，因此 $P$ 不是系统的守恒量。某些态中余弦的期望可能为零，这不改变算符对易子非零的结论，也不能保证任意态的动量守恒。
+
+\textbf{离散对称性为何不够？}令 $T(a)=\ee^{-\ii aP/\hbar}$，周期性给出
+\begin{equation}
+  T^\dagger(a)HT(a)=H,\qquad [H,T(a)]=0.
+\end{equation}
+但
+\begin{equation}
+  \boxed{[H,T(a)]=0\quad\not\Rightarrow\quad[H,P]=0}.
+\end{equation}
+动量作为生成元的守恒要求对任意无穷小位移也有平移不变性，才能对连续参数在零处求导。仅对离散位移 $na$ 成立，不能作这个推论。物理上，周期重复并没有消除每个周期内部的力 $-V'(x)$。
+\end{checkedsolution}
+
+\exercisequestion{QM-C11-S04-E02}{教材习题 11.4.4：镜面反射与宇称的关系}
+\textbf{来源与对应知识点：}印刷页 pp.~300--301，PDF pp.~310--311；\relatedtopic{QM-C11-S04-T03}{镜像与宇称}。
+
+\textbf{题意。}三维宇称将三个坐标全部反号，而关于 $xy$ 平面的镜面反射只将 $z$ 反号。验证后者等价于先作宇称变换，再绕 $z$ 轴旋转 $180^\circ$。已知弱相互作用具有旋转不变性，说明为什么镜面反射不变性的破坏意味着宇称不变性的破坏。
+
+\begin{checkedsolution}
+\textbf{坐标验证。}依次变换得到
+\begin{equation}
+  (x,y,z)\xrightarrow{\Pi}(-x,-y,-z)
+      \xrightarrow{R_z(\pi)}(x,y,-z).
+\end{equation}
+最终坐标正是镜面反射的结果，所以作为空间几何变换，
+\begin{equation}
+  \boxed{M_{xy}=R_z(\pi)\Pi}.
+\end{equation}
+
+\textbf{对称性论证。}若旋转和宇称都是系统对称性，则两者的复合也是对称性。在相应量子表示中，这可以写成
+\begin{align}
+  R_z^\dagger HR_z&=H,\qquad \Pi^\dagger H\Pi=H,\\
+  M_{xy}^\dagger HM_{xy}
+     &=\Pi^\dagger R_z^\dagger HR_z\Pi
+       =\Pi^\dagger H\Pi=H.
+\end{align}
+变换表示的整体相位不影响这一步酉共轭。已知第一条旋转不变性成立，却观察到镜面反射不变性失败，由逆否推理可知宇称不变性也失败。不能不加旋转对称性的前提，就把两个不同操作视为同一个对称性判据。
+\end{checkedsolution}
+
+\exercisequestion{QM-C11-S04-E03}{教材正文示例：钴-60 衰变与镜像实验}
+\textbf{来源与对应知识点：}印刷页 pp.~299--300，PDF pp.~309--310，教材无编号正文示例及图 11.2；\relatedtopic{QM-C11-S04-T03}{弱相互作用的宇称破坏}。下图按其逻辑自行重绘，不复制教材图像。
+
+\textbf{情境。}极化钴-60 核发生 $\beta$ 衰变，产生镍-60、电子和电子反中微子。电子发射具有\emph{偏向核自旋反方向}的统计趋势。比较真实实验、它的纯镜像，以及按镜像初态实际准备的另一份实验，判断镜面反射是否保持概率规律。
+
+\begin{checkedsolution}
+\textbf{先直接作宇称反转。}核自旋是轴向量，电子动量是极向量，因此
+\begin{equation}
+  \mathbf S\xrightarrow{\Pi}\mathbf S,\qquad
+  \mathbf p_e\xrightarrow{\Pi}-\mathbf p_e,\qquad
+  \mathbf S\cdot\mathbf p_e\xrightarrow{\Pi}
+       -\mathbf S\cdot\mathbf p_e.
+\end{equation}
+故“偏向自旋反方向发射”的反转过程变为“偏向自旋同方向发射”。若宇称不变，相应反转过程应有相同的概率规律；实际的前后发射不对称揭示了弱衰变的宇称破坏。
+
+\textbf{教材图 11.2 使用的是平面镜。}可取镜面为 $yz$ 平面，即 $(x,y,z)\mapsto(-x,y,z)$。这等于先作宇称，再绕 $x$ 轴转 $\pi$。因此沿 $z$ 轴的极向量 $p_{e,z}$ 在此镜像下不变，而轴向量 $S_z$ 反号；这与\emph{宇称本身}保持 $S_z$、反转 $p_{e,z}$ 并不矛盾。
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,every node/.style={font=\small}]
+  \node[align=center] at (0,1.2) {$A$：真实实验};
+  \node[align=center] at (4.4,1.2) {$M$：$A$ 的纯镜像};
+  \node[align=center] at (8.8,1.2) {$B$：镜像初态的真实实验};
+  \node[anchor=east] at (-0.65,0) {核自旋};
+  \node[anchor=east,align=right] at (-0.65,-1.8) {电子优先\\发射方向};
+  \draw[->,thick] (0,-0.4)--(0,0.4);
+  \draw[->,thick] (4.4,0.4)--(4.4,-0.4);
+  \draw[->,thick] (8.8,0.4)--(8.8,-0.4);
+  \draw[->,thick] (0,-1.4)--(0,-2.2);
+  \draw[->,thick] (4.4,-1.4)--(4.4,-2.2);
+  \draw[->,thick] (8.8,-2.2)--(8.8,-1.4);
+  \draw[dashed,gray] (2.2,0.65)--(2.2,-2.4);
+  \node[fill=white] at (2.2,-0.9) {$yz$ 镜面};
+  \node[align=center] at (0,-2.75) {偏向反平行};
+  \node[align=center] at (4.4,-2.75) {镜像要求偏向平行};
+  \node[align=center] at (8.8,-2.75) {实际仍偏向反平行};
+\end{tikzpicture}
+\end{center}
+
+$A$ 的核自旋向上，电子优先向下；纯镜像 $M$ 的核自旋向下，电子优先方向仍向下。实际将核自旋向下准备的 $B$，电子却优先向上。因此 $B$ 与 $M$ 初态相对应，结果的\emph{统计分布}却不对应，说明镜面反射不是弱衰变规律的对称性。结合旋转不变性，得到宇称破坏。
+
+\textbf{统计与实验边界。}箭头表示偏好方向，不表示每一个电子只能沿一条轴发射，也不表示镜像中的单个事件绝不可能发生。检验对象是相应过程的概率分布，而非两次随机事件是否相同；实验还需排除探测效率、场和装置安排造成的假不对称。这个结论不是一般外势缺少偶对称的同义反复，也不是由“三维”本身导致。
+\end{checkedsolution}
