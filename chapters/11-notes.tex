@@ -606,3 +606,133 @@ polar vector（极向量）如 $\mathbf r,\mathbf p$ 在宇称下反号；axial 
 历史上，李政道、杨振宁在 1956 年指出，当时缺乏弱相互作用宇称守恒的实验依据，并提出检验方案；吴健雄及合作者随后在 1957 年发表极化钴-60 的实验结果。\footnote{历史补充核对：T.~D.~Lee and C.~N.~Yang, \textit{Phys. Rev.} \textbf{104}, 254 (1956), \href{https://doi.org/10.1103/PhysRev.104.254}{doi:10.1103/PhysRev.104.254}；C.~S.~Wu et al., \textit{Phys. Rev.} \textbf{105}, 1413 (1957), \href{https://doi.org/10.1103/PhysRev.105.1413}{doi:10.1103/PhysRev.105.1413}。}重大之处不是构造一个不对称外势，而是发现曾被视为普遍的反转对称性并不适用于弱相互作用。宇称破坏改变的是 $[\Pi,H]=0$ 这一动力学条件，不是 $\Pi^2=I$、酉性或自伴性这些算符性质。
 
 \textbf{一分钟回顾。}宇称是空间反转，偶奇态是其 $\pm1$ 本征态。$[\Pi,H]=0$ 才使宇称随时间保持，并使非简并能量本征态具有确定宇称；简并时需选择共同本征基。三维反转不等于单平面镜像，但在旋转不变性下可互相联系。固定外势的不对称不能直接证明基本规律破坏宇称，弱相互作用的实验结论属于后一个层次。
+
+\section{第 11.5 节：时间反演对称性}
+\label{section:QM-C11-S05}
+\studymeta
+  {QM-C11-S05}
+  {2026-10-16 至 2026-10-17}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 11 章 \S 11.5 Time-Reversal Symmetry；印刷页 pp.~301--303，PDF pp.~311--313；至第 11 章结束}
+  {三块讲解、两个教材正文示例与概念核对已完成；笔记已确认}
+
+\textbf{主线与范围。}时间反演检验倒放的运动是否仍满足原动力学，既不同于时间平移，也不同于空间反转。量子部分先限于无自旋粒子、不含时的自伴 Hamiltonian 和位置表象。本节没有编号 Example 或 Exercise；行星轨道和磁场运动两个教材正文示例整理在课程题目，不收录自编概念检查。
+
+\notetopic{QM-C11-S05-T01}{经典时间反演：状态、轨迹与动力学}
+\textbf{来源：}印刷页 pp.~301--302，PDF pp.~311--312。
+\keyidea{构造倒放轨迹是变换的定义；倒放轨迹仍满足同一个运动方程，才是时间反演对称性。}
+
+\textbf{瞬时状态与完整轨迹。}在 $p=m\dot x$ 的模型中，某一瞬间的时间反演为 $(x,p)\mapsto(x,-p)$：位置不变，运动方向反转。宇称则是 $(x,p)\mapsto(-x,-p)$。时间平移比较相同初态在不同起始时间的演化，不倒转运动顺序。
+
+将反演时刻选为 $t=0$，若原轨迹为 $x(t)$，则倒放轨迹定义为
+\begin{equation}
+  \boxed{x_R(t)=x(-t)},\qquad
+  \dot x_R(t)=-\dot x(-t),\qquad
+  \ddot x_R(t)=\ddot x(-t).
+\end{equation}
+右侧的点表示先对原轨迹求导，再在 $-t$ 处取值。每求一次时间导数产生一个负号，所以对应时刻的位置和加速度不变，速度和机械动量反号；动能不变，轨道角动量 $\mathbf r\times m\mathbf v$ 反号。这里没有让实验室时钟倒走，而是在正常向前的时间中检验另一条轨迹。
+
+\textbf{检验同一个方程。}设力仅依赖位置，原运动满足 $m\ddot x(t)=F(x(t))$。则
+\begin{equation}
+  m\ddot x_R(t)=m\ddot x(-t)
+    =F(x(-t))=F(x_R(t)).
+\end{equation}
+因此倒放轨迹也是同一动力学的解。这个论证使用了力不显含时间、不依赖速度的条件，不能据此断言任意模型都具有 time-reversal invariance（时间反演不变性，TRI）。教材行星轨道示例具体展示了“回到原位置，但动量与原先相反”，见\relatedexercise{QM-C11-S05-E01}{行星轨道的反演}。
+
+\notetopic{QM-C11-S05-T02}{量子时间反演：复共轭与实 Hamiltonian}
+\textbf{来源：}印刷页 pp.~302--303，PDF pp.~312--313；Fourier 变换和反线性性质为对话中展开的推导。
+
+\textbf{为什么取复共轭？}对一般量子态，位置与动量不必确定；相应要求是位置概率分布不变、动量分布反转。在本节无自旋情形中，以 $\mathcal K$ 表示位置表象的逐点复共轭：
+\begin{equation}
+  \boxed{(\mathcal K\psi)(x)=\psi^*(x)},\qquad
+  |\mathcal K\psi(x)|^2=|\psi(x)|^2.
+\end{equation}
+对平面波，$\ee^{\ii px/\hbar}\mapsto\ee^{-\ii px/\hbar}$，正好将 $p$ 变为 $-p$。对一般波包也成立：
+\begin{align}
+  \widetilde\psi_R(p)
+    &=\frac1{\sqrt{2\pi\hbar}}\int_{\real}
+                    \psi^*(x)\ee^{-\ii px/\hbar}\dd x\\
+    &=\left[\frac1{\sqrt{2\pi\hbar}}\int_{\real}
+                    \psi(x)\ee^{\ii px/\hbar}\dd x\right]^*
+      =\widetilde\psi^{\,*}(-p).
+\end{align}
+故 $|\widetilde\psi_R(p)|^2=|\widetilde\psi(-p)|^2$。这是主动改变状态，不是仅仅把同一个态换成另一种表象。
+
+\textbf{复系数也要共轭。}对复数 $c_1,c_2$，
+\begin{equation}
+  \mathcal K(c_1\psi_1+c_2\psi_2)
+      =c_1^*\mathcal K\psi_1+c_2^*\mathcal K\psi_2.
+\end{equation}
+因此 $\mathcal K$ 是 antilinear（反线性）的，不能像线性算符那样原样提出复系数。它保持范数，但不是前几节的线性酉变换。在当前约定中 $\mathcal K^2=I$；含自旋时还必须反转自旋，不能把上述实现直接用于所有体系。
+
+\textbf{对整个演化同时倒转时间。}某一瞬间的状态变换是 $\psi\mapsto\psi^*$，整段演化的反演则为
+\begin{equation}
+  \boxed{\psi_R(x,t)=\psi^*(x,-t)}.
+\end{equation}
+从 $\ii\hbar\partial_s\psi=H\psi$ 出发，先共轭，再令 $s=-t$，得到
+\begin{align}
+  -\ii\hbar\partial_s\psi^*(x,s)&=H^*\psi^*(x,s),\\
+  \ii\hbar\partial_t\psi_R(x,t)
+    &=-\ii\hbar\left.\partial_s\psi^*(x,s)\right|_{s=-t}
+      =H^*\psi_R(x,t).
+\end{align}
+这里 $H^*=\mathcal K H\mathcal K$ 指当前位置表象中的复共轭，不是伴随 $H^\dagger$。若要求对所有允许初态和所有时刻都恢复同一个方程，便得到教材的判据
+\begin{equation}
+  \boxed{H^*=H}.
+  \label{eq:QM-C11-S05-real-H}
+\end{equation}
+还须保证定义域和边界条件在共轭下保持不变。对于实标量势，
+\begin{equation}
+  H=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x)
+\end{equation}
+满足这一实性条件，\emph{不要求 $V(x)$ 为偶函数}。实性也不要求波函数本身为实函数。$H^\dagger=H$ 保证自伴性，却不能代替式~\eqref{eq:QM-C11-S05-real-H}；换表象后时间反演的实现也会改变，不能在任意基中只凭矩阵元素是否全实来判断。
+
+\textbf{演化、反演、再演化。}令 $U(T)=\ee^{-\ii HT/\hbar}$。先从 $\psi_0$ 演化时间 $T$，取复共轭，再按原 Hamiltonian 演化时间 $T$，最终得到
+\begin{equation}
+  U(T)[U(T)\psi_0]^*
+    =\ee^{-\ii HT/\hbar}\ee^{+\ii H^*T/\hbar}\psi_0^*.
+\end{equation}
+当 $H^*=H$ 时，两段指数相消：
+\begin{equation}
+  \boxed{U(T)[U(T)\psi_0]^*=\psi_0^*}.
+\end{equation}
+返回的是\emph{初态的时间反演态}，未必是原初态。同样可写成 $\mathcal K U(T)=U(-T)\mathcal K$：反演改变演化的时间方向，不能直接照搬宇称对称性下 $\Pi U(T)=U(T)\Pi$ 的关系。
+
+\notetopic{QM-C11-S05-T03}{磁场、完整系统与能量本征态}
+\textbf{来源：}印刷页 pp.~302--303，PDF pp.~312--313；电磁 Hamiltonian 与非简并结论结合已学内容展开。
+
+\textbf{固定外场与完整反演。}只将粒子速度反向、保持外磁场不变，磁力会反号，而倒放轨迹在对应位置要求加速度不变，因此通常不能沿原路返回。若连产生磁场的电流也反向，磁场随之反向，才是相应完整系统的时间反演；具体轨道与受力比较见\relatedexercise{QM-C11-S05-E02}{固定磁场的反例}。固定背景下的粒子模型不对称，不等于电磁规律本身不对称。
+
+在 Gaussian 单位制下，对实的静态电磁势，
+\begin{equation}
+  H_{\mathbf A}
+   =\frac1{2m}\left(\mathbf P-\frac qc\mathbf A\right)^2+q\Phi,
+  \qquad \mathbf P=-\ii\hbar\nabla.
+\end{equation}
+复共轭保持 $\mathbf A,\Phi$，使 $\mathbf P\mapsto-\mathbf P$。保持算符原来的乘积顺序，有
+\begin{equation}
+  H_{\mathbf A}^*
+    =\frac1{2m}\left(-\mathbf P-\frac qc\mathbf A\right)^2+q\Phi
+    =\frac1{2m}\left(\mathbf P+\frac qc\mathbf A\right)^2+q\Phi
+    =\boxed{H_{-\mathbf A}}.
+\end{equation}
+由于 $\mathbf B=\nabla\times\mathbf A$，这对应反向磁场，一般不等于原固定场的 Hamiltonian。这里 $\mathbf P$ 是正则动量；机械动量为 $m\mathbf v=\mathbf P-q\mathbf A/c$。完整反演同时使 $\mathbf P$ 与 $\mathbf A$ 反号，机械动量才按要求反号。上述势的表达采用相应规范约定，不把势本身当作规范不变量。
+
+\textbf{同能量不自动意味着简并。}回到 $H^*=H$ 的无自旋模型。若 $H\psi_E=E\psi_E$，自伴性给出实数 $E$，于是
+\begin{equation}
+  H\psi_E^*=H^*\psi_E^*=E\psi_E^*.
+\end{equation}
+所以 $\psi_E^*$ 仍在同一能量本征空间。\textbf{只有它与 $\psi_E$ 线性无关时，才由这两个解推出简并。}教材关于共轭本征函数的简写须加上这一限定，不能推成“每个能级至少二重简并”。
+
+若能级非简并，则 $\psi_E^*=c\psi_E$。对归一化态，比较范数得 $|c|=1$，可记 $c=\ee^{\ii\alpha}$。令
+\begin{equation}
+  \phi_E=\ee^{\ii\alpha/2}\psi_E,
+  \qquad
+  \phi_E^*=\ee^{-\ii\alpha/2}\psi_E^*
+           =\ee^{\ii\alpha/2}\psi_E=\phi_E.
+\end{equation}
+因此在这些条件下，非简并能量本征函数可以选为实函数；共轭没有产生另一个物理态。谐振子的实本征函数和非简并能谱就是此前已学过的例子。若共轭后线性无关，则说明能级简并；这些结论不能不加修改地推广到含自旋的时间反演问题。
+
+教材结尾区分固定外场造成的非对称与基本相互作用层次的时间反演破坏，并提示有自旋时需额外处理。本节不展开后者，也不从磁场例子推断所有基本规律都具有时间反演对称性。
+
+\textbf{一分钟回顾。}倒放使速度反号、加速度不反号；对称性要求倒放仍是同一动力学的解。无自旋位置表象中，瞬时反演为 $\psi\mapsto\psi^*$，整段演化为 $\psi(x,t)\mapsto\psi^*(x,-t)$，判据为 $H^*=H$ 及相应定义域不变。固定磁场与完整系统要分开讨论。共轭给出同能量解，但不必给出独立态；非简并本征函数可以选实。

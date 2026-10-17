@@ -249,3 +249,82 @@ $A$ 的核自旋向上，电子优先向下；纯镜像 $M$ 的核自旋向下�
 
 \textbf{统计与实验边界。}箭头表示偏好方向，不表示每一个电子只能沿一条轴发射，也不表示镜像中的单个事件绝不可能发生。检验对象是相应过程的概率分布，而非两次随机事件是否相同；实验还需排除探测效率、场和装置安排造成的假不对称。这个结论不是一般外势缺少偶对称的同义反复，也不是由“三维”本身导致。
 \end{checkedsolution}
+
+\section{第 11.5 节教材正文示例：倒放运动与固定磁场}
+\label{exercises:QM-C11-S05}
+\exercisemeta
+  {QM-C11-S05}
+  {2026-10-16 至 2026-10-17}
+  {Shankar, Second Edition；行星轨道：印刷页 pp.~301--302，PDF pp.~311--312；磁场运动及场源：印刷页 pp.~302--303，PDF pp.~312--313}
+  {两个无编号正文示例已讲解；本节无编号 Example 或 Exercise，不另加自编习题}
+  {讲解与概念核对已完成；笔记已确认}
+
+\exercisequestion{QM-C11-S05-E01}{教材正文示例：行星沿原轨道返回}
+\textbf{来源与对应知识点：}印刷页 pp.~301--302，PDF pp.~311--312；\relatedtopic{QM-C11-S05-T01}{经典时间反演}。
+
+\textbf{情境。}在固定太阳引力模型中，行星从 $\mathbf r_0(0),\mathbf p_0(0)$ 出发作圆周运动。经过四分之一周期 $T$ 后，瞬间反转速度而不改变位置，随后继续在原引力下运动。说明再过时间 $T$ 后的位置和动量；瞬时改变速度的外部操作不属于随后自由演化的一部分。
+
+\begin{checkedsolution}
+以反向后的经过时间 $s$ 计时，$0\le s\le T$。候选返回轨迹为
+\begin{equation}
+  \mathbf r_{\mathrm{ret}}(s)=\mathbf r_0(T-s),\qquad
+  \mathbf p_{\mathrm{ret}}(s)=-\mathbf p_0(T-s).
+\end{equation}
+它在 $s=0$ 具有原终点位置和反向动量，符合操作后的初始条件。引力只依赖位置，且对应时刻的加速度不变，因此这条轨迹满足原 Newton 方程；在该轨道附近的通常解唯一性条件下，它就是操作后的实际运动。
+
+取 $s=T$ 得
+\begin{equation}
+  \boxed{\mathbf r_{\mathrm{ret}}(T)=\mathbf r_0(0),\qquad
+         \mathbf p_{\mathrm{ret}}(T)=-\mathbf p_0(0)}.
+\end{equation}
+按全过程的实验室时钟，这发生在 $2T$。位置回到出发点，但动量不是最初的动量，而是其反号；全过程末态是初态的时间反演态，不是一般意义下完全相同的初态。圆轨道和四分之一周期只是教材的具体情境，返回论证本身不依赖这两个特殊选择。
+\end{checkedsolution}
+
+\exercisequestion{QM-C11-S05-E02}{教材正文示例：固定磁场为何不能原路返回}
+\textbf{来源与对应知识点：}印刷页 pp.~302--303，PDF pp.~312--313；\relatedtopic{QM-C11-S05-T03}{磁场与完整系统}。示意图为依据教材情境自行绘制。
+
+\textbf{情境。}正电荷在 $xy$ 平面内运动，均匀磁场沿 $-z$ 方向。在圆轨道某点 $Q$ 将速度瞬间反向。比较两种安排：只反转粒子速度、保持磁场固定；或同时反转产生磁场的电流，使磁场也反向。
+
+\begin{checkedsolution}
+\textbf{只反转速度。}Gaussian 单位制下的磁力为
+\begin{equation}
+  \mathbf F=\frac qc\mathbf v\times\mathbf B.
+\end{equation}
+在同一点将 $\mathbf v$ 改为 $-\mathbf v$，却固定 $\mathbf B$，新磁力为 $-\mathbf F$。但是倒放原轨道所需的加速度与原加速度相同，因此所需力仍为 $\mathbf F$，两者相反。粒子速率不变，轨道半径大小 $R=mc|\mathbf v|/(q|\mathbf B|)$ 不变，但圆心换到切线的另一侧。
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=1.15,every node/.style={font=\small}]
+  \draw[dashed,thick,gray] (0,0) circle (1.2);
+  \draw[thick] (2.4,0) circle (1.2);
+  \fill (0,0) circle (1.2pt);
+  \fill (2.4,0) circle (1.2pt);
+  \fill (1.2,0) circle (1.8pt);
+  \node[below left] at (1.2,0) {$Q$};
+  \node[below] at (0,-0.1) {原圆心};
+  \node[below] at (2.4,-0.1) {新圆心};
+  \draw[->,dashed,thick] (1.2,0)--(1.2,0.85)
+    node[above] {$\mathbf v$};
+  \draw[->,thick] (1.2,0)--(1.2,-0.85)
+    node[below] {$-\mathbf v$};
+  \draw[->,dashed,thick] (1.2,0)--(0.25,0);
+  \draw[->,thick] (1.2,0)--(2.15,0);
+  \node[above,align=center] at (0,0.2) {倒放所需力};
+  \node[above,align=center] at (2.4,0.2) {实际新磁力};
+  \node[align=center] at (0,-1.65) {原轨道\\（虚线）};
+  \node[align=center] at (2.4,-1.65) {反向后的轨道\\（实线）};
+  \node at (1.2,1.65) {$q>0,\quad\mathbf B\text{ 始终垂直纸面向内}$};
+\end{tikzpicture}
+\end{center}
+
+图中原粒子在 $Q$ 处向上运动，磁力向左；反向后速度向下，实际磁力向右，进入右侧的新圆轨道，而不是沿左侧原轨道返回。磁力不做功只保证速率不变，不能保证轨迹按相反顺序重走。
+
+\textbf{把场源一并反演。}电流由电荷运动产生；若对相关场源也作时间反演，电流反向，磁场成为 $-\mathbf B$。此时
+\begin{equation}
+  \mathbf F_{\mathrm{rev}}
+    =\frac qc(-\mathbf v)\times(-\mathbf B)
+    =\boxed{\frac qc\mathbf v\times\mathbf B=\mathbf F}.
+\end{equation}
+加速度恢复为倒放轨迹所需的方向，粒子可沿原圆返回。这里比较的是相应反向场中的演化；并非在同一个固定外场下只反转速度。
+
+\textbf{结论。}固定磁场的粒子模型不具有上述时间反演对称性，但这个例子没有证明电磁规律本身破坏时间反演。把场和场源作为完整系统的一部分相应反演，才是在检验完整规律。
+\end{checkedsolution}
