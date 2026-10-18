@@ -1,0 +1,79 @@
+\section{第 12.1 节：二维空间中的平移}
+\label{section:QM-C12-S01}
+\studymeta
+  {QM-C12-S01}
+  {2026-10-17 至 2026-10-18}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 12 章 \S 12.1 Translations in Two Dimensions；印刷页 pp.~305--306，至 \S 12.2 开始前；本地 PDF p.~314 对应印刷 p.~305，印刷 p.~306 缺页}
+  {两块讲解与教材习题 12.1.1 已核对；笔记已确认}
+
+\textbf{主线。}把\hyperref[section:QM-C11-S02]{\S 11.2 的一维平移}推广到平面：先确定任意方向的生成元，再检验有限平移是否满足位移相加的几何规则，为后续讨论旋转作准备。以下采用全平面上的通常位置表象，不附加位置相关相位；微分和对易子在足够光滑的共同定义域上计算。
+
+\textbf{来源说明。}印刷 p.~306 的内容及习题题意已与\href{https://djvu.online/file/SJ0IX5VK7Mxio}{同版教材在线文字转录}交叉核对。\verify{本地扫描由印刷 p.~305 跳至 p.~307，p.~306 原页图像仍待补核。}下面将记号统一后自行展开推导，不复制转录中的残缺公式。
+
+\notetopic{QM-C12-S01-T01}{方向上的动量分量是平移生成元}
+\keyidea{二维平移需要指定方向；沿单位向量 $\mathbf n$ 的生成元是动量的有符号分量 $\mathbf n\cdot\mathbf P$，不是动量大小。}
+
+在位置表象 $\psi(x,y)=\braket{x,y}{\psi}$ 中，两轴方向的动量为
+\begin{equation}
+  P_x=-\ii\hbar\frac{\partial}{\partial x},\qquad
+  P_y=-\ii\hbar\frac{\partial}{\partial y},\qquad
+  \mathbf P=P_x\mathbf e_x+P_y\mathbf e_y.
+\end{equation}
+这里的 vector operator（矢量算符）$\mathbf P$ 由作用于同一个态空间的两个算符分量组成，不是一个因为空间二维就只有 $2\times2$ 个元素的矩阵。
+
+设 $\mathbf n=(n_x,n_y)$ 是固定单位向量，$\epsilon$ 是带长度量纲的小位移参数。沿 $\mathbf n$ 主动平移的作用为
+\begin{equation}
+  (x,y)\longmapsto(x+\epsilon n_x,y+\epsilon n_y),\qquad
+  \psi_\epsilon(x,y)=\psi(x-\epsilon n_x,y-\epsilon n_y).
+\end{equation}
+新位置处的振幅来自平移前的位置，所以波函数自变量取减号。将一阶展开与生成元定义比较，得到
+\begin{equation}
+  \boxed{G_{\mathbf n}=n_xP_x+n_yP_y=\mathbf n\cdot\mathbf P},\qquad
+  T(\epsilon\mathbf n)
+  =I-\frac{\ii\epsilon}{\hbar}G_{\mathbf n}+O(\epsilon^2).
+  \label{eq:QM-C12-S01-direction-generator}
+\end{equation}
+Taylor 展开和符号核对见\relatedexercise{QM-C12-S01-E01}{教材习题 12.1.1}。若 $\mathbf n=(\cos\theta,\sin\theta)$，则
+\begin{equation}
+  G_{\mathbf n}=P_x\cos\theta+P_y\sin\theta,\qquad
+  G_{-\mathbf n}=-G_{\mathbf n}.
+\end{equation}
+反转方向会使动量投影反号，而动量大小不会因此改变。
+
+对有限位移 $\mathbf a=(a_x,a_y)$，指数化生成元得到
+\begin{equation}
+  \boxed{T(\mathbf a)=\exp\!\left(-\frac{\ii}{\hbar}\mathbf a\cdot\mathbf P\right)},
+  \qquad [T(\mathbf a)\psi](x,y)=\psi(x-a_x,y-a_y).
+  \label{eq:QM-C12-S01-finite-translation}
+\end{equation}
+$\mathbf a\cdot\mathbf P$ 具有作用量的量纲，因此指数无量纲。全平面上的平移保持内积，其逆是反向平移：$T^\dagger(\mathbf a)=T(-\mathbf a)=T^{-1}(\mathbf a)$。
+
+\notetopic{QM-C12-S01-T02}{平移合成与生成元的对易性}
+\keyidea{先平移 $\mathbf a$ 再平移 $\mathbf b$，总位移为 $\mathbf a+\mathbf b$，且与先后次序无关；量子算符必须重现这个几何事实。}
+
+在光滑波函数上，混合偏导可以交换，故
+\begin{equation}
+  [P_x,P_y]\psi
+  =-\hbar^2(\partial_x\partial_y-\partial_y\partial_x)\psi=0.
+\end{equation}
+于是任意两个位移对应的算符也对易：
+\begin{align}
+  [\mathbf a\cdot\mathbf P,\mathbf b\cdot\mathbf P]
+  &=a_xb_y[P_x,P_y]+a_yb_x[P_y,P_x]\notag\\
+  &=(a_xb_y-a_yb_x)[P_x,P_y]=0.
+\end{align}
+在这里的全平面表示中，两个标准动量分量的有限平移也可交换，指数能够合并。因此
+\begin{align}
+  T(\mathbf b)T(\mathbf a)
+  &=\ee^{-\ii\mathbf b\cdot\mathbf P/\hbar}
+    \ee^{-\ii\mathbf a\cdot\mathbf P/\hbar}\notag\\
+  &=\ee^{-\ii(\mathbf a+\mathbf b)\cdot\mathbf P/\hbar}
+   =\boxed{T(\mathbf a+\mathbf b)=T(\mathbf a)T(\mathbf b)}.
+  \label{eq:QM-C12-S01-composition}
+\end{align}
+右侧算符先作用，所以 $T(\mathbf b)T(\mathbf a)$ 表示先 $\mathbf a$ 后 $\mathbf b$。也可直接由波函数验证，两种次序都给出 $\psi(x-a_x-b_x,y-a_y-b_y)$；这避免把一般不对易算符的指数误当标量处理。
+
+\dialoguesupplement{平移的代数关系不等于系统的平移对称性。$[P_x,P_y]=0$ 只比较两个生成元，没有涉及 Hamiltonian。要让不显含时间的 $P_x$ 或 $P_y$ 对任意态都守恒，还须分别满足 $[P_x,H]=0$ 或 $[P_y,H]=0$，并保持相应定义域与边界条件。不能从平移顺序无关推出任意外势中的动量守恒。}
+
+\textbf{一分钟回顾。}沿方向 $\mathbf n$ 的平移由 $G_{\mathbf n}=\mathbf n\cdot\mathbf P$ 生成；有限位移对应 $T(\mathbf a)=\ee^{-\ii\mathbf a\cdot\mathbf P/\hbar}$。两个标准动量分量对易，使平移算符满足位移相加和次序无关的规则；生成元是否守恒，则另由 Hamiltonian 的对称性决定。

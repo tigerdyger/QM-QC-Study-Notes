@@ -1,0 +1,35 @@
+\section{第 12.1 节习题：验证任意方向的平移生成元}
+\label{exercises:QM-C12-S01}
+\exercisemeta
+  {QM-C12-S01}
+  {2026-10-17 至 2026-10-18}
+  {Shankar, Second Edition；Exercise 12.1.1，印刷页 p.~306；本地 PDF 缺该页，题意据同版在线文字转录核对}
+  {教材习题 12.1.1 已作答并核对}
+  {笔记已确认；原页图像待补核}
+
+\exercisequestion{QM-C12-S01-E01}{教材习题 12.1.1：从波函数平移识别生成元}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S01-T01}{方向上的动量分量}。题意统一记号重述，缺页及转录来源说明见\hyperref[section:QM-C12-S01]{正文}。
+
+\textbf{题目。}设 $\mathbf n=(n_x,n_y)$ 是固定单位向量，$\psi(x,y)$ 足够光滑。主动平移位移 $\epsilon\mathbf n$ 后，波函数为
+\begin{equation}
+  \psi_\epsilon(x,y)=\psi(x-\epsilon n_x,y-\epsilon n_y).
+\end{equation}
+利用 $P_x=-\ii\hbar\partial_x$、$P_y=-\ii\hbar\partial_y$，将一阶展开与
+$\psi_\epsilon=(I-\ii\epsilon G_{\mathbf n}/\hbar)\psi+O(\epsilon^2)$ 比较，验证沿 $\mathbf n$ 方向的无穷小平移生成元为 $\mathbf n\cdot\mathbf P$。
+
+\begin{checkedsolution}
+对两个自变量同时作一阶 Taylor 展开：
+\begin{align}
+  \psi_\epsilon(x,y)
+  &=\psi(x,y)-\epsilon n_x\partial_x\psi(x,y)
+    -\epsilon n_y\partial_y\psi(x,y)+O(\epsilon^2)\notag\\
+  &=\left[I-\epsilon(n_x\partial_x+n_y\partial_y)\right]\psi
+    +O(\epsilon^2)\notag\\
+  &=\left[I-\frac{\ii\epsilon}{\hbar}(n_xP_x+n_yP_y)\right]\psi
+    +O(\epsilon^2).
+\end{align}
+其中 $(-\ii)(-\ii)=-1$ 保证符号一致。对任意上述波函数比较生成元定义，得到
+\begin{equation}
+  \boxed{G_{\mathbf n}=n_xP_x+n_yP_y=\mathbf n\cdot\mathbf P}.
+\end{equation}
+\end{checkedsolution}
