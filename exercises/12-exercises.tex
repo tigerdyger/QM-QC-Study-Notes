@@ -33,3 +33,98 @@ $\psi_\epsilon=(I-\ii\epsilon G_{\mathbf n}/\hbar)\psi+O(\epsilon^2)$ 比较，�
   \boxed{G_{\mathbf n}=n_xP_x+n_yP_y=\mathbf n\cdot\mathbf P}.
 \end{equation}
 \end{checkedsolution}
+
+\section{第 12.2 节习题：旋转生成元与极坐标表示}
+\label{exercises:QM-C12-S02}
+\exercisemeta
+  {QM-C12-S02}
+  {2026-10-19}
+  {Shankar, Second Edition；Exercise 12.2.2，印刷 p.~309 / PDF p.~317；Exercise 12.2.3，印刷 p.~310 / PDF p.~318}
+  {12.2.2 采用教材允许的一致性验证要求；12.2.3 的两种方法均已作答并核对}
+  {笔记已确认}
+
+本题组只收录两道已完成的教材习题。12.2.1 涉及的逆自变量关系已在正文解释，未另设题；12.2.4 未选做，不收入课堂概念检查。
+
+\exercisequestion{QM-C12-S02-E01}{教材习题 12.2.2：核对角动量的四条对易关系}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S02-T02}{分量变换与对易关系}。
+
+\textbf{题目。}教材要求由旋转所需的对易关系确定 $L_z$，或至少验证 $L_z=XP_y-YP_x$ 与之相容。本题采用后一要求。已知
+\begin{equation}
+  [X,P_x]=[Y,P_y]=\ii\hbar I,\qquad
+  [X,Y]=[P_x,P_y]=[X,P_y]=[Y,P_x]=0,
+\end{equation}
+验证
+\begin{equation}
+  [X,L_z]=-\ii\hbar Y,\quad [Y,L_z]=\ii\hbar X,\quad
+  [P_x,L_z]=-\ii\hbar P_y,\quad [P_y,L_z]=\ii\hbar P_x.
+\end{equation}
+
+\begin{checkedsolution}
+使用 $[A,BC]=[A,B]C+B[A,C]$。对位置分量，
+\begin{align}
+  [X,L_z]&=[X,X]P_y+X[X,P_y]-[X,Y]P_x-Y[X,P_x]\notag\\
+         &=0+0-0-\ii\hbar Y=\boxed{-\ii\hbar Y},\\
+  [Y,L_z]&=[Y,X]P_y+X[Y,P_y]-[Y,Y]P_x-Y[Y,P_x]\notag\\
+         &=0+\ii\hbar X-0-0=\boxed{\ii\hbar X}.
+\end{align}
+对动量分量，注意对易子反对称性给出 $[P_x,X]=[P_y,Y]=-\ii\hbar I$，于是
+\begin{align}
+  [P_x,L_z]&=[P_x,X]P_y+X[P_x,P_y]-[P_x,Y]P_x-Y[P_x,P_x]\notag\\
+           &=-\ii\hbar P_y+0-0-0=\boxed{-\ii\hbar P_y},\\
+  [P_y,L_z]&=[P_y,X]P_y+X[P_y,P_y]-[P_y,Y]P_x-Y[P_y,P_x]\notag\\
+           &=0+0-(-\ii\hbar P_x)-0=\boxed{\ii\hbar P_x}.
+\end{align}
+四条关系均成立。将它们用于 $U^\dagger A U=A+\ii\epsilon[L_z,A]/\hbar+O(\epsilon^2)$，位置和动量都按二维无穷小旋转规律变换。
+
+\textbf{严格性补充。}这验证了一致性，却没有单凭对易关系唯一确定生成元：$L_z+cI$（$c$ 为实常数，具有角动量量纲）也满足同样的四条关系。它使旋转算符多出 $\ee^{-\ii\theta c/\hbar}$；正文选用不附加该整体相位的纯轨道旋转约定。
+\end{checkedsolution}
+
+\exercisequestion{QM-C12-S02-E02}{教材习题 12.2.3：用两种方法得到极坐标角动量}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S02-T02}{有限旋转与极坐标}。
+
+\textbf{题目。}证明 $L_z=-\ii\hbar\partial_\varphi$，其中对 $\varphi$ 的偏导保持 $\rho$ 不变。要求分别使用：
+\begin{enumerate}
+  \item 坐标变换法：由 $L_z=-\ii\hbar(x\partial_y-y\partial_x)$ 和 $x=\rho\cos\varphi$、$y=\rho\sin\varphi$ 推出结论；
+  \item 直接法：将主动小角度旋转 $\psi_\epsilon(\rho,\varphi)=\psi(\rho,\varphi-\epsilon)$ 与生成元定义 $U(\epsilon)=I-\ii\epsilon L_z/\hbar+O(\epsilon^2)$ 比较。
+\end{enumerate}
+
+\begin{checkedsolution}
+\textbf{方法一：链式法则。}取任意足够光滑的 $f(x,y)$，定义
+$F(\rho,\varphi)=f(\rho\cos\varphi,\rho\sin\varphi)$。固定 $\rho$ 时，
+\begin{equation}
+  \frac{\partial x}{\partial\varphi}=-\rho\sin\varphi=-y,\qquad
+  \frac{\partial y}{\partial\varphi}=\rho\cos\varphi=x.
+\end{equation}
+于是
+\begin{align}
+  \frac{\partial F}{\partial\varphi}
+  &=\frac{\partial f}{\partial x}\frac{\partial x}{\partial\varphi}
+    +\frac{\partial f}{\partial y}\frac{\partial y}{\partial\varphi}\notag\\
+  &=-y\frac{\partial f}{\partial x}+x\frac{\partial f}{\partial y}
+   =(x\partial_y-y\partial_x)f.
+\end{align}
+因此，同一微分算符在极坐标表示中为
+\begin{equation}
+  \boxed{L_z=-\ii\hbar(x\partial_y-y\partial_x)
+    =-\ii\hbar\partial_\varphi}.
+\end{equation}
+
+\textbf{方法二：无穷小旋转。}主动逆时针旋转后，当前极角处的振幅来自原来的 $\varphi-\epsilon$，所以
+\begin{align}
+  \psi_\epsilon(\rho,\varphi)
+  &=\psi(\rho,\varphi-\epsilon)\notag\\
+  &=\psi(\rho,\varphi)-\epsilon\partial_\varphi\psi(\rho,\varphi)
+    +O(\epsilon^2).
+\end{align}
+另一方面，生成元定义给出
+\begin{equation}
+  \psi_\epsilon=\psi-\frac{\ii\epsilon}{\hbar}L_z\psi+O(\epsilon^2).
+\end{equation}
+对任意上述波函数比较一阶系数，
+\begin{equation}
+  -\partial_\varphi=-\frac{\ii}{\hbar}L_z
+  \quad\Longrightarrow\quad
+  \boxed{L_z=-\ii\hbar\partial_\varphi}.
+\end{equation}
+两种方法分别说明同一算符如何改变坐标表达，以及如何直接由几何变换识别生成元。角导数对应旋转，正如 $P_x=-\ii\hbar\partial_x$ 的位置导数对应平移。
+\end{checkedsolution}

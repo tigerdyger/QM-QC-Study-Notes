@@ -77,3 +77,209 @@ $\mathbf a\cdot\mathbf P$ 具有作用量的量纲，因此指数无量纲。全
 \dialoguesupplement{平移的代数关系不等于系统的平移对称性。$[P_x,P_y]=0$ 只比较两个生成元，没有涉及 Hamiltonian。要让不显含时间的 $P_x$ 或 $P_y$ 对任意态都守恒，还须分别满足 $[P_x,H]=0$ 或 $[P_y,H]=0$，并保持相应定义域与边界条件。不能从平移顺序无关推出任意外势中的动量守恒。}
 
 \textbf{一分钟回顾。}沿方向 $\mathbf n$ 的平移由 $G_{\mathbf n}=\mathbf n\cdot\mathbf P$ 生成；有限位移对应 $T(\mathbf a)=\ee^{-\ii\mathbf a\cdot\mathbf P/\hbar}$。两个标准动量分量对易，使平移算符满足位移相加和次序无关的规则；生成元是否守恒，则另由 Hamiltonian 的对称性决定。
+
+\section{第 12.2 节：二维空间中的旋转}
+\label{section:QM-C12-S02}
+\studymeta
+  {QM-C12-S02}
+  {2026-10-19}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 12 章 \S 12.2 Rotations in Two Dimensions；印刷页 pp.~306--313 上半页，至 \S 12.3 开始前；本地 PDF pp.~315--321 对应印刷 pp.~307--313，印刷 p.~306 缺页}
+  {四块讲解与教材习题 12.2.2、12.2.3 已核对；笔记已确认}
+
+\textbf{主线与约定。}从平面旋转的几何作用识别轨道角动量，再用旋转与平移的合成理解对易关系，最后定义矢量算符。以下讨论无自旋粒子在全平面上的通常标量波函数；坐标轴固定，绕原点逆时针主动旋转为正，旋转角记作 $\theta$，位置的极角记作 $\varphi$。微分与对易关系在足够光滑的共同定义域上使用，不在本节展开 \S 12.3 的本征值问题。
+
+\textbf{来源说明。}印刷 pp.~307--313 已核对本地原页；p.~306 的开头旋转公式沿用\hyperref[section:QM-C12-S01]{上一节的同版文字转录核对}。\verify{印刷 p.~306 原页图像仍待补核。}
+
+\notetopic{QM-C12-S02-T01}{从旋转几何识别角动量生成元}
+\keyidea{主动旋转把空间点送到 $R\mathbf r$；旋转后固定位置处的振幅来自旧位置 $R^{-1}\mathbf r$，因此波函数自变量发生逆变换。}
+
+平面旋转矩阵为
+\begin{equation}
+  R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\
+    \sin\theta&\cos\theta\end{pmatrix},\qquad
+  \binom{x}{y}\longmapsto R(\theta)\binom{x}{y}.
+\end{equation}
+$R$ 作用于二维空间坐标，$U(\theta)$ 作用于 Hilbert 空间中的量子态；空间二维不意味着态空间只有两个维度。采用不附加位置相关相位的纯空间旋转约定，
+\begin{equation}
+  \ket{\psi_\theta}=U(\theta)\ket\psi,\qquad
+  U(\theta)\ket{\mathbf r}=\ket{R(\theta)\mathbf r}.
+\end{equation}
+在位置基展开初态，再令 $\mathbf s=R\mathbf r$。由于旋转的 Jacobian 为 $\det R=1$，
+\begin{equation}
+  U\ket\psi=\int\dd^2r\,\psi(\mathbf r)\ket{R\mathbf r}
+  =\int\dd^2s\,\psi(R^{-1}\mathbf s)\ket{\mathbf s}.
+\end{equation}
+比较新位置基上的系数，得到
+\begin{equation}
+  \boxed{\psi_\theta(x,y)
+  =\psi(x\cos\theta+y\sin\theta,-x\sin\theta+y\cos\theta)}.
+  \label{eq:QM-C12-S02-inverse-argument}
+\end{equation}
+这不是被动地移动坐标轴，而是在固定坐标轴中描述旋转后的状态。旋转保持面积元和内积，故 $U$ 是酉算符。
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95,>=Stealth,font=\small]
+  \draw[->] (-0.25,0)--(3.3,0) node[right] {$x$};
+  \draw[->] (0,-0.2)--(0,3.0) node[above] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[->,thick,noteBlue] (0,0)--(20:2.6) node[right] {$\mathbf r$};
+  \draw[->,thick,accentRed] (0,0)--(70:2.6) node[above right] {$R(\theta)\mathbf r$};
+  \draw[->] (20:1.1) arc[start angle=20,end angle=70,radius=1.1];
+  \node at (45:1.4) {$\theta$};
+  \node[align=left,anchor=west] at (3.8,1.7)
+    {空间点：$\mathbf r\mapsto R\mathbf r$\\[4pt]
+     振幅读取：$\psi_\theta(R\mathbf r)=\psi(\mathbf r)$};
+\end{tikzpicture}
+
+\small 固定坐标轴下的主动旋转；几何正向移动与振幅的逆向取值是同一过程的两种表述。
+\end{center}
+
+令 $\theta=\epsilon$，展开式 \eqref{eq:QM-C12-S02-inverse-argument}：
+\begin{align}
+  \psi_\epsilon(x,y)
+  &=\psi(x+\epsilon y,y-\epsilon x)+O(\epsilon^2)\notag\\
+  &=\psi+\epsilon(y\partial_x-x\partial_y)\psi+O(\epsilon^2).
+\end{align}
+与 $U(\epsilon)=I-\ii\epsilon L_z/\hbar+O(\epsilon^2)$ 比较，可得
+\begin{equation}
+  \boxed{L_z=-\ii\hbar(x\partial_y-y\partial_x)=XP_y-YP_x}.
+  \label{eq:QM-C12-S02-generator}
+\end{equation}
+这既是旋转生成元，也是经典 $l_z=xp_y-yp_x$ 的通常量子化；下标 $z$ 指垂直于运动平面的旋转轴，不表示粒子沿 $z$ 运动。
+
+教材还用动量表象核对纯旋转对动量的作用。在此表象中
+\begin{equation}
+  L_z=\ii\hbar(p_y\partial_{p_x}-p_x\partial_{p_y}),\qquad
+  \widetilde\psi_\epsilon
+  =\widetilde\psi+\epsilon(p_y\partial_{p_x}-p_x\partial_{p_y})
+    \widetilde\psi+O(\epsilon^2).
+\end{equation}
+因此动量空间的波函数也发生同向旋转，位置与动量期望值遵循相同的旋转矩阵。
+
+\notetopic{QM-C12-S02-T02}{有限旋转、极坐标与角动量守恒}
+\keyidea{角动量生成旋转是运动学事实；角动量守恒还要求 Hamiltonian 在任意连续旋转下不变。}
+
+将有限角度分成许多小步，形式上得到
+\begin{equation}
+  U(\theta)=\lim_{N\to\infty}
+  \left(I-\frac{\ii\theta}{N\hbar}L_z\right)^N
+  =\boxed{\ee^{-\ii\theta L_z/\hbar}}.
+\end{equation}
+在 $x=\rho\cos\varphi$、$y=\rho\sin\varphi$ 的极坐标中，旋转不改变 $\rho$，而
+\begin{equation}
+  \psi_\theta(\rho,\varphi)=\psi(\rho,\varphi-\theta),\qquad
+  \boxed{L_z=-\ii\hbar\partial_\varphi}.
+  \label{eq:QM-C12-S02-polar}
+\end{equation}
+偏导保持 $\rho$ 不变。两种证明见\relatedexercise{QM-C12-S02-E02}{教材习题 12.2.3}。
+于是指数算符可以理解成角变量的平移，
+\begin{equation}
+  U(\theta)\psi=\ee^{-\theta\partial_\varphi}\psi
+  =\psi(\rho,\varphi-\theta),\qquad
+  U(\theta_2)U(\theta_1)=U(\theta_1+\theta_2).
+\end{equation}
+指数的微分幂级数可在适用的光滑解析函数上直接核对；一般态的有限作用由酉旋转定义。这里是\emph{同一轴}的旋转，不能据此断言三维不同轴旋转也可交换。
+
+\textbf{从变换规律到对易关系。}对于任意算符 $A$，
+\begin{equation}
+  U^\dagger(\epsilon)AU(\epsilon)
+  =A+\frac{\ii\epsilon}{\hbar}[L_z,A]+O(\epsilon^2).
+\end{equation}
+例如位置分量应满足 $U^\dagger XU=X-\epsilon Y+O(\epsilon^2)$，比较系数得到 $[X,L_z]=-\ii\hbar Y$。四个分量合起来为
+\begin{equation}
+  \boxed{\begin{aligned}
+    [X,L_z]&=-\ii\hbar Y,&[Y,L_z]&=\ii\hbar X,\\
+    [P_x,L_z]&=-\ii\hbar P_y,&[P_y,L_z]&=\ii\hbar P_x.
+  \end{aligned}}
+  \label{eq:QM-C12-S02-component-commutators}
+\end{equation}
+四条关系的逐项验证见\relatedexercise{QM-C12-S02-E01}{教材习题 12.2.2}。
+
+\textbf{连续旋转对称性。}如果对任意 $\theta$ 都有
+\begin{equation}
+  U^\dagger(\theta)HU(\theta)=H,
+\end{equation}
+无穷小展开就给出 $[L_z,H]=0$。因为 $L_z$ 本身无显式时间依赖，Ehrenfest 定理进一步给出
+\begin{equation}
+  \boxed{\frac{\dd}{\dd t}\expect{L_z}
+    =\frac{1}{\ii\hbar}\expect{[L_z,H]}=0}.
+\end{equation}
+例如 $H=(P_x^2+P_y^2)/(2m)+V(\sqrt{X^2+Y^2})$ 具有这种对称性。它意味着旋转整个实验不会改变相应的物理预言；在通常的共同谱表示条件下，可选取 $H,L_z$ 的共同本征基，但任意状态不必已经是它们的本征态。
+
+\dialoguesupplement{只在 $\theta=\pi$ 等离散角度不变并不足够：$[H,U(\pi)]=0$ 不能推出 $[H,L_z]=0$。此外，某个特定态中 $\expect{[L_z,H]}=0$ 只是该态在该时刻的期望值变化率为零，比作为算符恒等式的守恒判据弱。}
+
+\notetopic{QM-C12-S02-T03}{旋转与平移的次序及混合二阶项}
+\keyidea{四步逆向操作组成的回路若不能完全抵消，残留变换就测出了非对易性；一阶项相消后，混合二阶项成为首个非零贡献。}
+
+沿固定坐标方向的平移与绕固定原点的旋转一般不对易。为系统地比较次序，取
+\begin{equation}
+  \mathcal C=U(-\epsilon)T(-\mathbf a)U(\epsilon)T(\mathbf a),
+  \qquad T(\mathbf a)=\ee^{-\ii\mathbf a\cdot\mathbf P/\hbar}.
+\end{equation}
+右侧先作用。对任意空间点依次操作，记 $R=R(\epsilon)$：
+\begin{align}
+  \mathbf r&\longmapsto\mathbf r+\mathbf a
+  \longmapsto R\mathbf r+R\mathbf a
+  \longmapsto R\mathbf r+R\mathbf a-\mathbf a\notag\\
+  &\longmapsto\mathbf r+\mathbf a-R^{-1}\mathbf a.
+\end{align}
+因而精确的净效果是平移
+\begin{equation}
+  \Delta\mathbf r=\mathbf a-R(-\epsilon)\mathbf a
+  =\epsilon(-a_y,a_x)+O(\epsilon^2\abs{\mathbf a}).
+  \label{eq:QM-C12-S02-loop-geometry}
+\end{equation}
+例如 $\mathbf a$ 沿 $+x$ 时，最低阶残余位移沿 $+y$。若两类变换对易，$\mathcal C$ 就应为 $I$，不会有残余平移。
+
+\textbf{与算符乘积比较。}令
+\begin{equation}
+  A=\frac{\ii\epsilon}{\hbar}L_z,\qquad
+  B=\frac{\ii}{\hbar}\mathbf a\cdot\mathbf P.
+\end{equation}
+为统一计阶，令 $\epsilon=s\epsilon_0$、$\mathbf a=s\mathbf a_0$，其中 $s$ 无量纲。将四个指数\emph{一致地展开至二阶}，纯 $A^2$、$B^2$ 项抵消，得到
+\begin{align}
+  \mathcal C&=\ee^A\ee^B\ee^{-A}\ee^{-B}
+  =I+AB-BA+O(s^3)\notag\\
+  &=I+\frac{\epsilon}{\hbar^2}[\mathbf a\cdot\mathbf P,L_z]+O(s^3).
+  \label{eq:QM-C12-S02-loop-algebra}
+\end{align}
+不能只保留每个指数的一阶项，却把其乘积中的纯二阶项当成完整结果。另一方面，由几何净位移，
+\begin{equation}
+  \mathcal C=T(\Delta\mathbf r)
+  =I+\frac{\ii\epsilon a_y}{\hbar}P_x
+      -\frac{\ii\epsilon a_x}{\hbar}P_y+O(s^3).
+\end{equation}
+与式 \eqref{eq:QM-C12-S02-loop-algebra} 比较独立的 $\epsilon a_x$、$\epsilon a_y$ 系数，再次得到
+\begin{equation}
+  [P_x,L_z]=-\ii\hbar P_y,\qquad [P_y,L_z]=\ii\hbar P_x.
+\end{equation}
+\textbf{保留混合二阶项的理由：}每一步各有一阶变化，但整个回路的一阶变化恰好抵消；若再丢掉 $\epsilon a_x,\epsilon a_y$，只剩 $\mathcal C=I$，就无法分辨两种操作是否对易。
+
+与上一节的 $[P_x,P_y]=0$ 合在一起，这些关系构成平面平移与旋转生成元的封闭对易关系。教材所说更高阶一致性条件可归结为这些关系及嵌套对易子，是在当前已构造的旋转、平移表示中理解；不把局部对易代数夸大为无条件确定任意表示的全部全局性质。
+
+\notetopic{QM-C12-S02-T04}{矢量算符的旋转变换规律}
+\keyidea{矢量算符的每个分量作用于 Hilbert 空间，而分量之间按普通空间矢量的旋转矩阵混合；仅仅有两个 Hermitian 分量并不足够。}
+
+教材将 $\mathbf V=(V_x,V_y)$ 定义为 vector operator（矢量算符），当且仅当它在所讨论的旋转下满足
+\begin{equation}
+  \boxed{U^\dagger(\theta)V_iU(\theta)=\sum_jR_{ij}(\theta)V_j},
+  \qquad i,j\in\{x,y\}.
+  \label{eq:QM-C12-S02-vector-operator}
+\end{equation}
+例如 $U^\dagger V_xU=V_x\cos\theta-V_y\sin\theta$，$U^\dagger V_yU=V_x\sin\theta+V_y\cos\theta$。在主动旋转后的态中测量同一算符，
+\begin{equation}
+  \expect{V_i}_\theta
+  =\bra\psi U^\dagger V_iU\ket\psi
+  =\sum_jR_{ij}(\theta)\expect{V_j}.
+\end{equation}
+因此这个定义确保任意态的该组期望值都像空间矢量一样旋转；无穷小形式为
+\begin{equation}
+  \boxed{[L_z,V_x]=\ii\hbar V_y,\qquad
+         [L_z,V_y]=-\ii\hbar V_x}.
+\end{equation}
+位置 $(X,Y)$ 和动量 $(P_x,P_y)$ 都满足此规律。分量的 Hermiticity 与它们的空间变换性质是两个不同问题。
+
+\dialoguesupplement{$X^2+Y^2$ 在旋转下不变，是旋转标量算符；这里的“标量”不等于普通数或恒等算符。相反，$(X^2,Y^2)$ 虽由两个 Hermitian 算符组成，却不按矢量变换：旋转 $\pi$ 后平方不变，而矢量的两个分量都应反号。三维的矢量算符定义沿用式 \eqref{eq:QM-C12-S02-vector-operator}，只是分量变为三个，$R$ 变为 $3\times3$ 矩阵。}
+
+\textbf{一分钟回顾。}$L_z=XP_y-YP_x=-\ii\hbar\partial_\varphi$ 生成 $U(\theta)=\ee^{-\ii\theta L_z/\hbar}$，波函数取逆旋转自变量。旋转与平移的不对易性体现在回路的混合二阶项中；矢量算符由旋转变换规律定义。生成元的存在不等于动力学对称性，后者还要求 $[L_z,H]=0$。
