@@ -128,3 +128,139 @@ $F(\rho,\varphi)=f(\rho\cos\varphi,\rho\sin\varphi)$。固定 $\rho$ 时，
 \end{equation}
 两种方法分别说明同一算符如何改变坐标表达，以及如何直接由几何变换识别生成元。角导数对应旋转，正如 $P_x=-\ii\hbar\partial_x$ 的位置导数对应平移。
 \end{checkedsolution}
+
+\section{第 12.3 节习题：角动量概率与圆周能谱}
+\label{exercises:QM-C12-S03}
+\exercisemeta
+  {QM-C12-S03}
+  {2026-10-19 至 2026-10-20}
+  {Shankar, Second Edition；Exercise 12.3.3，印刷 p.~315 / PDF p.~323；Exercise 12.3.6，印刷 p.~316 / PDF p.~324}
+  {两道选定教材习题均已作答并核对}
+  {笔记已确认}
+
+仅收录本次完成的两道代表性习题，不加入课堂概念检查或未选做题目；题意采用统一记号重述。
+
+\exercisequestion{QM-C12-S03-E01}{教材习题 12.3.3：从角向展开求测量概率}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S03-T02}{角向基、径向简并与测量概率}。
+
+\textbf{题目。}平面粒子的归一化波函数为
+\begin{equation}
+  \psi(\rho,\varphi)=A\ee^{-\rho^2/(2\Delta^2)}\cos^2\varphi,
+  \qquad \Delta>0,\quad 0\leq\rho<\infty,\quad 0\leq\varphi<2\pi,
+\end{equation}
+其中 $A$ 是归一化常数，积分测度为 $\rho\,\dd\rho\,\dd\varphi$。将角向部分展开为 $\Phi_m(\varphi)=\ee^{\ii m\varphi}/\sqrt{2\pi}$，求 $L_z$ 的可能测量结果及概率，并说明为何本题无需显式计算径向积分。
+
+\begin{checkedsolution}
+\textbf{1. 识别角向分量。}由倍角公式和 Euler 公式，
+\begin{align}
+  \cos^2\varphi
+  &=\frac{1+\cos2\varphi}{2}
+   =\frac12+\frac14\ee^{2\ii\varphi}+\frac14\ee^{-2\ii\varphi}\notag\\
+  &=\sqrt{2\pi}\left(\frac12\Phi_0
+                   +\frac14\Phi_2+\frac14\Phi_{-2}\right).
+\end{align}
+只有 $m=0,+2,-2$ 三个分量，故可能测得 $0,+2\hbar,-2\hbar$。复指数前的 $1/2,1/4,1/4$ 不是已归一化的态系数，不能直接将其平方当成最终概率。
+
+\textbf{2. 径向因子为何能约去。}记 $R(\rho)=A\ee^{-\rho^2/(2\Delta^2)}$、$I_R=\int_0^\infty\rho|R|^2\,\dd\rho$，并令
+\begin{equation}
+  a_0=\frac12,\qquad a_2=a_{-2}=\frac14.
+\end{equation}
+相对于归一化基 $\Phi_m$，各径向系数为 $f_m=\sqrt{2\pi}\,a_mR$。由角向正交性，
+\begin{equation}
+  \|\psi\|^2=2\pi I_R\sum_m|a_m|^2,\qquad
+  \|\text{第 }m\text{ 个投影分量}\|^2=2\pi I_R|a_m|^2.
+\end{equation}
+所以归一化后的概率为
+\begin{equation}
+  P(m)=\frac{2\pi I_R|a_m|^2}
+             {2\pi I_R\sum_n|a_n|^2}
+      =\frac{|a_m|^2}{\sum_n|a_n|^2}.
+\end{equation}
+约去的是所有角向分量\emph{共同}的径向积分与基归一化因子，不是径向自由度一般都无关。
+
+\textbf{3. 概率结果。}系数模平方之和为
+\begin{equation}
+  \sum_m|a_m|^2=\frac14+\frac1{16}+\frac1{16}=\frac38.
+\end{equation}
+于是
+\begin{equation}
+  \boxed{P(L_z=0)=\frac23,\qquad
+         P(L_z=2\hbar)=\frac16,\qquad
+         P(L_z=-2\hbar)=\frac16.}
+\end{equation}
+三项相加为 $1$；等价的归一化角向态是
+$\sqrt{2/3}\,\Phi_0+(\Phi_2+\Phi_{-2})/\sqrt6$。因此本题不必先求出 $A$，结果也不依赖 $\Delta$。
+\end{checkedsolution}
+
+\exercisequestion{QM-C12-S03-E02}{教材习题 12.3.6：自由粒子的圆周运动}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S03-T01}{周期边界与角动量谱}、\relatedtopic{QM-C12-S03-T03}{角向动能与能谱}。
+
+\textbf{题目。}质量 $\mu$ 的无自旋粒子被约束在半径 $a>0$ 的圆周上自由运动，无外加电磁场。证明 $H=L_z^2/(2\mu a^2)$，求能量本征函数、本征值，并解释简并。采用通常周期条件 $\chi(\varphi+2\pi)=\chi(\varphi)$，角向波函数按 $\int_0^{2\pi}|\chi|^2\,\dd\varphi=1$ 归一化。
+
+\begin{checkedsolution}
+\textbf{1. 从经典动能得到 Hamiltonian。}切向速度和动能分别为
+\begin{equation}
+  v=a\dot\varphi,\qquad T=\frac12\mu a^2\dot\varphi^2.
+\end{equation}
+角坐标的正则动量就是角动量，
+\begin{equation}
+  p_\varphi=\frac{\partial T}{\partial\dot\varphi}
+       =\mu a^2\dot\varphi=l_z,\qquad
+  \dot\varphi=\frac{l_z}{\mu a^2}.
+\end{equation}
+代入 $H=p_\varphi\dot\varphi-T$，得到
+\begin{equation}
+  H=\frac{l_z^2}{\mu a^2}-\frac{l_z^2}{2\mu a^2}
+   =\frac{l_z^2}{2\mu a^2}.
+\end{equation}
+量子化后，
+\begin{equation}
+  \boxed{H=\frac{L_z^2}{2\mu a^2}
+     =-\frac{\hbar^2}{2\mu a^2}\frac{\dd^2}{\dd\varphi^2}.}
+\end{equation}
+这是只有角变量的理想圆周模型；不同于平面中心势问题，它没有待求的径向波函数。
+
+\textbf{2. 共同本征函数与能量。}角动量本征函数满足周期条件，故取
+\begin{equation}
+  \chi_m(\varphi)=\frac{\ee^{\ii m\varphi}}{\sqrt{2\pi}},
+  \qquad m\in\mathbb Z,\qquad
+  \int_0^{2\pi}|\chi_m|^2\,\dd\varphi=1.
+\end{equation}
+作用 Hamiltonian，
+\begin{equation}
+  H\chi_m=\frac{L_z^2}{2\mu a^2}\chi_m
+          =\frac{m^2\hbar^2}{2\mu a^2}\chi_m,
+  \qquad
+  \boxed{E_m=\frac{m^2\hbar^2}{2\mu a^2}.}
+\end{equation}
+
+\textbf{3. 简并及物理意义。}令 $E_*=\hbar^2/(2\mu a^2)$，用 $n=|m|=0,1,2,\ldots$ 编号不同能级，则
+\begin{equation}
+  E_n=n^2E_*,\qquad
+  \boxed{g_0=1,\qquad g_n=2\quad(n\geq1).}
+\end{equation}
+\begin{center}
+\begin{tikzpicture}[>=Stealth,font=\small,x=1cm,y=0.38cm]
+  \draw[->] (0,-0.7)--(0,10.3) node[above] {$E/E_*$};
+  \foreach \energy/\labeltext in {0/0,1/1,4/4,9/9} {
+    \draw (-0.08,\energy)--(0.08,\energy);
+    \node[left] at (-0.1,\energy) {$\labeltext$};
+    \draw[thick,noteBlue] (0.65,\energy)--(3.6,\energy);
+  }
+  \fill[noteBlue] (2.1,0) circle (2pt);
+  \foreach \energy in {1,4,9} {
+    \fill[noteBlue] (1.35,\energy) circle (2pt);
+    \fill[noteBlue] (2.85,\energy) circle (2pt);
+  }
+  \node[anchor=west] at (4.0,0) {$m=0,\quad g=1$};
+  \node[anchor=west] at (4.0,1) {$m=\pm1,\quad g=2$};
+  \node[anchor=west] at (4.0,4) {$m=\pm2,\quad g=2$};
+  \node[anchor=west] at (4.0,9) {$m=\pm3,\quad g=2$};
+\end{tikzpicture}
+
+\small 圆周自由粒子的低能谱；每个圆点代表一个角动量本征态。
+\end{center}
+当 $n>0$ 时，$\chi_n$ 和 $\chi_{-n}$ 彼此正交，分别具有角动量 $+n\hbar$ 和 $-n\hbar$，可理解为沿圆周相反方向传播的两个态。能量只依赖 $m^2$，所以两个方向等能；$m=0$ 时两者是同一个态，不能重复计数。
+
+任意归一化组合 $c_+\chi_n+c_-\chi_{-n}$ 仍是该能量的本征态，但一般不再具有确定的 $L_z$。因此二重简并指的是能量本征空间的维数为二，不是该能量下只有两个可能的量子态。
+\end{checkedsolution}

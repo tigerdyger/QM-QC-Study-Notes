@@ -283,3 +283,171 @@ $R$ 作用于二维空间坐标，$U(\theta)$ 作用于 Hilbert 空间中的量�
 \dialoguesupplement{$X^2+Y^2$ 在旋转下不变，是旋转标量算符；这里的“标量”不等于普通数或恒等算符。相反，$(X^2,Y^2)$ 虽由两个 Hermitian 算符组成，却不按矢量变换：旋转 $\pi$ 后平方不变，而矢量的两个分量都应反号。三维的矢量算符定义沿用式 \eqref{eq:QM-C12-S02-vector-operator}，只是分量变为三个，$R$ 变为 $3\times3$ 矩阵。}
 
 \textbf{一分钟回顾。}$L_z=XP_y-YP_x=-\ii\hbar\partial_\varphi$ 生成 $U(\theta)=\ee^{-\ii\theta L_z/\hbar}$，波函数取逆旋转自变量。旋转与平移的不对易性体现在回路的混合二阶项中；矢量算符由旋转变换规律定义。生成元的存在不等于动力学对称性，后者还要求 $[L_z,H]=0$。
+
+\section{第 12.3 节：角动量的本征值问题}
+\label{section:QM-C12-S03}
+\studymeta
+  {QM-C12-S03}
+  {2026-10-19 至 2026-10-20}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 12 章 \S 12.3 The Eigenvalue Problem of $L_z$；印刷页 pp.~313 下半页--318 上半页 / PDF pp.~321--326；正文主要在印刷 pp.~313--316，后续以习题为主}
+  {三块讲解与教材习题 12.3.3、12.3.6 已核对；笔记已确认}
+
+\textbf{主线与范围。}从上一节的 $L_z=-\ii\hbar\partial_\varphi$ 出发，先用角变量的边界条件确定本征值，再区分角向基与完整平面态，最后将旋转对称 Hamiltonian 的本征方程化为径向方程。以下仍讨论无自旋粒子的通常标量波函数，采用单值、$2\pi$ 周期的角向边界条件，不考虑磁通或扭曲边界条件。
+
+\textbf{符号约定。}$\mu>0$ 表示粒子质量，$m\in\mathbb Z$ 表示无量纲角动量量子数，$l_z=m\hbar$ 才是角动量分量的本征值；$\rho\geq0$ 是径向坐标，$\varphi\in[0,2\pi)$ 是极角。本节的 $m$ 不再表示质量。
+
+\notetopic{QM-C12-S03-T01}{本征方程与周期边界条件}
+\keyidea{局部微分方程给出复指数形式，全局绕一周的边界条件才把连续的候选本征值限制为整数倍 $\hbar$。}
+
+在位置表象中求解
+\begin{equation}
+  L_z\psi_{l_z}=l_z\psi_{l_z}
+  \quad\Longleftrightarrow\quad
+  -\ii\hbar\frac{\partial\psi_{l_z}}{\partial\varphi}
+    =l_z\psi_{l_z}.
+\end{equation}
+固定 $\rho$ 后，这是关于 $\varphi$ 的一阶方程：
+\begin{equation}
+  \frac{\partial\psi_{l_z}}{\partial\varphi}
+    =\frac{\ii l_z}{\hbar}\psi_{l_z}
+  \quad\Longrightarrow\quad
+  \psi_{l_z}(\rho,\varphi)=R(\rho)\ee^{\ii l_z\varphi/\hbar}.
+  \label{eq:QM-C12-S03-local-eigenfunction}
+\end{equation}
+因为只对角变量求导，积分所得的系数可以依赖 $\rho$；$L_z$ 的本征方程本身并没有确定 $R$。
+
+\textbf{边界条件与 Hermiticity。}极坐标面积元为 $\dd^2r=\rho\,\dd\rho\,\dd\varphi$，因此内积为
+\begin{equation}
+  \braket{\psi_1}{\psi_2}
+  =\int_0^\infty\rho\,\dd\rho\int_0^{2\pi}\dd\varphi\,
+    \psi_1^*(\rho,\varphi)\psi_2(\rho,\varphi).
+\end{equation}
+对足够光滑的函数分部积分，得到
+\begin{align}
+  \langle\psi_1|L_z\psi_2\rangle
+  &=-\ii\hbar\int_0^\infty\rho\,\dd\rho\,
+       [\psi_1^*\psi_2]_0^{2\pi}
+    +\ii\hbar\int_0^\infty\rho\,\dd\rho
+       \int_0^{2\pi}\dd\varphi\,(\partial_\varphi\psi_1^*)\psi_2,\notag\\
+  \langle\psi_1|L_z\psi_2\rangle-\langle L_z\psi_1|\psi_2\rangle
+  &=-\ii\hbar\int_0^\infty\rho\,\dd\rho\,
+       [\psi_1^*\psi_2]_0^{2\pi}.
+  \label{eq:QM-C12-S03-boundary-form}
+\end{align}
+若两个函数都满足
+\begin{equation}
+  \boxed{\psi(\rho,\varphi+2\pi)=\psi(\rho,\varphi)},
+  \label{eq:QM-C12-S03-periodicity}
+\end{equation}
+则边界项为零。这个条件既符合通常平面标量波函数的单值性，也给出了角动量算符的标准周期定义域。
+
+将式 \eqref{eq:QM-C12-S03-local-eigenfunction} 代入周期条件，对非零本征函数有
+\begin{equation}
+  \ee^{2\pi\ii l_z/\hbar}=1
+  \quad\Longrightarrow\quad
+  \boxed{l_z=m\hbar,\qquad m=0,\pm1,\pm2,\ldots}.
+  \label{eq:QM-C12-S03-spectrum}
+\end{equation}
+允许值之间的间距为 $\hbar$。正、负 $m$ 对应绕 $z$ 轴相反方向的角动量，不是正、负质量，也不是角动量大小为负；这里量子化的是一个有符号分量。
+
+\dialoguesupplement{周期边界条件是本节采用的物理条件，并非仅凭分部积分就能唯一推出。边界项为零先验证算符的对称性，严格自伴性还涉及定义域；标准周期角向定义域可使 $-\ii\hbar\partial_\varphi$ 自伴。只要求概率密度绕一周不变，比要求波函数周期弱；只说旋转 $2\pi$ 后代表同一物理射线，也不能直接替代式 \eqref{eq:QM-C12-S03-periodicity}。教材习题 12.3.2 讨论了这种区别，本次不展开其证明，更不据此断言所有量子系统都只能有整数角动量。}
+
+\notetopic{QM-C12-S03-T02}{角向基、径向简并与测量概率}
+\keyidea{$\Phi_m(\varphi)$ 是角变量的 Fourier 基；它只解决角向问题。平面上的完整态还需要径向函数，因此固定 $L_z$ 并不固定整个量子态。}
+
+定义归一化角向本征函数
+\begin{equation}
+  \boxed{\Phi_m(\varphi)=\frac{\ee^{\ii m\varphi}}{\sqrt{2\pi}}},
+  \qquad L_z\Phi_m=m\hbar\Phi_m.
+\end{equation}
+其正交归一性由整数 Fourier 模式给出：
+\begin{equation}
+  \int_0^{2\pi}\Phi_m^*(\varphi)\Phi_{m'}(\varphi)\,\dd\varphi
+  =\frac{1}{2\pi}\int_0^{2\pi}\ee^{\ii(m'-m)\varphi}\,\dd\varphi
+  =\delta_{mm'}.
+  \label{eq:QM-C12-S03-angular-orthogonality}
+\end{equation}
+$m=m'$ 时积分为 $1$；$m\neq m'$ 时，原函数在上下限的指数值相同，积分为零。这些函数对周期角向函数完备，但单靠它们不能表示任意径向分布。
+
+完整的平面角动量本征函数为
+\begin{equation}
+  \psi_m(\rho,\varphi)=R(\rho)\Phi_m(\varphi),\qquad
+  \int_{\mathbb R^2}|\psi_m|^2\,\dd^2r
+  =\int_0^\infty\rho|R(\rho)|^2\,\dd\rho.
+\end{equation}
+所以完整归一化还要求右端为 $1$。固定 $m$ 时，径向空间 $L^2(\mathbb R_+,\rho\,\dd\rho)$ 中仍有无限多个线性无关的选择，它们对应同一个 $L_z=m\hbar$。这就是本节所说的\textbf{无限重简并}：测出角动量，并没有同时测出径向分布或能量。
+
+\textbf{对话补充：把简并与投影概率连起来。}对任意归一化平面态，逐个半径作角向 Fourier 展开：
+\begin{align}
+  \psi(\rho,\varphi)&=\sum_{m\in\mathbb Z} f_m(\rho)\Phi_m(\varphi),\\
+  f_m(\rho)&=\int_0^{2\pi}\Phi_m^*(\varphi)\psi(\rho,\varphi)\,\dd\varphi.
+\end{align}
+利用角向正交性，归一化条件成为
+\begin{equation}
+  1=\int_0^\infty\rho\,\dd\rho\int_0^{2\pi}|\psi|^2\,\dd\varphi
+   =\sum_m\int_0^\infty\rho|f_m(\rho)|^2\,\dd\rho.
+\end{equation}
+其中第 $m$ 个分量是投影到整个 $L_z=m\hbar$ 本征子空间的结果，因此
+\begin{equation}
+  \boxed{P(L_z=m\hbar)=\int_0^\infty\rho|f_m(\rho)|^2\,\dd\rho}.
+  \label{eq:QM-C12-S03-probability}
+\end{equation}
+一般情况下不能丢掉这个径向积分。只有各角向分量共享同一个径向因子时，它才可以在归一化概率比中约去；具体见\relatedexercise{QM-C12-S03-E01}{教材习题 12.3.3}。
+
+\dialoguesupplement{$\Phi_m$ 与 $\Phi_{-m}$ 在 $m\neq0$ 时正交，虽然它们的角向概率密度都等于 $1/(2\pi)$，但二者之比 $\ee^{2\ii m\varphi}$ 随位置变化，不是无关紧要的整体相位。它们具有相反的相位绕行方向和角动量；在圆周运动中，这种区别表现得尤其直接，见\relatedexercise{QM-C12-S03-E02}{教材习题 12.3.6}。}
+
+\notetopic{QM-C12-S03-T03}{旋转对称 Hamiltonian 的径向方程}
+\keyidea{旋转对称性先确定共同本征态的角向形式；能量与径向分布再由势能、径向微分方程和边界条件共同决定。}
+
+对质量 $\mu$ 的粒子，考虑没有磁场、势能仅依赖 $\rho$ 的系统：
+\begin{equation}
+  H=\frac{P_x^2+P_y^2}{2\mu}+V(\rho).
+\end{equation}
+当定义域与边界条件也保持旋转对称时，$[H,L_z]=0$，可选择共同本征态。极坐标中的 Laplacian 为
+\begin{equation}
+  \nabla^2=\frac{1}{\rho}\frac{\partial}{\partial\rho}
+          \left(\rho\frac{\partial}{\partial\rho}\right)
+          +\frac{1}{\rho^2}\frac{\partial^2}{\partial\varphi^2}
+  =\frac{\partial^2}{\partial\rho^2}
+    +\frac{1}{\rho}\frac{\partial}{\partial\rho}
+    +\frac{1}{\rho^2}\frac{\partial^2}{\partial\varphi^2}.
+\end{equation}
+因此能量本征方程为
+\begin{equation}
+  \left[-\frac{\hbar^2}{2\mu}
+    \left(\partial_\rho^2+\frac{1}{\rho}\partial_\rho
+          +\frac{1}{\rho^2}\partial_\varphi^2\right)
+    +V(\rho)\right]\Psi_{Em}=E\Psi_{Em}.
+\end{equation}
+由于同时要求 $L_z\Psi_{Em}=m\hbar\Psi_{Em}$，取
+\begin{equation}
+  \Psi_{Em}(\rho,\varphi)=R_{Em}(\rho)\Phi_m(\varphi).
+\end{equation}
+逐项作用微分算符：
+\begin{equation}
+  \partial_\rho^2\Psi_{Em}=R_{Em}''\Phi_m,\quad
+  \partial_\rho\Psi_{Em}=R_{Em}'\Phi_m,\quad
+  \partial_\varphi^2\Psi_{Em}=-m^2R_{Em}\Phi_m.
+\end{equation}
+约去非零的角向因子，得到教材式 (12.3.13) 的 radial equation（径向方程）：
+\begin{equation}
+  \boxed{\left[-\frac{\hbar^2}{2\mu}
+    \left(\frac{\dd^2}{\dd\rho^2}+\frac{1}{\rho}\frac{\dd}{\dd\rho}
+          -\frac{m^2}{\rho^2}\right)+V(\rho)\right]R_{Em}
+    =ER_{Em}.}
+  \label{eq:QM-C12-S03-radial-equation}
+\end{equation}
+它需要结合原点、无穷远或实际边界处的适当条件来求解。束缚态还必须满足 $\int_0^\infty\rho|R_{Em}|^2\,\dd\rho<\infty$；散射态则按连续谱处理，不能一概要求通常归一化。改变中心势会改变径向解与允许能量，但角向函数 $\Phi_m$ 保持不变。
+
+\textbf{角动量产生的有效势项。}将径向方程改写为
+\begin{equation}
+  -\frac{\hbar^2}{2\mu}\left(R_{Em}''+\frac{1}{\rho}R_{Em}'\right)
+  +\left[V(\rho)+\frac{\hbar^2m^2}{2\mu\rho^2}\right]R_{Em}
+  =ER_{Em}.
+\end{equation}
+额外正项是固定角动量的角向动能，与经典表达式 $l_z^2/(2\mu\rho^2)$ 相同，通常称为 centrifugal term（离心项）。对 $m\neq0$，它在小半径处很大，抑制粒子靠近原点；它不是新加入的一种相互作用。径向问题也不等于把 $\rho$ 当成普通一维直角坐标：动能中有 $\rho^{-1}\dd/\dd\rho$，归一化测度是 $\rho\,\dd\rho$。
+
+在这里的实中心势和相同径向边界条件下，$m$ 与 $-m$ 的径向方程相同。对每个 $m\neq0$，相同径向解可以配上两个正交角向函数，得到同能量、相反角动量的态。若粒子被约束在固定半径的圆周上，径向自由度才真正被去掉，能谱与简并见\relatedexercise{QM-C12-S03-E02}{教材习题 12.3.6}。
+
+\textbf{一分钟回顾。}周期条件给出 $L_z=m\hbar$，其中 $m$ 是有正负的量子数，质量记作 $\mu$。$\Phi_m=\ee^{\ii m\varphi}/\sqrt{2\pi}$ 只是一组角向基；完整态还有径向自由度，测量概率通常需要径向积分。中心势使共同本征态可按 $R_{Em}\Phi_m$ 求解，但任意叠加态不必具有单一的乘积形式。
