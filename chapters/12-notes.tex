@@ -451,3 +451,195 @@ $m=m'$ 时积分为 $1$；$m\neq m'$ 时，原函数在上下限的指数值相�
 在这里的实中心势和相同径向边界条件下，$m$ 与 $-m$ 的径向方程相同。对每个 $m\neq0$，相同径向解可以配上两个正交角向函数，得到同能量、相反角动量的态。若粒子被约束在固定半径的圆周上，径向自由度才真正被去掉，能谱与简并见\relatedexercise{QM-C12-S03-E02}{教材习题 12.3.6}。
 
 \textbf{一分钟回顾。}周期条件给出 $L_z=m\hbar$，其中 $m$ 是有正负的量子数，质量记作 $\mu$。$\Phi_m=\ee^{\ii m\varphi}/\sqrt{2\pi}$ 只是一组角向基；完整态还有径向自由度，测量概率通常需要径向积分。中心势使共同本征态可按 $R_{Em}\Phi_m$ 求解，但任意叠加态不必具有单一的乘积形式。
+
+\section{第 12.4 节：三维角动量}
+\label{section:QM-C12-S04}
+\studymeta
+  {QM-C12-S04}
+  {2026-10-20 至 2026-10-21}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 12 章 \S 12.4 Angular Momentum in Three Dimensions；印刷页 pp.~318 下半页--321，至同页 \S 12.5 开始前 / PDF pp.~326--329}
+  {三块讲解与教材习题 12.4.3 已核对；笔记已确认}
+
+\textbf{主线与约定。}从三维不同轴旋转的不对易性得到角动量代数，再寻找相容的角动量观测量，最后连接任意轴旋转、矢量算符与守恒律。本节讨论无自旋粒子的通常空间波函数，$\mathbf R=(X,Y,Z)$、$\mathbf P=-\ii\hbar\nabla$，$\mathbf L$ 表示轨道角动量；主动旋转按右手定则取正。微分和对易子在适当的光滑共同定义域上计算，讨论对称性时还要求定义域与边界条件保持不变。$L^2,L_z$ 的本征值求解留到 \S 12.5。
+
+\notetopic{QM-C12-S04-T01}{三维旋转与角动量对易关系}
+\keyidea{三维角动量不只是增加两个分量：绕不同轴旋转一般不能交换顺序，这一几何事实由生成元的非零对易子编码。}
+
+三个坐标轴的旋转生成元合成轨道角动量矢量：
+\begin{equation}
+  \boxed{\begin{aligned}
+    L_x&=YP_z-ZP_y,\\
+    L_y&=ZP_x-XP_z,\\
+    L_z&=XP_y-YP_x,
+  \end{aligned}\qquad \mathbf L=\mathbf R\times\mathbf P.}
+  \label{eq:QM-C12-S04-orbital-components}
+\end{equation}
+每个 $L_i$ 都是作用于量子态的算符；不能将三个分量当成普通的、相互可交换的数。
+
+\textbf{旋转回路的几何残余。}教材式 (12.4.2) 考虑依次绕固定 $x,y$ 轴旋转 $\epsilon_x,\epsilon_y,-\epsilon_x,-\epsilon_y$。记 $R_i(\theta)$ 为绕 $i$ 轴的空间旋转矩阵，右侧先作用。为统一计阶，令 $\epsilon_x=s\alpha$、$\epsilon_y=s\beta$，$\alpha,\beta$ 固定，$s\to0$，则
+\begin{equation}
+  R_y(-\epsilon_y)R_x(-\epsilon_x)R_y(\epsilon_y)R_x(\epsilon_x)
+  =R_z(-\epsilon_x\epsilon_y)+O(s^3).
+  \label{eq:QM-C12-S04-geometric-loop}
+\end{equation}
+这是保留至混合二阶的关系，不是任意有限角度下的精确等式。正反旋转没有完全抵消，而是留下一个二阶小角度的 $z$ 轴旋转。
+
+\textbf{用量子算符重现同一回路。}令
+\begin{equation}
+  A=-\frac{\ii\epsilon_x}{\hbar}L_x,\qquad
+  B=-\frac{\ii\epsilon_y}{\hbar}L_y,\qquad
+  U_x=\ee^A,\quad U_y=\ee^B.
+\end{equation}
+将各指数一致地展开到二阶，注意因子顺序：
+\begin{align}
+  \ee^B\ee^A
+  &=I+(A+B)+\frac12A^2+BA+\frac12B^2+O(s^3),\\
+  \ee^{-B}\ee^{-A}
+  &=I-(A+B)+\frac12A^2+BA+\frac12B^2+O(s^3).
+\end{align}
+相乘后，一阶项、纯 $A^2$ 与 $B^2$ 项抵消，得到
+\begin{align}
+  U_y^{-1}U_x^{-1}U_yU_x
+  &=I+BA-AB+O(s^3)\notag\\
+  &=I+\frac{\epsilon_x\epsilon_y}{\hbar^2}[L_x,L_y]+O(s^3).
+\end{align}
+另一方面，式 \eqref{eq:QM-C12-S04-geometric-loop} 要求
+\begin{equation}
+  U_y^{-1}U_x^{-1}U_yU_x
+  =U_z(-\epsilon_x\epsilon_y)+O(s^3)
+  =I+\frac{\ii\epsilon_x\epsilon_y}{\hbar}L_z+O(s^3).
+\end{equation}
+比较系数，并循环替换三个坐标方向，得到
+\begin{equation}
+  \boxed{[L_x,L_y]=\ii\hbar L_z,\qquad
+    [L_y,L_z]=\ii\hbar L_x,\qquad
+    [L_z,L_x]=\ii\hbar L_y.}
+  \label{eq:QM-C12-S04-algebra}
+\end{equation}
+因此，只保留回路的一阶项会丢掉首个非零残余；不是算到二阶才产生非对易性，而是二阶才显现已有的非对易性。
+
+\textbf{紧凑记号与自身叉乘。}令 $L_1=L_x,L_2=L_y,L_3=L_z$。Levi-Civita symbol（Levi-Civita 符号）定义为
+\begin{equation}
+  \varepsilon_{ijk}=
+  \begin{cases}
+    +1,&(i,j,k)=(1,2,3),(2,3,1),(3,1,2),\\
+    -1,&(i,j,k)=(1,3,2),(3,2,1),(2,1,3),\\
+    0,&\text{任意两个指标相同}.
+  \end{cases}
+\end{equation}
+交换任意两个指标使其反号；它不是表示小角度的参数 $\epsilon$。三条关系可合写为
+\begin{equation}
+  \boxed{[L_i,L_j]=\ii\hbar\sum_{k=1}^3\varepsilon_{ijk}L_k.}
+\end{equation}
+通常叉乘的分量式为 $(\mathbf a\times\mathbf b)_i=\sum_{j,k}\varepsilon_{ijk}a_jb_k$。对算符保留乘积次序，便有
+\begin{equation}
+  (\mathbf L\times\mathbf L)_x=L_yL_z-L_zL_y=\ii\hbar L_x,
+  \qquad \boxed{\mathbf L\times\mathbf L=\ii\hbar\mathbf L}.
+\end{equation}
+这不违反普通向量的 $\mathbf a\times\mathbf a=0$：后者利用了数分量的乘法可交换，而角动量分量没有这个性质。
+
+\notetopic{QM-C12-S04-T02}{角动量平方与相容观测量}
+\keyidea{角动量的三个分量彼此不相容，但角动量大小的平方与每个分量都对易；因此可以选择 $L^2$ 与一个分量的共同本征基。}
+
+定义
+\begin{equation}
+  \boxed{L^2=L_x^2+L_y^2+L_z^2},
+  \qquad L^2\neq(L_x+L_y+L_z)^2\ \text{一般成立}.
+\end{equation}
+$L^2$ 表示大小的平方，不是三个分量之和的平方。在适当定义域内，$\expect{L^2}=\sum_i\|L_i\ket\psi\|^2\geq0$。
+
+\textbf{与分量对易的证明。}以 $L_z$ 为例，使用 $[A^2,B]=A[A,B]+[A,B]A$：
+\begin{align}
+  [L_x^2,L_z]
+  &=L_x(-\ii\hbar L_y)+(-\ii\hbar L_y)L_x
+   =-\ii\hbar(L_xL_y+L_yL_x),\\
+  [L_y^2,L_z]
+  &=L_y(\ii\hbar L_x)+(\ii\hbar L_x)L_y
+   =\ii\hbar(L_yL_x+L_xL_y),\\
+  [L_z^2,L_z]&=0.
+\end{align}
+前两式恰好抵消，故 $[L^2,L_z]=0$。循环替换方向即得
+\begin{equation}
+  \boxed{[L^2,L_i]=0,\qquad i=x,y,z.}
+  \label{eq:QM-C12-S04-square-commutes}
+\end{equation}
+抵消的是完整的对称组合，没有把 $L_xL_y$ 擅自换成 $L_yL_x$。几何上，绕 $z$ 轴旋转会混合 $x,y$ 分量，但保持角动量大小不变；其他旋转轴同理。
+
+在通常轨道角动量表示中，可选 $L^2,L_z$ 的共同本征态，暂记为
+\begin{equation}
+  L^2\ket{\lambda,m}=\lambda\ket{\lambda,m},\qquad
+  L_z\ket{\lambda,m}=m\hbar\ket{\lambda,m}.
+\end{equation}
+这里省略径向等其余标签，$m$ 仍是无量纲量子数而非质量；$\lambda$ 的允许值暂不求。选择 $z$ 轴只是惯例，也可选择另一固定轴。
+
+\dialoguesupplement{存在共同本征基，不代表 $L^2$ 的每个本征态都自动是 $L_z$ 的本征态。若同一 $\lambda$ 对应不同的 $m$，把这些共同本征态叠加，仍有确定的 $L^2$，却未必有确定的 $L_z$。此外，$[L^2,L_x]=[L^2,L_y]=0$ 也不能推出 $[L_x,L_y]=0$：对易关系没有这种传递性。}
+
+\notetopic{QM-C12-S04-T03}{任意轴旋转、矢量算符与守恒律}
+\keyidea{沿某轴的角动量分量生成绕该轴的旋转；它是否守恒，还取决于 Hamiltonian 是否具有相应的连续旋转对称性。}
+
+\textbf{任意轴与有限角度。}设 $\mathbf n$ 为固定单位向量，绕它旋转的生成元是
+\begin{equation}
+  \boxed{G_{\mathbf n}=\mathbf n\cdot\mathbf L
+    =n_xL_x+n_yL_y+n_zL_z.}
+  \label{eq:QM-C12-S04-axis-generator}
+\end{equation}
+由 $\delta\mathbf r=\epsilon\mathbf n\times\mathbf r$ 和波函数的逆旋转自变量证明此式，见\relatedexercise{QM-C12-S04-E01}{教材习题 12.4.3}。把有限旋转拆成许多绕\emph{同一轴}的小旋转，可形式上写成
+\begin{equation}
+  U_{\mathbf n}(\theta)
+  =\lim_{N\to\infty}\left(I-\frac{\ii\theta}{N\hbar}
+    \mathbf n\cdot\mathbf L\right)^N
+  =\boxed{\exp\!\left(-\frac{\ii\theta}{\hbar}
+    \mathbf n\cdot\mathbf L\right)}.
+  \label{eq:QM-C12-S04-finite-rotation}
+\end{equation}
+一般态上的有限旋转由相应自伴生成元的酉指数定义，不能要求无界算符的普通幂级数对任意态都逐项有意义。由于不同分量不对易，有限角度时一般不能将右端拆成沿 $x,y,z$ 三轴的三个指数乘积；绕固定斜轴旋转与依次绕三根坐标轴旋转不是同一操作。
+
+\textbf{矢量算符的三维定义。}对旋转矩阵 $R$ 及其量子表示 $U[R]$，矢量算符 $\mathbf V$ 满足
+\begin{equation}
+  \boxed{U^\dagger[R]V_iU[R]=\sum_jR_{ij}V_j.}
+  \label{eq:QM-C12-S04-vector-law}
+\end{equation}
+不是任意三个 Hermitian 算符都能组成空间矢量；判据是旋转下的变换规律。对无穷小转角矢量 $\delta\boldsymbol\theta$，右侧为
+\begin{equation}
+  \sum_jR_{ij}V_j
+  =V_i+\sum_{j,k}\varepsilon_{ijk}\delta\theta_j V_k
+    +O(|\delta\boldsymbol\theta|^2).
+\end{equation}
+左侧用 $U=I-\ii\sum_j\delta\theta_jL_j/\hbar+O(|\delta\boldsymbol\theta|^2)$ 展开：
+\begin{equation}
+  U^\dagger V_iU
+  =V_i+\frac{\ii}{\hbar}\sum_j\delta\theta_j[L_j,V_i]
+    +O(|\delta\boldsymbol\theta|^2).
+\end{equation}
+比较各独立小角度的系数，得到教材式 (12.4.14)：
+\begin{equation}
+  \boxed{[V_i,L_j]=\ii\hbar\sum_k\varepsilon_{ijk}V_k.}
+\end{equation}
+这包含 \S 12.2 的 $[X,L_z]=-\ii\hbar Y$、$[Y,L_z]=\ii\hbar X$。$\mathbf R,\mathbf P,\mathbf L$ 都是旋转下的矢量算符；取 $\mathbf V=\mathbf L$ 就恢复角动量代数。这里讨论的是空间旋转，不把极向量和轴向量在宇称反转下的区别抹去。
+
+\textbf{旋转对称性与守恒。}若 Hamiltonian 在任意旋转下不变，即 $U^\dagger[R]HU[R]=H$，分别考察三个坐标轴：
+\begin{equation}
+  U_i^\dagger(\epsilon)HU_i(\epsilon)
+  =H+\frac{\ii\epsilon}{\hbar}[L_i,H]+O(\epsilon^2).
+\end{equation}
+比较任意小 $\epsilon$ 的系数，得
+\begin{equation}
+  \boxed{[H,L_i]=0\quad(i=x,y,z)},\qquad
+  [H,L^2]=\sum_i\bigl([H,L_i]L_i+L_i[H,L_i]\bigr)=0.
+\end{equation}
+这些角动量算符本身没有显式时间依赖，故 Ehrenfest 定理给出
+\begin{equation}
+  \frac{\dd}{\dd t}\expect{L_i}
+    =\frac{1}{\ii\hbar}\expect{[L_i,H]}=0,\qquad
+  \frac{\dd}{\dd t}\expect{L^2}=0.
+\end{equation}
+例如全空间上的 $H=\mathbf P^2/(2\mu)+V(|\mathbf R|)$ 具有完整旋转对称性。若只知道绕 $z$ 轴的任意旋转是对称性，则只保证 $[H,L_z]=0$，不能据此推出另外两个分量也守恒。
+
+\textbf{守恒与相容是两件事。}各分量都守恒，表示它们各自的测量分布在时间演化中保持不变，并不意味着每个分布都集中在单一结果上。因为 $L_x,L_y,L_z$ 彼此不对易，通常选择的共同本征基对应
+\begin{equation}
+  \boxed{H,\quad L^2,\quad L_z,}
+\end{equation}
+而不是 $H,L_x,L_y,L_z$ 全部一起。这只声明可以共同对角化，不保证这些标签已经消除了所有可能的简并。
+
+\textbf{一分钟回顾。}不同轴旋转的混合二阶残余给出 $[L_i,L_j]=\ii\hbar\sum_k\varepsilon_{ijk}L_k$；$L^2$ 与各分量对易，因而可与一个分量共同确定。任意轴旋转由 $\mathbf n\cdot\mathbf L$ 生成；完整旋转对称性使各角动量分量及 $L^2$ 守恒，但不会改变分量之间的不相容性。

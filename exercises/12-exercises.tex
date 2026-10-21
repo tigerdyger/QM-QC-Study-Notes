@@ -264,3 +264,115 @@ $\sqrt{2/3}\,\Phi_0+(\Phi_2+\Phi_{-2})/\sqrt6$。因此本题不必先求出 $A$
 
 任意归一化组合 $c_+\chi_n+c_-\chi_{-n}$ 仍是该能量的本征态，但一般不再具有确定的 $L_z$。因此二重简并指的是能量本征空间的维数为二，不是该能量下只有两个可能的量子态。
 \end{checkedsolution}
+
+\section{第 12.4 节习题：任意轴旋转的生成元}
+\label{exercises:QM-C12-S04}
+\exercisemeta
+  {QM-C12-S04}
+  {2026-10-20 至 2026-10-21}
+  {Shankar, Second Edition；Exercise 12.4.3，印刷 p.~320 / PDF p.~328}
+  {几何部分与波函数生成元部分均已作答并核对}
+  {笔记已确认}
+
+只收录本次完成的教材习题 12.4.3。12.4.1、12.4.2、12.4.4 未作为独立作业选做；相关正文结论保留在讲解中，不将课堂概念检查另编成题。
+
+\exercisequestion{QM-C12-S04-E01}{教材习题 12.4.3：从三维旋转识别角动量投影}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S04-T03}{任意轴旋转与生成元}。以下统一记号重述题意。
+
+\textbf{题目。}无自旋粒子的空间波函数 $\psi(\mathbf r)$ 足够光滑。绕经过原点、沿固定单位向量 $\mathbf n$ 的轴，按右手定则主动旋转小角度 $\epsilon$。
+\begin{enumerate}
+  \item 证明位置变化为 $\mathbf r'=\mathbf r+\epsilon\mathbf n\times\mathbf r+O(\epsilon^2)$。可先考虑 $\mathbf r\perp\mathbf n$，再推广到一般位置。
+  \item 已知 $\psi_\epsilon(\mathbf r)=\psi(R^{-1}\mathbf r)$，其中 $R^{-1}\mathbf r=\mathbf r-\epsilon\mathbf n\times\mathbf r+O(\epsilon^2)$。作一阶 Taylor 展开，与生成元定义
+    \begin{equation}
+      \psi_\epsilon=\left(I-\frac{\ii\epsilon}{\hbar}G_{\mathbf n}\right)\psi
+        +O(\epsilon^2)
+    \end{equation}
+    比较，利用 $\mathbf P=-\ii\hbar\nabla$、$\mathbf L=\mathbf R\times\mathbf P$，证明 $G_{\mathbf n}=\mathbf n\cdot\mathbf L$。
+\end{enumerate}
+
+\begin{checkedsolution}
+\textbf{1. 先在垂直于旋转轴的平面内证明。}若 $\mathbf r\perp\mathbf n$，则 $\mathbf n\times\mathbf r$ 与 $\mathbf r$ 垂直、长度相同，并指向右手定则规定的正切方向。因此精确的平面旋转为
+\begin{equation}
+  \mathbf r'=\mathbf r\cos\epsilon
+    +(\mathbf n\times\mathbf r)\sin\epsilon.
+\end{equation}
+使用 $\cos\epsilon=1+O(\epsilon^2)$、$\sin\epsilon=\epsilon+O(\epsilon^3)$，便得
+\begin{equation}
+  \boxed{\mathbf r'=\mathbf r+\epsilon\mathbf n\times\mathbf r
+    +O(\epsilon^2).}
+\end{equation}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,font=\small,scale=0.9]
+  \draw[->,thick,noteBlue] (0,0)--(3,0) node[below] {$\mathbf r_\perp$};
+  \draw[->,thick,accentRed] (0,0)--(38:3) node[above right] {$\mathbf r'_\perp$};
+  \draw[dashed,gray] (0:3) arc[start angle=0,end angle=55,radius=3];
+  \draw[->,thick,noteBlue] (3,0)--(3,1.25)
+    node[right] {$\epsilon\,\mathbf n\times\mathbf r_\perp$};
+  \draw[->] (0:1) arc[start angle=0,end angle=38,radius=1];
+  \node at (19:1.35) {$\epsilon$};
+  \node[below left] at (0,0) {$O$};
+  \node[anchor=west,align=left] at (5,0.7)
+    {$\mathbf n$ 垂直纸面向外\\[3pt]平行分量 $\mathbf r_\parallel$ 不变};
+\end{tikzpicture}
+
+\small 从轴的正端朝原点看垂直平面；切向箭头只表示一阶变化方向，角度和箭长为示意。
+\end{center}
+
+\textbf{2. 推广到一般位置。}将矢量分解为
+\begin{equation}
+  \mathbf r_\parallel=(\mathbf n\cdot\mathbf r)\mathbf n,\qquad
+  \mathbf r_\perp=\mathbf r-\mathbf r_\parallel.
+\end{equation}
+平行分量在旋转下不变，垂直分量应用上面的结果，故
+\begin{align}
+  \mathbf r'
+  &=\mathbf r_\parallel+\mathbf r_\perp
+    +\epsilon\mathbf n\times\mathbf r_\perp+O(\epsilon^2)\notag\\
+  &=\boxed{\mathbf r+\epsilon\mathbf n\times\mathbf r+O(\epsilon^2)}.
+\end{align}
+最后一步使用了 $\mathbf n\times\mathbf r_\parallel=0$。
+
+\textbf{3. 波函数取逆旋转自变量。}主动旋转改变物理状态，而用来描述振幅的坐标点保持固定。新位置 $\mathbf r$ 处的振幅来自旧位置 $R^{-1}\mathbf r$，因此
+\begin{align}
+  \psi_\epsilon(\mathbf r)
+  &=\psi\bigl(\mathbf r-\epsilon\mathbf n\times\mathbf r
+      +O(\epsilon^2)\bigr)\notag\\
+  &=\psi(\mathbf r)-\epsilon(\mathbf n\times\mathbf r)\cdot
+      \nabla\psi(\mathbf r)+O(\epsilon^2)\notag\\
+  &=\left[I-\epsilon(\mathbf n\times\mathbf r)\cdot\nabla\right]\psi
+      +O(\epsilon^2).
+\end{align}
+与题目中的生成元定义比较，对任意上述光滑波函数有
+\begin{equation}
+  -\frac{\ii}{\hbar}G_{\mathbf n}
+   =-(\mathbf n\times\mathbf r)\cdot\nabla
+  \quad\Longrightarrow\quad
+  G_{\mathbf n}=-\ii\hbar(\mathbf n\times\mathbf r)\cdot\nabla.
+\end{equation}
+
+\textbf{4. 用标量三重积识别轨道角动量。}在位置表象中
+\begin{equation}
+  \mathbf L=-\ii\hbar\,\mathbf r\times\nabla.
+\end{equation}
+对波函数作用时，三重积恒等式给出
+\begin{equation}
+  (\mathbf n\times\mathbf r)\cdot\nabla\psi
+   =\mathbf n\cdot(\mathbf r\times\nabla\psi).
+\end{equation}
+这里微分作用于右侧的 $\psi$，没有交换位置与微分算符的次序。于是
+\begin{equation}
+  G_{\mathbf n}\psi
+  =-\ii\hbar\,\mathbf n\cdot(\mathbf r\times\nabla\psi)
+  =(\mathbf n\cdot\mathbf L)\psi,
+  \qquad \boxed{G_{\mathbf n}=\mathbf n\cdot\mathbf L}.
+\end{equation}
+沿同一轴指数化便得到 $U_{\mathbf n}(\theta)=\exp(-\ii\theta\mathbf n\cdot\mathbf L/\hbar)$。取 $\mathbf n=\mathbf e_z$，恢复
+\begin{equation}
+  G_z=L_z=-\ii\hbar(x\partial_y-y\partial_x)
+      =-\ii\hbar\partial_\varphi,
+\end{equation}
+所以球坐标中 $\psi_\epsilon(r,\vartheta,\varphi)=\psi(r,\vartheta,\varphi-\epsilon)$，其中 $r,\vartheta$ 保持不变。
+
+\textbf{适用范围。}这里证明的是空间标量波函数的轨道旋转。若还包含自旋自由度，完整旋转生成元需要包含自旋角动量，不能只用 $\mathbf L$ 作用于空间部分来代替。
+\end{checkedsolution}
