@@ -376,3 +376,266 @@ $\sqrt{2/3}\,\Phi_0+(\Phi_2+\Phi_{-2})/\sqrt6$。因此本题不必先求出 $A$
 
 \textbf{适用范围。}这里证明的是空间标量波函数的轨道旋转。若还包含自旋自由度，完整旋转生成元需要包含自旋角动量，不能只用 $\mathbf L$ 作用于空间部分来代替。
 \end{checkedsolution}
+
+\section{第 12.5 节习题：角动量涨落与球谐展开}
+\label{exercises:QM-C12-S05}
+\exercisemeta
+  {QM-C12-S05}
+  {2026-10-21 至 2026-10-22}
+  {Shankar, Second Edition；Exercise 12.5.3，印刷 p.~329 / PDF p.~337；Exercises 12.5.11、12.5.13，印刷 p.~338 / PDF p.~346}
+  {三道选定教材习题均已作答并核对}
+  {笔记已确认}
+
+本节只收录所选的三道教材习题，分别练习升降代数、球谐函数构造与角动量测量概率。12.5.12 的宇称结论已在正文解释，其余习题未作为独立作业完成；不增加课堂概念检查题。以下统一记号重述题意。
+
+\exercisequestion{QM-C12-S05-E01}{教材习题 12.5.3：横向角动量的涨落}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S05-T02}{允许的角动量量子数}、\relatedtopic{QM-C12-S05-T03}{升降系数与矩阵}。
+
+\textbf{题目。}系统处于归一化共同本征态 $\ket{j,m}$，满足
+\begin{equation}
+  J^2\ket{j,m}=j(j+1)\hbar^2\ket{j,m},\qquad
+  J_z\ket{j,m}=m\hbar\ket{j,m}.
+\end{equation}
+这里 $j=0,\tfrac12,1,\ldots$，$m=-j,-j+1,\ldots,j$，且
+\begin{equation}
+  J_\pm=J_x\pm\ii J_y,\qquad
+  J_\pm\ket{j,m}
+   =\hbar\sqrt{(j\mp m)(j\pm m+1)}\ket{j,m\pm1}.
+\end{equation}
+\begin{enumerate}
+  \item 证明 $\expect{J_x}=\expect{J_y}=0$。
+  \item 证明 $\expect{J_x^2}=\expect{J_y^2}=\tfrac12\hbar^2[j(j+1)-m^2]$。教材提示可用对称性联系两个二阶矩。
+  \item 求 $\Delta J_x\Delta J_y$，验证它满足 Robertson 不确定性关系。
+  \item 证明在 $\ket{j,\pm j}$ 中，上述不确定性关系取等号。
+\end{enumerate}
+
+\begin{checkedsolution}
+\textbf{1. 一阶矩。}$J_\pm$ 改变 $m$，所得非零态与原态正交；在阶梯端点处则得到零向量。因此
+\begin{equation}
+  \expect{J_\pm}=\bra{j,m}J_\pm\ket{j,m}=0.
+\end{equation}
+利用 $J_x=(J_++J_-)/2$、$J_y=(J_+-J_-)/(2\ii)$，立即有
+\begin{equation}
+  \boxed{\expect{J_x}=\expect{J_y}=0.}
+\end{equation}
+这是平均值的陈述，不意味着两个横向分量都确定为零。
+
+\textbf{2. 二阶矩。}绕 $z$ 轴旋转时，$\ket{j,m}$ 只获得整体相位 $\ee^{-\ii m\vartheta}$，所以物理状态不变；旋转 $\pi/2$ 又将 $J_x^2,J_y^2$ 相互交换，故两个期望值相同。结合
+\begin{equation}
+  J_x^2+J_y^2=J^2-J_z^2
+\end{equation}
+便得到
+\begin{equation}
+  \boxed{\expect{J_x^2}=\expect{J_y^2}
+    =\frac{\hbar^2}{2}[j(j+1)-m^2].}
+\end{equation}
+
+也可按本次作答的升降法直接核对。由于 $J_\pm^2$ 改变 $m$ 两个单位或给出零向量，有 $\expect{J_\pm^2}=0$。保留算符次序：
+\begin{align}
+  J_x^2&=\frac14(J_+^2+J_+J_-+J_-J_++J_-^2),\notag\\
+  J_y^2&=\frac14(-J_+^2+J_+J_-+J_-J_+-J_-^2).
+\end{align}
+取期望后，
+\begin{equation}
+  \expect{J_x^2}=\expect{J_y^2}
+   =\frac14\expect{J_+J_-+J_-J_+}
+   =\frac12\expect{J^2-J_z^2},
+\end{equation}
+与上面的结果一致。
+
+\textbf{3. 不确定性乘积。}因为一阶矩为零，
+\begin{equation}
+  (\Delta J_x)^2=(\Delta J_y)^2
+    =\frac{\hbar^2}{2}[j(j+1)-m^2],
+\end{equation}
+所以
+\begin{equation}
+  \boxed{\Delta J_x\Delta J_y
+    =\frac{\hbar^2}{2}[j(j+1)-m^2].}
+\end{equation}
+而 $[J_x,J_y]=\ii\hbar J_z$ 给出的下界是
+\begin{equation}
+  \frac12\big|\expect{[J_x,J_y]}\big|
+     =\frac{\hbar^2}{2}|m|.
+\end{equation}
+两边之差非负，因为
+\begin{equation}
+  j(j+1)-m^2-|m|
+    =(j-|m|)(j+|m|+1)\geq0.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{\Delta J_x\Delta J_y
+     \geq\frac{\hbar^2}{2}|m|
+     =\frac{\hbar}{2}|\expect{J_z}|.}
+\end{equation}
+
+\textbf{4. 等号条件。}在 $m=\pm j$ 时，
+\begin{equation}
+  \Delta J_x\Delta J_y
+   =\frac{\hbar^2}{2}[j(j+1)-j^2]
+   =\frac{\hbar^2j}{2}
+   =\frac12\big|\expect{[J_x,J_y]}\big|.
+\end{equation}
+反过来，由上面的因式分解，在 $\ket{j,m}$ 这一族态中等号成立当且仅当 $|m|=j$。$j=0$ 时两个端点是同一个态。这一“只有端点”的结论限定于所讨论的 $J_z$ 本征态族，不是对任意叠加态作分类。
+\end{checkedsolution}
+
+\exercisequestion{QM-C12-S05-E02}{教材习题 12.5.11：构造三个 \texorpdfstring{$l=1$}{l=1} 球谐函数}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S05-T05}{球谐函数的最高态与降阶构造}。
+
+\textbf{题目。}由最高态条件
+\begin{equation}
+  L_zY_1^1=\hbar Y_1^1,\qquad L_+Y_1^1=0
+\end{equation}
+求出 $Y_1^1(\theta,\varphi)$ 并按球面测度归一化：
+\begin{equation}
+  \int_0^{2\pi}\dd\varphi\int_0^\pi
+    |Y_1^1|^2\sin\theta\,\dd\theta=1.
+\end{equation}
+最高态采用教材 $(-1)^l$ 的相位约定。然后用 $L_-$ 依次求 $Y_1^0,Y_1^{-1}$，与教材列出的 $l=1$ 球谐函数比较。使用
+\begin{equation}
+  L_z=-\ii\hbar\partial_\varphi,\qquad
+  L_\pm=\hbar\ee^{\pm\ii\varphi}
+      (\pm\partial_\theta+\ii\cot\theta\,\partial_\varphi).
+\end{equation}
+
+\begin{checkedsolution}
+\textbf{1. 最高态的两个角向条件。}由
+\begin{equation}
+  -\ii\hbar\partial_\varphi Y_1^1=\hbar Y_1^1
+\end{equation}
+可知 $Y_1^1=f(\theta)\ee^{\ii\varphi}$。再作用 $L_+$：
+\begin{align}
+  0=L_+Y_1^1
+    &=\hbar\ee^{\ii\varphi}
+       (\partial_\theta+\ii\cot\theta\,\partial_\varphi)
+       [f(\theta)\ee^{\ii\varphi}]\notag\\
+    &=\hbar\ee^{2\ii\varphi}[f'(\theta)-f(\theta)\cot\theta].
+\end{align}
+于是 $f'=f\cot\theta$，解为 $f=C\sin\theta$，即
+\begin{equation}
+  Y_1^1=C\sin\theta\,\ee^{\ii\varphi}.
+\end{equation}
+
+\textbf{2. 归一化与相位。}球面测度不可漏掉 $\sin\theta$：
+\begin{equation}
+  1=2\pi|C|^2\int_0^\pi\sin^3\theta\,\dd\theta
+    =2\pi|C|^2\frac43.
+\end{equation}
+所以 $|C|^2=3/(8\pi)$。取 $l=1$ 的指定负实系数，
+\begin{equation}
+  \boxed{Y_1^1=-\sqrt{\frac3{8\pi}}\sin\theta\,\ee^{\ii\varphi}.}
+\end{equation}
+
+\textbf{3. 第一次下降。}记 $A=\sqrt{3/(8\pi)}>0$。两个导数分别为
+\begin{equation}
+  \partial_\theta Y_1^1=-A\cos\theta\,\ee^{\ii\varphi},
+  \qquad
+  \partial_\varphi Y_1^1=-\ii A\sin\theta\,\ee^{\ii\varphi}.
+\end{equation}
+因此
+\begin{align}
+  L_-Y_1^1
+   &=-\hbar\ee^{-\ii\varphi}
+      \left[-A\cos\theta\,\ee^{\ii\varphi}
+      -\ii\cot\theta(-\ii A\sin\theta\,\ee^{\ii\varphi})\right]
+      \notag\\
+   &=-\hbar\ee^{-\ii\varphi}
+      \left[-2A\cos\theta\,\ee^{\ii\varphi}\right]
+    =2\hbar A\cos\theta.
+\end{align}
+括号中第二项也为负，因为 $(-\ii)(-\ii)=-1$。由
+$L_-Y_1^1=\hbar\sqrt2\,Y_1^0$，得到
+\begin{equation}
+  \boxed{Y_1^0=\sqrt2 A\cos\theta
+    =\sqrt{\frac3{4\pi}}\cos\theta.}
+\end{equation}
+
+\textbf{4. 第二次下降。}此时 $Y_1^0$ 不含 $\varphi$，
+\begin{equation}
+  L_-Y_1^0
+   =-\hbar\ee^{-\ii\varphi}(-\sqrt2 A\sin\theta)
+   =\hbar\sqrt2 A\sin\theta\,\ee^{-\ii\varphi}.
+\end{equation}
+与 $L_-Y_1^0=\hbar\sqrt2\,Y_1^{-1}$ 比较，得到
+\begin{equation}
+  \boxed{Y_1^{-1}=\sqrt{\frac3{8\pi}}\sin\theta\,\ee^{-\ii\varphi}.}
+\end{equation}
+三个结果与教材一致，也满足 $Y_1^{-1}=-(Y_1^1)^*$。降阶时已经除以归一化系数，因此不必另给每个结果随意改符号；改变基矢相位时，相关矩阵元和展开系数也必须一致地改变。
+\end{checkedsolution}
+
+\exercisequestion{QM-C12-S05-E03}{教材习题 12.5.13：从笛卡尔波函数读出角动量概率}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S05-T05}{低阶球谐函数}、\relatedtopic{QM-C12-S05-T06}{径向系数与测量概率}。
+
+\textbf{题目。}无自旋粒子处于已归一化的空间态
+\begin{equation}
+  \psi(x,y,z)=N(x+y+2z)\ee^{-ar},
+  \qquad a>0,\quad r=\sqrt{x^2+y^2+z^2},
+\end{equation}
+其中 $N$ 为归一化常数。
+\begin{enumerate}
+  \item 将上一题的球谐函数改写为笛卡尔坐标形式，证明
+    \begin{equation}
+      Y_1^{\pm1}=\mp\sqrt{\frac3{8\pi}}\frac{x\pm\ii y}{r},
+      \qquad Y_1^0=\sqrt{\frac3{4\pi}}\frac zr.
+    \end{equation}
+  \item 利用这些关系展开 $\psi$，求测量 $L_z$ 的各个可能结果及概率。
+\end{enumerate}
+
+\begin{checkedsolution}
+\textbf{1. 坐标改写。}球坐标给出
+\begin{equation}
+  \frac{x\pm\ii y}{r}
+    =\sin\theta(\cos\varphi\pm\ii\sin\varphi)
+    =\sin\theta\,\ee^{\pm\ii\varphi},
+  \qquad \frac zr=\cos\theta.
+\end{equation}
+代入上一题的三个 $Y_1^m$ 即得题目要求的形式。这是球面方向的表达式，$r=0$ 的单点不影响概率积分。
+
+\textbf{2. 反解三个笛卡尔坐标。}令 $A=\sqrt{3/(8\pi)}$，则
+\begin{equation}
+  Y_1^1=-A\frac{x+\ii y}{r},\qquad
+  Y_1^{-1}=A\frac{x-\ii y}{r},\qquad
+  Y_1^0=\sqrt2 A\frac zr.
+\end{equation}
+相加、相减得到
+\begin{equation}
+  \boxed{\begin{aligned}
+    x&=\frac r{2A}(Y_1^{-1}-Y_1^1),\\
+    y&=\frac{\ii r}{2A}(Y_1^1+Y_1^{-1}),\\
+    z&=\frac r{\sqrt2 A}Y_1^0.
+  \end{aligned}}
+\end{equation}
+所以
+\begin{equation}
+  x+y+2z=\frac r{2A}
+     \left[(-1+\ii)Y_1^1+2\sqrt2Y_1^0+(1+\ii)Y_1^{-1}\right].
+\end{equation}
+原态变成
+\begin{equation}
+  \boxed{\psi=\frac{Nr\ee^{-ar}}{2A}
+     \left[(-1+\ii)Y_1^1+2\sqrt2Y_1^0+(1+\ii)Y_1^{-1}\right].}
+\end{equation}
+三个通道都具有 $l=1$，磁量子数为 $+1,0,-1$。它们带有同一径向函数
+$F(r)=Nr\ee^{-ar}/(2A)$，但乘着不同复系数。
+
+\textbf{3. 径向积分与归一化概率。}严格的通道概率为
+\begin{equation}
+  P(m)=\int_0^\infty|C_m(r)|^2r^2\dd r.
+\end{equation}
+设 $I_r=\int_0^\infty|F(r)|^2r^2\dd r$，则三个概率分别为
+\begin{equation}
+  |-1+\ii|^2I_r=2I_r,\qquad
+  |2\sqrt2|^2I_r=8I_r,\qquad
+  |1+\ii|^2I_r=2I_r.
+\end{equation}
+原态已归一化，且球谐函数彼此正交，所以 $12I_r=1$。因此无需先求 $N$：
+\begin{equation}
+  \boxed{P(L_z=+\hbar)=\frac16,\qquad
+    P(L_z=0)=\frac23,\qquad
+    P(L_z=-\hbar)=\frac16.}
+\end{equation}
+三个概率之和为 $1$。公共径向积分能约去，是本题各角向通道共享同一径向函数的结果，不代表三维问题中可以普遍忽略径向自由度。
+
+另由全部通道都有 $l=1$，可直接读出 $L^2$ 的确定结果为 $2\hbar^2$；$L_z$ 则不确定。原函数在 $\mathbf r\mapsto-\mathbf r$ 下变号，也与 $(-1)^l=-1$ 的奇宇称一致。
+\end{checkedsolution}

@@ -643,3 +643,406 @@ $L^2$ 表示大小的平方，不是三个分量之和的平方。在适当定�
 而不是 $H,L_x,L_y,L_z$ 全部一起。这只声明可以共同对角化，不保证这些标签已经消除了所有可能的简并。
 
 \textbf{一分钟回顾。}不同轴旋转的混合二阶残余给出 $[L_i,L_j]=\ii\hbar\sum_k\varepsilon_{ijk}L_k$；$L^2$ 与各分量对易，因而可与一个分量共同确定。任意轴旋转由 $\mathbf n\cdot\mathbf L$ 生成；完整旋转对称性使各角动量分量及 $L^2$ 守恒，但不会改变分量之间的不相容性。
+
+\section{第 12.5 节：角动量本征值、旋转与球谐函数}
+\label{section:QM-C12-S05}
+\studymeta
+  {QM-C12-S05}
+  {2026-10-21 至 2026-10-22}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 12 章 \S 12.5 The Eigenvalue Problem of $L^2$ and $L_z$；印刷页 pp.~321 下部--339，至 \S 12.6 开始前 / PDF pp.~329--347}
+  {六块讲解与教材习题 12.5.3、12.5.11、12.5.13 已核对；笔记已确认}
+
+\textbf{主线。}先用对易关系和范数非负性确定角动量的允许数值，再求升降系数与矩阵，理解有限旋转及其对能级简并的约束，最后把轨道角动量本征态写成位置表象中的球谐函数。
+
+\textbf{记号与范围。}教材先从轨道角动量 $\mathbf L$ 出发，再推广为一般角动量。这里将共同的代数部分统一写成 $\mathbf J$：
+\begin{equation}
+  [J_i,J_j]=\ii\hbar\sum_k\varepsilon_{ijk}J_k,
+  \qquad J^2=J_x^2+J_y^2+J_z^2,
+  \qquad [J^2,J_i]=0.
+\end{equation}
+一般量子数记为 $j,m$；轨道角动量量子数记为 $l,m$。这里 $m$ 是无量纲的磁量子数，\emph{不是质量}。算符运算在适当共同定义域上进行；固定 $j$ 的有限维矩阵部分没有无界算符的定义域问题。除非另有说明，$\ket{j,m}$ 表示同一份角动量多重态，暂时省略径向等额外标签。
+
+\notetopic{QM-C12-S05-T01}{从角动量代数得到升降阶梯}
+\keyidea{升降算符保持总角动量量子数，只改变所选轴上的投影；是否保持能量，还要看 Hamiltonian 的对称性。}
+\textbf{教材位置：}印刷 pp.~321--323 / PDF pp.~329--331。
+
+取 $J^2,J_z$ 的归一化共同本征态：
+\begin{equation}
+  J^2\ket{\alpha,\beta}=\alpha\ket{\alpha,\beta},
+  \qquad J_z\ket{\alpha,\beta}=\beta\ket{\alpha,\beta}.
+\end{equation}
+其中 $\alpha$ 的量纲为角动量平方，$\beta$ 的量纲为角动量。定义
+\begin{equation}
+  \boxed{J_\pm=J_x\pm\ii J_y},\qquad J_+^\dagger=J_-.
+\end{equation}
+$J_x,J_y$ 自伴，但 $J_+,J_-$ 各自不是 Hermitian 算符。由代数直接算出
+\begin{align}
+  [J_z,J_+]&=[J_z,J_x]+\ii[J_z,J_y]
+    =\ii\hbar J_y+\hbar J_x=\hbar J_+,\notag\\
+  [J_z,J_-]&=-\hbar J_-,\qquad [J^2,J_\pm]=0.
+\end{align}
+因此
+\begin{align}
+  J^2J_\pm\ket{\alpha,\beta}
+    &=\alpha J_\pm\ket{\alpha,\beta},\notag\\
+  J_zJ_\pm\ket{\alpha,\beta}
+    &=(\beta\pm\hbar)J_\pm\ket{\alpha,\beta}.
+\end{align}
+若 $J_\pm\ket{\alpha,\beta}$ 非零，它就是本征值为 $(\alpha,\beta\pm\hbar)$ 的态，归一化后可记成
+\begin{equation}
+  J_\pm\ket{\alpha,\beta}
+    =C_\pm(\alpha,\beta)\ket{\alpha,\beta\pm\hbar}.
+\end{equation}
+这一步尚未确定 $C_\pm$，也没有证明阶梯能无限延伸。若输出为零，它是\textbf{零向量而不是物理态}，更不是“角动量投影为零的态”。这与谐振子的 $a\ket0=0$ 是同一种区别。
+
+\notetopic{QM-C12-S05-T02}{阶梯端点与允许的角动量量子数}
+\keyidea{固定的角动量大小限制了各分量的范围；有限范围与固定步长共同迫使阶梯终止，从而量子化。}
+\textbf{教材位置：}印刷 pp.~323--326 / PDF pp.~331--334。
+
+\textbf{1. 投影不能无限增大。}在 $\ket{\alpha,\beta}$ 中，
+\begin{equation}
+  \alpha-\beta^2
+  =\expect{J_x^2+J_y^2}
+  =\norm{J_x\ket{\alpha,\beta}}^2
+   +\norm{J_y\ket{\alpha,\beta}}^2\geq0.
+\end{equation}
+所以 $|\beta|\leq\sqrt\alpha$。若升降操作始终不为零，归一化每一步后就会得到超过这一界限的本征值，因此必有最高、最低投影，满足
+\begin{equation}
+  J_+\ket{\alpha,\beta_{\max}}=0,
+  \qquad J_-\ket{\alpha,\beta_{\min}}=0.
+\end{equation}
+不能以“高处的系数越来越小”避开终止条件：只要输出非零，就能重新归一化，它仍然对应一个被禁止的本征值。
+
+\textbf{2. 用范数求端点。}保留算符乘法的次序：
+\begin{align}
+  J_-J_+&=J_x^2+J_y^2+\ii[J_x,J_y]
+     =J^2-J_z^2-\hbar J_z,\notag\\
+  J_+J_-&=J^2-J_z^2+\hbar J_z.
+  \label{eq:QM-C12-S05-ladder-products}
+\end{align}
+两条端点条件分别给出
+\begin{equation}
+  \alpha=\beta_{\max}(\beta_{\max}+\hbar)
+        =\beta_{\min}(\beta_{\min}-\hbar).
+\end{equation}
+相减并因式分解：
+\begin{equation}
+  (\beta_{\max}+\beta_{\min})
+  (\beta_{\max}-\beta_{\min}+\hbar)=0.
+\end{equation}
+第二个因子严格为正，故 $\beta_{\min}=-\beta_{\max}$。从底到顶是整数 $N\geq0$ 个步长，于是
+\begin{equation}
+  2\beta_{\max}=N\hbar,\qquad j=\frac N2.
+\end{equation}
+最终得到一般角动量谱：
+\begin{equation}
+  \boxed{\begin{aligned}
+    J^2\ket{j,m}&=j(j+1)\hbar^2\ket{j,m},\\
+    J_z\ket{j,m}&=m\hbar\ket{j,m},\\
+    j&=0,\tfrac12,1,\tfrac32,\ldots,\\
+    m&=-j,-j+1,\ldots,j.
+  \end{aligned}}
+  \label{eq:QM-C12-S05-spectrum}
+\end{equation}
+每一份固定 $j$ 的阶梯含 $2j+1$ 个正交态。它不是整个物理 Hilbert 空间的维数：同一个 $j$ 可以对应不同径向态等额外自由度。
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.85]
+  \draw[->] (-2.3,-0.4)--(-2.3,3.5) node[above] {$J_z$};
+  \foreach \y/\m/\value in {0/-1/-\hbar,1.5/0/0,3/1/+\hbar}{
+    \draw[thick,noteBlue] (-1.5,\y)--(1.4,\y);
+    \node[left] at (-2.3,\y) {$\value$};
+    \node[right] at (1.5,\y) {$\ket{1,\m}$};
+  }
+  \draw[->,accentRed,thick] (-0.7,0.12)--(-0.7,1.38);
+  \draw[->,accentRed,thick] (-0.7,1.62)--(-0.7,2.88);
+  \draw[->,noteBlue,thick] (0.6,2.88)--(0.6,1.62);
+  \draw[->,noteBlue,thick] (0.6,1.38)--(0.6,0.12);
+  \node[left] at (-0.7,0.75) {$J_+$};
+  \node[right] at (0.6,2.25) {$J_-$};
+\end{tikzpicture}
+
+\small 固定 $j=1$ 的三个投影值；纵轴是 $J_z$，不是能量。相邻非零升降系数均为 $\sqrt2\hbar$。
+\end{center}
+
+\textbf{3. 总大小不等于最大投影。}角动量大小对应 $\sqrt{J^2}$，在此态中为 $\hbar\sqrt{j(j+1)}$，而最大 $z$ 投影仅为 $j\hbar$。例如 $j=m=1$ 时分别为 $\sqrt2\hbar$ 与 $\hbar$。横向分量的平均值可以为零，但涨落并不为零，不能解释为三个分量同时具有确定的经典数值；详见\relatedexercise{QM-C12-S05-E01}{横向涨落与不确定性关系}。
+
+\textbf{4. 为什么轨道角动量只取整数？}上述代数允许整数和半整数。对普通单值空间标量波函数，$L_z=-\ii\hbar\partial_\varphi$ 的角向解为 $\ee^{\ii m\varphi}$，而
+\begin{equation}
+  \psi(r,\theta,\varphi+2\pi)=\psi(r,\theta,\varphi)
+  \quad\Longrightarrow\quad m\in\mathbb Z.
+\end{equation}
+所以轨道阶梯的最高值 $l$ 也只能为 $0,1,2,\ldots$。带有内部自由度的态还可能在旋转时变换其分量；完整生成元一般为 $\mathbf J=\mathbf L+\mathbf S$。半整数角动量属于更一般的表示，不能硬塞进普通单值标量球谐函数中。这里给出的是代数允许的谱，不是在断言某个具体系统必定实现所有 $j$；自旋的物理内容留待后续章节。
+
+\notetopic{QM-C12-S05-T03}{升降系数与角动量矩阵}
+\keyidea{阶梯位置由本征值确定，阶梯系数由范数确定；固定基的顺序后，算符的作用直接给出矩阵的各列。}
+\textbf{教材位置：}印刷 pp.~327--329 / PDF pp.~335--337。
+
+由式~\eqref{eq:QM-C12-S05-ladder-products}，
+\begin{align}
+  \norm{J_+\ket{j,m}}^2
+    &=\hbar^2[j(j+1)-m(m+1)],\notag\\
+  \norm{J_-\ket{j,m}}^2
+    &=\hbar^2[j(j+1)-m(m-1)].
+\end{align}
+选择同一阶梯中各基矢的相对相位，使非零系数为正实数，得到
+\begin{equation}
+  \boxed{J_\pm\ket{j,m}
+    =\hbar\sqrt{(j\mp m)(j\pm m+1)}\ket{j,m\pm1}.}
+  \label{eq:QM-C12-S05-ladder-action}
+\end{equation}
+相位选择不是额外的物理定律，但一旦选定，就应在矩阵、波函数和线性组合中保持一致。端点系数为零，不需要定义阶梯之外的物理态。
+
+利用
+\begin{equation}
+  J_x=\frac{J_++J_-}{2},\qquad
+  J_y=\frac{J_+-J_-}{2\ii},
+\end{equation}
+可直接得到所有矩阵元。例如
+\begin{align}
+  \bra{j,m'}J_x\ket{j,m}
+  =\frac\hbar2\Big[&\sqrt{(j-m)(j+m+1)}\,\delta_{m',m+1}\notag\\
+    &+\sqrt{(j+m)(j-m+1)}\,\delta_{m',m-1}\Big].
+\end{align}
+$J_y$ 对应两项相减并将分母 $2$ 改为 $2\ii$；$J_z$ 则是对角矩阵。$J_x,J_y$ 只连接相邻 $m$，不改变 $j$。
+
+\dialoguesupplement{升降系数不能漏掉根号。比如 $j=1,m=0$ 时，两条非零升降系数都是 $\sqrt2\hbar$，因此}
+\begin{equation}
+  J_x\ket{1,0}=\frac{\hbar}{\sqrt2}
+    \left(\ket{1,1}+\ket{1,-1}\right).
+\end{equation}
+结果不与原态成比例，所以 $\ket{1,0}$ 不是 $J_x$ 的本征态。
+
+在 $j=\tfrac12$ 的有序基 $\{\ket{\tfrac12,\tfrac12},\ket{\tfrac12,-\tfrac12}\}$ 下，
+\begin{equation}
+  J_+=\hbar\begin{pmatrix}0&1\\0&0\end{pmatrix},\qquad
+  J_-=\hbar\begin{pmatrix}0&0\\1&0\end{pmatrix},
+\end{equation}
+从而
+\begin{equation}
+  \boxed{J_x=\frac\hbar2\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+    J_y=\frac\hbar2\begin{pmatrix}0&-\ii\\\ii&0\end{pmatrix},\quad
+    J_z=\frac\hbar2\begin{pmatrix}1&0\\0&-1\end{pmatrix}.}
+\end{equation}
+此时 $J^2=\tfrac34\hbar^2I$。$j=0$ 时三个矩阵都是一维零矩阵。一般 $j$ 则对应 $(2j+1)\times(2j+1)$ 矩阵；若空间包含多种 $j$ 或同一 $j$ 的多份副本，完整矩阵具有相应分块，不能把某一块误当成整个系统。
+
+\notetopic{QM-C12-S05-T04}{有限旋转、不可约空间与能量简并}
+\keyidea{固定 $j$ 的空间在旋转下封闭；完整旋转对称性进一步保证同一能量多重态中的不同 $m$ 简并。两者不是同一个命题。}
+\textbf{教材位置：}印刷 pp.~329--333 / PDF pp.~337--341。教材将有限旋转至习题 12.5.7 的部分标为可略读；此处保留本次讲过的结构与关键理由，不展开全部相关习题。
+
+\textbf{1. 有限旋转仍留在同一 $j$ 内。}绕单位向量 $\mathbf n$ 主动旋转角度 $\vartheta$：
+\begin{equation}
+  U(R)=\exp\left(-\frac{\ii\vartheta}{\hbar}\mathbf n\cdot\mathbf J\right).
+\end{equation}
+由于 $[J^2,J_i]=0$，$[J^2,U(R)]=0$，故
+\begin{equation}
+  U(R)\ket{j,m}
+    =\sum_{m'=-j}^j\ket{j,m'}D^{(j)}_{m'm}(R),\qquad
+  D^{(j)}_{m'm}(R)=\bra{j,m'}U(R)\ket{j,m}.
+\end{equation}
+这里没有改变 $j$，却通常改变了物理状态和 $m$ 的测量分布。
+
+固定 $j$ 后，$J_{\mathbf n}=\mathbf n\cdot\mathbf J$ 与 $J_z$ 由旋转联系，具有相同本征值，因而
+\begin{equation}
+  \prod_{m=-j}^j(J_{\mathbf n}-m\hbar I)=0.
+\end{equation}
+所以指数中的高次幂可归约为不超过 $2j$ 次的多项式。例如 $j=\tfrac12$ 时，令 $A=2J_{\mathbf n}/\hbar$，有 $A^2=I$。将指数级数分成偶次和奇次，得到
+\begin{equation}
+  \boxed{U(R)=I\cos\frac\vartheta2
+     -\frac{2\ii}{\hbar}J_{\mathbf n}\sin\frac\vartheta2
+       \quad(j=\tfrac12).}
+\end{equation}
+这时 $2\pi$ 旋转给出 $-I$，$4\pi$ 给出 $I$；整体负号不改变孤立态的物理射线，但不能把这个矩阵规律替换成普通标量轨道波函数的边界条件。
+
+\textbf{2. 不变与不可约。}不变空间指旋转不会把其中的向量带出去；不可约进一步指它不包含非零且更小的、对所有旋转均不变的子空间。一份完整的
+\begin{equation}
+  \mathcal V_j=\operatorname{span}\{\ket{j,-j},\ldots,\ket{j,j}\}
+\end{equation}
+就是不可约空间。
+\dialoguesupplement{用谱投影把“升降算符连接整条阶梯”的理由写得更明确。若子空间 $W$ 对所有旋转不变，对无穷小参数求导可知 $J_x,J_y,J_z$ 都保持 $W$。}
+$J_z$ 的各本征值不同，对其多项式
+\begin{equation}
+  \mathcal P_m=
+    \prod_{\substack{m'=-j\\m'\ne m}}^j
+      \frac{J_z-m'\hbar I}{(m-m')\hbar}
+\end{equation}
+作用，能从 $W$ 中任意非零向量抽取一个非零的 $\ket{j,m}$ 分量。再用 $J_+,J_-$ 就能得到整个阶梯，因此 $W=\mathcal V_j$。这个论证针对一份阶梯；若包含多份相同 $j$，合起来并不因此不可约。
+
+\textbf{不可约不等于任意两态都能用一次旋转连接。}升降算符不是幺正旋转。比如 $\ket{1,1}$ 的 $|\expect{\mathbf J}|=\hbar$，而 $\ket{1,0}$ 的 $|\expect{\mathbf J}|=0$；旋转只改变这个期望矢量的方向、不改变长度，所以不能把前者旋转成后者。
+
+\textbf{3. 为什么 $H$ 也与 $J^2$ 对易？}若完整 Hamiltonian 及其定义域在\emph{所有方向的旋转}下不变，则
+\begin{equation}
+  [H,J_x]=[H,J_y]=[H,J_z]=0.
+\end{equation}
+这不仅给出 $[H,J_\pm]=0$，还由乘积法则直接给出
+\begin{equation}
+  \boxed{[H,J^2]
+    =\sum_{i=x,y,z}\bigl([H,J_i]J_i+J_i[H,J_i]\bigr)=0.}
+\end{equation}
+因此可选择 $H,J^2,J_z$ 的共同本征基。这不是说 $J^2$ 的\emph{任意}本征态自动也是 $J_z$ 或 $H$ 的本征态；有简并时仍需在相应空间内选择基。
+
+若
+\begin{equation}
+  H\ket{\nu,j,m}=E_{\nu j}\ket{\nu,j,m},
+\end{equation}
+其中 $\nu$ 收集需要的额外标签，则
+\begin{equation}
+  HJ_\pm\ket{\nu,j,m}
+   =J_\pm H\ket{\nu,j,m}
+   =E_{\nu j}J_\pm\ket{\nu,j,m}.
+\end{equation}
+非零升降态具有同一能量，故同一阶梯的全部 $m$ 简并。能量可以依赖 $\nu,j$，但不依赖这一阶梯内的 $m$；每个多重态贡献 $2j+1$ 重简并，也可能还有额外简并。
+
+\dialoguesupplement{只知道 $[H,J_z]=0$ 不够。例如在一个固定 $j$ 空间中，$H=\omega J_z$ 与 $J_z,J^2$ 都对易，却有 $E_m=\omega m\hbar$，不同 $m$ 一般不简并。\textbf{存在共同本征基与存在相同能量，是两个不同结论。}}
+
+\notetopic{QM-C12-S05-T05}{在位置表象中构造球谐函数}
+\keyidea{球谐函数是轨道角动量共同本征态的角向波函数；它不是完整的三维波函数，径向部分仍需保留。}
+\textbf{教材位置：}印刷 pp.~333--337 / PDF pp.~341--345。
+
+$l=1$ 的完整构造见\relatedexercise{QM-C12-S05-E02}{教材习题 12.5.11}。
+
+采用 $r\geq0$、极角 $0\leq\theta\leq\pi$、方位角 $0\leq\varphi<2\pi$。由笛卡尔算符作链式法则变换，可得
+\begin{equation}
+  L_z=-\ii\hbar\partial_\varphi,\qquad
+  L_\pm=\hbar\ee^{\pm\ii\varphi}
+    \left(\pm\partial_\theta+\ii\cot\theta\,\partial_\varphi\right).
+  \label{eq:QM-C12-S05-angular-operators}
+\end{equation}
+特别注意 $L_-$ 可写为 $-\hbar\ee^{-\ii\varphi}(\partial_\theta-\ii\cot\theta\partial_\varphi)$，导数既作用于 $\theta$ 部分，也作用于 $\ee^{\ii m\varphi}$。
+
+\textbf{1. 先构造最高态。}由 $L_z\psi=l\hbar\psi$，可写
+\begin{equation}
+  \psi(r,\theta,\varphi)=F(r,\theta)\ee^{\ii l\varphi}.
+\end{equation}
+再使用 $L_+\psi=0$：
+\begin{equation}
+  \partial_\theta F-l\cot\theta\,F=0
+  \quad\Longrightarrow\quad F(r,\theta)=R(r)\sin^l\theta.
+\end{equation}
+这里微分方程只限制角向依赖，不能确定 $R(r)$。将角向函数单独归一化，记
+\begin{equation}
+  Y_l^l(\theta,\varphi)=N_l\sin^l\theta\,\ee^{\ii l\varphi},
+  \qquad \int |Y_l^l|^2\dd\Omega=1,
+  \quad \dd\Omega=\sin\theta\,\dd\theta\,\dd\varphi.
+\end{equation}
+令 $I_l=\int_0^\pi\sin^{2l+1}\theta\,\dd\theta$。分部积分给出
+\begin{equation}
+  I_0=2,\qquad I_l=\frac{2l}{2l+1}I_{l-1}
+    =\frac{2^{2l+1}(l!)^2}{(2l+1)!}.
+\end{equation}
+由 $2\pi|N_l|^2I_l=1$，并采用教材最高态系数的 $(-1)^l$ 相位约定，得到
+\begin{equation}
+  \boxed{Y_l^l
+    =(-1)^l\frac{\sqrt{(2l+1)!}}{2^l l!\sqrt{4\pi}}
+       \sin^l\theta\,\ee^{\ii l\varphi}.}
+\end{equation}
+最高态前面的负号或正号是约定；与降阶系数共同使用后，同一组球谐函数的相对相位随之固定。
+
+\textbf{2. 逐级下降。}用已知归一化的角动量系数，
+\begin{equation}
+  Y_l^{m-1}
+    =\frac{L_-Y_l^m}{\hbar\sqrt{(l+m)(l-m+1)}}.
+\end{equation}
+重复作用可写成
+\begin{equation}
+  \boxed{Y_l^m
+    =\sqrt{\frac{(l+m)!}{(2l)!(l-m)!}}
+       \left(\frac{L_-}{\hbar}\right)^{l-m}Y_l^l.}
+\end{equation}
+由此构造的函数满足
+\begin{equation}
+  L^2Y_l^m=l(l+1)\hbar^2Y_l^m,\qquad
+  L_zY_l^m=m\hbar Y_l^m,
+  \quad l=0,1,\ldots,\quad -l\leq m\leq l.
+\end{equation}
+最低一组只有 $Y_0^0=1/\sqrt{4\pi}$；$l=1$ 的三个函数及符号推导放在课程题目中。
+
+\textbf{3. 与角向微分方程的对应。}在球坐标中，
+\begin{equation}
+  \boxed{L^2=-\hbar^2\left[
+    \frac1{\sin\theta}\partial_\theta(\sin\theta\,\partial_\theta)
+    +\frac1{\sin^2\theta}\partial_\varphi^2\right].}
+\end{equation}
+代入 $Y_l^m=f(\theta)\ee^{\ii m\varphi}$，得到
+\begin{equation}
+  \frac1{\sin\theta}\frac{\dd}{\dd\theta}
+    \left(\sin\theta\frac{\dd f}{\dd\theta}\right)
+   +\left[l(l+1)-\frac{m^2}{\sin^2\theta}\right]f=0.
+\end{equation}
+令 $u=\cos\theta$，这就是伴随 Legendre 方程。它与升降法描述同一批角向本征函数，并不是另一套量子态。
+
+为明确相位约定，若对 $m\geq0$ 定义\emph{不包含} $(-1)^m$ 的伴随多项式
+\begin{equation}
+  P_l(u)=\frac1{2^ll!}\frac{\dd^l}{\dd u^l}(u^2-1)^l,
+  \qquad P_l^m(u)=(1-u^2)^{m/2}\frac{\dd^mP_l}{\dd u^m},
+\end{equation}
+则相同约定的球谐函数为
+\begin{equation}
+  Y_l^m=(-1)^m\sqrt{\frac{2l+1}{4\pi}\frac{(l-m)!}{(l+m)!}}
+    P_l^m(\cos\theta)\ee^{\ii m\varphi}.
+\end{equation}
+负 $m$ 由
+\begin{equation}
+  \boxed{Y_l^{-m}=(-1)^m(Y_l^m)^*}
+\end{equation}
+得到。有些资料把 $(-1)^m$ 放进 $P_l^m$ 的定义中，此时不能再在外面重复乘一次。由于共轭只改变相位，$|Y_l^{-m}|^2=|Y_l^m|^2$，但当 $m\ne0$ 时二者的 $L_z$ 结果相反，不是同一物理态。
+
+\notetopic{QM-C12-S05-T06}{三维波函数的角向展开、测量与宇称}
+\keyidea{球谐基分解角向自由度；每个角向通道仍带一个径向函数。测量角动量时，要把未测的径向自由度积分掉。}
+\textbf{教材位置：}印刷 pp.~335--338 / PDF pp.~343--346；宇称由习题 12.5.12 的结论连接 \S 11.4，本次在正文中说明，未另设作业。
+
+球谐函数在单位球面上正交归一且完备：
+\begin{equation}
+  \int (Y_l^m)^*Y_{l'}^{m'}\dd\Omega
+    =\delta_{ll'}\delta_{mm'}.
+\end{equation}
+因此一般三维波函数可按角向展开为
+\begin{equation}
+  \boxed{\psi(r,\theta,\varphi)
+    =\sum_{l=0}^\infty\sum_{m=-l}^l C_{lm}(r)Y_l^m(\theta,\varphi),}
+  \qquad C_{lm}(r)=\int (Y_l^m)^*\psi\,\dd\Omega.
+  \label{eq:QM-C12-S05-expansion}
+\end{equation}
+这里不是所有 $C_{lm}$ 都乘同一个径向函数。只有在特殊的可分离情形，才可以提出公共 $R(r)$。
+
+由于三维体积元为 $r^2\dd r\dd\Omega$，归一化条件变为
+\begin{equation}
+  1=\int_0^\infty r^2\dd r\int|\psi|^2\dd\Omega
+   =\sum_{l,m}\int_0^\infty|C_{lm}(r)|^2r^2\dd r.
+\end{equation}
+联合测得 $L^2=l(l+1)\hbar^2$、$L_z=m\hbar$ 的概率为
+\begin{equation}
+  \boxed{P(l,m)=\int_0^\infty|C_{lm}(r)|^2r^2\dd r.}
+\end{equation}
+只测其中一个量时，要对另一个未分辨标签求和：
+\begin{equation}
+  P(L_z=m\hbar)=\sum_{l=|m|}^\infty P(l,m),\qquad
+  P\bigl(L^2=l(l+1)\hbar^2\bigr)=\sum_{m=-l}^lP(l,m).
+\end{equation}
+若各通道具有公共径向因子，它才会在归一化概率的比值中约去；具体见\relatedexercise{QM-C12-S05-E03}{将笛卡尔波函数展开为球谐函数}。
+
+\textbf{径向函数改变什么？}对于
+\begin{equation}
+  \psi=R(r)Y_l^m,\qquad \int_0^\infty|R(r)|^2r^2\dd r=1,
+\end{equation}
+$L^2,L_z$ 不对 $r$ 求导，所以角动量结果始终确定为 $l(l+1)\hbar^2,m\hbar$。改变 $R(r)$ 可以改变径向概率分布、径向动量和能量性质，并非只是在“调整不同角动量态的概率”；这里本来就只有一个 $l,m$ 通道。角动量方程没有替我们解出径向动力学。
+
+\textbf{旋转如何改变展开系数？}旋转保持 $r$ 不变，在同一个 $l$ 内混合 $m$：
+\begin{equation}
+  C'_{lm}(r)=\sum_{m'=-l}^lD^{(l)}_{mm'}(R)C_{lm'}(r).
+\end{equation}
+这既说明固定 $l$ 的角向空间封闭，也说明角向旋转与径向自由度的保留并不矛盾。
+
+\textbf{宇称是什么，在这里怎样判断？}宇称变换是空间反转 $\mathbf r\mapsto-\mathbf r$，作用为 $(\Pi\psi)(\mathbf r)=\psi(-\mathbf r)$。球坐标中
+\begin{equation}
+  (r,\theta,\varphi)\longmapsto(r,\pi-\theta,\varphi+\pi)
+  \quad(\varphi\text{ 按 }2\pi\text{ 取模}).
+\end{equation}
+最高态中的 $\sin^l\theta$ 不变，而 $\ee^{\ii l\varphi}$ 多出 $\ee^{\ii l\pi}=(-1)^l$。又因为空间反转使 $\mathbf R,\mathbf P$ 同时变号，所以 $\Pi\mathbf L\Pi^{-1}=\mathbf L$，特别有 $[\Pi,L_-]=0$。由最高态下降便得到整条阶梯的共同宇称：
+\begin{equation}
+  \boxed{Y_l^m(\pi-\theta,\varphi+\pi)=(-1)^lY_l^m(\theta,\varphi).}
+\end{equation}
+因此偶数 $l$ 是偶宇称，奇数 $l$ 是奇宇称，与 $m$ 无关。任意固定 $l$ 的 $m$ 叠加，甚至各 $m$ 带不同径向函数，仍具有同一个宇称 $(-1)^l$。若混合了奇、偶两种 $l$，则一般不再是宇称本征态。这里讨论的是空间轨道部分；含内部自由度的完整宇称还需相应定义。
+
+\textbf{一分钟回顾。}升降代数加范数非负性给出 $j(j+1)\hbar^2$ 与 $m\hbar$；一份固定 $j$ 的阶梯有 $2j+1$ 态。旋转在其中混合 $m$，完整旋转对称性使同一能量阶梯的 $m$ 简并。轨道角动量只取整数 $l$，角向波函数是 $Y_l^m$；完整三维态仍有径向系数，测量概率用 $r^2\dd r$ 积分，空间宇称为 $(-1)^l$。
