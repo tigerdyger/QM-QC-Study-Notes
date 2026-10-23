@@ -639,3 +639,225 @@ $F(r)=Nr\ee^{-ar}/(2A)$，但乘着不同复系数。
 
 另由全部通道都有 $l=1$，可直接读出 $L^2$ 的确定结果为 $2\hbar^2$；$L_z$ 则不确定。原函数在 $\mathbf r\mapsto-\mathbf r$ 下变号，也与 $(-1)^l=-1$ 的奇宇称一致。
 \end{checkedsolution}
+
+\section{第 12.6 节习题：中心势、束缚阈值与谐振子简并}
+\label{exercises:QM-C12-S06}
+\exercisemeta
+  {QM-C12-S06}
+  {2026-10-22 至 2026-10-24}
+  {Shankar, Second Edition；12.6.1：印刷 p.~340 / PDF p.~348；12.6.9：印刷 p.~349 / PDF p.~357；12.6.11 第 (2) 问：印刷 p.~352 / PDF p.~360}
+  {三道选定教材习题均已作答并核对}
+  {笔记已确认}
+
+以下统一符号重述题意；12.6.9 补充临界等号的可归一化检查。12.6.11 第 (1) 问涉及的递推在正文讲解中覆盖，第 (3) 问及其余习题未独立选做；不收入课堂概念小检查。
+
+\exercisequestion{QM-C12-S06-E01}{教材习题 12.6.1：由指数波函数反推势能}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S06-T01}{中心势径向方程}、\relatedtopic{QM-C12-S06-T02}{径向边界与渐近行为}。
+
+\textbf{题目。}质量为 $\mu>0$ 的粒子处于
+\begin{equation}
+  \psi_E(r,\theta,\varphi)=A\ee^{-r/a_0},\qquad a_0>0,
+\end{equation}
+其中 $A\ne0$ 为归一化常数，不要求计算它。
+\begin{enumerate}
+  \item 判断该态的角动量内容，即允许的 $l,m$ 及 $L^2,L_z$ 的测量结果。
+  \item 假设它是 $H=-\hbar^2\nabla^2/(2\mu)+V(r)$ 的能量本征态，且 $V(r)\to0$ 当 $r\to\infty$，利用无穷远行为求 $E$。
+  \item 再考虑有限 $r>0$，求势能 $V(r)$。
+\end{enumerate}
+
+\begin{checkedsolution}
+\textbf{1. 角动量。}波函数无角向依赖，角向部分正比于 $Y_0^0=1/\sqrt{4\pi}$，因此
+\begin{equation}
+  \boxed{l=m=0,\qquad L^2=0,\qquad L_z=0,}
+\end{equation}
+两种测量均以概率 $1$ 得到上述结果。这里不是只知道 $m=0$，而是已知完整角向函数为常数。
+
+\textbf{2. 先求导，再取远处极限。}对径向函数使用 $\nabla^2\psi=\psi''+2\psi'/r$：
+\begin{equation}
+  \psi_E'=-\frac{\psi_E}{a_0},\qquad
+  \psi_E''=\frac{\psi_E}{a_0^2},\qquad
+  \nabla^2\psi_E=\left(\frac1{a_0^2}-\frac2{a_0r}\right)\psi_E.
+\end{equation}
+在有限 $r>0$ 先除以非零的 $\psi_E$，得到
+\begin{equation}
+  E=-\frac{\hbar^2}{2\mu a_0^2}+\frac{\hbar^2}{\mu a_0r}+V(r).
+\end{equation}
+随后令 $r\to\infty$，利用 $V(\infty)=0$，有
+\begin{equation}
+  \boxed{E=-\frac{\hbar^2}{2\mu a_0^2}.}
+\end{equation}
+若先让波函数本身趋零，容易只得到无信息的 $0=0$。能量为负是相对于所指定的远处势能零点而言的。
+
+\textbf{3. 反求势能。}将 $E$ 代回有限 $r$ 的等式，常数项抵消：
+\begin{equation}
+  \boxed{V(r)=-\frac{\hbar^2}{\mu a_0r},\qquad r>0.}
+\end{equation}
+它是吸引型库仑势 $-g/r$，其中 $g=\hbar^2/(\mu a_0)$ 的量纲为能量乘长度。已知态的角向结构、远处衰减与完整微分方程在这里分别确定角动量、能量和势能。
+\end{checkedsolution}
+
+\exercisequestion{QM-C12-S06-E02}{教材习题 12.6.9：球形有限阱的束缚阈值}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S06-T01}{半轴径向方程}、\relatedtopic{QM-C12-S06-T02}{边界与可归一化条件}。
+
+\textbf{题目。}质量为 $\mu$ 的粒子处于
+\begin{equation}
+  V(r)=\begin{cases}-V_0,&0\leq r<r_0,\\0,&r>r_0,\end{cases}
+  \qquad V_0>0,\quad r_0>0.
+\end{equation}
+只研究 $l=0$，写 $\psi=u(r)Y_0^0/r$。对束缚能量 $-V_0<E<0$，定义
+\begin{equation}
+  k=\frac{\sqrt{2\mu(E+V_0)}}\hbar,\qquad
+  \kappa=\frac{\sqrt{-2\mu E}}\hbar.
+\end{equation}
+这里的 $k$ 对应教材题干的 $k'$。
+\begin{enumerate}
+  \item 求阱内外满足原点条件与远处衰减的 $u(r)$，暂不归一化。
+  \item 在 $r=r_0$ 匹配，证明 $k\cot(kr_0)=-\kappa$，即 $k/\kappa=-\tan(kr_0)$。
+  \item 证明 $V_0<\pi^2\hbar^2/(8\mu r_0^2)$ 时无 $l=0$ 束缚态；补充检查等号时的 $E=0$ 阈值解是否平方可积。
+\end{enumerate}
+
+\begin{checkedsolution}
+\textbf{1. 两端边界先筛选解。}阱内有 $u''+k^2u=0$；通解 $A\sin kr+B\cos kr$ 经 $u(0)=0$ 筛选后只剩正弦。阱外有 $u''-\kappa^2u=0$，丢弃远处增长支：
+\begin{equation}
+  \boxed{u(r)=\begin{cases}
+    A\sin(kr),&0\leq r<r_0,\\
+    C\ee^{-\kappa r},&r>r_0.
+  \end{cases}}
+\end{equation}
+原点排除余弦支是通常三维 Hamiltonian 的边界要求，不能仅以 $1/r$ 奇异性局部不可积为理由，因为它实际局部平方可积。
+
+\textbf{2. 边界匹配。}有限势阶跃不含 delta 项，所以 $u,u'$ 连续：
+\begin{equation}
+  A\sin(kr_0)=C\ee^{-\kappa r_0},\qquad
+  Ak\cos(kr_0)=-\kappa C\ee^{-\kappa r_0}.
+\end{equation}
+非平凡解不能有 $\sin(kr_0)=0$：否则第一式令 $C=0$，第二式再令 $A=0$。故可以相除，得到
+\begin{equation}
+  \boxed{k\cot(kr_0)=-\kappa,\qquad
+    \frac{k}{\kappa}=-\tan(kr_0).}
+\end{equation}
+第二种写法只在 $\kappa>0$ 时使用，不能在阈值处直接除以零。
+
+\textbf{3. 阱深的必要条件。}记
+\begin{equation}
+  z=kr_0,\qquad \beta=\kappa r_0,\qquad
+  z_0=\frac{r_0\sqrt{2\mu V_0}}\hbar.
+\end{equation}
+由定义，
+\begin{equation}
+  z^2+\beta^2=z_0^2,\qquad z\cot z=-\beta,
+  \qquad z>0,\quad\beta>0.
+\end{equation}
+若 $z_0\leq\pi/2$，则 $0<z<z_0\leq\pi/2$，左边 $z\cot z>0$，右边 $-\beta<0$，无法相等。因此
+\begin{equation}
+  \boxed{V_0\leq V_{0,c}=\frac{\pi^2\hbar^2}{8\mu r_0^2}
+    \quad\Longrightarrow\quad\text{无负能量的 }l=0\text{ 束缚态}.}
+\end{equation}
+
+\textbf{4. 临界等号的零能解。}当 $V_0=V_{0,c}$、$E=0$ 时，$k=\pi/(2r_0)$。阱外须重新解 $u''=0$，通解是 $Cr+D$。阱内解在边界满足 $u(r_0)=A$、$u'(r_0)=0$，匹配给出 $C=0,D=A$：
+\begin{equation}
+  \boxed{u(r)=\begin{cases}
+    A\sin\bigl(\pi r/(2r_0)\bigr),&0\leq r<r_0,\\
+    A,&r\geq r_0.
+  \end{cases}}
+\end{equation}
+
+\begin{center}
+\begin{tikzpicture}[x=2.1cm,y=1.7cm,>=Stealth]
+  \draw[->] (0,0)--(3.65,0) node[right] {$r/r_0$};
+  \draw[->] (0,0)--(0,1.5) node[above] {$u/A$};
+  \draw[dashed,gray] (1,0)--(1,1.22);
+  \draw[thick,noteBlue,domain=0:1,samples=60] plot (\x,{sin(90*\x)});
+  \draw[thick,noteBlue,->] (1,1)--(3.5,1);
+  \node[below] at (1,0) {$1$};
+  \node[left] at (0,1) {$1$};
+  \node at (0.52,-0.4) {阱内};
+  \node at (2.4,-0.4) {阱外};
+  \node[above] at (2.3,1.04) {$u=A,\quad\psi\propto1/r$};
+\end{tikzpicture}
+
+\small 临界解示意：纵轴是 $u/A$，不是三维波函数或概率密度。
+\end{center}
+
+由于 $\int|Y_0^0|^2\dd\Omega=1$，
+\begin{equation}
+  \int|\psi|^2\dd^3r=\int_0^\infty|u|^2\dd r,
+  \qquad \int_{r_0}^\infty|u|^2\dd r
+     =|A|^2\int_{r_0}^\infty\dd r=\infty.
+\end{equation}
+所以非零阈值解不可归一化。虽然 $\psi\sim1/r\to0$，仍不足以克服体积元 $r^2\dd r$；\textbf{趋零不是平方可积的充分条件}。
+
+\dialoguesupplement{若要把阈值写成充分必要条件，还须补上存在性。$z_0>\pi/2$ 时，在 $\pi/2<z<\min(z_0,\pi)$ 考察 $F(z)=-z\cot z-\sqrt{z_0^2-z^2}$。它在左端趋于负值，在右端趋于正值或正无穷，故连续性保证内部有根，且 $\beta>0$。因此至少一个真正的 $l=0$ 束缚态存在当且仅当 $V_0>V_{0,c}$。}
+
+三维球形阱的这个有限阈值与一维全实轴吸引阱不同：径向半轴必须满足 $u(0)=0$，等价于对称一维阱的奇态边界，而不是可在原点取非零值的偶态边界。
+\end{checkedsolution}
+
+\exercisequestion{QM-C12-S06-E03}{教材习题 12.6.11 第 (2) 问：简并度与宇称}
+\textbf{对应知识点：}\relatedtopic{QM-C12-S06-T05}{三维各向同性谐振子}、\relatedtopic{QM-C12-S05-T06}{球谐函数的空间宇称}。
+
+\textbf{题目。}不计自旋的三维各向同性谐振子满足
+\begin{equation}
+  E_N=\left(N+\frac32\right)\hbar\omega,\qquad
+  N=2n_r+l,\qquad l=N,N-2,\ldots,0\text{ 或 }1.
+\end{equation}
+每个 $l$ 下 $m=-l,\ldots,l$。计算每个能级的简并度与宇称，并与笛卡尔坐标解比较。具体分为：
+\begin{enumerate}
+  \item 求 $g_N=\sum_{l=N,N-2,\ldots}(2l+1)$ 的闭式。
+  \item 由 $\Pi[R(r)Y_l^m]=(-1)^lR(r)Y_l^m$，判断同一能级的宇称；检查其中任意非零线性组合是否仍有确定宇称。
+  \item 独立统计 $n_x+n_y+n_z=N$ 的有序非负整数三元组，比较两种基底下的计数。
+\end{enumerate}
+教材要求与 10.2.3 的笛卡尔结果比较；该旧题未曾独立选做，这里直接完成所需计数，不追记为整道旧题已完成。
+
+\begin{checkedsolution}
+\textbf{1. 分偶数、奇数求和。}若 $N=2p$，则 $l=0,2,\ldots,2p$，
+\begin{equation}
+  g_{2p}=\sum_{j=0}^p(4j+1)
+    =2p(p+1)+(p+1)=(p+1)(2p+1).
+\end{equation}
+若 $N=2p+1$，则 $l=1,3,\ldots,2p+1$，
+\begin{equation}
+  g_{2p+1}=\sum_{j=0}^p(4j+3)
+    =2p(p+1)+3(p+1)=(p+1)(2p+3).
+\end{equation}
+两种情况统一为
+\begin{equation}
+  \boxed{g_N=\frac{(N+1)(N+2)}2.}
+\end{equation}
+这里计数的是独立空间本征态，不包含自旋多重度。
+
+\textbf{2. 同一能级的宇称相同。}由 $l=N-2n_r$，
+\begin{equation}
+  (-1)^l=(-1)^{N-2n_r}=(-1)^N,
+  \qquad \boxed{\pi_N=(-1)^N.}
+\end{equation}
+所以固定能级中的任意非零态
+\begin{equation}
+  \ket\Psi=\sum_{l,m}c_{lm}\ket{N,l,m}
+\end{equation}
+均满足
+\begin{equation}
+  \Pi\ket\Psi=\sum_{l,m}c_{lm}(-1)^l\ket{N,l,m}
+     =(-1)^N\ket\Psi.
+\end{equation}
+因此即使混合不同 $l$，仍是同一宇称本征态；但一般不再是 $L^2$ 本征态。若混合不同 $m$，也一般不是 $L_z$ 本征态。这个“同能级同宇称”的结论来自本系统允许的 $l$ 结构，不能推广为所有 Hamiltonian 的普遍规律。
+
+\textbf{3. 笛卡尔计数。}将 $N$ 个相同激发量子分配到三个有标签的方向，允许某个方向分得零个。用两个隔板分出三组，故
+\begin{equation}
+  g_N=\binom{N+2}{2}=\boxed{\frac{(N+1)(N+2)}2}.
+\end{equation}
+两种计数相同，因为它们是在同一个能量本征空间中选择不同基底，而不是得到不同的物理空间。笛卡尔乘积态的宇称也为 $(-1)^{n_x+n_y+n_z}=(-1)^N$。
+
+\begin{center}
+\begin{tabular}{@{}ccccc@{}}
+  \toprule
+  $N$ & $E_N/(\hbar\omega)$ & 允许的 $l$ & $g_N$ & 宇称 \\
+  \midrule
+  $0$ & $3/2$ & $0$ & $1$ & $+$ \\
+  $1$ & $5/2$ & $1$ & $3$ & $-$ \\
+  $2$ & $7/2$ & $0,2$ & $1+5=6$ & $+$ \\
+  $3$ & $9/2$ & $1,3$ & $3+7=10$ & $-$ \\
+  $4$ & $11/2$ & $0,2,4$ & $1+5+9=15$ & $+$ \\
+  $5$ & $13/2$ & $1,3,5$ & $3+7+11=21$ & $-$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{checkedsolution}

@@ -1046,3 +1046,268 @@ $L^2,L_z$ 不对 $r$ 求导，所以角动量结果始终确定为 $l(l+1)\hbar^
 因此偶数 $l$ 是偶宇称，奇数 $l$ 是奇宇称，与 $m$ 无关。任意固定 $l$ 的 $m$ 叠加，甚至各 $m$ 带不同径向函数，仍具有同一个宇称 $(-1)^l$。若混合了奇、偶两种 $l$，则一般不再是宇称本征态。这里讨论的是空间轨道部分；含内部自由度的完整宇称还需相应定义。
 
 \textbf{一分钟回顾。}升降代数加范数非负性给出 $j(j+1)\hbar^2$ 与 $m\hbar$；一份固定 $j$ 的阶梯有 $2j+1$ 态。旋转在其中混合 $m$，完整旋转对称性使同一能量阶梯的 $m$ 简并。轨道角动量只取整数 $l$，角向波函数是 $Y_l^m$；完整三维态仍有径向系数，测量概率用 $r^2\dd r$ 积分，空间宇称为 $(-1)^l$。
+
+\section{第 12.6 节：中心势的径向方程与旋转不变问题}
+\label{section:QM-C12-S06}
+\studymeta
+  {QM-C12-S06}
+  {2026-10-22 至 2026-10-24}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 12 章 \S 12.6 Solution of Rotationally Invariant Problems；印刷页 pp.~339 下部--352 / PDF pp.~347--360}
+  {五块讲解与习题 12.6.1、12.6.9、12.6.11 第 (2) 问已核对；笔记已确认}
+
+\textbf{主线。}球谐函数已解决角向本征问题；中心势把剩余动力学化为各个 $l$ 通道的半轴径向方程。先明确测度和两端边界，再求自由粒子的球坐标解、联系平面波，最后用同一方法求三维各向同性谐振子的角动量结构。
+
+\textbf{记号与范围。}$\mu$ 表示粒子质量，$m$ 只表示磁量子数；$u=rR$ 对应教材的 $U$，不是时间演化算符。以下讨论无自旋空间波函数、实中心势及通常的原点正则边界，不包含原点接触相互作用或需要另行指定边界的强奇异势。扫描页部分边缘文字有遮挡；所用公式、题目和章节边界已核对，定义域与渐近条件的补充另作说明。
+
+\notetopic{QM-C12-S06-T01}{中心势、径向方程与离心项}
+\keyidea{旋转对称性消去了磁量子数对径向动力学的影响，却没有消去角动量大小产生的离心项。}
+\textbf{教材位置：}印刷 pp.~339--340 / PDF pp.~347--348。
+
+对 $H=\mathbf P^2/(2\mu)+V(r)$，利用
+\begin{equation}
+  \nabla^2=\frac1{r^2}\partial_r(r^2\partial_r)
+    -\frac{L^2}{\hbar^2r^2},\qquad
+  \psi_{Elm}=R_{El}(r)Y_l^m(\theta,\varphi),
+\end{equation}
+以及 $L^2Y_l^m=l(l+1)\hbar^2Y_l^m$，得到
+\begin{equation}
+  -\frac{\hbar^2}{2\mu}\left(R''+\frac2rR'\right)
+   +\left[V(r)+\frac{\hbar^2l(l+1)}{2\mu r^2}\right]R=ER.
+\end{equation}
+方程不含 $m$，所以同一径向态与同一 $l$ 的 $2l+1$ 个 $m$ 态具有相同能量；不同 $l$ 的有效方程一般不同，不能仅由中心势推出它们简并。
+
+令 $u(r)=rR(r)$。在 $r>0$，
+\begin{equation}
+  R'=\frac{u'}r-\frac{u}{r^2},\qquad
+  R''+\frac2rR'=\frac{u''}r.
+\end{equation}
+于是消去一阶导数，得到
+\begin{equation}
+  \boxed{D_lu=Eu,\qquad
+  D_l=-\frac{\hbar^2}{2\mu}\frac{\dd^2}{\dd r^2}+V_{\mathrm{eff}}(r),
+  \quad V_{\mathrm{eff}}=V(r)+\frac{\hbar^2l(l+1)}{2\mu r^2}.}
+  \label{eq:QM-C12-S06-radial}
+\end{equation}
+离心势垒是角向动能在固定 $l$ 通道中的表现，不是额外施加的外势。$l=0$ 时它消失，但径向动能不消失；径向问题仍定义在 $r\geq0$，不能直接当作全实轴的一维问题。由波函数反推能量与势能的应用见\relatedexercise{QM-C12-S06-E01}{教材习题 12.6.1}。
+
+\notetopic{QM-C12-S06-T02}{径向测度、原点条件与渐近行为}
+\keyidea{微分方程的形式、积分测度和边界条件必须一起保留；只有局部可积或只在远处趋零，都不足以确定一个物理本征态。}
+\textbf{教材位置：}印刷 pp.~340--345 / PDF pp.~348--353。
+
+\textbf{1. 测度与边界型。}取 $\int|Y_l^m|^2\dd\Omega=1$，则
+\begin{equation}
+  \boxed{\int|\psi|^2\dd^3r
+   =\int_0^\infty|R(r)|^2r^2\dd r
+   =\int_0^\infty|u(r)|^2\dd r.}
+\end{equation}
+所以 $|u(r)|^2\dd r$ 是半径落在 $[r,r+\dd r]$ 的概率；它不是单位体积概率密度 $|\psi(\mathbf r)|^2$。分部积分给出
+\begin{equation}
+  \langle u_1,D_lu_2\rangle-\langle D_lu_1,u_2\rangle
+  =-\frac{\hbar^2}{2\mu}
+    [u_1^*u_2'-u_1^{*\prime}u_2]_0^\infty.
+\end{equation}
+对算符定义域中的函数，边界型须消失。\textbf{这一要求本身不唯一指定原点边界条件}；普通三维 Hamiltonian 的原点条件还要与完整空间问题相容。散射广义本征态不属于普通平方可积定义域，相关边界与正交公式应按波包或分布极限理解，不能直接把振荡函数的无穷远边界项当成零。
+
+\textbf{2. 为什么通常取 $u(0)=0$？}以 $l=0$ 为例，若 $u\to c\ne0$，则 $R\sim c/r$。它在原点附近仍局部平方可积：
+\begin{equation}
+  \int_0^\epsilon |c/r|^2r^2\dd r=|c|^2\epsilon<\infty.
+\end{equation}
+排除它不能只靠“发散”二字。真正的问题是分布恒等式
+\begin{equation}
+  \nabla^2\frac1r=-4\pi\delta^{(3)}(\mathbf r)
+\end{equation}
+使动能在原点产生额外的 delta 项。对没有原点接触相互作用的通常问题，应采用
+\begin{equation}
+  \boxed{u(0)=0.}
+\end{equation}
+接触相互作用需要重新指定算符定义域，不能直接套用这里的正则条件。另须注意：$u(0)=0$ \emph{不意味着} $\psi(0)=0$；若 $u\sim Cr$，则 $R=u/r\to C$，可为非零常数。
+
+\textbf{3. 原点附近。}当 $r^2V(r)\to0$ 且 $l>0$ 时，离心项控制领先行为。设 $u\sim r^\alpha$，有
+\begin{equation}
+  \alpha(\alpha-1)=l(l+1),\qquad
+  u\sim r^{l+1}\ \text{或}\ r^{-l}.
+\end{equation}
+保留正则支，得到 $u\sim r^{l+1}$、$R\sim r^l$。$l=0$ 没有离心主导项，需单独检查势能；本节有限势、库仑势和谐振子等通常问题的正则支均有 $u\sim r$。更强奇异势不在此结论范围内。
+
+\textbf{4. 无穷远与能量量子化。}取 $V(\infty)=0$。对足够短程的势，固定 $l$ 有
+\begin{equation}
+  \begin{aligned}
+    E>0:&\quad u\sim A\ee^{\ii kr}+B\ee^{-\ii kr},
+       &&k=\sqrt{2\mu E}/\hbar,\\
+    E<0:&\quad u\sim A\ee^{-\kappa r}+B\ee^{\kappa r},
+       &&\kappa=\sqrt{2\mu|E|}/\hbar.
+  \end{aligned}
+\end{equation}
+从原点正则支向外延拓时，$A,B$ 的比例由 $E$ 决定，不能在解完后任意删去增长项。通常只有离散能量能同时满足原点条件和 $E<0$ 时的 $B=0$。在同一径向边界问题内，固定 $E,l$ 的解只剩整体倍数：两个正则解的 Wronskian 满足 $W'=0$，原点条件又令 $W(0)=0$，从而线性相关。不同束缚能量的径向函数可按 $\dd r$ 正交归一；不同 $l$ 则已有球谐函数的角向正交性。
+
+\dialoguesupplement{“足够短程”不能仅理解为 $V\to0$。教材用 $rV(r)\to0$ 作渐近讨论中的简写；若要保证尾部修正积累为有限常数，可采用更明确的充分条件，例如规则势满足 $\int_{r_*}^\infty|V(r)|\dd r<\infty$。单独的 $rV\to0$ 并不保证此积分收敛。}
+库仑尾 $V=-g/r$（$g>0$）会累积额外相位或幂因子：
+\begin{equation}
+  \begin{aligned}
+    E>0:&\quad u\sim A\ee^{\ii\Phi(r)}+B\ee^{-\ii\Phi(r)},
+       &\Phi(r)&=kr+\frac{\mu g}{\hbar^2k}\ln\frac r{r_*},\\
+    E<0:&\quad u_{\mathrm{dec}}\sim
+       C\left(\frac r{r_*}\right)^{\mu g/(\hbar^2\kappa)}\ee^{-\kappa r}.
+  \end{aligned}
+\end{equation}
+$r_*>0$ 是使对数及幂的自变量无量纲的参考长度，常相位和常系数可吸收进 $A,B,C$。这些是渐近形式，不是把库仑力在有限距离直接删去。若 $V(r)\to+\infty$，如谐振子，则须重新求远处行为。
+
+$E=0$ 须单独检查；趋零不保证可归一化。见\relatedexercise{QM-C12-S06-E02}{球形势阱临界解}。
+
+\notetopic{QM-C12-S06-T03}{自由粒子与球 Bessel 函数}
+\keyidea{自由粒子的确定能量不要求确定动量方向；球坐标基改用角动量来区分同能量的态。}
+\textbf{教材位置：}印刷 pp.~346--349 / PDF pp.~354--357。
+
+令 $V=0$、$E=\hbar^2k^2/(2\mu)>0$，并设 $\rho=kr$。忽略解的整体倍数，径向方程写成
+\begin{equation}
+  h_lu_l=u_l,\qquad
+  h_l=-\frac{\dd^2}{\dd\rho^2}+\frac{l(l+1)}{\rho^2}.
+\end{equation}
+$l=0$ 时 $u_0$ 是 $\sin\rho$ 与 $\cos\rho$ 的组合。全空间正则边界保留 $\sin\rho$，其径向函数正比于
+\begin{equation}
+  \boxed{j_0(\rho)=\frac{\sin\rho}{\rho},\qquad j_0(0)=1.}
+\end{equation}
+极限有限，不应因为表面上出现 $1/\rho$ 就误判奇异。
+
+\textbf{1. 因式分解生成其他 $l$。}定义径向微分表达式
+\begin{equation}
+  d_l=\frac{\dd}{\dd\rho}+\frac{l+1}{\rho},\qquad
+  d_l^\dagger=-\frac{\dd}{\dd\rho}+\frac{l+1}{\rho}.
+\end{equation}
+这里的 $\dagger$ 指相对于 $\dd\rho$ 的形式伴随；实际算符还要配合定义域。保留导数对 $1/\rho$ 的作用，得到
+\begin{equation}
+  d_ld_l^\dagger=h_l,\qquad d_l^\dagger d_l=h_{l+1},
+  \qquad h_{l+1}d_l^\dagger=d_l^\dagger h_l.
+\end{equation}
+因此 $d_l^\dagger u_l$ 满足下一 $l$ 的方程。采用 $u_l=\rho j_l(\rho)$ 的无量纲归一约定，
+\begin{equation}
+  \boxed{j_{l+1}(\rho)=\left(-\frac{\dd}{\dd\rho}+\frac l\rho\right)j_l(\rho),
+  \qquad j_l(\rho)=(-\rho)^l
+    \left(\frac1\rho\frac{\dd}{\dd\rho}\right)^l\frac{\sin\rho}{\rho}.}
+\end{equation}
+例如 $j_1=\sin\rho/\rho^2-\cos\rho/\rho$。这是改变径向方程参数 $l$ 的递推，\textbf{不是}角向算符 $L_+$；后者保持 $l$、增加 $m$。
+
+\textbf{2. 正则与不规则解。}从 $n_0=-\cos\rho/\rho$ 出发，用同一递推得到球 Neumann 函数 $n_l$。对固定 $l$，
+\begin{equation}
+  \begin{array}{c|cc}
+    &\rho\to0&\rho\to\infty\\ \hline
+    j_l(\rho)&\displaystyle\frac{\rho^l}{(2l+1)!!}
+       &\displaystyle\frac{\sin(\rho-l\pi/2)}\rho\\[6pt]
+    n_l(\rho)&\displaystyle-\frac{(2l-1)!!}{\rho^{l+1}}
+       &\displaystyle-\frac{\cos(\rho-l\pi/2)}\rho
+  \end{array}
+\end{equation}
+其中 $(2l+1)!!=(2l+1)(2l-1)\cdots1$，并约定 $(-1)!!=1$。全空间无原点源的正则问题排除 $n_l$；若只求原点以外的散射区域，则不能因此删掉这一支。
+
+\textbf{3. 自由粒子共同本征态及归一化。}一组广义本征函数为
+\begin{equation}
+  \boxed{\psi_{klm}(\mathbf r)=j_l(kr)Y_l^m(\theta,\varphi),\qquad
+    E=\frac{\hbar^2k^2}{2\mu}.}
+\end{equation}
+这里未加入径向 delta 归一化因子。对 $k,k'>0$，按分布意义有
+\begin{align}
+  \int_0^\infty j_l(kr)j_l(k'r)r^2\dd r
+    &=\frac{\pi}{2k^2}\delta(k-k'),\notag\\
+  \int\psi_{klm}^*\psi_{k'l'm'}\dd^3r
+    &=\boxed{\frac{\pi}{2k^2}\delta(k-k')\delta_{ll'}\delta_{mm'}.}
+\end{align}
+若要右边仅为三个 delta 的乘积，取 $\sqrt{2/\pi}\,k\psi_{klm}$ 即可。$l=0$ 可用正弦变换检验：径向积分变为 $(kk')^{-1}\int_0^\infty\sin(kr)\sin(k'r)\dd r$。
+
+\textbf{教材勘误。}印刷 p.~349 式 (12.6.36) 的系数印成 $2/(\pi k^2)$；与同页式 (12.6.37) 及球谐函数的单位角向归一化不一致，应为上式的 $\pi/(2k^2)$。
+
+固定 $k$ 时各 $l$ 都有正则散射解；离心项改变径向形状，却不要求不同 $l$ 的连续能谱互不重叠。特别是 $l=m=0$ 时，轨道角动量确实为零，但 $\mathbf P^2$ 仍确定为 $\hbar^2k^2>0$。它球对称、没有确定的动量方向；只知道 $m=0$ 则仅能断言 $L_z=0$，不能断言 $L^2=0$。
+
+\notetopic{QM-C12-S06-T04}{平面波的分波展开}
+\keyidea{动量基与角动量基描述同一个自由系统。分波展开是相干换基，不是测量后得到的统计混合。}
+\textbf{教材位置：}印刷 pp.~349--350 / PDF pp.~357--358。
+
+取动量沿 $+z$ 轴并省去共同归一化因子，$\psi=\ee^{\ii kz}=\ee^{\ii kr\cos\theta}$。以同一 $k$ 的球坐标解展开：
+\begin{equation}
+  \ee^{\ii kr\cos\theta}
+    =\sum_{l=0}^\infty\sum_{m=-l}^l C_l^m j_l(kr)Y_l^m(\theta,\varphi).
+\end{equation}
+左边不含 $\varphi$，故 $L_z\psi=0$，只保留 $m=0$；但它依赖 $\theta$，并非只有 $l=0$。由
+\begin{equation}
+  Y_l^0=\sqrt{\frac{2l+1}{4\pi}}P_l(\cos\theta)
+\end{equation}
+将常数吸收进 $C_l$，得到 $\sum_l C_lj_l(kr)P_l(\cos\theta)$。这里 $P_l$ 是 Legendre 多项式，不是动量算符。令 $s=\cos\theta$、$\rho=kr$，利用正交投影，
+\begin{equation}
+  C_lj_l(\rho)=\frac{2l+1}{2}\int_{-1}^1\ee^{\ii\rho s}P_l(s)\dd s.
+\end{equation}
+积分为 $2\ii^lj_l(\rho)$，因此
+\begin{equation}
+  \boxed{\ee^{\ii kr\cos\theta}
+    =\sum_{l=0}^\infty\ii^l(2l+1)j_l(kr)P_l(\cos\theta).}
+  \label{eq:QM-C12-S06-partial-wave}
+\end{equation}
+教材将系数的详细证明放在可选习题 12.6.10；本次只讲投影思路、结果与低阶核验，不把它列为已完成习题。用 $P_0=1$、$P_1(s)=s$、$j_0=1+O(\rho^2)$、$j_1=\rho/3+O(\rho^3)$，右边前两项为
+\begin{equation}
+  j_0(\rho)+3\ii j_1(\rho)\cos\theta
+   =1+\ii\rho\cos\theta+O(\rho^2),
+\end{equation}
+与左边 Taylor 展开相符。
+
+沿 $z$ 的平面波具有确定动量和 $L_z=0$，却不是 $L^2$ 本征态。反过来，对所有动量方向作相干平均，
+\begin{equation}
+  \frac1{4\pi}\int\ee^{\ii k\mathbf n\cdot\mathbf r}\dd\Omega_{\mathbf n}
+    =\frac12\int_{-1}^1\ee^{\ii krs}\dd s
+    =j_0(kr),
+\end{equation}
+得到球对称的 $l=0$ 分波，而不是确定传播方向的平面波。
+
+所有展开项具有相同能量，故自由演化只给它们共同乘上 $\ee^{-\ii Et/\hbar}$，不产生不同 $l$ 之间的相对动力学相位。中心势散射时，可先把入射平面波拆成各 $l$ 通道，分别求径向响应，再相干叠加。式~\eqref{eq:QM-C12-S06-partial-wave} 的系数不能直接平方当作归一化测量概率：这里使用的是广义本征函数，角向及径向归一化尚须配套。
+
+\notetopic{QM-C12-S06-T05}{三维各向同性谐振子的径向量子化}
+\keyidea{同一个谐振子既可按三个笛卡尔方向量子化，也可按径向与角动量量子化；能谱相同，但本征态标签不同。}
+\textbf{教材位置：}印刷 pp.~351--352 / PDF pp.~359--360。
+
+取 $V(r)=\tfrac12\mu\omega^2r^2$、$\omega>0$。定义
+\begin{equation}
+  y=\sqrt{\frac{\mu\omega}{\hbar}}r,\qquad
+  \lambda=\frac{E}{\hbar\omega}.
+\end{equation}
+径向方程变为
+\begin{equation}
+  u''+\left[2\lambda-y^2-\frac{l(l+1)}{y^2}\right]u=0,
+\end{equation}
+此处撇号对 $y$ 求导。原点正则支为 $u\sim y^{l+1}$；远处的衰减支以 $\ee^{-y^2/2}$ 为主要指数因子。因此设
+\begin{equation}
+  u=y^{l+1}\ee^{-y^2/2}F(y).
+\end{equation}
+提取高斯不等于已保证归一化，还要检查 $F$ 的增长。代回得到
+\begin{equation}
+  F''+\left[\frac{2(l+1)}y-2y\right]F'
+      +(2\lambda-2l-3)F=0.
+\end{equation}
+设 $F=\sum_{s=0}^\infty c_sy^s$。$y^{-1}$ 项给出 $c_1=0$，$y^s$ 项给出
+\begin{equation}
+  \boxed{c_{s+2}=\frac{2s+2l+3-2\lambda}
+    {(s+2)(s+2l+3)}c_s.}
+\end{equation}
+非零正则解必须有 $c_0\ne0$，只剩偶次链。若不截断，正则级数会产生以 $\ee^{y^2}$ 为主的增长部分，抵消外面的高斯衰减；这与一维谐振子的级数量子化相同。令最高次为 $2n_r$，下一项为零要求
+\begin{equation}
+  4n_r+2l+3-2\lambda=0
+  \quad\Longrightarrow\quad
+  \boxed{E_{n_rl}=\left(2n_r+l+\frac32\right)\hbar\omega,
+  \qquad n_r=0,1,2,\ldots.}
+\end{equation}
+教材式 (12.6.50) 用 $k$ 表示这里的径向量子数 $n_r$，它不是前面的自由粒子波数。以上递推属于本次讲解中补全的正文步骤，不另设为练习题。
+
+定义总激发量子数 $N=2n_r+l$（教材记为 $n$），则
+\begin{equation}
+  \boxed{E_N=\left(N+\frac32\right)\hbar\omega,
+  \qquad l=N,N-2,\ldots,0\text{ 或 }1.}
+\end{equation}
+固定 $l$，增加一次径向激发使能量增加 $2\hbar\omega$；完整谱允许所有非负整数 $N$，间距仍为 $\hbar\omega$。固定 $N$ 后，$n_r=(N-l)/2$ 已由 $l$ 决定，不应再重复计数。
+
+同一 $l$ 内的 $m$ 简并由旋转对称性保证；同一 $N$ 内\emph{不同} $l$ 的简并不是仅靠旋转对称性得出的，旋转也不能把不同 $l$ 的态相互变换。谐振子具有额外对称性，教材留到第 15 章讨论。
+
+汇总本次已核对的计数与宇称结果：
+\begin{equation}
+  \boxed{g_N=\sum_{l=N,N-2,\ldots}(2l+1)
+    =\frac{(N+1)(N+2)}2,\qquad \pi_N=(-1)^N.}
+\end{equation}
+同一能级内所有允许 $l$ 奇偶性相同，任意非零叠加仍有确定宇称，但未必有确定 $L^2,L_z$。完整推导及与笛卡尔计数的比较见\relatedexercise{QM-C12-S06-E03}{教材习题 12.6.11 第 (2) 问}；这里的简并度不计自旋。
+
+\textbf{一分钟回顾。}中心势留下含离心项的半轴径向方程；$u=rR$ 同时简化微分方程与测度，通常取 $u(0)=0$。自由粒子的球坐标基为 $j_l(kr)Y_l^m$，平面波是同能量分波的相干展开。谐振子给出 $E=(2n_r+l+3/2)\hbar\omega$，固定总激发量的简并度为 $(N+1)(N+2)/2$、宇称为 $(-1)^N$。边界、归一化和对称性各自承担不同约束，不能相互替代。
