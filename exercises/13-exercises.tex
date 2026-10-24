@@ -1,0 +1,122 @@
+\section{第 13.1 节习题：氢原子波函数与维里定理}
+\label{exercises:QM-C13-S01}
+\exercisemeta
+  {QM-C13-S01}
+  {2026-10-24 至 2026-10-25}
+  {Shankar, Second Edition；13.1.3：印刷 p.~357 / PDF p.~365；13.1.5：印刷 p.~359 / PDF p.~367}
+  {两道选定教材习题均已作答并核对}
+  {笔记已确认}
+
+以下统一符号并补齐题干所需公式。教材 13.1.1、13.1.2 对应的递推与计数在正文讲解中覆盖，未独立选做；13.1.4 未独立选做。不收入课堂概念检查题。
+
+\exercisequestion{QM-C13-S01-E01}{教材习题 13.1.3：求归一化的氢原子态 210}
+\textbf{对应知识点：}\relatedtopic{QM-C13-S01-T02}{径向递推与截断}、\relatedtopic{QM-C13-S01-T03}{氢原子波函数}。
+
+\textbf{题目。}在固定质子、Gaussian 单位约定下，令 $a_0=\hbar^2/(m_e e^2)$、$\rho=r/(na_0)$。径向函数写成
+\begin{equation}
+  R_{nl}(r)=\rho^l\ee^{-\rho}\sum_{k=0}^\infty C_k\rho^k,
+  \qquad
+  C_{k+1}=\frac{2(k+l+1-n)}{(k+1)(k+2l+2)}C_k.
+\end{equation}
+从此递推关系出发，求归一化的 $\psi_{210}=R_{21}Y_1^0$。已知
+\begin{equation}
+  Y_1^0=\sqrt{\frac3{4\pi}}\cos\theta,\qquad
+  \int|Y_1^0|^2\dd\Omega=1,
+  \qquad \int_0^\infty r^q\ee^{-\beta r}\dd r
+    =\frac{q!}{\beta^{q+1}}\quad(q\in\mathbb N_0,\ \beta>0).
+\end{equation}
+需判断截断位置、确定径向常数，并写出完整三维波函数。
+
+\begin{checkedsolution}
+\textbf{1. 截断。}代入 $n=2,l=1$，
+\begin{equation}
+  C_{k+1}=\frac{2k}{(k+1)(k+4)}C_k.
+\end{equation}
+$k=0$ 时 $C_1=0$，递推使之后各项均为零，故
+\begin{equation}
+  R_{21}(r)=C_0\rho\ee^{-\rho}
+    =C_0\frac{r}{2a_0}\ee^{-r/(2a_0)}.
+\end{equation}
+这里截断的是多项式 $F$，不是将整个径向函数变成常数；前面的 $\rho$ 仍须保留。
+
+\textbf{2. 径向归一化。}由于角向已归一化，
+\begin{align}
+  1&=\int_0^\infty|R_{21}|^2r^2\dd r
+    =\frac{|C_0|^2}{4a_0^2}\int_0^\infty r^4\ee^{-r/a_0}\dd r\notag\\
+   &=\frac{|C_0|^2}{4a_0^2}\,24a_0^5
+    =6|C_0|^2a_0^3.
+\end{align}
+取整体相位为零、$C_0>0$，则
+\begin{equation}
+  C_0=\frac1{\sqrt6\,a_0^{3/2}},\qquad
+  \boxed{R_{21}(r)=\frac1{2\sqrt6\,a_0^{3/2}}
+     \frac r{a_0}\ee^{-r/(2a_0)}.}
+\end{equation}
+
+\textbf{3. 合成完整波函数。}乘上 $Y_1^0$，得到
+\begin{equation}
+  \boxed{\psi_{210}(r,\theta,\varphi)
+    =\frac1{4\sqrt{2\pi}\,a_0^{3/2}}
+      \frac r{a_0}\ee^{-r/(2a_0)}\cos\theta.}
+\end{equation}
+其量纲是长度的 $-3/2$ 次方，径向与角向的归一化积分分别为 $1$。它不含 $\varphi$，对应 $m=0$；含 $\cos\theta$ 而非球对称常数，对应 $l=1$，不能把 $m=0$ 误读成零角动量。
+\end{checkedsolution}
+
+\exercisequestion{QM-C13-S01-E02}{教材习题 13.1.5：库仑束缚态的维里定理}
+\textbf{对应知识点：}\relatedtopic{QM-C13-S01-T01}{内部 Hamiltonian}、\relatedtopic{QM-C13-S01-T04}{能量与径向期望值}。
+
+\textbf{题目。}在氢原子束缚能量本征态 $\ket{n,l,m}$ 中，取
+\begin{equation}
+  H=T+V,\qquad T=\frac{\mathbf P^2}{2m_e},\qquad
+  V=-\frac{e^2}{r},\qquad
+  \Omega=\mathbf R\cdot\mathbf P=\sum_{i=1}^3R_iP_i.
+\end{equation}
+$\mathbf R$ 是相对位置算符，不是质心位置，$r=|\mathbf R|$。利用定态性质及 Ehrenfest 方程
+\begin{equation}
+  \frac{\dd\expect\Omega}{\dd t}
+    =\frac1{\ii\hbar}\expect{[\Omega,H]}=0,
+\end{equation}
+证明 $\expect T=-\expect V/2$。可使用 $[R_i,P_j]=\ii\hbar\delta_{ij}$、$[P_i,V]=-\ii\hbar\partial_iV$；不必代入具体波函数作积分。
+
+\begin{checkedsolution}
+\textbf{1. 动能对易子。}动量分量彼此对易，且
+\begin{equation}
+  [R_i,P_j^2]=[R_i,P_j]P_j+P_j[R_i,P_j]
+    =2\ii\hbar\delta_{ij}P_j.
+\end{equation}
+用乘积法则展开，
+\begin{align}
+  [\Omega,T]
+   &=\frac1{2m_e}\sum_{i,j}
+      \left(R_i[P_i,P_j^2]+[R_i,P_j^2]P_i\right)\notag\\
+   &=\frac{\ii\hbar}{m_e}\sum_iP_i^2
+    =\boxed{2\ii\hbar T}.
+\end{align}
+
+\textbf{2. 势能对易子。}位置算符与 $V(\mathbf R)$ 对易，所以
+\begin{equation}
+  [\Omega,V]=\sum_iR_i[P_i,V]
+    =-\ii\hbar\mathbf R\cdot\nabla V.
+\end{equation}
+对库仑势，$\nabla V=e^2\mathbf R/r^3$，所以
+$\mathbf R\cdot\nabla V=e^2/r=-V$，从而
+\begin{equation}
+  \boxed{[\Omega,V]=\ii\hbar V.}
+\end{equation}
+
+\textbf{3. 定态中取期望。}两项相加得到
+\begin{equation}
+  [\Omega,H]=\ii\hbar(2T+V),\qquad
+  0=\frac1{\ii\hbar}\expect{[\Omega,H]}
+    =2\expect T+\expect V.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{\expect T=-\frac12\expect V.}
+\end{equation}
+这不是算符恒等式 $2T+V=0$。任意非定态一般有非零的 $\dd\expect\Omega/\dd t$，不能直接令其为零。
+
+\textbf{关于 $\Omega$ 的记号。}本题不要求 $\Omega$ 是可观测量；在所需矩和边界条件成立时，期望演化关系仍适用。也可采用对称化的
+$D=(\mathbf R\cdot\mathbf P+\mathbf P\cdot\mathbf R)/2
+=\Omega-3\ii\hbar I/2$；它与 $\Omega$ 只差常数倍单位算符，故 $[D,H]=[\Omega,H]$，结论相同。
+\end{checkedsolution}

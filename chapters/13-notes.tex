@@ -1,0 +1,241 @@
+\section{第 13.1 节：氢原子的本征问题}
+\label{section:QM-C13-S01}
+\studymeta
+  {QM-C13-S01}
+  {2026-10-24 至 2026-10-25}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 13 章 \S 13.1 The Eigenvalue Problem；印刷 pp.~353--359，至 \S 13.2 前 / PDF pp.~361--367}
+  {四块讲解与习题 13.1.3、13.1.5 已核对；笔记已确认}
+
+\textbf{主线。}二体问题分离出内部运动，库仑径向方程的两端条件筛选离散能量；截断级数给出波函数，再由径向概率和维里定理描述原子大小及能量分配。
+
+\textbf{记号与近似。}$m_e$ 是电子质量，$M$ 是质子质量，$m$ 只表示磁量子数；$e>0$ 是电荷量的大小。沿用教材 Gaussian 单位，$V=-e^2/r$；在 SI 中把库仑耦合 $e^2$ 替换为 $e^2/(4\pi\varepsilon_0)$。本节研究无外场的非相对论纯库仑模型，不计自旋及相对论修正；完成二体分离后采用固定质子近似。
+
+\notetopic{QM-C13-S01-T01}{二体分离、内部能量与径向边界}
+\keyidea{原子的整体平动与电子、质子的相对运动是不同自由度；氢原子能级在这里指内部 Hamiltonian 的本征值。}
+\textbf{教材位置：}印刷 pp.~353--354 上部 / PDF pp.~361--362；质心分离的显式写法连接 \S 2.3 与 \S 10.1。
+
+定义质心与相对坐标
+\begin{equation}
+  \mathbf R_{\mathrm{cm}}=\frac{m_e\mathbf r_e+M\mathbf r_p}{m_e+M},
+  \qquad \mathbf r=\mathbf r_e-\mathbf r_p,\qquad
+  \mu=\frac{m_eM}{m_e+M}.
+\end{equation}
+相应动量为 $\mathbf P_{\mathrm{cm}}=\mathbf p_e+\mathbf p_p$、
+$\mathbf p=(M\mathbf p_e-m_e\mathbf p_p)/(m_e+M)$，因而
+\begin{equation}
+  \boxed{H_{\mathrm{tot}}=
+    \frac{\mathbf P_{\mathrm{cm}}^2}{2(m_e+M)}
+    +\underbrace{\left(\frac{\mathbf p^2}{2\mu}-\frac{e^2}{r}\right)}_{H_{\mathrm{int}}}.}
+\end{equation}
+这一分离在上述模型内精确成立；增加整体平动动能不会改变内部束缚能级。教材随后令 $M\to\infty$、$\mu\to m_e$，将质子视为固定；这一步才是近似。
+
+\dialoguesupplement{$\mathbf r$ 是相对位置矢量，$r=|\mathbf r|$ 是电子与质子的距离。固定质子并把它放在原点时，$r$ 才同时是电子到该坐标原点的距离；任意实验室原点不能默认与之等同。}
+
+以下 $H$ 与 $E$ 均指内部问题。沿用中心势分离
+\begin{equation}
+  \psi_{Elm}(r,\theta,\varphi)=R_{El}(r)Y_l^m(\theta,\varphi)
+    =\frac{u_{El}(r)}rY_l^m(\theta,\varphi),
+\end{equation}
+得到
+\begin{equation}
+  \boxed{-\frac{\hbar^2}{2m_e}u''
+    +\left[\frac{\hbar^2l(l+1)}{2m_er^2}-\frac{e^2}{r}\right]u=Eu.}
+  \label{eq:QM-C13-S01-radial}
+\end{equation}
+离心项仍依赖 $l$，径向方程不含 $m$；此时只能由旋转对称性断言同一径向态、同一 $l$ 下的 $m$ 简并。
+
+取无穷远势能为零。束缚态 $E<0$，结合能 $W=-E>0$，令
+\begin{equation}
+  \kappa=\frac{\sqrt{2m_eW}}\hbar.
+\end{equation}
+通常的原点正则条件给出 $u\sim r^{l+1}$；无穷远保留以 $\ee^{-\kappa r}$ 为主要指数因子的衰减支，允许额外幂因子。两端条件及 $\int_0^\infty|u|^2\dd r=1$ 必须同时满足，不能只看到一个衰减指数就宣布归一化成立。
+
+\notetopic{QM-C13-S01-T02}{幂级数截断、主量子数与能级简并}
+\keyidea{能量量子化来自原点正则解在无穷远也必须可归一化；不是先规定整数能量，再寻找符合它的波函数。}
+\textbf{教材位置：}印刷 pp.~354--356 上部 / PDF pp.~362--364。
+
+定义无量纲变量与参数
+\begin{equation}
+  \rho=\kappa r,\qquad
+  \gamma=\frac{2m_e e^2}{\hbar^2\kappa}
+    =e^2\sqrt{\frac{2m_e}{\hbar^2W}}.
+\end{equation}
+$\gamma$ 对应教材的 $e^2\lambda$。式~\eqref{eq:QM-C13-S01-radial} 变成
+\begin{equation}
+  \frac{\dd^2u}{\dd\rho^2}
+   +\left[-1+\frac\gamma\rho-\frac{l(l+1)}{\rho^2}\right]u=0.
+\end{equation}
+提出两端的已知因子，令 $u=\rho^{l+1}\ee^{-\rho}F(\rho)$。代入并约去公共因子：
+\begin{equation}
+  \rho F''+[2(l+1)-2\rho]F'+[\gamma-2(l+1)]F=0,
+\end{equation}
+此处撇号对 $\rho$ 求导。设 $F=\sum_{k=0}^\infty C_k\rho^k$，比较 $\rho^k$ 系数：
+\begin{align}
+  &(k+1)(k+2l+2)C_{k+1}
+     +[\gamma-2(k+l+1)]C_k=0,\notag\\
+  &\boxed{C_{k+1}=\frac{2(k+l+1)-\gamma}{(k+1)(k+2l+2)}C_k.}
+  \label{eq:QM-C13-S01-recurrence}
+\end{align}
+非零正则解由 $C_0\ne0$ 决定。若级数不截断，大阶系数之比趋于 $2/k$；教材据此作渐近分析，正则解会含 $\ee^{2\rho}$ 型增长，乘上外面的 $\ee^{-\rho}$ 后仍不可归一化。这是大阶级数的渐近判断，不是将有限阶系数逐项等同于指数级数。
+
+令最高非零项为 $C_{n_r}\rho^{n_r}$。要使 $C_{n_r+1}=0$，必须有
+\begin{equation}
+  \gamma=2(n_r+l+1),\qquad n_r=0,1,2,\ldots.
+\end{equation}
+定义 principal quantum number（主量子数）$n=n_r+l+1$，则
+\begin{equation}
+  \kappa=\frac{m_e e^2}{\hbar^2n},\qquad
+  \boxed{E_n=-\frac{m_e e^4}{2\hbar^2n^2}
+    =-\frac{\mathrm{Ry}}{n^2},\quad
+    \mathrm{Ry}=\frac{m_e e^4}{2\hbar^2},\quad n=1,2,\ldots.}
+\end{equation}
+其中 $\mathrm{Ry}$ 称为里德伯能量（Rydberg energy）。$E_n$ 是负的束缚能量，$W_n=-E_n$ 才是正的电离所需能量；$n$ 增大时能级趋近连续谱阈值 $E=0$，并非等间距。
+
+由 $n_r=n-l-1\geq0$，量子数范围为
+\begin{equation}
+  \boxed{l=0,1,\ldots,n-1,\qquad m=-l,-l+1,\ldots,l.}
+\end{equation}
+每个 $l$ 有 $2l+1$ 个 $m$ 态，所以不计自旋时
+\begin{equation}
+  \boxed{g_n=\sum_{l=0}^{n-1}(2l+1)=n^2.}
+\end{equation}
+光谱记号 $s,p,d,f$ 分别表示 $l=0,1,2,3$，前面的数字表示 $n$，并未指定 $m$：
+\begin{center}
+\begin{tabular}{@{}cccc@{}}
+  \toprule
+  $n$ & 允许的 $l$ & 光谱记号 & 简并度（不计自旋） \\
+  \midrule
+  $1$ & $0$ & $1s$ & $1$ \\
+  $2$ & $0,1$ & $2s,2p$ & $1+3=4$ \\
+  $3$ & $0,1,2$ & $3s,3p,3d$ & $1+3+5=9$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+同一 $l$ 下的 $m$ 简并来自旋转对称性；同一 $n$ 下不同 $l$ 的简并是纯库仑问题的额外性质，原因留到 \S 13.2，不能把它推广到任意中心势。
+
+\dialoguesupplement{$E$、$L^2$、$L_z$ 分别由 $n$、$l$、$m$ 标记。固定 $n$ 的任意叠加仍具有确定能量，但若混合不同 $l$，一般没有确定 $L^2$；只混合同一 $l$ 下的不同 $m$，$L^2$ 仍确定为 $l(l+1)\hbar^2$。因此不能以“$m$ 不确定”作为“$L^2$ 不确定”的理由。}
+
+\notetopic{QM-C13-S01-T03}{玻尔半径与氢原子波函数}
+\keyidea{球谐函数解决角向部分；径向函数由原点幂因子、衰减指数和截断多项式组成。特殊函数的名称只是对已经得到的多项式作统一记号。}
+\textbf{教材位置：}印刷 pp.~356 下部--357 / PDF pp.~364--365。
+
+定义 Bohr radius（玻尔半径）
+\begin{equation}
+  \boxed{a_0=\frac{\hbar^2}{m_e e^2},\qquad \rho=\frac{r}{na_0}.}
+\end{equation}
+$a_0$ 是自然长度尺度，不表示电子沿确定的圆形轨道运动。由于 $R=u/r$，原点幂次由 $l+1$ 降为 $l$：
+\begin{equation}
+  R_{nl}\propto\rho^l\ee^{-\rho}F_{nl}(\rho),
+  \qquad \deg F_{nl}=n-l-1.
+\end{equation}
+这个截断多项式可记为 associated Laguerre polynomial（关联拉盖尔多项式），从而
+\begin{equation}
+  \boxed{\psi_{nlm}=R_{nl}(r)Y_l^m(\theta,\varphi),\qquad
+  R_{nl}(r)\propto\ee^{-r/(na_0)}
+    \left(\frac{r}{na_0}\right)^l
+    L_{n-l-1}^{\,2l+1}\!\left(\frac{2r}{na_0}\right).}
+\end{equation}
+此式使用正比号，整体归一化因子尚未指定，不受多项式整体常数约定的影响。角向已归一化时，径向条件是
+\begin{equation}
+  \int_0^\infty|R_{nl}(r)|^2r^2\dd r=1.
+\end{equation}
+不能漏掉 $r^2$，也不能把归一化后的 $R$ 误当作完整三维波函数。
+
+最低几个态展示了同能与同形状的区别：
+\begin{equation}
+  \psi_{100}=\frac{\ee^{-r/a_0}}{\sqrt{\pi a_0^3}},\qquad
+  R_{20}\propto\left(2-\frac r{a_0}\right)\ee^{-r/(2a_0)},\qquad
+  R_{21}\propto r\ee^{-r/(2a_0)}.
+\end{equation}
+$2s$ 在 $r=2a_0$ 有一个径向节点，$2p$ 在 $r>0$ 没有径向节点；原点处因 $r^l$ 而取零不计入这些正半轴节点。完整的 $\psi_{210}$ 递推与归一化见\relatedexercise{QM-C13-S01-E01}{教材习题 13.1.3}。
+
+多项式最高幂为 $r^{n-l-1}$，故固定 $n$ 的远处行为为
+\begin{equation}
+  \boxed{R_{nl}(r)\sim\text{常数}\times r^{n-1}\ee^{-r/(na_0)}
+    \qquad(r\to\infty).}
+\end{equation}
+它的领先形式与 $l$ 无关，但不是说所有 $l$ 的完整径向函数相同。只有 $l=n-1$、多项式为常数时，这一形式才对所有 $r$ 成立。指数中的 $na_0$ 也不能直接读成概率分布的峰值位置。
+
+\notetopic{QM-C13-S01-T04}{径向概率、原子大小与维里定理}
+\keyidea{同一个距离 $r$ 可以对应不同测度下的密度；最可能半径、平均半径与平均倒数必须分别计算。}
+\textbf{教材位置：}印刷 pp.~358--359 / PDF pp.~366--367；基态两种密度的对照是学习对话补充。
+
+\textbf{1. 从单位体积到球壳。}一般的径向概率密度为
+\begin{equation}
+  \boxed{p_r(r)=r^2\int|\psi(r,\theta,\varphi)|^2\dd\Omega,
+    \qquad \Pr(r\in[a,b])=\int_a^b p_r(r)\dd r.}
+\end{equation}
+对角向已归一化的乘积态，$p_r=r^2|R_{nl}|^2=|u_{nl}|^2$。只有完整波函数球对称时，才能直接写成 $p_r=4\pi r^2|\psi(r)|^2$。位置密度 $|\psi|^2$ 的量纲是长度的 $-3$ 次方，$p_r$ 的量纲是长度的 $-1$ 次方。
+
+基态中
+\begin{equation}
+  |\psi_{100}|^2=\frac{\ee^{-2r/a_0}}{\pi a_0^3},\qquad
+  p_r(r)=\frac{4r^2}{a_0^3}\ee^{-2r/a_0}.
+\end{equation}
+前者在原点最大，后者在原点为零、在 $r=a_0$ 最大；相同厚度球壳的体积因子 $4\pi r^2$ 改变了分布。这不是把相对距离换成了另一种距离，也不表示连续变量在单个精确半径上有非零概率。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[x=1.15cm,y=1.8cm,>=Stealth]
+  \begin{scope}
+    \draw[->] (0,0)--(4.4,0) node[right] {$r/a_0$};
+    \draw[->] (0,0)--(0,1.25);
+    \node[above] at (1.8,1.25) {$\pi a_0^3|\psi_{100}|^2$};
+    \draw[thick,noteBlue,domain=0:4,samples=90] plot (\x,{exp(-2*\x)});
+    \node[left] at (0,1) {$1$};
+    \node[below left] at (0,0) {$0$};
+    \node[below] at (1,0) {$1$};
+  \end{scope}
+  \begin{scope}[shift={(6.2,0)}]
+    \draw[->] (0,0)--(4.4,0) node[right] {$r/a_0$};
+    \draw[->] (0,0)--(0,1.25);
+    \node[above] at (1.8,1.25) {$a_0p_r(r)$};
+    \draw[thick,accentRed,domain=0:4,samples=90] plot (\x,{4*\x*\x*exp(-2*\x)});
+    \draw[dashed,gray] (1,0)--(1,{4*exp(-2)});
+    \node[above] at (1,{4*exp(-2)}) {峰值};
+    \node[below left] at (0,0) {$0$};
+    \node[below] at (1,0) {$1$};
+  \end{scope}
+\end{tikzpicture}
+
+\small 按上述解析式原创绘制；两图纵轴分别作无量纲化，不是同一个概率密度。
+\end{minipage}
+\end{center}
+
+\textbf{2. 最可能半径与平均半径。}先取 $l=n-1$，此时 $R\propto r^{n-1}\ee^{-r/(na_0)}$，故
+\begin{equation}
+  p_r\propto r^{2n}\ee^{-2r/(na_0)},\qquad
+  \frac{\dd\ln p_r}{\dd r}=\frac{2n}r-\frac2{na_0}=0
+  \quad\Longrightarrow\quad
+  \boxed{r_{\mathrm{peak}}=n^2a_0\quad(l=n-1).}
+\end{equation}
+不能把这个峰值公式不加条件地用于其他 $l$。一般态有 $n-l-1$ 个正半轴径向节点，径向概率密度可有多个峰。教材直接给出、未展开积分证明的平均半径公式为
+\begin{equation}
+  \boxed{\expect r_{nlm}=\frac{a_0}{2}[3n^2-l(l+1)].}
+\end{equation}
+它说明平均半径依赖 $n,l$，不依赖 $m$，大小尺度为 $n^2a_0$。例如基态 $r_{\mathrm{peak}}=a_0$，但 $\expect r=3a_0/2$；$2s$ 与 $2p$ 虽同能，平均半径分别为 $6a_0$ 与 $5a_0$。
+
+\textbf{3. 能量与平均倒数。}对库仑束缚能量本征态，virial theorem（维里定理）给出
+\begin{equation}
+  \boxed{2\expect T=-\expect V,\qquad
+    \expect T=-E_n,\qquad \expect V=2E_n.}
+\end{equation}
+其对易子证明见\relatedexercise{QM-C13-S01-E02}{教材习题 13.1.5}。这是定态的期望值关系，不是 $2T+V=0$ 的算符恒等式，也不是任意波包任意时刻都成立的条件。
+
+将 $V=-e^2/r$ 与能谱合用：
+\begin{equation}
+  E_n=\frac12\expect V=-\frac{e^2}{2}\expect{\frac1r}
+    =-\frac{e^2}{2a_0n^2}
+  \quad\Longrightarrow\quad
+  \boxed{\expect{\frac1r}=\frac1{a_0n^2}.}
+\end{equation}
+同一 $n$ 的所有 $l,m$ 态有相同的平均倒数，却不必有相同平均半径。尤其
+\begin{equation}
+  \expect{\frac1r}\ne\frac1{\expect r}\quad\text{一般成立；基态有}\quad
+  \expect{\frac1r}=\frac1{a_0},\qquad \frac1{\expect r}=\frac2{3a_0}.
+\end{equation}
+教材由平均倒数提示原子的大小尺度；不能仅把它取倒数就宣称得到精确 $\expect r$。精确平均半径应使用前面的公式，非线性函数与取期望不能普遍交换。
+
+\textbf{一分钟回顾。}质心平动不改变本模型的内部能级；两端条件使径向级数截断，得到 $n=n_r+l+1$、$E_n=-\mathrm{Ry}/n^2$ 及不计自旋的 $n^2$ 重简并。波函数是径向因子乘球谐函数，$l$ 决定 $L^2$、$m$ 决定 $L_z$。原子大小要从 $p_r=r^2|R|^2$ 判断，不能混淆体积密度、峰值与平均值；维里定理联系定态的动能、势能和 $\expect{1/r}$。
