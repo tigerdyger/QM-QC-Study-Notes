@@ -239,3 +239,103 @@ $2s$ 在 $r=2a_0$ 有一个径向节点，$2p$ 在 $r>0$ 没有径向节点；�
 教材由平均倒数提示原子的大小尺度；不能仅把它取倒数就宣称得到精确 $\expect r$。精确平均半径应使用前面的公式，非线性函数与取期望不能普遍交换。
 
 \textbf{一分钟回顾。}质心平动不改变本模型的内部能级；两端条件使径向级数截断，得到 $n=n_r+l+1$、$E_n=-\mathrm{Ry}/n^2$ 及不计自旋的 $n^2$ 重简并。波函数是径向因子乘球谐函数，$l$ 决定 $L^2$、$m$ 决定 $L_z$。原子大小要从 $p_r=r^2|R|^2$ 判断，不能混淆体积密度、峰值与平均值；维里定理联系定态的动能、势能和 $\expect{1/r}$。
+
+\section{第 13.2 节：氢原子能谱的简并}
+\label{section:QM-C13-S02}
+\studymeta
+  {QM-C13-S02}
+  {2026-10-25}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 13 章 \S 13.2 The Degeneracy of the Hydrogen Spectrum；印刷 pp.~359 底--361 上部，至 \S 13.3 前 / PDF pp.~367--369}
+  {两块讲解与教材习题 13.2.1 已核对；笔记已确认}
+
+\textbf{主线。}旋转对称性解释同一 $l$ 内的 $m$ 简并；库仑问题不同 $l$ 之间的额外简并与 Runge--Lenz 守恒量有关。本节指出这一联系，完整的量子对称性论证留到 \S 15.4。
+
+\textbf{模型与记号。}沿用固定质子、无外场、不计自旋及相对论修正的纯库仑模型和 Gaussian 单位。$m_e$ 表示电子质量，$m$ 表示磁量子数；经典矢量 $\mathbf l,\mathbf n$ 与量子算符 $\mathbf L,\mathbf N$ 分开书写。粗体 $\mathbf n$ 不是主量子数 $n$。
+
+\notetopic{QM-C13-S02-T01}{旋转对称性与两层简并}
+\keyidea{能量不依赖 $m$ 与不依赖 $l$ 是两件事；普通旋转可以改变方向，却不改变角动量量子数 $l$。}
+\textbf{教材位置：}印刷 pp.~359 底--360 / PDF pp.~367--368。
+
+氢原子能量 $E_n=-\mathrm{Ry}/n^2$ 只依赖 $n$。例如 $n=2$ 的四个轨道态为
+\begin{equation}
+  \underbrace{\ket{2,0,0}}_{2s},\qquad
+  \underbrace{\ket{2,1,-1},\ \ket{2,1,0},\ \ket{2,1,1}}_{2p}.
+\end{equation}
+三个 $2p$ 态彼此等能，与 $2s$ 也同能，属于两层不同的简并。
+
+对中心势，旋转不变性给出 $[H,L_i]=0$，从而 $[H,L_\pm]=0$。若 $H\ket{n,l,m}=E_n\ket{n,l,m}$，则
+\begin{equation}
+  H\bigl(L_\pm\ket{n,l,m}\bigr)
+    =L_\pm H\ket{n,l,m}
+    =E_n\bigl(L_\pm\ket{n,l,m}\bigr).
+\end{equation}
+只要升降后的向量非零，它仍具有同一能量；这解释固定 $l$ 内的 $m$ 简并。但
+\begin{equation}
+  [L^2,L_\pm]=0,\qquad
+  L^2\bigl(L_\pm\ket{n,l,m}\bigr)
+    =l(l+1)\hbar^2\bigl(L_\pm\ket{n,l,m}\bigr),
+\end{equation}
+说明升降不改变 $l$。一般的有限旋转同样与 $L^2$ 对易，不能将 $2s$ 旋转成 $2p$。
+
+对任意中心势 $V(r)$，旋转对称性只保证固定径向态、固定 $l$ 内的 $m$ 简并，并不强制不同 $l$ 等能。教材称库仑问题的后一种简并为 accidental degeneracy（偶然简并），引号强调它并非没有原因，而是普通旋转对称性尚未解释的额外简并。
+
+\notetopic{QM-C13-S02-T02}{Runge--Lenz 矢量与额外守恒量}
+\keyidea{库仑系统不仅有固定轨道平面的角动量，还具有固定椭圆朝向的额外守恒矢量；其量子对应提供联系不同 $l$ 同能态的结构。}
+\textbf{教材位置：}印刷 p.~360，式 (13.2.1)--(13.2.3) 及脚注；几何解释与习题延续至 p.~361 上部 / PDF pp.~368--369。
+
+\textbf{1. 经典轨道中固定什么？}在 $V=-e^2/r$ 中，教材给出 Runge--Lenz vector（龙格--楞次矢量）
+\begin{equation}
+  \boxed{\mathbf n=\frac{\mathbf p\times\mathbf l}{m_e}
+     -e^2\frac{\mathbf r}{r},\qquad
+     \mathbf l=\mathbf r\times\mathbf p,\qquad
+     \frac{\dd\mathbf n}{\dd t}=0.}
+\end{equation}
+对角动量非零的非圆束缚轨道，$\mathbf l$ 固定轨道平面，$\mathbf n$ 位于该平面内，沿椭圆长轴指向最近点。$\mathbf n$ 的方向不变，远、近点的朝向便不会逐圈转动，即无近心点进动。一般中心势的角动量守恒只保证平面固定，并不保证轨道闭合。圆轨道则有 $\mathbf n=0$，没有特别的近心点方向。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.9,>=Stealth]
+  \draw[thick,noteBlue] (-1,0) ellipse (2 and 1.73205);
+  \draw[dashed,gray] (-3.25,0)--(1.25,0);
+  \draw[->,thick] (0,0)--(-3,0) node[midway,below] {$\mathbf r_{\max}$};
+  \draw[->,thick] (0,0)--(1,0) node[midway,below] {$\mathbf r_{\min}$};
+  \fill (0,0) circle (2pt) node[below=6pt] {力心};
+  \fill (-3,0) circle (1.5pt) node[left] {最远点};
+  \fill (1,0) circle (1.5pt) node[right] {最近点};
+  \draw[->,very thick,accentRed] (-0.1,0.75)--(1,0.75)
+    node[midway,above] {$\mathbf n$ 的方向};
+\end{tikzpicture}
+
+\small 原创示意：力心位于椭圆的一个焦点；红箭头只示方向，不表示位置矢量。
+\end{minipage}
+\end{center}
+
+转折点关系、远近方向及圆轨道的推导见\relatedexercise{QM-C13-S02-E01}{教材习题 13.2.1}。这里讨论的是经典轨道，不能据此给量子能量本征态指定一条电子运行轨迹。
+
+\textbf{2. 量子化为何需要对称化？}由于 $\mathbf P$ 与 $\mathbf L$ 的分量一般不对易，不能机械地把经典叉积照搬为算符。按分量取伴随，有
+\begin{equation}
+  (\mathbf P\times\mathbf L)^\dagger=-\mathbf L\times\mathbf P.
+\end{equation}
+教材取该算符与其伴随的平均，得到
+\begin{equation}
+  \boxed{\mathbf N=\frac{\mathbf P\times\mathbf L-\mathbf L\times\mathbf P}{2m_e}
+       -e^2\frac{\mathbf R}{R},\qquad R=\sqrt{X^2+Y^2+Z^2}.}
+\end{equation}
+前面虽写成相减，实际正是对称化，保证分量的形式厄米性。在经典极限中，$\mathbf l\times\mathbf p=-\mathbf p\times\mathbf l$，它恢复为原来的 $\mathbf p\times\mathbf l/m_e$。
+
+\textbf{3. 守恒量如何联系同能态？}对纯库仑 Hamiltonian
+\begin{equation}
+  H=\frac{\mathbf P^2}{2m_e}-\frac{e^2}{R},\qquad
+  \boxed{[N_i,H]=0\quad(i=x,y,z).}
+\end{equation}
+教材在本节直接给出这一对易关系，未展开逐项计算。若 $H\ket\psi=E\ket\psi$，则
+\begin{equation}
+  H(N_i\ket\psi)=N_iH\ket\psi=E(N_i\ket\psi).
+\end{equation}
+所以 $N_i\ket\psi$ 非零时仍属于同一能量本征空间。与保持 $l$ 的普通旋转不同，利用 $\mathbf N$ 可构造联系不同 $l$ 同能态的算符；具体构造及其对称性解释留到 \S 15.4，不把本节的线索当作已完成的完整证明。
+
+\dialoguesupplement{仅有 $[Q,H]=0$ 不能直接证明额外简并：还要证明 $Q\ket\psi$ 非零且与原态线性无关。例如 $Q=H$ 只给能量本征态乘以 $E$，没有产生新态。}
+
+\textbf{一分钟回顾。}固定 $l$ 的 $m$ 简并来自旋转对称性；不同 $l$ 的库仑简并需要额外对称性。经典 $\mathbf n$ 沿椭圆长轴指向近点，圆轨道中为零；量子 $\mathbf N$ 必须处理算符次序，并与库仑 $H$ 对易。同能映射是否产生独立新态是证明简并的必要检查，完整联系在 \S 15.4 展开。

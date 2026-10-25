@@ -120,3 +120,101 @@ $\mathbf R\cdot\nabla V=e^2/r=-V$，从而
 $D=(\mathbf R\cdot\mathbf P+\mathbf P\cdot\mathbf R)/2
 =\Omega-3\ii\hbar I/2$；它与 $\Omega$ 只差常数倍单位算符，故 $[D,H]=[\Omega,H]$，结论相同。
 \end{checkedsolution}
+
+\section{第 13.2 节习题：Runge--Lenz 矢量与闭合轨道}
+\label{exercises:QM-C13-S02}
+\exercisemeta
+  {QM-C13-S02}
+  {2026-10-25}
+  {Shankar, Second Edition；Exercise 13.2.1，印刷 pp.~360--361 上部 / PDF pp.~368--369}
+  {教材习题已作答并核对，保留远近点符号判断与圆轨道检验}
+  {笔记已确认}
+
+本节无独立编号 Example，收录教材习题 13.2.1；不收入课堂概念检查。以下统一质量记号，并显式写出所讨论轨道的条件。
+
+\exercisequestion{QM-C13-S02-E01}{教材习题 13.2.1：守恒矢量如何固定远近点}
+\textbf{对应知识点：}\relatedtopic{QM-C13-S02-T02}{Runge--Lenz 矢量与额外守恒量}。
+
+\textbf{题目。}在经典吸引库仑势 $V(r)=-e^2/r$ 中，考虑角动量非零的束缚轨道。已知
+\begin{equation}
+  E=\frac{p^2}{2m_e}-\frac{e^2}{r}<0,\qquad
+  \mathbf l=\mathbf r\times\mathbf p,\qquad
+  \mathbf n=\frac{\mathbf p\times\mathbf l}{m_e}-e^2\frac{\mathbf r}{r}
+\end{equation}
+其中能量 $E$、角动量 $\mathbf l$ 和 Runge--Lenz 矢量 $\mathbf n$ 均守恒。先取非圆轨道，记最远点、最近点的位置矢量为 $\mathbf r_{\max},\mathbf r_{\min}$，其长度为 $r_{\max}>r_{\min}>0$。
+\begin{enumerate}
+  \item 消去 $\mathbf l$，把 $\mathbf n$ 写成仅含 $\mathbf r,\mathbf p$ 的表达式。
+  \item 说明径向转折点处为何有 $\mathbf r\cdot\mathbf p=0$，利用能量守恒证明
+    \begin{equation}
+      \mathbf n=\mathbf r_{\max}\left(2E+\frac{e^2}{r_{\max}}\right),\qquad
+      \mathbf n=\mathbf r_{\min}\left(2E+\frac{e^2}{r_{\min}}\right).
+    \end{equation}
+  \item 判断 $\mathbf n$ 与两位置矢量的同向或反向关系，说明守恒性如何固定远、近点并联系闭合轨道。
+  \item 单独考虑圆轨道，验证 $\mathbf n=0$。
+\end{enumerate}
+
+\begin{checkedsolution}
+\textbf{1. 消去角动量。}用矢量三重积
+$\mathbf a\times(\mathbf b\times\mathbf c)
+=\mathbf b(\mathbf a\cdot\mathbf c)-\mathbf c(\mathbf a\cdot\mathbf b)$，有
+\begin{equation}
+  \mathbf p\times(\mathbf r\times\mathbf p)
+   =p^2\mathbf r-(\mathbf r\cdot\mathbf p)\mathbf p,
+\end{equation}
+故
+\begin{equation}
+  \boxed{\mathbf n=\frac{p^2\mathbf r-(\mathbf r\cdot\mathbf p)\mathbf p}{m_e}
+       -e^2\frac{\mathbf r}{r}.}
+\end{equation}
+
+\textbf{2. 径向极值与能量守恒。}由 $r^2=\mathbf r\cdot\mathbf r$、$\mathbf p=m_e\dot{\mathbf r}$，
+\begin{equation}
+  2r\dot r=2\mathbf r\cdot\dot{\mathbf r}
+    =\frac2{m_e}\mathbf r\cdot\mathbf p
+  \quad\Longrightarrow\quad
+  \boxed{\mathbf r\cdot\mathbf p=m_er\dot r.}
+\end{equation}
+在远、近点 $\dot r=0$，故 $\mathbf r\cdot\mathbf p=0$。这不是 $\mathbf p=0$：角动量非零时粒子仍有切向速度。于是
+\begin{equation}
+  \mathbf n=\left(\frac{p^2}{m_e}-\frac{e^2}{r}\right)\mathbf r,
+  \qquad \frac{p^2}{m_e}=2E+\frac{2e^2}{r}.
+\end{equation}
+两式结合即得
+\begin{equation}
+  \boxed{\mathbf n=\left(2E+\frac{e^2}{r}\right)\mathbf r
+    \quad\text{（径向转折点处）}.}
+\end{equation}
+分别取 $r_{\max}$ 与 $r_{\min}$，便得到题目中的两式。此关系不应无条件用于轨道上的任意点。
+
+\textbf{3. 用韦达定理确定方向。}转折点处 $\mathbf r\perp\mathbf p$，因此 $l^2=r^2p^2$，这里 $l=|\mathbf l|$ 是经典角动量大小。能量方程给出
+\begin{equation}
+  E=\frac{l^2}{2m_er^2}-\frac{e^2}{r}
+  \quad\Longrightarrow\quad
+  Er^2+e^2r-\frac{l^2}{2m_e}=0.
+\end{equation}
+两个根是 $r_{\min},r_{\max}$，故
+\begin{equation}
+  r_{\min}+r_{\max}=-\frac{e^2}{E}.
+\end{equation}
+消去 $E$，即可判断前面标量系数的符号：
+\begin{align}
+  2E+\frac{e^2}{r_{\min}}
+    &=\frac{e^2(r_{\max}-r_{\min})}
+      {r_{\min}(r_{\min}+r_{\max})}>0,\\
+  2E+\frac{e^2}{r_{\max}}
+    &=-\frac{e^2(r_{\max}-r_{\min})}
+      {r_{\max}(r_{\min}+r_{\max})}<0.
+\end{align}
+因此 $\mathbf n$ 与 $\mathbf r_{\min}$ 同向、与 $\mathbf r_{\max}$ 反向。$\mathbf n$ 恒定便固定了这条远近点连线的朝向；它沿椭圆长轴指向近心点，不发生近心点进动。
+
+\textbf{闭合性的逻辑。}守恒的 $E,l$ 固定两个转折半径，非零的 $\mathbf n$ 又固定其方向，所以再次到达同类转折点时，位置相同。该处 $\mathbf r\cdot\mathbf p=0$，由 $\mathbf l=\mathbf r\times\mathbf p$ 还可得 $\mathbf p=\mathbf l\times\mathbf r/r^2$，动量也相同。运动状态复现，轨道因而闭合；不只是“轨道在同一个平面内”。
+
+\textbf{4. 圆轨道。}此时 $r$ 恒定，仍有 $\mathbf r\cdot\mathbf p=0$。库仑力提供向心力：
+\begin{equation}
+  \frac{p^2}{m_er}=\frac{e^2}{r^2}
+  \quad\Longrightarrow\quad
+  \mathbf n=\left(\frac{p^2}{m_e}-\frac{e^2}{r}\right)\mathbf r
+    =\boxed{\mathbf 0}.
+\end{equation}
+圆没有特别的近心点方向，因此零矢量没有方向并不造成矛盾；不能在圆轨道中再使用“与 $\mathbf n$ 同向或反向”来区分远近点。
+\end{checkedsolution}
