@@ -339,3 +339,183 @@ $2s$ 在 $r=2a_0$ 有一个径向节点，$2p$ 在 $r>0$ 没有径向节点；�
 \dialoguesupplement{仅有 $[Q,H]=0$ 不能直接证明额外简并：还要证明 $Q\ket\psi$ 非零且与原态线性无关。例如 $Q=H$ 只给能量本征态乘以 $E$，没有产生新态。}
 
 \textbf{一分钟回顾。}固定 $l$ 的 $m$ 简并来自旋转对称性；不同 $l$ 的库仑简并需要额外对称性。经典 $\mathbf n$ 沿椭圆长轴指向近点，圆轨道中为零；量子 $\mathbf N$ 必须处理算符次序，并与库仑 $H$ 对易。同能映射是否产生独立新态是证明简并的必要检查，完整联系在 \S 15.4 展开。
+
+\section{第 13.3 节：数值估算与实验比较}
+\label{section:QM-C13-S03}
+\studymeta
+  {QM-C13-S03}
+  {2026-10-25 至 2026-10-26}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 13 章 \S 13.3 Numerical Estimates and Comparison with Experiment；印刷 pp.~361 中部--369 顶部，至 \S 13.4 前 / PDF pp.~369--377}
+  {四块讲解、两处教材正文示范与习题 13.3.2、13.3.3 已核对；笔记已确认}
+
+\textbf{主线。}把氢原子的解析解变成可估算的长度与能量，再区分实验对能级差和波函数的检验。正文按四块组织；教材正文中的完整计算示范与选定习题另放在课程题目区。
+
+\textbf{单位与模型。}沿用 Gaussian 单位，$V=-e^2/r$；$m_e,m_p,\mu$ 分别为电子、质子和约化质量。除显式讨论修正外，采用固定质子、非相对论纯库仑模型，不计自旋。$\mathrm{eV}$ 是能量单位，$1\,\mathrm{MeV}=10^6\,\mathrm{eV}$，$1\,\text{\AA}=10^{-10}\,\mathrm m$。以下数值保留估算精度。
+
+\notetopic{QM-C13-S03-T01}{原子的长度、能量与精细结构常数}
+\keyidea{用无量纲的 $\alpha$、能量 $m_ec^2$ 和能量乘长度 $\hbar c$ 组织计算，既能直接检查量纲，也能看清尺度来源。}
+\textbf{教材位置：}印刷 pp.~361 中部--362 / PDF pp.~369--370。
+
+\textbf{1. 约化质量近似。}由
+\begin{equation}
+  m_ec^2\simeq0.511\,\mathrm{MeV},\qquad
+  m_pc^2\simeq938\,\mathrm{MeV},\qquad
+  \frac{m_e}{m_p}\simeq\frac1{1836},
+\end{equation}
+得到
+\begin{equation}
+  \mu=\frac{m_em_p}{m_e+m_p}
+     =\frac{m_e}{1+m_e/m_p}\simeq m_e.
+\end{equation}
+固定质子近似忽略的质量比例修正约为 $5.4\times10^{-4}$，不是质子真的不动。保留有限核质量时，下面原子内部运动公式中的 $m_e$ 应换成 $\mu$。
+
+\textbf{2. 精细结构常数与方便的组合。}定义 fine-structure constant（精细结构常数）
+\begin{equation}
+  \boxed{\alpha=\frac{e^2}{\hbar c}\simeq\frac1{137},\qquad
+  \hbar c\simeq1973\,\mathrm{eV}\,\text{\AA}.}
+\end{equation}
+$\alpha$ 无量纲，表征电磁相互作用的强度；SI 制中同一常数写成 $e^2/(4\pi\varepsilon_0\hbar c)$，不能把两种单位制的 $e^2$ 公式混用。
+
+由 $e^2=\alpha\hbar c$，玻尔半径与 Rydberg energy（里德伯能量）改写为
+\begin{align}
+  \boxed{a_0=\frac{\hbar^2}{m_ee^2}
+       =\frac{\hbar c}{\alpha m_ec^2}\simeq0.529\,\text{\AA},}\\
+  \boxed{\mathrm{Ry}=\frac{m_ee^4}{2\hbar^2}
+       =\frac12m_ec^2\alpha^2\simeq13.6\,\mathrm{eV}.}
+\end{align}
+$a_0$ 是原子长度尺度，不是硬边界或所有态的平均半径；例如基态 $\expect r=3a_0/2$。取无限分离、相对动能为零的电子和质子为能量零点，则
+\begin{equation}
+  E_n=-\frac{\mathrm{Ry}}{n^2},\qquad
+  E_{\mathrm{ion},n}=0-E_n=\frac{\mathrm{Ry}}{n^2}.
+\end{equation}
+基态电离能约为 $13.6\,\mathrm{eV}$，不是电子静能。恢复 $\mu<m_e$ 后，$a_\mu=\hbar^2/(\mu e^2)>a_0$，$\mathrm{Ry}_\mu=\mu e^4/(2\hbar^2)<\mathrm{Ry}$：原子长度增大、束缚变弱，$E_n$ 变得稍微没那么负。用相同单位组合估算德布罗意波长，见\relatedexercise{QM-C13-S03-E03}{教材习题 13.3.2}。
+
+\notetopic{QM-C13-S03-T02}{三个长度尺度及其物理边界}
+\keyidea{玻尔半径描述原子尺度；约化康普顿波长提示相对论与单粒子近似的局限；电子经典半径来自静电自能模型。后两者都不能直接当作电子的几何半径。}
+\textbf{教材位置：}印刷 pp.~363--364 上半部 / PDF pp.~371--372。
+
+\textbf{1. 约化康普顿波长。}将 $a_0$ 乘以 $\alpha$，得到
+\begin{equation}
+  \boxed{\bar\lambda_e=\alpha a_0=\frac{\hbar}{m_ec}
+    \simeq3.86\times10^{-3}\,\text{\AA}.}
+\end{equation}
+教材将其记为 $\lambda_e$ 并称 Compton wavelength；此处用 $\bar\lambda_e$ 明确它是 reduced Compton wavelength（约化康普顿波长）。通常的康普顿波长为 $h/(m_ec)=2\pi\bar\lambda_e$。
+
+定位到尺度 $\Delta x$ 需要动量不确定度达到 $\Delta p\sim\hbar/\Delta x$。当 $\Delta x\sim\bar\lambda_e$ 时，$\Delta p\sim m_ec$，非相对论动能近似开始失效。教材还以探测光子的能量
+\begin{equation}
+  E_\gamma\sim c\,\Delta p\sim\frac{\hbar c}{\Delta x}
+\end{equation}
+解释：定位越精细，能量越高；到静能量级时，在满足能量、动量守恒的适当相互作用中，还可能产生粒子--反粒子对，固定粒子数的描述不再充分。
+
+\dialoguesupplement{这是适用范围的数量级判断，不是任意位置测量的严格最小分辨率定理，也不是电子尺寸的测量。教材把该尺度称作电子的“大小”时，应按这一启发式含义理解；本节不推导精确的产生阈值。}
+
+\textbf{2. 电子经典半径。}再乘以 $\alpha$，得到 classical electron radius（电子经典半径）
+\begin{equation}
+  \boxed{r_e=\alpha\bar\lambda_e=\frac{e^2}{m_ec^2}
+       \simeq2.82\times10^{-5}\,\text{\AA}.}
+\end{equation}
+若假想把电荷 $e$ 分布在尺度 $r$ 的小球上，静电自能数量级为 $U_{\mathrm{em}}\sim e^2/r$。令其与 $m_ec^2$ 相当就得到 $r\sim r_e$；自能的具体系数依赖电荷分布。这是经典模型构造的尺度，并不证明电子是该半径的小球。
+
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth]
+  \node[align=center] (a) at (0,0) {$a_0$\\$0.529\,\text{\AA}$\\原子尺度};
+  \node[align=center] (b) at (4.8,0) {$\bar\lambda_e=\hbar/(m_ec)$\\$3.86\times10^{-3}\,\text{\AA}$\\相对论尺度};
+  \node[align=center] (c) at (9.6,0) {$r_e=e^2/(m_ec^2)$\\$2.82\times10^{-5}\,\text{\AA}$\\经典自能尺度};
+  \draw[->,thick,noteBlue] (a.east)--node[above] {$\times\alpha$} (b.west);
+  \draw[->,thick,noteBlue] (b.east)--node[above] {$\times\alpha$} (c.west);
+\end{tikzpicture}
+
+\small 原创尺度关系图：相邻长度相差约 $137$ 倍；不是电子的几何尺寸示意。
+\end{minipage}
+\end{center}
+
+由于 $a_0\gg\bar\lambda_e$，原子中典型动量满足
+\begin{equation}
+  \frac{p_{\mathrm{typ}}}{m_ec}
+    \sim\frac{\hbar/a_0}{m_ec}=\alpha\ll1.
+\end{equation}
+这说明非相对论描述对氢原子的主要尺度是合理的，不意味着所有精密修正都能忽略。
+
+\notetopic{QM-C13-S03-T03}{玻尔模型的估算价值与局限}
+\keyidea{玻尔模型给出正确的纯库仑能级公式，却不提供正确的量子态、角动量与电子轨道图像。}
+\textbf{教材位置：}印刷 pp.~364 下半部--366 习题前 / PDF pp.~372--374。
+
+假设质子固定、电子沿圆轨道运动，库仑力提供向心力：
+\begin{equation}
+  \frac{m_ev^2}{r}=\frac{e^2}{r^2}
+  \quad\Longrightarrow\quad
+  E=\frac12m_ev^2-\frac{e^2}{r}=-\frac{e^2}{2r}.
+\end{equation}
+仅靠这一经典关系，$r$ 与 $E$ 仍可连续变化。Bohr model（玻尔模型）额外假设
+\begin{equation}
+  m_evr=n\hbar,\qquad n=1,2,\ldots,
+\end{equation}
+这不是由牛顿方程推出的。将 $v=n\hbar/(m_er)$ 代回向心力关系，得到
+\begin{equation}
+  \frac{n^2\hbar^2}{m_er^2}=\frac{e^2}{r}
+  \quad\Longrightarrow\quad
+  \boxed{r_n=n^2a_0,\qquad E_n=-\frac{e^2}{2r_n}
+        =-\frac{\mathrm{Ry}}{n^2}.}
+\end{equation}
+能谱与非相对论纯库仑的薛定谔解一致，但物理图像并不等价：玻尔基态取圆轨道角动量 $\hbar$，真正的氢原子基态却有 $l=0$、$L^2=0$。$r_n$ 也不是所有半径测量的确定结果，不能替代径向概率分布。
+
+由 $m_ev^2r=e^2$ 除以 $m_evr=n\hbar$，还得到
+\begin{equation}
+  \boxed{v_n=\frac{e^2}{n\hbar}=\frac{\alpha c}{n},\qquad
+  E_1=-\frac12m_ec^2\alpha^2.}
+\end{equation}
+因此教材用基态的 $\beta=v/c=\alpha$ 作为估算口诀；束缚能与静能之比为 $|E_1|/(m_ec^2)=\alpha^2/2\ll1$。
+
+\dialoguesupplement{现代量子力学中应把这里的速度用作尺度，而不是指定圆轨道速度。基态虽有 $\expect{\mathbf P}=0$，由维里定理仍有 $\expect{P^2}/(2m_e)=\mathrm{Ry}$，故 $v_{\mathrm{rms}}=\sqrt{\expect{P^2}}/m_e=\alpha c$。均值为零不等于没有动量涨落。}
+
+\notetopic{QM-C13-S03-T04}{用能级差与跃迁概率检验理论}
+\keyidea{谱线位置主要检验能级差；已知外扰下的跃迁概率还取决于波函数与相互作用矩阵元。仅有相同能谱，不足以保证相同跃迁概率。}
+\textbf{教材位置：}印刷 pp.~366 下半部--368；习题延续至 p.~369 顶部 / PDF pp.~374--377。
+
+\textbf{1. 发射与吸收光谱。}从能量较高的 $n$ 态跃迁至 $n'<n$ 态并发射一个光子时，能量匹配给出
+\begin{equation}
+  \boxed{\hbar\omega=h\nu=E_n-E_{n'}
+     =\mathrm{Ry}\left(\frac1{n'^2}-\frac1{n^2}\right),\qquad
+     \lambda=\frac{hc}{E_n-E_{n'}}.}
+\end{equation}
+固定末态主量子数 $n'$，改变较高能级 $n$，得到谱线系列：
+\begin{center}
+\begin{tabular}{@{}cll@{}}
+  \toprule
+  $n'$ & 名称 & 发射跃迁 \\
+  \midrule
+  $1$ & Lyman series（莱曼系） & $n\ge2\to1$ \\
+  $2$ & Balmer series（巴耳末系） & $n\ge3\to2$ \\
+  $3$ & Paschen series（帕邢系） & $n\ge4\to3$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+吸收对应反向的能量差；出现某组吸收线需要相应低能级先有占据。能量匹配本身不保证任意两态之间的跃迁都允许或同样强，仍需相互作用矩阵元。莱曼系 $n=2\to1$ 的波长估算见\relatedexercise{QM-C13-S03-E01}{教材正文示范}；热占据与吸收谱的联系见\relatedexercise{QM-C13-S03-E04}{教材习题 13.3.3}。
+
+\textbf{2. 精密比较需要恢复哪些效应？}
+\begin{itemize}
+  \item 有限核质量：$m_e\mapsto\mu$，在本模型中整体缩放能谱；氢与氘的核质量不同，因而有同位素位移。
+  \item 相对论及相关 fine-structure corrections（精细结构修正）：相对束缚能的典型修正量级为 $(v/c)^2\sim\alpha^2$，教材在第 17 章进一步处理。
+  \item 量子电磁场效应：还存在超出经典外场与非相对论库仑模型的修正，不能把当前能谱称作完整精确结果。
+\end{itemize}
+这些修正很小，但可在精密比较中重要；应将模型精度与实验精度一同说明。
+
+\textbf{3. 波函数进入跃迁矩阵元。}仅有 $H_0$ 时，其能量本征态只积累相位，不会自行跳到另一正交态。施加已知外扰 $H'$ 后，转移到另一态 $\ket f$ 的概率与 $\bra fH'\ket i$ 有关。若扰动在短时 $\epsilon$ 内保持不变，且对所考虑态短时展开有效，则最低非零阶给出
+\begin{equation}
+  \boxed{P_{i\to f}(\epsilon)
+     \simeq\frac{\epsilon^2}{\hbar^2}|\bra fH'\ket i|^2,
+     \qquad \braket fi=0.}
+\end{equation}
+在位置表象中，若 $H'$ 是乘法算符，矩阵元为
+\begin{equation}
+  \bra fH'\ket i
+    =\int\psi_f^*(\mathbf r)H'(\mathbf r)\psi_i(\mathbf r)\,\dd^3r.
+\end{equation}
+它包含波函数的形状与相位，因此实验的跃迁概率还提供了超出能级差的检验。完整短时推导见\relatedexercise{QM-C13-S03-E02}{教材正文示范}，不是额外的自编练习。
+
+\dialoguesupplement{这里 $P\propto\epsilon^2$，尚未得到恒定跃迁率。自发辐射还需纳入原子与电磁场的耦合，不能由孤立原子 $H_0$ 的本征态演化推出；更完整的辐射与物质相互作用在第 18 章展开。}
+
+\textbf{一分钟回顾。}$a_0=\hbar c/(\alpha m_ec^2)$、$\mathrm{Ry}=m_ec^2\alpha^2/2$ 把原子尺度联系到方便的常数组合；$a_0,\bar\lambda_e,r_e$ 依次相差 $\alpha$，但物理含义不同。玻尔模型可助记能谱，不能赋予电子真实圆轨道。光谱频率测能级差，跃迁概率进一步检验波函数与外扰矩阵元；精密比较还需有限核质量、相对论和量子电磁场修正。

@@ -218,3 +218,124 @@ $\mathbf a\times(\mathbf b\times\mathbf c)
 \end{equation}
 圆没有特别的近心点方向，因此零矢量没有方向并不造成矛盾；不能在圆轨道中再使用“与 $\mathbf n$ 同向或反向”来区分远近点。
 \end{checkedsolution}
+
+\section{第 13.3 节课程题目：数值估算与实验比较}
+\label{exercises:QM-C13-S03}
+\exercisemeta
+  {QM-C13-S03}
+  {2026-10-25 至 2026-10-26}
+  {Shankar, Second Edition；正文示范印刷 pp.~367--368 / PDF pp.~375--376；Exercises 13.3.2、13.3.3，印刷 p.~366、pp.~368--369 顶部 / PDF p.~374、pp.~376--377}
+  {两处教材正文示范已讲解；两道选定教材习题已作答并核对}
+  {笔记已确认}
+
+本节没有独立编号 Example。下列前两项整理教材正文中已有的计算示范，后两项为选定 Exercise；不将正文示范冒称为编号例题，不收入课堂概念检查。习题 13.3.1 未独立选做。
+
+\exercisequestion{QM-C13-S03-E01}{教材正文示范：莱曼系 n=2 到 n=1 的波长}
+\textbf{来源：}印刷 p.~367 / PDF p.~375，无独立 Example 编号。
+
+\textbf{对应知识点：}\relatedtopic{QM-C13-S03-T04}{能级差与实验光谱}。
+
+\textbf{示范任务。}在非相对论纯库仑近似中，使用 $E_n=-13.6\,\mathrm{eV}/n^2$ 和 $\hbar c\simeq1973\,\mathrm{eV}\,\text{\AA}$，估算莱曼系 $n=2\to1$ 发射线的波长。这里计算能量差，不求跃迁强度；可取 $2p\to1s$ 为具体跃迁。
+
+\begin{checkedsolution}
+\begin{equation}
+  \Delta E=E_2-E_1=13.6\left(1-\frac14\right)\mathrm{eV}
+     =10.2\,\mathrm{eV}.
+\end{equation}
+由 $\hbar\omega=\Delta E$、$\lambda=2\pi c/\omega$，
+\begin{equation}
+  \boxed{\lambda=\frac{2\pi\hbar c}{\Delta E}
+    \simeq\frac{2\pi\times1973}{10.2}\,\text{\AA}
+    \simeq1.22\times10^3\,\text{\AA}=122\,\mathrm{nm}.}
+\end{equation}
+教材先粗估为 $1200\,\text{\AA}$，再给出较精细估值 $1216\,\text{\AA}$；这里按所用近似常数保留三位有效数字。普通波长用 $hc/\Delta E$，不能误写为 $\hbar c/\Delta E$；后者少一个 $2\pi$。
+\end{checkedsolution}
+
+\exercisequestion{QM-C13-S03-E02}{教材正文示范：短时外扰怎样检验波函数}
+\textbf{来源：}印刷 p.~368 / PDF p.~376，无独立 Example 编号。
+
+\textbf{对应知识点：}\relatedtopic{QM-C13-S03-T04}{波函数与跃迁矩阵元}。
+
+\textbf{示范任务。}已知 $H_0\ket i=E_i\ket i$，$\ket f$ 是另一归一化能量本征态且 $\braket fi=0$。在 $0<t<\epsilon$ 施加恒定外扰 $H'$，使 $H=H_0+H'$。假设短时展开对所考虑态有效，求最低阶跃迁振幅与概率，说明为什么它们包含波函数的信息。
+
+\begin{checkedsolution}
+将时间演化展开到一阶：
+\begin{equation}
+  \ket{\psi(\epsilon)}
+  =\left[I-\frac{\ii\epsilon}{\hbar}(H_0+H')\right]\ket i
+    +O(\epsilon^2).
+\end{equation}
+左乘 $\bra f$ 后，$\braket fi=0$，且 $\bra fH_0\ket i=E_i\braket fi=0$，于是
+\begin{align}
+  \boxed{\braket f{\psi(\epsilon)}
+      =-\frac{\ii\epsilon}{\hbar}\bra fH'\ket i+O(\epsilon^2),}\\
+  \boxed{P_{i\to f}(\epsilon)
+      =\frac{\epsilon^2}{\hbar^2}|\bra fH'\ket i|^2+O(\epsilon^3).}
+\end{align}
+若 $H'$ 是位置的乘法算符，
+\begin{equation}
+  \bra fH'\ket i
+    =\int\psi_f^*(\mathbf r)H'(\mathbf r)\psi_i(\mathbf r)\,\dd^3r.
+\end{equation}
+已知外扰时，理论的跃迁概率依赖波函数的空间形状与相位，因而提供能谱之外的实验检验。能级相同不强制这些矩阵元相同；矩阵元若为零，只能说此阶贡献为零，不能单凭一阶式排除所有高阶过程。
+
+这里所得是短时概率，并非恒定跃迁率。仅用 $H_0$ 演化本征态不会自动产生自发辐射，后者需要包含电磁场耦合。
+\end{checkedsolution}
+
+\exercisequestion{QM-C13-S03-E03}{教材习题 13.3.2：200 eV 电子的德布罗意波长}
+\textbf{来源：}印刷 p.~366 / PDF p.~374。
+
+\textbf{对应知识点：}\relatedtopic{QM-C13-S03-T01}{常数组合与数值估算}。
+
+\textbf{题目。}估算动能 $K=200\,\mathrm{eV}$ 的电子的德布罗意波长。使用 $\lambda=2\pi\hbar/p$、$m_ec^2=0.511\,\mathrm{MeV}$、$\hbar c=1973\,\mathrm{eV}\,\text{\AA}$；先检查非相对论近似是否适用。
+
+\begin{checkedsolution}
+动能与静能之比为
+\begin{equation}
+  \frac{K}{m_ec^2}=\frac{200}{5.11\times10^5}
+    \simeq3.91\times10^{-4}\ll1,
+\end{equation}
+所以可用 $K=p^2/(2m_e)$。将动量乘以 $c$，便可直接使用能量单位：
+\begin{equation}
+  pc=\sqrt{2(m_ec^2)K}
+    =\sqrt{2\times5.11\times10^5\times200}\,\mathrm{eV}
+    \simeq1.43\times10^4\,\mathrm{eV}.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{\lambda=\frac{2\pi\hbar c}{pc}
+    \simeq\frac{2\pi\times1973}{1.43\times10^4}\,\text{\AA}
+    \simeq0.87\,\text{\AA}=0.087\,\mathrm{nm}.}
+\end{equation}
+自检：$pc$ 是能量，$\hbar c/(pc)$ 是长度；普通德布罗意波长为 $h/p$，必须保留 $2\pi$。
+\end{checkedsolution}
+
+\exercisequestion{QM-C13-S03-E04}{教材习题 13.3.3：温度与氢原子激发能级占据}
+\textbf{来源：}印刷 pp.~368--369 顶部 / PDF pp.~376--377。
+
+\textbf{对应知识点：}\relatedtopic{QM-C13-S03-T04}{吸收光谱与实验比较}。
+
+\textbf{题目。}太阳内部的光经过表面氢原子时，吸收可形成暗线。处于 $n=1$ 的原子可吸收莱曼系对应的光；吸收巴耳末系对应的光则需要原子先处于 $n=2$。按教材给出的热平衡模型，两个束缚能级的占据比为
+\begin{equation}
+  \frac{P(2)}{P(1)}=4\exp\left[-\frac{E_2-E_1}{k_BT}\right].
+\end{equation}
+因子 $4$ 来自 $g_2/g_1=2^2/1^2$。取 $E_n=-13.6\,\mathrm{eV}/n^2$、$k_B=8.62\times10^{-5}\,\mathrm{eV/K}$，计算 $T=6000\,\mathrm K$ 与 $10^5\,\mathrm K$ 时的比值，说明前者的激发占据可以忽略，而后者不再可以忽略。教材使用粗值 $k_B\simeq9\times10^{-5}\,\mathrm{eV/K}$，本次采用上述较精细数值。
+
+\begin{checkedsolution}
+先求能级差：
+\begin{equation}
+  \Delta E=E_2-E_1=-3.4-(-13.6)=10.2\,\mathrm{eV}.
+\end{equation}
+分别代入：
+\begin{align}
+  T=6000\,\mathrm K:&\quad k_BT=0.5172\,\mathrm{eV},
+    &\frac{P(2)}{P(1)}=4\ee^{-10.2/0.5172}
+      \simeq\boxed{1.09\times10^{-8}},\\
+  T=10^5\,\mathrm K:&\quad k_BT=8.62\,\mathrm{eV},
+    &\frac{P(2)}{P(1)}=4\ee^{-10.2/8.62}
+      \simeq\boxed{1.23}.
+\end{align}
+在 $6000\,\mathrm K$ 时，$n=2$ 的占据相对于基态极小；在 $10^5\,\mathrm K$ 时，两者已达同一数量级。$1.23$ 是概率之比，不是大于 $1$ 的概率：单个激发态的占据虽被指数抑制，但 $n=2$ 能级包含四个轨道态，总占据可以超过基态。
+
+\textbf{模型边界。}本题比较束缚能级占据，不计算电离比例，不能据此断言高温时氢主要为中性。实际由谱线强度反推温度，还需考虑跃迁强度与辐射传输，不能把观测线强比无条件等同于占据比。
+\end{checkedsolution}
