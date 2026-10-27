@@ -519,3 +519,141 @@ $a_0$ 是原子长度尺度，不是硬边界或所有态的平均半径；例�
 \dialoguesupplement{这里 $P\propto\epsilon^2$，尚未得到恒定跃迁率。自发辐射还需纳入原子与电磁场的耦合，不能由孤立原子 $H_0$ 的本征态演化推出；更完整的辐射与物质相互作用在第 18 章展开。}
 
 \textbf{一分钟回顾。}$a_0=\hbar c/(\alpha m_ec^2)$、$\mathrm{Ry}=m_ec^2\alpha^2/2$ 把原子尺度联系到方便的常数组合；$a_0,\bar\lambda_e,r_e$ 依次相差 $\alpha$，但物理含义不同。玻尔模型可助记能谱，不能赋予电子真实圆轨道。光谱频率测能级差，跃迁概率进一步检验波函数与外扰矩阵元；精密比较还需有限核质量、相对论和量子电磁场修正。
+
+\section{第 13.4 节：多电子原子与周期表}
+\label{section:QM-C13-S04}
+\studymeta
+  {QM-C13-S04}
+  {2026-10-26 至 2026-10-27}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {第 13 章 \S 13.4 Multielectron Atoms and the Periodic Table；印刷 pp.~369 中部--371，至第 13 章结束 / PDF pp.~377--379}
+  {三块讲解与教材习题 13.4.1 已核对；笔记已确认}
+
+\textbf{主线。}电子间的相互作用使多电子问题不能化成若干独立的氢原子。Hartree 平均场把它近似转化为自洽的单电子问题，再由屏蔽、轨道能量与 Pauli 占据限制理解壳层及元素周期性。
+
+\textbf{模型与记号。}固定电荷为 $+Ze$ 的原子核，考虑 $N$ 个电子；中性原子才有 $N=Z$。沿用 Gaussian 单位，$e>0$，$m_e$ 为电子质量，$m$ 为磁量子数。采用非相对论、无外场模型；本节只用电子自旋带来的二重占据可能，不展开第 14 章的自旋理论。
+
+\notetopic{QM-C13-S04-T01}{多电子相互作用与 Hartree 自洽场}
+\keyidea{平均场不是删掉电子间作用，而是以其他电子的平均电荷分布所产生的势代替瞬时、多体耦合的作用。自洽只保证近似模型内部一致，不保证精确。}
+\textbf{教材位置：}印刷 p.~369 第一段及脚注 / PDF p.~377；下列 Hamiltonian 与轨道相关势的显式形式为对话补充。
+
+固定核近似下，电子 Hamiltonian 为
+\begin{equation}
+  \boxed{H=\sum_{i=1}^{N}\left(\frac{\mathbf P_i^2}{2m_e}
+    -\frac{Ze^2}{r_i}\right)
+    +\sum_{i<j}\frac{e^2}{|\mathbf r_i-\mathbf r_j|}.}
+\end{equation}
+最后一项同时依赖不同电子的坐标，因而不能一般将精确本征问题分成独立的单电子方程。若完全忽略该项，则恢复类氢问题，但这与保留平均作用的 Hartree 近似不同；其 $Z^2$ 能量缩放见\relatedexercise{QM-C13-S04-E01}{教材习题 13.4.1}。
+
+对归一化的单电子空间轨道 $\phi_j$，取平均电荷密度
+$\rho_j(\mathbf r)=-e|\phi_j(\mathbf r)|^2$。排除电子自身的作用后，Hartree 势可示意为
+\begin{equation}
+  V_i^{\mathrm{eff}}(\mathbf r)=-\frac{Ze^2}{r}
+   +\sum_{j\ne i}e^2\int
+       \frac{|\phi_j(\mathbf r')|^2}{|\mathbf r-\mathbf r'|}\,\dd^3r',
+  \qquad
+  \left[-\frac{\hbar^2}{2m_e}\nabla^2+V_i^{\mathrm{eff}}\right]\phi_i
+       =\varepsilon_i\phi_i.
+\end{equation}
+核吸引项为负，电子平均排斥项为正。势由未知轨道决定，轨道又由势决定，所以要迭代求解，而不是只解一次线性本征方程。
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  \node[align=center] (v) at (0,0) {猜测有效势\\$V^{(k)}$};
+  \node[align=center] (p) at (3.3,0) {解单电子方程\\得到轨道与能量};
+  \node[align=center] (d) at (6.6,0) {按占据规则填入\\计算电荷密度};
+  \node[align=center] (w) at (9.9,0) {重建有效势\\$V^{(k+1)}$};
+  \draw[->,thick,noteBlue] (v)--(p);
+  \draw[->,thick,noteBlue] (p)--(d);
+  \draw[->,thick,noteBlue] (d)--(w);
+  \draw[->,noteBlue] (w.south)--++(0,-0.65)
+    -| node[pos=0.25,below] {尚未自洽时继续迭代} (v.south);
+\end{tikzpicture}
+\end{center}
+
+新势与输入势在给定容差内一致称 self-consistency（自洽）。它不意味着电子间相互作用已被精确处理，也不单凭收敛就证明找到真实基态。$\varepsilon_i$ 是近似单电子轨道能量，不是整个原子的总能量；平均相互作用的重复计数也使总能量一般不能直接写成 $\sum_i\varepsilon_i$。
+
+\dialoguesupplement{完整电子态仍须满足费米反对称性。教材在此仅用 Pauli 原理限制占据数；这不等于已经完整处理交换与关联效应。本节不展开 Hartree--Fock 等进一步方法。}
+
+\notetopic{QM-C13-S04-T02}{屏蔽、轨道能级与壳层容量}
+\keyidea{中心场保留同一 $n,l$ 内的 $m$ 简并，却一般破坏纯库仑势不同 $l$ 的简并；壳层容量与实际填充次序必须分开。}
+\textbf{教材位置：}印刷 p.~369 后半部--370 开头 / PDF pp.~377--378。
+
+\textbf{1. 共同球对称中心场。}教材进一步用共同的球对称有效势描述轨道，必要时对电荷分布作角平均。此近似与上面的轨道相关势并非完全相同的表达层次。在该中心场中
+\begin{equation}
+  h_{\mathrm{eff}}=\frac{\mathbf P^2}{2m_e}+V_{\mathrm{eff}}(r),
+  \qquad
+  \phi_{nlm}=R_{nl}(r)Y_l^m(\theta,\varphi),\qquad
+  \boxed{\varepsilon_{nlm}=\varepsilon_{nl}.}
+\end{equation}
+旋转对称性保证固定 $n,l$ 下不同 $m$ 同能；$V_{\mathrm{eff}}$ 一般不再是严格的 $-C/r$，故不能继续要求能量只依赖 $n$。例如 $3p$ 的三个 $m$ 轨道同能，$3s$ 与 $3p$ 却不必同能。这里说的是中心场的单电子轨道，不是完整多电子原子的精确能级。
+
+\textbf{2. 屏蔽与穿透。}shielding（屏蔽）指其他电子的电荷分布减弱了核的净吸引，不是电子组成一堵阻止进入的墙。径向方程含有
+\begin{equation}
+  V_{\mathrm{radial}}(r)=V_{\mathrm{eff}}(r)
+      +\frac{\hbar^2l(l+1)}{2m_er^2}.
+\end{equation}
+较大 $l$ 的离心项更强，抑制靠近原点的概率；相同 $n$ 下，较小 $l$ 的轨道通常更能穿入内层电子分布，感受到较少屏蔽和较强吸引。因此常见原子中心场中通常有
+\begin{equation}
+  \varepsilon_{ns}<\varepsilon_{np}<\varepsilon_{nd}<\cdots.
+\end{equation}
+这是本模型中的物理趋势，不是任意中心势的普遍定理，也没有给出跨不同 $n$ 的固定排序。
+
+\textbf{3. 主壳层与子壳层。}shell（壳层）按 $n$ 分组，subshell（子壳层）按 $n,l$ 分组；它们不是电子运行的硬球面。固定 $n,l$ 有 $2l+1$ 个空间轨道，每个轨道最多容纳两个自旋不同的电子：
+\begin{center}
+\begin{tabular}{@{}cccc@{}}
+  \toprule
+  子壳层 & $l$ & 空间轨道数 $2l+1$ & 最大电子数 $2(2l+1)$ \\
+  \midrule
+  $s$ & $0$ & $1$ & $2$ \\
+  $p$ & $1$ & $3$ & $6$ \\
+  $d$ & $2$ & $5$ & $10$ \\
+  $f$ & $3$ & $7$ & $14$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+主壳层允许 $l=0,\ldots,n-1$，故容量为
+\begin{equation}
+  \boxed{N_{\max}(n)=\sum_{l=0}^{n-1}2(2l+1)=2n^2.}
+\end{equation}
+这只是允许的占据数，并不要求第 $n$ 层全部填满后才开始填第 $n+1$ 层。
+
+\notetopic{QM-C13-S04-T03}{电子排布与化学周期性}
+\keyidea{价电子排布的重复产生化学性质的周期性；“填满壳层”是有用图像，不能代替对整个体系能量的比较。}
+\textbf{教材位置：}印刷 pp.~369 底--371 / PDF pp.~377--379；氟的能量数据勘误见下文外部核对来源。
+
+\textbf{1. 排布记号与填充次序。}$2p^6$ 表示 $2p$ 子壳层占据六个电子，方括号表示已填好的稀有气体内层结构。基态排布的几个代表为
+\begin{center}
+\begin{tabular}{@{}clcl@{}}
+  \toprule
+  原子 & 排布 & 原子 & 排布 \\
+  \midrule
+  H & $1s^1$ & He & $1s^2$ \\
+  Li & $[\mathrm{He}]\,2s^1$ & Ne & $[\mathrm{He}]\,2s^2 2p^6$ \\
+  Na & $[\mathrm{Ne}]\,3s^1$ & Ar & $[\mathrm{Ne}]\,3s^2 3p^6$ \\
+  K & $[\mathrm{Ar}]\,4s^1$ & & \\
+  \bottomrule
+\end{tabular}
+\end{center}
+钾在 $3d$ 尚空时就占据 $4s$，说明只按 $n$ 填满壳层并不正确。轨道能量随核电荷及占据改变；不能将 $4s<3d$ 当作所有原子、离子中永远成立的排序。自洽场中的能量排序辅助构造排布，实际基态仍应由总能量决定。
+
+\textbf{2. 价电子与闭合结构。}valence electrons（价电子）主导许多化学过程。Li、Na、K 都在较稳定内层之外有一个 $ns$ 电子，通常较容易失去它；F、Cl 的价层为 $ns^2np^5$，距离填满 $p$ 子壳层还差一个电子。这是外层结构的相似，不是整个原子态相同。
+
+填满一个 $n,l$ 子壳层时，球谐函数满足
+\begin{equation}
+  \sum_{m=-l}^{l}|Y_l^m(\theta,\varphi)|^2=\frac{2l+1}{4\pi},
+\end{equation}
+所以占据轨道的总密度在中心场模型中球对称。较低化学活性还与激发、失去或获得电子的能量代价有关，不能只由球对称性推出。Ar 的 $3s,3p$ 已满、$3d$ 为空，仍形成低化学活性的稀有气体结构；整个 $n=3$ 壳层并未填满十八个电子。“惰性”也不表示任何条件下都不反应。
+
+教材用相似思路说明稀土元素：$4f$ 在较内侧逐渐填充，而外层排布变化较小，因此许多化学性质相似；锕系涉及 $5f$ 的填充。这是定性趋势，不意味着它们的性质完全相同。
+
+\textbf{3. 成键与能量判断。}教材以 NaF 的电子转移、正负离子相吸说明 ionic bond（离子键），以水中共享电子说明 covalent bond（共价键）。是否成键取决于整个体系的能量，而非仅看某个原子是否“凑满”子壳层。
+
+\textbf{教材勘误与核对来源。}印刷 p.~370 将氟的约 $17.4\,\mathrm{eV}$ 用作获得电子的放能尺度，这是混淆了 ionization energy（电离能）与 electron affinity（电子亲和能）。前者对应 $\mathrm F\to\mathrm F^++e^-$，后者对应 $\mathrm F+e^-\to\mathrm F^-$ 的放能：
+\begin{equation}
+  I(\mathrm F)\simeq17.42\,\mathrm{eV},\qquad
+  A(\mathrm F)\simeq3.40\,\mathrm{eV}.
+\end{equation}
+来源为 \href{https://webbook.nist.gov/cgi/cbook.cgi?ID=C14762948\&Mask=20}{NIST Chemistry WebBook：Fluorine, atomic 的离子能量数据}（核对于 2026-10-27）。因此不能用 $17.4\,\mathrm{eV}$ 减去钠的电离能来证明转移放能；还须计入正确的电子亲和能、离子间吸引等总能量贡献。
+
+\textbf{一分钟回顾。}Hartree 以平均电荷分布替代多体耦合，势与轨道须自洽求解，但自洽不等于精确。球对称中心场保留 $m$ 简并，屏蔽通常解除不同 $l$ 的库仑简并；$2(2l+1)$ 与 $2n^2$ 是容量，不是填充次序。价电子结构的重复解释周期性；闭合子壳层不要求整个主壳层填满，成键与实际排布最终由总能量决定。

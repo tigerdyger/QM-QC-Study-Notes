@@ -339,3 +339,59 @@ $\mathbf a\times(\mathbf b\times\mathbf c)
 
 \textbf{模型边界。}本题比较束缚能级占据，不计算电离比例，不能据此断言高温时氢主要为中性。实际由谱线强度反推温度，还需考虑跃迁强度与辐射传输，不能把观测线强比无条件等同于占据比。
 \end{checkedsolution}
+
+\section{第 13.4 节课程题目：核电荷与能量缩放}
+\label{exercises:QM-C13-S04}
+\exercisemeta
+  {QM-C13-S04}
+  {2026-10-26 至 2026-10-27}
+  {Shankar, Second Edition；Exercise 13.4.1，印刷 p.~371 / PDF p.~379}
+  {选定教材习题已作答并核对}
+  {笔记已确认}
+
+本节无独立编号 Example；只选做教材习题 13.4.1，13.4.2、13.4.3 未选做。不收入课堂概念检查。
+
+\exercisequestion{QM-C13-S04-E01}{教材习题 13.4.1：为什么能级按 Z 的平方缩放}
+\textbf{对应知识点：}\relatedtopic{QM-C13-S04-T01}{多电子相互作用与平均场的区别}。
+
+\textbf{题目。}忽略电子间相互作用，证明多电子原子的能级按核电荷数 $Z$ 的平方缩放，并解释为什么库仑势只含一个显式 $Z$，能量却依赖 $Z^2$。为明确比较条件，取固定核、非相对论近似及 Gaussian 单位；固定电子数 $N$ 和各电子占据的量子数，仅改变 $Z$：
+\begin{equation}
+  H=\sum_{i=1}^N\left(\frac{\mathbf P_i^2}{2m_e}-\frac{Ze^2}{r_i}\right).
+\end{equation}
+利用 \S 13.1 的氢原子结果，求单电子能量及占据 $n_1,\ldots,n_N$ 时的总能量；再说明波函数空间尺度怎样随 $Z$ 改变。占据须满足 Pauli 原理；这里固定电子数与配置的条件是对原题缩放含义的明确化。
+
+\begin{checkedsolution}
+\textbf{1. 类氢能谱与总能量。}没有电子间相互作用时，各单电子 Hamiltonian 都是核电荷为 $+Ze$ 的类氢问题。将氢原子结果中的库仑耦合 $e^2$ 替换为 $Ze^2$：
+\begin{equation}
+  \boxed{\varepsilon_n(Z)=-\frac{m_e(Ze^2)^2}{2\hbar^2n^2}
+      =-\frac{Z^2\mathrm{Ry}}{n^2}=Z^2\varepsilon_n(1),
+      \qquad \mathrm{Ry}=\frac{m_e e^4}{2\hbar^2}.}
+\end{equation}
+在这一无相互作用模型中，总能量可以直接相加：
+\begin{equation}
+  \boxed{E(Z)=\sum_{i=1}^N\varepsilon_{n_i}(Z)
+      =-Z^2\mathrm{Ry}\sum_{i=1}^N\frac1{n_i^2}=Z^2E(1).}
+\end{equation}
+固定 $N$ 与占据后，求和项不变。不能把这一结论直接理解成真实中性原子的基态总能量沿周期表恒按 $Z^2$ 增长：沿周期表 $N=Z$、配置和相互作用都在改变。对负的束缚能，$Z$ 增大意味着能量更负、结合能绝对值更大。
+
+\textbf{2. 第二个 Z 来自轨道收缩。}自然长度尺度变为
+\begin{equation}
+  \boxed{a_Z=\frac{\hbar^2}{m_eZe^2}=\frac{a_0}{Z}.}
+\end{equation}
+固定量子数时，类氢轨道的典型半径按 $1/Z$ 缩小。因此不能在波函数固定不变的前提下，只观察势能中的显式 $Z$。由 \S 13.1 的平均倒数公式，精确有
+\begin{equation}
+  \expect{\frac1r}_{nlm,Z}=\frac1{a_Zn^2}
+     =\frac{Z}{a_0n^2},\qquad
+  \boxed{\expect V=-Ze^2\expect{\frac1r}
+       =-\frac{Z^2e^2}{a_0n^2}.}
+\end{equation}
+一个 $Z$ 来自核电荷，另一个来自收缩后的 $\expect{1/r}$。
+
+空间局域化增强使动量尺度增加，$p_{\mathrm{typ}}\sim\hbar/r_{\mathrm{typ}}\propto Z$，于是动能尺度为 $Z^2$。这是不确定性原理提供的尺度解释，不是仅由不等式推出的精确等式。严格结论可用库仑定态的维里关系：
+\begin{equation}
+  2\expect T+\expect V=0,\qquad
+  \boxed{\expect T=-\varepsilon_n(Z),\qquad
+         \expect V=2\varepsilon_n(Z).}
+\end{equation}
+所以动能、势能及总能量均精确按 $Z^2$ 缩放，适用范围是上述固定配置、无电子间作用的非相对论库仑模型。
+\end{checkedsolution}
