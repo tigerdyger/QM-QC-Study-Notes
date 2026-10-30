@@ -62,3 +62,157 @@
 \dialoguesupplement{常数空间波函数是广义动量本征态，不能在整个空间按普通方式归一化。$\pm\hbar/2$ 表示沿某一轴的分量，不是角动量大小有正负；仅知道两个可能结果也不能断言它们等概率，概率还取决于自旋状态。}
 
 \textbf{一分钟回顾。}自旋是轨道运动之外的内禀角动量，不是经典自转。本节确定其物理性质；状态空间与算符的具体构造留到 \S 14.3。
+
+\section{第 14.3 节：自旋的状态、算符与旋转}
+\label{section:QM-C14-S03}
+\studymeta
+  {QM-C14-S03}
+  {2026-10-29 至 2026-10-31}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {\S 14.3 Kinematics of Spin；印刷 pp.~374--385 / PDF pp.~381--392，至 \S 14.4 标题前}
+  {五块讲解、正文旋转示范及三道选定习题已核对；笔记已确认}
+
+\notetopic{QM-C14-S03-T01}{旋转的两种作用与自旋算符}
+\keyidea{旋转既改变空间振幅的位置，也混合内部自旋分量；相应的生成元是总角动量 $\mathbf J=\mathbf L+\mathbf S$。}
+
+主动旋转 $R$ 后，多分量波函数满足
+\begin{equation}
+  \Psi'(\mathbf r)=D(R)\Psi(R^{-1}\mathbf r).
+\end{equation}
+逆自变量由轨道算符 $\mathbf L=-\ii\hbar\,\mathbf r\times\nabla$ 生成；内部矩阵 $D(R)$ 由 $\mathbf S$ 生成。绕 $z$ 轴作无穷小旋转时，
+\begin{equation}
+  \left(I-\frac{\ii\epsilon}{\hbar}S_z\right)
+  \left(I-\frac{\ii\epsilon}{\hbar}L_z\right)
+  =I-\frac{\ii\epsilon}{\hbar}(L_z+S_z)+O(\epsilon^2).
+\end{equation}
+两部分作用于不同自由度，故 $[L_i,S_j]=0$。由 $\mathbf J$ 与 $\mathbf L$ 各自满足角动量代数，可得
+\begin{equation}
+  [S_i,S_j]=[J_i,J_j]-[L_i,L_j]
+   =\ii\hbar\sum_k\epsilon_{ijk}S_k.
+\end{equation}
+角动量代数本身不指定粒子的自旋量子数。电子沿任一轴只有 $\pm\hbar/2$ 两个可能结果这一实验输入，选出 $s=1/2$ 的二维表示。
+
+在 $S_z$ 本征基 $\ket+= (1,0)^{\mathsf T}$、$\ket-=(0,1)^{\mathsf T}$ 中，升降关系为 $S_+\ket-=\hbar\ket+$、$S_-\ket+=\hbar\ket-$，另两个作用为零。由 $S_x=(S_++S_-)/2$、$S_y=(S_+-S_-)/(2\ii)$ 得
+\begin{equation}
+  S_x=\frac\hbar2\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad
+  S_y=\frac\hbar2\begin{pmatrix}0&-\ii\\\ii&0\end{pmatrix},\qquad
+  S_z=\frac\hbar2\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\end{equation}
+电子的自旋大小固定：$S^2=S_x^2+S_y^2+S_z^2=3\hbar^2I/4$。因此大小为 $\sqrt3\hbar/2$，沿轴的分量则为 $\pm\hbar/2$；自旋方向或状态可以改变，但不是把电子变成另一种 $s$ 的粒子。
+
+\notetopic{QM-C14-S03-T02}{空间与自旋的联合状态}
+\keyidea{二分量波函数描述同一个电子的两个自旋通道，不是两个电子；只有自旋因子是二维的，完整状态仍包含连续空间自由度。}
+\begin{equation}
+  \hilbert_e=L^2(\real^3)\otimes\complex^2,\qquad
+  \ket{\mathbf r,\pm}=\ket{\mathbf r}\otimes\ket\pm,\qquad
+  \Psi(\mathbf r)=\begin{pmatrix}\psi_+(\mathbf r)\\\psi_-(\mathbf r)\end{pmatrix}.
+\end{equation}
+这里 $\psi_\pm(\mathbf r)=\braket{\mathbf r,\pm}{\Psi}$ 是概率振幅。归一化、边缘概率和位置密度分别为
+\begin{align}
+  &\int_{\real^3}\left(|\psi_+|^2+|\psi_-|^2\right)\dd^3r=1,\\
+  &P(S_z=\pm\hbar/2)=\int_{\real^3}|\psi_\pm(\mathbf r)|^2\dd^3r,\qquad
+  \rho(\mathbf r)=|\psi_+(\mathbf r)|^2+|\psi_-(\mathbf r)|^2.
+\end{align}
+忽略自旋结果时要对两个正交通道的概率求和，不能写成 $|\psi_++\psi_-|^2$。空间算符提升为 $A_o\otimes I_s$，自旋算符提升为 $I_o\otimes S_i$；例如 $P_j\Psi=-\ii\hbar\partial_j\Psi$ 同时对两个分量求导，而 $S_z$ 将上下分量分别乘以 $\hbar/2$、$-\hbar/2$。
+
+\textbf{何时可以只写两个数？}若完整纯态可分离，才有
+\begin{equation}
+  \ket\Psi=\ket{\psi_o}\otimes\ket\chi,\qquad
+  \Psi(\mathbf r)=\psi_o(\mathbf r)\begin{pmatrix}\alpha\\\beta\end{pmatrix},
+  \qquad |\alpha|^2+|\beta|^2=1
+\end{equation}
+（空间因子也取归一化）。一般的 $\psi_+,\psi_-$ 不必共享同一个空间因子，不能把两个函数直接当成两个常数。
+
+\dialoguesupplement{印刷 p.~379 从可分离 Hamiltonian 写出乘积态时，必须补上“初态是乘积态”。若 $H=H_o\otimes I_s+I_o\otimes H_s$，演化分解为 $U_o\otimes U_s$，所以初始乘积态保持乘积；初态已有的空间--自旋纠缠不会因此自动消失。无耦合与给定状态可分离，是两个不同判断。}
+
+\notetopic{QM-C14-S03-T03}{任意方向的自旋态与平均矢量}
+令 $\hat{\mathbf n}=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)$。沿此方向的自旋分量是
+\begin{equation}
+  S_{\mathbf n}=\hat{\mathbf n}\cdot\mathbf S
+    =\frac\hbar2\begin{pmatrix}
+      \cos\theta&\sin\theta\ee^{-\ii\varphi}\\
+      \sin\theta\ee^{\ii\varphi}&-\cos\theta
+    \end{pmatrix}.
+\end{equation}
+这表示角动量的方向分量，不是测量理论中的投影算符。其本征值仍为 $\pm\hbar/2$；采用教材的相位约定，
+\begin{equation}
+  \boxed{\chi_+=\ket{\hat{\mathbf n},+}
+    =\begin{pmatrix}\cos(\theta/2)\ee^{-\ii\varphi/2}\\
+      \sin(\theta/2)\ee^{\ii\varphi/2}\end{pmatrix},\qquad
+  \chi_-=\ket{\hat{\mathbf n},-}
+    =\begin{pmatrix}-\sin(\theta/2)\ee^{-\ii\varphi/2}\\
+      \cos(\theta/2)\ee^{\ii\varphi/2}\end{pmatrix}.}
+\end{equation}
+半角可从正本征值方程第一行看出：对 $0<\theta<\pi$，
+\begin{equation}
+  (\cos\theta-1)\alpha+\sin\theta\ee^{-\ii\varphi}\beta=0
+  \quad\Longrightarrow\quad
+  \frac\beta\alpha=\ee^{\ii\varphi}\tan\frac\theta2.
+\end{equation}
+再归一化即得 $\chi_+$；端点直接代回本征方程。两个态正交归一，并满足
+\begin{equation}
+  \boxed{\expect{\mathbf S}_\pm=\pm\frac\hbar2\hat{\mathbf n}.}
+\end{equation}
+“自旋指向 $\hat{\mathbf n}$”表示该方向分量确定、平均矢量沿该方向，不表示 $S_x,S_y,S_z$ 同时确定。若测量另一方向 $\hat{\mathbf a}$，概率仍由 $|\braket{\hat{\mathbf a},\pm}{\chi}|^2$ 给出。
+
+\textbf{纯态由一个方向刻画。}任意归一化自旋纯态去掉整体相位后，都可写成 $(\cos(\theta/2),\ee^{\ii\varphi}\sin(\theta/2))^{\mathsf T}$，因此是某个 $S_{\mathbf n}$ 的正本征态。两个复系数提供四个实参数，归一化与整体相位各去掉一个，最终只有两个物理参数；$\expect{\mathbf S}$ 的三个分量也受固定长度约束。特别地，
+\begin{equation}
+  |\expect{\mathbf S}|=\frac\hbar2
+  \ne\sqrt{\expect{S^2}}=\frac{\sqrt3\hbar}{2},\qquad
+  \sum_i(\Delta S_i)^2=\expect{S^2}-|\expect{\mathbf S}|^2=\frac{\hbar^2}{2}.
+\end{equation}
+上述固定平均长度与方向刻画限定于自旋纯态，不能直接用于空间--自旋纠缠后的自旋子系统。具体本征态与期望值计算见\relatedexercise{QM-C14-S03-E02}{习题 14.3.2}。
+
+\notetopic{QM-C14-S03-T04}{Pauli 矩阵与二阶算符的展开}
+定义无量纲的 Pauli matrices（泡利矩阵）$\boldsymbol\sigma=2\mathbf S/\hbar$，其具体矩阵即前面 $S_i$ 去掉 $\hbar/2$ 因子。基本规则为
+\begin{align}
+  &\sigma_i^\dagger=\sigma_i,\qquad \sigma_i^2=I,\qquad \Tr\sigma_i=0,\\
+  &\{\sigma_i,\sigma_j\}=2\delta_{ij}I,\qquad
+    [\sigma_i,\sigma_j]=2\ii\sum_k\epsilon_{ijk}\sigma_k,\\
+  &\boxed{\sigma_i\sigma_j=\delta_{ij}I+\ii\sum_k\epsilon_{ijk}\sigma_k.}
+\end{align}
+这里 $\{A,B\}=AB+BA$ 是 anticommutator（反对易子）。同指标乘积为 $I$；异指标按 $x\to y\to z\to x$ 循环有 $\sigma_x\sigma_y=\ii\sigma_z$，倒序变号。
+
+对普通数值矢量，有
+\begin{equation}
+  \boxed{(\mathbf A\cdot\boldsymbol\sigma)(\mathbf B\cdot\boldsymbol\sigma)
+    =(\mathbf A\cdot\mathbf B)I
+      +\ii(\mathbf A\times\mathbf B)\cdot\boldsymbol\sigma.}
+\end{equation}
+证明见\relatedexercise{QM-C14-S03-E03}{习题 14.3.4 第一种方法}。取实单位向量 $\mathbf A=\mathbf B=\hat{\mathbf n}$，立即得到 $(\hat{\mathbf n}\cdot\boldsymbol\sigma)^2=I$。教材也允许与所有 $\sigma_i$ 对易的算符分量作为 $A_i,B_j$；此时点积、叉积均按 $A_iB_j$ 的原顺序定义，不可擅自交换这些分量。
+
+\textbf{算符空间的基。}令 $\sigma_0=I$，则
+\begin{equation}
+  \frac12\Tr(\sigma_\alpha^\dagger\sigma_\beta)
+     =\delta_{\alpha\beta},\qquad \alpha,\beta\in\{0,x,y,z\}.
+\end{equation}
+这四个矩阵线性无关，恰好张成四复维的 $2\times2$ 矩阵空间。因此
+\begin{equation}
+  \boxed{M=\sum_{\alpha=0,x,y,z}m_\alpha\sigma_\alpha,
+    \qquad m_\alpha=\frac12\Tr(M\sigma_\alpha).}
+\end{equation}
+系数公式由展开式乘以 $\sigma_\alpha$ 后取迹得到。态空间是二维的，算符空间则是四维的，二者的基不能混淆。由于基矩阵都 Hermitian 且展开唯一，$M$ 是 Hermitian 当且仅当四个系数均为实数；取伴随时必须使用 $(cA)^\dagger=c^*A^\dagger$，不能遗漏系数的共轭。
+
+\notetopic{QM-C14-S03-T05}{有限旋转与半角}
+用 $\hat{\mathbf a}$ 表示旋转轴、$\alpha$ 表示旋转角，只作用于自旋空间的主动旋转为
+\begin{equation}
+  U_{\mathbf a}(\alpha)=\ee^{-\ii\alpha\hat{\mathbf a}\cdot\mathbf S/\hbar}
+     =\ee^{-\ii\alpha Q/2},\qquad Q=\hat{\mathbf a}\cdot\boldsymbol\sigma.
+\end{equation}
+由 $Q^2=I$，偶次幂全为 $I$，奇次幂全为 $Q$，所以
+\begin{align}
+  U_{\mathbf a}(\alpha)
+    &=\sum_{k=0}^\infty\frac{(-1)^k(\alpha/2)^{2k}}{(2k)!}I
+       -\ii\sum_{k=0}^\infty\frac{(-1)^k(\alpha/2)^{2k+1}}{(2k+1)!}Q\notag\\
+    &=\boxed{\cos\frac\alpha2\,I
+        -\ii\sin\frac\alpha2\,\hat{\mathbf a}\cdot\boldsymbol\sigma.}
+\end{align}
+半角来自 $\mathbf S=(\hbar/2)\boldsymbol\sigma$，不是把实际旋转角改成了一半。$Q^\dagger=Q$ 与 $Q^2=I$ 还保证 $U^\dagger U=I$。
+
+\textbf{相位的作用。}绕 $z$ 轴时 $U_z(\alpha)=\diag(\ee^{-\ii\alpha/2},\ee^{\ii\alpha/2})$。单一 $S_z$ 本征态只获得整体相位；两个分量均非零时，通常改变相对相位与物理状态。
+
+\dialoguesupplement{由旋转公式可得 $U_{\mathbf a}(2\pi)=-I$、$U_{\mathbf a}(4\pi)=I$。前者使旋量变号，但单独一个态的整体负号不改变物理射线。必须区分“态矢量恢复”与“物理状态相同”，不能声称电子转一圈后就成为不同的物理状态。}
+
+教材的单轴旋转演示见\relatedexercise{QM-C14-S03-E01}{从沿 $z$ 向上到任意方向}；先绕固定 $y$ 轴、再绕固定 $z$ 轴的复合旋转见\relatedexercise{QM-C14-S03-E04}{习题 14.3.6}。完整空间旋转的生成元仍是 $\mathbf J$，不能在一般含轨道自由度的问题中只保留 $\mathbf S$。
+
+\textbf{一分钟回顾。}电子完整空间为 $L^2(\real^3)\otimes\complex^2$，旋转生成元为 $\mathbf L+\mathbf S$。任意方向的自旋测量只有 $\pm\hbar/2$；自旋纯态可由平均矢量的方向刻画。Pauli 矩阵的乘法规则与 $I$ 构成二阶算符的计算工具，其中 $(\hat{\mathbf n}\cdot\boldsymbol\sigma)^2=I$ 直接给出有限旋转的半角公式。本节建立运动学，具体自旋 Hamiltonian 与时间演化留到 \S 14.4。

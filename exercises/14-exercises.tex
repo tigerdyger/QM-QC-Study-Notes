@@ -1,0 +1,225 @@
+\section{第 14.3 节课程题目：自旋态、Pauli 代数与旋转}
+\label{exercises:QM-C14-S03}
+\exercisemeta
+  {QM-C14-S03}
+  {2026-10-29 至 2026-10-31}
+  {Shankar, Second Edition；正文示范印刷 pp.~383--384 / PDF pp.~390--391；Exercises 14.3.2、14.3.4 在印刷 p.~384 / PDF p.~391，14.3.6 在印刷 p.~385 / PDF p.~392}
+  {一处教材正文示范已讲解；三道选定习题已作答并核对}
+  {笔记已确认}
+
+本节无独立编号 Example；第一项整理教材正文中的旋转示范。习题 14.3.4 只选第一种证明方法，其余未选题不要求补做。以下补齐引用公式与约定，不收入课堂概念检查。
+
+\exercisequestion{QM-C14-S03-E01}{教材正文示范：一次旋转得到任意方向的自旋态}
+\textbf{来源：}印刷 pp.~383--384，式 (14.3.45)--(14.3.47)，无独立 Example 编号。
+
+\textbf{对应知识点：}\relatedtopic{QM-C14-S03-T05}{有限旋转与半角}。
+
+\textbf{示范任务。}初态为 $\ket{z,+}=(1,0)^{\mathsf T}$。目标方向为
+$\hat{\mathbf n}=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)$。
+先取 $0<\theta<\pi$，选择把 $+\hat{\mathbf z}$ 转到 $\hat{\mathbf n}$ 的旋转轴，用
+\begin{equation}
+  U_{\mathbf a}(\alpha)=\cos\frac\alpha2 I
+    -\ii\sin\frac\alpha2\hat{\mathbf a}\cdot\boldsymbol\sigma
+\end{equation}
+求旋转后的态，并与教材相位约定
+$\ket{\hat{\mathbf n},+}=(\cos(\theta/2)\ee^{-\ii\varphi/2},
+\sin(\theta/2)\ee^{\ii\varphi/2})^{\mathsf T}$ 比较。
+
+\begin{checkedsolution}
+按右手定则选轴和角度：
+\begin{equation}
+  \hat{\mathbf a}=\frac{\hat{\mathbf z}\times\hat{\mathbf n}}
+     {|\hat{\mathbf z}\times\hat{\mathbf n}|}
+     =(-\sin\varphi,\cos\varphi,0),\qquad \alpha=\theta.
+\end{equation}
+由 Pauli 矩阵，
+\begin{equation}
+  \hat{\mathbf a}\cdot\boldsymbol\sigma
+    =\begin{pmatrix}0&-\ii\ee^{-\ii\varphi}\\
+      \ii\ee^{\ii\varphi}&0\end{pmatrix},\qquad
+  U_{\mathbf a}(\theta)=\begin{pmatrix}
+      \cos(\theta/2)&-\sin(\theta/2)\ee^{-\ii\varphi}\\
+      \sin(\theta/2)\ee^{\ii\varphi}&\cos(\theta/2)
+    \end{pmatrix}.
+\end{equation}
+作用于初态即取第一列：
+\begin{equation}
+  \boxed{U_{\mathbf a}(\theta)\ket{z,+}
+    =\begin{pmatrix}\cos(\theta/2)\\\sin(\theta/2)\ee^{\ii\varphi}\end{pmatrix}
+    =\ee^{\ii\varphi/2}\ket{\hat{\mathbf n},+}.}
+\end{equation}
+两者只差整体相位，物理状态相同。$\theta=0,\pi$ 时不能再用叉积归一化来定义轴，但上面的显式选轴与旋转矩阵仍适用；极点处方位角不再指定不同的目标方向。
+\end{checkedsolution}
+
+\exercisequestion{QM-C14-S03-E02}{教材习题 14.3.2：本征旋量与自旋期望值}
+\textbf{对应知识点：}\relatedtopic{QM-C14-S03-T03}{任意方向的自旋态}。
+
+\textbf{题目。}在 $S_z$ 本征基下取
+\begin{equation}
+  S_x=\frac\hbar2\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+  S_y=\frac\hbar2\begin{pmatrix}0&-\ii\\\ii&0\end{pmatrix},\quad
+  S_z=\frac\hbar2\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\end{equation}
+令 $\hat{\mathbf n}=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)$，$0\le\theta\le\pi$，并给出
+\begin{equation}
+  \chi_+=\begin{pmatrix}\cos(\theta/2)\ee^{-\ii\varphi/2}\\
+      \sin(\theta/2)\ee^{\ii\varphi/2}\end{pmatrix},\qquad
+  \chi_-=\begin{pmatrix}-\sin(\theta/2)\ee^{-\ii\varphi/2}\\
+      \cos(\theta/2)\ee^{\ii\varphi/2}\end{pmatrix}.
+\end{equation}
+验证 $S_{\mathbf n}\chi_\pm=\pm\hbar\chi_\pm/2$，并分别计算三个分量的期望值，证明 $\expect{\mathbf S}_\pm=\pm\hbar\hat{\mathbf n}/2$。原题使用 $\hat{\mathbf n}\cdot\boldsymbol\sigma$ 的本征值 $\pm1$，与此完全等价。
+
+\begin{checkedsolution}
+\textbf{1. 本征态。}记 $c=\cos(\theta/2)$、$s=\sin(\theta/2)$。由
+$\cos\theta=c^2-s^2$、$\sin\theta=2cs$，可得
+\begin{equation}
+  c\cos\theta+s\sin\theta=c,\qquad
+  c\sin\theta-s\cos\theta=s.
+\end{equation}
+于是直接相乘给出
+\begin{align}
+  S_{\mathbf n}\chi_+
+   &=\frac\hbar2\begin{pmatrix}
+     \ee^{-\ii\varphi/2}(c\cos\theta+s\sin\theta)\\
+     \ee^{\ii\varphi/2}(c\sin\theta-s\cos\theta)
+     \end{pmatrix}=\frac\hbar2\chi_+,\\
+  S_{\mathbf n}\chi_-
+   &=\frac\hbar2\begin{pmatrix}
+     \ee^{-\ii\varphi/2}(-s\cos\theta+c\sin\theta)\\
+     \ee^{\ii\varphi/2}(-s\sin\theta-c\cos\theta)
+     \end{pmatrix}=-\frac\hbar2\chi_-.
+\end{align}
+同时 $\chi_\pm^\dagger\chi_\pm=c^2+s^2=1$、$\chi_+^\dagger\chi_-=0$，故确为正交归一本征基。
+
+\textbf{2. 期望值。}对任意归一化列向量 $\chi=(a,b)^{\mathsf T}$，直接矩阵相乘得到
+\begin{equation}
+  \expect{S_x}=\hbar\operatorname{Re}(a^*b),\qquad
+  \expect{S_y}=\hbar\operatorname{Im}(a^*b),\qquad
+  \expect{S_z}=\frac\hbar2(|a|^2-|b|^2).
+\end{equation}
+其中 $S_y$ 的组合是 $\hbar(-\ii a^*b+\ii b^*a)/2$，取伴随时相位须共轭。对 $\chi_+$ 有 $a^*b=cs\ee^{\ii\varphi}$，对 $\chi_-$ 有 $a^*b=-cs\ee^{\ii\varphi}$，所以
+\begin{equation}
+  \begin{array}{c|ccc}
+    &\expect{S_x}&\expect{S_y}&\expect{S_z}\\ \hline
+    \chi_+&\hbar cs\cos\varphi&\hbar cs\sin\varphi&\hbar(c^2-s^2)/2\\
+    \chi_-&-\hbar cs\cos\varphi&-\hbar cs\sin\varphi&\hbar(s^2-c^2)/2
+  \end{array}
+\end{equation}
+利用 $2cs=\sin\theta$，最终
+\begin{equation}
+  \boxed{\expect{\mathbf S}_\pm
+    =\pm\frac\hbar2(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta).}
+\end{equation}
+这些是平均值，不表示三个分量同时具有确定测量值。
+\end{checkedsolution}
+
+\exercisequestion{QM-C14-S03-E03}{教材习题 14.3.4：由对易关系推导乘积恒等式}
+\textbf{对应知识点：}\relatedtopic{QM-C14-S03-T04}{Pauli 矩阵代数}。
+
+\textbf{题目。}只采用原题的第一种方法。设 $\mathbf A,\mathbf B$ 是普通实数矢量，已知
+\begin{equation}
+  [\sigma_i,\sigma_j]=2\ii\sum_k\epsilon_{ijk}\sigma_k,
+  \qquad \{\sigma_i,\sigma_j\}=2\delta_{ij}I.
+\end{equation}
+先将 $\sigma_i\sigma_j$ 用对易子与反对易子表示，再证明
+$(\mathbf A\cdot\boldsymbol\sigma)(\mathbf B\cdot\boldsymbol\sigma)
+=(\mathbf A\cdot\mathbf B)I+\ii(\mathbf A\times\mathbf B)\cdot\boldsymbol\sigma$。
+
+\begin{checkedsolution}
+将对易子与反对易子相加：
+\begin{equation}
+  \sigma_i\sigma_j=\frac12\bigl(\{\sigma_i,\sigma_j\}+[\sigma_i,\sigma_j]\bigr)
+    =\delta_{ij}I+\ii\sum_k\epsilon_{ijk}\sigma_k.
+\end{equation}
+于是
+\begin{align}
+  (\mathbf A\cdot\boldsymbol\sigma)(\mathbf B\cdot\boldsymbol\sigma)
+    &=\sum_{i,j}A_iB_j\sigma_i\sigma_j\notag\\
+    &=\sum_iA_iB_iI
+       +\ii\sum_k\left(\sum_{i,j}\epsilon_{ijk}A_iB_j\right)\sigma_k.
+\end{align}
+第一项是 $(\mathbf A\cdot\mathbf B)I$。循环置换不改变 Levi-Civita 符号，故
+\begin{equation}
+  \epsilon_{ijk}=\epsilon_{kij},\qquad
+  \sum_{i,j}\epsilon_{ijk}A_iB_j=(\mathbf A\times\mathbf B)_k.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{(\mathbf A\cdot\boldsymbol\sigma)(\mathbf B\cdot\boldsymbol\sigma)
+    =(\mathbf A\cdot\mathbf B)I
+     +\ii(\mathbf A\times\mathbf B)\cdot\boldsymbol\sigma.}
+\end{equation}
+这里是循环置换，不是交换两个指标，所以没有额外负号；标量点积项前的单位矩阵也不可省略其含义。
+\end{checkedsolution}
+
+\exercisequestion{QM-C14-S03-E04}{教材习题 14.3.6：先绕固定 y 轴，再绕固定 z 轴}
+\textbf{对应知识点：}\relatedtopic{QM-C14-S03-T05}{有限旋转与顺序}。
+
+\textbf{题目。}初态为 $\ket{z,+}=(1,0)^{\mathsf T}$，目标方向为
+$\hat{\mathbf n}=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)$。
+采用右手定则的主动旋转，且两次均绕固定坐标轴。给定
+\begin{equation}
+  U_y(\theta)=\ee^{-\ii\theta\sigma_y/2},\quad
+  U_z(\varphi)=\ee^{-\ii\varphi\sigma_z/2},\quad
+  \sigma_y=\begin{pmatrix}0&-\ii\\\ii&0\end{pmatrix},\quad
+  \sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\end{equation}
+先从几何说明 $R_z(\varphi)R_y(\theta)\hat{\mathbf z}=\hat{\mathbf n}$ 及算符的作用顺序，再用 $\ee^{-\ii\alpha\sigma_i/2}=\cos(\alpha/2)I-\ii\sin(\alpha/2)\sigma_i$ 显式验证
+\begin{equation}
+  U_z(\varphi)U_y(\theta)\ket{z,+}
+    =\begin{pmatrix}\cos(\theta/2)\ee^{-\ii\varphi/2}\\
+      \sin(\theta/2)\ee^{\ii\varphi/2}\end{pmatrix}
+    =\ket{\hat{\mathbf n},+}.
+\end{equation}
+
+\begin{checkedsolution}
+\textbf{1. 几何与顺序。}先绕 $y$ 轴改变极角，再绕 $z$ 轴改变方位角：
+\begin{equation}
+  \begin{pmatrix}0\\0\\1\end{pmatrix}
+    \xrightarrow{R_y(\theta)}
+  \begin{pmatrix}\sin\theta\\0\\\cos\theta\end{pmatrix}
+    \xrightarrow{R_z(\varphi)}
+  \begin{pmatrix}\sin\theta\cos\varphi\\\sin\theta\sin\varphi\\\cos\theta\end{pmatrix}.
+\end{equation}
+\begin{center}
+\begin{tikzpicture}[>=Stealth,scale=0.9,font=\small]
+  \begin{scope}
+    \draw[->] (0,0)--(2.55,0) node[right] {$x$};
+    \draw[->] (0,0)--(0,2.5) node[above] {$z$};
+    \draw[->,very thick,noteBlue] (0,0)--(0,2.1);
+    \draw[->,very thick,accentRed] (0,0)--(40:2.1)
+      node[above right] {$\mathbf n_1$};
+    \draw[->] (0,0.72) arc[start angle=90,end angle=40,radius=0.72];
+    \node at (0.39,0.9) {$\theta$};
+    \node[align=center] at (1.05,-0.6) {先绕 $y$ 轴\\$xz$ 平面};
+  \end{scope}
+  \begin{scope}[xshift=6cm]
+    \draw[->] (0,0)--(2.55,0) node[right] {$x$};
+    \draw[->] (0,0)--(0,2.5) node[above] {$y$};
+    \draw[->,very thick,noteBlue] (0,0)--(2.1,0);
+    \draw[->,very thick,accentRed] (0,0)--(40:2.1)
+      node[above right] {$\mathbf n_{xy}$};
+    \draw[->] (0.72,0) arc[start angle=0,end angle=40,radius=0.72];
+    \node at (0.98,0.35) {$\varphi$};
+    \node[align=center] at (1.05,-0.6) {再绕 $z$ 轴\\仅画 $xy$ 投影};
+  \end{scope}
+\end{tikzpicture}
+
+{\small 原创方向示意，角度与长度不按同一比例；第二步保持 $z$ 分量 $\cos\theta$ 不变。}
+\end{center}
+列向量从右向左受作用，所以先发生的 $U_y$ 写在右边，后发生的 $U_z$ 写在左边。几何只能确定最终自旋方向，即物理态的射线；具体整体相位须由下面的矩阵计算确定。
+
+\textbf{2. 显式计算。}记 $c=\cos(\theta/2)$、$s=\sin(\theta/2)$。由 $(-\ii)(-\ii)=-1$、$(-\ii)\ii=1$，
+\begin{equation}
+  U_y(\theta)=\begin{pmatrix}c&-s\\s&c\end{pmatrix},\qquad
+  U_z(\varphi)=\begin{pmatrix}\ee^{-\ii\varphi/2}&0\\0&\ee^{\ii\varphi/2}\end{pmatrix}.
+\end{equation}
+依次作用得到
+\begin{equation}
+  U_y(\theta)\ket{z,+}=\begin{pmatrix}c\\s\end{pmatrix},\qquad
+  \boxed{U_z(\varphi)U_y(\theta)\ket{z,+}
+    =\begin{pmatrix}c\ee^{-\ii\varphi/2}\\s\ee^{\ii\varphi/2}\end{pmatrix}
+    =\ket{\hat{\mathbf n},+}.}
+\end{equation}
+在本题约定下是态矢量的精确相等；与前面的单轴旋转示范相比，不同的旋转操作将此初态送到同一方向，但所得代表矢量可以相差整体相位。
+\end{checkedsolution}
