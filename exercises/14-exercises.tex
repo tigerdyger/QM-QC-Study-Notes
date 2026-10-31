@@ -223,3 +223,171 @@ $\hat{\mathbf n}=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)$。
 \end{equation}
 在本题约定下是态矢量的精确相等；与前面的单轴旋转示范相比，不同的旋转操作将此初态送到同一方向，但所得代表矢量可以相差整体相位。
 \end{checkedsolution}
+
+\section{第 14.4 节课程题目：磁矩进动与共振演化}
+\label{exercises:QM-C14-S04}
+\exercisemeta
+  {QM-C14-S04}
+  {2026-10-31 至 2026-11-01}
+  {Shankar, Second Edition；Exercise 14.4.1 在印刷 pp.~395--396 / PDF pp.~402--403；14.4.3 在印刷 p.~396 / PDF p.~403}
+  {两道选定习题均已作答并核对}
+  {笔记已确认}
+
+本节无独立编号 Example。只选习题 14.4.1、14.4.3；后者分为参考系变换、演化算符、测量结果三步完成。其余习题未独立选做，不收入课堂概念检查。以下题干按本笔记的符号约定转述，并补齐所需定义。
+
+\exercisequestion{QM-C14-S04-E01}{教材习题 14.4.1：期望值的精确进动方程}
+\textbf{对应知识点：}\relatedtopic{QM-C14-S04-T01}{磁矩与进动}、\relatedtopic{QM-C14-S04-T03}{自旋时间演化}。
+
+\textbf{题目。}给定 $H=-\gamma\mathbf L\cdot\mathbf B$、$\boldsymbol\mu=\gamma\mathbf L$，其中 $\gamma$ 为常数，$\mathbf B$ 是不依赖位置的经典外场。证明
+\begin{equation}
+  \frac{\dd\expect{\mathbf L}}{\dd t}
+   =\expect{\boldsymbol\mu\times\mathbf B}
+   =\expect{\boldsymbol\mu}\times\mathbf B.
+\end{equation}
+并说明教材随后指出的两种推广：$\mathbf B$ 可以依赖时间；将 $\mathbf L$ 换成 $\mathbf S$ 后同样成立。可用 $[L_i,L_j]=\ii\hbar\sum_k\epsilon_{ijk}L_k$ 与 Ehrenfest 定理。
+
+\begin{checkedsolution}
+\textbf{1. 一个分量。}外场分量是与 $\mathbf L$ 对易的数，故
+\begin{align}
+  [L_x,H]
+    &=-\gamma\bigl(B_x[L_x,L_x]+B_y[L_x,L_y]+B_z[L_x,L_z]\bigr)\notag\\
+    &=-\gamma\bigl(\ii\hbar B_yL_z-\ii\hbar B_zL_y\bigr)
+      =\ii\hbar\gamma(L_yB_z-L_zB_y).
+\end{align}
+$L_x$ 不显含时间，因此
+\begin{equation}
+  \frac{\dd\expect{L_x}}{\dd t}
+    =\frac1{\ii\hbar}\expect{[L_x,H]}
+    =\gamma\expect{L_yB_z-L_zB_y}
+    =\expect{(\boldsymbol\mu\times\mathbf B)_x}.
+\end{equation}
+循环置换 $x\to y\to z\to x$ 得到另两个分量，合并并把外场提出期望值：
+\begin{equation}
+  \boxed{\frac{\dd\expect{\mathbf L}}{\dd t}
+     =\expect{\boldsymbol\mu\times\mathbf B}
+     =\expect{\boldsymbol\mu}\times\mathbf B.}
+\end{equation}
+
+\textbf{2. 推广。}若 $\mathbf B=\mathbf B(t)$，上述每一时刻的对易计算不变；$H$ 含时并不在 $\dd\expect{\mathbf L}/\dd t$ 中额外产生 $\expect{\partial_tH}$，显含时间项应检查的是可观测量 $\mathbf L$。因此
+\begin{equation}
+  \frac{\dd\expect{\mathbf L}}{\dd t}
+       =\gamma\expect{\mathbf L}\times\mathbf B(t).
+\end{equation}
+此时有效轴可变，不必是固定轴匀速进动。自旋满足同样的角动量代数，故在 $H_S=-\gamma\mathbf S\cdot\mathbf B(t)$ 下，
+\begin{equation}
+  \boxed{\frac{\dd\expect{\mathbf S}}{\dd t}
+       =\gamma\expect{\mathbf S}\times\mathbf B(t).}
+\end{equation}
+应取该粒子自旋磁矩对应的 $\gamma$，不强令它等于轨道旋磁比。结论对给定 Hamiltonian 精确成立，不要求经典极限；也不意味着量子态具有同时确定的三个角动量分量。
+\end{checkedsolution}
+
+\exercisequestion{QM-C14-S04-E02}{教材习题 14.4.3：旋转系中的精确求解}
+\textbf{对应知识点：}\relatedtopic{QM-C14-S04-T04}{旋转磁场、共振与脉冲}。
+
+\textbf{题目与约定。}电子自旋满足 $H=-\gamma\mathbf S\cdot\mathbf B(t)$、$\gamma<0$，初态为 $\ket{\psi(0)}=\ket{z,+}=(1,0)^{\mathsf T}$。采用本笔记的正向旋转场
+\begin{equation}
+  \mathbf B(t)=B_0\hat{\mathbf z}
+    +B_1(\cos\omega t\,\hat{\mathbf x}+\sin\omega t\,\hat{\mathbf y}),
+  \qquad B_0,B_1>0,
+\end{equation}
+其中驱动频率和幅度恒定。教材用 $B\cos\omega_{\rm book}t\,\hat{\mathbf x}-B\sin\omega_{\rm book}t\,\hat{\mathbf y}$；取 $B=B_1$、$\omega_{\rm book}=-\omega$ 即与这里相同，态变换也随之转换。定义
+\begin{align}
+  &\Omega_0=-\gamma B_0,\quad \Omega_1=-\gamma B_1,\quad
+  \Delta=\Omega_0-\omega,\quad \Omega_R=\sqrt{\Delta^2+\Omega_1^2},\\
+  &\ket{\psi_r}=V\ket\psi,\qquad V=\ee^{+\ii\omega tS_z/\hbar}.
+\end{align}
+\begin{enumerate}
+  \item 从实验室 Schrödinger 方程推导旋转系方程，求不含时间的 $H_r$。
+  \item 求 $U_r(t)$，显式写出旋转系及实验室系中的两分量态，并检查初值与归一化。
+  \item 比较共振时的态与沿某方向的自旋纯态，计算 $\expect{\mu_z}_t$，验证教材式 (14.4.31) 的进动几何结构。由同一结果读出翻转概率、第一次完全翻转的时间及固定失谐时的最大概率。
+\end{enumerate}
+
+\begin{checkedsolution}
+\textbf{1. 含时变换。}乘积求导并用 $\ket\psi=V^\dagger\ket{\psi_r}$：
+\begin{align}
+  \ii\hbar\frac{\dd}{\dd t}\ket{\psi_r}
+    &=\ii\hbar\dot V\ket\psi+VH\ket\psi\notag\\
+    &=\left(VHV^\dagger+\ii\hbar\dot VV^\dagger\right)\ket{\psi_r}.
+\end{align}
+在 $S_z$ 基底下，
+\begin{equation}
+  V=\begin{pmatrix}\ee^{\ii\omega t/2}&0\\0&\ee^{-\ii\omega t/2}\end{pmatrix},
+  \qquad H(t)=\frac\hbar2
+    \begin{pmatrix}\Omega_0&\Omega_1\ee^{-\ii\omega t}\\
+      \Omega_1\ee^{\ii\omega t}&-\Omega_0\end{pmatrix}.
+\end{equation}
+左右相乘消去非对角元的时间相位，且 $\dot V=(\ii\omega S_z/\hbar)V$，所以
+\begin{equation}
+  VHV^\dagger=\Omega_0S_z+\Omega_1S_x,\qquad
+  \ii\hbar\dot VV^\dagger=-\omega S_z,
+  \qquad \boxed{H_r=\Delta S_z+\Omega_1S_x.}
+\end{equation}
+后一个负号来自 $\ii^2=-1$，不能把含时变换仅当成相似变换。
+
+\textbf{2. 求矩阵指数。}对 $\Omega_R>0$，令
+\begin{equation}
+  M=\frac{\Delta\sigma_z+\Omega_1\sigma_x}{\Omega_R}.
+\end{equation}
+由 $\sigma_x^2=\sigma_z^2=I$、$\{\sigma_x,\sigma_z\}=0$，
+\begin{equation}
+  M^2=\frac{\Delta^2+\Omega_1^2}{\Omega_R^2}I=I.
+\end{equation}
+令 $c_t=\cos(\Omega_Rt/2)$、$s_t=\sin(\Omega_Rt/2)$。指数级数的偶次幂给出 $c_tI$，奇次幂给出 $-\ii s_tM$，因此
+\begin{equation}
+  \boxed{U_r(t)=c_tI-\ii s_tM
+   =\begin{pmatrix}
+     c_t-\ii\dfrac\Delta{\Omega_R}s_t&-\ii\dfrac{\Omega_1}{\Omega_R}s_t\\[4pt]
+     -\ii\dfrac{\Omega_1}{\Omega_R}s_t&c_t+\ii\dfrac\Delta{\Omega_R}s_t
+   \end{pmatrix}.}
+\end{equation}
+作用于初态即取第一列；再乘 $V^\dagger$ 回到实验室系：
+\begin{align}
+  \ket{\psi_r(t)}&=\begin{pmatrix}
+    c_t-\ii(\Delta/\Omega_R)s_t\\-\ii(\Omega_1/\Omega_R)s_t
+    \end{pmatrix},\\
+  \boxed{\ket{\psi(t)}}&=
+   \boxed{\begin{pmatrix}
+     \ee^{-\ii\omega t/2}\bigl[c_t-\ii(\Delta/\Omega_R)s_t\bigr]\\[4pt]
+     -\ii\ee^{\ii\omega t/2}(\Omega_1/\Omega_R)s_t
+   \end{pmatrix}.}
+\end{align}
+$t=0$ 恢复初态。两个分量的模平方之和为
+$c_t^2+(\Delta^2+\Omega_1^2)s_t^2/\Omega_R^2=1$。若同时令 $\Delta=\Omega_1=0$，应直接用 $H_r=0$、$U_r=I$；实验室态为 $\ee^{-\ii\omega t/2}\ket{z,+}$，而非使用带 $1/\Omega_R$ 的表达式。
+
+\textbf{3. 翻转概率与磁矩。}记实验室系分量为 $a_t,b_t$。相位因子不改变模平方，故
+\begin{equation}
+  \boxed{P_{+\to-}=|b_t|^2
+    =\frac{\Omega_1^2}{\Omega_R^2}\sin^2\frac{\Omega_Rt}{2}.}
+\end{equation}
+利用 $|a_t|^2+|b_t|^2=1$ 和 $2\sin^2(u/2)=1-\cos u$，
+\begin{align}
+  \expect{S_z}_t
+    &=\frac\hbar2(1-2|b_t|^2)
+      =\frac\hbar2\frac{\Delta^2+\Omega_1^2\cos\Omega_Rt}{\Omega_R^2},\\
+  \boxed{\expect{\mu_z}_t}
+    &=\boxed{\frac{\gamma\hbar}{2}
+       \frac{\Delta^2+\Omega_1^2\cos\Omega_Rt}{\Delta^2+\Omega_1^2}.}
+\end{align}
+有效轴 $\hat{\mathbf n}=(\Omega_1,0,\Delta)/\Omega_R$ 满足 $\cos\alpha=\Delta/\Omega_R$，因此该式正是
+\begin{equation}
+  \expect{\mu_z}_t=\expect{\mu_z}_0
+    (\cos^2\alpha+\sin^2\alpha\cos\Omega_Rt),\qquad
+  \expect{\mu_z}_0=\frac{\gamma\hbar}{2}<0.
+\end{equation}
+这与教材的经典旋转几何结构一致；负的初始磁矩分量不能替换成正的磁矩大小。
+
+\textbf{4. 共振态与脉冲。}共振时 $\Delta=0$，旋转系态为
+$\bigl(\cos(\Omega_1t/2),-\ii\sin(\Omega_1t/2)\bigr)^{\mathsf T}$，即绕 $+x$ 旋转。其平均方向为 $(0,-\sin\Omega_1t,\cos\Omega_1t)$；回到实验室系还要绕 $+z$ 旋转 $\omega t$。例如在 $0\le\Omega_1t\le\pi$ 内，实验室态与 \S 14.3 的方向旋量比较，极角为 $\Omega_1t$、方位角为 $\omega t-\pi/2$，只差整体相位。
+
+共振翻转概率为 $\sin^2(\Omega_1t/2)$，第一次达到 $1$ 的时刻为
+\begin{equation}
+  \boxed{t_{\rm flip}=\frac\pi{\Omega_1}.}
+\end{equation}
+这就是 $\pi$ 脉冲的时长；到达该时刻后关闭横向场，留下的 $B_0$ 只使 $\ket{z,-}$ 获得整体相位。若一直驱动，仍会继续振荡。
+
+固定 $\Delta\ne0$ 时，
+\begin{equation}
+  \boxed{P_{\max}=\frac{\Omega_1^2}{\Delta^2+\Omega_1^2}<1.}
+\end{equation}
+所以仅延长恒定幅度、恒定失谐的驱动时间不能完全翻转。上述结论来自给定理想磁场下的精确量子演化，不包含环境弛豫。
+\end{checkedsolution}

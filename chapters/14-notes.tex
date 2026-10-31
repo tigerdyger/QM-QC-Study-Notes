@@ -216,3 +216,246 @@
 教材的单轴旋转演示见\relatedexercise{QM-C14-S03-E01}{从沿 $z$ 向上到任意方向}；先绕固定 $y$ 轴、再绕固定 $z$ 轴的复合旋转见\relatedexercise{QM-C14-S03-E04}{习题 14.3.6}。完整空间旋转的生成元仍是 $\mathbf J$，不能在一般含轨道自由度的问题中只保留 $\mathbf S$。
 
 \textbf{一分钟回顾。}电子完整空间为 $L^2(\real^3)\otimes\complex^2$，旋转生成元为 $\mathbf L+\mathbf S$。任意方向的自旋测量只有 $\pm\hbar/2$；自旋纯态可由平均矢量的方向刻画。Pauli 矩阵的乘法规则与 $I$ 构成二阶算符的计算工具，其中 $(\hat{\mathbf n}\cdot\boldsymbol\sigma)^2=I$ 直接给出有限旋转的半角公式。本节建立运动学，具体自旋 Hamiltonian 与时间演化留到 \S 14.4。
+
+\section{第 14.4 节：磁矩、自旋进动与共振}
+\label{section:QM-C14-S04}
+\studymeta
+  {QM-C14-S04}
+  {2026-10-31 至 2026-11-01}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {\S 14.4 Spin Dynamics；印刷 pp.~385--397 / PDF pp.~392--404，至 \S 14.5 标题前；含印刷 pp.~394--395 的选读内容}
+  {五块讲解及习题 14.4.1、14.4.3 已核对；笔记已确认}
+
+\textbf{单位与范围。}沿用教材的 Gaussian 电磁单位制；磁矩公式中的 $c$ 为光速，在相应 SI 公式中不出现。$e>0$ 是元电荷大小，电子电荷为 $-e$。前两块建立磁耦合，随后只研究自旋与给定经典外场的作用，不把 $H_S$ 当成包含轨道运动和环境的完整 Hamiltonian。
+
+\notetopic{QM-C14-S04-T01}{磁矩与经典进动}
+\keyidea{磁矩决定磁场怎样对角动量施加力矩；没有耗散时，磁力矩产生进动，而非自动把磁矩拉到最低能量方向。}
+
+\textbf{磁耦合的起点。}电流回路在均匀磁场中受力矩
+\begin{equation}
+  \boldsymbol\tau=\boldsymbol\mu\times\mathbf B,\qquad
+  \mathcal H_{\rm int}=-\boldsymbol\mu\cdot\mathbf B.
+\end{equation}
+其中 $\boldsymbol\mu$ 为 magnetic moment（磁矩）。若 $\vartheta$ 是磁矩与磁场夹角，则 $\mathcal H_{\rm int}=-\mu B\cos\vartheta$，平行时磁耦合能最低；这不是完整系统的全部能量。
+
+\textbf{轨道磁矩从何而来？}电荷 $q$、质量 $m$ 的粒子以速率 $v$ 沿半径 $r$ 的圆周运动，相当于电流 $I=qv/(2\pi r)$。用沿运动方向确定的面积法向量 $\hat{\mathbf n}$，
+\begin{equation}
+  \boldsymbol\mu=\frac{I\pi r^2}{c}\hat{\mathbf n}
+    =\frac{q}{2mc}(mvr\hat{\mathbf n})
+    =\gamma\boldsymbol\ell,\qquad
+  \boxed{\gamma=\frac{q}{2mc}.}
+\end{equation}
+$\gamma$ 称为 gyromagnetic ratio（旋磁比），含电荷的符号；电子的轨道磁矩与轨道角动量反向。由力矩等于角动量变化率，
+\begin{equation}
+  \dot{\boldsymbol\ell}=\gamma\boldsymbol\ell\times\mathbf B
+    =\boldsymbol\omega_L\times\boldsymbol\ell,\qquad
+  \boxed{\boldsymbol\omega_L=-\gamma\mathbf B.}
+\end{equation}
+对恒定磁场，$\boldsymbol\ell\cdot\dot{\boldsymbol\ell}=0$ 且 $\dot{\boldsymbol\ell}\cdot\mathbf B=0$，所以角动量大小和沿磁场分量均不变：矢量绕磁场匀速进动，倾角固定。要最终趋于最低能量方向，必须另有能量传递或弛豫机制。
+
+\notetopic{QM-C14-S04-T02}{从轨道磁矩到自旋 Hamiltonian}
+\textbf{最小耦合与算符排序。}在没有标势的模型中，$\mathbf P$ 是正则动量：
+\begin{align}
+  H_o&=\frac1{2m}\left(\mathbf P-\frac qc\mathbf A\right)^2\notag\\
+    &=\frac{\mathbf P^2}{2m}
+       -\frac{q}{2mc}(\mathbf P\cdot\mathbf A+\mathbf A\cdot\mathbf P)
+       +\frac{q^2}{2mc^2}\mathbf A^2,\\
+  \mathbf P\cdot\mathbf A
+    &=\mathbf A\cdot\mathbf P-\ii\hbar\nabla\cdot\mathbf A.
+\end{align}
+对 $\mathbf B=B\hat{\mathbf z}$，选对称规范
+$\mathbf A=\tfrac B2(-Y,X,0)$，则 $\nabla\cdot\mathbf A=0$、$\mathbf A\cdot\mathbf P=BL_z/2$，从而
+\begin{equation}
+  H_o=\frac{\mathbf P^2}{2m}-\frac{q}{2mc}\mathbf L\cdot\mathbf B
+       +\frac{q^2B^2}{8mc^2}(X^2+Y^2).
+\end{equation}
+保留弱外场的一阶效应，并假定二次项可忽略，得到
+\begin{equation}
+  H_{L,\rm int}=-\boldsymbol\mu_L\cdot\mathbf B,\qquad
+  \boxed{\boldsymbol\mu_L=\frac{q}{2mc}\mathbf L.}
+\end{equation}
+忽略 $B^2$ 项是近似，不是它恒等于零；涉及该项的磁效应不能用线性截断讨论。
+
+\textbf{自旋磁矩还需要物理输入。}对于电子，
+\begin{equation}
+  \boxed{\boldsymbol\mu_S=-g\frac{e}{2m_ec}\mathbf S
+    =\gamma\mathbf S,\qquad
+    \gamma=-g\frac{e}{2m_ec}<0.}
+\end{equation}
+$g$ 为无量纲的 $g$ factor（$g$ 因子），本节取 $g\simeq2$。角动量代数并不能单独推出这个值；教材说明 Dirac 理论给出 $2$，量子电动力学提供小修正。自旋不应被解释为产生这一磁矩的经典刚性自转。
+
+Bohr magneton（玻尔磁子）定义为
+\begin{equation}
+  \mu_B=\frac{e\hbar}{2m_ec}>0,\qquad
+  \boldsymbol\mu_S=-\frac{g\mu_B}{2}\boldsymbol\sigma,\qquad
+  \boxed{H_S=-\gamma\mathbf S\cdot\mathbf B
+    =\frac{g\mu_B}{2}\boldsymbol\sigma\cdot\mathbf B.}
+\end{equation}
+$\mu_B$ 是磁矩尺度，乘磁场后才是能量尺度。核磁矩常用 $\mu_N=e\hbar/(2m_pc)$，因质子质量大，其尺度约为玻尔磁子的 $1/1836$；具体核磁矩还含各自的系数。中子虽无净电荷也有磁矩，说明经典点电荷轨道的 $q/(2mc)$ 不能普遍套用到所有粒子的内禀磁矩。
+
+若 $\mathbf B=B\hat{\mathbf z}$、$B>0$，则 $\ket{z,\pm}$ 的能量为
+\begin{equation}
+  E_\pm=\pm\frac{g\mu_B B}{2},\qquad E_+-E_-=g\mu_B B.
+\end{equation}
+电子的 $\ket{z,+}$ 是较高能态：自旋沿 $+z$，磁矩却沿 $-z$。判断能量时应比较磁矩与磁场，而不是只看自旋箭头。
+
+\notetopic{QM-C14-S04-T03}{恒定磁场中的自旋演化}
+\keyidea{自旋 Hamiltonian 与旋转生成元具有相同结构，因此时间演化就是自旋空间中的旋转；旋转的箭头表示期望值，不是经典小球的自转。}
+
+对恒定 $\mathbf B=B\hat{\mathbf n}$，
+\begin{equation}
+  U(t)=\ee^{+\ii\gamma Bt\hat{\mathbf n}\cdot\mathbf S/\hbar}
+      =\ee^{-\ii\vartheta(t)\hat{\mathbf n}\cdot\mathbf S/\hbar},
+  \qquad \vartheta(t)=-\gamma Bt.
+\end{equation}
+以下固定 $\mathbf B=B\hat{\mathbf z}$、电子 $\gamma<0$，定义正频率 $\Omega=-\gamma B>0$。于是
+\begin{equation}
+  H_S=\Omega S_z,\qquad
+  U(t)=\begin{pmatrix}\ee^{-\ii\Omega t/2}&0\\0&\ee^{\ii\Omega t/2}\end{pmatrix}.
+\end{equation}
+对任意方向的初始纯态，
+\begin{equation}
+  \chi(0)=\begin{pmatrix}\cos(\theta/2)\ee^{-\ii\varphi/2}\\
+     \sin(\theta/2)\ee^{\ii\varphi/2}\end{pmatrix}
+  \quad\Longrightarrow\quad
+  \chi(t)=\begin{pmatrix}\cos(\theta/2)\ee^{-\ii(\varphi+\Omega t)/2}\\
+     \sin(\theta/2)\ee^{\ii(\varphi+\Omega t)/2}\end{pmatrix}.
+\end{equation}
+极角不变，方位角增加 $\Omega t$，故
+\begin{equation}
+  \boxed{\expect{\mathbf S}_t=\frac\hbar2
+  \bigl(\sin\theta\cos(\varphi+\Omega t),\,
+        \sin\theta\sin(\varphi+\Omega t),\,\cos\theta\bigr).}
+\end{equation}
+$S_z$ 的两个测量概率不变，但相对相位通常改变；若初态本来就是 $\ket{z,\pm}$，则只有整体相位改变，平均方向不动。
+
+一般地，对空间均匀、也可含时的外场，角动量代数与 Ehrenfest 定理给出
+\begin{equation}
+  \boxed{\frac{\dd\expect{\mathbf S}}{\dd t}
+       =\gamma\expect{\mathbf S}\times\mathbf B(t).}
+\end{equation}
+这是题设线性磁耦合下的精确期望值方程，不需要窄波包近似，也不意味着三个自旋分量同时确定。轨道版本与自旋推广见\relatedexercise{QM-C14-S04-E01}{习题 14.4.1}。
+
+\textbf{符号约定。}教材印刷 p.~392 的恒场计算暂用 $\omega_0=\gamma B$，与其进动角速度的 $-\gamma B$ 记法不同。本笔记统一用 $\Omega=-\gamma B>0$ 描述电子绕 $+z$ 的进动，比较教材公式时必须连同指数符号一起转换。
+
+\notetopic{QM-C14-S04-T04}{旋转磁场、共振与脉冲}
+\textbf{磁场与参考系。}取 $B_0,B_1>0$，横向场绕 $+z$ 按右手方向旋转：
+\begin{align}
+  \mathbf B(t)&=B_0\hat{\mathbf z}
+    +B_1(\cos\omega t\,\hat{\mathbf x}+\sin\omega t\,\hat{\mathbf y}),\\
+  \Omega_0&=-\gamma B_0>0,\qquad \Omega_1=-\gamma B_1>0,\qquad
+  \Delta=\Omega_0-\omega,\\
+  H(t)&=\Omega_0S_z+\Omega_1(S_x\cos\omega t+S_y\sin\omega t).
+\end{align}
+$\Delta$ 称为 detuning（失谐）。教材式 (14.4.27) 采用负正弦；与本笔记对应时取 $\omega_{\rm book}=-\omega$、$B_{\rm book}=B_1$，并同步转换态变换的符号。
+
+令坐标轴跟着横向场转动。固定位置的方位角满足 $\varphi_r=\varphi_{\rm lab}-\omega t$；相应的自旋态变换为
+\begin{equation}
+  \ket{\psi_r}=V(t)\ket\psi,\qquad V(t)=\ee^{+\ii\omega tS_z/\hbar}.
+\end{equation}
+对乘积求导，旋转系 Hamiltonian 为
+\begin{equation}
+  H_r=VHV^\dagger+\ii\hbar\dot VV^\dagger
+     =\Omega_0S_z+\Omega_1S_x-\omega S_z
+     =\boxed{\Delta S_z+\Omega_1S_x.}
+\end{equation}
+$VHV^\dagger$ 把横向项固定到 $x$ 方向，$-\omega S_z$ 来自含时参考系。它不是新增的真实磁场。旋转系与实验室系的 $S_z$ 测量概率相同，因为 $[V,S_z]=0$。
+
+\textbf{有效进动与共振。}旋转系中的固定角速度矢量及其大小为
+\begin{equation}
+  \boldsymbol\Omega_{\rm eff}=(\Omega_1,0,\Delta),\qquad
+  \boxed{\Omega_R=\sqrt{\Omega_1^2+\Delta^2}.}
+\end{equation}
+由 $\dot{\expect{\mathbf S}}=\boldsymbol\Omega_{\rm eff}\times\expect{\mathbf S}$，自旋期望值绕该轴旋转。若初态为 $\ket{z,+}$，设该轴与 $z$ 轴夹角为 $\alpha$，则 $\cos\alpha=\Delta/\Omega_R$。初始矢量的平行投影不动，垂直投影转过 $\Omega_Rt$，所以
+\begin{align}
+  \expect{S_z}_t
+    &=\frac\hbar2(\cos^2\alpha+\sin^2\alpha\cos\Omega_Rt)\notag\\
+    &=\boxed{\frac\hbar2
+       \frac{\Delta^2+\Omega_1^2\cos\Omega_Rt}{\Delta^2+\Omega_1^2}.}
+\end{align}
+磁矩分量为 $\expect{\mu_z}_t=\gamma\expect{S_z}_t$。初始自旋沿 $+z$，电子磁矩却沿 $-z$，不能把初始磁矩直接取为正的大小。
+
+当 $\omega=\Omega_0$ 时，$\Delta=0$，有效轴完全横向，这就是 paramagnetic resonance（顺磁共振）。弱横向场通过与自旋保持同步而产生大的转动效果，不需要压过 $B_0$；共振消去的是相对进动，真实的 $B_0$ 并未消失。
+
+\textbf{Rabi oscillation（拉比振荡）。}相干驱动使两个能级的占据概率随时间周期变化，这就是本题算出的自旋翻转概率振荡；不意味着自旋始终处于两个本征态之一并在其间突然跳跃。由 $\expect{S_z}=\hbar(1-2P_-)/2$，
+\begin{equation}
+  \boxed{P_{+\to-}(t)=\frac{\Omega_1^2}{\Omega_1^2+\Delta^2}
+    \sin^2\frac{\Omega_Rt}{2},\qquad
+    P_{\max}=\frac{\Omega_1^2}{\Omega_1^2+\Delta^2}.}
+\end{equation}
+共振时可完全翻转；固定非零失谐时，等待更久只会重复振荡，不能突破 $P_{\max}<1$。完整旋量推导见\relatedexercise{QM-C14-S04-E02}{习题 14.4.3}。
+
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=3.1cm,>=Stealth,font=\small]
+  \draw[->] (0,0)--(10.55,0) node[right] {$\Omega_1t$};
+  \draw[->] (0,0)--(0,1.15) node[above] {$P_{+\to-}$};
+  \foreach \x in {0,2,4,6,8,10}
+    \draw (\x,0)--(\x,-0.02) node[below] {$\x$};
+  \foreach \y in {0.5,1}
+    {\draw[gray!35] (0,\y)--(10,\y);
+     \node[left] at (0,\y) {$\y$};}
+  \draw[noteBlue,thick,domain=0:10,samples=180]
+    plot (\x,{sin(deg(\x/2))^2});
+  \draw[accentRed,thick,dashed,domain=0:10,samples=180]
+    plot (\x,{0.5*sin(deg(sqrt(2)*\x/2))^2});
+  \draw[black,thick,densely dotted,domain=0:10,samples=180]
+    plot (\x,{0.2*sin(deg(sqrt(5)*\x/2))^2});
+  \draw[noteBlue,thick] (1,1.18)--(1.55,1.18);
+  \node[right] at (1.55,1.18) {$\Delta/\Omega_1=0$};
+  \draw[accentRed,thick,dashed] (4.2,1.18)--(4.75,1.18);
+  \node[right] at (4.75,1.18) {$\Delta/\Omega_1=1$};
+  \draw[black,thick,densely dotted] (7.4,1.18)--(7.95,1.18);
+  \node[right] at (7.95,1.18) {$\Delta/\Omega_1=2$};
+\end{tikzpicture}
+
+{\small 原创曲线，按上式绘制；驱动幅度相同，失谐增大使最大翻转概率降低、振荡频率升高。}
+\end{center}
+
+\textbf{共振脉冲。}脉冲是在指定时长后关闭横向场；取 $\Delta=0$、$\Omega_1>0$：
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lclX@{}}
+  \toprule
+  名称 & 持续时间 & 旋转系转角 & 从 $\ket{z,+}$ 出发的结果 \\
+  \midrule
+  $90^\circ$ 脉冲 & $\pi/(2\Omega_1)$ & $\pi/2$ & 平均自旋进入横向平面；两个 $S_z$ 结果各占一半。 \\
+  $180^\circ$ 脉冲 & $\pi/\Omega_1$ & $\pi$ & 完全翻转成 $\ket{z,-}$，至多差整体相位。 \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+关掉驱动后，横向平均分量继续绕 $B_0$ 进动；若已到 $\ket{z,-}$，则只积累整体相位。若始终不关驱动，自旋会继续振荡并返回初态。以上理想演化均未包含环境导致的弛豫。
+
+\notetopic{QM-C14-S04-T05}{负绝对温度：有能量上界的自旋系综}
+\textbf{教材选读的主线。}温度描述可用热分布刻画的系综，不是从一个纯态的两项振幅直接读出的量。对 $N$ 个两能级自旋，记单个能量为 $-\varepsilon,+\varepsilon$，其中 $\varepsilon>0$。若有 $n$ 个处于高能级，则
+\begin{equation}
+  E(n)=(2n-N)\varepsilon,\qquad
+  W(n)=\binom Nn,\qquad S=k_B\ln W.
+\end{equation}
+用 $W$ 表示微观状态数，避免与前面的角频率 $\Omega$ 混淆。全在低能级或全在高能级都只有一种排列；约一半在高能级时，排列数和熵达到最大。
+
+在大量自旋的热力学描述下，固定其余条件，
+\begin{equation}
+  \boxed{\frac1T=\frac{\partial S}{\partial E},\qquad
+  \beta=\frac1{k_BT}.}
+\end{equation}
+能量增加时，熵先增加再减少，因而温度先为正，越过 $1/T=0$ 后为负。用两能级的 Boltzmann 分布也可直接判断：
+\begin{equation}
+  \boxed{\frac{N_{\rm high}}{N_{\rm low}}
+     =\ee^{-2\varepsilon/(k_BT)}.}
+\end{equation}
+高能级人数多于低能级称为 population inversion（粒子数反转），在上述热分布假设下对应 $T<0$。持续增加能量的温度序列为
+\begin{equation}
+  0^+\longrightarrow+\infty\longrightarrow-\infty\longrightarrow0^-.
+\end{equation}
+两端表示理想极限，不是通过降温越过绝对零度。负温系统比任何正温系统更热：少量热量 $\delta Q>0$ 从 $T_A<0$ 流向 $T_B>0$ 时，
+\begin{equation}
+  \delta S_{\rm total}=\delta Q\left(\frac1{T_B}-\frac1{T_A}\right)>0.
+\end{equation}
+
+\textbf{制备与适用范围。}理想 $\pi$ 脉冲交换两级占据，使占据比取倒数，即把两能级热分布的 $T$ 变为 $-T$。这种温度描述的是有能量上界的自旋子系统，并要求能建立适当的内部热分布；不能把能量无上界的普通自由粒子动能系统照搬为负温系统。自旋与晶格交换能量后，会恢复通常的正温平衡。
+
+\dialoguesupplement{教材印刷 p.~395 将 $90^\circ$ 脉冲后的等占据简称为 $T=\infty$。严格说，脉冲可能留下横向相干性；等占据只是无限温热平衡分布的一个特征，不能单凭 $\expect{S_z}=0$ 就断言整个态是热平衡态。理想酉脉冲保持态的熵，也不会把纯态变成热混合态。}
+
+教材还讨论横向磁化的检测：它在 $B_0$ 中旋转，可在线圈中感应出振荡电压。真实样品的横向信号会衰减；横向弛豫除了能量交换，还可包含相位失配，不能把所有横向衰减都等同于自旋能量恢复平衡。
+
+\textbf{一分钟回顾。}磁耦合是 $-\boldsymbol\mu\cdot\mathbf B$，电子磁矩与自旋反向。恒场使自旋期望值精确进动，不自动对齐。旋转系通过含时变换得到 $H_r=\Delta S_z+\Omega_1S_x$，共振消去相对进动而非真实磁场；$\pi$ 脉冲完成翻转，固定失谐限制最大翻转概率。负温度则属于有能量上界、可以热分布描述的自旋系综，与单个相干态的等测量概率不同。
