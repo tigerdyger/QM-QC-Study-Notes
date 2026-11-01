@@ -459,3 +459,118 @@ $VHV^\dagger$ 把横向项固定到 $x$ 方向，$-\omega S_z$ 来自含时参�
 教材还讨论横向磁化的检测：它在 $B_0$ 中旋转，可在线圈中感应出振荡电压。真实样品的横向信号会衰减；横向弛豫除了能量交换，还可包含相位失配，不能把所有横向衰减都等同于自旋能量恢复平衡。
 
 \textbf{一分钟回顾。}磁耦合是 $-\boldsymbol\mu\cdot\mathbf B$，电子磁矩与自旋反向。恒场使自旋期望值精确进动，不自动对齐。旋转系通过含时变换得到 $H_r=\Delta S_z+\Omega_1S_x$，共振消去相对进动而非真实磁场；$\pi$ 脉冲完成翻转，固定失谐限制最大翻转概率。负温度则属于有能量上界、可以热分布描述的自旋系综，与单个相干态的等测量概率不同。
+
+\section{第 14.5 节：轨道自由度、磁场分裂与 SG 实验}
+\label{section:QM-C14-S05}
+\studymeta
+  {QM-C14-S05}
+  {2026-11-01}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {\S 14.5 Return of Orbital Degrees of Freedom；印刷 pp.~397--401 / PDF pp.~404--408，至第 14 章结束}
+  {三块讲解及习题 14.5.2、14.5.3 已核对；笔记已确认}
+
+\notetopic{QM-C14-S05-T01}{轨道与自旋的联合描述}
+\keyidea{自旋动力学只是完整问题的一部分。恢复空间自由度后，既要描述粒子在哪里，也要描述自旋；两者可以独立演化，也可以通过相互作用建立关联。}
+
+对自旋 $1/2$ 粒子，完整空间与联合位置--自旋波函数为
+\begin{equation}
+  \mathcal H=L^2(\real^3)\otimes\complex^2,\qquad
+  \Psi(\mathbf r)=\begin{pmatrix}\psi_+(\mathbf r)\\\psi_-(\mathbf r)\end{pmatrix},
+  \qquad \int\bigl(|\psi_+|^2+|\psi_-|^2\bigr)\dd^3r=1.
+\end{equation}
+只有当两个分量共享同一个空间函数，即 $\psi_\pm(\mathbf r)=c_\pm\phi(\mathbf r)$ 时，才可写成乘积态 $\ket\phi\otimes\ket\chi$。
+
+若 Hamiltonian 可分离，
+\begin{equation}
+  H=H_o\otimes I_s+I_o\otimes H_s,
+  \qquad H_o\ket{\phi_a}=\varepsilon_a\ket{\phi_a},\quad
+  H_s\ket{\chi_b}=\epsilon_b\ket{\chi_b},
+\end{equation}
+则可以选择一组乘积能量本征基：
+\begin{equation}
+  \boxed{H(\ket{\phi_a}\otimes\ket{\chi_b})
+    =(\varepsilon_a+\epsilon_b)(\ket{\phi_a}\otimes\ket{\chi_b}).}
+\end{equation}
+这说的是存在乘积本征基，不是任意态都能分解。简并能量子空间中的线性组合也可能不是乘积态；无耦合演化本身不会把已有纠缠自动消除。
+
+仅保留库仑作用的氢原子有 $H=H_C\otimes I_s$：每个空间本征态都可配上两个正交自旋态，自旋不增加能量。在忽略精细结构、超精细结构与外场的模型中，固定 $n$ 的简并度由 $n^2$ 变为 $2n^2$。相同空间密度不代表相同完整状态。具体旋量和计数见\relatedexercise{QM-C14-S05-E01}{氢原子正文示范}。
+
+\notetopic{QM-C14-S05-T02}{均匀磁场中的能量分裂}
+\textbf{模型与单位。}沿用教材 Gaussian 单位制，$e>0$、电子电荷为 $-e$，取电子 $g=2$，暂忽略质子磁矩、精细及超精细结构和磁场二次项。对 $\mathbf B=B\hat{\mathbf z}$，$B>0$，
+\begin{align}
+  \boldsymbol\mu_L&=-\frac{e}{2m_ec}\mathbf L,\qquad
+  \boldsymbol\mu_S=-\frac{e}{m_ec}\mathbf S,\qquad
+  \mu_B=\frac{e\hbar}{2m_ec},\\
+  H&=H_C-(\boldsymbol\mu_L+\boldsymbol\mu_S)\cdot\mathbf B
+    =\boxed{H_C+\frac{\mu_BB}{\hbar}(L_z+2S_z).}
+\end{align}
+$\mu_B$ 是玻尔磁子；在 SI 制中为 $e\hbar/(2m_e)$，不能把 SI 的磁场数值直接代入带 $c$ 的 Gaussian 公式。
+
+附加项与 $H_C,L^2,L_z,S_z$ 对易，原来的 $\ket{n,l,m_l}\otimes\ket{m_s}$ 仍是一组共同本征态，其中 $m_s=\pm1/2$。代入本征值得
+\begin{equation}
+  \boxed{E_{n,m_l,m_s}=-\frac{\mathrm{Ry}}{n^2}
+     +\mu_BB(m_l+2m_s).}
+\end{equation}
+这里 $\mathrm{Ry}$ 是 Rydberg energy（里德伯能量）。磁场造成能级分裂，并相应改变跃迁谱线，称为 Zeeman effect（塞曼效应）。相同 $m_l+2m_s$ 只保证相同的磁场修正；总能量还包含依赖 $n$ 的库仑项。$n=1,2$ 的分裂及剩余简并见\relatedexercise{QM-C14-S05-E01}{正文示范}。
+
+\textbf{线性磁场近似的尺度。}最小耦合在对称规范下还给出
+\begin{equation}
+  H_{B^2}=\frac{e^2B^2}{8m_ec^2}(X^2+Y^2)
+  \qquad\text{（Gaussian 单位制）}.
+\end{equation}
+是否可忽略它，要比较其能量贡献与所保留的项，而不只看 $B$ 的数值大小。用玻尔半径估计的检查见\relatedexercise{QM-C14-S05-E02}{习题 14.5.2}。
+
+\dialoguesupplement{“可忽略 $B^2$”与“可忽略自旋--轨道耦合”是不同判断。若把精细结构也纳入模型，还需比较塞曼能量与自旋--轨道能量，不能把上式当成真实氢原子在任意弱磁场下的通用公式。}
+
+教材随后引入 $H=H_C+a\,\mathbf L\cdot\mathbf S$ 作为耦合的例子，其中 $a$ 为耦合系数。$\mathbf L\cdot\mathbf S=\sum_iL_i\otimes S_i$ 同时作用于两个空间，不能写成独立的 $H_o+H_s$。因此一般需要叠加原来的乘积态来对角化；角动量合成留到第 15 章。
+
+\notetopic{QM-C14-S05-T03}{Stern--Gerlach 分束与自旋筛选}
+\keyidea{非均匀磁场把不同自旋分量送到不同空间路径，使内部自旋信息变成可探测的位置差异。分束、探测和选择其中一束是三个不同操作。}
+
+磁偶极相互作用为 $H_{\rm int}=-\boldsymbol\mu\cdot\mathbf B(\mathbf R)$。在束流附近磁场以 $z$ 分量为主、可忽略横向效应的近似下，
+\begin{equation}
+  \mathbf F=\nabla(\boldsymbol\mu\cdot\mathbf B),\qquad
+  \boxed{F_z\simeq\mu_z\frac{\partial B_z}{\partial z}.}
+\end{equation}
+均匀场可以产生自旋进动，但没有上述梯度分束力。对自旋 $1/2$ 的两种 $S_z$ 结果，磁矩投影也只有两种，因而出现两束，而不是经典连续取向预期的连续展宽。
+
+教材以基态氢原子束为例，忽略质子自旋磁矩；内部 $1s$ 态有 $l=0$，磁矩由电子自旋提供。电子 $\gamma<0$，且教材取 $\partial_zB_z<0$，故
+\begin{equation}
+  S_z=+\frac\hbar2\Rightarrow\mu_z<0\Rightarrow F_z>0,
+  \qquad
+  S_z=-\frac\hbar2\Rightarrow\mu_z>0\Rightarrow F_z<0.
+\end{equation}
+偏转的是原子的质心波包，不是内部电子相对坐标的轨道。上、下方向取决于旋磁比与磁场梯度的符号。
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth,font=\small]
+  \draw[->,gray] (0,-1.0)--(0,1.2) node[above] {$z$};
+  \draw[->,gray] (0,0)--(1.0,0) node[below] {$y$};
+  \draw[thick,->] (1.3,0)--(3.2,0);
+  \node[above] at (2.1,0.05) {入射原子束};
+  \draw[fill=gray!8] (3.2,-0.85) rectangle (5.1,0.85);
+  \node at (4.15,0.25) {SG 磁场};
+  \node at (4.15,-0.25) {$\partial_zB_z<0$};
+  \draw[thick,->,noteBlue] (5.1,0) .. controls (6.0,0.1) and (6.5,0.9) .. (7.6,0.9);
+  \draw[thick,->,accentRed] (5.1,0) .. controls (6.0,-0.1) and (6.5,-0.9) .. (7.6,-0.9);
+  \node[right,noteBlue] at (7.6,0.9) {$\ket{f_{\rm up}}\ket{z,+}$};
+  \node[right,accentRed] at (7.6,-0.9) {$\ket{f_{\rm down}}\ket{z,-}$};
+\end{tikzpicture}
+
+{\small 原创路径示意，采用教材梯度符号；省略共同的内部 $1s$ 因子，曲线不表示确定的微观轨迹。}
+\end{center}
+
+\textbf{分束后的联合态。}初态含自旋叠加，$|\alpha|^2+|\beta|^2=1$。省略共同的内部 $\psi_{100}$，由 Schrödinger 演化的线性性，
+\begin{equation}
+  \boxed{\ket{f_{\rm in}}(\alpha\ket{z,+}+\beta\ket{z,-})
+  \longrightarrow
+  \alpha\ket{f_{\rm up}}\ket{z,+}
+  +\beta\ket{f_{\rm down}}\ket{z,-}.}
+\end{equation}
+当两振幅均非零、两个空间波包不成比例时，所得态是空间--自旋纠缠态。波包充分分离后，上、下区域的探测概率分别为 $|\alpha|^2,|\beta|^2$；一次探测得到一个落点，多次实验形成两束的统计分布。
+
+\textbf{分束不等于投影。}理想 SG 相互作用可保持整体纯态；若只观测自旋、不分辨正交的空间路径，其统计可以按两个分支的概率相加，但不能因此删除完整联合态的相干性。挡住下束并以通过为条件，则制备 $\ket{z,+}$，成功概率为 $|\alpha|^2$。
+
+教材在筛选题中还假定用附加磁场补偿偏转，以便串联装置。只补偿运动方向或不阻挡两束，并不自动保证两条空间模式重新相同、相对相位恢复。保持路径可区分时加概率；若相干逆转分束、恢复原空间波包与相对相位，应加振幅。这个区别在\relatedexercise{QM-C14-S05-E03}{习题 14.5.3}中明确处理。
+
+\textbf{一分钟回顾。}可分离 Hamiltonian 允许乘积本征基，但不保证任意态可分离。仅有库仑作用时自旋使氢原子简并度加倍；在线性磁场模型中，能量修正为 $\mu_BB(m_l+2m_s)$。SG 梯度场把自旋与质心路径关联起来；分束仍可保持整体相干，选择一束才是条件筛选。是否相干合束，决定后续统计中加振幅还是加概率。

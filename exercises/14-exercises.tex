@@ -391,3 +391,165 @@ $\bigl(\cos(\Omega_1t/2),-\ii\sin(\Omega_1t/2)\bigr)^{\mathsf T}$，即绕 $+x$ 
 \end{equation}
 所以仅延长恒定幅度、恒定失谐的驱动时间不能完全翻转。上述结论来自给定理想磁场下的精确量子演化，不包含环境弛豫。
 \end{checkedsolution}
+
+\section{第 14.5 节课程题目：氢原子磁场分裂与自旋筛选}
+\label{exercises:QM-C14-S05}
+\exercisemeta
+  {QM-C14-S05}
+  {2026-11-01}
+  {Shankar, Second Edition；无编号正文示范在印刷 pp.~397--398 / PDF pp.~404--405；Exercise 14.5.2 在印刷 p.~399 / PDF p.~406；14.5.3 在印刷 p.~401 / PDF p.~408}
+  {正文示范已讲解；两道选定习题已作答并核对}
+  {笔记已确认}
+
+本节无独立编号 Example；氢原子的计算整理为教材正文示范。习题只选 14.5.2、14.5.3，14.5.1、14.5.4 未独立选做；不收入课堂概念检查。题干用中文转述，SG 第三问另标空间路径的补充条件。
+
+\exercisequestion{QM-C14-S05-E01}{教材正文示范：自旋加倍与氢原子的磁场分裂}
+\textbf{来源：}印刷 pp.~397--398，式 (14.5.2)--(14.5.7)，无独立题号。对应\relatedtopic{QM-C14-S05-T01}{联合态空间}与\relatedtopic{QM-C14-S05-T02}{磁场分裂}。
+
+\textbf{问题。}先仅考虑氢原子库仑 Hamiltonian，再加入沿 $+z$ 的均匀磁场。取电子 $g=2$，忽略质子磁矩、精细与超精细结构及 $B^2$ 项。说明加入自旋后的能量与简并度，并求 $n=1,2$ 在该线性磁场模型中的分裂与剩余简并。
+
+\begin{checkedsolution}
+\textbf{1. 无场。}若 $H_C\psi_{nlm_l}=-(\mathrm{Ry}/n^2)\psi_{nlm_l}$，两种正交旋量为
+\begin{equation}
+  \Psi_{nlm_l,+}=\begin{pmatrix}\psi_{nlm_l}\\0\end{pmatrix},\qquad
+  \Psi_{nlm_l,-}=\begin{pmatrix}0\\\psi_{nlm_l}\end{pmatrix}.
+\end{equation}
+$H_C$ 对两个分量作用相同，故能量均为 $-\mathrm{Ry}/n^2$。固定 $n$ 时，空间态数为 $\sum_{l=0}^{n-1}(2l+1)=n^2$，所以
+\begin{equation}
+  \boxed{g_n=2n^2.}
+\end{equation}
+两个态虽有相同空间密度，但自旋正交；任意自旋叠加仍可有相同的确定能量，却未必有确定 $S_z$。
+
+\textbf{2. 加磁场。}由电子轨道及自旋磁矩，
+\begin{equation}
+  H=H_C+\frac{\mu_BB}{\hbar}(L_z+2S_z),\qquad
+  E=-\frac{\mathrm{Ry}}{n^2}+\mu_BB(m_l+2m_s).
+\end{equation}
+对 $n=1$，只能 $l=m_l=0$，而 $m_s=\pm1/2$，故
+\begin{equation}
+  \boxed{E_{1,\pm}=-\mathrm{Ry}\pm\mu_BB,\qquad
+    E_{1,+}-E_{1,-}=2\mu_BB.}
+\end{equation}
+电子自旋沿场时磁矩反向，对应较高能量。
+
+对 $n=2$，$l=0$ 提供两个态，$l=1$ 提供六个态。记 $q=m_l+2m_s$：
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}cXcc@{}}
+  \toprule
+  $q$ & $(l,m_l,m_s)$ & 能量 & 简并度 \\
+  \midrule
+  $2$ & $(1,1,1/2)$ & $-\mathrm{Ry}/4+2\mu_BB$ & $1$ \\
+  $1$ & $(0,0,1/2)$、$(1,0,1/2)$ & $-\mathrm{Ry}/4+\mu_BB$ & $2$ \\
+  $0$ & $(1,1,-1/2)$、$(1,-1,1/2)$ & $-\mathrm{Ry}/4$ & $2$ \\
+  $-1$ & $(0,0,-1/2)$、$(1,0,-1/2)$ & $-\mathrm{Ry}/4-\mu_BB$ & $2$ \\
+  $-2$ & $(1,-1,-1/2)$ & $-\mathrm{Ry}/4-2\mu_BB$ & $1$ \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+因此八个态分到五档能量，态数仍为 $1+2+2+2+1=8$。$q$ 相同只表示磁场位移相同；还须比较 $n$ 才能判断总能量是否相同。
+\end{checkedsolution}
+
+\exercisequestion{QM-C14-S05-E02}{教材习题 14.5.2：磁场修正的数量级}
+\textbf{对应知识点：}\relatedtopic{QM-C14-S05-T02}{线性磁场近似}。
+
+\textbf{题目。}对氢原子 $n=1$ 态施加 $B=1000\,\mathrm{kG}$：
+\begin{enumerate}
+  \item 估计两个自旋能级的间距相对于未扰动基态能量绝对值的大小。
+  \item 用半径为 $a_0$ 的经典轨道作尺度估计，比较被忽略的 $B^2$ 项与保留的线性磁耦合项，并估计忽略二次项何时不再合理。
+\end{enumerate}
+计算统一用 SI 制：$1000\,\mathrm{kG}=100\,\mathrm T$，$\mathrm{Ry}=13.6\,\mathrm{eV}$，$\mu_B=5.79\times10^{-5}\,\mathrm{eV/T}$，$a_0=5.29\times10^{-11}\,\mathrm m$，$e=1.60\times10^{-19}\,\mathrm C$，$\hbar=1.055\times10^{-34}\,\mathrm{J\,s}$。
+
+\begin{checkedsolution}
+\textbf{1. 能级间距。}由 $E_{1,\pm}=-\mathrm{Ry}\pm\mu_BB$，
+\begin{align}
+  \Delta E&=2\mu_BB=1.158\times10^{-2}\,\mathrm{eV},\\
+  \boxed{\frac{\Delta E}{|E_{C,1}|}}
+    &=\boxed{\frac{2\mu_BB}{\mathrm{Ry}}
+       \simeq8.5\times10^{-4}=0.085\%.}
+\end{align}
+这里比较两个能级的间距，不是某一支的位移 $\mu_BB$。
+
+\textbf{2. 二次项。}在对称规范 $\mathbf A=\tfrac B2(-Y,X,0)$ 下，SI 制最小耦合给出
+\begin{equation}
+  H_{B^2}=\frac{e^2\mathbf A^2}{2m_e}
+    =\frac{e^2B^2}{8m_e}(X^2+Y^2).
+\end{equation}
+取垂直磁场的轨道尺度为 $a_0$，即 $\expect{X^2+Y^2}\sim a_0^2$。这是题目指定的粗估，不把 $1s$ 态理解为确定的经典圆轨道。与单个态的线性修正尺度比较：
+\begin{equation}
+  E_{B^2}\sim\frac{e^2B^2a_0^2}{8m_e},\qquad
+  E_B\sim\mu_BB=\frac{e\hbar B}{2m_e},\qquad
+  \boxed{\frac{E_{B^2}}{E_B}\sim\frac{eBa_0^2}{4\hbar}.}
+\end{equation}
+在 $B=100\,\mathrm T$ 时，
+\begin{equation}
+  \boxed{\frac{E_{B^2}}{E_B}\sim1.1\times10^{-4}.}
+\end{equation}
+二次项比线性项小约四个数量级。令两项达到同一数量级，得到
+\begin{equation}
+  \boxed{B_c\sim\frac{4\hbar}{ea_0^2}
+    \simeq9.4\times10^5\,\mathrm T\sim10^6\,\mathrm T.}
+\end{equation}
+真正的忽略条件是 $eBa_0^2/(4\hbar)\ll1$，不是 $B<B_c$ 就一概足够。$B_c$ 是固定原子尺度下的估计，并非突然失效的精确临界点；强场还会改变波函数尺度。采用不同轨道几何或精确的 $1s$ 二阶矩会改变数值因子，不改变这里的数量级判断。
+\end{checkedsolution}
+
+\exercisequestion{QM-C14-S05-E03}{教材习题 14.5.3：串联 SG 筛选器}
+\textbf{对应知识点：}\relatedtopic{QM-C14-S05-T03}{分束、条件筛选与相干性}。
+
+\textbf{题目。}自旋 $1/2$ 粒子束沿 $y$ 方向通过串联 SG 装置。第一个只通过 $z+$，第二个的筛选轴转到 $x$ 方向，只通过 $x+$。所有通过率均以离开第一个筛选器的粒子数为分母。
+\begin{enumerate}
+  \item 求通过第二个筛选器的比例。
+  \item 再加一个只通过 $z+$ 的筛选器，求最后的总通过率。
+  \item 改为中间不阻挡任何一束，即保留 $x+$、$x-$，最后只通过 $z-$，求总通过率。
+\end{enumerate}
+\textbf{第三问的条件补充。}教材只写中间不阻挡，未明确两条空间路径的相干重合方式。本次先按两束仍可区分、都进入最后装置且计数相加求解，再对照相干逆转分束、恢复同一空间模式与原相对相位的情况。
+
+\begin{checkedsolution}
+采用相位约定
+\begin{equation}
+  \ket{x,+}=\frac{\ket{z,+}+\ket{z,-}}{\sqrt2},\qquad
+  \ket{x,-}=\frac{\ket{z,+}-\ket{z,-}}{\sqrt2}.
+\end{equation}
+因此各个 $x$ 本征态在 $z$ 方向的两种测量概率均为 $1/2$。
+
+\textbf{1. 第二个筛选器。}输入为 $\ket{z,+}$，
+\begin{equation}
+  \boxed{P_2=|\braket{x,+}{z,+}|^2=\frac12.}
+\end{equation}
+以通过为条件，输出自旋态为 $\ket{x,+}$。
+
+\textbf{2. 最后只通过 $z+$。}最后一级的条件通过率为 $1/2$，但中间已丢弃一半粒子，所以
+\begin{equation}
+  \boxed{P_3=|\braket{x,+}{z,+}|^2
+    |\braket{z,+}{x,+}|^2=\frac14.}
+\end{equation}
+不能把“相对进入最后一级的粒子”与“相对离开第一级的粒子”混为一谈。
+
+\textbf{3. 保留两条可区分路径。}经过 $x+$ 与 $x-$ 两支而最后通过 $z-$ 的贡献各为 $1/4$，因此
+\begin{equation}
+  \boxed{P_{z-}=\frac12\cdot\frac12+\frac12\cdot\frac12=\frac12.}
+\end{equation}
+这里并不要求中间已经发生投影测量。用归一化空间模式 $\ket{f_+},\ket{f_-}$ 保留完整态：
+\begin{equation}
+  \ket\Psi=\frac1{\sqrt2}
+    \left(\ket{f_+}\ket{x,+}+\ket{f_-}\ket{x,-}\right).
+\end{equation}
+投到 $z-$ 后的未归一化空间振幅为
+\begin{equation}
+  (I_o\otimes\bra{z,-})\ket\Psi
+    =\frac12(\ket{f_+}-\ket{f_-}).
+\end{equation}
+所以，若最后一级对两支作相同的理想自旋筛选并统计全部空间输出，
+\begin{equation}
+  \boxed{P_{z-}=\frac14\|\ket{f_+}-\ket{f_-}\|^2
+    =\frac12\left(1-\operatorname{Re}\braket{f_+}{f_-}\right).}
+\end{equation}
+保持分离时，$\braket{f_+}{f_-}\simeq0$，即得 $1/2$；正交的路径记录足以消除这一统计中的交叉项，整体态仍可保持纯态。
+
+\textbf{相干合束对照。}若通过相干操作把两支恢复为相同模式且相对相位恢复，即 $\ket{f_+}=\ket{f_-}=\ket f$，则
+\begin{equation}
+  \ket\Psi=\ket f\,\frac{\ket{x,+}+\ket{x,-}}{\sqrt2}
+    =\ket f\ket{z,+},\qquad \boxed{P_{z-}=0.}
+\end{equation}
+仅让两束方向平行或都不被阻挡，不足以得到这个结论；相同空间模式还须有正确的相对相位。这个对照补清原题的装置条件，不把“不阻挡”直接等同于恢复初态。
+\end{checkedsolution}
