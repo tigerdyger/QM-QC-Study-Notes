@@ -1,0 +1,148 @@
+% !TEX root = ../main.tex
+
+\section{第 15.1 节：两个自旋的合成与基的选择}
+\label{section:QM-C15-S01}
+\studymeta
+  {QM-C15-S01}
+  {2026-11-01 至 2026-11-02}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {\S 15.1 A Simple Example；印刷 pp.~403--408 / PDF pp.~409--414，至 \S 15.2 前；习题 15.1.2 只选第 (1) 问}
+  {四块讲解与选定习题已核对；笔记已确认}
+
+\notetopic{QM-C15-S01-T01}{总自旋与乘积基}
+\keyidea{两个粒子的自旋可分别描述，也可按系统的总角动量分类。角动量合成要找出总角动量大小与一个分量的共同本征态。}
+
+先忽略轨道自由度，考虑两个自旋 $1/2$ 的粒子。联合自旋空间及一组 product basis（乘积基）为
+\begin{equation}
+  \mathcal H_s=\complex^2\otimes\complex^2,\qquad
+  \mathcal B_p=(\ket{++},\ket{+-},\ket{-+},\ket{--}).
+\end{equation}
+例如 $\ket{+-}=\ket+_1\otimes\ket-_2$，两个符号分别给出 $m_1,m_2=\pm1/2$。算符在联合空间上的作用为
+\begin{equation}
+  S_{1i}=\frac\hbar2\sigma_i\otimes I,\qquad
+  S_{2i}=I\otimes\frac\hbar2\sigma_i,\qquad
+  [S_{1i},S_{2j}]=0.
+\end{equation}
+因此乘积基同时对角化 $S_1^2,S_2^2,S_{1z},S_{2z}$，其中 $S_1^2=S_2^2=3\hbar^2I/4$。
+
+定义总自旋
+\begin{equation}
+  \boxed{\mathbf S=\mathbf S_1+\mathbf S_2,\qquad S_z=S_{1z}+S_{2z}.}
+\end{equation}
+两个因子上的旋转相乘，给出共同旋转
+\begin{equation}
+  U(\mathbf n,\theta)
+  =\ee^{-\ii\theta\mathbf n\cdot\mathbf S_1/\hbar}
+   \ee^{-\ii\theta\mathbf n\cdot\mathbf S_2/\hbar}
+  =\ee^{-\ii\theta\mathbf n\cdot\mathbf S/\hbar}.
+\end{equation}
+由各自的角动量代数及交叉对易性，也有 $[S_i,S_j]=\ii\hbar\sum_k\epsilon_{ijk}S_k$。所以 $\mathbf S$ 确实是整体旋转的生成元。
+
+乘积基中的总投影为 $\hbar(m_1+m_2)$，即
+\begin{equation}
+  S_z\ \longleftrightarrow\ \hbar\diag(1,0,0,-1).
+\end{equation}
+$S_z=0$ 的本征空间由 $\ket{+-},\ket{-+}$ 张成；其中任意归一化叠加仍有确定的总投影，即使各自的 $S_{iz}$ 不确定。总自旋大小则由
+\begin{equation}
+  \boxed{S^2=S_1^2+S_2^2+2\mathbf S_1\cdot\mathbf S_2}
+\end{equation}
+决定。$S^2$ 与 $S_z$ 对易，但一般不与 $S_{1z},S_{2z}$ 对易，因而需要另一组共同本征基。
+
+\notetopic{QM-C15-S01-T02}{总自旋基：三重态与单重态}
+记 total-spin basis（总自旋基）为 $\ket{s,m}$，省略固定的 $s_1=s_2=1/2$。其含义是
+\begin{equation}
+  S^2\ket{s,m}=s(s+1)\hbar^2\ket{s,m},\qquad
+  S_z\ket{s,m}=m\hbar\ket{s,m}.
+\end{equation}
+$m=1$ 子空间只有 $\ket{++}$ 一个基向量。由于 $[S^2,S_z]=0$，它也是 $S^2$ 的本征态；再由 $S_+\ket{++}=0$，确定它是 $s=1$ 的最高态。总降算符为 $S_-=S_{1-}+S_{2-}$，故
+\begin{equation}
+  \hbar\sqrt2\ket{1,0}=S_-\ket{1,1}
+    =\hbar(\ket{-+}+\ket{+-}).
+\end{equation}
+再次下降得到 $\ket{1,-1}=\ket{--}$。剩余正交组合是反对称的 $m=0$ 态；它被 $S_z,S_+,S_-$ 全部消去，由 $S^2=S_+S_-+S_z^2-\hbar S_z$ 得到 $s=0$。
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  总自旋基 & 乘积基表达 & $S^2$ & $S_z$ \\
+  \midrule
+  $\ket{1,1}$ & $\ket{++}$ & $2\hbar^2$ & $\hbar$ \\
+  $\ket{1,0}$ & $(\ket{+-}+\ket{-+})/\sqrt2$ & $2\hbar^2$ & $0$ \\
+  $\ket{1,-1}$ & $\ket{--}$ & $2\hbar^2$ & $-\hbar$ \\
+  $\ket{0,0}$ & $(\ket{+-}-\ket{-+})/\sqrt2$ & $0$ & $0$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+三个 $s=1$ 态称为 triplet（三重态），一个 $s=0$ 态称为 singlet（单重态）。$s=1$ 的总角动量大小为 $\sqrt2\hbar$。这些名称先指态空间的维数；能量与能级简并还取决于 Hamiltonian。矩阵验证见\relatedexercise{QM-C15-S01-E02}{习题 15.1.1}。
+
+两套基描述同一个四维空间，换基保留物理状态。空间分解简记为
+\begin{equation}
+  \boxed{\tfrac12\otimes\tfrac12=1\oplus0,\qquad
+    2\times2=3+1.}
+\end{equation}
+左边表示两个自旋空间的张量积，右边表示总自旋 $s=1,0$ 子空间的直和。因 $[S^2,S_i]=0$，共同旋转保持这两个子空间；在总自旋基中，旋转矩阵分成 $3\times3$ 与 $1\times1$ 两块。所有方向的旋转共同作用时，三维的 $s=1$ 空间不能再拆成更小的不变子空间，这称为不可约；单重态满足 $\mathbf S\ket{0,0}=0$，在共同旋转下不变。
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth,font=\small]
+  \node[noteBlue] at (2.8,0.75) {$s=1$：三维子空间};
+  \node (a) at (0,0) {$\ket{1,1}$};
+  \node (b) at (2.8,0) {$\ket{1,0}$};
+  \node (c) at (5.6,0) {$\ket{1,-1}$};
+  \draw[->,thick,noteBlue] (a)--node[above] {$S_-$} node[below] {$\hbar\sqrt2$} (b);
+  \draw[->,thick,noteBlue] (b)--node[above] {$S_-$} node[below] {$\hbar\sqrt2$} (c);
+  \draw[dashed,gray] (7,-0.6)--(7,1.0);
+  \node[accentRed] at (9.2,0.75) {$s=0$：一维子空间};
+  \node at (9.2,0) {$\ket{0,0}$};
+  \node at (9.2,-0.65) {$S_\pm\ket{0,0}=0$};
+\end{tikzpicture}
+
+{\small 原创结构示意：箭头表示降算符作用，不表示时间演化或能级高低。}
+\end{center}
+
+\notetopic{QM-C15-S01-T03}{交换对称性与全同费米子}
+交换两个自旋标签使 $\ket{+-}\leftrightarrow\ket{-+}$，而 $\ket{++},\ket{--}$ 保持不变。因此三重态的自旋部分对称，单重态的自旋部分反对称。这里交换的是粒子标签；宇称则反演空间坐标。
+
+对两个全同费米子，交换位置和自旋的全部标签时，\emph{完整态}必须反对称。若态可分离为 $\Psi=\Phi_{\rm space}\chi_{\rm spin}$，空间与自旋的交换符号须满足 $\eta_o\eta_s=-1$：
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+  \toprule
+  空间部分 & 自旋部分 & 完整态的交换符号 \\
+  \midrule
+  对称 & 单重态（反对称） & $-1$ \\
+  反对称 & 三重态（对称） & $-1$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+一般允许态可以由这些乘积态线性组合而成。对两个正交归一的不同空间轨道 $u,v$，
+\begin{equation}
+  \Phi_\pm(\mathbf r_1,\mathbf r_2)
+  =\frac{u(\mathbf r_1)v(\mathbf r_2)\pm v(\mathbf r_1)u(\mathbf r_2)}{\sqrt2}
+\end{equation}
+分别与单重态、三重态配合。若两电子占据同一空间轨道，空间乘积已对称，反对称的空间组合则为零，因此只能配单重态。氦原子 $1s^2$ 的教材示范见\relatedexercise{QM-C15-S01-E01}{完整态的构造}。
+
+\notetopic{QM-C15-S01-T04}{Hamiltonian 决定方便的基}
+\keyidea{优先选使 Hamiltonian 对角化的基：分别耦合各自投影时用乘积基，耦合总自旋大小时用总自旋基。}
+
+\textbf{均匀外磁场。}两个自旋分别与 $\mathbf B=B_0\hat{\mathbf z}$ 耦合、无直接自旋间耦合时，
+\begin{equation}
+  H=-B_0(\gamma_1S_{1z}+\gamma_2S_{2z}),\qquad
+  \boxed{E_{m_1,m_2}=-B_0\hbar(\gamma_1m_1+\gamma_2m_2).}
+\end{equation}
+乘积基是能量本征基。若 $\gamma_1=\gamma_2=\gamma$，则 $H=-\gamma B_0S_z$，总自旋基也能对角化它。
+
+\textbf{各向同性自旋耦合。}对实常数 $A$，
+\begin{equation}
+  \boxed{H=A\mathbf S_1\cdot\mathbf S_2
+     =\frac A2(S^2-S_1^2-S_2^2)
+     =\frac A2S^2-\frac34A\hbar^2I.}
+\end{equation}
+此时总自旋基对角化 $H$，能量仅依赖 $s$；三个三重态同能。$A$ 的量纲为能量除以角动量平方。
+
+\textbf{超精细相互作用。}电子与质子的磁矩相互作用称为 hyperfine interaction（超精细相互作用）。教材将氢原子空间轨道固定为 $1s$，采用有效模型
+\begin{equation}
+  H=-\mathrm{Ry}\,I+A\mathbf S_e\cdot\mathbf S_p,\qquad A>0.
+\end{equation}
+$\mathrm{Ry}$ 为里德伯能量。电子、质子各有自旋 $1/2$，且是可区分粒子，单重态和三重态均可存在。耦合将同一库仑能量分裂为两档，计算见\relatedexercise{QM-C15-S01-E03}{习题 15.1.2 第 (1) 问}。
+
+\textbf{一分钟回顾。}乘积基确定各自的 $z$ 分量，总自旋基确定整体的 $S^2,S_z$。两个自旋 $1/2$ 合成一个三重态子空间和一个单重态子空间，共同旋转保持二者。全同费米子的空间与自旋部分须配成完整反对称态。选择基时看 Hamiltonian：$S_{1z},S_{2z}$ 型作用适合乘积基，$\mathbf S_1\cdot\mathbf S_2$ 型作用适合总自旋基。

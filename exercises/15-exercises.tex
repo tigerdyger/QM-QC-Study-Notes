@@ -1,0 +1,111 @@
+% !TEX root = ../main.tex
+
+\section{第 15.1 节课程题目：总自旋与超精细分裂}
+\label{exercises:QM-C15-S01}
+\exercisemeta
+  {QM-C15-S01}
+  {2026-11-01 至 2026-11-02}
+  {Shankar, Second Edition；印刷 pp.~405--407 / PDF pp.~411--413}
+  {正文示范已讲解；15.1.1 关键作用已作答、其余补全；15.1.2 第 (1) 问已作答，均已核对}
+  {笔记已确认}
+
+本次选做 15.1.1 和 15.1.2 第 (1) 问；15.1.2 第 (2)、(3) 问未选做。
+
+\exercisequestion{QM-C15-S01-E01}{教材正文示范：氦原子基态的自旋结构}
+\textbf{来源：}印刷 pp.~406--407，式 (15.1.17)--(15.1.19)，无独立 Example 题号。
+
+\textbf{对应知识点：}\relatedtopic{QM-C15-S01-T03}{交换对称性}。
+
+\textbf{问题。}在独立粒子图像中，氦原子基态的两个电子均占据同一个归一化 $1s$ 空间轨道 $u$。构造满足费米子交换条件的归一化完整态，并确定总轨道角动量与总自旋。
+
+\begin{checkedsolution}
+空间部分 $\Phi(\mathbf r_1,\mathbf r_2)=u(\mathbf r_1)u(\mathbf r_2)$ 已归一化且对称，因此自旋部分须取唯一的反对称态：
+\begin{equation}
+  \boxed{\Psi(\mathbf r_1,\mathbf r_2)
+  =u(\mathbf r_1)u(\mathbf r_2)
+    \frac{\ket{+-}-\ket{-+}}{\sqrt2}.}
+\end{equation}
+交换全部标签后 $\Psi\mapsto-\Psi$。两个 $1s$ 因子分别有 $l=0$，自旋部分有 $s=0$，故 $L^2\Psi=S^2\Psi=0$。自旋态是单重态，不是单独一个 $\ket{+-}$；空间乘积采用独立粒子近似，包含电子关联时仍须满足交换条件。
+\end{checkedsolution}
+
+\exercisequestion{QM-C15-S01-E02}{教材习题 15.1.1：构造总自旋平方矩阵}
+\textbf{来源与知识点：}印刷 p.~405；\relatedtopic{QM-C15-S01-T01}{乘积基}与\relatedtopic{QM-C15-S01-T02}{总自旋基}。
+
+\textbf{题目。}两个粒子均有自旋 $1/2$。按 $\mathcal B_p=(\ket{++},\ket{+-},\ket{-+},\ket{--})$ 的顺序，推导教材式 (15.1.10) 的 $S^2$ 矩阵，并求出 $S_z=0$ 子空间中使 $S^2$ 对角化的两个归一化组合，即式 (15.1.11)。可用
+\begin{equation}
+  \mathbf S_1\cdot\mathbf S_2
+  =S_{1z}S_{2z}+\frac12(S_{1+}S_{2-}+S_{1-}S_{2+}).
+\end{equation}
+
+\begin{checkedsolution}
+\textbf{1. 最关键的一列。}展开
+\begin{equation}
+  S^2=S_1^2+S_2^2+2S_{1z}S_{2z}
+     +S_{1+}S_{2-}+S_{1-}S_{2+}.
+\end{equation}
+作用于 $\ket{+-}$，各项分别为
+\begin{align}
+  (S_1^2+S_2^2)\ket{+-}&=\frac32\hbar^2\ket{+-},\\
+  2S_{1z}S_{2z}\ket{+-}&=-\frac12\hbar^2\ket{+-},\\
+  S_{1+}S_{2-}\ket{+-}&=0,\qquad
+  S_{1-}S_{2+}\ket{+-}=\hbar^2\ket{-+}.
+\end{align}
+所以
+\begin{equation}
+  \boxed{S^2\ket{+-}=\hbar^2(\ket{+-}+\ket{-+}).}
+\end{equation}
+非对角项来自升降算符的交叉作用，因而 $\ket{+-}$ 自身不是 $S^2$ 本征态。
+
+\textbf{2. 其余列。}交换标签得到 $S^2\ket{-+}=\hbar^2(\ket{+-}+\ket{-+})$。
+对两个端点态，升降交叉项为零，$2S_{1z}S_{2z}$ 均贡献 $\hbar^2/2$，所以 $S^2\ket{++}=2\hbar^2\ket{++}$、$S^2\ket{--}=2\hbar^2\ket{--}$。把作用结果依次作为列：
+\begin{equation}
+  \boxed{S^2\ \longleftrightarrow\ \hbar^2
+  \begin{pmatrix}
+    2&0&0&0\\
+    0&1&1&0\\
+    0&1&1&0\\
+    0&0&0&2
+  \end{pmatrix}.}
+\end{equation}
+
+\textbf{3. 对角化中间子空间。}在 $(\ket{+-},\ket{-+})$ 中，矩阵是 $\hbar^2\begin{psmallmatrix}1&1\\1&1\end{psmallmatrix}$。无量纲本征值满足 $(1-\lambda)^2-1=\lambda(\lambda-2)=0$。
+$\lambda=2$ 要求两个系数相等，$\lambda=0$ 要求系数相反。归一化后
+\begin{equation}
+  \boxed{\ket{1,0}=\frac{\ket{+-}+\ket{-+}}{\sqrt2},\qquad
+    \ket{0,0}=\frac{\ket{+-}-\ket{-+}}{\sqrt2}.}
+\end{equation}
+它们分别满足 $S^2=2\hbar^2$、$S^2=0$，总投影都为零；加上两个端点态，四个正交态完整覆盖原空间。
+\end{checkedsolution}
+
+\exercisequestion{QM-C15-S01-E03}{教材习题 15.1.2 第 (1) 问：氢原子超精细分裂}
+\textbf{来源与知识点：}印刷 p.~407；\relatedtopic{QM-C15-S01-T04}{自旋耦合与基的选择}。
+
+\textbf{题目。}将氢原子空间轨道固定为 $1s$，未扰动能量为 $-\mathrm{Ry}$。电子和质子均有自旋 $1/2$，加入
+\begin{equation}
+  H_{\rm hf}=A\mathbf S_e\cdot\mathbf S_p,\qquad A>0,
+  \qquad H=-\mathrm{Ry}\,I+H_{\rm hf}.
+\end{equation}
+求两组能量及对应的总自旋态，确定哪组较低、各自简并度和能级间距。不加外磁场。
+
+\begin{checkedsolution}
+由 $\mathbf S_e\cdot\mathbf S_p=(S^2-S_e^2-S_p^2)/2$ 和 $S_e^2=S_p^2=3\hbar^2I/4$，在 $\ket{s,m}$ 上取本征值：
+\begin{equation}
+  E(s)=-\mathrm{Ry}+\frac{A\hbar^2}{2}
+    \left[s(s+1)-\frac32\right].
+\end{equation}
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+  \toprule
+  类型 & $s$ & 能量 & 简并度 \\
+  \midrule
+  三重态 & $1$ & $E_{\rm t}=-\mathrm{Ry}+A\hbar^2/4$ & $3$ \\
+  单重态 & $0$ & $E_{\rm s}=-\mathrm{Ry}-3A\hbar^2/4$ & $1$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+$A>0$，故单重态较低，能级间距为
+\begin{equation}
+  \boxed{\Delta E=E_{\rm t}-E_{\rm s}=A\hbar^2.}
+\end{equation}
+三重态的三个 $m$ 同能，因为此模型只依赖 $S^2$。共同的库仑能量在能级差中抵消；$A\hbar^2$ 的量纲为能量。
+\end{checkedsolution}
