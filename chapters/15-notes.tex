@@ -146,3 +146,205 @@ $m=1$ 子空间只有 $\ket{++}$ 一个基向量。由于 $[S^2,S_z]=0$，它也
 $\mathrm{Ry}$ 为里德伯能量。电子、质子各有自旋 $1/2$，且是可区分粒子，单重态和三重态均可存在。耦合将同一库仑能量分裂为两档，计算见\relatedexercise{QM-C15-S01-E03}{习题 15.1.2 第 (1) 问}。
 
 \textbf{一分钟回顾。}乘积基确定各自的 $z$ 分量，总自旋基确定整体的 $S^2,S_z$。两个自旋 $1/2$ 合成一个三重态子空间和一个单重态子空间，共同旋转保持二者。全同费米子的空间与自旋部分须配成完整反对称态。选择基时看 Hamiltonian：$S_{1z},S_{2z}$ 型作用适合乘积基，$\mathbf S_1\cdot\mathbf S_2$ 型作用适合总自旋基。
+
+\section{第 15.2 节：一般角动量合成与 CG 系数}
+\label{section:QM-C15-S02}
+\studymeta
+  {QM-C15-S02}
+  {2026-11-02 至 2026-11-04}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {\S 15.2 The General Problem；印刷 pp.~408--416 / PDF pp.~414--422，至 \S 15.3 标题前}
+  {四块讲解与两道选定习题已核对；笔记已确认}
+
+\notetopic{QM-C15-S02-T01}{一般合成规则与两套基}
+\keyidea{固定两个角动量量子数 $j_1,j_2$，把各自分量确定的乘积基，换成总角动量 $J^2,J_z$ 确定的耦合基。}
+
+设 $\mathbf J_1,\mathbf J_2$ 各自满足角动量代数，且 $[J_{1i},J_{2k}]=0$。它们可对应两个粒子，也可对应同一粒子的轨道与自旋。总角动量为
+\begin{equation}
+  \mathbf J=\mathbf J_1+\mathbf J_2,\qquad
+  J_z=J_{1z}+J_{2z},\qquad J_\pm=J_{1\pm}+J_{2\pm}.
+\end{equation}
+以下固定 $J_i^2=j_i(j_i+1)\hbar^2I$，在 $(2j_1+1)(2j_2+1)$ 维空间内讨论。
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lXX@{}}
+  \toprule
+  基 & 基向量 & 另外确定的观测量 \\
+  \midrule
+  乘积基 & $\ket{j_1,m_1}\otimes\ket{j_2,m_2}$ & $J_{1z},J_{2z}$ \\
+  耦合基 & $\ket{j,m;j_1,j_2}\equiv\ket{j,m}$ & $J^2,J_z$ \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+这里省略 $\ket{j,m}$ 中固定的 $j_1,j_2$，并有
+\begin{equation}
+  J^2\ket{j,m}=j(j+1)\hbar^2\ket{j,m},\qquad
+  J_z\ket{j,m}=m\hbar\ket{j,m}.
+\end{equation}
+乘积态的总投影是 $m=m_1+m_2$；同一 $m$ 往往对应多个乘积态，须在这个子空间内进一步对角化 $J^2$。
+
+一般合成规则为
+\begin{equation}
+  \boxed{j=|j_1-j_2|,\ |j_1-j_2|+1,\ldots,j_1+j_2,\qquad
+    m=-j,-j+1,\ldots,j.}
+\end{equation}
+$j$ 的步长为 $1$，且与 $j_1+j_2$ 同为整数或半整数。每个允许的 $j$ 在这个固定张量积中出现一次：
+\begin{equation}
+  \boxed{\mathcal H_{j_1}\otimes\mathcal H_{j_2}
+    =\bigoplus_{j=|j_1-j_2|}^{j_1+j_2}\mathcal H_j.}
+\end{equation}
+每个 $\mathcal H_j$ 含 $2j+1$ 个态，在共同旋转下保持不变。令 $j_{\max}=j_1+j_2$、$j_{\min}=|j_1-j_2|$，维数核对为
+\begin{equation}
+  \sum_j(2j+1)
+  =(j_{\max}-j_{\min}+1)(j_{\max}+j_{\min}+1)
+  =(2j_1+1)(2j_2+1).
+\end{equation}
+教材印刷 p.~409 先用维数检验提出的分解。严格地说，数目相同只检验计数；各个子空间的存在由下面的最高态构造确定。
+
+\notetopic{QM-C15-S02-T02}{最高态构造与 Clebsch--Gordan 系数}
+\textbf{先构造最大 $j$。}最大投影 $m=j_{\max}$ 只有一个乘积态，因此
+\begin{equation}
+  \boxed{\ket{j_{\max},j_{\max}}
+    =\ket{j_1,j_1}\otimes\ket{j_2,j_2}.}
+\end{equation}
+它被 $J_+$ 消去，由 $J^2=J_-J_++J_z^2+\hbar J_z$ 确定 $j=j_{\max}$。用
+\begin{equation}
+  J_-\ket{j,m}=\hbar\sqrt{(j+m)(j-m+1)}\ket{j,m-1}
+\end{equation}
+逐次下降，即可生成该 $j$ 的全部态。若 $j_1,j_2>0$，记
+\begin{equation}
+  \ket a=\ket{j_1,j_1-1}\otimes\ket{j_2,j_2},\qquad
+  \ket b=\ket{j_1,j_1}\otimes\ket{j_2,j_2-1}.
+\end{equation}
+比较 $J_-=J_{1-}+J_{2-}$ 在两套基中的作用，得到
+\begin{equation}
+  \boxed{\ket{j_{\max},j_{\max}-1}
+    =\sqrt{\frac{j_1}{j_{\max}}}\ket a
+     +\sqrt{\frac{j_2}{j_{\max}}}\ket b.}
+\end{equation}
+
+\textbf{再找新的最高态。}在同一 $m=j_{\max}-1$ 子空间中，取归一化的正交组合
+\begin{equation}
+  \ket\chi=\sqrt{\frac{j_1}{j_{\max}}}\ket b
+           -\sqrt{\frac{j_2}{j_{\max}}}\ket a.
+\end{equation}
+$J_+$ 作用于 $\ket b,\ket a$ 的系数分别为 $\hbar\sqrt{2j_2},\hbar\sqrt{2j_1}$，两项恰好抵消。故 $J_+\ket\chi=0$，结合 $m=j_{\max}-1$，有
+\begin{equation}
+  \boxed{\ket\chi=\ket{j_{\max}-1,j_{\max}-1}.}
+\end{equation}
+对它继续下降，再在尚未覆盖的正交补中寻找最高态，直至 $j_{\min}$。这一过程逐个构造各 $j$ 子空间；若某个 $j_i=0$，则只有另一个 $j$，无需上述两项组合。
+
+\textbf{升降只改变 $m$。}由于 $[J^2,J_\pm]=0$，$J_+$ 与 $J_-$ 均保留 $j$。生成另一组 $j$ 的态，必须在正交补中另选最高态。三重态与单重态的投影形式见\relatedexercise{QM-C15-S02-E03}{习题 15.2.5}。
+
+\textbf{CG 系数就是换基振幅。}定义 Clebsch--Gordan coefficients（Clebsch--Gordan 系数，简称 CG 系数）
+\begin{equation}
+  C^{jm}_{j_1m_1;j_2m_2}
+    =\bigl(\bra{j_1,m_1}\otimes\bra{j_2,m_2}\bigr)\ket{j,m},
+\end{equation}
+从而
+\begin{equation}
+  \boxed{\ket{j,m}
+    =\sum_{m_1,m_2}C^{jm}_{j_1m_1;j_2m_2}
+      \ket{j_1,m_1}\otimes\ket{j_2,m_2}.}
+\end{equation}
+系数只有在 $j$ 满足合成规则且 $m_1+m_2=m$ 时才可能非零。在 $\ket{j,m}$ 中联合测量 $J_{1z},J_{2z}$，结果 $(m_1\hbar,m_2\hbar)$ 的概率就是 $|C^{jm}_{j_1m_1;j_2m_2}|^2$。
+
+教材的相位约定取所有系数为实数，并使每组最高态 $\ket{j,j}$ 中 $m_1=j_1$ 的乘积项系数为正；同一组其余态的相位由正的下降系数固定。在这一约定下，
+\begin{equation}
+  \boxed{C^{j,-m}_{j_1,-m_1;j_2,-m_2}
+    =(-1)^{j_1+j_2-j}C^{jm}_{j_1m_1;j_2m_2}.}
+\end{equation}
+这可直接补齐负 $m$ 的系数。两套基均正交归一，因此 CG 矩阵是酉矩阵；实系数约定下为正交矩阵。逆变换为
+\begin{equation}
+  \ket{j_1,m_1}\otimes\ket{j_2,m_2}
+    =\sum_{j,m}\bigl(C^{jm}_{j_1m_1;j_2m_2}\bigr)^*\ket{j,m}.
+\end{equation}
+矩阵示范见\relatedexercise{QM-C15-S02-E01}{教材正文换基示范}；完整的 $\tfrac12\otimes1$ 构造见\relatedexercise{QM-C15-S02-E02}{习题 15.2.2 第 (1) 问}。
+
+\notetopic{QM-C15-S02-T03}{轨道角动量与自旋的合成}
+对电子 $s=1/2$，固定轨道量子数 $l$，有
+\begin{equation}
+  \boxed{\mathbf J=\mathbf L+\mathbf S,\qquad
+    j=l+\tfrac12\ \text{或}\ l-\tfrac12.}
+\end{equation}
+下支只在 $l\ge1$ 时存在；$l=0$ 时只有 $j=1/2$。这里的两支由角动量代数决定，不是经典矢量严格平行或反平行的假设。
+
+固定总投影 $m$，在两项均存在的区间 $|m|\le l-1/2$，定义
+\begin{equation}
+  \ket u=\ket{l,m-\tfrac12}\otimes\ket+,
+  \qquad
+  \ket v=\ket{l,m+\tfrac12}\otimes\ket-.
+\end{equation}
+由 $J^2=L^2+S^2+2L_zS_z+L_-S_++L_+S_-$，在 $(\ket u,\ket v)$ 中
+\begin{equation}
+  \frac{J^2}{\hbar^2}\ \longleftrightarrow\
+  \begin{pmatrix}
+    l(l+1)+m+\tfrac14&q\\
+    q&l(l+1)-m+\tfrac14
+  \end{pmatrix},\qquad
+  q=\sqrt{(l+\tfrac12)^2-m^2}.
+\end{equation}
+令上支本征态为 $\alpha\ket u+\beta\ket v$，比较第一行得到
+\begin{equation}
+  (l+\tfrac12-m)\alpha=q\beta,
+  \qquad \frac\beta\alpha
+    =\sqrt{\frac{l+\tfrac12-m}{l+\tfrac12+m}}.
+\end{equation}
+结合归一化、正交性及教材相位约定，记
+\begin{equation}
+  A_m=\sqrt{\frac{l+\tfrac12+m}{2l+1}},\qquad
+  B_m=\sqrt{\frac{l+\tfrac12-m}{2l+1}},
+\end{equation}
+得到
+\begin{equation}
+  \boxed{\begin{aligned}
+    \ket{l+\tfrac12,m}&=A_m\ket u+B_m\ket v,\\
+    \ket{l-\tfrac12,m}&=-B_m\ket u+A_m\ket v.
+  \end{aligned}}
+\end{equation}
+在上支的两个端点，只有一个合法乘积态：
+\begin{equation}
+  \ket{l+\tfrac12,l+\tfrac12}=\ket{l,l}\otimes\ket+,
+  \qquad
+  \ket{l+\tfrac12,-l-\tfrac12}=\ket{l,-l}\otimes\ket-.
+\end{equation}
+端点以外，两项通常均非零：$J^2,J_z$ 确定，而各自的 $L_z,S_z$ 具有非零涨落。
+
+耦合基尤其适合 spin--orbit interaction（自旋--轨道相互作用），因为
+\begin{equation}
+  \mathbf L\cdot\mathbf S=\frac12(J^2-L^2-S^2),\qquad
+  \boxed{\mathbf L\cdot\mathbf S\ \longleftrightarrow\
+  \begin{cases}
+    \hbar^2l/2,&j=l+1/2,\\
+    -\hbar^2(l+1)/2,&j=l-1/2.
+  \end{cases}}
+\end{equation}
+这说明含 $\mathbf L\cdot\mathbf S$ 的相互作用为什么适合用总角动量分类。具体能量分裂还需给出耦合强度及径向部分。
+
+\notetopic{QM-C15-S02-T04}{光谱项符号与磁简并}
+光谱中用 term symbol（光谱项符号）
+\begin{equation}
+  \boxed{{}^{2S+1}L_J}
+\end{equation}
+标记总自旋、总轨道角动量和合成后的总角动量。此处 $L,S,J$ 是量子数；多电子原子中指所有电子合成后的总量子数。
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+  \toprule
+  位置 & 含义 \\
+  \midrule
+  左上角 $2S+1$ & 自旋多重度，如 $S=0$ 为单重、$S=1$ 为三重 \\
+  中间字母 $L$ & 用 $\mathrm S,\mathrm P,\mathrm D,\mathrm F,\mathrm G,\ldots$ 表示 $L=0,1,2,3,4,\ldots$ \\
+  右下角 $J$ & 总角动量量子数，$\mathbf J=\mathbf L+\mathbf S$ \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+中间的字母 $\mathrm S$ 表示 $L=0$，与左上角公式中的自旋量子数 $S$ 是不同含义。例如
+\begin{equation}
+  {}^2\mathrm P_{3/2}:\ L=1,\ S=\tfrac12,\ J=\tfrac32,
+  \qquad
+  {}^2\mathrm P_{1/2}:\ L=1,\ S=\tfrac12,\ J=\tfrac12.
+\end{equation}
+氦原子基态的记号 $ {}^1\mathrm S_0$ 对应 $L=S=J=0$。
+
+项符号没有给出磁量子数 $M_J$ 或完整的径向、组态信息。固定 $J$ 的多重态有 $M_J=-J,\ldots,J$ 共 $2J+1$ 个态；在旋转不变的 Hamiltonian 下，这些磁子态同能，外场可使其分裂。$2S+1$ 与 $2J+1$ 分别计数自旋多重度和总角动量磁子态。
+
+\textbf{一分钟回顾。}两个角动量合成时，$j$ 从 $|j_1-j_2|$ 到 $j_1+j_2$ 按 $1$ 递增。先找最高态，再下降生成固定 $j$ 的一组态；新的 $j$ 要从正交补中构造。CG 系数是两套正交基间的变换振幅，模平方给出分量测量概率。电子的 $L+S$ 分成 $j=l\pm1/2$ 两支，光谱项符号 $ {}^{2S+1}L_J$ 汇总这些量子数，但不指定 $M_J$。
