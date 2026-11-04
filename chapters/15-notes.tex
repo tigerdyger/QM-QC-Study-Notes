@@ -348,3 +348,194 @@ $J_+$ 作用于 $\ket b,\ket a$ 的系数分别为 $\hbar\sqrt{2j_2},\hbar\sqrt{
 项符号没有给出磁量子数 $M_J$ 或完整的径向、组态信息。固定 $J$ 的多重态有 $M_J=-J,\ldots,J$ 共 $2J+1$ 个态；在旋转不变的 Hamiltonian 下，这些磁子态同能，外场可使其分裂。$2S+1$ 与 $2J+1$ 分别计数自旋多重度和总角动量磁子态。
 
 \textbf{一分钟回顾。}两个角动量合成时，$j$ 从 $|j_1-j_2|$ 到 $j_1+j_2$ 按 $1$ 递增。先找最高态，再下降生成固定 $j$ 的一组态；新的 $j$ 要从正交补中构造。CG 系数是两套正交基间的变换振幅，模平方给出分量测量概率。电子的 $L+S$ 分成 $j=l\pm1/2$ 两支，光谱项符号 $ {}^{2S+1}L_J$ 汇总这些量子数，但不指定 $M_J$。
+
+\section{第 15.3 节：不可约张量算符与 Wigner--Eckart 定理}
+\label{section:QM-C15-S03}
+\studymeta
+  {QM-C15-S03}
+  {2026-11-04 至 2026-11-05}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {\S 15.3 Irreducible Tensor Operators；印刷 pp.~416--421 / PDF pp.~422--427，至 \S 15.4 标题前}
+  {四块讲解与两道选定习题已核对；笔记已确认}
+
+\keyidea{按旋转规律给算符分类，就能先判断哪些矩阵元必为零，再把允许矩阵元的方向依赖交给 CG 系数。具体大小则由约化矩阵元提供。}
+
+\notetopic{QM-C15-S03-T01}{从旋转规律区分标量、矢量与张量算符}
+设主动旋转由 $U(R)=\exp(-i\theta\mathbf n\cdot\mathbf J/\hbar)$ 表示。算符的标量、矢量或张量性质，描述的是它在旋转下的变换规律。
+
+\textbf{标量算符。}用 $F$ 表示标量算符，以免与自旋记号混淆。定义要求对任意旋转都有
+\begin{equation}
+  U^\dagger(R)FU(R)=F.
+\end{equation}
+绕任意轴展开到一阶，
+\begin{equation}
+  U^\dagger FU=F+\frac{i\epsilon}{\hbar}[\mathbf n\cdot\mathbf J,F]
+    +O(\epsilon^2),
+\end{equation}
+因此其等价条件是
+\begin{equation}
+  \boxed{[J_x,F]=[J_y,F]=[J_z,F]=0.}
+\end{equation}
+$J^2$、$r^2$ 和中心势 Hamiltonian 都是标量算符；它们通常仍对状态有非平凡作用。只与 $J_z$ 对易，仅保证绕 $z$ 轴不变。
+
+\textbf{矢量算符。}三个算符 $\mathbf V=(V_x,V_y,V_z)$ 若满足
+\begin{equation}
+  \boxed{U^\dagger V_iU=\sum_jR_{ij}V_j,\qquad
+    [J_i,V_j]=i\hbar\sum_k\epsilon_{ijk}V_k,}
+\end{equation}
+就构成矢量算符。例如 $\mathbf R,\mathbf P,\mathbf J$ 均按此规律变换。对旋转后的态 $U\ket\psi$ 取期望，$\expect{\mathbf V}$ 正好按三维旋转矩阵 $R$ 变换。
+
+后面采用的共轭次序是 $UV_iU^\dagger$。由 $R^{-1}=R^{\mathsf T}$，同一规律可写成
+\begin{equation}
+  \boxed{UV_iU^\dagger=\sum_jR_{ji}V_j.}
+\end{equation}
+交换 $U,U^\dagger$ 的位置，也须交换矩阵指标；教材式 (15.3.3) 与 (15.3.5) 正是这两种等价写法。
+
+\textbf{笛卡尔张量。}若 $\mathbf V,\mathbf W$ 都是矢量算符，则 $T_{ij}=V_iW_j$ 满足
+\begin{equation}
+  U^\dagger T_{ij}U=\sum_{a,b}R_{ia}R_{jb}T_{ab}.
+\end{equation}
+这是二阶笛卡尔张量的变换规律，共有 $3^2=9$ 个分量。这里的阶数计数笛卡尔指标，与算符在 Hilbert 空间中的矩阵维数无关。
+
+\notetopic{QM-C15-S03-T02}{不可约分解与球张量分量}
+\textbf{不可约的含义。}考虑一组算符及其线性组合。如果旋转只在这组内部混合，且不能再分成更小的旋转不变子空间，就称这组算符不可约（irreducible）。
+
+一般二阶笛卡尔张量可以分成三组：
+\begin{equation}
+  \boxed{1\otimes1=0\oplus1\oplus2,\qquad 9=1+3+5.}
+\end{equation}
+其中的 $0,1,2$ 是旋转表示的角动量标签。用笛卡尔分量具体写出这一分解（对话补充），令 $\tau=\sum_aT_{aa}$，则
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}llX@{}}
+  \toprule
+  部分 & 独立分量数 & 表达式 \\
+  \midrule
+  迹，$k=0$ & $1$ & $\delta_{ij}\tau/3$ \\
+  反对称部分，$k=1$ & $3$ & $A_{ij}=(T_{ij}-T_{ji})/2$ \\
+  对称无迹部分，$k=2$ & $5$ & $Q_{ij}=(T_{ij}+T_{ji})/2-\delta_{ij}\tau/3$ \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+三者相加恢复 $T_{ij}$，在旋转下各自封闭。因而二阶笛卡尔张量的全部九个分量，并不组成单个 $k=2$ 不可约张量。
+
+\textbf{球张量的定义。}秩 $k$ 的 spherical tensor operator（球张量算符）包含 $2k+1$ 个分量
+\begin{equation}
+  T_k^q,\qquad q=-k,-k+1,\ldots,k.
+\end{equation}
+$q$ 是分量标签，不是幂。定义旋转矩阵 $D^{(k)}$ 的指标次序为
+\begin{equation}
+  U(R)\ket{k,q}=\sum_{q'}D^{(k)}_{q'q}(R)\ket{k,q'}.
+\end{equation}
+球张量各分量在共轭变换下按同一矩阵混合：
+\begin{equation}
+  \boxed{U(R)T_k^qU^\dagger(R)
+    =\sum_{q'}D^{(k)}_{q'q}(R)T_k^{q'}.}
+\end{equation}
+这使算符空间中的这组分量具有与固定角动量 $k$ 的态相同的旋转结构；$T_k^q$ 本身仍是作用于态的算符。
+
+对应的无穷小关系为
+\begin{equation}
+  \boxed{\begin{aligned}
+    [J_z,T_k^q]&=\hbar qT_k^q,\\
+    [J_\pm,T_k^q]&=\hbar\sqrt{(k\mp q)(k\pm q+1)}\,T_k^{q\pm1}.
+  \end{aligned}}
+\end{equation}
+对易运算在分量之间起升降作用；最高分量被 $J_+$ 的对易作用消去，最低分量被 $J_-$ 的对易作用消去。
+
+\textbf{教材勘误。}印刷 p.~418 式 (15.3.11) 在右端 $\hbar$ 前多印了一个 $\pm$。按该书的旋转及球分量约定，应使用上面的无额外正负号形式；\relatedexercise{QM-C15-S03-E02}{习题 15.3.1 第 (2) 问}直接给出 $[J_-,T_1^0]=+\sqrt2\hbar T_1^{-1}$。
+
+\textbf{标量与矢量是最初两种球张量。}$k=0$ 只有 $T_0^0$，与所有 $J_i$ 对易。$k=1$ 则由矢量算符重组为
+\begin{equation}
+  \boxed{T_1^{+1}=-\frac{V_x+iV_y}{\sqrt2},\qquad
+    T_1^0=V_z,\qquad T_1^{-1}=\frac{V_x-iV_y}{\sqrt2}.}
+\end{equation}
+这只是同一矢量的三个分量换基。对 $k>0$，$q=0$ 分量仍会通过 $J_\pm$ 与其他分量混合，不能仅凭 $[J_z,T_k^0]=0$ 把它归为标量。
+
+\notetopic{QM-C15-S03-T03}{张量矩阵元的选择定则}
+记 $\alpha$ 为角动量之外的量子数，并令
+\begin{equation}
+  M=\bra{\alpha',j',m'}T_k^q\ket{\alpha,j,m}.
+\end{equation}
+\textbf{磁量子数条件。}在 $[J_z,T_k^q]=\hbar qT_k^q$ 两边取矩阵元，得到
+\begin{equation}
+  (m'-m)\hbar M=q\hbar M,
+  \qquad (m'-m-q)M=0.
+\end{equation}
+故 $M\ne0$ 必须满足 $m'=m+q$。
+
+\textbf{总角动量条件。}旋转作用于 $T_k^q\ket{\alpha,j,m}$ 时，
+\begin{equation}
+  U(T_k^q\ket{\alpha,j,m})
+    =(UT_k^qU^\dagger)(U\ket{\alpha,j,m}).
+\end{equation}
+右端分别按 $D^{(k)}$ 和 $D^{(j)}$ 变换，因此得到 $k\otimes j$ 的合成结构。由上一节的合成规则，可能出现的 $j'$ 只能是 $|j-k|$ 到 $j+k$、步长为 $1$ 的那些值。综上，
+\begin{equation}
+  \boxed{M\ne0\ \Longrightarrow\
+    \begin{cases}
+      m'=m+q,\\
+      j'=|j-k|,\ |j-k|+1,\ldots,j+k.
+    \end{cases}}
+\end{equation}
+这些是 selection rules（选择定则）：不满足时矩阵元必为零；满足时还要检查具体 CG 系数和算符矩阵元，不能保证非零。
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lXX@{}}
+  \toprule
+  算符 & 总角动量条件 & 磁量子数条件 \\
+  \midrule
+  标量 $T_0^0$ & $j'=j$ & $m'=m$ \\
+  矢量球分量 $T_1^q$ & $j'=|j-1|,\ldots,j+1$ & $m'=m+q$ \\
+  $V_z$ & 同上 & $m'=m$ \\
+  $V_x,V_y$ & 同上 & $m'=m\pm1$ \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+矢量条件常写为 $j'=j-1,j,j+1$，但必须保留完整三角条件，特别是 $j=0\leftrightarrow j'=0$ 被禁止。标量条件也不限制 $\alpha'=\alpha$：它可以连接不同径向态或其他量子数的态。
+
+例如 $\bra{1,0}J_z\ket{1,0}=0$ 满足角动量选择条件，却仍然为零。固定 $j$ 的对角矩阵元还有 $k\le2j$ 的必要条件，推导见\relatedexercise{QM-C15-S03-E03}{习题 15.3.5}。
+
+\notetopic{QM-C15-S03-T04}{Wigner--Eckart 定理：分离方向与具体动力学}
+Wigner--Eckart 定理（维格纳--埃卡特定理）把矩阵元进一步分解。沿用教材式 (15.3.18) 的约定，
+\begin{equation}
+  \boxed{\bra{\alpha',j',m'}T_k^q\ket{\alpha,j,m}
+    =\mathcal R_{\rm book}\,\langle j',m'|k,q;j,m\rangle,}
+\end{equation}
+其中
+\begin{equation}
+  \mathcal R_{\rm book}
+    =\langle\alpha',j'\|T_k\|\alpha,j\rangle_{\rm book}
+\end{equation}
+称为 reduced matrix element（约化矩阵元）。双竖线是这一专用记号，并非范数。教材采用实 CG 系数，所以此处耦合态在左的写法与相应换基系数相同。
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+  \toprule
+  因子 & 包含的信息 \\
+  \midrule
+  CG 系数 $\langle j',m'|k,q;j,m\rangle$ & 由角动量代数确定，承载 $m,m',q$ 的全部方向依赖 \\
+  约化矩阵元 $\mathcal R_{\rm book}$ & 与 $m,m',q$ 无关；依赖具体算符、$k,j,j'$ 及 $\alpha,\alpha'$ \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+因此，在算符和 $\alpha,j,\alpha',j'$ 固定时，求出一个 CG 系数非零的矩阵元，就能求出约化矩阵元，继而得到其余分量。若约化矩阵元为零，这一组矩阵元全部为零。具体的径向积分等信息仍须由物理问题提供。
+
+教材用位置算符示范这一分离，见\relatedexercise{QM-C15-S03-E01}{径向与角向积分示范}；本节给出一般定理的结论，未展开完整证明。
+
+\textbf{约定换算（对话补充）。}本次习题解答使用了另一种常见写法：
+\begin{equation}
+  M=\frac{\langle j,m;k,q|j',m'\rangle}{\sqrt{2j'+1}}
+       \mathcal R_{\rm alt}.
+\end{equation}
+它同时改变了约化矩阵元的归一化和 CG 因子的排列。按标准实 CG 相位约定，交换两个合成因子给出
+\begin{equation}
+  \langle k,q;j,m|j',m'\rangle
+    =(-1)^{j+k-j'}\langle j,m;k,q|j',m'\rangle.
+\end{equation}
+于是，对允许的 $j,j',k$，两种定义对应
+\begin{equation}
+  \boxed{\mathcal R_{\rm book}
+     =\frac{(-1)^{j+k-j'}}{\sqrt{2j'+1}}\mathcal R_{\rm alt}.}
+\end{equation}
+两种约定给出相同的物理矩阵元和零元条件。查表或比较公式时，应一起核对 CG 因子次序、相位与约化矩阵元定义。
+
+\textbf{一分钟回顾。}先看算符在任意旋转下怎样变换，再将其分成不可约的 $T_k^q$。张量作用于 $j$ 态具有 $k\otimes j$ 的合成结构，所以矩阵元须满足三角条件和 $m'=m+q$。Wigner--Eckart 定理把允许矩阵元写成 CG 系数乘约化矩阵元：前者决定方向依赖，后者保留具体系统的信息。选择定则允许的矩阵元仍可能为零。
