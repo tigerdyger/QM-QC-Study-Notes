@@ -539,3 +539,219 @@ Wigner--Eckart 定理（维格纳--埃卡特定理）把矩阵元进一步分解
 两种约定给出相同的物理矩阵元和零元条件。查表或比较公式时，应一起核对 CG 因子次序、相位与约化矩阵元定义。
 
 \textbf{一分钟回顾。}先看算符在任意旋转下怎样变换，再将其分成不可约的 $T_k^q$。张量作用于 $j$ 态具有 $k\otimes j$ 的合成结构，所以矩阵元须满足三角条件和 $m'=m+q$。Wigner--Eckart 定理把允许矩阵元写成 CG 系数乘约化矩阵元：前者决定方向依赖，后者保留具体系统的信息。选择定则允许的矩阵元仍可能为零。
+
+\section{第 15.4 节：额外对称性与“偶然简并”}
+\label{section:QM-C15-S04}
+\studymeta
+  {QM-C15-S04}
+  {2026-11-05}
+  {Shankar, \textit{Principles of Quantum Mechanics}, Second Edition}
+  {\S 15.4 Explanation of Some ``Accidental'' Degeneracies；印刷 pp.~421--427 / PDF pp.~427--433，至本节末}
+  {四块正文已讲解；笔记已确认；本节无独立编号例题或习题}
+
+\notetopic{QM-C15-S04-T01}{解释简并：用守恒算符连接同能态}
+\keyidea{与 Hamiltonian 对易的算符保持能量；若它产生非零且与原态线性无关的新态，就建立了简并态之间的联系。}
+
+若 $H\ket{\psi_E}=E\ket{\psi_E}$ 且 $[H,G]=0$，则在算符作用有定义时，
+\begin{equation}
+  \boxed{H(G\ket{\psi_E})=GH\ket{\psi_E}=E(G\ket{\psi_E}).}
+\end{equation}
+所以非零的 $G\ket{\psi_E}$ 仍在能量 $E$ 的本征空间内。要由此证明简并，还须检查它与原态线性无关；零向量或原态的倍数均未增加独立态。
+
+旋转不变性 $U^\dagger(R)HU(R)=H$ 给出 $[H,L_i]=0$，因而 $[H,L_\pm]=0$。在共同本征基中，
+\begin{equation}
+  L_-\ket{E,l,m}
+    =\hbar\sqrt{(l+m)(l-m+1)}\ket{E,l,m-1}.
+\end{equation}
+从 $m=l$ 逐次下降到 $m=-l$，得到 $2l+1$ 个同能且正交的态。这解释了固定 $l$ 的磁简并。由于 $[L^2,L_\pm]=0$，这条链保持 $l$；$L^2$ 本身则只给出 $\hbar^2l(l+1)$ 的倍数，连 $m$ 也不改变。
+
+氢原子和各向同性谐振子还存在不同 $l$ 的同能态。这种超出普通旋转对称性要求的简并称为 accidental degeneracy（“偶然简并”）。本节通过额外的守恒算符解释它：先找到与 $H$ 对易的量，再利用其张量性质判断能连接哪些 $l,m$。
+
+\notetopic{QM-C15-S04-T02}{氢原子：Runge--Lenz 矢量连接不同角动量}
+沿用非相对论库仑模型，不计自旋及精细结构。令 $\mu$ 为质量参数，$e^2$ 表示教材的库仑耦合常数，
+\begin{equation}
+  H=\frac{\mathbf P^2}{2\mu}-\frac{e^2}{r},\qquad
+  \boxed{\mathbf N=\frac{\mathbf P\times\mathbf L-\mathbf L\times\mathbf P}{2\mu}
+       -e^2\frac{\mathbf R}{r}.}
+\end{equation}
+$\mathbf N$ 是第 13.2 节的量子 Runge--Lenz 矢量；经典对应量沿非圆椭圆轨道长轴指向近心点。上述算符排序使各分量厄米。它同时满足
+\begin{equation}
+  \boxed{[H,N_i]=0,\qquad [L_i,N_j]=\ii\hbar\sum_k\epsilon_{ijk}N_k.}
+\end{equation}
+因此它是守恒的秩一张量。取球分量
+\begin{equation}
+  N_1^{+1}=-\frac{N_x+\ii N_y}{\sqrt2},\qquad
+  N_1^0=N_z,\qquad N_1^{-1}=\frac{N_x-\ii N_y}{\sqrt2}.
+\end{equation}
+
+作用于最高磁量子数态 $\ket{n,l,l}$ 时，$q=+1$ 要求 $m'=l+1$，秩一三角条件要求 $l'\le l+1$，而 $l'\ge|m'|=l+1$。故非零结果只能具有 $l'=m'=l+1$。再由能量不变，主量子数 $n$ 保持不变：
+\begin{equation}
+  \boxed{N_1^{+1}\ket{n,l,l}=c_{nl}\ket{n,l+1,l+1}.}
+\end{equation}
+选择定则确定非零结果的去向，系数则由具体算符决定；对一般 $m$，仅凭 $m'=m+1$ 无法唯一确定 $l'$。教材此处保留系数而不计算其大小：库仑问题的这条链连接 $l=0,1,\ldots,n-1$，到 $l=n-1$ 时作用结果为零。
+
+用 $\mathbf N$ 连接各个 $l$，再用 $L_-$ 补齐每个 $l$ 的所有 $m$，就覆盖固定 $n$ 的整个空间能级：
+\begin{equation}
+  \boxed{g_n=\sum_{l=0}^{n-1}(2l+1)=n^2.}
+\end{equation}
+这里的 $n^2$ 不含自旋倍数；它把先前算出的同能关系与额外守恒量联系起来。
+
+\notetopic{QM-C15-S04-T03}{各向同性谐振子：从九个守恒量到四极张量}
+\textbf{复矢量形式显露额外对称性。}定义三个方向的降算符
+\begin{equation}
+  a_i=\sqrt{\frac{\mu\omega}{2\hbar}}X_i
+     +\frac{\ii P_i}{\sqrt{2\mu\hbar\omega}},\qquad
+  [a_i,a_j^\dagger]=\delta_{ij}.
+\end{equation}
+将其组成列矢量 $\mathbf a$，则
+\begin{equation}
+  \boxed{H=\hbar\omega\left(\mathbf a^\dagger\cdot\mathbf a+\frac32\right),
+    \qquad \widehat N=\sum_i a_i^\dagger a_i.}
+\end{equation}
+本块用 $N$ 表示总激发数，即教材此处的 $n$；$N=2n_r+l$，与上一块的 Runge--Lenz 矢量 $\mathbf N$ 区分。
+
+任意 $3\times3$ 酉矩阵 $C$ 都可混合三个分量：$\mathbf a'=C\mathbf a$。由于
+\begin{equation}
+  \mathbf a'^\dagger\cdot\mathbf a'
+     =\mathbf a^\dagger C^\dagger C\mathbf a
+     =\mathbf a^\dagger\cdot\mathbf a,
+\end{equation}
+$H$ 保持不变。$C$ 作用于三个分量的指标；Hilbert 空间中相应的酉算符满足
+\begin{equation}
+  U^\dagger(C)a_iU(C)=\sum_jC_{ij}a_j.
+\end{equation}
+普通实空间旋转只占这些变换的一部分。
+
+写 $C=\ee^{\ii A}$，其中 $A$ 为 $3\times3$ 厄米矩阵。三个实对角元加三个独立复非对角元，共给出九个实参数。相应守恒算符可由
+\begin{equation}
+  \boxed{T_{ij}=a_i^\dagger a_j,\qquad [H,T_{ij}]=0}
+\end{equation}
+构成，因为
+\begin{equation}
+  [H,a_i^\dagger a_j]
+   =[H,a_i^\dagger]a_j+a_i^\dagger[H,a_j]
+   =\hbar\omega a_i^\dagger a_j-\hbar\omega a_i^\dagger a_j=0.
+\end{equation}
+当 $i\ne j$ 时，它从 $j$ 方向移走一个量子、向 $i$ 方向加入一个，能量抵消。若 $\omega_i\ne\omega_j$，则 $[H,T_{ij}]=\hbar(\omega_i-\omega_j)T_{ij}$，这项额外守恒性便消失。
+
+\textbf{厄米性补充。}$T_{ij}^\dagger=T_{ji}$，故九个 $T_{ij}$ 并非各自都厄米。九个厄米生成元可取三个 $T_{ii}$，以及 $i<j$ 时的 $T_{ij}+T_{ji}$ 和 $\ii(T_{ij}-T_{ji})$。
+
+\textbf{按旋转性质分解。}由于 $\mathbf a,\mathbf a^\dagger$ 都按矢量变换，$T_{ij}$ 是二阶笛卡尔张量。利用第 15.3 节的 $1\otimes1=0\oplus1\oplus2$，有
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}llX@{}}
+  \toprule
+  部分与秩 & 分量数 & 在固定能级中的作用 \\
+  \midrule
+  迹，$k=0$ & $1$ & $\sum_iT_{ii}=\widehat N$，只乘总激发数 $N$ \\
+  反对称部分，$k=1$ & $3$ & $\mathbf a^\dagger\times\mathbf a=\ii\mathbf L/\hbar$，保持 $l$ \\
+  对称无迹部分，$k=2$ & $5$ & 四极张量，可连接不同 $l$ \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+反对称部分的关系可直接核对：因 $\mathbf P\times\mathbf R=-\mathbf R\times\mathbf P$，
+\begin{equation}
+  \mathbf a^\dagger\times\mathbf a
+    =\frac{\ii}{2\hbar}(\mathbf R\times\mathbf P-\mathbf P\times\mathbf R)
+    =\frac{\ii}{\hbar}\mathbf L.
+\end{equation}
+所以其 $q=+1$ 分量正比于 $L_+$，作用于 $\ket{N,l,l}$ 时为零。这也说明：秩一的选择定则允许 $l\to l+1$，并不保证对应矩阵元非零。
+
+对称无迹部分可写为
+\begin{equation}
+  Q_{ij}=\frac{T_{ij}+T_{ji}}2-\frac{\delta_{ij}}3\sum_kT_{kk}.
+\end{equation}
+它组成 quadrupole tensor（四极张量）的五个球分量 $Q_2^q$。教材式 (15.4.21) 的最高分量为
+\begin{equation}
+  \boxed{\begin{aligned}
+    Q_2^{+2}
+      &=\frac12(a_x^\dagger+\ii a_y^\dagger)(a_x+\ii a_y)\\
+      &=\frac12\left[T_{xx}-T_{yy}+\ii(T_{xy}+T_{yx})\right].
+  \end{aligned}}
+\end{equation}
+它与 $H$ 对易。作用于最高态时，$m'=l+2$ 与 $l'\le l+2$ 共同确定 $l'=l+2$，因此
+\begin{equation}
+  \boxed{Q_2^{+2}\ket{N,l,l}=d_{Nl}\ket{N,l+2,l+2}.}
+\end{equation}
+这条链从 $l=0$（偶 $N$）或 $l=1$（奇 $N$）开始，逐次增加 $2$，到 $l=N$ 时停止。再用 $L_-$ 生成各组的 $m$，得到
+\begin{equation}
+  E_N=\left(N+\frac32\right)\hbar\omega,\qquad
+  \boxed{g_N=\sum_{l=N,N-2,\ldots}(2l+1)=\frac{(N+1)(N+2)}2.}
+\end{equation}
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Stealth,font=\small]
+  \node[anchor=west,noteBlue] at (-1.0,0.7) {氢原子 $n=3$：$1+3+5=9$ 个态};
+  \node (h0) at (0,0) {$\ket{3,0,0}$};
+  \node (h1) at (4,0) {$\ket{3,1,1}$};
+  \node (h2) at (8,0) {$\ket{3,2,2}$};
+  \draw[->,thick,noteBlue] (h0)--node[above] {$N_1^{+1}$} (h1);
+  \draw[->,thick,noteBlue] (h1)--node[above] {$N_1^{+1}$} (h2);
+  \node at (0,-0.55) {$m=0$};
+  \node at (4,-0.55) {$m=1,0,-1$};
+  \node at (8,-0.55) {$m=2,1,\ldots,-2$};
+  \node[anchor=west,accentRed] at (-1.0,-1.4) {谐振子 $N=4$：$1+5+9=15$ 个态};
+  \node (o0) at (0,-2.1) {$\ket{4,0,0}$};
+  \node (o2) at (4,-2.1) {$\ket{4,2,2}$};
+  \node (o4) at (8,-2.1) {$\ket{4,4,4}$};
+  \draw[->,thick,accentRed] (o0)--node[above] {$Q_2^{+2}$} (o2);
+  \draw[->,thick,accentRed] (o2)--node[above] {$Q_2^{+2}$} (o4);
+  \node at (0,-2.65) {$m=0$};
+  \node at (4,-2.65) {$m=2,1,\ldots,-2$};
+  \node at (8,-2.65) {$m=4,3,\ldots,-4$};
+\end{tikzpicture}
+
+{\small 原创连接示意，依据教材印刷 pp.~423、426。箭头省略非零系数，表示同能态之间的算符作用；各节点下列出的 $m$ 由 $L_-$ 补齐。图中高度不表示能量。}
+\end{center}
+
+\notetopic{QM-C15-S04-T04}{自由粒子：平移对称性与径向解的生成}
+自由粒子的 $H=\mathbf P^2/(2\mu)$ 同时满足 $[H,L_i]=[H,P_i]=0$。平移保留能量，却可改变相对于固定原点的角动量结构。固定 $k>0$，令
+\begin{equation}
+  E=\frac{\hbar^2k^2}{2\mu},\qquad P_+=P_x+\ii P_y.
+\end{equation}
+$P_+$ 与动量的 $q=+1$ 球分量只差常数，因此从最高态出发仍有 $l'=m'=l+1$，且 $k$ 不变：
+\begin{equation}
+  \boxed{\ket{k,l,l}=c_l(P_+)^l\ket{k,0,0}.}
+\end{equation}
+固定正能量下允许 $l=0,1,2,\ldots$，这条链无有限终点；再用 $L_-$ 覆盖各组 $m$。这些是连续谱的广义本征态，不采用全空间平方归一化。
+
+\textbf{从算符作用恢复径向公式。}令 $\rho=kr$，以原点正则的 $l=0$ 解为起点：
+\begin{equation}
+  \psi_{k00}\propto R_0(\rho)Y_0^0,\qquad
+  R_0(\rho)=\frac{\sin\rho}{\rho}.
+\end{equation}
+$Y_0^0$ 为常数。对任意光滑径向函数 $F(r)$，链式法则给出
+\begin{equation}
+  P_+F(r)=-\ii\hbar(\partial_x+\ii\partial_y)F(r)
+    =-\ii\hbar(x+\ii y)\frac1r\frac{\dd F}{\dd r}.
+\end{equation}
+由于 $(\partial_x+\ii\partial_y)(x+\ii y)=1+\ii^2=0$，即 $[P_+,X+\ii Y]=0$，重复作用时可把各个 $x+\ii y$ 提到导数之前。因此
+\begin{equation}
+  \boxed{(P_+)^lF(r)=(-\ii\hbar)^l(x+\ii y)^l
+    \left(\frac1r\frac\dd{\dd r}\right)^lF(r).}
+\end{equation}
+再利用 $x+\ii y=r\sin\theta\,\ee^{\ii\varphi}$ 及
+$Y_l^l\propto(\sin\theta)^l\ee^{\ii l\varphi}$，角向部分成为 $Y_l^l$。把与 $\rho$ 无关的常数吸收后，得到教材式 (15.4.27)：
+\begin{equation}
+  R_l(\rho)=\widetilde c_l\rho^l
+    \left(\frac1\rho\frac\dd{\dd\rho}\right)^lR_0(\rho).
+\end{equation}
+取 $\widetilde c_l=(-1)^l$，便恢复第 12.6 节的正则径向函数，即 spherical Bessel function（球贝塞尔函数）：
+\begin{equation}
+  \boxed{j_l(\rho)=(-1)^l\rho^l
+    \left(\frac1\rho\frac\dd{\dd\rho}\right)^l\frac{\sin\rho}{\rho}.}
+\end{equation}
+教材也从 $R_0=-\cos\rho/\rho$ 生成不规则分支；该分支在原点奇异，全空间自由粒子的原点正则解采用上述正弦分支。提高 $l$ 时，角向与径向函数一起改变，能量保持不变。
+
+\textbf{本节对照。}下表的 $l$ 变化均指作用于最高态 $m=l$ 后的非零结果；每个固定 $l$ 内再由 $L_-$ 连接不同 $m$。
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lXXX@{}}
+  \toprule
+  系统 & 跨 $l$ 的守恒算符 & 固定能量时的 $l$ & 空间简并度 \\
+  \midrule
+  氢原子 & $N_1^{+1}$，步长 $1$ & $0,1,\ldots,n-1$ & $n^2$ \\
+  各向同性谐振子 & $Q_2^{+2}$，步长 $2$ & $N,N-2,\ldots,0$ 或 $1$ & $(N+1)(N+2)/2$ \\
+  自由粒子，$E>0$ & $P_+$，步长 $1$ & $0,1,2,\ldots$ & 无限多个角向通道 \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+\textbf{一分钟回顾。}守恒性保证能量不变，张量选择定则约束新态的角动量，具体算符决定允许的连接是否非零。普通旋转解释固定 $l$ 的磁简并；Runge--Lenz 矢量、谐振子的四极张量与自由粒子的动量进一步解释跨 $l$ 的同能关系。
