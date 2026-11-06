@@ -2,7 +2,9 @@
 
 这是一个公开的中文学习笔记仓库，用于系统整理 Quantum Mechanics（量子力学，QM）与 Quantum Computing（量子计算，QC）的概念、推导、习题解答和来源记录。
 
-量子力学部分以 R. Shankar 的 *Principles of Quantum Mechanics* 为主要资料；量子计算部分将在确定主要资料后按照相同规范维护。本仓库不是教材翻译、官方讲义或标准答案，不能替代原始教材及正式课程资料。
+量子力学部分以 R. Shankar 的 *Principles of Quantum Mechanics* 为主要资料；量子计算部分以 Michael A. Nielsen 与 Isaac L. Chuang 的 *Quantum Computation and Quantum Information* 十周年版为主要资料。两部分分别生成独立笔记，沿用相同的学习与核对规范。
+
+当前 QM 已完成现有材料覆盖的第 1--15 章，暂停等待后续资料；QC §1.1 已完成讲解，笔记已确认。具体进度分别见 `learning-log.md` 与 `qc/learning-log.md`。
 
 ## 内容面向谁
 
@@ -20,22 +22,28 @@
 
 ```text
 .
-├── main.tex                   # PDF 编译入口
-├── study-map.tex              # PDF 内的学习地图
-├── chapters/                  # 教材精讲笔记
-├── exercises/                 # 选定教材题、订正与必要的应用题
+├── main.tex                   # QM 编译入口
+├── qc-main.tex                # QC 独立编译入口
+├── study-map.tex              # QM 学习地图
+├── chapters/                  # QM 教材精讲笔记
+├── exercises/                 # QM 选定教材题、订正与必要的应用题
+├── qc/
+│   ├── study-map.tex          # QC 学习地图
+│   ├── chapters/              # QC 教材精讲笔记
+│   └── learning-log.md        # QC 进度与计划
 ├── figures/                   # 原创或明确许可的图片
 ├── latex/
 │   ├── preamble.tex           # 共享版式、元数据和交叉引用命令
 │   └── macros.tex             # 常用数学与量子力学记号
 ├── templates/                 # 新学习单元和习题文件模板
-├── learning-log.md            # 按日期记录学习进度
+├── learning-log.md            # QM 学习进度
 ├── AGENTS.md                  # 内容维护与公开发布规范
 ├── Makefile                   # 本地编译命令
 └── .gitignore                 # 忽略教材、PDF 和编译产物
 ```
 
 正文与习题分开保存。完整题目和完整解答进入 `exercises/`；正文只保留定义、推导、微型例子、常见误区和到相关练习的交叉引用。
+QC 正文保存在 `qc/chapters/`；有选定教材题时再建立 `qc/exercises/`。
 自编概念小题只用于对话中的理解检查，不收入复习笔记；没有合适教材题的小节无需另设题组。
 
 ## 编译 PDF
@@ -44,13 +52,17 @@
 
 ```bash
 make pdf
+make qc-pdf
 ```
 
 生成结果位于：
 
 ```text
 build/main.pdf
+build/qc-main.pdf
 ```
+
+两条命令分别编译 QM 与 QC，输出互不覆盖。
 
 清理编译产物：
 

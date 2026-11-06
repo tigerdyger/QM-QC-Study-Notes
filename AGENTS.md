@@ -6,7 +6,7 @@
 
 - 本仓库是公开的 QM 与 QC 中文学习笔记，不是教材翻译、官方课程讲义或答案册。
 - 量子力学内容以 Shankar *Principles of Quantum Mechanics* 为主要资料；实际已完成范围以 `learning-log.md` 和 `study-map.tex` 中经过确认的记录为准。
-- 量子计算是后续计划；在存在经过核对的资料和笔记之前，不得把它描述成已实现内容。
+- 量子计算以 Nielsen 与 Chuang 的 *Quantum Computation and Quantum Information* 十周年版为主要资料，独立维护笔记；已确认进度以 `qc/learning-log.md` 和 `qc/study-map.tex` 为准。计划学习的单元标为未开始。
 - 主要读者是具备微积分、基础线性代数和初等经典力学知识的本科生或自学者。
 
 ## 来源与准确性
@@ -24,7 +24,7 @@
 每个学习单元按以下顺序完成：
 
 1. 核对原始资料与章节边界；
-2. 分块讲解并处理概念问题；
+2. 开头说明教材页码、覆盖范围和概念块总数，再逐块讲解并处理问题；
 3. 教材 Example 由讲解者示范，Exercise 选择少量代表性题目交由学习者先作答；题目较多时不要求全部完成，避免重复训练；
 4. 核对、订正并总结自检规则；
 5. 整理正文、习题文件、学习地图和进度记录；
@@ -33,13 +33,14 @@
 
 ## 文件组织
 
-- `main.tex` 是完整 PDF 的唯一编译入口。
-- `chapters/` 保存教材精讲，每个教材单元一个文件或一个清晰分隔的节。
+- `main.tex` 是 QM 笔记入口，`qc-main.tex` 是 QC 笔记入口，分别生成独立 PDF。
+- `chapters/` 保存 QM 教材精讲，每个教材单元一个文件或一个清晰分隔的节；QC 正文按实际学习进度加入 `qc/chapters/`。
 - `exercises/` 保存选定教材 Example、Exercise 及核对后的解答；有必要保留的自拟应用题单独标明，不收录自编概念小题。完整例题不放在正文，无题目的小节不创建空题组。
+- QC 题目按相同规则加入 `qc/exercises/`，与 QM 题目分开。
 - `figures/` 只保存原创图片或来源与许可明确的图片。
 - `latex/` 保存共享版式和数学命令，不放具体教材内容。
 - `templates/` 保存新学习单元与习题模板。
-- `study-map.tex` 和 `learning-log.md` 必须与已确认进度同步。
+- QM 的 `study-map.tex`、`learning-log.md` 与 QC 的 `qc/study-map.tex`、`qc/learning-log.md` 分别记录进度；学习计划和已确认完成的内容分开标注。
 
 稳定编号采用：
 
@@ -69,7 +70,7 @@
 
 ## 验证要求
 
-- 修改正文或习题后运行 `make pdf`。
+- 修改 QM 正文或习题后运行 `make pdf`；修改 QC 笔记后运行 `make qc-pdf`。修改共享版式或命令时检查两份 PDF。
 - 运行 `git diff --check` 检查补丁格式。
 - 检查编译日志中的未定义引用、重复标签和溢出警告。
 - 使用原生 PDF 渲染检查中文、公式、表格、页眉、分页和链接。

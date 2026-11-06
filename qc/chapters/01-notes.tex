@@ -1,0 +1,138 @@
+% !TEX root = ../../qc-main.tex
+
+\section{第 1.1 节：量子计算与量子信息的总体视角}
+\label{section:QC-C01-S01}
+\studymeta
+  {QC-C01-S01}
+  {2026-11-06（整理）}
+  {Nielsen--Chuang, \textit{Quantum Computation and Quantum Information}, 10th Anniversary Edition}
+  {\S 1.1 Global perspectives，含 \S 1.1.1 历史与 \S 1.1.2 未来方向；印刷 pp.~1--12 / PDF pp.~29--40，至 \S 1.2 前}
+  {五块讲解已完成；笔记已确认}
+
+\notetopic{QC-C01-S01-T01}{物理：用量子系统处理信息}
+\keyidea{量子计算与量子信息研究：利用量子系统，能够完成哪些信息处理任务，需要付出多少资源？}
+
+量子力学提供态、演化和测量的框架；具体系统的 Hamiltonian 与控制方式还需另行确定。
+以往常从给定系统出发预测行为，量子信息则从目标任务出发，设计态的制备、操作与测量。
+信息总有物理载体，但器件依赖量子效应，并不自动意味着它执行量子算法。
+
+\textbf{不可克隆的限制。}No-cloning theorem（不可克隆定理）排除了同一个物理过程对任意未知态实施确定性的完美复制：
+\begin{equation*}
+  \ket\psi\ket b\longmapsto\ket\psi\ket\psi
+  \qquad\text{不能对所有未知的 }\ket\psi\text{ 都成立。}
+\end{equation*}
+这里 $\ket b$ 是固定的空白态。已知态可以重复制备，一组已知的正交态也可以被复制；限制针对任意未知态。
+
+\textbf{实验任务。}利用量子规律处理信息，需要制备并控制单个量子系统，维持所需的相干性，控制系统间相互作用，再进行读出。
+这些要求把抽象协议转化为可检验的实验任务；噪声与控制成本也必须计入资源分析。
+
+\notetopic{QC-C01-S01-T02}{计算：可计算与高效计算}
+\textbf{先区分两个问题。}Computability（可计算性）问是否存在算法；computational complexity（计算复杂度）问所需时间、存储等资源怎样随输入长度增长。
+通用图灵机可以模拟其他图灵机。Church--Turing thesis（丘奇--图灵论题）把直观的有效算法与图灵可计算联系起来；它并非仅由数学定义推出的定理。
+
+强形式进一步要求\emph{高效}模拟。比较量子与经典计算时，应把经典随机算法也计入基准。
+复杂度中的输入长度 $n$ 指编码所需的比特数；整数 $N$ 的二进制长度约为 $\log_2N$。
+常用的渐近区分为
+\begin{equation*}
+  \text{多项式时间： }O(n^c)\quad(c\text{ 为固定常数}),
+  \qquad
+  \text{指数时间：例如 }O(2^n).
+\end{equation*}
+多项式时间是理论上的效率标准，实际成本仍取决于次数、常数和精度。
+经典计算机能够模拟有限量子电路，与该模拟是否高效，是不同问题；一种模拟方法耗时指数级，也不能单独证明所有经典算法都如此。
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lXX@{}}
+\toprule
+代表性方向 & 已讲结论 & 判断优势时的条件 \\
+\midrule
+Shor 算法 & 大整数分解、离散对数有多项式时间量子算法 & 尚不能据此证明所有经典算法都需要超多项式时间 \\
+Grover 搜索 & $N$ 个候选、唯一目标的无结构搜索，量子查询为 $O(\sqrt N)$，经典为 $\Theta(N)$ & 查询是一次候选检验；数据装载等成本另计 \\
+量子模拟 & 用可控量子系统模拟其他量子系统的演化 & 指定 Hamiltonian、误差、初态制备及所需输出，不能概括成所有系统都易于模拟 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{噪声与容错。}Quantum error correction（量子纠错）和 fault-tolerant quantum computation（容错量子计算）使受噪操作下的可靠计算成为可能。
+结论有相应的噪声模型、错误率阈值和资源开销条件，不能用理想门的成本代替整个实现成本。
+
+\dialoguesupplement{历史更新：教材印刷 p.~6 关于没有高效确定性素性判定的陈述已过时。
+AKS 算法给出了无条件的确定性多项式时间素性判定。\footnote{Agrawal, Kayal and Saxena, \href{https://doi.org/10.4007/annals.2004.160.781}{\emph{PRIMES is in P}}, 2004。}
+判断一个数是否为素数，与求出一个合数的素因子，是不同任务。}
+
+\notetopic{QC-C01-S01-T03}{信息：压缩、通信与纠错}
+\textbf{经典信息论的两个目标。}Shannon 的无噪声编码理论研究信息源的压缩极限；有噪声信道编码理论研究可靠传输的速率极限。
+压缩利用统计规律减少平均存储成本，纠错则加入有结构的冗余以抵抗噪声。
+对通常的无记忆信道，传输速率低于容量时，可以用足够长、合适的编码让错误概率任意小；容量定理不自动提供实用的最优编码。
+
+\textbf{量子版本。}量子压缩与量子纠错需要保存量子态的相干信息，包括相对相位。
+先测量并记录一个经典结果，通常无法重建原未知态。Schumacher 建立了量子信息源压缩的对应理论；量子纠错则把逻辑信息编码到多个物理系统的联合状态中，利用关联保护信息，而非复制未知态。
+教材提及的 CSS 码和 stabilizer codes（稳定子码）是此方向的重要构造，后续再展开。
+
+\textbf{超密编码。}Superdense coding（超密编码）在双方\emph{预先共享一对最大纠缠量子比特}的条件下，通过发送一个量子比特传递两个经典比特。
+Alice、Bob 初始各持有一半；Alice 按消息选择四种操作之一，再发送自己的一半；Bob 对两个量子比特联合测量，区分四种消息。
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,font=\small,
+  box/.style={draw=noteBlue,rounded corners=2pt,align=center,minimum height=9mm,text width=37mm}]
+  \node (a) at (0,0) {Alice 持有 $q_A$};
+  \node (b) at (8,0) {Bob 持有 $q_B$};
+  \draw[dashed,noteBlue] (a)--node[above] {预先共享最大纠缠态} (b);
+  \node[box] (encode) at (0,-1.2) {按两个经典比特\\选操作并编码};
+  \node[box] (decode) at (8,-1.2) {联合测量 $q_A,q_B$\\读出两个经典比特};
+  \draw[->] (a)--(encode);
+  \draw[->] (b)--(decode);
+  \draw[->,thick,noteBlue] (encode)--node[above] {发送一个量子比特 $q_A$} (decode);
+\end{tikzpicture}
+
+{\small 原创协议示意：共享纠缠与后续量子通信都计入资源。}
+\end{center}
+
+这里可区分的是两个量子比特的联合状态，不能据此把孤立量子比特的可读出信息量说成两个经典比特。
+分布式任务还需比较通信量：共享纠缠、信道方向及允许的协作方式，都可能改变通信成本。
+
+\dialoguesupplement{历史更新：教材印刷 p.~8 关于量子噪声信道编码尚无对应定理的陈述已过时。
+量子信道编码定理已建立；例如 Devetak 的工作给出了相关容量结果及证明。\footnote{I. Devetak, \href{https://arxiv.org/abs/quant-ph/0304127}{\emph{The private classical capacity and quantum capacity of a quantum channel}}, 2003 年预印本，2005 年期刊发表。}}
+
+\notetopic{QC-C01-S01-T04}{密码学：密钥分发与计算安全}
+\textbf{对称密钥与公钥。}对称密钥体系用双方共享的秘密密钥加密、解密，因而需要先安全地建立密钥。
+在这里讨论的公钥加密体系中，Bob 公开公钥、保留私钥，Alice 用公钥加密，Bob 用私钥解密；安全性依赖攻击者仅凭公开信息时面临的计算困难，公钥的身份仍须认证。
+对 RSA，高效分解公钥模数足以恢复私钥，因此 Shor 算法威胁 RSA；这一结论针对相应密码方案，不能推广为所有密码都可被破解。
+
+\textbf{量子密钥分发。}Quantum key distribution（QKD，量子密钥分发）建立双方一致、对窃听者近乎保密的随机密钥，再用密钥加密消息。
+它利用非正交态的信息获取与扰动限制。对已知正交态，可在相应基底中区分而不改变态，所以不能笼统地说任何观察都会扰动任何态。
+
+\dialoguesupplement{实际协议通过抽样检验限制窃听者的信息，再进行数据纠错与 privacy amplification（隐私放大），即把可能部分泄露的原始数据压缩成较短的秘密密钥；安全条件不满足时中止。
+通常无法逐位辨认哪些比特被偷看。经典通信须经过认证以防冒充与篡改，安全证明还依赖所用协议的物理和设备假设。\footnote{安全证明参见 \href{https://arxiv.org/abs/quant-ph/0003004}{Shor--Preskill (2000)}；认证条件参见 \href{https://arxiv.org/abs/1206.6150}{Mosca--Stebila--Ustaoglu (2012)}。}}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+安全性类型 & 核心依据 \\
+\midrule
+计算安全性 & 攻击所需的计算资源过大；新算法可能改变安全判断 \\
+信息论安全性 & 即使计算能力无限，攻击者获得的信息仍不足以恢复秘密；QKD 在相应假设成立时可生成具有此类安全性的密钥 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\notetopic{QC-C01-S01-T05}{纠缠资源与计算物理视角}
+\textbf{纠缠从性质变为资源。}对纯态，不能写成子系统态的张量积意味着纠缠，例如
+\begin{equation*}
+  \ket{\Phi^+}=\frac{\ket{00}+\ket{11}}{\sqrt2}
+  \ne\ket\alpha_A\otimes\ket\beta_B.
+\end{equation*}
+量子信息进一步研究：纠缠怎样制备和转换，完成一个任务需要多少，使用后还剩多少。
+超密编码把共享纠缠列为具体资源；仅有纠缠并不足以保证某个算法具有量子优势。
+
+\textbf{两种相互补充的视角。}\S 1.1.2 把本节主线收束为以下两条研究路线：
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+从物理理解计算 & 由物理规律确定允许的态、操作和测量，再研究可实现的信息任务与资源成本 \\
+从计算理解物理 & 在已知运动方程之外，研究复杂系统的状态表示、制备、模拟与可观测量计算所需的资源 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+掌握 Hamiltonian 和 Schrödinger 方程，并不自动提供高效的求解方法；算法与复杂度分析连接基本规律和复杂系统的可计算描述。
+本节建立问题框架，量子比特、量子门、协议与算法的具体数学结构从后续各节展开。

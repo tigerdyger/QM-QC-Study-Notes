@@ -6,7 +6,7 @@ ifneq ($(MANAGED_TEXLIVE_BIN),)
 export PATH := $(MANAGED_TEXLIVE_BIN):$(PATH)
 endif
 
-.PHONY: pdf clean
+.PHONY: pdf qc-pdf clean
 
 pdf:
 	@mkdir -p $(BUILD)
@@ -18,6 +18,9 @@ pdf:
 		echo "没有找到 LaTeX 编译器。请安装 MacTeX、BasicTeX 或 Tectonic。"; \
 		exit 1; \
 	fi
+
+qc-pdf:
+	$(MAKE) pdf MAIN=qc-main
 
 clean:
 	@rm -rf $(BUILD)
