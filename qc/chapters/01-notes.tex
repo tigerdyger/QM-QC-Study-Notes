@@ -136,3 +136,175 @@ Alice、Bob 初始各持有一半；Alice 按消息选择四种操作之一，�
 \end{center}
 掌握 Hamiltonian 和 Schrödinger 方程，并不自动提供高效的求解方法；算法与复杂度分析连接基本规律和复杂系统的可计算描述。
 本节建立问题框架，量子比特、量子门、协议与算法的具体数学结构从后续各节展开。
+
+\section{第 1.2 节：量子比特}
+\label{section:QC-C01-S02}
+\studymeta
+  {QC-C01-S02}
+  {2026-11-07（整理）}
+  {Nielsen--Chuang, \textit{Quantum Computation and Quantum Information}, 10th Anniversary Edition}
+  {\S 1.2 Quantum bits，含 \S 1.2.1 Multiple qubits；印刷 pp.~13--17 / PDF pp.~41--45，至 \S 1.3 前}
+  {四块讲解已完成；笔记已确认}
+
+\notetopic{QC-C01-S02-T01}{单量子比特：状态、测量与物理实现}
+\keyidea{Quantum bit（量子比特，qubit）用二维复 Hilbert 空间描述；具体载体可以是自旋、光子偏振或原子的两个选定能级。}
+
+选定一组正交归一的 computational basis（计算基），
+\begin{equation*}
+  \ket0=\begin{pmatrix}1\\0\end{pmatrix},\qquad
+  \ket1=\begin{pmatrix}0\\1\end{pmatrix},\qquad
+  \ket\psi=\alpha\ket0+\beta\ket1,\quad
+  |\alpha|^2+|\beta|^2=1.
+\end{equation*}
+这里 $\alpha,\beta\in\complex$ 是复概率幅；本节先讨论纯态，统计混合将在后文用密度算符描述。
+数字 $0,1$ 是基矢标签，不必对应零能量或粒子数。二能级的叠加态也不具有一个介于两能级之间的确定能量。
+
+\textbf{计算基测量。}理想投影测量得到 $0,1$ 的概率分别为 $|\alpha|^2,|\beta|^2$，
+对应测后态分别为 $\ket0,\ket1$。一次读出返回一个结果，不返回两个复概率幅。
+教材此处的“测量”特指计算基测量；换基后应使用相应基底中的展开系数。
+
+常用叠加态为
+\begin{equation*}
+  \ket+=\frac{\ket0+\ket1}{\sqrt2},\qquad
+  \ket-=\frac{\ket0-\ket1}{\sqrt2}.
+\end{equation*}
+\dialoguesupplement{若 $\ket0=\ket{z,+}$、$\ket1=\ket{z,-}$，则 $\ket\pm=\ket{x,\pm}$。
+两态在计算基中的概率相同，但相对相位不同，且 $\braket{+}{-}=0$。}
+
+\notetopic{QC-C01-S02-T02}{相位、Bloch 球与读出信息}
+\textbf{从复系数到两个角。}写成 $\alpha=|\alpha|e^{i\gamma}$、$\beta=|\beta|e^{i\delta}$，
+利用归一化令 $|\alpha|=\cos(\theta/2)$、$|\beta|=\sin(\theta/2)$，得到
+\begin{equation*}
+  \ket\psi=e^{i\gamma}\left(\cos\frac\theta2\ket0+
+  e^{i(\delta-\gamma)}\sin\frac\theta2\ket1\right).
+\end{equation*}
+去掉整体相位，记 $\varphi=\delta-\gamma$，即可选取代表态
+\begin{equation*}
+  \boxed{\ket\psi=\cos\frac\theta2\ket0+e^{i\varphi}\sin\frac\theta2\ket1},
+  \qquad 0\le\theta\le\pi,\quad 0\le\varphi<2\pi.
+\end{equation*}
+$\theta$ 控制模长，$\varphi$ 是相对相位；在南北两极，一个分量为零，$\varphi$ 不影响物理态。
+Bloch sphere（布洛赫球）用球面方向
+\begin{equation*}
+  \mathbf n=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)
+\end{equation*}
+表示单比特纯态。整体相位不改变球面点；球面上的对跖点对应正交态。
+
+\begin{center}
+\begin{minipage}[c]{0.44\textwidth}
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small]
+  % Orthographic projection: x=(-1/sqrt(2),-1/sqrt(6)), y=(1/sqrt(2),-1/sqrt(6)).
+  \draw[gray!65] (0,0) circle (1.6);
+  \draw[dashed,gray] (1.6,0) arc[start angle=0,end angle=180,x radius=1.6,y radius=0.9238];
+  \draw[gray] (-1.6,0) arc[start angle=180,end angle=360,x radius=1.6,y radius=0.9238];
+  \draw[->] (0,0)--(-1.38,-0.80) node[below left] {$x$};
+  \draw[->] (0,0)--(1.38,-0.80) node[below right] {$y$};
+  \draw[->] (0,-1.42)--(0,1.76) node[above] {$z$};
+  \fill (0,1.3064) circle (1.5pt) node[left=3pt] {$\ket0$};
+  \fill (0,-1.3064) circle (1.5pt) node[left=3pt] {$\ket1$};
+  \coordinate (N) at (1.2210,0.7781);
+  \coordinate (P) at (1.2210,-0.0617);
+  \draw[dashed,gray] (N)--(P)--(0,0);
+  \draw[->,thick,noteBlue] (0,0)--(N) node[above right] {$\mathbf n$};
+  \fill[noteBlue] (N) circle (1.5pt);
+  \draw[noteBlue,domain=0:50,samples=25,variable=\t]
+    plot ({0.55*0.9962*sin(\t)},{0.55*(-0.0503*sin(\t)+0.8165*cos(\t))});
+  \node[noteBlue] at (0.24,0.49) {$\theta$};
+  \draw[noteBlue,domain=0:130,samples=35,variable=\t]
+    plot ({0.45*0.7071*(-cos(\t)+sin(\t))},{-0.45*0.4082*(cos(\t)+sin(\t))});
+  \node[noteBlue] at (0.08,-0.37) {$\varphi$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.52\textwidth}
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+纯态 & 球面方向 \\
+\midrule
+$\ket0$ & 北极，$+z$ \\
+$\ket1$ & 南极，$-z$ \\
+$\ket+$ & 赤道，$+x$ \\
+$\ket-$ & 赤道，$-x$ \\
+\bottomrule
+\end{tabular}
+\par\smallskip
+{\small 原创几何示意，依据教材式 (1.4) 的参数化绘制。球面表示状态空间，不表示粒子的空间位置。}
+\end{minipage}
+\end{center}
+
+\dialoguesupplement{在上述自旋基底约定下，$\mathbf S=(\hbar/2)\boldsymbol\sigma$，
+代入态系数计算得 $\expect{\mathbf S}=(\hbar/2)\mathbf n$。
+因此态系数中的半角 $\theta/2$ 对应自旋期望方向的极角 $\theta$。}
+
+\textbf{连续参数与测量信息。}计算基概率为
+\begin{equation*}
+  P(0)=\cos^2\frac\theta2,\qquad P(1)=\sin^2\frac\theta2.
+\end{equation*}
+它们不依赖 $\varphi$；等概率只能确定纯态位于赤道，不能定位赤道上的具体点。
+一次测量给出一个二值结果，测后态为对应基矢；对同一个测后样本重复计算基测量，无法读回原先的连续参数。
+
+\dialoguesupplement{Quantum state tomography（量子态层析）使用许多同样制备的样本，
+在适当的不同测量基中获取统计，以估计未知态。只增加计算基样本数，仍只能估计模平方；
+相对相位需要其他基中的统计，整体相位无法也无需重建。有限样本通常只给出有限精度的估计。
+这补全了教材关于“测量大量同样制备的 qubit 以确定态”的简写条件。}
+
+\notetopic{QC-C01-S02-T03}{多量子比特：张量积与局部测量}
+两个 qubit 的空间为 $\hilbert=\complex^2\otimes\complex^2$，维数为 $4$。
+记 $\ket{ab}=\ket a_1\otimes\ket b_2$，一般纯态为
+\begin{equation*}
+  \ket\psi=\alpha_{00}\ket{00}+\alpha_{01}\ket{01}
+  +\alpha_{10}\ket{10}+\alpha_{11}\ket{11},\qquad
+  \sum_{a,b=0}^1|\alpha_{ab}|^2=1.
+\end{equation*}
+两位同时作计算基测量，结果 $ab$ 的概率为 $|\alpha_{ab}|^2$，测后态为 $\ket{ab}$。
+
+\textbf{只测第一位。}结果 $a$ 对应投影 $Q_a=\ketbra{a}{a}\otimes I$。
+以结果 $0$ 为例，
+\begin{align*}
+  Q_0\ket\psi&=\alpha_{00}\ket{00}+\alpha_{01}\ket{01},\\
+  p_0=\norm{Q_0\ket\psi}^2&=|\alpha_{00}|^2+|\alpha_{01}|^2.
+\end{align*}
+这就是对第二位求和得到的 marginal probability（边缘概率）。交叉项因 $\braket{00}{01}=0$ 消失，
+不能先把这两个正交分量的概率幅相加再取模平方。
+若 $p_0>0$，条件测后态为
+\begin{equation*}
+  \boxed{\ket{\psi_0}=\frac{Q_0\ket\psi}{\sqrt{p_0}}
+  =\ket0_1\otimes\frac{\alpha_{00}\ket0_2+\alpha_{01}\ket1_2}{\sqrt{p_0}}}.
+\end{equation*}
+第一位已确定；第二位仍可处于叠加态，两个保留分量的相对相位也保留。
+结果 $1$ 同理，$p_1=|\alpha_{10}|^2+|\alpha_{11}|^2=1-p_0$。
+这里描述的是已知测量结果的理想投影测量；未记录结果时须使用后续的密度算符描述。
+
+\notetopic{QC-C01-S02-T04}{Bell 态、纠缠关联与指数状态空间}
+教材的 Bell state（贝尔态），也称 EPR pair，为
+\begin{equation*}
+  \boxed{\ket{\Phi^+}=\frac{\ket{00}+\ket{11}}{\sqrt2}}.
+\end{equation*}
+\dialoguesupplement{若它可写成 $(a\ket0+b\ket1)\otimes(c\ket0+d\ket1)$，
+比较系数须有 $ac=bd=1/\sqrt2$ 且 $ad=bc=0$。
+前者要求四个数全非零，与后者矛盾。因此它是纠缠纯态，无法拆成两个单比特纯态的乘积。}
+
+\textbf{关联需要比较不同测量基。}第一位的计算基测量以各 $1/2$ 的概率得到 $0$ 或 $1$，
+联合态分别变成 $\ket{00}$ 或 $\ket{11}$；随后测第二位必得相同结果。
+仅凭这组统计尚不能识别纠缠，因为等概率随机制备 $\ket{00}$、$\ket{11}$ 也能给出同样统计。
+
+\dialoguesupplement{由 $\ket0=(\ket++\ket-)/\sqrt2$、$\ket1=(\ket+-\ket-)/\sqrt2$ 可得
+\begin{equation*}
+  \ket{\Phi^+}=\frac{\ket{++}+\ket{--}}{\sqrt2}.
+\end{equation*}
+双方都在 $\{\ket+,\ket-\}$ 基中测量，Bell 态仍保证结果相同；
+上述随机制备方案只有 $1/2$ 的概率结果相同。这区分了联合态的相干叠加与该统计混合。
+更强的 Bell 不等式结论留到 \S 2.6。}
+
+\textbf{推广到 $n$ 个 qubit。}张量积给出
+\begin{equation*}
+  \dim\hilbert=2^n,\qquad
+  \ket\psi=\sum_{x\in\{0,1\}^n}\alpha_x\ket x,\qquad
+  \sum_x|\alpha_x|^2=1.
+\end{equation*}
+$x$ 遍历所有 $n$ 位二进制串。一般态的直接表示含 $2^n$ 个复概率幅，受归一化与整体相位冗余约束。
+\emph{一次计算基测量只得到其中一个二进制串}，概率为 $|\alpha_x|^2$；
+反复进行同一种测量，也只能估计这一组概率。
+\dialoguesupplement{指数维数描述一般态的显式存储成本；特殊态如 $\ket0^{\otimes n}$ 有简洁表示。
+量子算法的优势还须结合态制备、操作和所需输出评估，不能由维数直接推出。}

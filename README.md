@@ -4,7 +4,7 @@
 
 量子力学部分以 R. Shankar 的 *Principles of Quantum Mechanics* 为主要资料；量子计算部分以 Michael A. Nielsen 与 Isaac L. Chuang 的 *Quantum Computation and Quantum Information* 十周年版为主要资料。两部分分别生成独立笔记，沿用相同的学习与核对规范。
 
-当前 QM 已完成现有材料覆盖的第 1--15 章，暂停等待后续资料；QC §1.1 已完成讲解，笔记已确认。具体进度分别见 `learning-log.md` 与 `qc/learning-log.md`。
+当前 QM 已完成现有材料覆盖的第 1--15 章，暂停等待后续资料；QC §1.1、§1.2 均已完成讲解，笔记已确认。具体进度分别见 `learning-log.md` 与 `qc/learning-log.md`。
 
 ## 内容面向谁
 
